@@ -12,14 +12,38 @@ import TongueLogo from './TongueLogo.astro';
     </div>
   </a>
   
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="#">Videos</a>
     <a href="#">Tips & Tricks</a>
-    <a href="#">Facebppl Community</a>
+    <a href="#">Facebook Community</a>
+    <div class="mobile-actions">
+        <button class="btn btn-outline">Contact Us</button>
+        <button class="btn btn-primary">Email Community</button>
+    </div>
   </div>
 
   <div class="nav-actions">
     <button class="btn btn-outline">Contact Us</button>
     <button class="btn btn-primary">Email Community</button>
   </div>
+
+  <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
 </nav>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle?.addEventListener('click', () => {
+      navLinks?.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+  });
+</script>

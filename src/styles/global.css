@@ -62,8 +62,10 @@ img {
 	width: 44px;
 	height: 44px;
 	color: var(--accent);
-	margin-top: -5px;
-	/* Shifted 5px higher */
+	margin-top: -7px;
+	/* 5px (previous) + 2px higher */
+	margin-left: 5px;
+	/* 5px to the right */
 }
 
 .logo-text {
@@ -84,28 +86,120 @@ img {
 	font-weight: 800;
 }
 
+/* The following CSS is new or modified based on the instruction */
+nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 2rem;
+	background: rgba(10, 10, 15, 0.8);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+}
+
 .nav-links {
 	display: flex;
 	gap: 2.5rem;
+	/* Increased spacing for desktop */
+	align-items: center;
 }
 
 .nav-links a {
 	color: var(--text-secondary);
-	text-transform: uppercase;
-	font-size: 0.75rem;
-	font-weight: 600;
-	letter-spacing: 1.5px;
-	transition: all 0.3s ease;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 0.95rem;
+	transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-	color: var(--text-primary);
+	color: var(--accent);
 }
 
 .nav-actions {
 	display: flex;
-	gap: 15px;
+	gap: 1rem;
 }
+
+.mobile-actions {
+	display: none;
+}
+
+.menu-toggle {
+	display: none;
+	background: none;
+	border: none;
+	color: var(--text-primary);
+	cursor: pointer;
+	padding: 0.5rem;
+	z-index: 1001;
+}
+
+/* Tablet Spacing */
+@media (max-width: 1024px) {
+	.nav-links {
+		gap: 1.5rem;
+	}
+
+	nav {
+		padding: 1rem 1.5rem;
+	}
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+	.nav-actions {
+		display: none;
+	}
+
+	.menu-toggle {
+		display: block;
+	}
+
+	.nav-links {
+		position: fixed;
+		top: 0;
+		right: -100%;
+		width: 80%;
+		height: 100vh;
+		background: rgba(15, 15, 20, 0.98);
+		backdrop-filter: blur(20px);
+		flex-direction: column;
+		justify-content: center;
+		gap: 2rem;
+		transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		z-index: 1000;
+		border-left: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.nav-links.active {
+		right: 0;
+	}
+
+	.nav-links a {
+		font-size: 1.25rem;
+		font-weight: 600;
+	}
+
+	.mobile-actions {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		width: 100%;
+		padding: 0 2rem;
+		margin-top: 1rem;
+	}
+
+	.mobile-actions .btn {
+		width: 100%;
+		justify-content: center;
+	}
+}
+
+/* End of new/modified CSS */
 
 .btn {
 	padding: 0.6rem 1.5rem;
