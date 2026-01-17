@@ -16,4 +16,12 @@ Visual stories and live discussions allow for a level of connection that text al
 ## The Vision
 This isn't just about sharing information; it's about decoding the mystery together. Every video is a step toward a better understanding and, eventually, a better way to manage the burn.
 
+<div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 12px; margin: 3rem 0;">
+  <iframe 
+    src="https://www.youtube.com/embed/BM8qUgA8yPE" 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
+    allowfullscreen
+  ></iframe>
+</div>
+
 Thank you for being part of this journey.
