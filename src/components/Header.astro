@@ -1,14 +1,26 @@
 ---
 import { SITE_TITLE } from '../consts';
+import TongueLogo from './TongueLogo.astro';
 ---
 
 <nav class="navbar">
-  <a href="/" class="logo">
-    {SITE_TITLE}<span class="dot">.</span>
+  <a href="/" class="logo-container">
+    <TongueLogo />
+    <div class="logo-text">
+        <span>Decoding</span>
+        <span>The Burn</span>
+    </div>
   </a>
+  
   <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/blog">Articles</a>
-    <a href="/about">About</a>
+    <a href="/blog">Stories</a>
+    <a href="#">Videos</a>
+    <a href="#">Research</a>
+    <a href="#">Community</a>
+  </div>
+
+  <div class="nav-actions">
+    <button class="btn btn-outline">Support</button>
+    <button class="btn btn-primary">Join us</button>
   </div>
 </nav>

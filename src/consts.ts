@@ -1,2 +1,2 @@
-export const SITE_TITLE = 'PREMIUM BLOG';
-export const SITE_DESCRIPTION = 'The next generation of intelligent design and development.';
+export const SITE_TITLE = 'Decoding The Burn';
+export const SITE_DESCRIPTION = 'Decoding Burning Mouth Syndrome (BMS) through personal experience, research, and community.';

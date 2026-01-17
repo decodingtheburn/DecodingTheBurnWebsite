@@ -4,6 +4,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import FormattedDate from '../../components/FormattedDate.astro';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -13,24 +14,36 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Articles | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Stories | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
-		<main class="container">
-			<h1 class="section-title">All Articles</h1>
-			<div class="grid">
+		<main>
+            <section class="section-header">
+				<div>
+					<span class="tag">Archive</span>
+					<h2>All Stories</h2>
+				</div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">The complete archive of journeys, insights, and research into Burning Mouth Syndrome.</p>
+			</section>
+
+			<div class="grid" style="margin-bottom: 8rem;">
 				{
 					posts.map((post) => (
-						<a href={`/blog/${post.id}/`} class="card">
-							<div class="card-image" style={`background-image: url(${post.data.heroImage})`}></div>
-							<div class="card-content">
-								<div class="tag">Article</div>
-								<h3>{post.data.title}</h3>
-								<p>{post.data.description}</p>
-								<span class="read-more">Read Article →</span>
-							</div>
-						</a>
+						<article class="card">
+							<a href={`/blog/${post.id}/`}>
+								<div class="card-img" style={`background-image: url(${post.data.heroImage})`}></div>
+								<div class="card-body">
+									<div class="card-meta">
+										<span class="meta-tag">Article</span>
+										<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
+									</div>
+									<h3>{post.data.title}</h3>
+									<p>{post.data.description}</p>
+									<span class="view-story">Read Story →</span>
+								</div>
+							</a>
+						</article>
 					))
 				}
 			</div>

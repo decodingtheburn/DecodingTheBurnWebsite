@@ -1,8 +1,51 @@
 ---
-const today = new Date();
+import { SITE_TITLE } from '../consts';
+import TongueLogo from './TongueLogo.astro';
 ---
 
-<footer>
-  &copy; {today.getFullYear()} {import.meta.env.SITE_NAME || 'PREMIUM BLOG'}. All rights reserved.
-  <p>Crafted with precision using Astro & AI.</p>
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="/" class="logo-container">
+        <TongueLogo />
+        <div class="logo-text">
+            <span>Decoding</span>
+            <span>The Burn</span>
+        </div>
+      </a>
+      <p>Dedicated to shedding light on the mystery of Burning Mouth Syndrome through science, stories, and support.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Stories</a></li>
+        <li><a href="#">Videos</a></li>
+        <li><a href="#">Research</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Disclaimers</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Follow</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {new Date().getFullYear()} Decoding The Burn. All rights reserved.</p>
+  </div>
 </footer>

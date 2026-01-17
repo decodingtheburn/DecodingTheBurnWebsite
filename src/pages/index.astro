@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -18,29 +19,100 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-			<section class="hero">
-				<h1>Design for the <span class="gradient-text">Next Era</span></h1>
-				<p>{SITE_DESCRIPTION}</p>
-				<a href="/blog" class="cta-button">Explore Articles</a>
+			<!-- Hero Section -->
+			<section class="hero-wrapper">
+				<div class="hero-content">
+					<h2>Building a community for 20 million people</h2>
+					<h1>My Journey Through BMS.</h1>
+					<p>This is my personal journey through Burning Mouth Syndrome (BMS) – searching for a deeper understanding of BMS, what it is, and why it exists.</p>
+					<a href="/blog/agentic-ai" class="btn btn-primary btn-large">Start Reading My Journey →</a>
+				</div>
+				<div class="hero-video">
+					<div class="video-placeholder">
+						<div class="play-button">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+								<path d="M8 5v14l11-7z"/>
+							</svg>
+						</div>
+					</div>
+				</div>
 			</section>
 
-			<section class="container">
-				<h2 class="section-title">Latest Insights</h2>
-				<div class="grid">
-					{
-						posts.slice(0, 3).map((post) => (
-							<a href={`/blog/${post.id}/`} class="card">
-								<div class="card-image" style={`background-image: url(${post.data.heroImage})`}></div>
-								<div class="card-content">
-									<div class="tag">Technology</div>
+			<!-- Recent Insights -->
+			<section class="section-header">
+				<div>
+					<span class="tag">The Blog</span>
+					<h2>Recent Insights</h2>
+				</div>
+				<p style="max-width: 400px; color: var(--text-secondary); font-size: 0.9rem;">Tips, treatments, and everything from scientific breakthroughs to mental health and diet in managing BMS pain.</p>
+			</section>
+
+			<div class="grid">
+				{
+					posts.slice(0, 3).map((post) => (
+						<article class="card">
+							<a href={`/blog/${post.id}/`}>
+								<div class="card-img" style={`background-image: url(${post.data.heroImage})`}></div>
+								<div class="card-body">
+									<div class="card-meta">
+										<span class="meta-tag">Research</span>
+										<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
+									</div>
 									<h3>{post.data.title}</h3>
 									<p>{post.data.description}</p>
-									<span class="read-more">Read Article →</span>
+									<span class="view-story">View Story →</span>
 								</div>
 							</a>
-						))
-					}
+						</article>
+					))
+				}
+			</div>
+
+			<div style="text-align: center; margin: 4rem 0;">
+				<a href="/blog" class="btn btn-outline">View Archive +</a>
+			</div>
+
+			<!-- Watch & Learn -->
+			<section class="section-header">
+				<div>
+					<span class="tag">Video Library</span>
+					<h2>Watch & Learn</h2>
 				</div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Follow my series where I interview researchers, try new therapies, and share moments of hope on my recovery journey.</p>
+			</section>
+
+            <div class="grid" style="margin-bottom: 8rem;">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x400/131418/ed217c?text=Video+1')"></div>
+                    <div class="card-body">
+                        <h3>Managing BMS at Home</h3>
+                        <p>A quick guide for simple tools and habits to minimize everyday flare-ups.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x400/131418/ed217c?text=Video+2')"></div>
+                    <div class="card-body">
+                        <h3>Understanding the types of BMS</h3>
+                        <p>Diving into the primary and secondary categories to better focus treatments.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://placehold.co/600x400/131418/ed217c?text=Video+3')"></div>
+                    <div class="card-body">
+                        <h3>Community Q&A</h3>
+                        <p>I answer the most common questions from our support calls about lifestyle changes.</p>
+                    </div>
+                </div>
+            </div>
+
+			<!-- Newsletter Callout -->
+			<section class="newsletter-section">
+				<h2>You don't have to face BMS alone.</h2>
+				<p>Join our newsletter to receive weekly research summaries, management tips, and invitations to our monthly community support calls.</p>
+				<form class="newsletter-form">
+					<input type="email" placeholder="Enter your email" required />
+					<button type="submit">Join Community</button>
+				</form>
 			</section>
 		</main>
 		<Footer />
