@@ -3,7 +3,7 @@ title: "Reduce BMS pain: The Mouth Taping experiment"
 description: "How a simple strip of tape helped me reduce dry mouth and manage BMS symptoms overnight."
 pubDate: "Jan 18 2026"
 heroImage: "../../assets/hd-yt-thumbnail.png"
-draft: true
+draft: false
 ---
 
 I know that for lots of us living with **Burning Mouth Syndrome (BMS)**, the nights can be the hardest. I used to wake up with a mouth that felt like sandpaper, my burning sensation amplified by hours of mouth breathing and extreme dryness.
