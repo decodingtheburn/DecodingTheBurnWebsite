@@ -6,7 +6,9 @@ import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import FormattedDate from '../../components/FormattedDate.astro';
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection('blog', ({ data }) => {
+	return import.meta.env.DEV || !data.draft;
+})).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
@@ -32,7 +34,7 @@ const posts = (await getCollection('blog')).sort(
 					posts.map((post) => (
 						<article class="card">
 							<a href={`/blog/${post.id}/`}>
-								<div class="card-img" style={`background-image: url(${post.data.heroImage})`}></div>
+								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
 								<div class="card-body">
 									<div class="card-meta">
 										<span class="meta-tag">Article</span>
