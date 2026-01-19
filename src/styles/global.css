@@ -265,7 +265,21 @@ nav {
 	color: var(--text-secondary);
 	font-size: 1.1rem;
 	margin-bottom: 2.5rem;
-	max-width: 500px;
+	max-width: 600px;
+}
+
+.hero-media-column {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	align-items: center;
+	width: 100%;
+}
+
+.hero-cta {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .hero-video {
@@ -894,7 +908,18 @@ nav {
 
 	/* Prevent overflow from large min-width columns */
 	.grid {
-		grid-template-columns: minmax(0, 1fr) !important;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		max-width: 100%;
+		padding: 0 1.5rem;
+		gap: 1.5rem;
+	}
+
+	.card {
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
 	}
 
 	/* Blog Post Mobile Styles */
