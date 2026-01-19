@@ -31,14 +31,16 @@ const posts = (await getCollection('blog', ({ data }) => {
 
 			<div class="grid" style="margin-bottom: 8rem;">
 				{
-					posts.map((post) => (
+					posts.map((post, index) => {
+						const postNumber = posts.length - index;
+						return (
 						<article class="card">
 							<a href={`/blog/${post.id}/`}>
 								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
 								<div class="card-body">
 									<div class="card-meta">
 										<span class="meta-tag">Article</span>
-										<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
+										<span class="meta-date">Post #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
 									</div>
 									<h3>{post.data.title}</h3>
 									<p>{post.data.description}</p>
@@ -46,7 +48,7 @@ const posts = (await getCollection('blog', ({ data }) => {
 								</div>
 							</a>
 						</article>
-					))
+					)})
 				}
 			</div>
 		</main>

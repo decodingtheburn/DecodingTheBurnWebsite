@@ -28,7 +28,7 @@ const posts = (await getCollection('blog', ({ data }) => {
 					<h1>Using AI to ease BMS.</h1>
 					<p>I’m exploring how modern AI can help us find patterns, relief, and research we might have missed—all from a patient’s perspective.</p>
 					<div class="hero-cta">
-						<a href="/blog/my-youtube-goal" class="btn btn-primary">Start Reading My Journey →</a>
+						<a href="/blog/mouth-taping-bms" class="btn btn-primary">See my latest post →</a>
 					</div>
 				</div>
 				<div class="hero-video">
@@ -40,6 +40,9 @@ const posts = (await getCollection('blog', ({ data }) => {
 						</div>
 						<span class="coming-soon">Coming Soon</span>
 					</div>
+					<div style="margin-top: 1rem;">
+						<p style="font-size: 0.75rem; color: #666; font-style: italic; line-height: 1.4;"><strong>Disclaimer:</strong> This content shares personal experiences and research for information only. I am a patient, not a doctor. Always consult your medical professional before trying new treatments.</p>
+					</div>
 				</div>
 			</section>
 
@@ -47,21 +50,24 @@ const posts = (await getCollection('blog', ({ data }) => {
 			<section class="section-header">
 				<div>
 					<span class="tag">The Blog</span>
-					<h2>Recent Insights</h2>
+					<h2>Recent Posts</h2>
 				</div>
 				<p style="max-width: 400px; color: var(--text-secondary); font-size: 0.9rem;">Tips, treatments, and everything from scientific breakthroughs to mental health and diet in managing BMS pain.</p>
 			</section>
 
 			<div class="grid">
 				{
-					posts.slice(0, 3).map((post) => (
+					posts.slice(0, 3).map((post, index) => {
+						// Calculate post number (newest is #Total, oldest is #1)
+						const postNumber = posts.length - index;
+						return (
 						<article class="card">
 							<a href={`/blog/${post.id}/`}>
 								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
 								<div class="card-body">
 									<div class="card-meta">
 										<span class="meta-tag">Research</span>
-										<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
+										<span class="meta-date">Post #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
 									</div>
 									<h3>{post.data.title}</h3>
 									<p>{post.data.description}</p>
@@ -69,7 +75,7 @@ const posts = (await getCollection('blog', ({ data }) => {
 								</div>
 							</a>
 						</article>
-					))
+					)})
 				}
 			</div>
 
@@ -77,47 +83,13 @@ const posts = (await getCollection('blog', ({ data }) => {
 				<a href="/blog" class="btn btn-outline">View Archive +</a>
 			</div>
 
-			<!-- Tips and Tricks -->
-			<section class="section-header">
-				<div>
-					<span class="tag">Knowledge Base</span>
-					<h2>Tips and Tricks</h2>
-				</div>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">Follow my series where I interview researchers, try new therapies, and share moments of hope on my recovery journey.</p>
-			</section>
 
-            <div class="grid" style="margin-bottom: 8rem;">
-                <div class="card">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x400/131418/ed217c?text=Video+1')"></div>
-                    <div class="card-body">
-                        <h3>Managing BMS at Home</h3>
-                        <p>A quick guide for simple tools and habits to minimize everyday flare-ups.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x400/131418/ed217c?text=Video+2')"></div>
-                    <div class="card-body">
-                        <h3>Understanding the types of BMS</h3>
-                        <p>Diving into the primary and secondary categories to better focus treatments.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('https://placehold.co/600x400/131418/ed217c?text=Video+3')"></div>
-                    <div class="card-body">
-                        <h3>Community Q&A</h3>
-                        <p>I answer the most common questions from our support calls about lifestyle changes.</p>
-                    </div>
-                </div>
-            </div>
 
 			<!-- Newsletter Callout -->
-			<section class="newsletter-section">
+			<section class="newsletter-section" style="text-align: center;">
 				<h2>You don't have to face BMS alone.</h2>
-				<p>Join our newsletter to receive weekly research summaries, management tips, and invitations to our monthly community support calls.</p>
-				<form class="newsletter-form">
-					<input type="email" placeholder="Enter your email" required />
-					<button type="submit">Join Community</button>
-				</form>
+				<p style="margin-bottom: 2.5rem;">Join our newsletter to receive weekly research summaries, management tips, and invitations to our monthly community support calls.</p>
+				<a href="/join" class="btn btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem;">Join the Community →</a>
 			</section>
 		</main>
 		<Footer />

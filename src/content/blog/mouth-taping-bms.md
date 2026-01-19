@@ -14,6 +14,14 @@ Recently, I’ve been experimenting with something that sounded a bit crazy to m
 
 I realized that like many people, I was mouth-breathe in my sleep without even realizing it. This was drying out my oral mucosa, which for my BMS, was like throwing fuel on a fire. I've found that dryness is one of my biggest triggers for "The Burn."
 
+## How weird is it to wear it the first time?
+
+I won't lie—the first time I put tape on my mouth, it felt incredibly unnatural. There's a primal part of your brain that thinks, *"Wait, are you sealing my airway?"* 
+
+For the first few minutes, I was hyper-aware of it. I found myself testing my ability to open my mouth (which you can still do, the tape just provides resistance). But surprisingly, after about 10 minutes of reading or watching TV, the sensation faded into the background.
+
+By the time I actually fell asleep, I didn't even notice it. And waking up without that sandpaper-dry tongue made the initial weirdness 100% worth it. It’s a mental hurdle more than a physical one.
+
 By using a small piece of medical-grade tape to keep my lips together, I now force myself to use **nasal breathing**. I've learned that nasal breathing filters, warms, and humidifies the air, which keeps my mouth moist and makes my symptoms much more manageable.
 
 ## My Results
@@ -33,6 +41,8 @@ I felt more rested, which I attribute to better oxygenation from nasal breathing
 
 <div class="stat-grid">
 	<div class="stat-card">
+		<span class="stat-title">BMS Prevalence</span>
+		<span class="stat-label">BMS patients report subjective dry mouth</span>
 		<div class="stat-visualization-wrapper">
 			<div class="stat-circle-container">
 				<svg viewBox="0 0 100 100">
@@ -42,20 +52,22 @@ I felt more rested, which I attribute to better oxygenation from nasal breathing
 			</div>
 		</div>
 		<span class="stat-number">60%+</span>
-		<span class="stat-label">BMS patients report subjective dry mouth</span>
 		<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8143492/" class="stat-source" target="_blank">Source: Study (PMC)</a>
 	</div>
 	<div class="stat-card">
+		<span class="stat-title">Clinical Data</span>
+		<span class="stat-label">Prevalence in clinical study groups</span>
 		<div class="stat-visualization-wrapper">
 			<div class="stat-bar-container">
 				<div class="stat-bar" style="--final-width: 78.7%"></div>
 			</div>
 		</div>
 		<span class="stat-number">78.7%</span>
-		<span class="stat-label">Prevalence in clinical study groups</span>
 		<a href="https://explorationpub.com/Journals/em/Article/100130" class="stat-source" target="_blank">Source: Clinical Group</a>
 	</div>
 	<div class="stat-card">
+		<span class="stat-title">Pain Triggers</span>
+		<span class="stat-label">Patients experience escalation during peak dryness</span>
 		<div class="stat-visualization-wrapper">
 			<div class="stat-dots-grid">
 				<div class="stat-dot active"></div><div class="stat-dot active"></div><div class="stat-dot active"></div><div class="stat-dot active"></div><div class="stat-dot active"></div>
@@ -63,7 +75,6 @@ I felt more rested, which I attribute to better oxygenation from nasal breathing
 			</div>
 		</div>
 		<span class="stat-number">9/10</span>
-		<span class="stat-label">Patients experience escalation during peak dryness</span>
 		<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8143492/" class="stat-source" target="_blank">Source: Clinical Summary</a>
 	</div>
 </div>
@@ -77,16 +88,19 @@ I've looked into the research and found a massive overlap between BMS and oral d
 
 <div class="stat-grid">
 	<div class="stat-card">
+		<span class="stat-title">Adult Statistics</span>
+		<span class="stat-label">Adults identifying as habitual mouth breathers</span>
 		<div class="stat-visualization-wrapper">
 			<div class="stat-bar-container">
 				<div class="stat-bar" style="--final-width: 61%"></div>
 			</div>
 		</div>
 		<span class="stat-number">61%</span>
-		<span class="stat-label">Adults identifying as habitual mouth breathers</span>
 		<a href="https://sleepreviewmag.com/sleep-disorders/breathing-disorders/obstructive-sleep-apnea/sixty-one-percent-adults-mouth-breathers/" class="stat-source" target="_blank">Source: Sleep Review Mag</a>
 	</div>
 	<div class="stat-card">
+		<span class="stat-title">Childhood Trends</span>
+		<span class="stat-label">Max prevalence in children (3-9 years)</span>
 		<div class="stat-visualization-wrapper">
 			<div class="stat-circle-container">
 				<svg viewBox="0 0 100 100">
@@ -96,7 +110,6 @@ I've looked into the research and found a massive overlap between BMS and oral d
 			</div>
 		</div>
 		<span class="stat-number">56%</span>
-		<span class="stat-label">Max prevalence in children (3-9 years)</span>
 		<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4295456/" class="stat-source" target="_blank">Source: NIH Study</a>
 	</div>
 </div>
@@ -125,32 +138,40 @@ My journey into mouth taping didn't start with BMS, but with understanding human
 If you're coming here from my [YouTube video](https://www.youtube.com/@decodingtheburn), here is the step-by-step checklist I use every night:
 
 <div style="display: grid; gap: 1.5rem; margin: 2rem 0;">
-	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 12px; display: flex; gap: 1.5rem; align-items: flex-start;">
-		<div style="background: var(--accent); color: black; font-weight: 800; font-size: 1.5rem; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
-		<div>
-			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.25rem;">I Hydrate 1 Hour Before</h4>
+	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden;">
+		<div style="padding: 2rem; flex: 0 0 75%;">
+			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.625rem;">I Hydrate 1 Hour Before</h4>
 			<p style="margin: 0; color: var(--text-secondary);">I don't drink right before bed to avoid waking up, but I ensure deep hydration early in the evening.</p>
 		</div>
+		<div style="background: rgba(255, 255, 255, 0.08); flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05);">
+			<div style="font-size: 4.5rem; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.5)); transform: perspective(500px) rotateY(-10deg) rotateX(5deg); user-select: none;">💧</div>
+		</div>
 	</div>
-	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 12px; display: flex; gap: 1.5rem; align-items: flex-start;">
-		<div style="background: var(--accent); color: black; font-weight: 800; font-size: 1.5rem; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
-		<div>
-			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.25rem;">I use a Nasal Rinse</h4>
+	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden;">
+		<div style="padding: 2rem; flex: 0 0 75%;">
+			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.625rem;">I use a Nasal Rinse</h4>
 			<p style="margin: 0; color: var(--text-secondary);">I use a saline spray to ensure my "primary airway" is clear.</p>
 		</div>
-	</div>
-	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 12px; display: flex; gap: 1.5rem; align-items: flex-start;">
-		<div style="background: var(--accent); color: black; font-weight: 800; font-size: 1.5rem; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
-		<div>
-			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.25rem;">My Recommended Tape</h4>
-			<p style="margin: 0; color: var(--text-secondary);">I use <a href="https://www.amazon.com/s?k=3M+Micropore+Surgical+Tape" style="color: var(--accent);">3M Micropore Surgical Tape</a>. I find it medical-grade, breathable, and gentle on my skin.</p>
+		<div style="background: rgba(255, 255, 255, 0.08); flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05);">
+			<div style="font-size: 4.5rem; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.5)); transform: perspective(500px) rotateY(-10deg) rotateX(5deg); user-select: none;">👃</div>
 		</div>
 	</div>
-	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 12px; display: flex; gap: 1.5rem; align-items: flex-start;">
-		<div style="background: var(--accent); color: black; font-weight: 800; font-size: 1.5rem; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
-		<div>
-			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.25rem;">I Sleep on My Side</h4>
+	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden;">
+		<div style="padding: 2rem; flex: 0 0 75%;">
+			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.625rem;">My Recommended Tape</h4>
+			<p style="margin: 0; color: var(--text-secondary);">I use <a href="https://www.amazon.com/s?k=3M+Micropore+Surgical+Tape" style="color: var(--accent);">3M Micropore Surgical Tape</a>. I find it medical-grade, breathable, and gentle on my skin.</p>
+		</div>
+		<div style="background: rgba(255, 255, 255, 0.08); flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05);">
+			<div style="font-size: 4.5rem; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.5)); transform: perspective(500px) rotateY(-10deg) rotateX(5deg); user-select: none;">🩹</div>
+		</div>
+	</div>
+	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden;">
+		<div style="padding: 2rem; flex: 0 0 75%;">
+			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.625rem;">I Sleep on My Side</h4>
 			<p style="margin: 0; color: var(--text-secondary);">I've found this naturally keeps my tongue in a better position to maintain moisture.</p>
+		</div>
+		<div style="background: rgba(255, 255, 255, 0.08); flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05);">
+			<div style="font-size: 4.5rem; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.5)); transform: perspective(500px) rotateY(-10deg) rotateX(5deg); user-select: none;">🛌</div>
 		</div>
 	</div>
 </div>
