@@ -9,13 +9,13 @@ import AuthorBox from '../components/AuthorBox.astro';
 import { Image } from 'astro:assets';
 
 interface Props extends CollectionEntry<'blog'>['data'] {
-	headings: { depth: number; slug: string; text: string }[];
+	headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, pubDate, updatedDate, heroImage, headings } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, headings = [] } = Astro.props;
 
 // Filter headings to only show h2 and h3
-const toc = headings.filter((h) => h.depth <= 3);
+const toc = (headings || []).filter((h) => h.depth <= 3);
 ---
 
 <html lang="en">
