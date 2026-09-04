@@ -3,7 +3,7 @@ title: "The Carnivore Doctors Changing My Life"
 description: "How the wisdom from YouTube's top carnivore experts helped me take my BMS pain from a 10/10 to a 1/10."
 pubDate: "Aug 17 2026"
 category: "Research"
-heroImage: "/thumbnails/carnivore-doctors.svg"
+heroImage: "/thumbnails/carnivore-dark.jpg"
 draft: false
 ---
 
