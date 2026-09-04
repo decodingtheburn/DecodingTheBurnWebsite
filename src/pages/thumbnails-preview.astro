@@ -1,0 +1,370 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+
+const variations = [
+	{
+		id: 1,
+		title: "Minimal Calm Flame & Oral Healing",
+		subtitle: "Two-tone crimson & cream icon representing BMS burning sensations cooled by biological repair.",
+		tag: "Symptom & Cooling",
+		palette: "Crimson Red / Cream",
+		type: "Two-Tone Editorial Emblem",
+		src: "/thumbnails/variations/thumb_minimal_flame_1788564798450.jpg",
+		fit: "My Goal With This Website / What is BMS?"
+	},
+	{
+		id: 2,
+		title: "Night Respiration & Gentle Breath",
+		subtitle: "Curved facial profile with flowing aerodynamic airways in crimson & cream.",
+		tag: "Sleep & Breathing",
+		palette: "Crimson Red / Cream",
+		type: "Line Art Profile",
+		src: "/thumbnails/variations/thumb_tape_breath_1788564811677.jpg",
+		fit: "Mouth Taping: Reduce BMS Pain"
+	},
+	{
+		id: 3,
+		title: "Cellular Nutrition & Metabolic Energy",
+		subtitle: "Two-tone steak cut with ascending cellular vitality waves and nutrient micro-particles.",
+		tag: "Dietary Intervention",
+		palette: "Crimson Red / Linen Cream",
+		type: "Mid-Century Science Emblem",
+		src: "/thumbnails/variations/thumb_carnivore_steak_1788564824230.jpg",
+		fit: "The Carnivore Doctors Changing My Life"
+	},
+	{
+		id: 4,
+		title: "Target Breakthrough & Milestone Focus",
+		subtitle: "Concentric rings with upward breakthrough arrow showing trajectory toward full remission.",
+		tag: "Mission & Trajectory",
+		palette: "Crimson Red / Pure White",
+		type: "Swiss Graphic Emblem",
+		src: "/thumbnails/variations/thumb_abstract_target_1788564835633.jpg",
+		fit: "My Goal With This Website"
+	},
+	{
+		id: 5,
+		title: "Personal Journal & Research Discovery",
+		subtitle: "Clean geometric open notebook and quill emblem representing disciplined patient telemetry.",
+		tag: "Telemetry & Notes",
+		palette: "Crimson Red / Warm Cream",
+		type: "Editorial Graphic Icon",
+		src: "/thumbnails/variations/thumb_journal_quill_1788564847953.jpg",
+		fit: "Research Notes / Daily Logs"
+	},
+	{
+		id: 6,
+		title: "Oral Barrier & Nerve Shield",
+		subtitle: "Hexagonal defense shield protecting delicate neuropathic waves from oral abrasions.",
+		tag: "Mucosal Defense",
+		palette: "Crimson Red / Cream",
+		type: "Biotech Shield Icon",
+		src: "/thumbnails/variations/thumb_oral_shield_1788564860456.jpg",
+		fit: "Mucosal Protection / Salivary Flow"
+	},
+	{
+		id: 7,
+		title: "Dark Mode Carnivore Nutrition",
+		subtitle: "Stealth charcoal background with glowing crimson red ribeye silhouette and vitality wisps.",
+		tag: "Metabolic Nutrition",
+		palette: "Obsidian / Crimson Glow",
+		type: "Dark Mode Premium",
+		src: "/thumbnails/variations/thumb_dark_carnivore_1788564873714.jpg",
+		fit: "Carnivore Diet Protocols"
+	},
+	{
+		id: 8,
+		title: "Dark Mode Nocturnal Nasal Seal",
+		subtitle: "Deep obsidian emblem with clean neon red circular ring and aerodynamic breath curves.",
+		tag: "Airway & Sleep",
+		palette: "Obsidian / Neon Crimson",
+		type: "Dark Minimalist Line",
+		src: "/thumbnails/variations/thumb_dark_tape_1788564884664.jpg",
+		fit: "Mouth Taping at Night"
+	},
+	{
+		id: 9,
+		title: "Dark Mode Target Trajectory",
+		subtitle: "Obsidian radar rings with ascending beacon arrow locked on 0/10 pain score.",
+		tag: "Goal & Progress",
+		palette: "Obsidian / Neon Crimson",
+		type: "Dark Minimalist Emblem",
+		src: "/thumbnails/variations/thumb_dark_target_1788564900700.jpg",
+		fit: "My Recovery Goal & Milestones"
+	},
+	{
+		id: 10,
+		title: "Calm Mind & Restorative Breath",
+		subtitle: "Serene posture silhouette enveloped in rhythmic wave patterns of autonomic nervous regulation.",
+		tag: "Vagus Nerve & Calming",
+		palette: "Crimson Red / Cream",
+		type: "Scandinavian Vector",
+		src: "/thumbnails/variations/thumb_geometric_breath_1788564912288.jpg",
+		fit: "Vagus Nerve & Pain Modulation"
+	},
+	{
+		id: 11,
+		title: "Clinical Microscope & Investigation",
+		subtitle: "Minimalist laboratory microscope examining medical papers and clinical biochemistry.",
+		tag: "Scientific Literature",
+		palette: "Crimson Red / Clean Cream",
+		type: "Swiss Vector Icon",
+		src: "/thumbnails/variations/thumb_minimal_microscope_1788564925619.jpg",
+		fit: "Medical Journal Analysis"
+	},
+	{
+		id: 12,
+		title: "Cellular Regeneration & Nerve Cluster",
+		subtitle: "Concentric cellular nodes and interconnecting neural pathways during tissue restoration.",
+		tag: "Neuro-Regeneration",
+		palette: "Crimson Red / Light Cream",
+		type: "Geometric Bio-Cluster",
+		src: "/thumbnails/variations/thumb_minimal_cells_1788564940155.jpg",
+		fit: "Small Fiber Neuropathy"
+	},
+	{
+		id: 13,
+		title: "DNA Double Helix & Metabolic Switch",
+		subtitle: "Minimalist red genetic helix terminating in an upward arrow symbolizing epigenetic adaptation.",
+		tag: "Genetics & Metabolism",
+		palette: "Crimson Red / Cream",
+		type: "Clean Vector Helix",
+		src: "/thumbnails/variations/thumb_minimal_dna_1788564953074.jpg",
+		fit: "Epigenetics & Autoimmunity"
+	},
+	{
+		id: 14,
+		title: "Heart Vitality & Metabolic Pulse",
+		subtitle: "Pure two-tone red heart embedded with clean ECG rhythm line inside soft circular frame.",
+		tag: "Cardiovascular Health",
+		palette: "Crimson Red / Soft Cream",
+		type: "Vector SVG Emblem",
+		src: "/thumbnails/variations/vector_heart_vitality.svg",
+		fit: "Autonomic Nervous Balance"
+	},
+	{
+		id: 15,
+		title: "Neural Synapse & Signal Reset",
+		subtitle: "Dark tech background with interconnected neural nodes and synaptic transmission sparks.",
+		tag: "Neuropathic Reset",
+		palette: "Slate Navy / Crimson Red",
+		type: "Dark Vector Synapse",
+		src: "/thumbnails/variations/vector_synapse_neural.svg",
+		fit: "Neuropathic Pain Triggers"
+	},
+	{
+		id: 16,
+		title: "Hydration & Salivary Mucosa Droplet",
+		subtitle: "Clean teardrop droplet with interior highlight and calming lower mucosal balance wave.",
+		tag: "Salivary Health",
+		palette: "Crimson Red / Off-White",
+		type: "Vector Droplet Graphic",
+		src: "/thumbnails/variations/vector_clean_water.svg",
+		fit: "Xerostomia & Salivary Glands"
+	},
+	{
+		id: 17,
+		title: "pH Scale & Acid Elimination",
+		subtitle: "Minimalist balance scale icon measuring acid reduction and systemic alkaline equilibrium.",
+		tag: "Biochemistry",
+		palette: "Crimson Red / Warm Cream",
+		type: "Vector Scale Icon",
+		src: "/thumbnails/variations/vector_ph_balance.svg",
+		fit: "The Acid Theory of BMS"
+	},
+	{
+		id: 18,
+		title: "Circadian Sun & Mitochondria",
+		subtitle: "Solar burst emblem in dark mode representing natural sunlight exposure and sleep cycles.",
+		tag: "Circadian Rhythm",
+		palette: "Midnight / Ember Red",
+		type: "Dark Vector Sun",
+		src: "/thumbnails/variations/vector_circadian_sun.svg",
+		fit: "Circadian Alignment & Sleep"
+	},
+	{
+		id: 19,
+		title: "Oral Microbiome & Flora Balance",
+		subtitle: "Ring network of oral microbial flora demonstrating diversity and bacterial balance.",
+		tag: "Microbiome",
+		palette: "Crimson & Amber / Cream",
+		type: "Vector Microbiome",
+		src: "/thumbnails/variations/vector_microbiome_flora.svg",
+		fit: "Oral Microbiome Health"
+	},
+	{
+		id: 20,
+		title: "Recovery Compass & Protocol Navigation",
+		subtitle: "Precision needle pointing directly North toward remission, avoiding medical runarounds.",
+		tag: "Methodology",
+		palette: "Crimson Red & Slate / Cream",
+		type: "Vector Compass Icon",
+		src: "/thumbnails/variations/vector_compass_breakthrough.svg",
+		fit: "Patient Roadmaps & Decisions"
+	}
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Thumbnail Variations Gallery | Decoding The Burn" description="Interactive gallery of 20 modern two-tone minimalist thumbnail concepts with zero text." />
+		<style>
+			.gallery-wrapper {
+				max-width: 1400px;
+				margin: 3rem auto 6rem;
+				padding: 0 2rem;
+			}
+			.gallery-header {
+				text-align: center;
+				max-width: 860px;
+				margin: 0 auto 3.5rem;
+			}
+			.gallery-header h1 {
+				font-size: 3.2rem;
+				font-weight: 800;
+				letter-spacing: -1.5px;
+				color: #000000;
+				margin-bottom: 1rem;
+				text-wrap: balance;
+			}
+			.gallery-header p {
+				font-size: 1.15rem;
+				color: #000000;
+				line-height: 1.6;
+				text-wrap: balance;
+			}
+			.variations-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+				gap: 2.5rem;
+			}
+			.variation-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 20px;
+				overflow: hidden;
+				box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+				display: flex;
+				flex-direction: column;
+				transition: transform 0.2s ease, border-color 0.2s ease;
+			}
+			.variation-card:hover {
+				transform: translateY(-4px);
+				border-color: #c8382c;
+				box-shadow: 0 12px 30px -4px rgba(200, 56, 44, 0.12);
+			}
+			.thumb-media {
+				aspect-ratio: 16 / 9;
+				width: 100%;
+				background: #f8fafc;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+				border-bottom: 1px solid #e2e8f0;
+			}
+			.thumb-media img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+			.card-details {
+				padding: 1.75rem;
+				display: flex;
+				flex-direction: column;
+				flex: 1;
+			}
+			.badge-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 0.85rem;
+			}
+			.num-badge {
+				background: #000000;
+				color: #ffffff;
+				font-weight: 800;
+				font-size: 0.75rem;
+				padding: 3px 10px;
+				border-radius: 6px;
+				letter-spacing: 0.5px;
+			}
+			.tag-pill {
+				background: #fef2f2;
+				border: 1px solid #fecaca;
+				color: #c8382c;
+				font-size: 0.7rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				padding: 3px 10px;
+				border-radius: 6px;
+			}
+			.card-details h3 {
+				font-size: 1.3rem;
+				font-weight: 700;
+				color: #000000;
+				margin-bottom: 0.5rem;
+				line-height: 1.3;
+			}
+			.card-details .sub {
+				font-size: 0.92rem;
+				color: #111111;
+				line-height: 1.5;
+				margin-bottom: 1.25rem;
+				flex: 1;
+			}
+			.meta-footer {
+				border-top: 1px solid #f1f5f9;
+				padding-top: 1rem;
+				font-size: 0.82rem;
+				color: #000000;
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+			}
+			.meta-footer strong {
+				color: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="gallery-wrapper">
+				<div class="gallery-header">
+					<h1>20 Modern Two-Tone Thumbnail Variations</h1>
+					<p>Explore 20 clean, branded graphic icons without any text. Each image uses our high-contrast brand palette (deep crimson red, warm linen cream, and dark obsidian mode) designed for clean blog presentation.</p>
+				</div>
+
+				<div class="variations-grid">
+					{variations.map((v) => (
+						<div class="variation-card">
+							<div class="thumb-media">
+								<img src={v.src} alt={v.title} loading="lazy" />
+							</div>
+							<div class="card-details">
+								<div class="badge-row">
+									<span class="num-badge">#{v.id}</span>
+									<span class="tag-pill">{v.tag}</span>
+								</div>
+								<h3>{v.title}</h3>
+								<p class="sub">{v.subtitle}</p>
+								<div class="meta-footer">
+									<div><strong>Palette:</strong> {v.palette}</div>
+									<div><strong>Best Fit:</strong> {v.fit}</div>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
