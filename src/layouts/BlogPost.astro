@@ -27,7 +27,14 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 		<Header />
 		<main class="post-container">
 			<article class="blog-post">
-				<div class="meta-tag" style="display: inline-block; margin-bottom: 2rem;">Journey</div>
+				<div class="hero-image">
+					{heroImage && typeof heroImage === 'string' ? (
+						<img src={heroImage} alt={title} class="post-image" />
+					) : (
+						heroImage && <Image src={heroImage} alt={title} class="post-image" />
+					)}
+				</div>
+
 				<h1>{title}</h1>
 
 				<div class="post-meta">
@@ -41,13 +48,6 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 				<MedicalDisclaimer />
 				<div class="affiliate-notice">
 					Notice: This site may contain affiliate links. If you make a purchase through these links, I may earn a modest commission at no extra cost to you, which helps support my ongoing research.
-				</div>
-				<div class="hero-image">
-					{heroImage && typeof heroImage === 'string' ? (
-						<img src={heroImage} alt={title} class="post-image" />
-					) : (
-						heroImage && <Image src={heroImage} alt={title} class="post-image" />
-					)}
 				</div>
 
 				<div class="blog-layout-grid">
