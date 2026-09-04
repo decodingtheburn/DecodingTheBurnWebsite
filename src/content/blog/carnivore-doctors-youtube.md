@@ -48,7 +48,7 @@ I even attempted a **4-day fast**, hoping a complete reset would help. Unfortuna
 }
 </style>
 
-Watching hours of content from the "Carnivore Doctors" gave me the wisdom—and the courage—to at least try a meat-only approach for a while. Within **two weeks**, I experienced a gradual but life-changing decline in pain from a soul-crushing **10/10 down to a 1/10**.
+Watching hours of content from the "Carnivore Doctors" gave me the wisdom and the courage to at least try a meat-only approach for a while. Within **two weeks**, I experienced a gradual but life-changing decline in pain from a soul-crushing **10/10 down to a 1/10**.
 
 ## The Doctors Who Guided Me
 
@@ -151,7 +151,7 @@ Dr. Chaffee’s deep dives into plant toxins and the biological necessity of mea
 
 When the pain drops to a 1/10, the temptation to "cheat" and eat something outside the carnivore protocol becomes very strong. Every time I've slipped up and eaten non-carnivore foods, the burning sensation inevitably returns. 
 
-The good news? Once I switch back to the strict carnivore diet, the pain subsides again within about two weeks of getting back on track. This consistency has proven to me that the diet isn't just a fluke—it's the key to my management.
+The good news? Once I switch back to the strict carnivore diet, the pain subsides again within about two weeks of getting back on track. This consistency has proven to me that the diet isn't just a fluke: it's the key to my management.
 
 ## Why It Works: The Acid Theory
 
@@ -204,14 +204,14 @@ Nerve health depends on B-vitamins (especially B12), Zinc, and Iron. Many BMS ca
 
 While I started this diet to kill the burn in my mouth, the "side effects" have been just as life-altering. The most significant change has been the resolution of my **IBS-D**.
 
-I used to spend a significant portion of my day in the bathroom, frequently going **3 to 6 times a day**. It was disruptive and draining. Since switching to carnivore, my digestion has completely stabilized. I now go **once a day**, and the urgency is gone. Beyond digestion, I generally just **feel better**—my energy is stable, my mood is improved, and the brain fog that used to accompany my meals has lifted.
+I used to spend a significant portion of my day in the bathroom, frequently going **3 to 6 times a day**. It was disruptive and draining. Since switching to carnivore, my digestion has completely stabilized. I now go **once a day**, and the urgency is gone. Beyond digestion, I generally just **feel better**: my energy is stable, my mood is improved, and the brain fog that used to accompany my meals has lifted.
 
 ## What I wish I would have done sooner
 
 If I could go back to my first week, there are two things I would have changed immediately to make the transition easier:
 
 ### 1. Eating More Fat
-In the beginning, I was too lean with my meat choices. I quickly learned that on a zero-carb diet, fat is your primary fuel source. If you don't eat enough fat, you risk "rabbit starvation"—a state of protein poisoning where you feel weak, nauseous, and constantly hungry despite eating. Now, I prioritize fatty cuts like ribeye and add butter to everything to ensure my energy levels stay high.
+In the beginning, I was too lean with my meat choices. I quickly learned that on a zero-carb diet, fat is your primary fuel source. If you don't eat enough fat, you risk "rabbit starvation", a state of protein poisoning where you feel weak, nauseous, and constantly hungry despite eating. Now, I prioritize fatty cuts like ribeye and add butter to everything to ensure my energy levels stay high.
 
 ### 2. Doubling My Salt Intake
 I didn't realize how much salt the body dumps when you stop eating carbohydrates. Without insulin to help the kidneys retain sodium, you need much more than the "standard" recommendation. I now aim for several thousand milligrams of sodium per day (often 4,000mg to 6,000mg). Increasing my salt intake was the "magic key" that finally stopped the early headaches and muscle cramps I experienced during the first few days.

@@ -17,7 +17,7 @@ I realized that like many people, I was mouth-breathe in my sleep without even r
 
 ## How weird is it to wear it the first time?
 
-I won't lie—the first time I put tape on my mouth, it felt incredibly unnatural. There's a primal part of your brain that thinks, *"Wait, are you sealing my airway?"* 
+I won't lie, the first time I put tape on my mouth, it felt incredibly unnatural. There's a primal part of your brain that thinks, *"Wait, are you sealing my airway?"* 
 
 For the first few minutes, I was hyper-aware of it. I found myself testing my ability to open my mouth (which you can still do, the tape just provides resistance). But surprisingly, after about 10 minutes of reading or watching TV, the sensation faded into the background.
 
@@ -115,7 +115,7 @@ I've looked into the research and found a massive overlap between BMS and oral d
 	</div>
 </div>
 
-I've realized that mouth breathing isn't just a BMS issue—it's a modern epidemic. The statistics I found are eye-opening:
+I've realized that mouth breathing isn't just a BMS issue, it's a modern epidemic. The statistics I found are eye-opening:
 - **61% of adults** identify as mouth breathers ([Sleep Review Mag](https://sleepreviewmag.com/sleep-disorders/breathing-disorders/obstructive-sleep-apnea/sixty-one-percent-adults-mouth-breathers/)).
 - In the studies I read, the prevalence in children can range from **11% to 56%** ([National Institutes of Health](https://pmc.ncbi.nlm.nih.gov/articles/PMC4295456/)).
 
