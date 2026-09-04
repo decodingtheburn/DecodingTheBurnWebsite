@@ -5,6 +5,8 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
+import authorPhoto from '../assets/denis-ethier.png';
 
 const posts = (await getCollection('blog', ({ data }) => {
 	return import.meta.env.DEV || !data.draft;
@@ -70,7 +72,7 @@ const posts = (await getCollection('blog', ({ data }) => {
 						<p>Pairing this with an elimination carnivore diet removed all fermentable sugars and plant acids, starving oral inflammation. Within 14 days, the burning dropped from an agonizing 8/10 down to a mild 1/10. Today, my BMS is in sustained remission.</p>
 
 						<div class="story-author-tag">
-							<img src="/denis-ethier.jpg" alt="Denis Ethier" class="story-author-avatar" />
+							<Image src={authorPhoto} alt="Denis Ethier" class="story-author-avatar" width={108} height={108} />
 							<div class="story-author-info">
 								<h4>Denis Ethier</h4>
 								<p>Software designer, builder & founder of Decoding The Burn</p>
