@@ -5,9 +5,9 @@
 	--card-bg: #ffffff;
 	--card-border: #e2e8f0;
 	--card-border-hover: #cbd5e1;
-	--text-primary: #0f172a;
-	--text-secondary: #334155;
-	--text-muted: #64748b;
+	--text-primary: #000000;
+	--text-secondary: #000000;
+	--text-muted: #111111;
 	--accent: #c8382c;
 	--accent-hover: #a82b20;
 	--accent-light: #fef2f2;
@@ -37,12 +37,22 @@ body {
 body {
 	font-family: var(--font-main);
 	background-color: var(--bg-color);
-	color: var(--text-primary);
+	color: #000000;
 	line-height: 1.65;
 	font-variant-ligatures: none;
 	-webkit-font-variant-ligatures: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+p, li, blockquote {
+	text-wrap: pretty;
+	color: #000000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-wrap: balance;
+	color: #000000;
 }
 
 a {
@@ -72,7 +82,7 @@ img {
 	gap: 10px;
 	font-size: 1.25rem;
 	font-weight: 700;
-	color: var(--text-primary);
+	color: #000000;
 	transition: opacity 0.2s;
 }
 
@@ -95,8 +105,8 @@ img {
 
 .logo-text span:first-child {
 	font-size: 0.85rem;
-	color: var(--text-secondary);
-	font-weight: 600;
+	color: #000000;
+	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
 }
@@ -129,7 +139,7 @@ nav {
 }
 
 .nav-links a {
-	color: var(--text-secondary);
+	color: #000000;
 	text-decoration: none;
 	font-weight: 600;
 	font-size: 0.95rem;
@@ -154,7 +164,7 @@ nav {
 	display: none;
 	background: none;
 	border: none;
-	color: var(--text-primary);
+	color: #000000;
 	cursor: pointer;
 	padding: 0.5rem;
 	z-index: 1001;
@@ -206,7 +216,7 @@ nav {
 	.nav-links a {
 		font-size: 1.25rem;
 		font-weight: 600;
-		color: var(--text-primary);
+		color: #000000;
 	}
 
 	.mobile-actions {
@@ -241,7 +251,7 @@ nav {
 .btn-outline {
 	border: 1px solid #cbd5e1;
 	background: #ffffff;
-	color: var(--text-primary);
+	color: #000000;
 	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
 }
 
@@ -372,7 +382,7 @@ nav {
 }
 
 .hero-centered-header {
-	max-width: 840px;
+	max-width: 980px;
 	margin: 0 auto 2.5rem;
 }
 
@@ -396,17 +406,18 @@ nav {
 	margin-bottom: 1.25rem;
 	font-weight: 800;
 	letter-spacing: -1.5px;
-	color: var(--text-primary);
+	color: #000000;
 	text-wrap: balance;
 }
 
 .hero-centered-subtitle {
-	color: var(--text-secondary);
+	color: #000000;
 	font-size: 1.25rem;
-	line-height: 1.65;
+	line-height: 1.6;
 	margin: 0 auto;
-	max-width: 700px;
-	text-wrap: pretty;
+	max-width: 960px;
+	text-wrap: balance;
+	font-weight: 500;
 }
 
 .hero-video-centered {
@@ -439,7 +450,7 @@ nav {
 .hero-video-disclaimer {
 	margin-top: 1.25rem;
 	font-size: 0.85rem;
-	color: var(--text-muted);
+	color: #111111;
 	font-style: italic;
 	line-height: 1.55;
 	max-width: 760px;
@@ -450,7 +461,7 @@ nav {
 /* Email Capture CTA Box */
 .hero-cta-capture {
 	width: 100%;
-	max-width: 760px;
+	max-width: 880px;
 	margin: 0.5rem auto 2rem;
 }
 
@@ -458,7 +469,7 @@ nav {
 	background: #ffffff;
 	border: 1px solid var(--card-border);
 	border-radius: 24px;
-	padding: 3rem 2.5rem;
+	padding: 3.5rem 3rem;
 	box-shadow: var(--shadow-md);
 	display: flex;
 	flex-direction: column;

@@ -24,9 +24,8 @@ const posts = (await getCollection('blog', ({ data }) => {
 			<!-- Hero Section (Centered) -->
 			<section class="hero-centered-wrapper">
 				<div class="hero-centered-header">
-					<span class="tag">My Journey & Recovery Protocol</span>
 					<h1 class="hero-centered-title">How I stopped my BMS</h1>
-					<p class="hero-centered-subtitle">When my mouth started burning, doctors told me everything looked completely normal. I refused to accept that. I treated my body like a system, tracked every variable, and found the protocol that finally brought me lasting relief.</p>
+					<p class="hero-centered-subtitle">When my mouth started burning, doctors told me everything looked completely normal. I refused to accept that—I treated my body like a system, tracked every variable, and found the protocol that brought me lasting&nbsp;relief.</p>
 				</div>
 
 				<div class="hero-video-centered">
@@ -39,16 +38,15 @@ const posts = (await getCollection('blog', ({ data }) => {
 						></iframe>
 					</div>
 					<p class="hero-video-disclaimer">
-						<strong>Disclaimer:</strong> I am sharing my personal lived experiences, self-experiments, and what worked for my own body. I am a patient, not a doctor. Always consult your physician or specialist before trying any new health protocol.
+						<strong>Disclaimer:</strong> I am sharing my personal lived experiences, self-experiments, and what worked for my own body. I am a patient, not a doctor. Always consult your physician or specialist before trying any new health&nbsp;protocol.
 					</p>
 				</div>
 
 				<!-- Email Capture CTA -->
 				<div class="hero-cta-capture">
 					<div class="cta-capture-box">
-						<div class="cta-badge">📬 My Real-Time Recovery Log</div>
 						<h2>Stay Updated on my progress</h2>
-						<p>I document every self-experiment I conduct, new research papers I dissect, and the daily habits that keep my BMS in remission. Drop your email to follow along.</p>
+						<p>I document every self-experiment I conduct, new research papers I dissect, and the daily habits that keep my BMS in remission. Drop your email to follow&nbsp;along.</p>
 						
 						<!-- MailerLite Form Embed -->
 						<div class="ml-embedded" data-form="0R4iAA"></div>
@@ -64,37 +62,35 @@ const posts = (await getCollection('blog', ({ data }) => {
 							/>
 							<button type="submit" class="btn btn-primary">Follow My Journey</button>
 						</form>
-						<span class="privacy-note">🔒 No spam. Just honest notes from my ongoing recovery. Unsubscribe anytime.</span>
+						<span class="privacy-note">🔒 No spam. Just honest&nbsp;notes.</span>
 					</div>
 				</div>
 			</section>
 
 			<!-- Recent Insights -->
-			<section class="section-header">
-				<div>
-					<span class="tag">From My Journal</span>
-					<h2>Recent Posts & Findings</h2>
-				</div>
-				<p style="max-width: 440px; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">My personal notes on mouth taping, clinical research breakthroughs, diet shifts, and what I've learned living with and overcoming BMS.</p>
+			<section class="section-header" style="justify-content: center; text-align: center; flex-direction: column; align-items: center; margin: 5rem auto 2.5rem;">
+				<h2 style="font-size: 2.75rem; font-weight: 800; color: #000000; letter-spacing: -1px; text-align: center; margin-bottom: 0.75rem;">Recent Posts</h2>
+				<p style="max-width: 720px; margin: 0 auto; color: #000000; font-size: 1.15rem; line-height: 1.6; text-align: center; text-wrap: balance;">Here is what I've written about, the experiments I've conducted, and what I've discovered along the&nbsp;way.</p>
 			</section>
 
 			<div class="grid">
 				{
 					posts.slice(0, 3).map((post, index) => {
-						// Calculate post number (newest is #Total, oldest is #1)
-						const postNumber = posts.length - index;
+						// Entry #1 is the newest post on Monday
+						const postNumber = index + 1;
+						const category = post.data.category || (post.data.title.toLowerCase().includes('research') || post.data.title.toLowerCase().includes('carnivore') ? 'Research' : 'My Experience');
 						return (
 						<article class="card">
 							<a href={`/blog/${post.id}/`}>
 								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
 								<div class="card-body">
 									<div class="card-meta">
-										<span class="meta-tag">Research Log</span>
+										<span class="meta-tag">{category}</span>
 										<span class="meta-date">Entry #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
 									</div>
 									<h3>{post.data.title}</h3>
 									<p>{post.data.description}</p>
-									<span class="view-story">Read My Notes →</span>
+									<span class="view-story">Read More →</span>
 								</div>
 							</a>
 						</article>
@@ -108,9 +104,9 @@ const posts = (await getCollection('blog', ({ data }) => {
 
 			<!-- Newsletter Callout -->
 			<section class="newsletter-section">
-				<h2>You don't have to navigate BMS alone.</h2>
-				<p>When my burning pain was at its peak, the loneliness was just as overwhelming as the physical discomfort. I created this space so we can connect, share what actually brings relief, and stop suffering in silence.</p>
-				<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem;">Participate With Me →</a>
+				<h2>You Don't Need To Navigate BMS&nbsp;Alone</h2>
+				<p>Let's use the collective wisdom to solve BMS for more&nbsp;people.</p>
+				<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem;">Participate With&nbsp;Me →</a>
 			</section>
 		</main>
 		<Footer />

@@ -1,8 +1,9 @@
 ---
 title: "Reduce BMS pain: The Mouth Taping experiment"
 description: "How a simple strip of tape helped me reduce dry mouth and manage BMS symptoms overnight."
-pubDate: "Jan 18 2026"
-heroImage: "../../assets/hd-yt-thumbnail.png"
+pubDate: "Aug 24 2026"
+category: "My Experience"
+heroImage: "/thumbnails/mouth-taping.svg"
 draft: false
 ---
 
