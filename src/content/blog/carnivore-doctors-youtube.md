@@ -14,13 +14,13 @@ Before finding the carnivore lifestyle, I was in a desperate search for relief. 
 
 I even attempted a **4-day fast**, hoping a complete reset would help. Unfortunately, the fast itself didn't work to reduce the pain. However, it was during and after this period of searching that my YouTube recommendations led me to something I had never heard of before: the **Carnivore Diet**.
 
-<div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 20px; margin: 3rem 0; overflow: hidden;">
-    <h4 style="color: var(--accent); margin-top: 0; margin-bottom: 4rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">The 2-Week Transformation</h4>
+<div style="background: #ffffff; border: 1px solid var(--card-border); padding: 2.5rem 2rem; border-radius: 20px; margin: 3rem 0; overflow: hidden; box-shadow: var(--shadow-sm);">
+    <h4 style="color: var(--accent); margin-top: 0; margin-bottom: 3.5rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;">The 2-Week Transformation</h4>
     <div style="position: relative; height: 150px; display: flex; align-items: flex-end; gap: 4rem; padding-bottom: 2rem;">
         <!-- Initial Pain -->
         <div style="flex: 1; text-align: center;">
-            <div style="height: 100px; background: var(--accent); width: 40px; margin: 0 auto; border-radius: 8px; box-shadow: 0 0 20px var(--accent-glow); animation: painInitial 1s ease-out forwards;"></div>
-            <span style="display: block; margin-top: 1rem; font-size: 1.5rem; font-weight: 800;">10/10</span>
+            <div style="height: 100px; background: var(--accent); width: 40px; margin: 0 auto; border-radius: 8px; box-shadow: 0 4px 14px var(--accent-glow); animation: painInitial 1s ease-out forwards;"></div>
+            <span style="display: block; margin-top: 1rem; font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">10/10</span>
             <span style="font-size: 0.75rem; color: var(--text-secondary);">My baseline pain April 2025</span>
         </div>
         <!-- Arrow -->

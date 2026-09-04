@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
 
 const authorName = "Denis Ethier";
-const authorBio = "I'm a designer and developer who has been living with Burning Mouth Syndrome. Through this blog, I share my research, experiments, and data-driven approaches to managing BMS symptoms.";
+const authorBio = "I'm a designer, engineer, and BMS patient. After months of debilitating oral burning and dismissive answers, I ran structured self-experiments on myself. Here, I document what finally gave me relief and help fellow sufferers decode their own symptoms.";
 const authorWebsite = "https://www.thrivemate.com";
 ---
 
@@ -16,7 +16,7 @@ const authorWebsite = "https://www.thrivemate.com";
 		<h3>About the Author</h3>
 		<h4>{authorName}</h4>
 		<p>{authorBio}</p>
-		<a href={authorWebsite} target="_blank" rel="noopener" class="author-link">Visit ThriveMate →</a>
+		<a href="/about" class="author-link">Read My Story →</a>
 	</div>
 </div>
 
@@ -24,12 +24,13 @@ const authorWebsite = "https://www.thrivemate.com";
 	.author-box {
 		display: flex;
 		gap: 2rem;
-		background: rgba(255, 255, 255, 0.03);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: #ffffff;
+		border: 1px solid var(--card-border);
 		padding: 2.5rem;
 		border-radius: 20px;
 		margin: 4rem 0;
 		align-items: center;
+		box-shadow: var(--shadow-md);
 	}
 
 	.author-photo {
@@ -45,23 +46,26 @@ const authorWebsite = "https://www.thrivemate.com";
 	}
 
 	.author-info h3 {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		text-transform: uppercase;
-		letter-spacing: 1px;
+		letter-spacing: 1.5px;
 		color: var(--accent);
 		margin: 0 0 0.5rem 0;
+		font-weight: 700;
 	}
 
 	.author-info h4 {
 		font-size: 1.5rem;
-		margin: 0 0 1rem 0;
-		color: white;
+		margin: 0 0 0.75rem 0;
+		color: var(--text-primary);
+		font-weight: 800;
 	}
 
 	.author-info p {
 		color: var(--text-secondary);
-		line-height: 1.6;
-		margin: 0 0 1.5rem 0;
+		line-height: 1.65;
+		margin: 0 0 1.25rem 0;
+		font-size: 1rem;
 	}
 
 	.author-link {

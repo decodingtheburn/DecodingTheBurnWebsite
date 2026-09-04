@@ -24,9 +24,9 @@ const posts = (await getCollection('blog', ({ data }) => {
             <section class="section-header">
 				<div>
 					<span class="tag">Archive</span>
-					<h2>All Stories</h2>
+					<h2>My Notes & Experiments</h2>
 				</div>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">The complete archive of journeys, insights, and research into Burning Mouth Syndrome.</p>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">The complete archive of my self-experiments, clinical research notes, and personal learnings living with and overcoming BMS.</p>
 			</section>
 
 			<div class="grid" style="margin-bottom: 8rem;">
@@ -39,12 +39,12 @@ const posts = (await getCollection('blog', ({ data }) => {
 								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
 								<div class="card-body">
 									<div class="card-meta">
-										<span class="meta-tag">Article</span>
-										<span class="meta-date">Post #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
+										<span class="meta-tag">Experiment</span>
+										<span class="meta-date">Entry #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
 									</div>
 									<h3>{post.data.title}</h3>
 									<p>{post.data.description}</p>
-									<span class="view-story">Read Story →</span>
+									<span class="view-story">Read My Notes →</span>
 								</div>
 							</a>
 						</article>

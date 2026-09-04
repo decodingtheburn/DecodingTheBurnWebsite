@@ -21,29 +21,50 @@ const posts = (await getCollection('blog', ({ data }) => {
 	<body>
 		<Header />
 		<main>
-			<!-- Hero Section -->
-			<section class="hero-wrapper">
-				<div class="hero-content">
-					<span class="tag">A Patient's Experiment</span>
-					<h1>Using AI to ease BMS.</h1>
-					<p>I’m exploring how modern AI can help us find patterns, relief, and research we might have missed—all from a patient’s perspective.</p>
+			<!-- Hero Section (Centered) -->
+			<section class="hero-centered-wrapper">
+				<div class="hero-centered-header">
+					<span class="tag">My Journey & Recovery Protocol</span>
+					<h1 class="hero-centered-title">How I stopped my BMS</h1>
+					<p class="hero-centered-subtitle">When my mouth started burning, doctors told me everything looked completely normal. I refused to accept that. I treated my body like a system, tracked every variable, and found the protocol that finally brought me lasting relief.</p>
 				</div>
-				<div class="hero-media-column">
-					<div class="hero-video">
-						<div class="video-placeholder">
-							<div class="play-button">
-								<svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-									<path d="M8 5v14l11-7z"/>
-								</svg>
-							</div>
-							<span class="coming-soon">Coming Soon</span>
-						</div>
-						<div style="margin-top: 1rem;">
-							<p style="font-size: 0.75rem; color: #666; font-style: italic; line-height: 1.4;"><strong>Disclaimer:</strong> This content shares personal experiences and research for information only. I am a patient, not a doctor. Always consult your medical professional before trying new treatments.</p>
-						</div>
+
+				<div class="hero-video-centered">
+					<div class="video-responsive-wrapper">
+						<iframe 
+							src="https://www.youtube-nocookie.com/embed/BM8qUgA8yPE?rel=0" 
+							title="How I stopped my BMS"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+							allowfullscreen
+						></iframe>
 					</div>
-					<div class="hero-cta">
-						<a href="/blog/mouth-taping-bms" class="btn btn-primary">See my latest post →</a>
+					<p class="hero-video-disclaimer">
+						<strong>Disclaimer:</strong> I am sharing my personal lived experiences, self-experiments, and what worked for my own body. I am a patient, not a doctor. Always consult your physician or specialist before trying any new health protocol.
+					</p>
+				</div>
+
+				<!-- Email Capture CTA -->
+				<div class="hero-cta-capture">
+					<div class="cta-capture-box">
+						<div class="cta-badge">📬 My Real-Time Recovery Log</div>
+						<h2>Stay Updated on my progress</h2>
+						<p>I document every self-experiment I conduct, new research papers I dissect, and the daily habits that keep my BMS in remission. Drop your email to follow along.</p>
+						
+						<!-- MailerLite Form Embed -->
+						<div class="ml-embedded" data-form="0R4iAA"></div>
+
+						<!-- Quick Email Capture Form -->
+						<form class="email-capture-form" action="/join" method="get">
+							<input 
+								type="email" 
+								name="email" 
+								placeholder="Enter your email address..." 
+								required 
+								aria-label="Email address"
+							/>
+							<button type="submit" class="btn btn-primary">Follow My Journey</button>
+						</form>
+						<span class="privacy-note">🔒 No spam. Just honest notes from my ongoing recovery. Unsubscribe anytime.</span>
 					</div>
 				</div>
 			</section>
@@ -51,10 +72,10 @@ const posts = (await getCollection('blog', ({ data }) => {
 			<!-- Recent Insights -->
 			<section class="section-header">
 				<div>
-					<span class="tag">The Blog</span>
-					<h2>Recent Posts</h2>
+					<span class="tag">From My Journal</span>
+					<h2>Recent Posts & Findings</h2>
 				</div>
-				<p style="max-width: 400px; color: var(--text-secondary); font-size: 0.9rem;">Tips, treatments, and everything from scientific breakthroughs to mental health and diet in managing BMS pain.</p>
+				<p style="max-width: 440px; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">My personal notes on mouth taping, clinical research breakthroughs, diet shifts, and what I've learned living with and overcoming BMS.</p>
 			</section>
 
 			<div class="grid">
@@ -68,12 +89,12 @@ const posts = (await getCollection('blog', ({ data }) => {
 								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
 								<div class="card-body">
 									<div class="card-meta">
-										<span class="meta-tag">Research</span>
-										<span class="meta-date">Post #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
+										<span class="meta-tag">Research Log</span>
+										<span class="meta-date">Entry #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
 									</div>
 									<h3>{post.data.title}</h3>
 									<p>{post.data.description}</p>
-									<span class="view-story">View Story →</span>
+									<span class="view-story">Read My Notes →</span>
 								</div>
 							</a>
 						</article>
@@ -82,16 +103,14 @@ const posts = (await getCollection('blog', ({ data }) => {
 			</div>
 
 			<div style="text-align: center; margin: 4rem 0;">
-				<a href="/blog" class="btn btn-outline">View Archive +</a>
+				<a href="/blog" class="btn btn-outline" style="padding: 0.85rem 2.25rem;">View All Entries +</a>
 			</div>
 
-
-
 			<!-- Newsletter Callout -->
-			<section class="newsletter-section" style="text-align: center;">
-				<h2>You don't have to face BMS alone.</h2>
-				<p style="margin-bottom: 2.5rem;">Join our newsletter to receive weekly research summaries, management tips, and invitations to our monthly community support calls.</p>
-				<a href="/join" class="btn btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem;">Join the Community →</a>
+			<section class="newsletter-section">
+				<h2>You don't have to navigate BMS alone.</h2>
+				<p>When my burning pain was at its peak, the loneliness was just as overwhelming as the physical discomfort. I created this space so we can connect, share what actually brings relief, and stop suffering in silence.</p>
+				<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem;">Participate With Me →</a>
 			</section>
 		</main>
 		<Footer />

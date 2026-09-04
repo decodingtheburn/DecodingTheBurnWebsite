@@ -1,40 +1,42 @@
----
+﻿---
 import Layout from '../layouts/BlogPost.astro';
 
-const pubDate = new Date('2026-01-18');
+const pubDate = new Date('2026-09-04');
 ---
 
 <Layout
-	title="Contact Us"
-	description="Get in touch with the Decoding The Burn team."
+	title="Get in Touch with Me"
+	description="Send a message directly to Denis Ethier, founder of Decoding The Burn."
 	pubDate={pubDate}
 >
 	<div class="contact-page">
-		<p>Have a question, a story to share, or just want to say hello? I'd love to hear from you.</p>
+		<p class="lead" style="font-size: 1.25rem; line-height: 1.75; color: var(--text-primary); margin-bottom: 2rem;">
+			Whether you're a patient dealing with symptoms, a caregiver seeking advice, or a clinician interested in my data, I welcome your thoughts. I read every message and do my best to reply personally.
+		</p>
 		
-		<div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem; border-radius: 20px; margin: 3rem 0;">
-			<form action="mailto:decodingtheburn@gmail.com" method="post" enctype="text/plain" style="display: flex; flex-direction: column; gap: 1.5rem;">
+		<div style="background: #ffffff; border: 1px solid var(--card-border); padding: 3rem 2.5rem; border-radius: 24px; margin: 3rem 0; box-shadow: var(--shadow-md);">
+			<form action="mailto:decodingtheburn@gmail.com" method="post" enctype="text/plain" style="display: flex; flex-direction: column; gap: 1.75rem;">
 				<div>
-					<label style="display: block; margin-bottom: 0.5rem; color: var(--accent); font-weight: 600;">Name</label>
-					<input type="text" name="name" required style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white;" />
+					<label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; font-size: 0.95rem;">Your Name</label>
+					<input type="text" name="name" placeholder="Denis Ethier" required style="width: 100%; padding: 0.9rem 1.25rem; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-primary); font-size: 1rem; outline: none;" />
 				</div>
 				
 				<div>
-					<label style="display: block; margin-bottom: 0.5rem; color: var(--accent); font-weight: 600;">Email</label>
-					<input type="email" name="email" required style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white;" />
+					<label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; font-size: 0.95rem;">Your Email</label>
+					<input type="email" name="email" placeholder="name@example.com" required style="width: 100%; padding: 0.9rem 1.25rem; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-primary); font-size: 1rem; outline: none;" />
 				</div>
 				
 				<div>
-					<label style="display: block; margin-bottom: 0.5rem; color: var(--accent); font-weight: 600;">Message</label>
-					<textarea name="message" rows="5" required style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white;"></textarea>
+					<label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; font-size: 0.95rem;">Message</label>
+					<textarea name="message" rows="5" placeholder="Share your story, question, or research note..." required style="width: 100%; padding: 0.9rem 1.25rem; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-primary); font-size: 1rem; outline: none; line-height: 1.6;"></textarea>
 				</div>
 				
-				<button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 1rem 2.5rem;">Send Message</button>
+				<button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 0.9rem 2.5rem; font-size: 0.95rem;">Send Message to Denis →</button>
 			</form>
 		</div>
 
-		<div style="text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
-			<p>Direct Email: <a href="mailto:decodingtheburn@gmail.com" style="color: var(--accent);">decodingtheburn@gmail.com</a></p>
+		<div style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; margin-top: 2rem;">
+			<p>Direct Email: <a href="mailto:decodingtheburn@gmail.com" style="color: var(--accent); font-weight: 600;">decodingtheburn@gmail.com</a></p>
 		</div>
 	</div>
 </Layout>

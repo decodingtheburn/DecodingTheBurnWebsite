@@ -138,40 +138,40 @@ My journey into mouth taping didn't start with BMS, but with understanding human
 If you're coming here from my [YouTube video](https://www.youtube.com/@decodingtheburn), here is the step-by-step checklist I use every night:
 
 <div style="display: grid; gap: 1.5rem; margin: 2rem 0;">
-	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden;">
+	<div style="background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden; box-shadow: var(--shadow-sm);">
 		<div style="padding: 2rem; flex: 0 0 75%;">
-			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.625rem;">I Hydrate 1 Hour Before</h4>
-			<p style="margin: 0; color: var(--text-secondary);">I don't drink right before bed to avoid waking up, but I ensure deep hydration early in the evening.</p>
+			<h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary); font-size: 1.5rem; font-weight: 700;">I Hydrate 1 Hour Before</h4>
+			<p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">I don't drink right before bed to avoid waking up, but I ensure deep hydration early in the evening.</p>
 		</div>
-		<div style="background: rgba(255, 255, 255, 0.08); flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05);">
-			<div style="font-size: 4.5rem; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.5)); transform: perspective(500px) rotateY(-10deg) rotateX(5deg); user-select: none;">💧</div>
+		<div style="background: #f8fafc; flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--card-border);">
+			<div style="font-size: 3.5rem; user-select: none;">💧</div>
 		</div>
 	</div>
-	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden;">
+	<div style="background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden; box-shadow: var(--shadow-sm);">
 		<div style="padding: 2rem; flex: 0 0 75%;">
-			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.625rem;">I use a Nasal Rinse</h4>
-			<p style="margin: 0; color: var(--text-secondary);">I use a saline spray to ensure my "primary airway" is clear.</p>
+			<h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary); font-size: 1.5rem; font-weight: 700;">I use a Nasal Rinse</h4>
+			<p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">I use a saline spray to ensure my "primary airway" is clear.</p>
 		</div>
-		<div style="background: rgba(255, 255, 255, 0.08); flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05);">
-			<div style="font-size: 4.5rem; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.5)); transform: perspective(500px) rotateY(-10deg) rotateX(5deg); user-select: none;">👃</div>
+		<div style="background: #f8fafc; flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--card-border);">
+			<div style="font-size: 3.5rem; user-select: none;">👃</div>
 		</div>
 	</div>
-	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden;">
+	<div style="background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden; box-shadow: var(--shadow-sm);">
 		<div style="padding: 2rem; flex: 0 0 75%;">
-			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.625rem;">My Recommended Tape</h4>
-			<p style="margin: 0; color: var(--text-secondary);">I use <a href="https://www.amazon.com/s?k=3M+Micropore+Surgical+Tape" style="color: var(--accent);">3M Micropore Surgical Tape</a>. I find it medical-grade, breathable, and gentle on my skin.</p>
+			<h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary); font-size: 1.5rem; font-weight: 700;">My Recommended Tape</h4>
+			<p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">I use <a href="https://www.amazon.com/s?k=3M+Micropore+Surgical+Tape" style="color: var(--accent); font-weight: 600;">3M Micropore Surgical Tape</a>. I find it medical-grade, breathable, and gentle on my skin.</p>
 		</div>
-		<div style="background: rgba(255, 255, 255, 0.08); flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05);">
-			<div style="font-size: 4.5rem; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.5)); transform: perspective(500px) rotateY(-10deg) rotateX(5deg); user-select: none;">🩹</div>
+		<div style="background: #f8fafc; flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--card-border);">
+			<div style="font-size: 3.5rem; user-select: none;">🩹</div>
 		</div>
 	</div>
-	<div style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden;">
+	<div style="background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden; box-shadow: var(--shadow-sm);">
 		<div style="padding: 2rem; flex: 0 0 75%;">
-			<h4 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.625rem;">I Sleep on My Side</h4>
-			<p style="margin: 0; color: var(--text-secondary);">I've found this naturally keeps my tongue in a better position to maintain moisture.</p>
+			<h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary); font-size: 1.5rem; font-weight: 700;">I Sleep on My Side</h4>
+			<p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">I've found this naturally keeps my tongue in a better position to maintain moisture.</p>
 		</div>
-		<div style="background: rgba(255, 255, 255, 0.08); flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05);">
-			<div style="font-size: 4.5rem; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.5)); transform: perspective(500px) rotateY(-10deg) rotateX(5deg); user-select: none;">🛌</div>
+		<div style="background: #f8fafc; flex-grow: 1; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--card-border);">
+			<div style="font-size: 3.5rem; user-select: none;">🛌</div>
 		</div>
 	</div>
 </div>

@@ -1,63 +1,86 @@
----
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
+﻿---
+import authorPhoto from '../assets/denis-ethier.png';
 import Layout from '../layouts/BlogPost.astro';
+
+const pubDate = new Date('2026-09-04');
 ---
 
 <Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
+	title="About Me: Why I Started Decoding The Burn"
+	description="The personal story of Denis Ethier, how Burning Mouth Syndrome turned his life upside down, and how self-experimentation led to lasting relief."
+	pubDate={pubDate}
+	heroImage={authorPhoto}
 >
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+	<div class="about-page">
+		<p class="lead" style="font-size: 1.25rem; line-height: 1.75; color: var(--text-primary); margin-bottom: 2rem;">
+			My name is Denis Ethier. I am a software designer, builder, and former chronic Burning Mouth Syndrome (BMS) sufferer. I built <strong>Decoding The Burn</strong> to be the transparent, data-driven guide I desperately needed on the darkest days of my condition.
+		</p>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+		<h2>The Day the Burning Began</h2>
+		<p>
+			In early 2025, I woke up with a sensation that felt as if someone had pressed a boiling teaspoon against the tip and edges of my tongue. I initially brushed it off as an accidental burn from hot food. But day after day, week after week, the fire never subsided.
+		</p>
+		<p>
+			By mid-afternoon each day, the pain would climb to an 8/10. Speaking felt like dragging sandpaper across raw tissue. Eating acidic or salty foods became agonizing. And yet, every time I looked in the mirror, my tongue looked completely pink, healthy, and normal.
+		</p>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+		<h2>The Frustration of "Nothing is Wrong"</h2>
+		<p>
+			Like almost everyone who develops BMS, I began the standard medical marathon:
+		</p>
+		<ul style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 2rem;">
+			<li>My dentist checked for oral thrush, infection, and lesions: <em>Negative.</em></li>
+			<li>My doctor ran comprehensive blood panels for B12, folate, ferritin, and autoimmune markers: <em>Normal.</em></li>
+			<li>The ENT checked my salivary glands and throat: <em>Nothing to see.</em></li>
+		</ul>
+		<p>
+			Hearing that "everything is completely healthy" when you feel like your mouth is on fire is a unique form of psychological torture. You begin wondering if you are losing your mind. That was the moment I realized: <strong>if traditional medicine didn't have an answer, I had to treat my own body as an engineering problem.</strong>
+		</p>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+		<h2>Treating My Body Like a System</h2>
+		<p>
+			Coming from a technology and product background, I know that unexplained system failures always have root causes—even if you haven't identified the right telemetry yet.
+		</p>
+		<p>
+			I began logging everything in a meticulous spreadsheet:
+		</p>
+		<ul style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 2rem;">
+			<li>Exact sleep times, room humidity, and waking mouth dryness</li>
+			<li>Dietary intake, food acidity (pH), and ingredient sensitivities</li>
+			<li>Salivary flow rates throughout the day</li>
+			<li>Autonomic stress levels and breathwork patterns</li>
+		</ul>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
+		<h2>The Breakthrough</h2>
+		<p>
+			The watershed moment came when I connected nocturnal mouth breathing to oral mucosal drying. When you sleep with your mouth open, hours of evaporative drying strip away the protective mucin film. The superficial nerve endings (chorda tympani and lingual nerve) become severely hyper-sensitized and irritated.
+		</p>
+		<p>
+			By adopting a strict protocol of gentle nighttime mouth taping, eliminating sodium lauryl sulfate (SLS), and restoring salivary mineral balance, my pain dropped by 80% within a single week. Within a month, my BMS was effectively in complete remission.
+		</p>
+
+		<h2>Why I Created Decoding The Burn</h2>
+		<p>
+			I couldn't just walk away and pretend this never happened. Millions of people around the world are suffering in silence with BMS, being told by specialists to "learn to live with it" or handed heavy neurological medications with severe side effects.
+		</p>
+		<p>
+			I built this platform to:
+		</p>
+		<ul style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 2.5rem;">
+			<li><strong>Document My Experiments:</strong> Transparently share what worked, what failed, and what the latest scientific literature actually says.</li>
+			<li><strong>Gather Community Data:</strong> Run structured patient surveys to discover clusters and patterns that clinical studies miss.</li>
+			<li><strong>Give Sufferers Hope:</strong> Prove that an invisible condition does not have to be a life sentence.</li>
+		</ul>
+
+		<div style="background: #ffffff; border: 1px solid var(--card-border); padding: 3rem 2.5rem; border-radius: 24px; margin: 3.5rem 0; text-align: center; box-shadow: var(--shadow-md);">
+			<h3 style="margin-top: 0; font-size: 1.85rem; margin-bottom: 0.85rem; color: var(--text-primary); font-weight: 800;">Join Me On This Mission</h3>
+			<p style="color: var(--text-secondary); max-width: 580px; margin: 0 auto 2rem; line-height: 1.65; font-size: 1.05rem;">
+				Whether you are a patient looking for relief or a medical professional curious about our data, I'd love for you to participate in what we're building.
+			</p>
+			<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+				<a href="/join" class="btn btn-primary" style="padding: 0.9rem 2.5rem;">Participate With Me →</a>
+				<a href="/contact" class="btn btn-outline" style="padding: 0.9rem 2rem;">Send Me a Message</a>
+			</div>
+		</div>
+	</div>
 </Layout>

@@ -1,0 +1,75 @@
+﻿---
+import Layout from '../layouts/BlogPost.astro';
+
+const pubDate = new Date('2026-09-04');
+---
+
+<Layout
+	title="A Patient's Perspective for Healthcare Professionals & Researchers"
+	description="Clinical observations, self-tracking data, and collaborative hypotheses from a data-focused patient living with Burning Mouth Syndrome (BMS)."
+	pubDate={pubDate}
+>
+	<div class="professionals-page">
+		<p class="lead" style="font-size: 1.25rem; line-height: 1.75; color: var(--text-primary); margin-bottom: 2rem;">
+			Burning Mouth Syndrome (BMS) remains one of the most perplexing and under-researched neuropathic conditions in modern medicine. When I was diagnosed, I was stunned by how few clinical roadmaps existed for patients like me.
+		</p>
+
+		<div style="background: var(--accent-light); border-left: 4px solid var(--accent); border: 1px solid var(--accent-border); padding: 1.75rem 2rem; border-radius: 12px; margin: 2.5rem 0;">
+			<h3 style="margin-top: 0; color: var(--text-primary); font-size: 1.3rem; margin-bottom: 0.5rem;">Why I Am Documenting My Data</h3>
+			<p style="margin-bottom: 0; color: var(--text-secondary); line-height: 1.65;">
+				With a background in software engineering, UI design, and systems architecture, my instinct was not to surrender to ambiguity. I am not a physician and I do not give medical advice; instead, I treat my condition as an open, high-resolution n=1 case study and aggregate data from hundreds of fellow sufferers to help bridge the gap between patient reality and clinical inquiry.
+			</p>
+		</div>
+
+		<h2>Key Observations from My Personal Trials</h2>
+		<p>
+			Over months of structured self-monitoring and conversations with clinical practitioners, several physiological correlations have become undeniable in my personal case:
+		</p>
+
+		<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; margin: 2.5rem 0;">
+			<div style="background: #ffffff; border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
+				<h4 style="color: var(--accent); margin-top: 0; margin-bottom: 0.75rem; font-size: 1.15rem;">1. Nocturnal Mucosal Dehydration & Trigeminal Sensitization</h4>
+				<p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0;">
+					When mouth breathing occurs during sleep, the loss of the protective salivary film leaves peripheral nerve endings in the lingual mucosa vulnerable to micro-abrasion and evaporative cooling stress. Restoring nasal breathing overnight via lip taping eliminated my severe morning flares within 72 hours.
+				</p>
+			</div>
+
+			<div style="background: #ffffff; border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
+				<h4 style="color: var(--accent); margin-top: 0; margin-bottom: 0.75rem; font-size: 1.15rem;">2. Small-Fiber Neuropathic Parallels</h4>
+				<p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0;">
+					My sensory symptoms (dysgeusia, thermal burning, allodynia to mild spices) mirror peripheral small-fiber neuropathies. Many patients I speak with report concurrent subclinical dysautonomia, Raynaud's-like vasospasms, or chronic cervical spine tension that may affect the chorda tympani or lingual nerve path.
+				</p>
+			</div>
+
+			<div style="background: #ffffff; border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
+				<h4 style="color: var(--accent); margin-top: 0; margin-bottom: 0.75rem; font-size: 1.15rem;">3. Salivary Electrolyte Balance vs Fluid Volume</h4>
+				<p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0;">
+					Simply drinking high volumes of hypotonic water aggravated my mucosal burning. Only when I balanced mineral electrolyte levels and stimulated resting salivary flow with non-acidic xylitol did mucosal healing accelerate.
+				</p>
+			</div>
+		</div>
+
+		<h2>How I am Using AI & Data Structuring</h2>
+		<p>
+			Traditional BMS research is hampered by fragmented, subjective self-reports. I am developing structured questionnaires and using modern AI classification to:
+		</p>
+		<ul style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 2.5rem;">
+			<li><strong>Cluster Phenotypes:</strong> Separate primary neuropathic cases from secondary mucosal, metabolic, or biomechanical drivers.</li>
+			<li><strong>Identify Intervention Efficacy:</strong> Measure which conservative daily protocols (sleep tape, diet, supplements) show reproducible statistical significance across patient sub-groups.</li>
+			<li><strong>Open-Source Anonymized Datasets:</strong> Make structured patient logs freely available to clinical researchers and academic institutions studying orofacial pain.</li>
+		</ul>
+
+		<!-- Professional Collaboration Box -->
+		<div style="background: #ffffff; border: 1px solid var(--card-border); padding: 3rem 2.5rem; border-radius: 24px; margin: 3.5rem 0; text-align: center; box-shadow: var(--shadow-md);">
+			<span class="meta-tag" style="display: inline-block; margin-bottom: 1rem;">Clinical Dialogue</span>
+			<h3 style="margin-top: 0; font-size: 1.85rem; margin-bottom: 0.85rem; color: var(--text-primary); font-weight: 800;">Let's Connect & Collaborate</h3>
+			<p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.65; font-size: 1.05rem;">
+				If you are an oral medicine specialist, ENT, neurologist, or researcher interested in reviewing my case notes, examining survey metrics, or testing clinical hypotheses, I would welcome the opportunity to speak with you.
+			</p>
+			<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+				<a href="/contact" class="btn btn-primary" style="padding: 0.9rem 2.5rem;">Reach Out Directly →</a>
+				<a href="/research" class="btn btn-outline" style="padding: 0.9rem 2rem;">Review My Research Outline</a>
+			</div>
+		</div>
+	</div>
+</Layout>

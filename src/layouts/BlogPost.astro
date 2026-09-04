@@ -29,9 +29,7 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 			<article class="blog-post">
 				<div class="meta-tag" style="display: inline-block; margin-bottom: 2rem;">Journey</div>
 				<h1>{title}</h1>
-				<div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 8px; margin-bottom: 2rem; font-size: 0.85rem; color: var(--text-secondary); font-style: italic; border-left: 2px solid var(--accent);">
-					Notice: This site contains affiliate links. I may earn a commission if you make a purchase through these links, at no extra cost to you.
-				</div>
+
 				<div class="post-meta">
 					<span>Published on <FormattedDate date={pubDate} /></span>
 					{
@@ -41,6 +39,9 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 					}
 				</div>
 				<MedicalDisclaimer />
+				<div class="affiliate-notice">
+					Notice: This site may contain affiliate links. If you make a purchase through these links, I may earn a modest commission at no extra cost to you, which helps support my ongoing research.
+				</div>
 				<div class="hero-image">
 					{heroImage && typeof heroImage === 'string' ? (
 						<img src={heroImage} alt={title} class="post-image" />
@@ -50,118 +51,36 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 				</div>
 
 				<div class="blog-layout-grid">
-					{toc.length > 0 && (
-						<aside class="sidebar-toc">
-							<nav class="table-of-contents">
-								<div class="toc-header">
-									<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-									<span>In this post</span>
-								</div>
-								<ul>
-									{toc.map((heading) => (
-										<li class={`depth-${heading.depth}`}>
-											<a href={`#${heading.slug}`}>{heading.text}</a>
-										</li>
-									))}
-								</ul>
-							</nav>
-						</aside>
-					)}
-
 					<div class="post-content">
 						<slot />
 					</div>
 				</div>
 				<AuthorBox />
-				<MedicalDisclaimer />
 			</article>
 		</main>
 		<Footer />
 		<style>
+			.affiliate-notice {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				padding: 0.9rem 1.25rem;
+				border-radius: 10px;
+				margin-top: -1rem;
+				margin-bottom: 2.5rem;
+				font-size: 0.85rem;
+				color: var(--text-secondary);
+				font-style: italic;
+				border-left: 3px solid var(--accent);
+				box-shadow: var(--shadow-sm);
+			}
 			.blog-layout-grid {
-				display: grid;
-				grid-template-columns: 1fr;
-				gap: 3rem;
-				align-items: start;
+				display: block;
+				max-width: 700px;
+				margin: 0 auto;
 				position: relative;
 			}
-
-			@media (min-width: 1024px) {
-				.blog-layout-grid {
-					grid-template-columns: 280px 1fr;
-				}
-			}
-
-			.sidebar-toc {
-				position: sticky;
-				top: 100px;
-				height: fit-content;
-			}
-
-			.table-of-contents {
-				background: rgba(var(--accent-rgb), 0.03);
-				border: 1px solid rgba(var(--accent-rgb), 0.1);
-				border-radius: 16px;
-				padding: 1.5rem;
-				backdrop-filter: blur(8px);
-			}
-
-			.toc-header {
-				display: flex;
-				align-items: center;
-				gap: 0.75rem;
-				padding-bottom: 0.75rem;
-				margin-bottom: 1.25rem;
-				color: var(--accent);
-				font-weight: 600;
-				font-size: 0.9rem;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				border-bottom: 2px solid #ff69b4; /* Pink underline */
-				width: fit-content;
-			}
-
-			.table-of-contents ul {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-				display: grid;
-				gap: 0.5rem;
-			}
-
-			.table-of-contents a {
-				color: var(--text-secondary);
-				text-decoration: none;
-				font-size: 0.95rem;
-				transition: all 0.2s ease;
-				display: block;
-				padding: 0.25rem 0;
-				line-height: 1.4;
-			}
-
-			.table-of-contents a:hover {
-				color: #ff69b4;
-				transform: translateX(4px);
-			}
-
-			.depth-3 {
-				padding-left: 1.25rem;
-				font-size: 0.9em;
-			}
-
-			.depth-3 a {
-				opacity: 0.7;
-			}
-
-			@media (max-width: 1023px) {
-				.sidebar-toc {
-					position: relative;
-					top: 0;
-					margin-bottom: 2rem;
-				}
-				.table-of-contents {
-					width: 100%;
-				}
+			.post-content {
+				width: 100%;
 			}
 		</style>
 	</body>

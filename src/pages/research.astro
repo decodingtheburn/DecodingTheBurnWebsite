@@ -1,41 +1,56 @@
----
+﻿---
 import Layout from '../layouts/BlogPost.astro';
 
-const pubDate = new Date('2026-01-18');
+const pubDate = new Date('2026-09-04');
 ---
 
 <Layout
-	title="BMS Research & AI Survey"
-	description="Help us understand Burning Mouth Syndrome better through data and AI research."
+	title="My Research & The BMS Patient Survey"
+	description="How I am using data tracking, pattern analysis, and AI to understand Burning Mouth Syndrome triggers and relief protocols."
 	pubDate={pubDate}
 >
 	<div class="research-page">
-		<p>Burning Mouth Syndrome remains a mystery to much of the medical world. My goal is to use data and modern AI to uncover patterns that could lead to better management and eventually a cure.</p>
+		<p class="lead" style="font-size: 1.25rem; line-height: 1.75; color: var(--text-primary); margin-bottom: 2rem;">
+			Burning Mouth Syndrome has remained a frustrating medical enigma largely because clinical research moves at a glacial pace. As a patient with a background in engineering and data, my goal is to build an open, structured dataset that uncovers real-world patterns across hundreds of sufferers.
+		</p>
 		
-		<div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem; border-radius: 20px; margin: 3rem 0; text-align: center;">
-			<h3 style="color: var(--accent); margin-bottom: 1rem;">The BMS Patient Survey</h3>
-			<p>I am developing a comprehensive survey to gather detailed data on symptoms, triggers, and relief methods from patients worldwide.</p>
+		<div style="background: #ffffff; border: 1px solid var(--card-border); padding: 3rem 2rem; border-radius: 24px; margin: 3rem 0; text-align: center; box-shadow: var(--shadow-md);">
+			<span class="meta-tag" style="display: inline-block; margin-bottom: 1rem;">Patient-Led Science</span>
+			<h3 style="color: var(--text-primary); margin-bottom: 0.75rem; font-size: 1.85rem; font-weight: 800;">The BMS Global Patient Survey</h3>
+			<p style="color: var(--text-secondary); max-width: 560px; margin: 0 auto 2rem; font-size: 1rem; line-height: 1.6;">
+				I am currently preparing a comprehensive, multi-variable survey to systematically map out patient symptoms, anatomical locations, dietary triggers, and verified relief protocols.
+			</p>
 			
-			<div style="margin-top: 2rem;">
-				<p><strong>Interested in participating?</strong></p>
-				<p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 2rem;">Join the waitlist to be notified when the survey goes live and contribute your experience to the research.</p>
+			<div style="max-width: 480px; margin: 0 auto;">
+				<p style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">Want to contribute your experience?</p>
+				<p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Join my waitlist to be notified the moment the survey launches and get full access to our findings.</p>
 				
-				<form style="max-width: 400px; margin: 0 auto; display: flex; gap: 0.5rem;">
-					<input type="email" placeholder="Your email address" required style="flex-grow: 1; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white;" />
-					<button type="submit" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Notify Me</button>
+				<form action="/join" method="get" style="display: flex; gap: 0.75rem; max-width: 440px; margin: 0 auto;">
+					<input 
+						type="email" 
+						name="email" 
+						placeholder="Your email address..." 
+						required 
+						style="flex-grow: 1; padding: 0.85rem 1.25rem; border-radius: 100px; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-primary); font-size: 0.95rem; outline: none;" 
+					/>
+					<button type="submit" class="btn btn-primary" style="padding: 0.85rem 1.75rem; white-space: nowrap;">Notify Me</button>
 				</form>
 			</div>
 		</div>
 
-		<h2>Why AI Research?</h2>
-		<p>BMS symptoms are often subjective and vary wildly between patients. AI is uniquely suited to processing large amounts of "noisy" data to find clusters—groups of patients who share similar triggers or responses to certain treatments.</p>
+		<h2>Why I Am Applying AI to BMS Data</h2>
+		<p>
+			Traditional clinical trials often test single pharmaceutical molecules on small, homogeneous groups. But BMS symptoms are notoriously varied. AI and clustering algorithms are uniquely equipped to parse noisy, multi-dimensional patient data to identify distinct sub-types:
+		</p>
 		
-		<ul>
-			<li><strong>Pattern Recognition</strong>: Identifying common dietary or lifestyle triggers.</li>
-			<li><strong>Treatment Efficacy</strong>: Seeing what actually works for specific types of BMS.</li>
-			<li><strong>Data-Driven Advocacy</strong>: Using hard numbers to show the medical community the impact of this condition.</li>
+		<ul style="line-height: 1.85; color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1.05rem;">
+			<li><strong>Phenotype Clustering:</strong> Grouping patients who share similar onset triggers (e.g. dental trauma, viral illness, antibiotic use, menopause) to see which treatments work for their specific cluster.</li>
+			<li><strong>Objective Protocol Scoring:</strong> Measuring which non-pharmacological interventions (nocturnal mouth taping, saliva stimulation, pH balancing) yield statistically significant relief.</li>
+			<li><strong>Open Advocacy for Clinicians:</strong> Providing hard, structured metrics to ENTs, neurologists, and dental researchers so the medical establishment takes BMS seriously.</li>
 		</ul>
 
-		<p>All data collected will be anonymized and used strictly for research purposes to benefit the BMS community.</p>
+		<p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; font-style: italic;">
+			Note: All data collected through this survey is completely anonymized, encrypted, and dedicated to benefiting the patient community.
+		</p>
 	</div>
 </Layout>
