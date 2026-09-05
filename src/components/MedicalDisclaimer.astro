@@ -1,5 +1,5 @@
 ---
-// Combined Medical Disclaimer & Affiliate Notice Component
+// Subtle, compact Medical Disclaimer & Affiliate Notice
 interface Props {
 	class?: string;
 }
@@ -7,73 +7,40 @@ interface Props {
 const { class: className = '' } = Astro.props;
 ---
 
-<div class={`disclaimer-combined-box ${className}`}>
-	<div class="disclaimer-entry">
-		<span class="disclaimer-label">Medical Disclaimer:</span>
-		<div class="disclaimer-body">
-			I am sharing my personal lived experiences, self-experiments, and what worked for my own body. I am a patient, not a doctor. Always consult your physician or specialist before trying any new health&nbsp;protocol.
-		</div>
-	</div>
-	<div class="disclaimer-entry">
-		<span class="disclaimer-label">Notice:</span>
-		<div class="disclaimer-body">
-			This site may contain affiliate links. If you make a purchase through these links, I may earn a modest commission at no extra cost to you, which helps support my ongoing&nbsp;research.
-		</div>
-	</div>
+<div class={`disclaimer-compact ${className}`}>
+	<p class="disclaimer-text">
+		<strong>Medical Disclaimer:</strong> I am sharing my personal lived experiences, self-experiments, and what worked for my own body. I am a patient, not a doctor. Always consult your physician or specialist before trying any new health&nbsp;protocol.
+	</p>
+	<p class="disclaimer-text">
+		<strong>Notice:</strong> This site may contain affiliate links. If you make a purchase through these links, I may earn a modest commission at no extra cost to you, which helps support my ongoing&nbsp;research.
+	</p>
 </div>
 
 <style>
-	.disclaimer-combined-box {
-		background: #fff1f5;
-		border: 1px solid #fecdd3;
-		border-radius: 14px;
-		padding: 1rem 1.35rem;
-		max-width: 880px;
-		margin: 0 auto 1.25rem;
+	.disclaimer-compact {
+		max-width: 860px;
+		margin: 0 auto 0.85rem;
 		text-align: left;
-		box-shadow: 0 1px 3px rgba(244, 63, 94, 0.04);
+		padding: 0;
+		background: transparent;
+		border: none;
 	}
 
-	.disclaimer-entry {
-		display: grid;
-		grid-template-columns: 160px 1fr;
-		gap: 0.85rem;
-		align-items: baseline;
-		font-size: 0.86rem;
-		line-height: 1.6;
+	.disclaimer-text {
+		font-size: 0.68rem; /* 1.3x smaller than standard base size */
+		line-height: 1.45;
+		color: #52525b; /* medium gray */
+		margin: 0 0 0.35rem;
+		text-wrap: pretty;
 	}
 
-	.disclaimer-entry + .disclaimer-entry {
-		margin-top: 0.6rem;
-		padding-top: 0.6rem;
-		border-top: 1px solid #ffe4e6;
+	.disclaimer-text:last-child {
+		margin-bottom: 0;
 	}
 
-	.disclaimer-label {
+	.disclaimer-text strong {
+		color: #18181b; /* dark slate/black */
 		font-weight: 700;
-		color: #9f1239;
-		font-size: 0.82rem;
-		letter-spacing: 0.2px;
-		white-space: nowrap;
-	}
-
-	.disclaimer-body {
-		color: #1c1917;
-		margin: 0;
-	}
-
-	@media (max-width: 640px) {
-		.disclaimer-entry {
-			display: block;
-		}
-
-		.disclaimer-label {
-			display: block;
-			margin-bottom: 0.25rem;
-		}
-
-		.disclaimer-body {
-			padding-left: 1rem;
-		}
+		margin-right: 0.25rem;
 	}
 </style>

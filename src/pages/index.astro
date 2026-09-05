@@ -14,6 +14,12 @@ const posts = (await getCollection('blog', ({ data }) => {
 })).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+// Dynamic calculation of remission duration based on June 2025 (last severe burning)
+const remissionStartYear = 2025;
+const remissionStartMonth = 5; // June (0-indexed)
+const currentDate = new Date();
+const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 + (currentDate.getMonth() - remissionStartMonth) + 1;
 ---
 
 <!doctype html>
@@ -28,7 +34,7 @@ const posts = (await getCollection('blog', ({ data }) => {
 			<section class="hero-centered-wrapper">
 				<div class="hero-centered-header">
 					<MedicalDisclaimer />
-					<h1 class="hero-centered-title">How I stopped my BMS</h1>
+					<h1 class="hero-centered-title">How I Stopped My BMS for the Last {monthsInRemission}&nbsp;Months</h1>
 					<p class="hero-centered-subtitle">When my mouth started burning, doctors told me everything looked completely normal. I refused to accept that. I treated my body like a system, tracked every variable, and found the protocol that brought me lasting&nbsp;relief.</p>
 				</div>
 
