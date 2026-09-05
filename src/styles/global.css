@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
 
 :root {
 	--bg-color: #f8fafc;
@@ -15,7 +15,9 @@
 	--accent-glow: rgba(200, 56, 44, 0.2);
 	--gradient-start: #c8382c;
 	--gradient-end: #ea580c;
-	--font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--font-heading: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--font-main: var(--font-body);
 	--shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
 	--shadow-md: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
 	--shadow-lg: 0 20px 40px -15px rgba(15, 23, 42, 0.1);
@@ -35,8 +37,16 @@ body {
 }
 
 body {
-	font-family: var(--font-main);
-	background-color: var(--bg-color);
+	font-family: var(--font-body);
+	background-color: #f8fafc;
+	background-image: 
+		radial-gradient(circle 800px at 50% -100px, rgba(200, 56, 44, 0.03), transparent 70%),
+		radial-gradient(circle 700px at 95% 20%, rgba(226, 232, 240, 0.45), transparent 60%),
+		radial-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px),
+		linear-gradient(180deg, #f8fafc 0%, #f1f5f9 40%, #f8fafc 100%);
+	background-size: 100% 100%, 100% 100%, 26px 26px, 100% 100%;
+	background-position: 0 0, 0 0, 0 0, 0 0;
+	background-attachment: scroll, scroll, fixed, scroll;
 	color: #000000;
 	line-height: 1.65;
 	font-variant-ligatures: none;
@@ -46,11 +56,17 @@ body {
 }
 
 p, li, blockquote {
+	font-family: var(--font-body);
 	text-wrap: pretty;
 	color: #000000;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6,
+.hero-centered-title,
+.title-primary,
+.title-secondary,
+.story-heading {
+	font-family: var(--font-heading);
 	text-wrap: balance;
 	color: #000000;
 }
@@ -66,14 +82,25 @@ img {
 	display: block;
 }
 
-/* Navbar */
-.navbar {
+/* Floating Navbar */
+.navbar,
+nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1.25rem 4rem;
-	max-width: 1400px;
-	margin: 0 auto;
+	padding: 0.85rem 2.25rem;
+	max-width: 1240px;
+	width: calc(100% - 24px);
+	margin: 6px auto 0;
+	position: sticky;
+	top: 6px;
+	z-index: 1000;
+	background: rgba(255, 255, 255, 0.94);
+	backdrop-filter: blur(16px);
+	border: 1px solid var(--card-border);
+	border-radius: 10px;
+	box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+	font-family: var(--font-body);
 }
 
 .logo-container {
@@ -109,6 +136,7 @@ img {
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
+	font-family: var(--font-body);
 }
 
 .logo-text span:last-child {
@@ -116,20 +144,7 @@ img {
 	font-size: 1.35rem;
 	font-weight: 800;
 	letter-spacing: -0.5px;
-}
-
-nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 1rem 2.5rem;
-	background: rgba(255, 255, 255, 0.94);
-	backdrop-filter: blur(16px);
-	border-bottom: 1px solid var(--card-border);
-	position: sticky;
-	top: 0;
-	z-index: 1000;
-	box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+	font-family: var(--font-heading);
 }
 
 .nav-links {
@@ -144,6 +159,7 @@ nav {
 	font-weight: 600;
 	font-size: 0.95rem;
 	transition: color 0.2s ease;
+	font-family: var(--font-body);
 }
 
 .nav-links a:hover {
@@ -176,13 +192,22 @@ nav {
 		gap: 1.5rem;
 	}
 
+	.navbar,
 	nav {
-		padding: 1rem 1.5rem;
+		padding: 0.85rem 1.5rem;
 	}
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+	.navbar,
+	nav {
+		width: calc(100% - 16px);
+		margin: 6px auto 0;
+		padding: 0.75rem 1.25rem;
+		border-radius: 10px;
+	}
+
 	.nav-actions {
 		display: none;
 	}
