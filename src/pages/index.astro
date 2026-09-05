@@ -42,13 +42,21 @@ const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 
 				</div>
 
 				<div class="hero-video-centered">
-					<div class="video-responsive-wrapper">
-						<iframe 
-							src="https://www.youtube-nocookie.com/embed/BM8qUgA8yPE?rel=0" 
-							title={`How I Stopped My BMS for the Last ${monthsInRemission} Months`}
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-							allowfullscreen
-						></iframe>
+					<div class="video-placeholder-wrapper" id="videoPlaceholder" role="button" tabindex="0" aria-label="Play video: How I Stopped My BMS">
+						<Image 
+							src={authorPhoto} 
+							alt={`Denis Ethier - How I Stopped My BMS for the Last ${monthsInRemission} Months`} 
+							class="video-placeholder-img" 
+							width={1400} 
+							height={788}
+						/>
+						<div class="video-play-overlay">
+							<div class="video-play-btn" aria-hidden="true">
+								<svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+									<path d="M8 5v14l11-7z"/>
+								</svg>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -57,7 +65,7 @@ const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 
 					<h2 class="story-heading">My story</h2>
 					<div class="story-lead">
 						<p>
-							<strong>In a nutshell:</strong> I went from an agonizing 8/10 daily oral burning down to sustained remission by treating my condition as a systems engineering problem. By halting nighttime mouth breathing with gentle tape, cutting inflammatory dietary triggers with a carnivore protocol, and restoring mucosal barrier hydration, I ended my symptoms in 30&nbsp;days. It all began in early 2025 when I woke up to a scalded sensation like a boiling spoon pressed against my tongue, followed by months of normal medical tests and doctors repeatedly telling me nothing was&nbsp;wrong.
+							I went from an agonizing 8/10 daily oral burning down to sustained remission by treating my condition as a systems engineering problem. By halting nighttime mouth breathing with gentle tape, cutting inflammatory dietary triggers with a carnivore protocol, and restoring mucosal barrier hydration, I ended my symptoms in 30&nbsp;days. It all began in early 2025 when I woke up to a scalded sensation like a boiling spoon pressed against my tongue, followed by months of normal medical tests and doctors repeatedly telling me nothing was&nbsp;wrong.
 						</p>
 					</div>
 
@@ -141,5 +149,27 @@ const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 
 			</section>
 		</main>
 		<Footer />
+
+		<script>
+			const placeholder = document.getElementById('videoPlaceholder');
+			if (placeholder) {
+				const playVideo = () => {
+					placeholder.innerHTML = `<iframe 
+						src="https://www.youtube-nocookie.com/embed/BM8qUgA8yPE?autoplay=1&rel=0" 
+						title="How I Stopped My BMS" 
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+						allowfullscreen
+						style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+					></iframe>`;
+				};
+				placeholder.addEventListener('click', playVideo);
+				placeholder.addEventListener('keydown', (e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						playVideo();
+					}
+				});
+			}
+		</script>
 	</body>
 </html>
