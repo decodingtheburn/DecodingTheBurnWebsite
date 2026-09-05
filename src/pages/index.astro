@@ -7,6 +7,7 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 const posts = (await getCollection('blog', ({ data }) => {
 	return import.meta.env.DEV || !data.draft;
@@ -21,16 +22,12 @@ const posts = (await getCollection('blog', ({ data }) => {
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<!-- Top Medical Disclaimer Bar -->
-		<div class="top-disclaimer-bar">
-			<strong>Medical Disclaimer:</strong> I am sharing my personal lived experiences, self-experiments, and what worked for my own body. I am a patient, not a doctor. Always consult your physician or specialist before trying any new health&nbsp;protocol.
-		</div>
-
 		<Header />
 		<main>
 			<!-- Hero Section (Centered) -->
 			<section class="hero-centered-wrapper">
 				<div class="hero-centered-header">
+					<MedicalDisclaimer />
 					<h1 class="hero-centered-title">How I stopped my BMS</h1>
 					<p class="hero-centered-subtitle">When my mouth started burning, doctors told me everything looked completely normal. I refused to accept that. I treated my body like a system, tracked every variable, and found the protocol that brought me lasting&nbsp;relief.</p>
 				</div>
@@ -93,7 +90,7 @@ const posts = (await getCollection('blog', ({ data }) => {
 			</section>
 
 			<!-- Recent Insights -->
-			<section class="section-header" style="justify-content: center; text-align: center; flex-direction: column; align-items: center; margin: 5rem auto 2.5rem;">
+			<section class="section-header" style="justify-content: center; text-align: center; flex-direction: column; align-items: center; margin: 3rem auto 1.5rem;">
 				<h2 style="font-size: 2.75rem; font-weight: 800; color: #000000; letter-spacing: -1px; text-align: center; margin-bottom: 0.75rem;">Recent Posts</h2>
 				<p style="max-width: 720px; margin: 0 auto; color: #000000; font-size: 1.15rem; line-height: 1.6; text-align: center; text-wrap: balance;">Here is what I've written about, the experiments I've conducted, and what I've discovered along the&nbsp;way.</p>
 			</section>
@@ -123,7 +120,7 @@ const posts = (await getCollection('blog', ({ data }) => {
 				}
 			</div>
 
-			<div style="text-align: center; margin: 4rem 0;">
+			<div style="text-align: center; margin: 2.5rem 0;">
 				<a href="/blog" class="btn btn-outline" style="padding: 0.85rem 2.25rem;">View All Entries +</a>
 			</div>
 
@@ -131,7 +128,7 @@ const posts = (await getCollection('blog', ({ data }) => {
 			<section class="newsletter-section">
 				<h2>You Don't Need To Navigate BMS&nbsp;Alone</h2>
 				<p>Let's use the collective wisdom to solve BMS for more&nbsp;people.</p>
-				<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem;">Participate With&nbsp;Me →</a>
+				<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem; color: #ffffff !important;">Participate With&nbsp;Me →</a>
 			</section>
 		</main>
 		<Footer />

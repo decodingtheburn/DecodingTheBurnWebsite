@@ -1,32 +1,79 @@
 ---
-// Medical Disclaimer Component
+// Combined Medical Disclaimer & Affiliate Notice Component
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
 ---
 
-<div class="medical-disclaimer">
-	<p><strong>⚕️ Medical Disclaimer:</strong> The information I share on this website documents my personal health journey, self-experiments, and independent research. It is strictly for educational and informational purposes, and is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your physician, ENT, or dental specialist before trying any new health protocol or altering your treatment.</p>
+<div class={`disclaimer-combined-box ${className}`}>
+	<div class="disclaimer-entry">
+		<span class="disclaimer-label">Medical Disclaimer:</span>
+		<div class="disclaimer-body">
+			I am sharing my personal lived experiences, self-experiments, and what worked for my own body. I am a patient, not a doctor. Always consult your physician or specialist before trying any new health&nbsp;protocol.
+		</div>
+	</div>
+	<div class="disclaimer-entry">
+		<span class="disclaimer-label">Notice:</span>
+		<div class="disclaimer-body">
+			This site may contain affiliate links. If you make a purchase through these links, I may earn a modest commission at no extra cost to you, which helps support my ongoing&nbsp;research.
+		</div>
+	</div>
 </div>
 
 <style>
-	.medical-disclaimer {
-		background: #fffbeb;
-		border-left: 4px solid #f59e0b;
-		padding: 1.5rem;
-		margin: 2rem 0;
-		border-radius: 12px;
-		font-size: 0.9rem;
-		line-height: 1.65;
-		color: #78350f;
-		border: 1px solid #fde68a;
+	.disclaimer-combined-box {
+		background: #fff1f5;
+		border: 1px solid #fecdd3;
+		border-radius: 14px;
+		padding: 1rem 1.35rem;
+		max-width: 880px;
+		margin: 0 auto 1.25rem;
+		text-align: left;
+		box-shadow: 0 1px 3px rgba(244, 63, 94, 0.04);
 	}
 
-	.medical-disclaimer strong {
-		color: #b45309;
-		display: block;
-		margin-bottom: 0.5rem;
+	.disclaimer-entry {
+		display: grid;
+		grid-template-columns: 160px 1fr;
+		gap: 0.85rem;
+		align-items: baseline;
+		font-size: 0.86rem;
+		line-height: 1.6;
+	}
+
+	.disclaimer-entry + .disclaimer-entry {
+		margin-top: 0.6rem;
+		padding-top: 0.6rem;
+		border-top: 1px solid #ffe4e6;
+	}
+
+	.disclaimer-label {
 		font-weight: 700;
+		color: #9f1239;
+		font-size: 0.82rem;
+		letter-spacing: 0.2px;
+		white-space: nowrap;
 	}
 
-	.medical-disclaimer p {
+	.disclaimer-body {
+		color: #1c1917;
 		margin: 0;
+	}
+
+	@media (max-width: 640px) {
+		.disclaimer-entry {
+			display: block;
+		}
+
+		.disclaimer-label {
+			display: block;
+			margin-bottom: 0.25rem;
+		}
+
+		.disclaimer-body {
+			padding-left: 1rem;
+		}
 	}
 </style>
