@@ -1,41 +1,187 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
-
-const pubDate = new Date('2026-09-04');
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 ---
 
-<Layout
-	title="Participate in My Journey & Research"
-	description="Sign up to follow my personal recovery logs, weekly research breakdowns, and participate in our patient community."
-	pubDate={pubDate}
->
-	<div class="join-page">
-		<p class="lead" style="font-size: 1.25rem; line-height: 1.75; color: var(--text-primary); margin-bottom: 2rem;">
-			When my BMS began, the isolation was almost as painful as the physical sensation in my mouth. I created this space so that you and I can share data, compare protocols, and navigate this condition together.
-		</p>
-		
-		<div style="background: #ffffff; border: 1px solid var(--card-border); padding: 3rem 2rem; border-radius: 24px; margin: 3rem 0; display: flex; justify-content: center; box-shadow: var(--shadow-md);">
-            <div style="width: 100%; max-width: 600px; text-align: center;">
-				<span class="meta-tag" style="display: inline-block; margin-bottom: 1rem;">Free Direct Updates</span>
-				<h3 style="font-size: 1.8rem; margin-bottom: 0.75rem; color: var(--text-primary); font-weight: 800;">Get My Weekly Experiment Notes</h3>
-				<p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1rem;">Join fellow sufferers and health practitioners following my recovery notes and survey findings.</p>
-                <!-- MailerLite Form -->
-                <div class="ml-embedded" data-form="0R4iAA"></div>
-            </div>
-		</div>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Sign up for the latest update" 
+			description="Sign up for the latest updates, recovery notes, and research discoveries on Burning Mouth Syndrome." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="join-main-wrapper">
+			<div class="join-disclaimer-container">
+				<MedicalDisclaimer />
+			</div>
 
-		<div style="margin-top: 4rem;">
-			<h2 style="font-size: 2rem; color: var(--text-primary); font-weight: 800; margin-bottom: 1.5rem;">What I Send You Each Week:</h2>
-			<ul style="line-height: 1.85; color: var(--text-secondary); font-size: 1.05rem;">
-				<li><strong>My Real-Time Experiment Logs:</strong> Complete transparency into what I am testing: supplements, diet changes, breathwork, and night taping protocols.</li>
-				<li><strong>Medical Research Breakdowns:</strong> I comb through complex neuropathic and oral medicine journals and synthesize the takeaways into practical, patient-focused takeaways.</li>
-				<li><strong>Survey Discoveries:</strong> Early access to our aggregated patient survey results, identifying trigger clusters and relief trends.</li>
-				<li><strong>Support Call Invitations:</strong> Direct links to our monthly video meetups where patients connect and support each other face-to-face.</li>
-			</ul>
-		</div>
+			<div class="join-clean-container">
+				<div class="join-form-card">
+					<h1 class="join-title">Sign up for the latest update</h1>
+					<p class="join-subtitle">
+						Get my latest self-experimentation logs, clinical breakdowns, and practical BMS recovery notes directly to your&nbsp;inbox.
+					</p>
 
-        <p style="margin-top: 4rem; font-size: 0.9rem; color: var(--text-muted); font-style: italic; text-align: center;">
-            🔒 I respect your privacy. Zero spam, just science, personal notes, and real community. You can unsubscribe with one click anytime.
-        </p>
-	</div>
-</Layout>
+					<!-- MailerLite Direct Form Embed -->
+					<div class="ml-embedded" data-form="0R4iAA"></div>
+
+					<!-- Direct Email Form -->
+					<form class="join-direct-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
+						<div class="input-group">
+							<input 
+								type="email" 
+								name="fields[email]" 
+								placeholder="Enter your email..." 
+								required 
+								aria-label="Email address"
+								class="join-email-input"
+							/>
+							<button type="submit" class="btn btn-primary join-submit-btn">Subscribe</button>
+						</div>
+					</form>
+
+					<div class="join-trust-footer">
+						<p class="join-privacy-text">
+							You can unsubscribe at any time. View our <a href="/privacy" class="privacy-link">Privacy Policy</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+		</main>
+		<Footer />
+
+		<style>
+			.join-main-wrapper {
+				max-width: 900px;
+				margin: 1.5rem auto 4.5rem;
+				padding: 0 1.5rem;
+			}
+
+			.join-disclaimer-container {
+				margin-bottom: 0.5rem;
+			}
+
+			.join-clean-container {
+				max-width: 680px;
+				margin: 0 auto;
+			}
+
+			.join-form-card {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				border-radius: 28px;
+				padding: 3.5rem 3rem;
+				box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.08);
+				text-align: center;
+			}
+
+			.join-title {
+				font-size: clamp(2.1rem, 4.2vw, 2.75rem);
+				font-weight: 800;
+				color: #000000;
+				letter-spacing: -1px;
+				margin: 0 0 1rem;
+				line-height: 1.15;
+				text-wrap: balance;
+			}
+
+			.join-subtitle {
+				font-size: 1.15rem;
+				color: #475569;
+				line-height: 1.6;
+				margin: 0 auto 2.25rem;
+				max-width: 580px; /* Generous width for exactly 2 lines */
+				text-wrap: balance;
+			}
+
+			.join-direct-form {
+				width: 100%;
+				max-width: 500px;
+				margin: 0 auto;
+			}
+
+			.input-group {
+				display: flex;
+				gap: 0.75rem;
+				width: 100%;
+			}
+
+			.join-email-input {
+				flex: 1;
+				padding: 0.95rem 1.25rem;
+				border-radius: 12px;
+				border: 1.5px solid #cbd5e1;
+				font-size: 1rem;
+				outline: none;
+				transition: border-color 0.2s, box-shadow 0.2s;
+				font-family: inherit;
+				color: #0f172a;
+				background: #f8fafc;
+			}
+
+			.join-email-input:focus {
+				border-color: #c8382c;
+				box-shadow: 0 0 0 3px rgba(200, 56, 44, 0.15);
+				background: #ffffff;
+			}
+
+			.join-submit-btn {
+				padding: 0.95rem 2.25rem;
+				font-size: 1rem;
+				font-weight: 700;
+				border-radius: 12px;
+				white-space: nowrap;
+				cursor: pointer;
+			}
+
+			.ml-embedded:not(:empty) + .join-direct-form {
+				display: none;
+			}
+
+			.join-trust-footer {
+				margin-top: 2rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid #f1f5f9;
+			}
+
+			.join-privacy-text {
+				font-size: 0.88rem;
+				color: #64748b;
+				margin: 0;
+				line-height: 1.5;
+			}
+
+			.privacy-link {
+				color: #c8382c;
+				font-weight: 600;
+				text-decoration: none; /* Removed double underline */
+				border-bottom: 1px solid rgba(200, 56, 44, 0.4);
+				transition: all 0.15s ease;
+			}
+
+			.privacy-link:hover {
+				color: #991b1b;
+				border-bottom-color: #991b1b;
+			}
+
+			@media (max-width: 640px) {
+				.join-form-card {
+					padding: 2.5rem 1.5rem;
+				}
+
+				.input-group {
+					flex-direction: column;
+				}
+
+				.join-submit-btn {
+					width: 100%;
+				}
+			}
+		</style>
+	</body>
+</html>

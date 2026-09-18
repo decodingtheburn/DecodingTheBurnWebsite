@@ -10,7 +10,7 @@ import authorPhoto from '../assets/denis-ethier.png';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 const posts = (await getCollection('blog', ({ data }) => {
-	return import.meta.env.DEV || !data.draft;
+	return !data.draft;
 })).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
@@ -35,17 +35,22 @@ const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 
 				<div class="hero-centered-header">
 					<MedicalDisclaimer />
 					<h1 class="hero-centered-title">
-						<span class="title-primary">How I Stopped My BMS</span>
-						<span class="title-secondary">for the Last {monthsInRemission}&nbsp;Months</span>
+						<span class="title-top">
+							How Removing All 
+							<span class="hw-underline-wrapper"><span class="hw-word">Acid</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,12 Q 50,2 98,9" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span> 
+							and All 
+							<span class="hw-underline-wrapper"><span class="hw-word">Sugar</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,10 Q 50,3 98,8" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span>
+						</span>
+						<span class="title-bottom">Calmed My <span class="highlight-bms">Burning Mouth Syndrome</span></span>
 					</h1>
-					<p class="hero-centered-subtitle">After talking to many dentists and doctors, I decided to do my own research and I found things that basically seem to have cured me for the last {monthsInRemission}&nbsp;months.</p>
+					<p class="hero-centered-subtitle">Learn how my BMS symptoms went from 10/10 to 0/10 by identifying my food triggers: Acid and&nbsp;Sugars.</p>
 				</div>
 
 				<div class="hero-video-centered">
 					<div class="video-placeholder-wrapper" id="videoPlaceholder" role="button" tabindex="0" aria-label="Play video: How I Stopped My BMS">
 						<Image 
 							src={authorPhoto} 
-							alt={`Denis Ethier - How I Stopped My BMS for the Last ${monthsInRemission} Months`} 
+							alt={`Denis Ethier - How I Stopped My BMS Symptoms ${monthsInRemission} Months Ago`} 
 							class="video-placeholder-img" 
 							width={1400} 
 							height={788}
@@ -62,70 +67,44 @@ const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 
 
 				<!-- My Story Section Under Video -->
 				<article class="personal-story-section">
-					<h2 class="story-heading">My story</h2>
+					<h2 class="story-heading">My BMS Story</h2>
 					<div class="story-lead">
 						<p>
-							I went from an agonizing 8/10 daily oral burning down to sustained remission by treating my condition as a systems engineering problem. By halting nighttime mouth breathing with gentle tape, cutting inflammatory dietary triggers with a carnivore protocol, and restoring mucosal barrier hydration, I ended my symptoms in 30&nbsp;days. It all began in early 2025 when I woke up to a scalded sensation like a boiling spoon pressed against my tongue, followed by months of normal medical tests and doctors repeatedly telling me nothing was&nbsp;wrong.
+							In early 2025, I woke up with a searing sensation like a boiling spoon pressed against my tongue. Within weeks, the daily burning escalated to an agonizing 10/10 that made speaking and eating feel like dragging raw tissue across&nbsp;sandpaper.
 						</p>
-					</div>
-
-					<div class="story-action-row">
-						<a href="/about" class="btn-pink">Read more &rarr;</a>
-						<div class="story-author-tag">
-							<Image src={authorPhoto} alt="Denis Ethier" class="story-author-avatar" width={108} height={108} />
-							<div class="story-author-info">
-								<h4>Denis Ethier</h4>
-								<p>Software designer, builder &amp; founder of Decoding The&nbsp;Burn</p>
-							</div>
-						</div>
+						<p>
+							After consulting five dentists and five medical doctors who ran extensive tests only to tell me everything looked completely normal, I realized traditional medicine had no clear solution for my&nbsp;condition.
+						</p>
+						<p>
+							I decided to treat my body like an engineering system. Through rigorous tracking, gentle nighttime mouth taping, and targeted nutritional protocols, I systematically brought my burning symptoms from a 10/10 down to&nbsp;0/10.
+						</p>
+						<p class="continue-reading-p">
+							<a href="/about" class="continue-reading-link">Continue reading &rarr;</a>
+						</p>
 					</div>
 				</article>
 
-				<!-- Email Capture CTA -->
-				<div class="hero-cta-capture">
-					<div class="cta-capture-box">
-						<h2>Stay Updated on my progress</h2>
-						<p>I document every self-experiment, clinical paper, and daily habit that keeps my BMS in remission. Drop your email below to follow&nbsp;along.</p>
-						
-						<!-- MailerLite Form Embed -->
-						<div class="ml-embedded" data-form="0R4iAA"></div>
 
-						<!-- Quick Email Capture Form -->
-						<form class="email-capture-form" action="/join" method="get">
-							<input 
-								type="email" 
-								name="email" 
-								placeholder="Enter your email address..." 
-								required 
-								aria-label="Email address"
-							/>
-							<button type="submit" class="btn btn-primary">Follow My Journey</button>
-						</form>
-						<span class="privacy-note">🔒 No spam. Just honest&nbsp;notes.</span>
-					</div>
-				</div>
 			</section>
 
 			<!-- Recent Insights -->
-			<section class="section-header" style="justify-content: center; text-align: center; flex-direction: column; align-items: center; margin: 3rem auto 1.5rem;">
-				<h2 style="font-size: 2.75rem; font-weight: 800; color: #000000; letter-spacing: -1px; text-align: center; margin-bottom: 0.75rem;">Recent Posts</h2>
-				<p style="max-width: 720px; margin: 0 auto; color: #000000; font-size: 1.15rem; line-height: 1.6; text-align: center; text-wrap: balance;">Here is what I've written about, the experiments I've conducted, and what I've discovered along the&nbsp;way.</p>
+			<section class="section-header recent-posts-header">
+				<h2 class="recent-posts-title">Recent Posts</h2>
+				<p class="recent-posts-subtitle">Here is what I've written about, the experiments I've conducted, and what I've discovered along the&nbsp;way.</p>
 			</section>
 
 			<div class="grid">
 				{
 					posts.slice(0, 3).map((post, index) => {
-						// Entry #1 is the newest post on Monday
 						const postNumber = index + 1;
-						const category = post.data.category || (post.data.title.toLowerCase().includes('research') || post.data.title.toLowerCase().includes('carnivore') ? 'Research' : 'My Experience');
 						return (
 						<article class="card">
 							<a href={`/blog/${post.id}/`}>
 								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
 								<div class="card-body">
 									<div class="card-meta">
-										<span class="meta-tag">{category}</span>
-										<span class="meta-date">Entry #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
+										<span class="meta-entry">Entry {postNumber}</span>
+										<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
 									</div>
 									<h3>{post.data.title}</h3>
 									<p>{post.data.description}</p>
@@ -141,11 +120,11 @@ const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 
 				<a href="/blog" class="btn btn-outline" style="padding: 0.85rem 2.25rem;">View All Entries +</a>
 			</div>
 
-			<!-- Newsletter Callout -->
-			<section class="newsletter-section">
-				<h2>You Don't Need To Navigate BMS&nbsp;Alone</h2>
+			<!-- Bottom Newsletter Callout: Dark High Contrast with 'Stay Updated on My Progress' -->
+			<section class="newsletter-section newsletter-dark">
+				<h2>Stay Updated on my progress</h2>
 				<p>Let's use the collective wisdom to solve BMS for more&nbsp;people.</p>
-				<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem; color: #ffffff !important;">Participate With&nbsp;Me →</a>
+				<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem; color: #ffffff !important;">Stay updated &rarr;</a>
 			</section>
 		</main>
 		<Footer />

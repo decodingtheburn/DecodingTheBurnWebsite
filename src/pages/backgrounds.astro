@@ -1,0 +1,554 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import FormattedDate from '../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
+import authorPhoto from '../assets/denis-ethier.png';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+
+// Demo post data for preview
+const demoDate = new Date('2026-09-05');
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Background Variations | ${SITE_TITLE}`} description="Interactive preview of medical-grade backgrounds" />
+		<style>
+			/* Switcher Bar */
+			.bg-switcher-bar {
+				position: sticky;
+				top: 75px;
+				z-index: 999;
+				background: rgba(15, 23, 42, 0.94);
+				backdrop-filter: blur(16px);
+				padding: 0.85rem 1.5rem;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				align-items: center;
+				justify-content: center;
+				border-radius: 14px;
+				max-width: 1200px;
+				margin: 1rem auto 2rem;
+				box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+			}
+
+			.bg-switcher-title {
+				color: #f8fafc;
+				font-size: 0.92rem;
+				font-weight: 700;
+				margin-right: 0.5rem;
+				letter-spacing: 0.3px;
+			}
+
+			.bg-btn {
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(255, 255, 255, 0.18);
+				color: #e2e8f0;
+				padding: 0.45rem 0.95rem;
+				border-radius: 8px;
+				font-size: 0.85rem;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+
+			.bg-btn:hover {
+				background: rgba(255, 255, 255, 0.2);
+				color: #ffffff;
+			}
+
+			.bg-btn.active {
+				background: #c8382c;
+				border-color: #ef4444;
+				color: #ffffff;
+				box-shadow: 0 0 15px rgba(200, 56, 44, 0.5);
+			}
+
+			.bg-preview-label {
+				text-align: center;
+				padding: 1rem 0;
+				font-size: 1.1rem;
+				font-weight: 700;
+				color: #1e293b;
+			}
+
+			.bg-container {
+				border-radius: 24px;
+				margin: 0 auto 4rem;
+				max-width: 1360px;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+				border: 1px solid #e2e8f0;
+				overflow: hidden;
+				transition: all 0.35s ease;
+			}
+
+			/* =========================================================
+			   PRESET 1: Pure Clinical White with Subtle Thermal Flame Curves
+			   ========================================================= */
+			.preset-1-thermal-subtle {
+				background-color: #ffffff;
+				background-image:
+					/* Subtle flame thermal heat curve on outer left */
+					radial-gradient(ellipse 35% 60% at 2% 20%, rgba(244, 63, 94, 0.045), transparent 70%),
+					radial-gradient(ellipse 30% 50% at 0% 60%, rgba(251, 146, 60, 0.035), transparent 70%),
+					/* Subtle flame thermal heat curve on outer right */
+					radial-gradient(ellipse 35% 60% at 98% 20%, rgba(244, 63, 94, 0.045), transparent 70%),
+					radial-gradient(ellipse 30% 50% at 100% 60%, rgba(251, 146, 60, 0.035), transparent 70%),
+					/* Ultra-clean pure white center, crisp & medical-grade */
+					linear-gradient(90deg, #fafafa 0%, #ffffff 18%, #ffffff 82%, #fafafa 100%);
+			}
+
+			/* =========================================================
+			   PRESET 2: Medical Flame Micro-Vector & Platinum Grey
+			   ========================================================= */
+			.preset-2-flame-vector {
+				background-color: #fafbfc;
+				background-image: 
+					/* Left flame wave SVG */
+					radial-gradient(ellipse 40% 60% at 0% 30%, rgba(225, 29, 72, 0.04), transparent 70%),
+					radial-gradient(ellipse 40% 60% at 100% 30%, rgba(225, 29, 72, 0.04), transparent 70%),
+					/* Subtle micro-filament thermal flame paths on outer flanks */
+					url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,160 C15,120 45,90 35,50 C28,25 42,10 40,0 C45,15 35,35 48,60 C58,80 35,115 50,160' fill='none' stroke='%23e11d48' stroke-width='0.75' stroke-opacity='0.04'/%3E%3Cpath d='M130,160 C145,120 115,90 125,50 C132,25 118,10 120,0 C115,15 125,35 112,60 C102,80 125,115 110,160' fill='none' stroke='%23e11d48' stroke-width='0.75' stroke-opacity='0.04'/%3E%3C/svg%3E"),
+					linear-gradient(90deg, #f8fafc 0%, #ffffff 15%, #ffffff 85%, #f8fafc 100%);
+			}
+
+			/* =========================================================
+			   PRESET 3: Ultra-Clean Precision Medical Grid + Platinum
+			   ========================================================= */
+			.preset-3-precision-grid {
+				background-color: #ffffff;
+				background-image: 
+					radial-gradient(circle 800px at 50% 0%, rgba(200, 56, 44, 0.025), transparent 75%),
+					linear-gradient(to right, rgba(226, 232, 240, 0.5) 1px, transparent 1px),
+					linear-gradient(to bottom, rgba(226, 232, 240, 0.5) 1px, transparent 1px),
+					linear-gradient(90deg, #f8fafc 0%, #ffffff 20%, #ffffff 80%, #f8fafc 100%);
+				background-size: 100% 100%, 36px 36px, 36px 36px, 100% 100%;
+			}
+
+			/* =========================================================
+			   PRESET 4: Clean Pure Clinical Light Gray / Crisp White
+			   ========================================================= */
+			.preset-4-clinical-platinum {
+				background-color: #fcfcfd;
+				background-image: 
+					radial-gradient(circle 900px at 50% -100px, rgba(241, 245, 249, 0.9), transparent 80%),
+					linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+			}
+
+			/* =========================================================
+			   PRESET 5: Biomedical Pulse Wave & Pure Pure Center
+			   ========================================================= */
+			.preset-5-pulse-flame {
+				background-color: #ffffff;
+				background-image: 
+					radial-gradient(ellipse 35% 55% at 0% 15%, rgba(220, 38, 38, 0.04), transparent 65%),
+					radial-gradient(ellipse 35% 55% at 100% 15%, rgba(220, 38, 38, 0.04), transparent 65%),
+					url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q25,30 50,50 T100,50' fill='none' stroke='%23f43f5e' stroke-width='0.5' stroke-opacity='0.035'/%3E%3C/svg%3E"),
+					linear-gradient(90deg, #fbfbfe 0%, #ffffff 18%, #ffffff 82%, #fbfbfe 100%);
+				background-size: 100% 100%, 100% 100%, 100px 100px, 100% 100%;
+			}
+
+			.preview-header-badge {
+				display: inline-block;
+				background: #0f172a;
+				color: #f8fafc;
+				padding: 0.35rem 0.85rem;
+				border-radius: 6px;
+				font-size: 0.82rem;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		
+		<div style="text-align: center; padding: 2.5rem 1.5rem 0.5rem;">
+			<h1 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">Medical-Grade Background Gallery</h1>
+			<p style="color: #64748b; max-width: 680px; margin: 0 auto 1.5rem; font-size: 1.05rem;">
+				Compare 5 ultra-clean, medical-grade background options with pure white / soft platinum centers for optimal reading contrast.
+			</p>
+
+			<!-- Interactive Switcher -->
+			<div class="bg-switcher-bar">
+				<span class="bg-switcher-title">Select Preset:</span>
+				<button class="bg-btn active" data-preset="preset-1">1. Subtle Thermal Heat (Subtle Flame Curves)</button>
+				<button class="bg-btn" data-preset="preset-2">2. Micro-Flame Filament + Platinum</button>
+				<button class="bg-btn" data-preset="preset-3">3. Precision Clinical Micro-Grid</button>
+				<button class="bg-btn" data-preset="preset-4">4. Pure Clinical Platinum</button>
+				<button class="bg-btn" data-preset="preset-5">5. Biomedical Pulse Wave</button>
+			</div>
+		</div>
+
+		<!-- Showcase Canvas 1: Subtle Thermal Heat -->
+		<div id="preview-preset-1" class="bg-container preset-1-thermal-subtle">
+			<div style="padding: 1.5rem; text-align: center; background: rgba(255,255,255,0.7); border-bottom: 1px solid #e2e8f0;">
+				<span class="preview-header-badge">PRESET 1 (RECOMMENDED)</span>
+				<h3 style="font-size: 1.25rem; color: #0f172a; margin-top: 4px;">Subtle Thermal Curves (Clean Pure White Reading Center + Soft Flame Energy on Flanks)</h3>
+			</div>
+			
+			<main>
+				<section class="hero-centered-wrapper" style="padding-top: 2rem;">
+					<div class="hero-centered-header">
+						<MedicalDisclaimer />
+						<h1 class="hero-centered-title">
+							<span class="title-top">
+								How Removing All 
+								<span class="hw-underline-wrapper"><span class="hw-word">Acid</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,12 Q 50,2 98,9" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span> 
+								and 
+								<span class="hw-underline-wrapper"><span class="hw-word">Sugar</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,10 Q 50,3 98,8" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span>
+							</span>
+							<span class="title-bottom">Calmed My <span class="highlight-bms">Burning Mouth Syndrome</span></span>
+						</h1>
+						<p class="hero-centered-subtitle">Learn how my BMS symptoms went from 10/10 to 0/10 by identifying my food triggers: Acid and&nbsp;Sugars.</p>
+					</div>
+
+					<div class="hero-video-centered">
+						<div class="video-placeholder-wrapper" role="button" tabindex="0">
+							<Image 
+								src={authorPhoto} 
+								alt="Denis Ethier BMS Video Preview" 
+								class="video-placeholder-img" 
+								width={1400} 
+								height={788}
+							/>
+							<div class="video-play-overlay">
+								<div class="video-play-btn" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+										<path d="M8 5v14l11-7z"/>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<article class="personal-story-section">
+						<h2 class="story-heading">My BMS Story</h2>
+						<div class="story-lead">
+							<p>
+								In early 2025, I woke up with a searing sensation like a boiling spoon pressed against my tongue. Within weeks, the daily burning escalated to an agonizing 10/10 that made speaking and eating feel like dragging raw tissue across&nbsp;sandpaper.
+							</p>
+							<p>
+								After consulting five dentists and five medical doctors who ran extensive tests only to tell me everything looked completely normal, I realized traditional medicine had no clear solution for my&nbsp;condition.
+							</p>
+							<p>
+								I decided to treat my body like an engineering system. Through rigorous tracking, gentle nighttime mouth taping, and targeted nutritional protocols, I systematically brought my burning symptoms from a 10/10 down to&nbsp;0/10.
+							</p>
+							<p class="continue-reading-p">
+								<a href="/about" class="continue-reading-link">Continue reading &rarr;</a>
+							</p>
+						</div>
+					</article>
+				</section>
+
+				<section class="section-header recent-posts-header">
+					<h2 class="recent-posts-title">Recent Posts</h2>
+					<p class="recent-posts-subtitle">Here is what I've written about, the experiments I've conducted, and what I've discovered along the&nbsp;way.</p>
+				</section>
+
+				<div class="grid">
+					<article class="card">
+						<a href="/blog/carnivore-doctors-youtube/">
+							<div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80')"></div>
+							<div class="card-body">
+								<div class="card-meta">
+									<span class="meta-entry">Entry 1</span>
+									<span class="meta-date"><FormattedDate date={demoDate} /></span>
+								</div>
+								<h3>Carnivore Diet & BMS: What 12 Doctors Discovered</h3>
+								<p>Exploring the neurological connection between metabolic inflammation and chronic mucosal burning.</p>
+								<span class="view-story">Read More →</span>
+							</div>
+						</a>
+					</article>
+				</div>
+
+				<div style="text-align: center; margin: 2.5rem 0;">
+					<a href="/blog" class="btn btn-outline" style="padding: 0.85rem 2.25rem;">View All Entries +</a>
+				</div>
+
+				<section class="newsletter-section newsletter-dark">
+					<h2>Stay Updated on my progress</h2>
+					<p>Let's use the collective wisdom to solve BMS for more&nbsp;people.</p>
+					<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem; color: #ffffff !important;">Stay updated &rarr;</a>
+				</section>
+			</main>
+		</div>
+
+		<!-- Showcase Canvas 2: Micro-Flame Filament -->
+		<div id="preview-preset-2" class="bg-container preset-2-flame-vector" style="display: none;">
+			<div style="padding: 1.5rem; text-align: center; background: rgba(255,255,255,0.7); border-bottom: 1px solid #e2e8f0;">
+				<span class="preview-header-badge">PRESET 2</span>
+				<h3 style="font-size: 1.25rem; color: #0f172a; margin-top: 4px;">Micro-Flame Filament Artwork (Subtle Vector Flames on Flanks + Crisp Center)</h3>
+			</div>
+			<!-- Clone of Content -->
+			<main>
+				<section class="hero-centered-wrapper" style="padding-top: 2rem;">
+					<div class="hero-centered-header">
+						<MedicalDisclaimer />
+						<h1 class="hero-centered-title">
+							<span class="title-top">
+								How Removing All 
+								<span class="hw-underline-wrapper"><span class="hw-word">Acid</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,12 Q 50,2 98,9" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span> 
+								and 
+								<span class="hw-underline-wrapper"><span class="hw-word">Sugar</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,10 Q 50,3 98,8" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span>
+							</span>
+							<span class="title-bottom">Calmed My <span class="highlight-bms">Burning Mouth Syndrome</span></span>
+						</h1>
+						<p class="hero-centered-subtitle">Learn how my BMS symptoms went from 10/10 to 0/10 by identifying my food triggers: Acid and&nbsp;Sugars.</p>
+					</div>
+
+					<div class="hero-video-centered">
+						<div class="video-placeholder-wrapper" role="button" tabindex="0">
+							<Image 
+								src={authorPhoto} 
+								alt="Denis Ethier BMS Video Preview" 
+								class="video-placeholder-img" 
+								width={1400} 
+								height={788}
+							/>
+							<div class="video-play-overlay">
+								<div class="video-play-btn" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+										<path d="M8 5v14l11-7z"/>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<article class="personal-story-section">
+						<h2 class="story-heading">My BMS Story</h2>
+						<div class="story-lead">
+							<p>
+								In early 2025, I woke up with a searing sensation like a boiling spoon pressed against my tongue. Within weeks, the daily burning escalated to an agonizing 10/10 that made speaking and eating feel like dragging raw tissue across&nbsp;sandpaper.
+							</p>
+							<p class="continue-reading-p">
+								<a href="/about" class="continue-reading-link">Continue reading &rarr;</a>
+							</p>
+						</div>
+					</article>
+				</section>
+				<section class="newsletter-section newsletter-dark">
+					<h2>Stay Updated on my progress</h2>
+					<p>Let's use the collective wisdom to solve BMS for more&nbsp;people.</p>
+					<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem; color: #ffffff !important;">Stay updated &rarr;</a>
+				</section>
+			</main>
+		</div>
+
+		<!-- Showcase Canvas 3: Precision Micro-Grid -->
+		<div id="preview-preset-3" class="bg-container preset-3-precision-grid" style="display: none;">
+			<div style="padding: 1.5rem; text-align: center; background: rgba(255,255,255,0.7); border-bottom: 1px solid #e2e8f0;">
+				<span class="preview-header-badge">PRESET 3</span>
+				<h3 style="font-size: 1.25rem; color: #0f172a; margin-top: 4px;">Precision Clinical Micro-Grid (Ultra Technical Laboratory Style)</h3>
+			</div>
+			<!-- Clone of Content -->
+			<main>
+				<section class="hero-centered-wrapper" style="padding-top: 2rem;">
+					<div class="hero-centered-header">
+						<MedicalDisclaimer />
+						<h1 class="hero-centered-title">
+							<span class="title-top">
+								How Removing All 
+								<span class="hw-underline-wrapper"><span class="hw-word">Acid</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,12 Q 50,2 98,9" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span> 
+								and 
+								<span class="hw-underline-wrapper"><span class="hw-word">Sugar</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,10 Q 50,3 98,8" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span>
+							</span>
+							<span class="title-bottom">Calmed My <span class="highlight-bms">Burning Mouth Syndrome</span></span>
+						</h1>
+						<p class="hero-centered-subtitle">Learn how my BMS symptoms went from 10/10 to 0/10 by identifying my food triggers: Acid and&nbsp;Sugars.</p>
+					</div>
+
+					<div class="hero-video-centered">
+						<div class="video-placeholder-wrapper" role="button" tabindex="0">
+							<Image 
+								src={authorPhoto} 
+								alt="Denis Ethier BMS Video Preview" 
+								class="video-placeholder-img" 
+								width={1400} 
+								height={788}
+							/>
+							<div class="video-play-overlay">
+								<div class="video-play-btn" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+										<path d="M8 5v14l11-7z"/>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<article class="personal-story-section">
+						<h2 class="story-heading">My BMS Story</h2>
+						<div class="story-lead">
+							<p>
+								In early 2025, I woke up with a searing sensation like a boiling spoon pressed against my tongue. Within weeks, the daily burning escalated to an agonizing 10/10 that made speaking and eating feel like dragging raw tissue across&nbsp;sandpaper.
+							</p>
+							<p class="continue-reading-p">
+								<a href="/about" class="continue-reading-link">Continue reading &rarr;</a>
+							</p>
+						</div>
+					</article>
+				</section>
+				<section class="newsletter-section newsletter-dark">
+					<h2>Stay Updated on my progress</h2>
+					<p>Let's use the collective wisdom to solve BMS for more&nbsp;people.</p>
+					<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem; color: #ffffff !important;">Stay updated &rarr;</a>
+				</section>
+			</main>
+		</div>
+
+		<!-- Showcase Canvas 4: Pure Clinical Platinum -->
+		<div id="preview-preset-4" class="bg-container preset-4-clinical-platinum" style="display: none;">
+			<div style="padding: 1.5rem; text-align: center; background: rgba(255,255,255,0.7); border-bottom: 1px solid #e2e8f0;">
+				<span class="preview-header-badge">PRESET 4</span>
+				<h3 style="font-size: 1.25rem; color: #0f172a; margin-top: 4px;">Pure Clinical Platinum (Ultra Minimalist Soft Grey & White)</h3>
+			</div>
+			<!-- Clone of Content -->
+			<main>
+				<section class="hero-centered-wrapper" style="padding-top: 2rem;">
+					<div class="hero-centered-header">
+						<MedicalDisclaimer />
+						<h1 class="hero-centered-title">
+							<span class="title-top">
+								How Removing All 
+								<span class="hw-underline-wrapper"><span class="hw-word">Acid</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,12 Q 50,2 98,9" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span> 
+								and 
+								<span class="hw-underline-wrapper"><span class="hw-word">Sugar</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,10 Q 50,3 98,8" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span>
+							</span>
+							<span class="title-bottom">Calmed My <span class="highlight-bms">Burning Mouth Syndrome</span></span>
+						</h1>
+						<p class="hero-centered-subtitle">Learn how my BMS symptoms went from 10/10 to 0/10 by identifying my food triggers: Acid and&nbsp;Sugars.</p>
+					</div>
+
+					<div class="hero-video-centered">
+						<div class="video-placeholder-wrapper" role="button" tabindex="0">
+							<Image 
+								src={authorPhoto} 
+								alt="Denis Ethier BMS Video Preview" 
+								class="video-placeholder-img" 
+								width={1400} 
+								height={788}
+							/>
+							<div class="video-play-overlay">
+								<div class="video-play-btn" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+										<path d="M8 5v14l11-7z"/>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<article class="personal-story-section">
+						<h2 class="story-heading">My BMS Story</h2>
+						<div class="story-lead">
+							<p>
+								In early 2025, I woke up with a searing sensation like a boiling spoon pressed against my tongue. Within weeks, the daily burning escalated to an agonizing 10/10 that made speaking and eating feel like dragging raw tissue across&nbsp;sandpaper.
+							</p>
+							<p class="continue-reading-p">
+								<a href="/about" class="continue-reading-link">Continue reading &rarr;</a>
+							</p>
+						</div>
+					</article>
+				</section>
+				<section class="newsletter-section newsletter-dark">
+					<h2>Stay Updated on my progress</h2>
+					<p>Let's use the collective wisdom to solve BMS for more&nbsp;people.</p>
+					<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem; color: #ffffff !important;">Stay updated &rarr;</a>
+				</section>
+			</main>
+		</div>
+
+		<!-- Showcase Canvas 5: Biomedical Pulse Wave -->
+		<div id="preview-preset-5" class="bg-container preset-5-pulse-flame" style="display: none;">
+			<div style="padding: 1.5rem; text-align: center; background: rgba(255,255,255,0.7); border-bottom: 1px solid #e2e8f0;">
+				<span class="preview-header-badge">PRESET 5</span>
+				<h3 style="font-size: 1.25rem; color: #0f172a; margin-top: 4px;">Biomedical Pulse Wave (Subtle Red Energy Flanks + Pure Center)</h3>
+			</div>
+			<!-- Clone of Content -->
+			<main>
+				<section class="hero-centered-wrapper" style="padding-top: 2rem;">
+					<div class="hero-centered-header">
+						<MedicalDisclaimer />
+						<h1 class="hero-centered-title">
+							<span class="title-top">
+								How Removing All 
+								<span class="hw-underline-wrapper"><span class="hw-word">Acid</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,12 Q 50,2 98,9" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span> 
+								and 
+								<span class="hw-underline-wrapper"><span class="hw-word">Sugar</span><svg class="hw-underline-svg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path d="M 2,10 Q 50,3 98,8" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/></svg></span>
+							</span>
+							<span class="title-bottom">Calmed My <span class="highlight-bms">Burning Mouth Syndrome</span></span>
+						</h1>
+						<p class="hero-centered-subtitle">Learn how my BMS symptoms went from 10/10 to 0/10 by identifying my food triggers: Acid and&nbsp;Sugars.</p>
+					</div>
+
+					<div class="hero-video-centered">
+						<div class="video-placeholder-wrapper" role="button" tabindex="0">
+							<Image 
+								src={authorPhoto} 
+								alt="Denis Ethier BMS Video Preview" 
+								class="video-placeholder-img" 
+								width={1400} 
+								height={788}
+							/>
+							<div class="video-play-overlay">
+								<div class="video-play-btn" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+										<path d="M8 5v14l11-7z"/>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<article class="personal-story-section">
+						<h2 class="story-heading">My BMS Story</h2>
+						<div class="story-lead">
+							<p>
+								In early 2025, I woke up with a searing sensation like a boiling spoon pressed against my tongue. Within weeks, the daily burning escalated to an agonizing 10/10 that made speaking and eating feel like dragging raw tissue across&nbsp;sandpaper.
+							</p>
+							<p class="continue-reading-p">
+								<a href="/about" class="continue-reading-link">Continue reading &rarr;</a>
+							</p>
+						</div>
+					</article>
+				</section>
+				<section class="newsletter-section newsletter-dark">
+					<h2>Stay Updated on my progress</h2>
+					<p>Let's use the collective wisdom to solve BMS for more&nbsp;people.</p>
+					<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem; color: #ffffff !important;">Stay updated &rarr;</a>
+				</section>
+			</main>
+		</div>
+
+		<Footer />
+
+		<script>
+			const buttons = document.querySelectorAll('.bg-btn');
+			const containers = document.querySelectorAll('.bg-container');
+
+			buttons.forEach(btn => {
+				btn.addEventListener('click', () => {
+					buttons.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+
+					const targetPreset = btn.getAttribute('data-preset');
+					containers.forEach(c => {
+						if (c.id === `preview-${targetPreset}`) {
+							c.style.display = 'block';
+						} else {
+							c.style.display = 'none';
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

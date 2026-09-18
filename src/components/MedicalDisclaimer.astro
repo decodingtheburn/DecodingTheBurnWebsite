@@ -9,13 +9,13 @@ const { class: className = '' } = Astro.props;
 
 <div class={`disclaimer-compact ${className}`}>
 	<p class="disclaimer-text">
-		<strong>Medical Disclaimer:</strong> I am sharing my personal lived experiences, self-experiments, and what worked for my own body. I am a patient, not a doctor. Always consult your physician or specialist before trying any new health&nbsp;protocol. This site might contain affiliate&nbsp;links.
+		<strong>Medical Disclaimer:</strong> I am sharing my personal lived experiences and self-experiments. I am a patient, not a doctor. Always consult your physician before trying any new health&nbsp;protocol. <strong>Affiliate Disclaimer:</strong> This site might contain affiliate&nbsp;links.
 	</p>
 </div>
 
 <style>
 	.disclaimer-compact {
-		max-width: 704px;
+		max-width: 760px;
 		width: 100%;
 		margin: 0 auto;
 		padding-bottom: 35px;
@@ -25,16 +25,16 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.disclaimer-text {
-		font-size: 0.58rem; /* 2x smaller font size */
-		line-height: 1.4;
+		font-size: 0.65rem; /* 1.1x bigger than 0.58rem */
+		line-height: 1.45;
 		color: #64748b; /* subtle light-medium gray */
 		margin: 0;
-		text-wrap: pretty;
+		text-wrap: balance;
 	}
 
 	.disclaimer-text strong {
 		color: #334155;
 		font-weight: 700;
-		margin-right: 0.25rem;
+		margin-right: 0.2rem;
 	}
 </style>

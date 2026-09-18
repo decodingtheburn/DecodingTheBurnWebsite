@@ -16,16 +16,15 @@ import TongueLogo from './TongueLogo.astro';
     <a href="/about">My Story</a>
     <a href="/for-patients">For Patients</a>
     <a href="/for-professionals">For Professionals</a>
-    <a href="/research">Research</a>
     <div class="mobile-actions">
         <a href="/contact" class="btn btn-outline">Write to me</a>
-        <a href="/join" class="btn btn-primary">Participate</a>
+        <a href="/join" class="btn btn-primary">Stay updated</a>
     </div>
   </div>
 
   <div class="nav-actions">
     <a href="/contact" class="btn btn-outline">Write to me</a>
-    <a href="/join" class="btn btn-primary">Participate</a>
+    <a href="/join" class="btn btn-primary">Stay updated</a>
   </div>
 
   <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
@@ -38,7 +37,7 @@ import TongueLogo from './TongueLogo.astro';
 </nav>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  const initMenu = () => {
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
 
@@ -46,5 +45,11 @@ import TongueLogo from './TongueLogo.astro';
       navLinks?.classList.toggle('active');
       menuToggle.classList.toggle('active');
     });
-  });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMenu);
+  } else {
+    initMenu();
+  }
 </script>

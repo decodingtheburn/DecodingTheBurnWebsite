@@ -4,6 +4,7 @@ description: "Why I started Decoding The Burn and how this platform supports the
 pubDate: "Aug 31 2026"
 category: "My Experience"
 heroImage: "/thumbnails/target-dark.jpg"
+draft: true
 ---
 
 Welcome to Decoding The Burn. If you are here, you likely know the struggle of Burning Mouth Syndrome (BMS). My goal with this website is to ensure that no one has to face this condition alone.

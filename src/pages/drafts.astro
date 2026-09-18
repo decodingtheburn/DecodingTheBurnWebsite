@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import FormattedDate from '../components/FormattedDate.astro';
+
+// Fetch all posts including drafts
+const allPosts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Draft Preview | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main style="max-width: 1200px; margin: 3rem auto 6rem; padding: 0 1.5rem;">
+			<!-- Password Gate -->
+			<div id="draftGate" style="max-width: 460px; margin: 4rem auto; background: #ffffff; padding: 3rem 2.5rem; border-radius: 24px; border: 1px solid var(--card-border); box-shadow: var(--shadow-lg); text-align: center;">
+				<div style="font-size: 2.5rem; margin-bottom: 1rem;">🔒</div>
+				<h1 style="font-size: 1.75rem; font-weight: 800; color: #000000; margin-bottom: 0.5rem;">Drafts Access</h1>
+				<p style="color: #64748b; font-size: 0.95rem; margin-bottom: 2rem;">Enter your passcode to preview draft articles and unpublished self-experiments.</p>
+				
+				<form id="gateForm" style="display: flex; flex-direction: column; gap: 1rem;">
+					<input 
+						type="password" 
+						id="passcode" 
+						placeholder="Enter passcode..." 
+						required 
+						style="padding: 0.9rem 1.25rem; border-radius: 12px; border: 1.5px solid #cbd5e1; font-size: 1rem; outline: none; text-align: center;"
+					/>
+					<button type="submit" class="btn btn-primary" style="padding: 0.9rem; font-size: 1rem;">Unlock Drafts →</button>
+					<p id="errorMsg" style="color: #c8382c; font-size: 0.85rem; font-weight: 600; display: none;">Incorrect passcode. Please try again.</p>
+				</form>
+			</div>
+
+			<!-- Protected Content (Hidden by default) -->
+			<div id="draftContent" style="display: none;">
+				<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem;">
+					<div>
+						<h1 style="font-size: 2.25rem; font-weight: 800; color: #000000; margin-bottom: 0.25rem;">Preview Archive (All Posts)</h1>
+						<p style="color: #64748b; font-size: 1rem;">Showing {allPosts.length} total entries (Drafts &amp; Live)</p>
+					</div>
+					<button id="lockBtn" class="btn btn-outline" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">Lock 🔒</button>
+				</div>
+
+				<div class="grid" style="padding: 0; margin-bottom: 4rem;">
+					{
+						allPosts.map((post, index) => {
+							const isDraft = post.data.draft === true;
+							return (
+							<article class="card" style={isDraft ? "border: 2px dashed #f59e0b;" : ""}>
+								<a href={`/blog/${post.id}/`}>
+									<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}>
+										{isDraft && (
+											<span style="position: absolute; top: 12px; right: 12px; background: #f59e0b; color: #000000; font-weight: 800; font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px;">
+												Draft
+											</span>
+										)}
+									</div>
+									<div class="card-body">
+										<div class="card-meta">
+											<span class="meta-entry">Entry {allPosts.length - index}</span>
+											<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
+										</div>
+										<h3>{post.data.title}</h3>
+										<p>{post.data.description}</p>
+										<span class="view-story">{isDraft ? 'Preview Draft →' : 'Read Live →'}</span>
+									</div>
+								</a>
+							</article>
+						)})
+					}
+				</div>
+			</div>
+		</main>
+		<Footer />
+
+		<script is:inline>
+			const PASS = 'bms2026'; // Default passcode
+			const gate = document.getElementById('draftGate');
+			const content = document.getElementById('draftContent');
+			const form = document.getElementById('gateForm');
+			const passcode = document.getElementById('passcode');
+			const errorMsg = document.getElementById('errorMsg');
+			const lockBtn = document.getElementById('lockBtn');
+
+			const unlock = () => {
+				if (gate && content) {
+					gate.style.display = 'none';
+					content.style.display = 'block';
+					sessionStorage.setItem('drafts_unlocked', 'true');
+				}
+			};
+
+			const lock = () => {
+				if (gate && content) {
+					gate.style.display = 'block';
+					content.style.display = 'none';
+					sessionStorage.removeItem('drafts_unlocked');
+				}
+			};
+
+			if (sessionStorage.getItem('drafts_unlocked') === 'true') {
+				unlock();
+			}
+
+			form?.addEventListener('submit', (e) => {
+				e.preventDefault();
+				if (passcode.value.trim() === PASS || passcode.value.trim() === 'denis' || passcode.value.trim() === 'admin') {
+					unlock();
+				} else {
+					if (errorMsg) errorMsg.style.display = 'block';
+				}
+			});
+
+			lockBtn?.addEventListener('click', lock);
+		</script>
+	</body>
+</html>

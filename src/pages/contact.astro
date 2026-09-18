@@ -1,42 +1,174 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
-
-const pubDate = new Date('2026-09-04');
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import { Image } from 'astro:assets';
+import authorPhoto from '../assets/denis-ethier.png';
 ---
 
-<Layout
-	title="Write to Me"
-	description="Send a message directly to Denis Ethier, founder of Decoding The Burn."
-	pubDate={pubDate}
->
-	<div class="contact-page">
-		<p class="lead" style="font-size: 1.25rem; line-height: 1.75; color: var(--text-primary); margin-bottom: 2rem;">
-			Whether you're a patient dealing with symptoms, a caregiver seeking advice, or a clinician interested in my data, I welcome your thoughts. I read every message and do my best to reply personally.
-		</p>
-		
-		<div style="background: #ffffff; border: 1px solid var(--card-border); padding: 3rem 2.5rem; border-radius: 24px; margin: 3rem 0; box-shadow: var(--shadow-md);">
-			<form action="mailto:decodingtheburn@gmail.com" method="post" enctype="text/plain" style="display: flex; flex-direction: column; gap: 1.75rem;">
-				<div>
-					<label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; font-size: 0.95rem;">Your Name</label>
-					<input type="text" name="name" placeholder="Denis Ethier" required style="width: 100%; padding: 0.9rem 1.25rem; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-primary); font-size: 1rem; outline: none;" />
-				</div>
-				
-				<div>
-					<label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; font-size: 0.95rem;">Your Email</label>
-					<input type="email" name="email" placeholder="name@example.com" required style="width: 100%; padding: 0.9rem 1.25rem; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-primary); font-size: 1rem; outline: none;" />
-				</div>
-				
-				<div>
-					<label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; font-size: 0.95rem;">Message</label>
-					<textarea name="message" rows="5" placeholder="Share your story, question, or research note..." required style="width: 100%; padding: 0.9rem 1.25rem; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-primary); font-size: 1rem; outline: none; line-height: 1.6;"></textarea>
-				</div>
-				
-				<button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 0.9rem 2.5rem; font-size: 0.95rem;">Write to Denis →</button>
-			</form>
-		</div>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Write to Me" 
+			description="Send a message directly to Denis Ethier, founder of Decoding The Burn." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="contact-main-container">
+			<div class="contact-hero-image-wrapper">
+				<Image 
+					src={authorPhoto} 
+					alt="Denis Ethier" 
+					class="contact-hero-img" 
+					width={1200} 
+					height={675}
+				/>
+			</div>
 
-		<div style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; margin-top: 2rem;">
-			<p>Direct Email: <a href="mailto:decodingtheburn@gmail.com" style="color: var(--accent); font-weight: 600;">decodingtheburn@gmail.com</a></p>
-		</div>
-	</div>
-</Layout>
+			<h1 class="contact-page-title">Write to Me</h1>
+
+			<div class="contact-disclaimer-wrapper">
+				<MedicalDisclaimer />
+			</div>
+
+			<p class="contact-lead-text">
+				Whether you're a patient dealing with symptoms, a caregiver seeking advice, or a clinician interested in my data, I welcome your thoughts. I read every message and do my best to reply personally.
+			</p>
+			
+			<div class="contact-form-card">
+				<form action="mailto:decodingtheburn@gmail.com" method="post" enctype="text/plain" class="contact-form-inner">
+					<div class="form-group">
+						<label for="contact-name">Your Name</label>
+						<input type="text" id="contact-name" name="name" placeholder="Denis Ethier" required />
+					</div>
+					
+					<div class="form-group">
+						<label for="contact-email">Your Email</label>
+						<input type="email" id="contact-email" name="email" placeholder="name@example.com" required />
+					</div>
+					
+					<div class="form-group">
+						<label for="contact-message">Message</label>
+						<textarea id="contact-message" name="message" rows="5" placeholder="Share your story, question, or research note..." required></textarea>
+					</div>
+					
+					<button type="submit" class="btn btn-primary contact-submit-btn">Write to Denis →</button>
+				</form>
+			</div>
+		</main>
+		<Footer />
+
+		<style>
+			.contact-main-container {
+				max-width: 760px;
+				margin: 1.5rem auto 4.5rem;
+				padding: 0 1.5rem;
+			}
+
+			.contact-hero-image-wrapper {
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				border-radius: 20px;
+				overflow: hidden;
+				box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.18);
+				margin-bottom: 2rem;
+				background: #0f172a;
+				border: 1px solid rgba(15, 23, 42, 0.08);
+			}
+
+			.contact-hero-img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center 20%;
+				display: block;
+			}
+
+			.contact-page-title {
+				font-size: clamp(2.25rem, 4.5vw, 3rem);
+				font-weight: 800;
+				color: #000000;
+				letter-spacing: -1px;
+				margin: 0 0 1.25rem;
+				text-align: center;
+			}
+
+			.contact-disclaimer-wrapper {
+				margin-bottom: 1.5rem;
+			}
+
+			.contact-lead-text {
+				font-size: 1.15rem;
+				line-height: 1.7;
+				color: #334155;
+				margin-bottom: 2rem;
+				text-align: center;
+				text-wrap: balance;
+			}
+
+			.contact-form-card {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				padding: 3rem 2.5rem;
+				border-radius: 24px;
+				box-shadow: var(--shadow-md);
+			}
+
+			.contact-form-inner {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+
+			.form-group label {
+				display: block;
+				margin-bottom: 0.5rem;
+				color: #000000;
+				font-weight: 700;
+				font-size: 0.95rem;
+			}
+
+			.form-group input,
+			.form-group textarea {
+				width: 100%;
+				padding: 0.9rem 1.25rem;
+				border-radius: 12px;
+				border: 1.5px solid #cbd5e1;
+				background: #f8fafc;
+				color: #0f172a;
+				font-size: 1rem;
+				outline: none;
+				font-family: inherit;
+				transition: border-color 0.2s, box-shadow 0.2s;
+			}
+
+			.form-group input:focus,
+			.form-group textarea:focus {
+				border-color: #c8382c;
+				box-shadow: 0 0 0 3px rgba(200, 56, 44, 0.15);
+				background: #ffffff;
+			}
+
+			.contact-submit-btn {
+				align-self: flex-start;
+				padding: 0.95rem 2.5rem;
+				font-size: 1rem;
+				font-weight: 700;
+				border-radius: 12px;
+			}
+
+			@media (max-width: 640px) {
+				.contact-form-card {
+					padding: 2rem 1.5rem;
+				}
+
+				.contact-submit-btn {
+					width: 100%;
+				}
+			}
+		</style>
+	</body>
+</html>
