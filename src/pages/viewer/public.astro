@@ -1,7 +1,14 @@
 ---
 import BaseHead from '../../components/BaseHead.astro';
 import TongueLogo from '../../components/TongueLogo.astro';
+import { getEntry } from 'astro:content';
+import { generateSlidesFromPost } from '../../utils/slideEngine';
 import { bmsSlides } from '../../data/slidesData';
+
+const post = await getEntry('blog', 'how-i-solved-my-burning-mouth-syndrome');
+const slides = post 
+	? generateSlidesFromPost(post.id, post.data.title, post.data.description, post.body || '')
+	: bmsSlides;
 ---
 
 <!doctype html>
@@ -339,7 +346,7 @@ import { bmsSlides } from '../../data/slidesData';
 				</header>
 
 				<main class="stage-body">
-					<h1 class="slide-main-title" id="slide-main-title">{bmsSlides[0]?.title}</h1>
+					<h1 class="slide-main-title" id="slide-main-title">{slides[0]?.title}</h1>
 					<ul class="bullet-list" id="bullet-list"></ul>
 				</main>
 
@@ -386,7 +393,7 @@ import { bmsSlides } from '../../data/slidesData';
 			</div>
 		</div>
 
-		<script define:vars={{ slides: bmsSlides }}>
+		<script define:vars={{ slides }}>
 			(function () {
 				let currentSlide = 0;
 				let currentPoint = 0;

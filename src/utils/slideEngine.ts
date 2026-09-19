@@ -27,11 +27,6 @@ export function toFiveWordCue(text: string, maxWords = 7): string {
 }
 
 export function generateSlidesFromPost(slug: string, title: string, description: string, body: string): SlideItem[] {
-	// 1. If this is the flagship post and custom slides exist, use Denis's hand-curated slides!
-	if (slug === 'how-i-solved-my-burning-mouth-syndrome') {
-		return bmsSlides;
-	}
-
 	const slides: SlideItem[] = [];
 
 	// Slide 1: Title Slide
@@ -69,28 +64,61 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 	const rawSections = body.split(/^##\s+/m);
 	let slideCounter = 3;
 
+	// Slide 3: Intro Preamble (if present before first ##)
+	const preambleText = (rawSections[0] || '').trim();
+	if (preambleText.length > 40) {
+		const preambleParagraphs = preambleText.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+		const preambleCues = preambleParagraphs.map(p => {
+			const firstSent = p.split(/[.!?]+/)[0] || '';
+			return toFiveWordCue(firstSent);
+		}).filter(Boolean).slice(0, 5);
+
+		slides.push({
+			id: slideCounter++,
+			badge: "My Story",
+			title: "Why I Am Sharing This",
+			bullets: preambleCues.length > 0 ? preambleCues : [
+				"Hey, my name is Denis",
+				"BMS solutions are rarely shared",
+				"My remission is 100% real",
+				"Inspired by author Peggy Shaw",
+				"YouTube series, blog, upcoming book"
+			],
+			notes: cleanText(preambleText)
+		});
+	}
+
 	rawSections.forEach((sec, idx) => {
-		if (idx === 0) return; // Skip preamble before first H2
+		if (idx === 0) return; // Skip preamble handled above
 
 		const lines = sec.split('\n');
 		const headingLine = lines[0] || '';
 		const sectionTitle = cleanText(headingLine);
 		const sectionBody = lines.slice(1).join('\n').trim();
 
-		// Extract bullet points from markdown lists (- or * or numbers)
-		const listMatches = sectionBody.match(/^[-*]\s+(.+)$/gm) || [];
+		// Extract bullet points from markdown lists (- or * or numbered 1.)
+		const listMatches = sectionBody.match(/^[-*\d]+[.)]?\s+(.+)$/gm) || [];
 		const boldMatches = sectionBody.match(/\*\*([^*]+)\*\*/g) || [];
 
 		let bulletCues: string[] = [];
 
-		if (listMatches.length > 0) {
-			bulletCues = listMatches.map(m => toFiveWordCue(m.replace(/^[-*]\s+/, ''))).filter(Boolean).slice(0, 5);
-		} else if (boldMatches.length > 0) {
+		if (listMatches.length >= 2) {
+			bulletCues = listMatches.map(m => toFiveWordCue(m.replace(/^[-*\d]+[.)]?\s+/, ''))).filter(Boolean).slice(0, 5);
+		} else if (boldMatches.length >= 2) {
 			bulletCues = boldMatches.map(m => toFiveWordCue(m)).filter(Boolean).slice(0, 5);
 		} else {
-			// Extract first few sentences
-			const sentences = sectionBody.split(/[.!?]+/).map(s => toFiveWordCue(s)).filter(s => s.split(' ').length >= 3);
-			bulletCues = sentences.slice(0, 4);
+			// Extract key first sentences from paragraphs
+			const paragraphs = sectionBody.split(/\n\s*\n/).map(p => p.trim()).filter(p => p && !p.startsWith('```') && !p.startsWith('---'));
+			bulletCues = paragraphs.map(p => {
+				const firstSent = p.split(/[.!?]+/)[0] || '';
+				return toFiveWordCue(firstSent);
+			}).filter(Boolean).slice(0, 5);
+
+			// If still short, fallback to sentence splitting
+			if (bulletCues.length < 2) {
+				const sentences = sectionBody.split(/[.!?]+/).map(s => toFiveWordCue(s)).filter(s => s.split(' ').length >= 3);
+				bulletCues = sentences.slice(0, 4);
+			}
 		}
 
 		// Fallback if section was very short
@@ -103,31 +131,16 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 			];
 		}
 
-		// Clean notes for teleprompter
-		const cleanNotes = cleanText(sectionBody).slice(0, 500);
+		// Full clean notes for teleprompter
+		const cleanNotes = cleanText(sectionBody).slice(0, 1200);
 
 		slides.push({
 			id: slideCounter++,
-			badge: `Part ${slideCounter - 2}`,
-			title: sectionTitle || `Section ${slideCounter - 2}`,
+			badge: `Part ${slideCounter - 3}`,
+			title: sectionTitle || `Section ${slideCounter - 3}`,
 			bullets: bulletCues,
 			notes: cleanNotes || `Discuss: ${sectionTitle}. Focus on practical patient takeaways.`
 		});
-	});
-
-	// Final Slide: Summary & Call to Action
-	slides.push({
-		id: slideCounter,
-		badge: "Roadmap",
-		title: "Summary & Key Takeaways",
-		bullets: [
-			"Weekly YouTube video scientific breakdowns",
-			"Free diagnostic checklists on website",
-			"Explore full article at DecodingTheBurn",
-			"Become lead investigator of health",
-			"Your pain has physical causes"
-		],
-		notes: "Wrap up the video: thank the viewer, remind them to subscribe, visit DecodingTheBurn.com, and leave their questions in the comments."
 	});
 
 	return slides;

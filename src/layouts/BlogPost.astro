@@ -36,7 +36,7 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 					)}
 				</div>
 
-				<h1>{title}</h1>
+				<h1 set:html={title} />
 
 				<div class="post-meta">
 					<span>Published on <FormattedDate date={pubDate} /></span>
@@ -48,30 +48,6 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 				</div>
 				<MedicalDisclaimer />
 
-				{slug && (
-					<div class="post-deck-banner">
-						<div class="deck-banner-left">
-							<span class="deck-icon-badge">
-								<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-							</span>
-							<div class="deck-text-group">
-								<span class="deck-banner-title">Presentation Slides Available</span>
-								<span class="deck-banner-sub">5-word bullet cues for OBS recording & teleprompter</span>
-							</div>
-						</div>
-						<div class="deck-banner-actions">
-							<a href={`/viewer/${slug}/public`} target="_blank" class="banner-btn banner-btn-public" title="Open Public Presentation for OBS">
-								<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-								<span>Public Slides ↗</span>
-							</a>
-							<a href={`/viewer/${slug}/private`} target="_blank" class="banner-btn banner-btn-private" title="Open Denis's Presenter Cockpit">
-								<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-								<span>Presenter Cockpit ↗</span>
-							</a>
-						</div>
-					</div>
-				)}
-
 				<div class="blog-layout-grid">
 					<div class="post-content">
 						<slot />
@@ -82,122 +58,24 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 		</main>
 		<Footer />
 		<style>
+			.blog-post h1 {
+				font-size: 2.25rem;
+				line-height: 1.22;
+				letter-spacing: -0.025em;
+				color: var(--text-primary);
+				font-weight: 800;
+				margin: 1.5rem auto 1rem auto;
+				max-width: 680px;
+				text-wrap: balance;
+			}
 			.blog-layout-grid {
 				display: block;
-				max-width: 700px;
-				margin: 0 auto;
+				max-width: 680px;
+				margin: 1.5rem auto 0 auto;
 				position: relative;
 			}
 			.post-content {
 				width: 100%;
-			}
-
-			/* Presentation Deck Banner */
-			.post-deck-banner {
-				max-width: 700px;
-				margin: 1.5rem auto 2rem auto;
-				background: #0f131a;
-				border: 1px solid #1e2638;
-				border-radius: 10px;
-				padding: 0.9rem 1.25rem;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				gap: 1rem;
-				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-			}
-
-			.deck-banner-left {
-				display: flex;
-				align-items: center;
-				gap: 0.85rem;
-			}
-
-			.deck-icon-badge {
-				width: 34px;
-				height: 34px;
-				border-radius: 8px;
-				background: rgba(239, 68, 68, 0.12);
-				border: 1px solid rgba(239, 68, 68, 0.3);
-				color: #ef4444;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-shrink: 0;
-			}
-
-			.deck-text-group {
-				display: flex;
-				flex-direction: column;
-				gap: 0.15rem;
-			}
-
-			.deck-banner-title {
-				font-size: 0.92rem;
-				font-weight: 700;
-				color: #ffffff;
-			}
-
-			.deck-banner-sub {
-				font-size: 0.78rem;
-				color: #94a3b8;
-			}
-
-			.deck-banner-actions {
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				flex-shrink: 0;
-			}
-
-			.banner-btn {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.35rem;
-				font-size: 0.78rem;
-				font-weight: 700;
-				padding: 0.45rem 0.75rem;
-				border-radius: 6px;
-				text-decoration: none;
-				transition: all 0.15s ease;
-			}
-
-			.banner-btn-public {
-				background: rgba(59, 130, 246, 0.12);
-				color: #60a5fa;
-				border: 1px solid rgba(59, 130, 246, 0.3);
-			}
-
-			.banner-btn-public:hover {
-				background: #2563eb;
-				color: #ffffff;
-			}
-
-			.banner-btn-private {
-				background: rgba(239, 68, 68, 0.12);
-				color: #f87171;
-				border: 1px solid rgba(239, 68, 68, 0.3);
-			}
-
-			.banner-btn-private:hover {
-				background: #dc2626;
-				color: #ffffff;
-			}
-
-			@media (max-width: 680px) {
-				.post-deck-banner {
-					flex-direction: column;
-					align-items: flex-start;
-					gap: 0.85rem;
-				}
-				.deck-banner-actions {
-					width: 100%;
-					justify-content: space-between;
-				}
-				.banner-btn {
-					flex: 1;
-					justify-content: center;
-				}
 			}
 		</style>
 	</body>

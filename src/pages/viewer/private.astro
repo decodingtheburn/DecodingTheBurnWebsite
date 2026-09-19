@@ -1,7 +1,14 @@
 ---
 import BaseHead from '../../components/BaseHead.astro';
 import TongueLogo from '../../components/TongueLogo.astro';
+import { getEntry } from 'astro:content';
+import { generateSlidesFromPost } from '../../utils/slideEngine';
 import { bmsSlides } from '../../data/slidesData';
+
+const post = await getEntry('blog', 'how-i-solved-my-burning-mouth-syndrome');
+const slides = post 
+	? generateSlidesFromPost(post.id, post.data.title, post.data.description, post.body || '')
+	: bmsSlides;
 ---
 
 <!doctype html>
@@ -868,7 +875,7 @@ import { bmsSlides } from '../../data/slidesData';
 
 		<!-- Bottom Slide Switcher Rail -->
 		<nav class="slide-switcher-bar" id="switcher-bar">
-			{bmsSlides.map((s, idx) => (
+			{slides.map((s, idx) => (
 				<button 
 					type="button" 
 					class={`switch-pill ${idx === 0 ? 'is-active' : ''}`}
@@ -881,11 +888,11 @@ import { bmsSlides } from '../../data/slidesData';
 		</nav>
 
 		<!-- Client Logic & BroadcastChannel Sync -->
-		<script define:vars={{ bmsSlides }}>
+		<script define:vars={{ slides }}>
 			(function () {
 				let currentSlide = 0;
 				let currentPoint = 0;
-				const totalSlides = bmsSlides.length;
+				const totalSlides = slides.length;
 
 				// BroadcastChannel to control /viewer/public
 				const syncChannel = new BroadcastChannel('bms_deck_sync');
@@ -940,7 +947,7 @@ import { bmsSlides } from '../../data/slidesData';
 				});
 
 				function render() {
-					const s = bmsSlides[currentSlide];
+					const s = slides[currentSlide];
 					if (!s) return;
 
 					// Header Badges
@@ -1026,7 +1033,7 @@ import { bmsSlides } from '../../data/slidesData';
 
 					// Next Slide Preview
 					if (currentSlide < totalSlides - 1) {
-						const nextS = bmsSlides[currentSlide + 1];
+						const nextS = slides[currentSlide + 1];
 						if (nextTitle) nextTitle.textContent = nextS.title;
 						if (nextText) nextText.textContent = nextS.bullets[0] || '';
 					} else {
@@ -1056,7 +1063,7 @@ import { bmsSlides } from '../../data/slidesData';
 							item.classList.add('is-dimmed');
 						}
 					});
-					const s = bmsSlides[currentSlide];
+					const s = slides[currentSlide];
 					if (pointStatus && s) {
 						pointStatus.textContent = `Point ${currentPoint + 1} of ${s.bullets.length}`;
 					}
@@ -1071,7 +1078,7 @@ import { bmsSlides } from '../../data/slidesData';
 
 				// Step Actions
 				function nextStep() {
-					const s = bmsSlides[currentSlide];
+					const s = slides[currentSlide];
 					if (!s) return;
 					if (currentPoint < s.bullets.length - 1) {
 						currentPoint++;
@@ -1090,7 +1097,7 @@ import { bmsSlides } from '../../data/slidesData';
 						updateBulletStates();
 					} else if (currentSlide > 0) {
 						currentSlide--;
-						const prevS = bmsSlides[currentSlide];
+						const prevS = slides[currentSlide];
 						currentPoint = prevS.bullets.length - 1;
 						render();
 					}

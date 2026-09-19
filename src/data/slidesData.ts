@@ -48,67 +48,106 @@ export const bmsSlides: SlideItem[] = [
 	},
 	{
 		id: 4,
-		badge: "The Pain",
-		title: "From Subtle Tingle to Fire",
+		badge: "The Spark",
+		title: "The Beer Trigger Three Years Ago",
 		bullets: [
-			"Started as subtle, intermittent tingling",
-			"Escalated into permanent oral burning",
-			"10/10 agony during daily flossing",
-			"Standard doctors called it 'idiopathic'",
-			"Refused to accept lifelong pain"
+			"Trois-Pistoles beer ignited oral burning",
+			"Complete burning across oral cavity",
+			"Stopped beer, calm for 6 months",
+			"Assumed temporary isolated reaction",
+			"First clue of mucosal sensitivity"
 		],
-		notes: "Describe how it crept in slowly. Intermittent tingling turned into constant daily heat. Flossing between canines and premolars caused severe 10/10 allodynia. Doctors said 'idiopathic' and offered nerve pills. You refused to accept that it was in your head.\n\n🛡️ LEGAL SHIELD: Discuss healthcare professionals respectfully. Frame your journey as searching for biophysical root causes that standard brief consultations do not have time to explore."
+		notes: "Describe the onset three years ago: drinking a strong dark Belgian ale (Trois-Pistoles) triggered an immediate fiery burn. Stopping beer brought 6 months of false calm, making you think it was just a transient reaction.\n\n🛡️ LEGAL SHIELD: Describe your personal experience without claiming that beer causes BMS in general."
 	},
 	{
 		id: 5,
-		badge: "Nutrition",
-		title: "Starving the Fire: No Acid",
+		badge: "Relapse",
+		title: "The Second Wave: Coffee & Spreading Pain",
 		bullets: [
-			"Everyday 'healthy' foods fueled burning",
-			"Strict zero-acid, zero-sugar elimination protocol",
-			"Plant acids trigger ASIC channels",
-			"100% Carnivore Paleolithic Ketogenic diet",
-			"Immediate calming of oral heat"
+			"Burning flared back without warning",
+			"Coffee discovered as direct trigger",
+			"Stopped coffee, but burning persisted",
+			"Spread to palate, lips, nose",
+			"Constant 24/7 oral burning fire"
 		],
-		notes: "Explain that 'healthy' foods (citrus, berries, vinegar, coffee) have a pH of 2.5 to 4.0. Acidic protons (H+) activate Acid-Sensing Ion Channels (ASIC1/3) and TRPV1 on exposed dentin and mucosal nerves. Switching to pure meat, fat, salt, and water eliminated the fuel.\n\n🛡️ LEGAL SHIELD: CRITICAL YOUTUBE GUARD: Never say 'You must eat carnivore to cure BMS.' Frame strictly as: 'In my personal N=1 case, I tested an elimination protocol to remove acidic triggers.' Note that extreme elimination diets carry risks and require physician oversight."
+		notes: "Explain the second wave: coffee triggered another flare. Eliminating coffee was no longer enough. The burning spread to your palate, lips, and the tip of your nose, turning into a constant 24/7 living fire.\n\n🛡️ LEGAL SHIELD: Frame nerve radiation (V2-V3) as an anatomical observation of how your cranial nerves responded."
 	},
 	{
 		id: 6,
-		badge: "Dental",
-		title: "Uncovering the Mechanical Sparks",
+		badge: "Dental Trap",
+		title: "The Dental Trap: Four Patches & Agony",
 		bullets: [
-			"Diet was fuel; hardware sparked",
+			"Dental cleaning helped once only",
 			"Four cervical composite resin patches",
-			"Overhanging margins trapped chronic biofilm",
-			"Tooth 36: Three hidden cavities",
-			"Micro-leakage electrified the trigeminal nerve"
+			"Flossing triggered 10/10 burning agony",
+			"Desperate enough to consider extractions",
+			"Standard dentists lacked real answers"
 		],
-		notes: "Diet stopped the fuel, but what ignited the nerve? 4 composite resin patches had subgingival overhangs trapping plaque. Tooth 36 had an old crown concealing 3 cavities invisible on 2D x-rays. Micro-leakage and hydrolysis generated continuous electrical distress to V2-V3.\n\n🛡️ LEGAL SHIELD: Avoid accusing individual dental practitioners of negligence. Frame this as forensic hardware inspection: margins and micro-leakage can physically distress trigeminal nerve fibers."
+		notes: "Describe your dental visits: scaling helped briefly, then 4 composite patches were placed along the gumline for recession. Flossing became pure torture: 10/10 electric agony. You were so desperate you considered extracting your teeth.\n\n🛡️ LEGAL SHIELD: Avoid accusing individual clinicians; focus on how cervical patches can cause allodynia in sensitized patients."
 	},
 	{
 		id: 7,
-		badge: "Biophysics",
-		title: "The Gut-Trigeminal Axis Healed",
+		badge: "Elimination",
+		title: "Diet Elimination: Blueberry Acid Realization",
 		bullets: [
-			"Past vegetarianism weakened tissue collagen",
-			"Leaky gut released bacterial endotoxins",
-			"Endotoxins sensitized the trigeminal ganglion",
-			"Dual repair: hardware and nutrition",
-			"Nine months of complete remission"
+			"Eliminated down to ten foods",
+			"Blueberries eaten daily as superfood",
+			"Realized blueberry pH is ~3.0",
+			"Stopped blueberries; burning dropped immediately",
+			"Dietary acids fueling the fire"
 		],
-		notes: "Connect the full picture: past vegetarian years depleted collagen (causing the inguinal hernia) and created leaky gut. LPS endotoxins primed the trigeminal ganglion. Dual fix: smoothed composite margins, fixed tooth 36, and sealed the gut with carnivore. Result: 9 months of total peace.\n\n🛡️ LEGAL SHIELD: Frame biological mechanisms (endotoxins, collagen, V2-V3) as scientific concepts from published literature, not absolute medical dogma."
+		notes: "Explain your elimination diet: you stripped down to 10 safe foods, including blueberries. Then you checked the biophysical data: blueberries have an acidic pH of 3.0! Stopping blueberries immediately lowered baseline pain.\n\n🛡️ LEGAL SHIELD: Frame fruit acidity and pH as standard chemistry data, not medical diagnosis."
 	},
 	{
 		id: 8,
+		badge: "Remission",
+		title: "Carnivore Breakthrough & 6-Month Yo-Yo",
+		bullets: [
+			"Strict meat, fat, salt, water",
+			"Burning stopped altogether everywhere",
+			"Cheated with popcorn and chips",
+			"Pain returned; 6-month yo-yo cycle",
+			"Now 9 months 100% carnivore"
+		],
+		notes: "Describe the breakthrough: carnivore stopped the pain everywhere. Then the 6-month yo-yo cycle: cheating on popcorn and chips brought immediate flare-ups. Testing half an avocado 6 months ago confirmed the sensitivity. Now 9 months strict carnivore with zero sugar.\n\n🛡️ LEGAL SHIELD: Reiterate that this was an individual elimination experiment requiring medical supervision."
+	},
+	{
+		id: 9,
+		badge: "Hardware",
+		title: "Tooth 36: Three Hidden Cavities",
+		bullets: [
+			"Dental hygienist school cleaning exam",
+			"Dentist spotted lesion under crown",
+			"Three rotting cavities under metal",
+			"Excavated decay; new crown placed",
+			"Ended chronic lower jaw pain"
+		],
+		notes: "Describe the dental hardware discovery: during a hygienist school visit, an educator spotted what looked like a lesion under an old crown on tooth 36. Replacing the crown revealed 3 rotting cavities underneath! Fixing it eliminated deep jaw pain.\n\n🛡️ LEGAL SHIELD: Explain that 2D x-rays cannot penetrate metal crowns, making clinical inspection vital."
+	},
+	{
+		id: 10,
+		badge: "Biophysics",
+		title: "The Biophysical Takeaway: Fuel vs. Hardware",
+		bullets: [
+			"Food acids activate ASIC/TRPV1 channels",
+			"Sugars feed chronic oral fermentation",
+			"Hidden decay irritated trigeminal nerve",
+			"Dual repair: hardware and nutrition",
+			"Nine months of complete remission"
+		],
+		notes: "Summarize the two-component model: diet was the fuel (acids activating ASIC1/3, sugars feeding fermentation); dental infection was the physical spark. Dual fix brought 9 months of full remission.\n\n🛡️ LEGAL SHIELD: Cite peer-reviewed literature on proton-sensing channels."
+	},
+	{
+		id: 11,
 		badge: "Roadmap",
 		title: "The Roadmap: Helping Others",
 		bullets: [
-			"Weekly YouTube video scientific breakdowns",
-			"Free diagnostic dental checklists online",
+			"Weekly YouTube video scientific deep-dives",
+			"Free diagnostic dental audit checklists",
 			"Upcoming comprehensive forensic recovery book",
 			"Become lead investigator of health",
 			"Your pain has physical causes"
 		],
-		notes: "Call to action: Subscribe to the YouTube channel, visit DecodingTheBurn.com, and download the free dentist audit checklist. Encourage patients to keep digging because pain always has a physical biophysical cause.\n\n🛡️ LEGAL SHIELD: If discussing viewer surveys, frame as 'casual community polls and sharing comments', NEVER as an official clinical trial (which requires prior IRB approval)."
+		notes: "Wrap up the video: subscribe to the YouTube channel, visit DecodingTheBurn.com, download the free audit checklist, and leave questions in the comments.\n\n🛡️ LEGAL SHIELD: Frame as patient education and community sharing."
 	}
 ];
