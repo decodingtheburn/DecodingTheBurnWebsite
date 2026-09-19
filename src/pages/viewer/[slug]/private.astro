@@ -449,6 +449,233 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 				font-weight: 700;
 			}
 
+			/* Safe-Phrasing Guardrail Drawer & Button */
+			.legal-guard-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				font-size: 0.8rem;
+				font-weight: 700;
+				color: #38bdf8;
+				background: rgba(56, 189, 248, 0.12);
+				border: 1px solid rgba(56, 189, 248, 0.35);
+				padding: 0.35rem 0.8rem;
+				border-radius: 6px;
+				cursor: pointer;
+				transition: all 0.18s ease;
+			}
+
+			.legal-guard-btn:hover,
+			.legal-guard-btn.is-active {
+				background: rgba(56, 189, 248, 0.22);
+				border-color: #38bdf8;
+				color: #ffffff;
+				box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+			}
+
+			.legal-drawer-backdrop {
+				position: fixed;
+				inset: 0;
+				background: rgba(0, 0, 0, 0.65);
+				backdrop-filter: blur(4px);
+				z-index: 150;
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.25s ease;
+			}
+
+			.legal-drawer-backdrop.is-open {
+				opacity: 1;
+				pointer-events: auto;
+			}
+
+			.legal-drawer {
+				position: fixed;
+				top: 0;
+				right: 0;
+				width: min(550px, 92vw);
+				height: 100vh;
+				background: #0b0f17;
+				border-left: 1px solid var(--border-color);
+				box-shadow: -15px 0 45px rgba(0, 0, 0, 0.7);
+				z-index: 160;
+				display: flex;
+				flex-direction: column;
+				transform: translateX(100%);
+				transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			.legal-drawer.is-open {
+				transform: translateX(0);
+			}
+
+			.legal-drawer-header {
+				padding: 1.25rem 1.5rem;
+				background: #080b11;
+				border-bottom: 1px solid var(--border-color);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.legal-badge-pill {
+				font-size: 0.72rem;
+				font-weight: 800;
+				letter-spacing: 0.08em;
+				color: #38bdf8;
+				background: rgba(56, 189, 248, 0.12);
+				border: 1px solid rgba(56, 189, 248, 0.25);
+				padding: 0.2rem 0.55rem;
+				border-radius: 4px;
+				display: inline-block;
+				margin-bottom: 0.35rem;
+			}
+
+			.legal-drawer-header h2 {
+				margin: 0;
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #ffffff;
+			}
+
+			.legal-close-btn {
+				background: transparent;
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				color: #94a3b8;
+				font-size: 1.35rem;
+				width: 32px;
+				height: 32px;
+				border-radius: 6px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: all 0.15s ease;
+			}
+
+			.legal-close-btn:hover {
+				background: rgba(255, 255, 255, 0.1);
+				color: #ffffff;
+			}
+
+			.legal-drawer-body {
+				padding: 1.5rem;
+				overflow-y: auto;
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+				flex: 1;
+			}
+
+			.legal-section-card {
+				background: #111723;
+				border: 1px solid var(--border-color);
+				border-radius: 10px;
+				padding: 1.25rem;
+			}
+
+			.legal-card-tag {
+				font-size: 0.75rem;
+				font-weight: 800;
+				letter-spacing: 0.06em;
+				color: #94a3b8;
+				margin-bottom: 0.75rem;
+				display: flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+
+			.disclaimer-quote-box {
+				background: #070a10;
+				border-left: 3px solid #38bdf8;
+				padding: 1rem 1.15rem;
+				border-radius: 0 6px 6px 0;
+				font-size: 0.95rem;
+				line-height: 1.6;
+				color: #f1f5f9;
+			}
+
+			.cardinal-grid {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 0.85rem;
+			}
+
+			.rule-box {
+				background: #080c14;
+				border: 1px solid rgba(255, 255, 255, 0.06);
+				border-radius: 8px;
+				padding: 0.85rem 1rem;
+			}
+
+			.rule-row {
+				margin-bottom: 0.45rem;
+			}
+
+			.rule-row:last-child {
+				margin-bottom: 0;
+			}
+
+			.rule-badge {
+				font-size: 0.72rem;
+				font-weight: 800;
+				padding: 0.15rem 0.45rem;
+				border-radius: 4px;
+				display: inline-block;
+				margin-bottom: 0.25rem;
+			}
+
+			.rule-badge.ban {
+				color: #f87171;
+				background: rgba(239, 68, 68, 0.15);
+				border: 1px solid rgba(239, 68, 68, 0.3);
+			}
+
+			.rule-badge.safe {
+				color: #4ade80;
+				background: rgba(34, 197, 94, 0.15);
+				border: 1px solid rgba(34, 197, 94, 0.3);
+			}
+
+			.rule-text {
+				font-size: 0.85rem;
+				color: #cbd5e1;
+				line-height: 1.45;
+				margin: 0;
+			}
+
+			.swap-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 0.85rem;
+			}
+
+			.swap-table th {
+				text-align: left;
+				padding: 0.5rem 0.65rem;
+				border-bottom: 1px solid var(--border-color);
+				font-size: 0.75rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+			}
+
+			.swap-table td {
+				padding: 0.6rem 0.65rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+				vertical-align: middle;
+			}
+
+			.bad-text {
+				color: #f87171;
+				font-weight: 600;
+			}
+
+			.good-text {
+				color: #4ade80;
+				font-weight: 600;
+			}
+
 			@media (max-width: 1024px) {
 				.cockpit-main {
 					grid-template-columns: 1fr;
@@ -479,6 +706,9 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 			</div>
 
 			<div class="top-right">
+				<button type="button" class="legal-guard-btn" id="legal-guard-btn" title="Toggle Safe Phrasing Guide & YouTube Compliance Shield (Shortcut: L)">
+					<span>🛡️ Safe Phrasing [L]</span>
+				</button>
 				<div class="sync-pill" title="Public Viewer window will follow your actions">
 					<span class="sync-led"></span>
 					<span>Broadcasting Live</span>
@@ -774,11 +1004,165 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 					} else if (e.code === 'ArrowUp' || e.code === 'PageUp') {
 						e.preventDefault();
 						prevSlide();
+					} else if (e.code === 'KeyL') {
+						e.preventDefault();
+						toggleLegalDrawer();
+					} else if (e.code === 'Escape') {
+						closeLegalDrawer();
 					}
 				});
+
+				// Legal Safe-Phrasing Drawer Controls
+				const legalBtn = document.getElementById('legal-guard-btn');
+				const legalCloseBtn = document.getElementById('legal-close-btn');
+				const legalDrawer = document.getElementById('legal-drawer');
+				const legalBackdrop = document.getElementById('legal-drawer-backdrop');
+
+				function openLegalDrawer() {
+					legalDrawer?.classList.add('is-open');
+					legalBackdrop?.classList.add('is-open');
+					legalBtn?.classList.add('is-active');
+				}
+
+				function closeLegalDrawer() {
+					legalDrawer?.classList.remove('is-open');
+					legalBackdrop?.classList.remove('is-open');
+					legalBtn?.classList.remove('is-active');
+				}
+
+				function toggleLegalDrawer() {
+					if (legalDrawer?.classList.contains('is-open')) {
+						closeLegalDrawer();
+					} else {
+						openLegalDrawer();
+					}
+				}
+
+				legalBtn?.addEventListener('click', (e) => {
+					e.stopPropagation();
+					toggleLegalDrawer();
+				});
+
+				legalCloseBtn?.addEventListener('click', (e) => {
+					e.stopPropagation();
+					closeLegalDrawer();
+				});
+
+				legalBackdrop?.addEventListener('click', closeLegalDrawer);
 
 				render();
 			})();
 		</script>
+
+		<!-- Safe Phrasing Guide Drawer Backdrop & Panel -->
+		<div class="legal-drawer-backdrop" id="legal-drawer-backdrop"></div>
+		<aside class="legal-drawer" id="legal-drawer" aria-hidden="true">
+			<div class="legal-drawer-header">
+				<div>
+					<span class="legal-badge-pill">🛡️ LEGAL & YOUTUBE COMPLIANCE SHIELD</span>
+					<h2>Live Safe-Phrasing Guide</h2>
+				</div>
+				<button type="button" class="legal-close-btn" id="legal-close-btn" title="Close Guide (L or Esc)">&times;</button>
+			</div>
+
+			<div class="legal-drawer-body">
+				<!-- 15-Second Spoken Opening Disclaimer -->
+				<div class="legal-section-card">
+					<div class="legal-card-tag">🎙️ 15-SECOND OPENING DISCLAIMER (READ BEFORE SLIDE 1)</div>
+					<div class="disclaimer-quote-box">
+						"Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this video is for educational purposes only. BMS is complex and everyone's biology is different, so please consult your doctor before making any major changes to your health or diet."
+					</div>
+				</div>
+
+				<!-- The 4 Cardinal Rules on Camera -->
+				<div class="legal-section-card">
+					<div class="legal-card-tag">⚡ THE 4 CARDINAL RULES ON CAMERA</div>
+					<div class="cardinal-grid">
+						<div class="rule-box">
+							<div class="rule-row">
+								<span class="rule-badge ban">❌ NEVER PRESCRIBE</span>
+								<p class="rule-text">Avoid "You should do X" or "This cures BMS".</p>
+							</div>
+							<div class="rule-row">
+								<span class="rule-badge safe">✅ ALWAYS DESCRIBE</span>
+								<p class="rule-text">"In my N=1 experiment..." / "Published studies observe..."</p>
+							</div>
+						</div>
+
+						<div class="rule-box">
+							<div class="rule-row">
+								<span class="rule-badge ban">❌ NEVER "GEMINI TOLD ME"</span>
+								<p class="rule-text">Prevents YouTube automated medical misinformation strikes.</p>
+							</div>
+							<div class="rule-row">
+								<span class="rule-badge safe">✅ "AI AS STUDY ASSISTANT"</span>
+								<p class="rule-text">"I used AI to organize published medical papers for my doctor."</p>
+							</div>
+						</div>
+
+						<div class="rule-box">
+							<div class="rule-row">
+								<span class="rule-badge ban">❌ NEVER "CARNIVORE CURES BMS"</span>
+								<p class="rule-text">Platforms penalize unproven extreme diet cures.</p>
+							</div>
+							<div class="rule-row">
+								<span class="rule-badge safe">✅ "N=1 ELIMINATION TRIAL"</span>
+								<p class="rule-text">"A personal elimination experiment to test food sensitivities."</p>
+							</div>
+						</div>
+
+						<div class="rule-box">
+							<div class="rule-row">
+								<span class="rule-badge ban">❌ NEVER "OFFICIAL CLINICAL STUDY"</span>
+								<p class="rule-text">Formal medical studies legally require prior IRB approval.</p>
+							</div>
+							<div class="rule-row">
+								<span class="rule-badge safe">✅ "COMMUNITY CONVERSATION"</span>
+								<p class="rule-text">"Informal channel poll / reading voluntary viewer comments."</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Instant Word-Swap Cheat Sheet -->
+				<div class="legal-section-card">
+					<div class="legal-card-tag">🔄 INSTANT WORD-SWAP CHEAT SHEET</div>
+					<table class="swap-table">
+						<thead>
+							<tr>
+								<th style="color: #f87171;">Avoid Saying</th>
+								<th style="color: #4ade80;">Say Instead</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span class="bad-text">Cure / Fix / Solve</span></td>
+								<td><span class="good-text">Remission / Relief in my case</span></td>
+							</tr>
+							<tr>
+								<td><span class="bad-text">You should try...</span></td>
+								<td><span class="good-text">What helped my body was...</span></td>
+							</tr>
+							<tr>
+								<td><span class="bad-text">The AI prescribed...</span></td>
+								<td><span class="good-text">AI helped me organize notes</span></td>
+							</tr>
+							<tr>
+								<td><span class="bad-text">Gathering data for science</span></td>
+								<td><span class="good-text">Casual community poll / discussion</span></td>
+							</tr>
+							<tr>
+								<td><span class="bad-text">Medical protocol</span></td>
+								<td><span class="good-text">Personal daily routine</span></td>
+							</tr>
+							<tr>
+								<td><span class="bad-text">Doctor / Clinician</span></td>
+								<td><span class="good-text">Independent literature researcher</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</aside>
 	</body>
 </html>
