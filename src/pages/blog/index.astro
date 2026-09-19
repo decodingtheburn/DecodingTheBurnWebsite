@@ -21,11 +21,9 @@ const posts = (await getCollection('blog', ({ data }) => {
 	<body>
 		<Header />
 		<main>
-            <section class="section-header">
-				<div>
-					<h2>My Notes & Experiments</h2>
-				</div>
-                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">The complete archive of my self-experiments, clinical research notes, and personal learnings living with and overcoming BMS.</p>
+            <section class="blog-index-header">
+				<h1 class="blog-index-title">My Notes & Experiments</h1>
+                <p class="blog-index-subtitle">The complete archive of my self-experiments, clinical research notes, and personal learnings living with and overcoming&nbsp;BMS.</p>
 			</section>
 
 			<div class="grid" style="margin-bottom: 8rem;">
@@ -41,7 +39,7 @@ const posts = (await getCollection('blog', ({ data }) => {
 										<span class="meta-tag">Experiment</span>
 										<span class="meta-date">Entry #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
 									</div>
-									<h3>{post.data.title}</h3>
+									<h3 set:html={post.data.title} />
 									<p>{post.data.description}</p>
 									<span class="view-story">Read My Notes →</span>
 								</div>
@@ -52,5 +50,48 @@ const posts = (await getCollection('blog', ({ data }) => {
 			</div>
 		</main>
 		<Footer />
+		<style>
+			.blog-index-header {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				max-width: 900px;
+				margin: 4.5rem auto 2.5rem auto;
+				padding: 0 1.5rem;
+			}
+
+			.blog-index-title {
+				font-size: clamp(2.5rem, 5.5vw, 3.75rem);
+				font-weight: 800;
+				color: #000000;
+				letter-spacing: -1.5px;
+				text-align: center;
+				margin: 0 auto 1rem auto;
+				line-height: 1.12;
+				text-wrap: balance;
+			}
+
+			.blog-index-subtitle {
+				color: var(--text-secondary, #000000);
+				font-size: 1.2rem;
+				line-height: 1.55;
+				text-align: center;
+				margin: 0 auto;
+				max-width: 780px;
+				text-wrap: balance;
+			}
+
+			@media (max-width: 640px) {
+				.blog-index-header {
+					margin: 3rem auto 2rem auto;
+					padding: 0 1rem;
+				}
+				.blog-index-subtitle {
+					font-size: 1rem;
+					line-height: 1.5;
+				}
+			}
+		</style>
 	</body>
 </html>
