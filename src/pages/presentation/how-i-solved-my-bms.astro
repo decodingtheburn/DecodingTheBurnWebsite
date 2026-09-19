@@ -1,0 +1,60 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import SlideDeck from '../../components/SlideDeck.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Presenter View: How I Solved My Burning Mouth Syndrome" 
+			description="Clean full-screen OBS presenter view for Dennis Ethier's BMS recovery presentation." 
+		/>
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+				width: 100vw;
+				height: 100vh;
+				background-color: #07090e;
+				overflow: hidden;
+				font-family: var(--font-body, system-ui, sans-serif);
+			}
+
+			.back-link {
+				position: fixed;
+				top: 14px;
+				left: 14px;
+				z-index: 100;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.78rem;
+				font-weight: 600;
+				color: #94a3b8;
+				background: rgba(15, 23, 42, 0.75);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				padding: 0.35rem 0.75rem;
+				border-radius: 6px;
+				text-decoration: none;
+				backdrop-filter: blur(8px);
+				opacity: 0.35;
+				transition: opacity 0.2s ease, background 0.2s ease;
+			}
+
+			.back-link:hover {
+				opacity: 1;
+				background: rgba(15, 23, 42, 0.95);
+				color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="/blog/how-i-solved-my-burning-mouth-syndrome" class="back-link" title="Return to Blog Post">
+			<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+			<span>Back to Article</span>
+		</a>
+
+		<SlideDeck isStandalone={true} />
+	</body>
+</html>
