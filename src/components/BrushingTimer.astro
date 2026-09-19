@@ -1,0 +1,593 @@
+---
+// Interactive 20-Second Quadrant & Sextant Brushing Timer
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`brushing-timer-container ${className}`}>
+	<div class="timer-card">
+		<!-- Header -->
+		<div class="timer-header">
+			<div>
+				<h3 class="timer-title">20-Second Brush Rinse Timer</h3>
+				<p class="timer-subtitle">Prevents capillary saturation and bacterial cross-contamination</p>
+			</div>
+			<button id="astroSoundToggle" class="timer-toggle-btn" type="button" title="Toggle audio chime">
+				<span id="astroSoundIcon">🔔</span>
+				<span id="astroSoundText">Chime On</span>
+			</button>
+		</div>
+
+		<!-- Mode selector -->
+		<div class="timer-mode-selector">
+			<button id="astroMode20" class="mode-btn active" type="button">6 × 20s (Sextants)</button>
+			<button id="astroMode30" class="mode-btn" type="button">4 × 30s (Quadrants)</button>
+		</div>
+
+		<!-- Main display box -->
+		<div id="astroDisplayBox" class="timer-display-box">
+			<div class="total-progress-track">
+				<div id="astroTotalProgress" class="total-progress-fill"></div>
+			</div>
+
+			<div id="astroZoneBadge" class="zone-badge">Zone 1: Upper Right</div>
+
+			<div class="countdown-row">
+				<span id="astroSeconds" class="countdown-digits">20</span>
+				<span class="countdown-unit">s</span>
+			</div>
+
+			<div id="astroActionPrompt" class="action-prompt">
+				Gently sweep cervical margins with 20,000-strand bristles
+			</div>
+
+			<div class="session-remainder">
+				Total Session: <span id="astroTotalTime">2:00</span> remaining
+			</div>
+		</div>
+
+		<!-- Mouth Map Grid -->
+		<div class="mouth-grid">
+			<div id="astro-map-0" class="map-cell active">Upper Right</div>
+			<div id="astro-map-1" class="map-cell">Upper Front</div>
+			<div id="astro-map-2" class="map-cell">Upper Left</div>
+			<div id="astro-map-5" class="map-cell">Lower Right</div>
+			<div id="astro-map-4" class="map-cell">Lower Front</div>
+			<div id="astro-map-3" class="map-cell">Lower Left</div>
+		</div>
+
+		<!-- Controls -->
+		<div class="timer-controls">
+			<button id="astroStartBtn" class="btn-start" type="button">
+				<span id="astroStartText">Start Brushing</span>
+			</button>
+			<button id="astroResetBtn" class="btn-reset" type="button">
+				Reset
+			</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	.brushing-timer-container {
+		max-width: 580px;
+		width: 100%;
+		margin: 2rem auto;
+	}
+
+	.timer-card {
+		background: #090d16;
+		border: 1px solid rgba(139, 92, 246, 0.25);
+		border-radius: 1.25rem;
+		padding: 1.5rem;
+		box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.1);
+		color: #f8fafc;
+	}
+
+	.timer-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		gap: 0.75rem;
+	}
+
+	.timer-title {
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: #ffffff;
+		margin: 0;
+	}
+
+	.timer-subtitle {
+		font-size: 0.75rem;
+		color: #94a3b8;
+		margin: 0.2rem 0 0 0;
+	}
+
+	.timer-toggle-btn {
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		color: #e2e8f0;
+		font-size: 0.75rem;
+		font-weight: 600;
+		padding: 0.4rem 0.75rem;
+		border-radius: 0.5rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+		transition: all 0.2s ease;
+	}
+
+	.timer-toggle-btn:hover {
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.timer-mode-selector {
+		display: flex;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 0.65rem;
+		padding: 0.25rem;
+		margin: 1rem 0;
+		gap: 0.25rem;
+	}
+
+	.mode-btn {
+		flex: 1;
+		background: transparent;
+		border: none;
+		color: #94a3b8;
+		font-size: 0.75rem;
+		font-weight: 600;
+		padding: 0.5rem;
+		border-radius: 0.45rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.mode-btn.active {
+		background: #7c3aed;
+		color: #ffffff;
+		box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+	}
+
+	.timer-display-box {
+		position: relative;
+		background: #030712;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 1rem;
+		padding: 1.5rem 1rem;
+		text-align: center;
+		overflow: hidden;
+		transition: all 0.3s ease;
+	}
+
+	.timer-display-box.rinse-flash {
+		background: #451a03;
+		border-color: #f59e0b;
+		box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+	}
+
+	.total-progress-track {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 4px;
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	.total-progress-fill {
+		height: 100%;
+		width: 0%;
+		background: #8b5cf6;
+		transition: width 0.3s linear;
+	}
+
+	.zone-badge {
+		display: inline-block;
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: #c084fc;
+		background: rgba(168, 85, 247, 0.15);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		padding: 0.25rem 0.85rem;
+		border-radius: 9999px;
+		margin-bottom: 0.5rem;
+	}
+
+	.zone-badge.alert {
+		color: #fde047;
+		background: rgba(234, 179, 8, 0.25);
+		border-color: #facc15;
+		animation: badge-pulse 0.8s infinite alternate;
+	}
+
+	@keyframes badge-pulse {
+		from { transform: scale(0.97); }
+		to { transform: scale(1.03); }
+	}
+
+	.countdown-row {
+		display: flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 0.25rem;
+		margin: 0.25rem 0;
+	}
+
+	.countdown-digits {
+		font-size: 3.5rem;
+		font-weight: 900;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+		line-height: 1;
+		color: #ffffff;
+	}
+
+	.countdown-unit {
+		font-size: 1rem;
+		font-family: monospace;
+		color: #94a3b8;
+	}
+
+	.action-prompt {
+		font-size: 0.8rem;
+		font-weight: 500;
+		color: #cbd5e1;
+		margin-top: 0.5rem;
+		min-height: 1.25rem;
+	}
+
+	.session-remainder {
+		font-size: 0.7rem;
+		font-family: monospace;
+		color: #64748b;
+		margin-top: 0.5rem;
+	}
+
+	.mouth-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.5rem;
+		margin: 1rem 0;
+		text-align: center;
+		font-family: monospace;
+		font-size: 0.7rem;
+	}
+
+	.map-cell {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 0.4rem;
+		padding: 0.45rem 0.2rem;
+		color: #64748b;
+		transition: all 0.2s ease;
+	}
+
+	.map-cell.active {
+		background: rgba(139, 92, 246, 0.25);
+		border-color: #8b5cf6;
+		color: #e9d5ff;
+		font-weight: 700;
+	}
+
+	.timer-controls {
+		display: flex;
+		gap: 0.75rem;
+		margin-top: 1rem;
+	}
+
+	.btn-start {
+		flex: 1;
+		background: #7c3aed;
+		border: none;
+		color: #ffffff;
+		font-size: 0.95rem;
+		font-weight: 700;
+		padding: 0.75rem;
+		border-radius: 0.75rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+	}
+
+	.btn-start:hover {
+		background: #6d28d9;
+	}
+
+	.btn-start.pause {
+		background: #d97706;
+		box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4);
+	}
+
+	.btn-reset {
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		color: #cbd5e1;
+		font-size: 0.8rem;
+		font-weight: 600;
+		padding: 0.75rem 1.25rem;
+		border-radius: 0.75rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.btn-reset:hover {
+		background: rgba(255, 255, 255, 0.12);
+	}
+</style>
+
+<script>
+	// Standalone client-side logic for Astro
+	let audioCtx: AudioContext | null = null;
+	let soundEnabled = true;
+
+	function getAudioContext() {
+		if (!audioCtx) {
+			const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+			audioCtx = new AudioContextClass();
+		}
+		return audioCtx;
+	}
+
+	function playAstroChime(type: 'rinse' | 'finish') {
+		if (!soundEnabled) return;
+		try {
+			const ctx = getAudioContext();
+			if (ctx.state === 'suspended') {
+				ctx.resume();
+			}
+			const now = ctx.currentTime;
+
+			if (type === 'rinse') {
+				const osc1 = ctx.createOscillator();
+				const gain1 = ctx.createGain();
+				osc1.type = 'sine';
+				osc1.frequency.setValueAtTime(587.33, now);
+				gain1.gain.setValueAtTime(0.25, now);
+				gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+				osc1.connect(gain1);
+				gain1.connect(ctx.destination);
+				osc1.start(now);
+				osc1.stop(now + 0.35);
+
+				const osc2 = ctx.createOscillator();
+				const gain2 = ctx.createGain();
+				osc2.type = 'sine';
+				osc2.frequency.setValueAtTime(880, now + 0.15);
+				gain2.gain.setValueAtTime(0.3, now + 0.15);
+				gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+				osc2.connect(gain2);
+				gain2.connect(ctx.destination);
+				osc2.start(now + 0.15);
+				osc2.stop(now + 0.6);
+			} else if (type === 'finish') {
+				[523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+					const osc = ctx.createOscillator();
+					const gain = ctx.createGain();
+					osc.type = 'triangle';
+					osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+					gain.gain.setValueAtTime(0.2, now + idx * 0.12);
+					gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.7);
+					osc.connect(gain);
+					gain.connect(ctx.destination);
+					osc.start(now + idx * 0.12);
+					osc.stop(now + idx * 0.12 + 0.7);
+				});
+			}
+		} catch (err) {
+			console.log("Audio not allowed yet:", err);
+		}
+	}
+
+	const zones6 = [
+		{ name: "Zone 1: Upper Right", desc: "Chewing surfaces and outer cervical margins" },
+		{ name: "Zone 2: Upper Front", desc: "Canines and incisors (gentle sweep)" },
+		{ name: "Zone 3: Upper Left", desc: "Molars and premolars outer and inner" },
+		{ name: "Zone 4: Lower Left", desc: "Lower molars lingual and buccal" },
+		{ name: "Zone 5: Lower Front", desc: "Front lower incisors (protect receded roots)" },
+		{ name: "Zone 6: Lower Right", desc: "Lower molars and crowns (finish problem areas)" }
+	];
+
+	const zones4 = [
+		{ name: "Quadrant 1: Upper Right", desc: "Upper right teeth all surfaces" },
+		{ name: "Quadrant 2: Upper Left", desc: "Upper left teeth all surfaces" },
+		{ name: "Quadrant 3: Lower Left", desc: "Lower left teeth all surfaces" },
+		{ name: "Quadrant 4: Lower Right", desc: "Lower right teeth (save crown pockets for last)" }
+	];
+
+	let currentInterval = 20;
+	let currentZones = zones6;
+	let zoneIndex = 0;
+	let secondsRemainingInInterval = 20;
+	let totalRemainingSeconds = 120;
+	let timerActive = false;
+	let timerIntervalId: number | null = null;
+	let isRinseAlertActive = false;
+
+	const secondsEl = document.getElementById("astroSeconds");
+	const totalProgressEl = document.getElementById("astroTotalProgress");
+	const totalTimeEl = document.getElementById("astroTotalTime");
+	const zoneBadgeEl = document.getElementById("astroZoneBadge");
+	const actionPromptEl = document.getElementById("astroActionPrompt");
+	const displayBoxEl = document.getElementById("astroDisplayBox");
+	const startBtnEl = document.getElementById("astroStartBtn");
+	const startTextEl = document.getElementById("astroStartText");
+	const resetBtnEl = document.getElementById("astroResetBtn");
+	const soundToggleEl = document.getElementById("astroSoundToggle");
+	const soundTextEl = document.getElementById("astroSoundText");
+	const soundIconEl = document.getElementById("astroSoundIcon");
+	const mode20El = document.getElementById("astroMode20");
+	const mode30El = document.getElementById("astroMode30");
+
+	function renderTimer() {
+		if (secondsEl) secondsEl.textContent = String(secondsRemainingInInterval);
+
+		const mins = Math.floor(totalRemainingSeconds / 60);
+		const secs = totalRemainingSeconds % 60;
+		if (totalTimeEl) totalTimeEl.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+
+		const totalDuration = currentZones.length * currentInterval;
+		const progress = ((totalDuration - totalRemainingSeconds) / totalDuration) * 100;
+		if (totalProgressEl) totalProgressEl.style.width = `${progress}%`;
+
+		if (isRinseAlertActive) {
+			if (zoneBadgeEl) {
+				zoneBadgeEl.className = "zone-badge alert";
+				zoneBadgeEl.textContent = "💦 3-SECOND RINSE!";
+			}
+			if (actionPromptEl) {
+				actionPromptEl.innerHTML = `<strong style="color: #fde047;">Rinse bristles under running water & spit slurry now!</strong>`;
+			}
+			if (displayBoxEl) displayBoxEl.className = "timer-display-box rinse-flash";
+		} else {
+			if (zoneBadgeEl) {
+				zoneBadgeEl.className = "zone-badge";
+				zoneBadgeEl.textContent = currentZones[zoneIndex]?.name || '';
+			}
+			if (actionPromptEl) {
+				actionPromptEl.textContent = currentZones[zoneIndex]?.desc || '';
+			}
+			if (displayBoxEl) displayBoxEl.className = "timer-display-box";
+		}
+
+		// Update mouth map
+		for (let i = 0; i < 6; i++) {
+			const cell = document.getElementById(`astro-map-${i}`);
+			if (!cell) continue;
+			if (currentInterval === 20) {
+				cell.className = (i === zoneIndex) ? "map-cell active" : "map-cell";
+			} else {
+				const map4to6 = [0, 0, 1, 2, 3, 3][i];
+				cell.className = (map4to6 === zoneIndex) ? "map-cell active" : "map-cell";
+			}
+		}
+	}
+
+	function timerTick() {
+		if (totalRemainingSeconds <= 0) {
+			stopSession();
+			return;
+		}
+
+		totalRemainingSeconds--;
+		secondsRemainingInInterval--;
+
+		if (secondsRemainingInInterval <= 0) {
+			if (zoneIndex < currentZones.length - 1) {
+				isRinseAlertActive = true;
+				playAstroChime('rinse');
+				renderTimer();
+
+				setTimeout(() => {
+					isRinseAlertActive = false;
+					zoneIndex++;
+					secondsRemainingInInterval = currentInterval;
+					renderTimer();
+				}, 2500);
+			} else {
+				stopSession();
+				return;
+			}
+		} else {
+			renderTimer();
+		}
+	}
+
+	function startTimerHandler() {
+		getAudioContext();
+		timerActive = true;
+		if (startTextEl) startTextEl.textContent = "Pause";
+		if (startBtnEl) startBtnEl.className = "btn-start pause";
+		timerIntervalId = window.setInterval(timerTick, 1000);
+	}
+
+	function pauseTimerHandler() {
+		timerActive = false;
+		if (startTextEl) startTextEl.textContent = "Resume";
+		if (startBtnEl) startBtnEl.className = "btn-start";
+		if (timerIntervalId) clearInterval(timerIntervalId);
+	}
+
+	function resetTimerHandler() {
+		pauseTimerHandler();
+		if (startTextEl) startTextEl.textContent = "Start Brushing";
+		zoneIndex = 0;
+		secondsRemainingInInterval = currentInterval;
+		totalRemainingSeconds = currentZones.length * currentInterval;
+		isRinseAlertActive = false;
+		renderTimer();
+	}
+
+	function stopSession() {
+		pauseTimerHandler();
+		playAstroChime('finish');
+		if (zoneBadgeEl) {
+			zoneBadgeEl.textContent = "🎉 SESSION COMPLETE!";
+			zoneBadgeEl.className = "zone-badge";
+			zoneBadgeEl.style.color = "#4ade80";
+			zoneBadgeEl.style.borderColor = "#22c55e";
+		}
+		if (actionPromptEl) {
+			actionPromptEl.innerHTML = `<strong style="color: #4ade80;">Teeth clean. Bristles flushed. Tubule plugs protected!</strong>`;
+		}
+		if (secondsEl) secondsEl.textContent = "0";
+		if (totalTimeEl) totalTimeEl.textContent = "0:00";
+		if (totalProgressEl) totalProgressEl.style.width = "100%";
+	}
+
+	startBtnEl?.addEventListener("click", () => {
+		if (timerActive) {
+			pauseTimerHandler();
+		} else {
+			startTimerHandler();
+		}
+	});
+
+	resetBtnEl?.addEventListener("click", resetTimerHandler);
+
+	soundToggleEl?.addEventListener("click", () => {
+		soundEnabled = !soundEnabled;
+		if (soundTextEl && soundIconEl && soundToggleEl) {
+			if (soundEnabled) {
+				soundTextEl.textContent = "Chime On";
+				soundIconEl.textContent = "🔔";
+				soundToggleEl.style.color = "#e2e8f0";
+				playAstroChime('rinse');
+			} else {
+				soundTextEl.textContent = "Muted";
+				soundIconEl.textContent = "🔕";
+				soundToggleEl.style.color = "#f87171";
+			}
+		}
+	});
+
+	mode20El?.addEventListener("click", () => {
+		if (currentInterval === 20) return;
+		currentInterval = 20;
+		currentZones = zones6;
+		mode20El.className = "mode-btn active";
+		mode30El?.classList.remove("active");
+		resetTimerHandler();
+	});
+
+	mode30El?.addEventListener("click", () => {
+		if (currentInterval === 30) return;
+		currentInterval = 30;
+		currentZones = zones4;
+		mode30El.className = "mode-btn active";
+		mode20El?.classList.remove("active");
+		resetTimerHandler();
+	});
+
+	// Initialize
+	renderTimer();
+</script>
