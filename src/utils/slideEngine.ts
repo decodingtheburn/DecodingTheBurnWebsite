@@ -27,7 +27,7 @@ export function toFiveWordCue(text: string, maxWords = 7): string {
 }
 
 export function generateSlidesFromPost(slug: string, title: string, description: string, body: string): SlideItem[] {
-	// 1. If this is the flagship post and custom slides exist, use Dennis's hand-curated slides!
+	// 1. If this is the flagship post and custom slides exist, use Denis's hand-curated slides!
 	if (slug === 'how-i-solved-my-burning-mouth-syndrome') {
 		return bmsSlides;
 	}
@@ -37,7 +37,7 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 	// Slide 1: Title Slide
 	const descCues = description
 		? description.split(/[.;]/).map(s => toFiveWordCue(s)).filter(s => s.length > 5).slice(0, 3)
-		: ["Forensic journey and clinical analysis", "Decoding the root causes of oral pain", "By Dennis Ethier at DecodingTheBurn"];
+		: ["Forensic journey and clinical analysis", "Decoding the root causes of oral pain", "By Denis Ethier at DecodingTheBurn"];
 
 	slides.push({
 		id: 1,
@@ -45,7 +45,7 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 		title: cleanText(title),
 		bullets: [
 			...descCues,
-			"By Dennis Ethier at DecodingTheBurn"
+			"By Denis Ethier at DecodingTheBurn"
 		],
 		notes: `Introduction: "${cleanText(title)}". Explain why this topic matters and what viewers/readers will discover.\n\n🛡️ LEGAL SHIELD: Never claim a universal 'cure'. Frame your journey as an individual forensic investigation.`
 	});

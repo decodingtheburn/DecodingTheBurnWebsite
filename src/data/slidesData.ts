@@ -38,7 +38,7 @@ export const bmsSlides: SlideItem[] = [
 		badge: "My Story",
 		title: "Why I Am Sharing This",
 		bullets: [
-			"Hey, my name is Dennis",
+			"Hey, my name is Denis",
 			"BMS solutions are rarely shared",
 			"My remission is 100% real",
 			"Inspired by author Peggy Shaw",
