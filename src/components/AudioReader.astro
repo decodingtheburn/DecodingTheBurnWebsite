@@ -1,0 +1,1061 @@
+---
+// AudioReader.astro - Client-side Text-To-Speech (TTS) Reader for Blog Posts
+// Supports real-time sentence & word highlighting, click-to-jump, speed selector, and voice choice.
+
+interface Props {
+	title?: string;
+}
+
+const { title = 'this article' } = Astro.props;
+---
+
+<div class="tts-reader-wrapper" id="tts-reader-root" data-article-title={title}>
+	<!-- Top Player Card (Sits above blog content) -->
+	<div class="tts-card" id="tts-top-card">
+		<div class="tts-card-inner">
+			<div class="tts-media-info">
+				<div class="tts-icon-box" id="tts-icon-box" aria-hidden="true">
+					<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.2" fill="none" class="tts-headphone-svg">
+						<path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+						<path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+					</svg>
+					<div class="tts-equalizer-bars" id="tts-equalizer">
+						<span></span><span></span><span></span><span></span>
+					</div>
+				</div>
+				<div class="tts-text-group">
+					<div class="tts-title-row">
+						<span class="tts-label">Listen to Article</span>
+						<span class="tts-time-est" id="tts-time-est">Estimating...</span>
+					</div>
+					<p class="tts-status-msg" id="tts-status-msg">Click play to listen with live word&nbsp;highlighting.</p>
+				</div>
+			</div>
+
+			<div class="tts-controls-row">
+				<!-- Prev Sentence -->
+				<button type="button" class="tts-btn tts-btn-icon" id="tts-prev-btn" title="Previous sentence" aria-label="Previous sentence">
+					<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none">
+						<polygon points="19 20 9 12 19 4 19 20"></polygon>
+						<line x1="5" y1="19" x2="5" y2="5"></line>
+					</svg>
+				</button>
+
+				<!-- Main Play / Pause Button -->
+				<button type="button" class="tts-btn tts-btn-primary" id="tts-main-play-btn" title="Play / Pause Audio" aria-label="Play audio">
+					<svg class="tts-play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+						<polygon points="6 3 20 12 6 21 6 3"></polygon>
+					</svg>
+					<svg class="tts-pause-icon" style="display: none;" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+						<rect x="6" y="4" width="4" height="16" rx="1"></rect>
+						<rect x="14" y="4" width="4" height="16" rx="1"></rect>
+					</svg>
+					<span class="tts-play-text" id="tts-play-text">Listen</span>
+				</button>
+
+				<!-- Next Sentence -->
+				<button type="button" class="tts-btn tts-btn-icon" id="tts-next-btn" title="Next sentence" aria-label="Next sentence">
+					<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none">
+						<polygon points="5 4 15 12 5 20 5 4"></polygon>
+						<line x1="19" y1="5" x2="19" y2="19"></line>
+					</svg>
+				</button>
+
+				<!-- Speed Selector -->
+				<div class="tts-select-wrapper">
+					<label for="tts-speed-select" class="sr-only">Speed</label>
+					<select id="tts-speed-select" class="tts-select" title="Playback speed">
+						<option value="0.85">0.85x</option>
+						<option value="1" selected>1.0x</option>
+						<option value="1.2">1.2x</option>
+						<option value="1.35">1.35x</option>
+						<option value="1.5">1.5x</option>
+					</select>
+				</div>
+
+				<!-- Voice Selector -->
+				<div class="tts-select-wrapper tts-voice-wrapper">
+					<label for="tts-voice-select" class="sr-only">Voice</label>
+					<select id="tts-voice-select" class="tts-select" title="Select reader voice">
+						<option value="">Default Voice</option>
+					</select>
+				</div>
+
+				<!-- Stop / Reset Button -->
+				<button type="button" class="tts-btn tts-btn-icon tts-btn-stop" id="tts-stop-btn" title="Stop and reset" aria-label="Stop playback">
+					<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+						<rect x="6" y="6" width="12" height="12" rx="2"></rect>
+					</svg>
+				</button>
+			</div>
+		</div>
+
+		<!-- Progress Bar -->
+		<div class="tts-progress-track" id="tts-progress-track" title="Article audio progress">
+			<div class="tts-progress-fill" id="tts-progress-fill"></div>
+		</div>
+	</div>
+
+	<!-- Sticky Floating Mini-Player (Appears when scrolling while active) -->
+	<div class="tts-sticky-bar" id="tts-sticky-bar" aria-hidden="true">
+		<div class="tts-sticky-inner">
+			<button type="button" class="tts-sticky-btn tts-btn-icon" id="tts-sticky-prev" title="Previous sentence" aria-label="Previous sentence">
+				<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none">
+					<polygon points="19 20 9 12 19 4 19 20"></polygon>
+					<line x1="5" y1="19" x2="5" y2="5"></line>
+				</svg>
+			</button>
+
+			<button type="button" class="tts-sticky-play-btn" id="tts-sticky-play" title="Play / Pause" aria-label="Play or pause">
+				<svg class="tts-play-icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+					<polygon points="6 3 20 12 6 21 6 3"></polygon>
+				</svg>
+				<svg class="tts-pause-icon" style="display: none;" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+					<rect x="6" y="4" width="4" height="16" rx="1"></rect>
+					<rect x="14" y="4" width="4" height="16" rx="1"></rect>
+				</svg>
+			</button>
+
+			<button type="button" class="tts-sticky-btn tts-btn-icon" id="tts-sticky-next" title="Next sentence" aria-label="Next sentence">
+				<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none">
+					<polygon points="5 4 15 12 5 20 5 4"></polygon>
+					<line x1="19" y1="5" x2="19" y2="19"></line>
+				</svg>
+			</button>
+
+			<div class="tts-sticky-info">
+				<div class="tts-sticky-sentence" id="tts-sticky-sentence">Listening to post...</div>
+				<div class="tts-sticky-progress-wrap">
+					<div class="tts-sticky-progress-fill" id="tts-sticky-progress-fill"></div>
+				</div>
+			</div>
+
+			<div class="tts-sticky-counter" id="tts-sticky-counter">0 / 0</div>
+
+			<button type="button" class="tts-sticky-close" id="tts-sticky-close" title="Close reader" aria-label="Close reader">
+				<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.5" fill="none">
+					<line x1="18" y1="6" x2="6" y2="18"></line>
+					<line x1="6" y1="6" x2="18" y2="18"></line>
+				</svg>
+			</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	.tts-reader-wrapper {
+		margin: 1.5rem auto 1.75rem auto;
+		max-width: 680px;
+		position: relative;
+		font-family: var(--font-body, system-ui, sans-serif);
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	/* Top Player Card */
+	.tts-card {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 14px;
+		box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.05);
+		overflow: hidden;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.tts-card:hover {
+		border-color: #cbd5e1;
+		box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.08);
+	}
+
+	.tts-card-inner {
+		padding: 1.15rem 1.35rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.25rem;
+		flex-wrap: wrap;
+	}
+
+	.tts-media-info {
+		display: flex;
+		align-items: center;
+		gap: 0.95rem;
+		min-width: 240px;
+		flex: 1 1 auto;
+	}
+
+	.tts-icon-box {
+		width: 44px;
+		height: 44px;
+		border-radius: 12px;
+		background: #fef2f2;
+		border: 1px solid #fecaca;
+		color: #c8382c;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		position: relative;
+	}
+
+	.tts-equalizer-bars {
+		display: none;
+		align-items: flex-end;
+		gap: 3px;
+		height: 16px;
+	}
+
+	.tts-icon-box.is-playing .tts-headphone-svg {
+		display: none;
+	}
+
+	.tts-icon-box.is-playing .tts-equalizer-bars {
+		display: flex;
+	}
+
+	.tts-equalizer-bars span {
+		width: 3px;
+		background: #c8382c;
+		border-radius: 2px;
+		animation: ttsBounce 0.8s infinite ease-in-out alternate;
+	}
+
+	.tts-equalizer-bars span:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+	.tts-equalizer-bars span:nth-child(2) { height: 16px; animation-delay: 0.3s; }
+	.tts-equalizer-bars span:nth-child(3) { height: 10px; animation-delay: 0.2s; }
+	.tts-equalizer-bars span:nth-child(4) { height: 14px; animation-delay: 0.4s; }
+
+	@keyframes ttsBounce {
+		0% { height: 4px; }
+		100% { height: 16px; }
+	}
+
+	.tts-text-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.tts-title-row {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.tts-label {
+		font-size: 0.98rem;
+		font-weight: 700;
+		color: #0f172a;
+		letter-spacing: -0.01em;
+	}
+
+	.tts-time-est {
+		font-size: 0.72rem;
+		font-weight: 600;
+		color: #64748b;
+		background: #f1f5f9;
+		padding: 0.15rem 0.5rem;
+		border-radius: 6px;
+	}
+
+	.tts-status-msg {
+		font-size: 0.8rem;
+		color: #64748b;
+		margin: 0;
+		line-height: 1.35;
+	}
+
+	.tts-controls-row {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.tts-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 8px;
+		font-size: 0.85rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.16s ease;
+		border: 1px solid transparent;
+		background: transparent;
+	}
+
+	.tts-btn-icon {
+		width: 36px;
+		height: 36px;
+		padding: 0;
+		color: #475569;
+		background: #f8fafc;
+		border-color: #e2e8f0;
+	}
+
+	.tts-btn-icon:hover {
+		background: #f1f5f9;
+		color: #0f172a;
+		border-color: #cbd5e1;
+	}
+
+	.tts-btn-stop:hover {
+		color: #c8382c;
+		background: #fef2f2;
+		border-color: #fecaca;
+	}
+
+	.tts-btn-primary {
+		background: #c8382c;
+		color: #ffffff;
+		padding: 0.5rem 1.05rem;
+		gap: 0.5rem;
+		border-color: #c8382c;
+		box-shadow: 0 2px 8px rgba(200, 56, 44, 0.25);
+	}
+
+	.tts-btn-primary:hover {
+		background: #a82b20;
+		border-color: #a82b20;
+		box-shadow: 0 4px 12px rgba(200, 56, 44, 0.35);
+		transform: translateY(-1px);
+	}
+
+	.tts-select-wrapper {
+		position: relative;
+	}
+
+	.tts-select {
+		appearance: none;
+		-webkit-appearance: none;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+		color: #334155;
+		font-size: 0.8rem;
+		font-weight: 600;
+		padding: 0.46rem 1.65rem 0.46rem 0.7rem;
+		cursor: pointer;
+		outline: none;
+		transition: all 0.16s ease;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 0.6rem center;
+	}
+
+	.tts-select:hover, .tts-select:focus {
+		border-color: #cbd5e1;
+		background-color: #ffffff;
+		color: #0f172a;
+	}
+
+	.tts-voice-wrapper {
+		max-width: 140px;
+	}
+
+	.tts-voice-wrapper .tts-select {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		max-width: 140px;
+	}
+
+	.tts-progress-track {
+		width: 100%;
+		height: 4px;
+		background: #f1f5f9;
+		position: relative;
+	}
+
+	.tts-progress-fill {
+		width: 0%;
+		height: 100%;
+		background: #c8382c;
+		transition: width 0.25s ease;
+	}
+
+	/* Sticky Floating Bottom Bar */
+	.tts-sticky-bar {
+		position: fixed;
+		bottom: 1.5rem;
+		left: 50%;
+		transform: translateX(-50%) translateY(120px);
+		z-index: 100;
+		opacity: 0;
+		pointer-events: none;
+		transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease;
+		width: calc(100% - 2rem);
+		max-width: 580px;
+	}
+
+	.tts-sticky-bar.is-visible {
+		transform: translateX(-50%) translateY(0);
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.tts-sticky-inner {
+		background: rgba(15, 23, 42, 0.92);
+		backdrop-filter: blur(14px);
+		-webkit-backdrop-filter: blur(14px);
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		border-radius: 9999px;
+		padding: 0.55rem 0.95rem;
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.5);
+	}
+
+	.tts-sticky-btn {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		color: #e2e8f0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: all 0.16s ease;
+	}
+
+	.tts-sticky-btn:hover {
+		background: rgba(255, 255, 255, 0.18);
+		color: #ffffff;
+	}
+
+	.tts-sticky-play-btn {
+		width: 38px;
+		height: 38px;
+		border-radius: 50%;
+		background: #c8382c;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		color: #ffffff;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		box-shadow: 0 0 14px rgba(200, 56, 44, 0.5);
+		transition: all 0.16s ease;
+		flex-shrink: 0;
+	}
+
+	.tts-sticky-play-btn:hover {
+		background: #dc2626;
+		transform: scale(1.05);
+	}
+
+	.tts-sticky-info {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+	}
+
+	.tts-sticky-sentence {
+		font-size: 0.78rem;
+		color: #e2e8f0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-weight: 500;
+	}
+
+	.tts-sticky-progress-wrap {
+		width: 100%;
+		height: 3px;
+		background: rgba(255, 255, 255, 0.15);
+		border-radius: 2px;
+		overflow: hidden;
+	}
+
+	.tts-sticky-progress-fill {
+		width: 0%;
+		height: 100%;
+		background: #ef4444;
+		transition: width 0.2s ease;
+	}
+
+	.tts-sticky-counter {
+		font-size: 0.72rem;
+		font-family: monospace;
+		color: #94a3b8;
+		white-space: nowrap;
+	}
+
+	.tts-sticky-close {
+		width: 28px;
+		height: 28px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: transparent;
+		border: none;
+		color: #94a3b8;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+
+	.tts-sticky-close:hover {
+		background: rgba(255, 255, 255, 0.12);
+		color: #ffffff;
+	}
+
+	@media (max-width: 640px) {
+		.tts-card-inner {
+			padding: 1rem;
+		}
+		.tts-voice-wrapper {
+			display: none;
+		}
+		.tts-controls-row {
+			width: 100%;
+			justify-content: space-between;
+		}
+	}
+</style>
+
+<script>
+	// AudioReader Client Engine
+	(() => {
+		const root = document.getElementById('tts-reader-root');
+		if (!root) return;
+
+		const synth = window.speechSynthesis;
+		if (!synth) {
+			const statusMsg = document.getElementById('tts-status-msg');
+			if (statusMsg) statusMsg.textContent = 'Audio reader is not supported in this browser.';
+			const playBtn = document.getElementById('tts-main-play-btn');
+			if (playBtn) (playBtn as HTMLButtonElement).disabled = true;
+			return;
+		}
+
+		// State variables
+		type SentenceData = {
+			id: number;
+			text: string;
+			blockEl: HTMLElement;
+			words: { el: HTMLElement; start: number; end: number; text: string }[];
+		};
+
+		let sentences: SentenceData[] = [];
+		let currentSentenceIdx = 0;
+		let currentWordIdx = -1;
+		let playbackState: 'STOPPED' | 'PLAYING' | 'PAUSED' = 'STOPPED';
+		let playbackRate = 1.0;
+		let availableVoices: SpeechSynthesisVoice[] = [];
+		let selectedVoice: SpeechSynthesisVoice | null = null;
+		let keepAliveTimer: number | null = null;
+
+		// DOM Elements
+		const mainPlayBtn = document.getElementById('tts-main-play-btn');
+		const prevBtn = document.getElementById('tts-prev-btn');
+		const nextBtn = document.getElementById('tts-next-btn');
+		const stopBtn = document.getElementById('tts-stop-btn');
+		const speedSelect = document.getElementById('tts-speed-select') as HTMLSelectElement | null;
+		const voiceSelect = document.getElementById('tts-voice-select') as HTMLSelectElement | null;
+		const progressFill = document.getElementById('tts-progress-fill');
+		const statusMsg = document.getElementById('tts-status-msg');
+		const timeEstEl = document.getElementById('tts-time-est');
+		const iconBox = document.getElementById('tts-icon-box');
+
+		const stickyBar = document.getElementById('tts-sticky-bar');
+		const stickyPlayBtn = document.getElementById('tts-sticky-play');
+		const stickyPrevBtn = document.getElementById('tts-sticky-prev');
+		const stickyNextBtn = document.getElementById('tts-sticky-next');
+		const stickyCloseBtn = document.getElementById('tts-sticky-close');
+		const stickySentenceEl = document.getElementById('tts-sticky-sentence');
+		const stickyProgressFill = document.getElementById('tts-sticky-progress-fill');
+		const stickyCounter = document.getElementById('tts-sticky-counter');
+
+		// 1. Initialize Voices
+		function loadVoices() {
+			if (!synth) return;
+			const allVoices = synth.getVoices();
+			if (!allVoices || allVoices.length === 0) return;
+
+			// Prioritize English voices
+			const enVoices = allVoices.filter((v) => v.lang.startsWith('en'));
+			availableVoices = enVoices.length > 0 ? enVoices : allVoices;
+
+			if (voiceSelect) {
+				voiceSelect.innerHTML = '';
+				availableVoices.forEach((v, idx) => {
+					const opt = document.createElement('option');
+					opt.value = String(idx);
+					// Shorten voice name for display
+					const cleanName = v.name.replace(/Google|Microsoft|Apple|Natural|Desktop/g, '').trim();
+					opt.textContent = `${cleanName || v.name} (${v.lang})`;
+					voiceSelect.appendChild(opt);
+				});
+
+				// Select a natural preferred voice if present
+				const defaultIdx = availableVoices.findIndex((v) => 
+					v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('Google US') || v.name.includes('Jenny')
+				);
+				if (defaultIdx >= 0) {
+					voiceSelect.selectedIndex = defaultIdx;
+					selectedVoice = availableVoices[defaultIdx];
+				} else if (availableVoices[0]) {
+					selectedVoice = availableVoices[0];
+				}
+			}
+		}
+
+		loadVoices();
+		if (synth.onvoiceschanged !== undefined) {
+			synth.onvoiceschanged = loadVoices;
+		}
+
+		// 2. Tokenize Article DOM (Non-destructive)
+		function tokenizeContent() {
+			const contentContainer = document.querySelector('.post-content');
+			if (!contentContainer) return;
+
+			// Gather eligible text blocks, skipping non-readable elements
+			const rawBlocks = contentContainer.querySelectorAll('p, h2, h3, h4, li, blockquote');
+			const blocks: HTMLElement[] = [];
+
+			rawBlocks.forEach((b) => {
+				const el = b as HTMLElement;
+				// Skip if inside interactive or ignored components
+				if (el.closest('.brushing-timer-container') || el.closest('pre') || el.closest('code') || el.closest('.tts-ignore')) {
+					return;
+				}
+				blocks.push(el);
+			});
+
+			let sentenceCounter = 0;
+			let totalWordCount = 0;
+
+			blocks.forEach((block) => {
+				const blockText = block.textContent || '';
+				if (!blockText.trim()) return;
+
+				// Split block text into sentence units using regex boundary
+				const sentenceStrings = splitIntoSentences(blockText);
+				if (sentenceStrings.length === 0) return;
+
+				// Collect text nodes inside block
+				const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null);
+				const textNodes: Text[] = [];
+				let n: Node | null;
+				while ((n = walker.nextNode())) {
+					textNodes.push(n as Text);
+				}
+
+				// Wrap each word in text nodes with <span class="tts-word">
+				const wordSpansInBlock: HTMLElement[] = [];
+				textNodes.forEach((tNode) => {
+					const val = tNode.nodeValue || '';
+					if (!val.trim()) return;
+
+					// Split preserving whitespace: matches words and inter-word spaces
+					const tokens = val.split(/(\s+)/);
+					const frag = document.createDocumentFragment();
+
+					tokens.forEach((token) => {
+						if (!token) return;
+						if (/^\s+$/.test(token)) {
+							// Whitespace node
+							frag.appendChild(document.createTextNode(token));
+						} else {
+							// Word token
+							const span = document.createElement('span');
+							span.className = 'tts-word';
+							span.textContent = token;
+							frag.appendChild(span);
+							wordSpansInBlock.push(span);
+							totalWordCount++;
+						}
+					});
+
+					tNode.parentNode?.replaceChild(frag, tNode);
+				});
+
+				// Associate word spans with sentences
+				let wordCursor = 0;
+				sentenceStrings.forEach((sText) => {
+					const sentenceWords: { el: HTMLElement; start: number; end: number; text: string }[] = [];
+					const wordsInSentence = sText.trim().split(/\s+/).filter(Boolean);
+					const count = wordsInSentence.length;
+
+					let charOffsetInSentence = 0;
+					for (let i = 0; i < count && wordCursor < wordSpansInBlock.length; i++) {
+						const span = wordSpansInBlock[wordCursor];
+						const wText = span.textContent || '';
+						const start = charOffsetInSentence;
+						const end = start + wText.length;
+
+						span.dataset.sentenceIdx = String(sentenceCounter);
+						span.dataset.wordIdx = String(i);
+
+						sentenceWords.push({
+							el: span,
+							start,
+							end,
+							text: wText
+						});
+
+						charOffsetInSentence = end + 1; // +1 accounts for space
+						wordCursor++;
+					}
+
+					if (sentenceWords.length > 0) {
+						sentences.push({
+							id: sentenceCounter,
+							text: sText,
+							blockEl: block,
+							words: sentenceWords
+						});
+						sentenceCounter++;
+					}
+				});
+			});
+
+			// Update estimated reading time
+			if (timeEstEl) {
+				const minutes = Math.max(1, Math.round(totalWordCount / 140));
+				timeEstEl.textContent = `~${minutes} min listen`;
+			}
+
+			// Add interactive click listener to jump directly to any sentence
+			contentContainer.addEventListener('click', (e) => {
+				const target = (e.target as HTMLElement)?.closest('.tts-word') as HTMLElement | null;
+				if (!target || !target.dataset.sentenceIdx) return;
+
+				const targetIdx = parseInt(target.dataset.sentenceIdx, 10);
+				if (!isNaN(targetIdx) && targetIdx >= 0 && targetIdx < sentences.length) {
+					jumpToSentence(targetIdx);
+				}
+			});
+		}
+
+		// Helper: Sentence splitter with regex boundary
+		function splitIntoSentences(text: string): string[] {
+			if (typeof Intl !== 'undefined' && (Intl as any).Segmenter) {
+				try {
+					const segmenter = new (Intl as any).Segmenter('en', { granularity: 'sentence' });
+					return Array.from(segmenter.segment(text)).map((s: any) => s.segment.trim()).filter(Boolean);
+				} catch (e) {
+					// fallback to regex below
+				}
+			}
+			return text
+				.replace(/([.?!])\s+(?=[A-Z0-9"'])/g, '$1|~|')
+				.split('|~|')
+				.map((s) => s.trim())
+				.filter(Boolean);
+		}
+
+		tokenizeContent();
+
+		// 3. Playback Engine
+		function clearHighlights() {
+			document.querySelectorAll('.tts-word.is-speaking-sentence, .tts-word.is-speaking-word').forEach((el) => {
+				el.classList.remove('is-speaking-sentence', 'is-speaking-word');
+			});
+		}
+
+		function highlightSentence(idx: number) {
+			clearHighlights();
+			const s = sentences[idx];
+			if (!s) return;
+
+			s.words.forEach((w) => {
+				w.el.classList.add('is-speaking-sentence');
+			});
+
+			// Smooth scroll into view if outside reading comfort zone
+			const firstWordEl = s.words[0]?.el;
+			if (firstWordEl) {
+				const rect = firstWordEl.getBoundingClientRect();
+				const topSafe = 120;
+				const bottomSafe = window.innerHeight - 140;
+				if (rect.top < topSafe || rect.bottom > bottomSafe) {
+					firstWordEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				}
+			}
+
+			// Update UI indicators
+			updateProgressUI(idx);
+		}
+
+		function highlightWord(sIdx: number, charIndex: number) {
+			const s = sentences[sIdx];
+			if (!s) return;
+
+			// Find matching word
+			let matchedWordIdx = -1;
+			for (let i = 0; i < s.words.length; i++) {
+				const w = s.words[i];
+				if (charIndex >= w.start && (i === s.words.length - 1 || charIndex < s.words[i + 1].start)) {
+					matchedWordIdx = i;
+					break;
+				}
+			}
+
+			if (matchedWordIdx !== -1 && matchedWordIdx !== currentWordIdx) {
+				if (currentWordIdx >= 0 && s.words[currentWordIdx]) {
+					s.words[currentWordIdx].el.classList.remove('is-speaking-word');
+				}
+				currentWordIdx = matchedWordIdx;
+				s.words[matchedWordIdx].el.classList.add('is-speaking-word');
+			}
+		}
+
+		function updateProgressUI(idx: number) {
+			const total = sentences.length;
+			if (total === 0) return;
+
+			const percent = Math.min(100, Math.round(((idx + 1) / total) * 100));
+
+			if (progressFill) progressFill.style.width = `${percent}%`;
+			if (stickyProgressFill) stickyProgressFill.style.width = `${percent}%`;
+
+			const currentSentence = sentences[idx];
+			const previewText = currentSentence ? currentSentence.text : '';
+
+			if (statusMsg) {
+				statusMsg.textContent = `Reading sentence ${idx + 1} of ${total}...`;
+			}
+			if (stickySentenceEl) {
+				stickySentenceEl.textContent = previewText;
+			}
+			if (stickyCounter) {
+				stickyCounter.textContent = `${idx + 1} / ${total}`;
+			}
+		}
+
+		function playSentence(idx: number) {
+			if (!synth) return;
+			if (idx < 0 || idx >= sentences.length) {
+				stopPlayback();
+				if (statusMsg) statusMsg.textContent = 'Finished reading article.';
+				return;
+			}
+
+			synth.cancel(); // Cancel any lingering utterance
+			currentSentenceIdx = idx;
+			currentWordIdx = -1;
+			playbackState = 'PLAYING';
+			updateButtonStates();
+
+			highlightSentence(idx);
+
+			const sentenceData = sentences[idx];
+			const utterance = new SpeechSynthesisUtterance(sentenceData.text);
+			utterance.rate = playbackRate;
+			if (selectedVoice) utterance.voice = selectedVoice;
+
+			utterance.onboundary = (e) => {
+				if (e.name === 'word') {
+					highlightWord(idx, e.charIndex);
+				}
+			};
+
+			utterance.onend = () => {
+				if (playbackState === 'PLAYING') {
+					playSentence(currentSentenceIdx + 1);
+				}
+			};
+
+			utterance.onerror = (e) => {
+				if (e.error === 'interrupted' || e.error === 'canceled') return;
+				if (playbackState === 'PLAYING') {
+					playSentence(currentSentenceIdx + 1);
+				}
+			};
+
+			synth.speak(utterance);
+			startKeepAlive();
+		}
+
+		function startKeepAlive() {
+			stopKeepAlive();
+			// Chromium keepalive: keeps synthesis alive on long pauses
+			keepAliveTimer = window.setInterval(() => {
+				if (synth.speaking && !synth.paused) {
+					synth.pause();
+					synth.resume();
+				}
+			}, 10000);
+		}
+
+		function stopKeepAlive() {
+			if (keepAliveTimer !== null) {
+				clearInterval(keepAliveTimer);
+				keepAliveTimer = null;
+			}
+		}
+
+		function pausePlayback() {
+			if (!synth) return;
+			synth.cancel(); // Clears current spoken chunk safely
+			playbackState = 'PAUSED';
+			stopKeepAlive();
+			updateButtonStates();
+			if (statusMsg) statusMsg.textContent = `Paused at sentence ${currentSentenceIdx + 1}. Click play to resume.`;
+		}
+
+		function resumePlayback() {
+			playSentence(currentSentenceIdx);
+		}
+
+		function stopPlayback() {
+			if (!synth) return;
+			synth.cancel();
+			stopKeepAlive();
+			clearHighlights();
+			playbackState = 'STOPPED';
+			currentSentenceIdx = 0;
+			currentWordIdx = -1;
+			updateButtonStates();
+			if (progressFill) progressFill.style.width = '0%';
+			if (stickyProgressFill) stickyProgressFill.style.width = '0%';
+			if (statusMsg) statusMsg.textContent = 'Click play to listen with live word highlighting.';
+			if (stickySentenceEl) stickySentenceEl.textContent = 'Listening to post...';
+			if (stickyCounter) stickyCounter.textContent = `0 / ${sentences.length}`;
+		}
+
+		function jumpToSentence(idx: number) {
+			playSentence(idx);
+		}
+
+		function updateButtonStates() {
+			const isPlaying = playbackState === 'PLAYING';
+
+			// Top player icons
+			const playIcon = mainPlayBtn?.querySelector('.tts-play-icon') as HTMLElement | null;
+			const pauseIcon = mainPlayBtn?.querySelector('.tts-pause-icon') as HTMLElement | null;
+			const playText = document.getElementById('tts-play-text');
+
+			if (playIcon) playIcon.style.display = isPlaying ? 'none' : 'block';
+			if (pauseIcon) pauseIcon.style.display = isPlaying ? 'block' : 'none';
+			if (playText) playText.textContent = isPlaying ? 'Pause' : 'Listen';
+
+			// Icon box equalizer animation
+			if (iconBox) {
+				if (isPlaying) {
+					iconBox.classList.add('is-playing');
+				} else {
+					iconBox.classList.remove('is-playing');
+				}
+			}
+
+			// Sticky bar icons
+			const stickyPlayIcon = stickyPlayBtn?.querySelector('.tts-play-icon') as HTMLElement | null;
+			const stickyPauseIcon = stickyPlayBtn?.querySelector('.tts-pause-icon') as HTMLElement | null;
+
+			if (stickyPlayIcon) stickyPlayIcon.style.display = isPlaying ? 'none' : 'block';
+			if (stickyPauseIcon) stickyPauseIcon.style.display = isPlaying ? 'block' : 'none';
+
+			// Sticky bar visibility (visible whenever not STOPPED)
+			if (stickyBar) {
+				if (playbackState === 'STOPPED') {
+					stickyBar.classList.remove('is-visible');
+				} else {
+					stickyBar.classList.add('is-visible');
+				}
+			}
+		}
+
+		// 4. Attach Event Listeners
+		mainPlayBtn?.addEventListener('click', () => {
+			if (playbackState === 'PLAYING') {
+				pausePlayback();
+			} else {
+				resumePlayback();
+			}
+		});
+
+		stickyPlayBtn?.addEventListener('click', () => {
+			if (playbackState === 'PLAYING') {
+				pausePlayback();
+			} else {
+				resumePlayback();
+			}
+		});
+
+		prevBtn?.addEventListener('click', () => {
+			const target = Math.max(0, currentSentenceIdx - 1);
+			jumpToSentence(target);
+		});
+
+		stickyPrevBtn?.addEventListener('click', () => {
+			const target = Math.max(0, currentSentenceIdx - 1);
+			jumpToSentence(target);
+		});
+
+		nextBtn?.addEventListener('click', () => {
+			const target = Math.min(sentences.length - 1, currentSentenceIdx + 1);
+			jumpToSentence(target);
+		});
+
+		stickyNextBtn?.addEventListener('click', () => {
+			const target = Math.min(sentences.length - 1, currentSentenceIdx + 1);
+			jumpToSentence(target);
+		});
+
+		stopBtn?.addEventListener('click', stopPlayback);
+		stickyCloseBtn?.addEventListener('click', stopPlayback);
+
+		speedSelect?.addEventListener('change', (e) => {
+			const val = parseFloat((e.target as HTMLSelectElement).value);
+			if (!isNaN(val)) {
+				playbackRate = val;
+				if (playbackState === 'PLAYING') {
+					// Restart sentence at new rate
+					playSentence(currentSentenceIdx);
+				}
+			}
+		});
+
+		voiceSelect?.addEventListener('change', (e) => {
+			const idx = parseInt((e.target as HTMLSelectElement).value, 10);
+			if (!isNaN(idx) && availableVoices[idx]) {
+				selectedVoice = availableVoices[idx];
+				if (playbackState === 'PLAYING') {
+					playSentence(currentSentenceIdx);
+				}
+			}
+		});
+
+		// Keyboard Shortcuts (Space for toggle, Esc for stop)
+		window.addEventListener('keydown', (e) => {
+			if (['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target as HTMLElement)?.tagName || '')) return;
+
+			if (e.code === 'Space' && playbackState !== 'STOPPED') {
+				e.preventDefault();
+				if (playbackState === 'PLAYING') {
+					pausePlayback();
+				} else {
+					resumePlayback();
+				}
+			} else if (e.code === 'Escape' && playbackState !== 'STOPPED') {
+				stopPlayback();
+			}
+		});
+
+		// Cleanup when navigating away or unmounting
+		window.addEventListener('beforeunload', () => {
+			synth.cancel();
+			stopKeepAlive();
+		});
+	})();
+</script>

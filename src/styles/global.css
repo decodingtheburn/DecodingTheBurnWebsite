@@ -1628,4 +1628,52 @@ nav {
 	}
 }
 
-/* Force Cache Flush: 2026-01-19T11:37:00 */
+/* ==========================================================================
+   Client-Side Text-To-Speech (TTS) Reader Highlight Styling
+   ========================================================================== */
+.tts-word {
+	display: inline;
+	border-radius: 3px;
+	transition: background-color 0.12s ease, color 0.12s ease, box-shadow 0.12s ease;
+	cursor: pointer;
+}
+
+.tts-word:hover {
+	background-color: rgba(200, 56, 44, 0.08);
+	text-decoration: underline;
+	text-decoration-color: rgba(200, 56, 44, 0.4);
+}
+
+/* Active Sentence: Warm, subtle crimson wash */
+.tts-word.is-speaking-sentence {
+	background-color: rgba(200, 56, 44, 0.08);
+	color: #000000;
+	border-bottom: 2px solid rgba(200, 56, 44, 0.32);
+}
+
+/* Active Word: High-contrast crimson pill with crisp white text */
+.tts-word.is-speaking-word {
+	background-color: #c8382c !important;
+	color: #ffffff !important;
+	border-radius: 4px;
+	padding: 1px 4px;
+	margin: 0 -1px;
+	box-shadow: 0 2px 10px rgba(200, 56, 44, 0.4);
+	font-weight: 700;
+	border-bottom: none !important;
+}
+
+@media print {
+	.tts-reader-wrapper,
+	.tts-sticky-bar {
+		display: none !important;
+	}
+	.tts-word {
+		background: none !important;
+		color: inherit !important;
+		border: none !important;
+		box-shadow: none !important;
+	}
+}
+
+/* Force Cache Flush: 2026-09-19T18:05:00 */
