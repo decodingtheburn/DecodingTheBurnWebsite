@@ -16,7 +16,7 @@ export const bmsSlides: SlideItem[] = [
 			"From 10/10 flossing agony to zero",
 			"Beyond the 'idiopathic' medical label",
 			"Solving the hidden physical triggers",
-			"By Dennis Ethier at DecodingTheBurn"
+			"By Denis Ethier at DecodingTheBurn"
 		],
 		notes: "Introduce yourself and DecodingTheBurn.com. Frame BMS as an engineering failure: you approached your body like a biophysical circuit with a fault, not a psychological mystery.\n\n🛡️ LEGAL SHIELD: Never claim a universal 'cure'. Frame your journey as a personal forensic investigation leading to complete remission in your individual case."
 	},
