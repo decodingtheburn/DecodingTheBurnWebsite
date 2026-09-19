@@ -23,15 +23,15 @@ export const bmsSlides: SlideItem[] = [
 	{
 		id: 2,
 		badge: "My Story",
-		title: "My Story: 18-Month BMS Journey",
+		title: "My Story: Decoding My BMS Journey",
 		bullets: [
-			"18 months of full, relentless pain",
-			"Months of 10/10 flossing agony",
+			"Beer triggered pain 3 years ago",
+			"Cleared after stopping beer; 6 months pain-free",
+			"Later flared into 10/10 flossing agony",
 			"Exhausted all supplements & medications",
-			"Inspired by author Peggy Sharr",
 			"Now 9 months completely symptom-free"
 		],
-		notes: "Deliver your story: 18 months of relentless pain, including multiple months of 10/10 flossing agony. You tried everything under the sun in terms of supplements and medications with zero relief. Inspired by author Peggy Sharr, you tested protocols, conducted fasting resets, and stopped the pain for 9 continuous months.\n\n🛡️ LEGAL SHIELD: Emphasize that what worked for your individual biology may differ from others."
+		notes: "Deliver your story: the pain began with beer 3 years ago, cleared when you stopped beer, and you lived 6 months pain-free. Later, coffee triggered another wave that escalated into 10/10 flossing agony. You tested protocols, conducted a 4-day fasting reset, and stopped the pain for 9 continuous months.\n\n🛡️ LEGAL SHIELD: Emphasize that what worked for your individual biology may differ from others."
 	},
 	{
 		id: 3,
