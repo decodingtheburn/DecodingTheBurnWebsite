@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lexend:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
 
 :root {
 	--bg-color: #fcfcfd;
@@ -1665,7 +1665,9 @@ nav {
 
 @media print {
 	.tts-reader-wrapper,
-	.tts-sticky-bar {
+	.tts-sticky-bar,
+	.dyslexic-reading-ruler,
+	.dyslexic-floating-toggle {
 		display: none !important;
 	}
 	.tts-word {
@@ -1676,4 +1678,89 @@ nav {
 	}
 }
 
-/* Force Cache Flush: 2026-09-19T18:05:00 */
+/* ==========================================================================
+   Dyslexic Reading Mode (8 Comprehensive Readability Enhancements)
+   1. Lexend & OpenDyslexic typeface (weighted baseline stops letter flips)
+   2. Generous letter spacing (0.08em) prevents character crowding
+   3. Expanded word spacing (0.18em) clearly separates word boundaries
+   4. Relaxed line height (2.15) eliminates line-skipping confusion
+   5. Enlarged base typography (1.16rem) reduces eye fatigue
+   6. Anti-glare warm paper tint (#fbf8f1) eases visual stress / Irlen syndrome
+   7. Live Reading Ruler guide follows eye / line movement
+   8. Strict left alignment and expanded paragraph margins (2rem)
+   ========================================================================== */
+@font-face {
+	font-family: 'OpenDyslexic';
+	src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic/open-dyslexic-regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+body.dyslexic-mode {
+	font-family: 'Lexend', 'OpenDyslexic', -apple-system, BlinkMacSystemFont, sans-serif !important;
+	letter-spacing: 0.08em !important;
+	word-spacing: 0.18em !important;
+	line-height: 2.15 !important;
+	background-color: #fbf8f1 !important;
+	background-image: none !important;
+	color: #1e293b !important;
+	transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body.dyslexic-mode .post-container,
+body.dyslexic-mode .blog-post,
+body.dyslexic-mode .post-content {
+	font-size: 1.16rem !important;
+}
+
+body.dyslexic-mode .post-content p,
+body.dyslexic-mode .post-content li,
+body.dyslexic-mode .post-content blockquote {
+	font-family: 'Lexend', 'OpenDyslexic', -apple-system, BlinkMacSystemFont, sans-serif !important;
+	letter-spacing: 0.08em !important;
+	word-spacing: 0.18em !important;
+	line-height: 2.2 !important;
+	margin-bottom: 2.1rem !important;
+	text-align: left !important;
+	color: #0f172a !important;
+}
+
+body.dyslexic-mode h1,
+body.dyslexic-mode h2,
+body.dyslexic-mode h3,
+body.dyslexic-mode h4 {
+	font-family: 'Lexend', 'OpenDyslexic', -apple-system, BlinkMacSystemFont, sans-serif !important;
+	letter-spacing: 0.04em !important;
+	word-spacing: 0.12em !important;
+	line-height: 1.45 !important;
+}
+
+body.dyslexic-mode .tts-card {
+	background-color: #ffffff;
+	border-color: #e2d9c8;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* 7. Live Reading Ruler / Focus Guide */
+.dyslexic-reading-ruler {
+	display: none;
+	position: fixed;
+	left: 0;
+	width: 100vw;
+	height: 46px;
+	background: rgba(254, 240, 138, 0.22);
+	border-top: 2px solid rgba(234, 179, 8, 0.5);
+	border-bottom: 2px solid rgba(234, 179, 8, 0.5);
+	box-shadow: 0 0 20px rgba(254, 240, 138, 0.25);
+	pointer-events: none;
+	z-index: 9999;
+	transform: translateY(-50%);
+	transition: top 0.04s linear;
+}
+
+body.dyslexic-mode.has-reading-ruler .dyslexic-reading-ruler {
+	display: block;
+}
+
+/* Force Cache Flush: 2026-09-19T18:48:00 */
