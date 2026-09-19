@@ -1699,9 +1699,7 @@ nav {
 
 body.dyslexic-mode {
 	font-family: 'Lexend', 'OpenDyslexic', -apple-system, BlinkMacSystemFont, sans-serif !important;
-	letter-spacing: 0.08em !important;
-	word-spacing: 0.18em !important;
-	line-height: 2.15 !important;
+	line-height: 1.85 !important;
 	background-color: #fbf8f1 !important;
 	background-image: none !important;
 	color: #1e293b !important;
@@ -1711,17 +1709,15 @@ body.dyslexic-mode {
 body.dyslexic-mode .post-container,
 body.dyslexic-mode .blog-post,
 body.dyslexic-mode .post-content {
-	font-size: 1.16rem !important;
+	font-size: 1.12rem !important;
 }
 
 body.dyslexic-mode .post-content p,
 body.dyslexic-mode .post-content li,
 body.dyslexic-mode .post-content blockquote {
 	font-family: 'Lexend', 'OpenDyslexic', -apple-system, BlinkMacSystemFont, sans-serif !important;
-	letter-spacing: 0.08em !important;
-	word-spacing: 0.18em !important;
-	line-height: 2.2 !important;
-	margin-bottom: 2.1rem !important;
+	line-height: 1.95 !important;
+	margin-bottom: 1.85rem !important;
 	text-align: left !important;
 	color: #0f172a !important;
 }
@@ -1731,15 +1727,23 @@ body.dyslexic-mode h2,
 body.dyslexic-mode h3,
 body.dyslexic-mode h4 {
 	font-family: 'Lexend', 'OpenDyslexic', -apple-system, BlinkMacSystemFont, sans-serif !important;
-	letter-spacing: 0.04em !important;
-	word-spacing: 0.12em !important;
-	line-height: 1.45 !important;
+	line-height: 1.4 !important;
 }
 
 body.dyslexic-mode .tts-card {
 	background-color: #ffffff;
 	border-color: #e2d9c8;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Optional Wide Letter & Word Spacing */
+body.wide-spacing-active,
+body.wide-spacing-active .post-content,
+body.wide-spacing-active .post-content p,
+body.wide-spacing-active .post-content li,
+body.wide-spacing-active .post-content blockquote {
+	letter-spacing: 0.055em !important;
+	word-spacing: 0.12em !important;
 }
 
 /* 7. Live Reading Ruler / Focus Guide */
@@ -1759,7 +1763,7 @@ body.dyslexic-mode .tts-card {
 	transition: top 0.04s linear;
 }
 
-body.dyslexic-mode.has-reading-ruler .dyslexic-reading-ruler {
+body.has-reading-ruler .dyslexic-reading-ruler {
 	display: block;
 }
 
@@ -1767,35 +1771,60 @@ body.dyslexic-mode.has-reading-ruler .dyslexic-reading-ruler {
    Parts of Speech & Advanced Dyslexia Reading Enhancements
    ========================================================================== */
 
-/* 1. Parts of Speech Color Coding (Montessori & Immersive Reader System) */
+:root {
+	--pos-verb: #dc2626;      /* Crimson */
+	--pos-noun: #0284c7;      /* Ocean Blue */
+	--pos-adj: #059669;       /* Emerald */
+	--pos-adv: #d97706;       /* Amber */
+	--pos-pronoun: #7c3aed;   /* Purple */
+}
+
+/* Palette: Microsoft Immersive Reader Standard */
+body.pos-palette-microsoft {
+	--pos-verb: #dc2626;      /* Red */
+	--pos-noun: #7c3aed;      /* Violet / Purple */
+	--pos-adj: #059669;       /* Green */
+	--pos-adv: #d97706;       /* Mustard / Amber */
+	--pos-pronoun: #2563eb;   /* Blue */
+}
+
+/* Palette: Soft Pastel / Low Glare */
+body.pos-palette-pastel {
+	--pos-verb: #e11d48;      /* Rose */
+	--pos-noun: #3b82f6;      /* Sky Blue */
+	--pos-adj: #0d9488;       /* Teal */
+	--pos-adv: #ea580c;       /* Warm Ochre */
+	--pos-pronoun: #9333ea;   /* Lavender */
+}
+
+/* 1. Parts of Speech Color Coding (Colors only, NO bolding to preserve bionic contrast) */
 body.pos-colors-active .pos-verb {
-	color: #dc2626 !important; /* Action Red / Crimson */
-	font-weight: 600;
+	color: var(--pos-verb) !important;
 }
 
 body.pos-colors-active .pos-noun {
-	color: #0284c7 !important; /* Substance Ocean Blue */
-	font-weight: 600;
+	color: var(--pos-noun) !important;
 }
 
 body.pos-colors-active .pos-adj {
-	color: #059669 !important; /* Descriptor Emerald Green */
-	font-weight: 600;
+	color: var(--pos-adj) !important;
 }
 
 body.pos-colors-active .pos-adv {
-	color: #d97706 !important; /* Modifier Amber Orange */
-	font-weight: 600;
+	color: var(--pos-adv) !important;
 }
 
 body.pos-colors-active .pos-pronoun {
-	color: #7c3aed !important; /* Person Purple */
-	font-weight: 600;
+	color: var(--pos-pronoun) !important;
 }
 
 /* 2. Bionic Reading (Neuro-Visual Fixation Anchors) */
 .bionic-anchor {
 	font-weight: inherit;
+}
+
+body.bionic-reading-active .tts-word {
+	font-weight: 400 !important;
 }
 
 body.bionic-reading-active .bionic-anchor {
@@ -1818,4 +1847,4 @@ body.focus-spotlight-active .post-content > .tts-active-block {
 	transform: scale(1.006);
 }
 
-/* Force Cache Flush: 2026-09-19T18:52:00 */
+/* Force Cache Flush: 2026-09-19T19:15:00 */

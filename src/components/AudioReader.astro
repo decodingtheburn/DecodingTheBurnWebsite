@@ -12,121 +12,148 @@ const { title = 'this article' } = Astro.props;
 <div class="tts-reader-wrapper" id="tts-reader-root" data-article-title={title}>
 	<!-- Top Player Card (Sits above blog content) -->
 	<div class="tts-card" id="tts-top-card">
-		<div class="tts-card-inner">
-			<div class="tts-media-info">
-				<div class="tts-icon-box" id="tts-icon-box" aria-hidden="true">
-					<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.2" fill="none" class="tts-headphone-svg">
-						<path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-						<path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-					</svg>
-					<div class="tts-equalizer-bars" id="tts-equalizer">
-						<span></span><span></span><span></span><span></span>
-					</div>
-				</div>
-				<div class="tts-text-group">
-					<div class="tts-title-row">
-						<span class="tts-label">Listen to Article</span>
-						<span class="tts-time-est" id="tts-time-est">Estimating...</span>
-					</div>
-					<p class="tts-status-msg" id="tts-status-msg">Click play to listen with live word&nbsp;highlighting.</p>
-				</div>
-			</div>
-
-			<div class="tts-controls-row">
-				<!-- Prev Sentence -->
-				<button type="button" class="tts-btn tts-btn-icon" id="tts-prev-btn" title="Previous sentence" aria-label="Previous sentence">
-					<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none">
-						<polygon points="19 20 9 12 19 4 19 20"></polygon>
-						<line x1="5" y1="19" x2="5" y2="5"></line>
-					</svg>
-				</button>
-
-				<!-- Main Play / Pause Button -->
-				<button type="button" class="tts-btn tts-btn-primary" id="tts-main-play-btn" title="Play / Pause Audio" aria-label="Play audio">
-					<svg class="tts-play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+		<!-- 1. Sleek Compact Bar (Small and minimal by default) -->
+		<div class="tts-compact-bar" id="tts-compact-bar">
+			<div class="tts-compact-left">
+				<button type="button" class="tts-compact-play-btn" id="tts-compact-play" title="Listen to this article" aria-label="Listen to this article">
+					<svg class="tts-play-icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
 						<polygon points="6 3 20 12 6 21 6 3"></polygon>
 					</svg>
-					<svg class="tts-pause-icon" style="display: none;" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+					<svg class="tts-pause-icon" style="display: none;" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
 						<rect x="6" y="4" width="4" height="16" rx="1"></rect>
 						<rect x="14" y="4" width="4" height="16" rx="1"></rect>
 					</svg>
-					<span class="tts-play-text" id="tts-play-text">Listen</span>
+					<span class="tts-compact-play-label" id="tts-compact-play-label">Listen</span>
 				</button>
 
-				<!-- Next Sentence -->
-				<button type="button" class="tts-btn tts-btn-icon" id="tts-next-btn" title="Next sentence" aria-label="Next sentence">
-					<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none">
-						<polygon points="5 4 15 12 5 20 5 4"></polygon>
-						<line x1="19" y1="5" x2="19" y2="19"></line>
-					</svg>
-				</button>
-
-				<!-- Speed Selector -->
-				<div class="tts-select-wrapper">
-					<label for="tts-speed-select" class="sr-only">Speed</label>
-					<select id="tts-speed-select" class="tts-select" title="Playback speed">
-						<option value="0.85">0.85x</option>
-						<option value="1" selected>1.0x</option>
-						<option value="1.2">1.2x</option>
-						<option value="1.35">1.35x</option>
-						<option value="1.5">1.5x</option>
-					</select>
+				<div class="tts-compact-meta">
+					<span class="tts-compact-title">Listen to Article</span>
+					<span class="tts-compact-time" id="tts-time-est">Estimating...</span>
 				</div>
+			</div>
 
-				<!-- Voice Selector -->
-				<div class="tts-select-wrapper tts-voice-wrapper">
-					<label for="tts-voice-select" class="sr-only">Voice</label>
-					<select id="tts-voice-select" class="tts-select" title="Select reader voice">
-						<option value="">Default Voice</option>
-					</select>
-				</div>
-
-				<!-- Stop / Reset Button -->
-				<button type="button" class="tts-btn tts-btn-icon tts-btn-stop" id="tts-stop-btn" title="Stop and reset" aria-label="Stop playback">
-					<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-						<rect x="6" y="6" width="12" height="12" rx="2"></rect>
-					</svg>
-				</button>
-
-				<!-- Dyslexic Mode Toggle Button -->
-				<button type="button" class="tts-btn tts-btn-dyslexic" id="tts-dyslexic-btn" title="Toggle Dyslexic Reading Mode" aria-pressed="false">
-					<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none">
-						<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-						<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-					</svg>
-					<span class="tts-dyslexic-label">Dyslexic Mode</span>
-					<span class="tts-dyslexic-state" id="tts-dyslexic-state">OFF</span>
-				</button>
-
-				<!-- Quick Mode Chip: Parts of Speech (Verbs in Red, Nouns in Blue) -->
-				<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-pos" title="Color-code parts of speech: Verbs (Red), Nouns (Blue), Adjectives (Green)">
-					<span>🎨 Grammar Colors</span>
-				</button>
-
-				<!-- Quick Mode Chip: Bionic Fixation -->
-				<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-bionic" title="Bionic reading: Bold initial letters to guide eye tracking">
+			<div class="tts-compact-right">
+				<!-- Quick Bionic Reading Button (Keeps Bionic 1 click away) -->
+				<button type="button" class="tts-quick-chip" id="tts-quick-bionic" title="Toggle Bionic Reading: Bold initial letters to guide eye tracking">
 					<span>🧠 Bionic</span>
 				</button>
 
-				<!-- Quick Mode Chip: Line Focus Ruler -->
-				<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-ruler" title="Line Focus Ruler: Soft tracking beam follows your cursor">
-					<span>📏 Ruler</span>
+				<!-- Expand / Collapse Drawer Toggle -->
+				<button type="button" class="tts-expand-toggle" id="tts-expand-btn" aria-expanded="false" title="Expand reading and audio options">
+					<span class="tts-expand-text">Options</span>
+					<svg class="tts-expand-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.3" fill="none">
+						<polyline points="6 9 12 15 18 9"></polyline>
+					</svg>
 				</button>
 			</div>
 		</div>
 
-		<!-- Progress Bar -->
-		<div class="tts-progress-track" id="tts-progress-track" title="Article audio progress">
-			<div class="tts-progress-fill" id="tts-progress-fill"></div>
+		<!-- 2. Expandable Options Drawer (Hidden by default) -->
+		<div class="tts-expanded-drawer" id="tts-expanded-drawer" style="display: none;">
+			<div class="tts-drawer-divider"></div>
+
+			<div class="tts-drawer-content">
+				<!-- Row 1: Audio Playback Navigation & Settings -->
+				<div class="tts-drawer-section tts-audio-section">
+					<div class="tts-audio-nav-group">
+						<button type="button" class="tts-btn tts-btn-icon" id="tts-prev-btn" title="Previous sentence" aria-label="Previous sentence">
+							<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none">
+								<polygon points="19 20 9 12 19 4 19 20"></polygon>
+								<line x1="5" y1="19" x2="5" y2="5"></line>
+							</svg>
+						</button>
+						<button type="button" class="tts-btn tts-btn-icon" id="tts-next-btn" title="Next sentence" aria-label="Next sentence">
+							<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none">
+								<polygon points="5 4 15 12 5 20 5 4"></polygon>
+								<line x1="19" y1="5" x2="19" y2="19"></line>
+							</svg>
+						</button>
+						<button type="button" class="tts-btn tts-btn-icon tts-btn-stop" id="tts-stop-btn" title="Stop and reset" aria-label="Stop playback">
+							<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+								<rect x="6" y="6" width="12" height="12" rx="2"></rect>
+							</svg>
+						</button>
+					</div>
+
+					<div class="tts-selectors-group">
+						<!-- Playback Speed -->
+						<div class="tts-select-wrapper">
+							<label for="tts-speed-select" class="sr-only">Speed</label>
+							<select id="tts-speed-select" class="tts-select" title="Playback speed">
+								<option value="0.85">0.85x</option>
+								<option value="1" selected>1.0x</option>
+								<option value="1.2">1.2x</option>
+								<option value="1.35">1.35x</option>
+								<option value="1.5">1.5x</option>
+							</select>
+						</div>
+
+						<!-- Voice Selector (Default Male) -->
+						<div class="tts-select-wrapper tts-voice-wrapper">
+							<label for="tts-voice-select" class="sr-only">Voice</label>
+							<select id="tts-voice-select" class="tts-select" title="Select reader voice">
+								<option value="">Default Voice</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<!-- Row 2: Reading Accessibility Tools -->
+				<div class="tts-drawer-section">
+					<div class="tts-section-header">
+						<span class="tts-section-title">Reading Accessibility Modes</span>
+					</div>
+					<div class="tts-chips-wrap">
+						<!-- Bionic Reading Chip -->
+						<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-bionic" title="Bionic reading: Bold initial letters to guide eye tracking">
+							<span>🧠 Bionic Reading</span>
+						</button>
+
+						<!-- Dyslexic Font Chip -->
+						<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-dyslexic-font" title="Lexend dyslexia-friendly typeface and warm page tint">
+							<span>📖 Dyslexic Font</span>
+						</button>
+
+						<!-- Wide Spacing Chip (Optional!) -->
+						<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-spacing" title="Extra letter and word spacing">
+							<span>↔ Wide Spacing</span>
+						</button>
+
+						<!-- Grammar Colors Chip -->
+						<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-pos" title="Color-code parts of speech: Verbs, Nouns, Adjectives, Adverbs, Pronouns">
+							<span>🎨 Grammar Colors</span>
+						</button>
+
+						<!-- Ruler Chip -->
+						<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-ruler" title="Line Focus Ruler: Soft tracking beam follows your cursor">
+							<span>📏 Ruler</span>
+						</button>
+					</div>
+				</div>
+
+				<!-- Row 3: Grammar Colors Palette Selector & Legend (Visible when Grammar Colors is ON) -->
+				<div class="tts-pos-panel" id="tts-pos-panel" style="display: none;">
+					<div class="tts-palette-row">
+						<span class="tts-palette-label">Color Palette:</span>
+						<button type="button" class="tts-palette-btn is-active" data-palette="montessori" title="Montessori Grammar Symbol Standard (Verbs Red, Nouns Blue)">Montessori</button>
+						<button type="button" class="tts-palette-btn" data-palette="microsoft" title="Microsoft Immersive Reader Standard (Nouns Purple, Verbs Red)">Microsoft</button>
+						<button type="button" class="tts-palette-btn" data-palette="pastel" title="Soft Pastel Low Glare Palette">Soft Pastel</button>
+					</div>
+
+					<div class="tts-pos-legend" id="tts-pos-legend">
+						<span class="pos-legend-item"><span class="pos-dot dot-verb"></span>Verbs</span>
+						<span class="pos-legend-item"><span class="pos-dot dot-noun"></span>Nouns</span>
+						<span class="pos-legend-item"><span class="pos-dot dot-adj"></span>Adjectives</span>
+						<span class="pos-legend-item"><span class="pos-dot dot-adv"></span>Adverbs</span>
+						<span class="pos-legend-item"><span class="pos-dot dot-pronoun"></span>Pronouns</span>
+					</div>
+				</div>
+			</div>
 		</div>
 
-		<!-- Live Parts of Speech Color Legend (Visible when Grammar Colors is ON) -->
-		<div class="tts-pos-legend" id="tts-pos-legend" style="display: none;">
-			<span class="pos-legend-item"><span class="pos-dot red"></span>Verbs (Red)</span>
-			<span class="pos-legend-item"><span class="pos-dot blue"></span>Nouns (Blue)</span>
-			<span class="pos-legend-item"><span class="pos-dot green"></span>Adjectives (Green)</span>
-			<span class="pos-legend-item"><span class="pos-dot amber"></span>Adverbs (Orange)</span>
-			<span class="pos-legend-item"><span class="pos-dot purple"></span>Pronouns (Purple)</span>
+		<!-- Audio Progress Bar -->
+		<div class="tts-progress-track" id="tts-progress-track" title="Article audio progress">
+			<div class="tts-progress-fill" id="tts-progress-fill"></div>
 		</div>
 	</div>
 
@@ -166,12 +193,9 @@ const { title = 'this article' } = Astro.props;
 
 			<div class="tts-sticky-counter" id="tts-sticky-counter">0 / 0</div>
 
-			<!-- Sticky Dyslexic Mode Button -->
-			<button type="button" class="tts-sticky-btn tts-sticky-dyslexic-btn" id="tts-sticky-dyslexic" title="Toggle Dyslexic Reading Mode" aria-label="Toggle Dyslexic Mode">
-				<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none">
-					<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-					<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-				</svg>
+			<!-- Sticky Bionic Reading Button -->
+			<button type="button" class="tts-sticky-btn tts-sticky-bionic-btn" id="tts-sticky-bionic" title="Toggle Bionic Reading Mode" aria-label="Toggle Bionic Reading Mode">
+				<span style="font-size: 13px;">🧠</span>
 			</button>
 
 			<button type="button" class="tts-sticky-close" id="tts-sticky-close" title="Close reader" aria-label="Close reader">
@@ -186,14 +210,11 @@ const { title = 'this article' } = Astro.props;
 	<!-- Live Reading Ruler Guide for Dyslexic Mode -->
 	<div class="dyslexic-reading-ruler" id="dyslexic-reading-ruler" aria-hidden="true"></div>
 
-	<!-- Floating Quick-Toggle for Dyslexic Mode (Always accessible on page) -->
+	<!-- Floating Quick-Toggle for Bionic Reading Mode (Always accessible on page) -->
 	<aside class="dyslexic-floating-toggle" id="dyslexic-floating-toggle">
-		<button type="button" class="dyslexic-pill-btn" id="dyslexic-pill-toggle" title="Toggle Dyslexic Reading Mode" aria-label="Toggle Dyslexic Reading Mode">
-			<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none">
-				<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-				<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-			</svg>
-			<span>Dyslexic Mode</span>
+		<button type="button" class="dyslexic-pill-btn" id="dyslexic-pill-toggle" title="Toggle Bionic Reading Mode" aria-label="Toggle Bionic Reading Mode">
+			<span style="font-size: 14px;">🧠</span>
+			<span>Bionic Reading</span>
 		</button>
 	</aside>
 </div>
@@ -230,92 +251,68 @@ const { title = 'this article' } = Astro.props;
 
 	.tts-card:hover {
 		border-color: #cbd5e1;
-		box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.08);
+		box-shadow: 0 6px 22px -4px rgba(15, 23, 42, 0.08);
 	}
 
-	.tts-card-inner {
-		padding: 1.15rem 1.35rem;
+	/* 1. Sleek Compact Bar (Small by default) */
+	.tts-compact-bar {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1.25rem;
-		flex-wrap: wrap;
+		padding: 0.65rem 1rem;
+		gap: 0.75rem;
+		background: #ffffff;
 	}
 
-	.tts-media-info {
+	.tts-compact-left {
 		display: flex;
 		align-items: center;
-		gap: 0.95rem;
-		min-width: 240px;
+		gap: 0.75rem;
 		flex: 1 1 auto;
+		min-width: 0;
 	}
 
-	.tts-icon-box {
-		width: 44px;
-		height: 44px;
-		border-radius: 12px;
-		background: #fef2f2;
-		border: 1px solid #fecaca;
-		color: #c8382c;
-		display: flex;
+	.tts-compact-play-btn {
+		display: inline-flex;
 		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-		position: relative;
-	}
-
-	.tts-equalizer-bars {
-		display: none;
-		align-items: flex-end;
-		gap: 3px;
-		height: 16px;
-	}
-
-	.tts-icon-box.is-playing .tts-headphone-svg {
-		display: none;
-	}
-
-	.tts-icon-box.is-playing .tts-equalizer-bars {
-		display: flex;
-	}
-
-	.tts-equalizer-bars span {
-		width: 3px;
+		gap: 0.42rem;
+		padding: 0.42rem 0.95rem;
 		background: #c8382c;
-		border-radius: 2px;
-		animation: ttsBounce 0.8s infinite ease-in-out alternate;
+		color: #ffffff;
+		border: 1px solid #c8382c;
+		border-radius: 9999px;
+		font-size: 0.82rem;
+		font-weight: 700;
+		cursor: pointer;
+		transition: all 0.16s ease;
+		box-shadow: 0 2px 8px rgba(200, 56, 44, 0.25);
+		flex-shrink: 0;
 	}
 
-	.tts-equalizer-bars span:nth-child(1) { height: 6px; animation-delay: 0.1s; }
-	.tts-equalizer-bars span:nth-child(2) { height: 16px; animation-delay: 0.3s; }
-	.tts-equalizer-bars span:nth-child(3) { height: 10px; animation-delay: 0.2s; }
-	.tts-equalizer-bars span:nth-child(4) { height: 14px; animation-delay: 0.4s; }
-
-	@keyframes ttsBounce {
-		0% { height: 4px; }
-		100% { height: 16px; }
+	.tts-compact-play-btn:hover {
+		background: #a82b20;
+		border-color: #a82b20;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(200, 56, 44, 0.35);
 	}
 
-	.tts-text-group {
-		display: flex;
-		flex-direction: column;
-		gap: 0.15rem;
-	}
-
-	.tts-title-row {
+	.tts-compact-meta {
 		display: flex;
 		align-items: center;
-		gap: 0.6rem;
+		gap: 0.55rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
-	.tts-label {
-		font-size: 0.98rem;
+	.tts-compact-title {
+		font-size: 0.9rem;
 		font-weight: 700;
 		color: #0f172a;
 		letter-spacing: -0.01em;
 	}
 
-	.tts-time-est {
+	.tts-compact-time {
 		font-size: 0.72rem;
 		font-weight: 600;
 		color: #64748b;
@@ -324,18 +321,115 @@ const { title = 'this article' } = Astro.props;
 		border-radius: 6px;
 	}
 
-	.tts-status-msg {
-		font-size: 0.8rem;
-		color: #64748b;
-		margin: 0;
-		line-height: 1.35;
-	}
-
-	.tts-controls-row {
+	.tts-compact-right {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+		flex-shrink: 0;
+	}
+
+	.tts-quick-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.4rem 0.72rem;
+		font-size: 0.78rem;
+		font-weight: 600;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+		color: #334155;
+		cursor: pointer;
+		transition: all 0.16s ease;
+	}
+
+	.tts-quick-chip:hover {
+		background: #f1f5f9;
+		color: #0f172a;
+		border-color: #cbd5e1;
+	}
+
+	.tts-quick-chip.is-active {
+		background: #fdf4ff !important;
+		border-color: #d946ef !important;
+		color: #a21caf !important;
+		box-shadow: 0 0 8px rgba(217, 70, 239, 0.25);
+		font-weight: 700;
+	}
+
+	.tts-expand-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.4rem 0.72rem;
+		font-size: 0.78rem;
+		font-weight: 600;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+		color: #475569;
+		cursor: pointer;
+		transition: all 0.16s ease;
+	}
+
+	.tts-expand-toggle:hover {
+		background: #f1f5f9;
+		color: #0f172a;
+		border-color: #cbd5e1;
+	}
+
+	.tts-expand-toggle.is-expanded {
+		background: #0f172a;
+		color: #ffffff;
+		border-color: #0f172a;
+	}
+
+	.tts-expand-toggle.is-expanded .tts-expand-chevron {
+		transform: rotate(180deg);
+	}
+
+	.tts-expand-chevron {
+		transition: transform 0.2s ease;
+	}
+
+	/* 2. Expandable Options Drawer */
+	.tts-expanded-drawer {
+		background: #fafaf9;
+		border-top: 1px solid #f1f5f9;
+		animation: drawerSlide 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	@keyframes drawerSlide {
+		from { opacity: 0; transform: translateY(-6px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	.tts-drawer-content {
+		padding: 0.85rem 1.15rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	.tts-drawer-section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.tts-audio-section {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
 		flex-wrap: wrap;
+	}
+
+	.tts-audio-nav-group {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
 	}
 
 	.tts-btn {
@@ -352,8 +446,8 @@ const { title = 'this article' } = Astro.props;
 	}
 
 	.tts-btn-icon {
-		width: 36px;
-		height: 36px;
+		width: 34px;
+		height: 34px;
 		padding: 0;
 		color: #475569;
 		background: #f8fafc;
@@ -372,20 +466,11 @@ const { title = 'this article' } = Astro.props;
 		border-color: #fecaca;
 	}
 
-	.tts-btn-primary {
-		background: #c8382c;
-		color: #ffffff;
-		padding: 0.5rem 1.05rem;
+	.tts-selectors-group {
+		display: flex;
+		align-items: center;
 		gap: 0.5rem;
-		border-color: #c8382c;
-		box-shadow: 0 2px 8px rgba(200, 56, 44, 0.25);
-	}
-
-	.tts-btn-primary:hover {
-		background: #a82b20;
-		border-color: #a82b20;
-		box-shadow: 0 4px 12px rgba(200, 56, 44, 0.35);
-		transform: translateY(-1px);
+		flex-wrap: wrap;
 	}
 
 	.tts-select-wrapper {
@@ -401,7 +486,7 @@ const { title = 'this article' } = Astro.props;
 		color: #334155;
 		font-size: 0.8rem;
 		font-weight: 600;
-		padding: 0.46rem 1.65rem 0.46rem 0.7rem;
+		padding: 0.44rem 1.65rem 0.44rem 0.7rem;
 		cursor: pointer;
 		outline: none;
 		transition: all 0.16s ease;
@@ -417,15 +502,180 @@ const { title = 'this article' } = Astro.props;
 	}
 
 	.tts-voice-wrapper {
-		max-width: 140px;
+		max-width: 155px;
 	}
 
 	.tts-voice-wrapper .tts-select {
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
-		max-width: 140px;
+		max-width: 155px;
 	}
+
+	.tts-section-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.tts-section-title {
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: #64748b;
+	}
+
+	.tts-chips-wrap {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+		flex-wrap: wrap;
+	}
+
+	.tts-btn-chip {
+		padding: 0.4rem 0.68rem;
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		color: #475569;
+		font-size: 0.76rem;
+		font-weight: 600;
+		border-radius: 8px;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		transition: all 0.16s ease;
+	}
+
+	.tts-btn-chip:hover {
+		background: #f1f5f9;
+		color: #0f172a;
+		border-color: #cbd5e1;
+	}
+
+	#tts-chip-bionic.is-active {
+		background: #fdf4ff !important;
+		border-color: #d946ef !important;
+		color: #a21caf !important;
+		box-shadow: 0 0 8px rgba(217, 70, 239, 0.25);
+		font-weight: 700;
+	}
+
+	#tts-chip-dyslexic-font.is-active {
+		background: #fefce8 !important;
+		border-color: #eab308 !important;
+		color: #854d0e !important;
+		box-shadow: 0 0 8px rgba(234, 179, 8, 0.25);
+		font-weight: 700;
+	}
+
+	#tts-chip-spacing.is-active {
+		background: #f0fdf4 !important;
+		border-color: #22c55e !important;
+		color: #15803d !important;
+		box-shadow: 0 0 8px rgba(34, 197, 94, 0.25);
+		font-weight: 700;
+	}
+
+	#tts-chip-pos.is-active {
+		background: #fef2f2 !important;
+		border-color: #ef4444 !important;
+		color: #b91c1c !important;
+		box-shadow: 0 0 8px rgba(239, 68, 68, 0.25);
+		font-weight: 700;
+	}
+
+	#tts-chip-ruler.is-active {
+		background: #eff6ff !important;
+		border-color: #3b82f6 !important;
+		color: #1d4ed8 !important;
+		box-shadow: 0 0 8px rgba(59, 130, 246, 0.25);
+		font-weight: 700;
+	}
+
+	/* Color Palette & Legend Panel */
+	.tts-pos-panel {
+		display: flex;
+		flex-direction: column;
+		gap: 0.55rem;
+		padding: 0.65rem 0.85rem;
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+		animation: fadeInLegend 0.2s ease;
+	}
+
+	.tts-palette-row {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+		flex-wrap: wrap;
+		font-size: 0.74rem;
+	}
+
+	.tts-palette-label {
+		font-weight: 700;
+		color: #64748b;
+		margin-right: 0.15rem;
+	}
+
+	.tts-palette-btn {
+		padding: 0.22rem 0.6rem;
+		font-size: 0.74rem;
+		font-weight: 600;
+		border-radius: 6px;
+		border: 1px solid #e2e8f0;
+		background: #f8fafc;
+		color: #475569;
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+
+	.tts-palette-btn:hover {
+		background: #f1f5f9;
+		color: #0f172a;
+	}
+
+	.tts-palette-btn.is-active {
+		background: #0f172a;
+		color: #ffffff;
+		border-color: #0f172a;
+	}
+
+	.tts-pos-legend {
+		display: flex;
+		align-items: center;
+		gap: 0.85rem;
+		flex-wrap: wrap;
+		font-size: 0.74rem;
+		color: #475569;
+	}
+
+	@keyframes fadeInLegend {
+		from { opacity: 0; transform: translateY(-4px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	.pos-legend-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		font-weight: 600;
+	}
+
+	.pos-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+
+	.dot-verb { background: var(--pos-verb); }
+	.dot-noun { background: var(--pos-noun); }
+	.dot-adj { background: var(--pos-adj); }
+	.dot-adv { background: var(--pos-adv); }
+	.dot-pronoun { background: var(--pos-pronoun); }
 
 	.tts-progress-track {
 		width: 100%;
@@ -491,6 +741,13 @@ const { title = 'this article' } = Astro.props;
 	.tts-sticky-btn:hover {
 		background: rgba(255, 255, 255, 0.18);
 		color: #ffffff;
+	}
+
+	.tts-sticky-bionic-btn.is-active {
+		background: #fdf4ff !important;
+		border-color: #d946ef !important;
+		color: #a21caf !important;
+		box-shadow: 0 0 10px rgba(217, 70, 239, 0.4);
 	}
 
 	.tts-sticky-play-btn {
@@ -571,140 +828,6 @@ const { title = 'this article' } = Astro.props;
 		background: rgba(255, 255, 255, 0.12);
 		color: #ffffff;
 	}
-
-	.tts-btn-dyslexic {
-		padding: 0.44rem 0.75rem;
-		background: #f8fafc;
-		border: 1px solid #e2e8f0;
-		color: #334155;
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45rem;
-		font-size: 0.8rem;
-		font-weight: 600;
-		border-radius: 8px;
-		cursor: pointer;
-		transition: all 0.18s ease;
-	}
-
-	.tts-btn-dyslexic:hover {
-		background: #f1f5f9;
-		color: #0f172a;
-		border-color: #cbd5e1;
-	}
-
-	.tts-btn-dyslexic.is-active {
-		background: #fef08a !important;
-		border-color: #eab308 !important;
-		color: #854d0e !important;
-		box-shadow: 0 0 10px rgba(234, 179, 8, 0.35);
-	}
-
-	.tts-dyslexic-state {
-		font-size: 0.65rem;
-		font-weight: 800;
-		letter-spacing: 0.05em;
-		padding: 0.1rem 0.35rem;
-		border-radius: 4px;
-		background: #e2e8f0;
-		color: #64748b;
-	}
-
-	.tts-btn-dyslexic.is-active .tts-dyslexic-state {
-		background: #ca8a04;
-		color: #ffffff;
-	}
-
-	.tts-sticky-dyslexic-btn.is-active {
-		background: #fef08a !important;
-		border-color: #eab308 !important;
-		color: #854d0e !important;
-		box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
-	}
-
-	.tts-btn-chip {
-		padding: 0.42rem 0.68rem;
-		background: #f8fafc;
-		border: 1px solid #e2e8f0;
-		color: #475569;
-		font-size: 0.76rem;
-		font-weight: 600;
-		border-radius: 8px;
-		cursor: pointer;
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		transition: all 0.16s ease;
-	}
-
-	.tts-btn-chip:hover {
-		background: #f1f5f9;
-		color: #0f172a;
-		border-color: #cbd5e1;
-	}
-
-	#tts-chip-pos.is-active {
-		background: #fef2f2 !important;
-		border-color: #ef4444 !important;
-		color: #b91c1c !important;
-		box-shadow: 0 0 8px rgba(239, 68, 68, 0.25);
-		font-weight: 700;
-	}
-
-	#tts-chip-bionic.is-active {
-		background: #fdf4ff !important;
-		border-color: #d946ef !important;
-		color: #a21caf !important;
-		box-shadow: 0 0 8px rgba(217, 70, 239, 0.25);
-		font-weight: 700;
-	}
-
-	#tts-chip-ruler.is-active {
-		background: #fefce8 !important;
-		border-color: #eab308 !important;
-		color: #854d0e !important;
-		box-shadow: 0 0 8px rgba(234, 179, 8, 0.25);
-		font-weight: 700;
-	}
-
-	/* Live Parts of Speech Legend Bar */
-	.tts-pos-legend {
-		display: flex;
-		align-items: center;
-		gap: 0.85rem;
-		padding: 0.5rem 1.25rem;
-		background: #fafaf9;
-		border-top: 1px solid #f1f5f9;
-		flex-wrap: wrap;
-		font-size: 0.74rem;
-		color: #475569;
-		animation: fadeInLegend 0.2s ease;
-	}
-
-	@keyframes fadeInLegend {
-		from { opacity: 0; transform: translateY(-4px); }
-		to { opacity: 1; transform: translateY(0); }
-	}
-
-	.pos-legend-item {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		font-weight: 600;
-	}
-
-	.pos-dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		display: inline-block;
-	}
-
-	.pos-dot.red { background: #dc2626; }
-	.pos-dot.blue { background: #0284c7; }
-	.pos-dot.green { background: #059669; }
-	.pos-dot.amber { background: #d97706; }
-	.pos-dot.purple { background: #7c3aed; }
 
 	/* Floating Quick-Toggle Pill on Page */
 	.dyslexic-floating-toggle {
@@ -1280,6 +1403,13 @@ const { title = 'this article' } = Astro.props;
 				}
 			}
 
+			// Compact bar play button
+			const compactPlayIcon = compactPlayBtn?.querySelector('.tts-play-icon') as HTMLElement | null;
+			const compactPauseIcon = compactPlayBtn?.querySelector('.tts-pause-icon') as HTMLElement | null;
+			if (compactPlayIcon) compactPlayIcon.style.display = isPlaying ? 'none' : 'block';
+			if (compactPauseIcon) compactPauseIcon.style.display = isPlaying ? 'block' : 'none';
+			if (compactPlayLabel) compactPlayLabel.textContent = isPlaying ? 'Pause' : 'Listen';
+
 			// Sticky bar icons
 			const stickyPlayIcon = stickyPlayBtn?.querySelector('.tts-play-icon') as HTMLElement | null;
 			const stickyPauseIcon = stickyPlayBtn?.querySelector('.tts-pause-icon') as HTMLElement | null;
@@ -1298,6 +1428,17 @@ const { title = 'this article' } = Astro.props;
 		}
 
 		// 4. Attach Event Listeners
+		const compactPlayBtn = document.getElementById('tts-compact-play');
+		const compactPlayLabel = document.getElementById('tts-compact-play-label');
+
+		compactPlayBtn?.addEventListener('click', () => {
+			if (playbackState === 'PLAYING') {
+				pausePlayback();
+			} else {
+				resumePlayback();
+			}
+		});
+
 		mainPlayBtn?.addEventListener('click', () => {
 			if (playbackState === 'PLAYING') {
 				pausePlayback();
@@ -1337,6 +1478,28 @@ const { title = 'this article' } = Astro.props;
 		stopBtn?.addEventListener('click', stopPlayback);
 		stickyCloseBtn?.addEventListener('click', stopPlayback);
 
+		// Expand / Collapse Options Drawer
+		const expandBtn = document.getElementById('tts-expand-btn');
+		const expandedDrawer = document.getElementById('tts-expanded-drawer');
+		let isOptionsExpanded = false;
+
+		function setOptionsExpanded(expanded: boolean) {
+			isOptionsExpanded = expanded;
+			if (expandedDrawer) {
+				expandedDrawer.style.display = expanded ? 'block' : 'none';
+			}
+			if (expandBtn) {
+				expandBtn.setAttribute('aria-expanded', String(expanded));
+				expandBtn.classList.toggle('is-expanded', expanded);
+				const textEl = expandBtn.querySelector('.tts-expand-text');
+				if (textEl) textEl.textContent = expanded ? 'Hide' : 'Options';
+			}
+		}
+
+		expandBtn?.addEventListener('click', () => {
+			setOptionsExpanded(!isOptionsExpanded);
+		});
+
 		speedSelect?.addEventListener('change', (e) => {
 			const val = parseFloat((e.target as HTMLSelectElement).value);
 			if (!isNaN(val)) {
@@ -1375,27 +1538,32 @@ const { title = 'this article' } = Astro.props;
 		});
 
 		// 5. Accessible & Dyslexic Reading Modes Controller
-		const dyslexicBtn = document.getElementById('tts-dyslexic-btn');
-		const dyslexicBadge = document.getElementById('tts-dyslexic-state');
-		const stickyDyslexicBtn = document.getElementById('tts-sticky-dyslexic');
+		const quickBionicBtn = document.getElementById('tts-quick-bionic');
+		const chipBionic = document.getElementById('tts-chip-bionic');
+		const chipDyslexicFont = document.getElementById('tts-chip-dyslexic-font');
+		const chipSpacing = document.getElementById('tts-chip-spacing');
+		const chipPos = document.getElementById('tts-chip-pos');
+		const chipRuler = document.getElementById('tts-chip-ruler');
+		const posPanel = document.getElementById('tts-pos-panel');
+		const paletteButtons = document.querySelectorAll<HTMLButtonElement>('.tts-palette-btn');
+		const stickyBionicBtn = document.getElementById('tts-sticky-bionic');
 		const pillToggle = document.getElementById('dyslexic-pill-toggle');
 		const readingRuler = document.getElementById('dyslexic-reading-ruler');
 
-		const chipPos = document.getElementById('tts-chip-pos');
-		const chipBionic = document.getElementById('tts-chip-bionic');
-		const chipRuler = document.getElementById('tts-chip-ruler');
-		const posLegend = document.getElementById('tts-pos-legend');
-
 		interface DyslexicSettings {
 			dyslexicMode: boolean;
+			wideSpacing: boolean;
 			posColors: boolean;
+			posPalette: 'montessori' | 'microsoft' | 'pastel';
 			bionicReading: boolean;
 			readingRuler: boolean;
 		}
 
 		let dyslexicSettings: DyslexicSettings = {
 			dyslexicMode: false,
+			wideSpacing: false,
 			posColors: false,
+			posPalette: 'montessori',
 			bionicReading: false,
 			readingRuler: false
 		};
@@ -1403,29 +1571,33 @@ const { title = 'this article' } = Astro.props;
 		function applyDyslexicSettings() {
 			// Toggle body classes
 			document.body.classList.toggle('dyslexic-mode', dyslexicSettings.dyslexicMode);
+			document.body.classList.toggle('wide-spacing-active', dyslexicSettings.wideSpacing);
 			document.body.classList.toggle('pos-colors-active', dyslexicSettings.posColors);
 			document.body.classList.toggle('bionic-reading-active', dyslexicSettings.bionicReading);
 			document.body.classList.toggle('has-reading-ruler', dyslexicSettings.readingRuler);
 
-			// Synchronize UI buttons & badges
-			if (dyslexicBtn) {
-				dyslexicBtn.classList.toggle('is-active', dyslexicSettings.dyslexicMode);
-				dyslexicBtn.setAttribute('aria-pressed', String(dyslexicSettings.dyslexicMode));
-			}
-			if (dyslexicBadge) {
-				dyslexicBadge.textContent = dyslexicSettings.dyslexicMode ? 'ON' : 'OFF';
-			}
-			if (stickyDyslexicBtn) {
-				stickyDyslexicBtn.classList.toggle('is-active', dyslexicSettings.dyslexicMode);
+			// Color Palettes
+			document.body.classList.toggle('pos-palette-microsoft', dyslexicSettings.posPalette === 'microsoft');
+			document.body.classList.toggle('pos-palette-pastel', dyslexicSettings.posPalette === 'pastel');
+
+			// Synchronize UI buttons & chips
+			quickBionicBtn?.classList.toggle('is-active', dyslexicSettings.bionicReading);
+			chipBionic?.classList.toggle('is-active', dyslexicSettings.bionicReading);
+			stickyBionicBtn?.classList.toggle('is-active', dyslexicSettings.bionicReading);
+			pillToggle?.classList.toggle('is-active', dyslexicSettings.bionicReading);
+
+			chipDyslexicFont?.classList.toggle('is-active', dyslexicSettings.dyslexicMode);
+			chipSpacing?.classList.toggle('is-active', dyslexicSettings.wideSpacing);
+			chipPos?.classList.toggle('is-active', dyslexicSettings.posColors);
+			chipRuler?.classList.toggle('is-active', dyslexicSettings.readingRuler);
+
+			if (posPanel) {
+				posPanel.style.display = dyslexicSettings.posColors ? 'flex' : 'none';
 			}
 
-			if (chipPos) chipPos.classList.toggle('is-active', dyslexicSettings.posColors);
-			if (chipBionic) chipBionic.classList.toggle('is-active', dyslexicSettings.bionicReading);
-			if (chipRuler) chipRuler.classList.toggle('is-active', dyslexicSettings.readingRuler);
-
-			if (posLegend) {
-				posLegend.style.display = dyslexicSettings.posColors ? 'flex' : 'none';
-			}
+			paletteButtons.forEach((btn) => {
+				btn.classList.toggle('is-active', btn.dataset.palette === dyslexicSettings.posPalette);
+			});
 
 			try {
 				localStorage.setItem('decoding_dyslexic_settings', JSON.stringify(dyslexicSettings));
@@ -1440,37 +1612,48 @@ const { title = 'this article' } = Astro.props;
 				dyslexicSettings = { ...dyslexicSettings, ...JSON.parse(saved) };
 			} else if (localStorage.getItem('decoding_dyslexic_mode') === 'true') {
 				dyslexicSettings.dyslexicMode = true;
-				dyslexicSettings.readingRuler = true;
 			}
 			applyDyslexicSettings();
 		} catch (err) {}
 
-		const toggleMasterDyslexic = () => {
-			dyslexicSettings.dyslexicMode = !dyslexicSettings.dyslexicMode;
-			// If activating master dyslexic and no other helper was on, activate ruler as well
-			if (dyslexicSettings.dyslexicMode && !dyslexicSettings.readingRuler) {
-				dyslexicSettings.readingRuler = true;
-			}
+		const toggleBionic = () => {
+			dyslexicSettings.bionicReading = !dyslexicSettings.bionicReading;
 			applyDyslexicSettings();
 		};
 
-		dyslexicBtn?.addEventListener('click', toggleMasterDyslexic);
-		stickyDyslexicBtn?.addEventListener('click', toggleMasterDyslexic);
-		pillToggle?.addEventListener('click', toggleMasterDyslexic);
+		quickBionicBtn?.addEventListener('click', toggleBionic);
+		chipBionic?.addEventListener('click', toggleBionic);
+		stickyBionicBtn?.addEventListener('click', toggleBionic);
+		pillToggle?.addEventListener('click', toggleBionic);
+
+		chipDyslexicFont?.addEventListener('click', () => {
+			dyslexicSettings.dyslexicMode = !dyslexicSettings.dyslexicMode;
+			applyDyslexicSettings();
+		});
+
+		chipSpacing?.addEventListener('click', () => {
+			dyslexicSettings.wideSpacing = !dyslexicSettings.wideSpacing;
+			applyDyslexicSettings();
+		});
 
 		chipPos?.addEventListener('click', () => {
 			dyslexicSettings.posColors = !dyslexicSettings.posColors;
 			applyDyslexicSettings();
 		});
 
-		chipBionic?.addEventListener('click', () => {
-			dyslexicSettings.bionicReading = !dyslexicSettings.bionicReading;
-			applyDyslexicSettings();
-		});
-
 		chipRuler?.addEventListener('click', () => {
 			dyslexicSettings.readingRuler = !dyslexicSettings.readingRuler;
 			applyDyslexicSettings();
+		});
+
+		paletteButtons.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const pal = btn.dataset.palette as any;
+				if (pal && ['montessori', 'microsoft', 'pastel'].includes(pal)) {
+					dyslexicSettings.posPalette = pal;
+					applyDyslexicSettings();
+				}
+			});
 		});
 
 		// Reading ruler mouse tracking
