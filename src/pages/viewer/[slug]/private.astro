@@ -393,6 +393,67 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 				font-weight: 500;
 			}
 
+			.notes-content-box p {
+				margin: 0 0 1rem 0;
+			}
+
+			.notes-content-box p:last-child {
+				margin-bottom: 0;
+			}
+
+			.notes-legal-card {
+				background: rgba(239, 68, 68, 0.12);
+				border: 1.5px solid rgba(239, 68, 68, 0.4);
+				border-radius: 8px;
+				padding: 0.95rem 1.15rem;
+				margin-top: 1.15rem;
+			}
+
+			.notes-legal-card-header {
+				font-size: 0.8rem;
+				font-weight: 800;
+				letter-spacing: 0.06em;
+				color: #f87171;
+				display: flex;
+				align-items: center;
+				gap: 0.45rem;
+				margin-bottom: 0.45rem;
+			}
+
+			.notes-legal-card-body {
+				font-size: 1.05rem;
+				line-height: 1.6;
+				color: #fca5a5;
+				font-weight: 500;
+			}
+
+			.notes-spoken-card {
+				background: rgba(56, 189, 248, 0.12);
+				border: 1.5px solid rgba(56, 189, 248, 0.4);
+				border-radius: 8px;
+				padding: 1.1rem 1.25rem;
+				margin-bottom: 1.15rem;
+			}
+
+			.notes-spoken-card-header {
+				font-size: 0.82rem;
+				font-weight: 800;
+				letter-spacing: 0.06em;
+				color: #38bdf8;
+				display: flex;
+				align-items: center;
+				gap: 0.45rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.notes-spoken-card-body {
+				font-size: 1.18rem;
+				line-height: 1.7;
+				color: #ffffff;
+				font-weight: 600;
+				font-style: italic;
+			}
+
 			.next-preview-card {
 				background: var(--panel-bg);
 				border: 1px solid var(--border-color);
@@ -874,8 +935,43 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 						});
 					}
 
+					// Speaker Notes with High-Contrast Legal & Spoken Cues
+					function formatNotesHtml(notesText) {
+						if (!notesText) return '<p>Discuss this section.</p>';
+						const paragraphs = notesText.split('\n\n');
+						let html = '';
+						paragraphs.forEach((p) => {
+							const trimmed = p.trim();
+							if (!trimmed) return;
+							if (trimmed.startsWith('🛡️ LEGAL SHIELD:')) {
+								const body = trimmed.replace('🛡️ LEGAL SHIELD:', '').trim();
+								html += `
+									<div class="notes-legal-card">
+										<div class="notes-legal-card-header">
+											<span>🛡️ LEGAL & YOUTUBE SHIELD</span>
+										</div>
+										<div class="notes-legal-card-body">${body}</div>
+									</div>
+								`;
+							} else if (trimmed.startsWith('🎙️ READ VERBATIM OPENING DISCLAIMER:')) {
+								const body = trimmed.replace('🎙️ READ VERBATIM OPENING DISCLAIMER:', '').trim();
+								html += `
+									<div class="notes-spoken-card">
+										<div class="notes-spoken-card-header">
+											<span>🎙️ READ VERBATIM OPENING DISCLAIMER (ALOUD)</span>
+										</div>
+										<div class="notes-spoken-card-body">${body}</div>
+									</div>
+								`;
+							} else {
+								html += `<p>${trimmed}</p>`;
+							}
+						});
+						return html;
+					}
+
 					if (notesBox) {
-						notesBox.innerHTML = `<p>${s.notes || 'Discuss this section.'}</p>`;
+						notesBox.innerHTML = formatNotesHtml(s.notes);
 					}
 
 					if (currentSlide < totalSlides - 1) {

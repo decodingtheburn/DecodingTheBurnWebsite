@@ -34,35 +34,35 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 
 	const slides: SlideItem[] = [];
 
-	// Slide 1: Presenter Setup & Recording Controls
-	slides.push({
-		id: 1,
-		badge: "Setup",
-		title: "Presenter Guide & Controls",
-		bullets: [
-			"Spacebar: Advance to next point",
-			"Shift + Space: Step backward",
-			"F key: Toggle fullscreen mode",
-			"? key: Open shortcuts guide",
-			"Press Spacebar to begin recording"
-		],
-		notes: `Recording session for: "${cleanText(title)}". Verify mic and OBS canvas. Hit Spacebar to begin.`
-	});
-
-	// Slide 2: Title Slide
+	// Slide 1: Title Slide
 	const descCues = description
 		? description.split(/[.;]/).map(s => toFiveWordCue(s)).filter(s => s.length > 5).slice(0, 3)
 		: ["Forensic journey and clinical analysis", "Decoding the root causes of oral pain", "By Dennis Ethier at DecodingTheBurn"];
 
 	slides.push({
-		id: 2,
+		id: 1,
 		badge: "Title",
 		title: cleanText(title),
 		bullets: [
 			...descCues,
 			"By Dennis Ethier at DecodingTheBurn"
 		],
-		notes: `Introduction: "${cleanText(title)}". Explain why this topic matters and what viewers/readers will discover.`
+		notes: `Introduction: "${cleanText(title)}". Explain why this topic matters and what viewers/readers will discover.\n\n🛡️ LEGAL SHIELD: Never claim a universal 'cure'. Frame your journey as an individual forensic investigation.`
+	});
+
+	// Slide 2: Medical & Literature Disclaimer
+	slides.push({
+		id: 2,
+		badge: "Disclaimer",
+		title: "Medical & Literature Disclaimer",
+		bullets: [
+			"Independent literature researcher, not doctor",
+			"Personal N=1 lived experience only",
+			"Educational and investigative inquiry",
+			"Consult physician before dietary shifts",
+			"Everyone's biological makeup is unique"
+		],
+		notes: `🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this video is for educational and forensic purposes only. BMS is complex and everyone's biology is different, so please consult your doctor before making any major changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context satisfies YouTube medical misinformation policies and sets clear boundaries against unauthorized practice of medicine.`
 	});
 
 	// Split body by H2 headings (## Heading)

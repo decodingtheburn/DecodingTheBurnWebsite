@@ -9,19 +9,6 @@ export interface SlideItem {
 export const bmsSlides: SlideItem[] = [
 	{
 		id: 1,
-		badge: "Setup",
-		title: "Presenter Guide & Controls",
-		bullets: [
-			"Spacebar: Advance to next point",
-			"Shift + Space: Step backward",
-			"F key: Toggle fullscreen mode",
-			"? key: Open shortcuts guide",
-			"Press Spacebar to begin recording"
-		],
-		notes: "Verify your microphone, lighting, and OBS canvas. When you are ready to record, hit Spacebar to advance to the title slide."
-	},
-	{
-		id: 2,
 		badge: "Title",
 		title: "How I Solved My BMS",
 		bullets: [
@@ -31,7 +18,20 @@ export const bmsSlides: SlideItem[] = [
 			"Solving the hidden physical triggers",
 			"By Dennis Ethier at DecodingTheBurn"
 		],
-		notes: "Introduce yourself and DecodingTheBurn.com. Frame BMS as an engineering failure: you approached your body like a biophysical circuit with a fault, not a psychological mystery."
+		notes: "Introduce yourself and DecodingTheBurn.com. Frame BMS as an engineering failure: you approached your body like a biophysical circuit with a fault, not a psychological mystery.\n\n🛡️ LEGAL SHIELD: Never claim a universal 'cure'. Frame your journey as a personal forensic investigation leading to complete remission in your individual case."
+	},
+	{
+		id: 2,
+		badge: "Disclaimer",
+		title: "Medical & Literature Disclaimer",
+		bullets: [
+			"Independent literature researcher, not doctor",
+			"Personal N=1 lived experience only",
+			"Educational and investigative inquiry",
+			"Consult physician before dietary shifts",
+			"Everyone's biological makeup is unique"
+		],
+		notes: "🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this video is for educational and forensic purposes only. BMS is complex and everyone's biology is different, so please consult your doctor before making any major changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context directly complies with YouTube's 2025/2026 medical misinformation policies and sets clear boundaries against unauthorized practice of medicine."
 	},
 	{
 		id: 3,
@@ -44,7 +44,7 @@ export const bmsSlides: SlideItem[] = [
 			"Inspired by author Peggy Shaw",
 			"YouTube series, blog, upcoming book"
 		],
-		notes: "Deliver your 1-minute intro: Thousands suffer with BMS, but real recovery stories are scarce. Acknowledge it might not work for everyone, but your remission is real. Mention Peggy Shaw's book on removing dental materials. Announce your YouTube series, blog posts, and the upcoming book."
+		notes: "Deliver your 1-minute intro: Thousands suffer with BMS, but real recovery stories are scarce. Acknowledge it might not work for everyone, but your remission is real. Mention Peggy Shaw's book on removing dental materials. Announce your YouTube series, blog posts, and the upcoming book.\n\n🛡️ LEGAL SHIELD: Frame as lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others."
 	},
 	{
 		id: 4,
@@ -57,7 +57,7 @@ export const bmsSlides: SlideItem[] = [
 			"Standard doctors called it 'idiopathic'",
 			"Refused to accept lifelong pain"
 		],
-		notes: "Describe how it crept in slowly. Intermittent tingling turned into constant daily heat. Flossing between canines and premolars caused severe 10/10 allodynia. Doctors said 'idiopathic' and offered nerve pills. You refused to accept that it was in your head."
+		notes: "Describe how it crept in slowly. Intermittent tingling turned into constant daily heat. Flossing between canines and premolars caused severe 10/10 allodynia. Doctors said 'idiopathic' and offered nerve pills. You refused to accept that it was in your head.\n\n🛡️ LEGAL SHIELD: Discuss healthcare professionals respectfully. Frame your journey as searching for biophysical root causes that standard brief consultations do not have time to explore."
 	},
 	{
 		id: 5,
@@ -70,7 +70,7 @@ export const bmsSlides: SlideItem[] = [
 			"100% Carnivore Paleolithic Ketogenic diet",
 			"Immediate calming of oral heat"
 		],
-		notes: "Explain that 'healthy' foods (citrus, berries, vinegar, coffee) have a pH of 2.5 to 4.0. Acidic protons (H+) activate Acid-Sensing Ion Channels (ASIC1/3) and TRPV1 on exposed dentin and mucosal nerves. Switching to pure meat, fat, salt, and water eliminated the fuel."
+		notes: "Explain that 'healthy' foods (citrus, berries, vinegar, coffee) have a pH of 2.5 to 4.0. Acidic protons (H+) activate Acid-Sensing Ion Channels (ASIC1/3) and TRPV1 on exposed dentin and mucosal nerves. Switching to pure meat, fat, salt, and water eliminated the fuel.\n\n🛡️ LEGAL SHIELD: CRITICAL YOUTUBE GUARD: Never say 'You must eat carnivore to cure BMS.' Frame strictly as: 'In my personal N=1 case, I tested an elimination protocol to remove acidic triggers.' Note that extreme elimination diets carry risks and require physician oversight."
 	},
 	{
 		id: 6,
@@ -83,7 +83,7 @@ export const bmsSlides: SlideItem[] = [
 			"Tooth 36: Three hidden cavities",
 			"Micro-leakage electrified the trigeminal nerve"
 		],
-		notes: "Diet stopped the fuel, but what ignited the nerve? 4 composite resin patches had subgingival overhangs trapping plaque. Tooth 36 had an old crown concealing 3 cavities invisible on 2D x-rays. Micro-leakage and hydrolysis generated continuous electrical distress to V2-V3."
+		notes: "Diet stopped the fuel, but what ignited the nerve? 4 composite resin patches had subgingival overhangs trapping plaque. Tooth 36 had an old crown concealing 3 cavities invisible on 2D x-rays. Micro-leakage and hydrolysis generated continuous electrical distress to V2-V3.\n\n🛡️ LEGAL SHIELD: Avoid accusing individual dental practitioners of negligence. Frame this as forensic hardware inspection: margins and micro-leakage can physically distress trigeminal nerve fibers."
 	},
 	{
 		id: 7,
@@ -96,7 +96,7 @@ export const bmsSlides: SlideItem[] = [
 			"Dual repair: hardware and nutrition",
 			"Nine months of complete remission"
 		],
-		notes: "Connect the full picture: past vegetarian years depleted collagen (causing the inguinal hernia) and created leaky gut. LPS endotoxins primed the trigeminal ganglion. Dual fix: smoothed composite margins, fixed tooth 36, and sealed the gut with carnivore. Result: 9 months of total peace."
+		notes: "Connect the full picture: past vegetarian years depleted collagen (causing the inguinal hernia) and created leaky gut. LPS endotoxins primed the trigeminal ganglion. Dual fix: smoothed composite margins, fixed tooth 36, and sealed the gut with carnivore. Result: 9 months of total peace.\n\n🛡️ LEGAL SHIELD: Frame biological mechanisms (endotoxins, collagen, V2-V3) as scientific concepts from published literature, not absolute medical dogma."
 	},
 	{
 		id: 8,
@@ -109,6 +109,6 @@ export const bmsSlides: SlideItem[] = [
 			"Become lead investigator of health",
 			"Your pain has physical causes"
 		],
-		notes: "Call to action: Subscribe to the YouTube channel, visit DecodingTheBurn.com, and download the free dentist audit checklist. Encourage patients to keep digging because pain always has a physical biophysical cause."
+		notes: "Call to action: Subscribe to the YouTube channel, visit DecodingTheBurn.com, and download the free dentist audit checklist. Encourage patients to keep digging because pain always has a physical biophysical cause.\n\n🛡️ LEGAL SHIELD: If discussing viewer surveys, frame as 'casual community polls and sharing comments', NEVER as an official clinical trial (which requires prior IRB approval)."
 	}
 ];
