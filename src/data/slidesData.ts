@@ -36,15 +36,13 @@ export const bmsSlides: SlideItem[] = [
 	{
 		id: 3,
 		badge: "Disclaimer",
-		title: "Medical & Literature Disclaimer",
+		title: "Medical Disclaimer",
 		bullets: [
-			"Independent literature researcher, not doctor",
-			"Personal N=1 lived experience only",
-			"Educational and investigative inquiry",
-			"Consult physician before dietary shifts",
-			"Everyone's biological makeup is unique"
+			"Consult a qualified medical professional",
+			"Educational and personal experience only",
+			"Not medical or dental advice"
 		],
-		notes: "🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this video is for educational and forensic purposes only. BMS is complex and everyone's biology is different, so please consult your doctor before making any major changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context directly complies with YouTube's 2025/2026 medical misinformation policies and sets clear boundaries against unauthorized practice of medicine."
+		notes: "🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this presentation is for educational purposes only. Always consult a qualified medical professional before making any changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context directly complies with YouTube's 2025/2026 medical misinformation policies and sets clear boundaries against unauthorized practice of medicine."
 	},
 	{
 		id: 4,

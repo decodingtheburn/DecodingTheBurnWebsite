@@ -67,19 +67,17 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 		notes: `Deliver your 1-minute personal story: Started three years ago with a sudden trigger, escalated to 10/10 flossing agony after cervical dental patches. You treated your body like an engineering circuit, investigated the root hardware and fuel, and achieved nine months of complete remission.\n\n🛡️ LEGAL SHIELD: Frame as personal lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others.`
 	});
 
-	// Slide 3: Medical & Literature Disclaimer
+	// Slide 3: Medical Disclaimer
 	slides.push({
 		id: 3,
 		badge: "Disclaimer",
-		title: "Medical & Literature Disclaimer",
+		title: "Medical Disclaimer",
 		bullets: [
-			"Independent literature researcher, not doctor",
-			"Personal N=1 lived experience only",
-			"Educational and investigative inquiry",
-			"Consult physician before dietary shifts",
-			"Everyone's biological makeup is unique"
+			"Consult a qualified medical professional",
+			"Educational and personal experience only",
+			"Not medical or dental advice"
 		],
-		notes: `🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this video is for educational and forensic purposes only. BMS is complex and everyone's biology is different, so please consult your doctor before making any major changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context directly complies with YouTube medical misinformation policies and sets clear boundaries against unauthorized practice of medicine.`
+		notes: `🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this presentation is for educational purposes only. Always consult a qualified medical professional before making any changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context directly complies with YouTube medical misinformation policies and sets clear boundaries against unauthorized practice of medicine.`
 	});
 
 	let slideCounter = 4;
