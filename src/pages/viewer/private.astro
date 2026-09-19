@@ -11,7 +11,7 @@ import { bmsSlides } from '../../data/slidesData';
 			title="Private Presenter Cockpit: How I Solved My BMS" 
 			description="Dennis's private presenter dashboard with live teleprompter notes, elapsed timer, and remote sync." 
 		/>
-		<style>
+		<style is:global>
 			:root {
 				--bg-darkest: #07090d;
 				--panel-bg: #0d1118;
@@ -241,52 +241,71 @@ import { bmsSlides } from '../../data/slidesData';
 			}
 
 			.bullet-dot-indicator {
-				width: 14px;
-				height: 14px;
+				width: 16px;
+				height: 16px;
 				border-radius: 50%;
 				flex-shrink: 0;
-				transition: all 0.2s ease;
+				transition: all 0.22s ease;
 			}
 
-			/* Bullet States in Cockpit with Ultra-Crisp High Contrast */
+			.bullet-text-content {
+				color: #ffffff !important;
+				flex: 1;
+			}
+
+			/* 1. LIVE (ACTIVE) POINT: Glowing Emerald Green (Dennis: green for the live one) */
 			.cockpit-bullet-item.is-active {
-				background: rgba(239, 68, 68, 0.18);
-				border: 1.5px solid rgba(239, 68, 68, 0.45);
+				background: rgba(34, 197, 94, 0.18) !important;
+				border: 2px solid #22c55e !important;
+				box-shadow: 0 0 20px rgba(34, 197, 94, 0.35), inset 0 0 10px rgba(34, 197, 94, 0.15) !important;
+				transform: translateX(8px);
 			}
 
 			.cockpit-bullet-item.is-active .bullet-dot-indicator {
-				background: #ef4444;
-				box-shadow: 0 0 12px #ef4444;
+				background: #22c55e !important;
+				box-shadow: 0 0 16px #22c55e, 0 0 30px rgba(34, 197, 94, 0.7) !important;
 				transform: scale(1.35);
 			}
 
 			.cockpit-bullet-item.is-active .bullet-text-content {
-				color: #ffffff;
-				font-weight: 800;
-				text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+				color: #ffffff !important;
+				font-weight: 800 !important;
+				text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 			}
 
-			.cockpit-bullet-item.is-revealed .bullet-dot-indicator {
-				background: #94a3b8;
-			}
-
-			.cockpit-bullet-item.is-revealed .bullet-text-content {
-				color: #e2e8f0;
-				font-weight: 600;
-				opacity: 0.9;
-			}
-
+			/* 2. INACTIVE / UPCOMING POINTS: Red Dot Accent with 100% VISIBLE TEXT (Dennis: red for inactive, text visible all the time) */
 			.cockpit-bullet-item.is-dimmed {
-				opacity: 0.42;
+				opacity: 1 !important; /* 100% visible, NEVER dark or faded */
+				background: rgba(239, 68, 68, 0.06) !important;
+				border: 1.5px solid rgba(239, 68, 68, 0.35) !important;
 			}
 
 			.cockpit-bullet-item.is-dimmed .bullet-dot-indicator {
-				background: #475569;
+				background: #ef4444 !important;
+				box-shadow: 0 0 10px rgba(239, 68, 68, 0.7) !important;
+				transform: scale(1);
 			}
 
 			.cockpit-bullet-item.is-dimmed .bullet-text-content {
-				color: #cbd5e1;
-				font-weight: 500;
+				color: #f1f5f9 !important; /* Crisp, readable light text */
+				font-weight: 600 !important;
+			}
+
+			/* 3. REVEALED / PAST POINTS: Clean finished status with soft gray/cyan dot */
+			.cockpit-bullet-item.is-revealed {
+				opacity: 0.88 !important;
+				background: rgba(255, 255, 255, 0.03) !important;
+				border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+			}
+
+			.cockpit-bullet-item.is-revealed .bullet-dot-indicator {
+				background: #64748b !important;
+				box-shadow: none !important;
+			}
+
+			.cockpit-bullet-item.is-revealed .bullet-text-content {
+				color: #cbd5e1 !important;
+				font-weight: 600 !important;
 			}
 
 			/* Navigation Dock */
@@ -373,76 +392,80 @@ import { bmsSlides } from '../../data/slidesData';
 			}
 
 			.notes-content-box {
-				background: #090c12;
-				border: 1px solid rgba(255, 255, 255, 0.1);
-				border-radius: 8px;
-				padding: 1.35rem;
+				background: #080b12 !important;
+				border: 1.5px solid #252f44 !important;
+				border-radius: 10px;
+				padding: 1.5rem;
 				flex: 1;
 				overflow-y: auto;
-				font-size: 1.25rem;
-				line-height: 1.75;
-				color: #f8fafc;
+				font-size: 1.35rem !important;
+				line-height: 1.8 !important;
+				color: #f8fafc !important;
 				font-weight: 500;
 			}
 
 			.notes-content-box p {
-				margin: 0 0 1rem 0;
+				margin: 0 0 1.15rem 0 !important;
+				color: #ffffff !important;
+				font-size: 1.35rem !important;
+				line-height: 1.8 !important;
+				font-weight: 600 !important;
 			}
 
 			.notes-content-box p:last-child {
-				margin-bottom: 0;
+				margin-bottom: 0 !important;
 			}
 
 			.notes-legal-card {
-				background: rgba(239, 68, 68, 0.12);
-				border: 1.5px solid rgba(239, 68, 68, 0.4);
+				background: rgba(239, 68, 68, 0.18) !important;
+				border: 2px solid rgba(239, 68, 68, 0.55) !important;
 				border-radius: 8px;
-				padding: 0.95rem 1.15rem;
-				margin-top: 1.15rem;
+				padding: 1.15rem 1.35rem;
+				margin-top: 1.25rem;
 			}
 
 			.notes-legal-card-header {
-				font-size: 0.8rem;
-				font-weight: 800;
-				letter-spacing: 0.06em;
-				color: #f87171;
-				display: flex;
-				align-items: center;
-				gap: 0.45rem;
-				margin-bottom: 0.45rem;
-			}
-
-			.notes-legal-card-body {
-				font-size: 1.05rem;
-				line-height: 1.6;
-				color: #fca5a5;
-				font-weight: 500;
-			}
-
-			.notes-spoken-card {
-				background: rgba(56, 189, 248, 0.12);
-				border: 1.5px solid rgba(56, 189, 248, 0.4);
-				border-radius: 8px;
-				padding: 1.1rem 1.25rem;
-				margin-bottom: 1.15rem;
-			}
-
-			.notes-spoken-card-header {
-				font-size: 0.82rem;
-				font-weight: 800;
-				letter-spacing: 0.06em;
-				color: #38bdf8;
+				font-size: 0.85rem !important;
+				font-weight: 800 !important;
+				letter-spacing: 0.08em;
+				color: #f87171 !important;
 				display: flex;
 				align-items: center;
 				gap: 0.45rem;
 				margin-bottom: 0.5rem;
 			}
 
+			.notes-legal-card-body {
+				font-size: 1.15rem !important;
+				line-height: 1.7 !important;
+				color: #ffffff !important;
+				font-weight: 600 !important;
+			}
+
+			.notes-spoken-card {
+				background: rgba(56, 189, 248, 0.18) !important;
+				border: 2px solid rgba(56, 189, 248, 0.55) !important;
+				border-radius: 8px;
+				padding: 1.25rem 1.45rem;
+				margin-bottom: 1.25rem;
+			}
+
+			.notes-spoken-card-header {
+				font-size: 0.88rem !important;
+				font-weight: 800 !important;
+				letter-spacing: 0.08em;
+				color: #38bdf8 !important;
+				display: flex;
+				align-items: center;
+				gap: 0.45rem;
+				margin-bottom: 0.6rem;
+			}
+
 			.notes-spoken-card-body {
-				font-size: 1.18rem;
-				line-height: 1.7;
-				color: #ffffff;
-				font-weight: 600;
+				font-size: 1.28rem !important;
+				line-height: 1.8 !important;
+				color: #ffffff !important;
+				font-weight: 700 !important;
 				font-style: italic;
 			}
 
