@@ -45,7 +45,7 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 		title: "Why I'm Sharing This",
 		bullets: [
 			"BMS recovery stories are rarely shared",
-			"My complete remission is 100% real",
+			"Stopping my symptoms is 100% real",
 			toFiveWordCue(cleanText(title)) || "Forensic analysis of oral pain",
 			...descCues.slice(0, 2)
 		],
@@ -62,9 +62,9 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 			"Flossing triggered 10/10 electric agony after patches",
 			"Exhausted all supplements & medications",
 			"Inspired by author Peggy Sharr",
-			"Now in nine months of complete remission"
+			"Now nine months completely symptom-free"
 		],
-		notes: `Deliver your personal story: 18 months of relentless burning pain that escalated to 10/10 flossing agony after cervical resin patches. Exhausted supplements and medicines before a 4-day fast and carnivore diet starved the fire, achieving nine months of complete remission.\n\n🛡️ LEGAL SHIELD: Frame as personal lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others.`
+		notes: `Deliver your personal story: 18 months of relentless burning pain that escalated to 10/10 flossing agony after cervical resin patches. Exhausted supplements and medicines before a 4-day fast and carnivore diet starved the fire, completely stopping the pain for nine continuous months.\n\n🛡️ LEGAL SHIELD: Frame as personal lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others.`
 	});
 
 	// Slide 3: Medical Disclaimer

@@ -15,11 +15,11 @@ const posts = (await getCollection('blog', ({ data }) => {
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-// Dynamic calculation of remission duration based on June 2025 (last severe burning)
-const remissionStartYear = 2025;
-const remissionStartMonth = 5; // June (0-indexed)
+// Dynamic calculation of symptom-free duration based on June 2025 (last severe burning)
+const symptomFreeStartYear = 2025;
+const symptomFreeStartMonth = 5; // June (0-indexed)
 const currentDate = new Date();
-const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 + (currentDate.getMonth() - remissionStartMonth) + 1;
+const monthsSymptomFree = (currentDate.getFullYear() - symptomFreeStartYear) * 12 + (currentDate.getMonth() - symptomFreeStartMonth) + 1;
 ---
 
 <!doctype html>
@@ -50,7 +50,7 @@ const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 
 					<div class="video-placeholder-wrapper" id="videoPlaceholder" role="button" tabindex="0" aria-label="Play video: How I Stopped My BMS">
 						<Image 
 							src={authorPhoto} 
-							alt={`Denis Ethier - How I Stopped My BMS Symptoms ${monthsInRemission} Months Ago`} 
+							alt={`Denis Ethier - How I Stopped My BMS Symptoms ${monthsSymptomFree} Months Ago`} 
 							class="video-placeholder-img" 
 							width={1400} 
 							height={788}
@@ -76,7 +76,7 @@ const monthsInRemission = (currentDate.getFullYear() - remissionStartYear) * 12 
 							After consulting five dentists and five medical doctors who ran extensive tests only to tell me everything looked completely normal, I realized traditional medicine had no clear solution for my&nbsp;condition.
 						</p>
 						<p>
-							I decided to treat my body like an engineering system. Through rigorous tracking, gentle nighttime mouth taping, and targeted nutritional protocols, I systematically brought my burning symptoms from a 10/10 down to&nbsp;0/10.
+							I decided to track and test everything systematically. Through rigorous food logging, gentle nighttime mouth taping, and targeted nutritional adjustments, I systematically brought my burning symptoms from a 10/10 down to&nbsp;0/10.
 						</p>
 						<p class="continue-reading-p">
 							<a href="/about" class="continue-reading-link">Continue reading &rarr;</a>

@@ -25,13 +25,13 @@ export const bmsSlides: SlideItem[] = [
 		badge: "My Story",
 		title: "My Story: 18-Month BMS Journey",
 		bullets: [
-			"Hey, my name is Denis",
 			"18 months of full, relentless pain",
 			"Months of 10/10 flossing agony",
 			"Exhausted all supplements & medications",
-			"Now 9 months in complete remission"
+			"Inspired by author Peggy Sharr",
+			"Now 9 months completely symptom-free"
 		],
-		notes: "Deliver your story: 18 months of relentless pain, including multiple months of 10/10 flossing agony. You tried everything under the sun in terms of supplements and medications with zero relief. Inspired by author Peggy Sharr, you tested protocols, conducted fasting resets, and reached 9 months of complete drug-free remission.\n\n🛡️ LEGAL SHIELD: Emphasize that what worked for your individual biology may differ from others."
+		notes: "Deliver your story: 18 months of relentless pain, including multiple months of 10/10 flossing agony. You tried everything under the sun in terms of supplements and medications with zero relief. Inspired by author Peggy Sharr, you tested protocols, conducted fasting resets, and stopped the pain for 9 continuous months.\n\n🛡️ LEGAL SHIELD: Emphasize that what worked for your individual biology may differ from others."
 	},
 	{
 		id: 3,
@@ -43,7 +43,7 @@ export const bmsSlides: SlideItem[] = [
 			"Not medical or dental advice",
 			"Validating patient and doctor challenges"
 		],
-		notes: "🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an engineer and independent literature researcher sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and I cannot diagnose. This presentation is for educational purposes only. Always consult a qualified medical professional before making any changes to your health or diet. I know how hard it is to find informed doctors, which is why sharing this data is so urgent.'\n\n🛡️ LEGAL SHIELD: Directly complies with medical misinformation policies and establishes scope."
+		notes: "🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and I cannot diagnose. This presentation is for educational purposes only. Always consult a qualified medical professional before making any changes to your health or diet. I know how hard it is to find informed doctors, which is why sharing this data is so urgent.'\n\n🛡️ LEGAL SHIELD: Directly complies with medical misinformation policies and establishes scope."
 	},
 	{
 		id: 4,
@@ -99,16 +99,16 @@ export const bmsSlides: SlideItem[] = [
 	},
 	{
 		id: 8,
-		badge: "Remission",
+		badge: "Zero Symptoms",
 		title: "4-Day Fast & Carnivore Breakthrough",
 		bullets: [
 			"4-day fast to break acidity cycle",
 			"Broke fast with chicken and eggs",
 			"Only pure water and uniodized salt",
 			"Acidity identified as the prime culprit",
-			"Now 9 months strict carnivore remission"
+			"Now 9 months symptom-free on carnivore"
 		],
-		notes: "Explain the 4-day fast and dietary breakthrough: you took a 4-day fast to give your mouth a complete break from acidity. You broke the fast with just chicken and eggs, water, and salt, cutting everything else out. Keeping acidity and sugar out stopped the pain. Then explain the 6-month yo-yo cycle with snacks before achieving 9 continuous months of complete remission.\n\n🛡️ LEGAL SHIELD: Reiterate that this was an individual elimination experiment requiring medical supervision."
+		notes: "Explain the 4-day fast and dietary breakthrough: you took a 4-day fast to give your mouth a complete break from acidity. You broke the fast with just chicken and eggs, water, and salt, cutting everything else out. Keeping acidity and sugar out stopped the pain. Then explain the 6-month yo-yo cycle with snacks before achieving 9 continuous months completely free of symptoms.\n\n🛡️ LEGAL SHIELD: Reiterate that this was an individual elimination experiment requiring medical supervision."
 	},
 	{
 		id: 9,
@@ -132,9 +132,9 @@ export const bmsSlides: SlideItem[] = [
 			"Sugars feed chronic oral fermentation",
 			"Hidden decay irritated trigeminal nerve",
 			"Dual repair: hardware and nutrition",
-			"Nine months of complete remission"
+			"Nine months completely symptom-free"
 		],
-		notes: "Summarize the two-component model: diet was the fuel (acids activating ASIC1/3, sugars feeding fermentation); dental infection was the physical spark. Dual fix brought 9 months of full remission.\n\n🛡️ LEGAL SHIELD: Cite peer-reviewed literature on proton-sensing channels."
+		notes: "Summarize the two-component model: diet was the fuel (acids activating ASIC1/3, sugars feeding fermentation); dental infection was the physical spark. Dual fix stopped the burning for 9 continuous months.\n\n🛡️ LEGAL SHIELD: Cite peer-reviewed literature on proton-sensing channels."
 	},
 	{
 		id: 11,
