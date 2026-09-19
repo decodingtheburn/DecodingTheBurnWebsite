@@ -1,0 +1,737 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import TongueLogo from '../../components/TongueLogo.astro';
+import { bmsSlides } from '../../data/slidesData';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Public Viewer: How I Solved My BMS | Decoding The Burn" 
+			description="Clean, borderless 16:9 public slide presentation for OBS recording and audience viewing." 
+		/>
+		<style>
+			:root {
+				--bg-black: #06080c;
+				--stage-bg: #090c12;
+				--accent-red: #c8382c;
+			}
+
+			html, body {
+				margin: 0;
+				padding: 0;
+				width: 100vw;
+				height: 100vh;
+				background: var(--bg-black);
+				overflow: hidden;
+				font-family: var(--font-body, system-ui, sans-serif);
+				user-select: none;
+			}
+
+			/* Discreet Top Quick Bar (fades on idle) */
+			.public-top-nav {
+				position: fixed;
+				top: 10px;
+				left: 12px;
+				z-index: 100;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				opacity: 0.25;
+				transition: opacity 0.2s ease;
+			}
+
+			.public-top-nav:hover {
+				opacity: 1;
+			}
+
+			.nav-badge-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-size: 0.72rem;
+				font-weight: 600;
+				color: #94a3b8;
+				background: rgba(15, 23, 42, 0.85);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				padding: 0.25rem 0.65rem;
+				border-radius: 6px;
+				text-decoration: none;
+				backdrop-filter: blur(6px);
+			}
+
+			.nav-badge-link:hover {
+				color: #ffffff;
+				border-color: #475569;
+			}
+
+			.sync-indicator {
+				font-size: 0.7rem;
+				font-weight: 600;
+				color: #22c55e;
+				background: rgba(34, 197, 94, 0.12);
+				border: 1px solid rgba(34, 197, 94, 0.25);
+				padding: 0.25rem 0.65rem;
+				border-radius: 6px;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+			}
+
+			.sync-dot {
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background: #22c55e;
+				box-shadow: 0 0 6px #22c55e;
+			}
+
+			/* 16:9 Screen Lock */
+			.public-canvas-wrapper {
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: #06080c;
+			}
+
+			.public-slide-stage {
+				width: 100%;
+				max-width: 177.78vh; /* 16:9 aspect ratio */
+				height: 100vh;
+				background: radial-gradient(circle 900px at 50% -20%, rgba(200, 56, 44, 0.16), transparent 70%),
+				            linear-gradient(180deg, #0d1118 0%, #080a0e 100%);
+				padding: clamp(2rem, 4vh, 3.5rem) clamp(2.5rem, 5vw, 5rem);
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				box-sizing: border-box;
+				position: relative;
+				cursor: pointer;
+			}
+
+			/* Slide Header */
+			.stage-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+			}
+
+			.header-left {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+			}
+
+			.counter-pill {
+				font-family: monospace;
+				font-size: 0.82rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				color: #cbd5e1;
+				background: rgba(255, 255, 255, 0.06);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				padding: 0.3rem 0.75rem;
+				border-radius: 6px;
+			}
+
+			.topic-pill {
+				font-size: 0.8rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				color: #f87171;
+				background: rgba(239, 68, 68, 0.1);
+				border: 1px solid rgba(239, 68, 68, 0.25);
+				padding: 0.3rem 0.85rem;
+				border-radius: 6px;
+			}
+
+			.header-brand {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+			}
+
+			.brand-logo-box {
+				width: 32px;
+				height: 32px;
+			}
+
+			.brand-title {
+				font-size: 1.05rem;
+				font-weight: 800;
+				letter-spacing: -0.01em;
+				color: #f1f5f9;
+			}
+
+			/* Slide Body */
+			.stage-body {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding: 1.5rem 0;
+			}
+
+			.slide-main-title {
+				font-family: var(--font-heading, system-ui, sans-serif);
+				font-size: clamp(2rem, 4.2vw, 3.4rem);
+				font-weight: 900;
+				line-height: 1.15;
+				color: #ffffff;
+				margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+				text-wrap: balance;
+				letter-spacing: -0.025em;
+			}
+
+			/* Short 5-Word Bullet Points */
+			.bullet-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: clamp(0.85rem, 1.8vh, 1.35rem);
+			}
+
+			.bullet-item {
+				display: flex;
+				align-items: center;
+				gap: 1.15rem;
+				font-size: clamp(1.2rem, 2.2vw, 1.85rem);
+				font-weight: 600;
+				line-height: 1.3;
+				transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			.bullet-dot {
+				width: clamp(10px, 1vw, 14px);
+				height: clamp(10px, 1vw, 14px);
+				border-radius: 50%;
+				flex-shrink: 0;
+				transition: all 0.2s ease;
+			}
+
+			/* Bullet States */
+			.bullet-item.is-active {
+				opacity: 1;
+				transform: translateX(8px);
+			}
+
+			.bullet-item.is-active .bullet-dot {
+				background: #ef4444;
+				box-shadow: 0 0 14px #ef4444, 0 0 28px rgba(239, 68, 68, 0.5);
+				transform: scale(1.4);
+			}
+
+			.bullet-item.is-active .bullet-text {
+				color: #ffffff;
+				font-weight: 700;
+				text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+			}
+
+			.bullet-item.is-revealed {
+				opacity: 0.75;
+				transform: translateX(0);
+			}
+
+			.bullet-item.is-revealed .bullet-dot {
+				background: #94a3b8;
+				box-shadow: none;
+			}
+
+			.bullet-item.is-revealed .bullet-text {
+				color: #cbd5e1;
+				font-weight: 500;
+			}
+
+			.bullet-item.is-dimmed {
+				opacity: 0.14;
+				transform: translateX(0);
+			}
+
+			.bullet-item.is-dimmed .bullet-dot {
+				background: #334155;
+			}
+
+			.bullet-item.is-dimmed .bullet-text {
+				color: #475569;
+				font-weight: 500;
+			}
+
+			/* Slide Footer */
+			.stage-footer {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding-top: 1rem;
+				border-top: 1px solid rgba(255, 255, 255, 0.08);
+			}
+
+			.footer-info {
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: #94a3b8;
+			}
+
+			.footer-dots {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.slide-dot {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.2);
+				border: none;
+				padding: 0;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+
+			.slide-dot.is-active {
+				background: #ef4444;
+				transform: scale(1.4);
+				box-shadow: 0 0 8px #ef4444;
+			}
+
+			.footer-controls {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.ctrl-btn {
+				width: 32px;
+				height: 32px;
+				border-radius: 6px;
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				color: #cbd5e1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: all 0.18s ease;
+			}
+
+			.ctrl-btn:hover {
+				background: rgba(255, 255, 255, 0.15);
+				color: #ffffff;
+			}
+
+			/* Help Modal */
+			.help-modal {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				background: rgba(0, 0, 0, 0.85);
+				backdrop-filter: blur(8px);
+				display: none;
+				align-items: center;
+				justify-content: center;
+				z-index: 200;
+			}
+
+			.help-box {
+				background: #0f131a;
+				border: 1px solid #1e2638;
+				border-radius: 12px;
+				padding: 2rem;
+				max-width: 480px;
+				width: 90%;
+			}
+
+			.help-title {
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: #ffffff;
+				margin-bottom: 1.25rem;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.help-close {
+				background: transparent;
+				border: none;
+				color: #94a3b8;
+				font-size: 1.5rem;
+				cursor: pointer;
+			}
+
+			.help-list {
+				display: flex;
+				flex-direction: column;
+				gap: 0.65rem;
+			}
+
+			.help-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0.5rem 0.75rem;
+				background: rgba(255, 255, 255, 0.03);
+				border-radius: 6px;
+				font-size: 0.88rem;
+			}
+
+			kbd {
+				background: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 4px;
+				padding: 0.15rem 0.45rem;
+				font-family: monospace;
+				font-size: 0.75rem;
+				color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Discreet Quick Navigation -->
+		<div class="public-top-nav">
+			<a href="/viewer" class="nav-badge-link" title="Return to Presentation Hub">
+				<span>← Hub</span>
+			</a>
+			<a href="/viewer/private" target="_blank" class="nav-badge-link" title="Open Private Cockpit in New Tab">
+				<span>Private Cockpit</span>
+			</a>
+			<div class="sync-indicator" title="Connected to local BroadcastChannel for live remote sync">
+				<span class="sync-dot"></span>
+				<span>Live Sync Active</span>
+			</div>
+		</div>
+
+		<!-- Main 16:9 Presentation Canvas -->
+		<div class="public-canvas-wrapper" id="canvas-wrapper">
+			<div class="public-slide-stage" id="public-stage">
+				<!-- Header -->
+				<header class="stage-header">
+					<div class="header-left">
+						<span class="counter-pill" id="counter-pill">SLIDE 01 / 08</span>
+						<span class="topic-pill" id="topic-pill">Setup</span>
+					</div>
+					<div class="header-brand">
+						<div class="brand-logo-box">
+							<TongueLogo />
+						</div>
+						<span class="brand-title">Decoding The Burn</span>
+					</div>
+				</header>
+
+				<!-- Body with Short Bullets -->
+				<main class="stage-body">
+					<h1 class="slide-main-title" id="slide-main-title">Presenter Guide & Controls</h1>
+					<ul class="bullet-list" id="bullet-list">
+						<!-- Dynamic items -->
+					</ul>
+				</main>
+
+				<!-- Footer Controls -->
+				<footer class="stage-footer">
+					<span class="footer-info" id="footer-info">Point 1 of 5</span>
+					<div class="footer-dots" id="footer-dots"></div>
+					<div class="footer-controls">
+						<button type="button" class="ctrl-btn" id="help-toggle-btn" title="Shortcuts Help (?)">?</button>
+						<button type="button" class="ctrl-btn" id="fullscreen-toggle-btn" title="Toggle Fullscreen (F)">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+						</button>
+					</div>
+				</footer>
+			</div>
+		</div>
+
+		<!-- Shortcuts Modal -->
+		<div class="help-modal" id="help-modal">
+			<div class="help-box">
+				<div class="help-title">
+					<span>Public Viewer Controls</span>
+					<button type="button" class="help-close" id="help-close-btn">&times;</button>
+				</div>
+				<div class="help-list">
+					<div class="help-row">
+						<span>Next point</span>
+						<div><kbd>Spacebar</kbd> or <kbd>→</kbd></div>
+					</div>
+					<div class="help-row">
+						<span>Previous point</span>
+						<div><kbd>Shift+Space</kbd> or <kbd>←</kbd></div>
+					</div>
+					<div class="help-row">
+						<span>Next slide</span>
+						<div><kbd>↓</kbd> or <kbd>PageDown</kbd></div>
+					</div>
+					<div class="help-row">
+						<span>Previous slide</span>
+						<div><kbd>↑</kbd> or <kbd>PageUp</kbd></div>
+					</div>
+					<div class="help-row">
+						<span>Toggle Fullscreen</span>
+						<div><kbd>F</kbd></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Client Logic & BroadcastChannel Sync -->
+		<script define:vars={{ bmsSlides }}>
+			(function () {
+				let currentSlide = 0;
+				let currentPoint = 0;
+				const totalSlides = bmsSlides.length;
+
+				// BroadcastChannel for live remote sync with Private Cockpit
+				const syncChannel = new BroadcastChannel('bms_deck_sync');
+
+				// Elements
+				const titleEl = document.getElementById('slide-main-title');
+				const bulletsEl = document.getElementById('bullet-list');
+				const counterPill = document.getElementById('counter-pill');
+				const topicPill = document.getElementById('topic-pill');
+				const footerInfo = document.getElementById('footer-info');
+				const footerDots = document.getElementById('footer-dots');
+				const stageEl = document.getElementById('public-stage');
+				const helpModal = document.getElementById('help-modal');
+				const helpBtn = document.getElementById('help-toggle-btn');
+				const helpClose = document.getElementById('help-close-btn');
+				const fsBtn = document.getElementById('fullscreen-toggle-btn');
+
+				function initDots() {
+					if (!footerDots) return;
+					footerDots.innerHTML = '';
+					for (let i = 0; i < totalSlides; i++) {
+						const dot = document.createElement('button');
+						dot.className = `slide-dot ${i === 0 ? 'is-active' : ''}`;
+						dot.addEventListener('click', (e) => {
+							e.stopPropagation();
+							jumpToSlide(i);
+						});
+						footerDots.appendChild(dot);
+					}
+				}
+
+				function render() {
+					const s = bmsSlides[currentSlide];
+					if (!s) return;
+
+					// Header
+					if (counterPill) {
+						counterPill.textContent = `SLIDE ${String(currentSlide + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+					}
+					if (topicPill) {
+						topicPill.textContent = s.badge;
+					}
+
+					// Title
+					if (titleEl) {
+						titleEl.textContent = s.title;
+					}
+
+					// Bullets
+					if (bulletsEl) {
+						bulletsEl.innerHTML = '';
+						s.bullets.forEach((bText, idx) => {
+							const li = document.createElement('li');
+							li.className = 'bullet-item';
+							if (idx === currentPoint) {
+								li.classList.add('is-active');
+							} else if (idx < currentPoint) {
+								li.classList.add('is-revealed');
+							} else {
+								li.classList.add('is-dimmed');
+							}
+							li.innerHTML = `
+								<span class="bullet-dot"></span>
+								<span class="bullet-text">${bText}</span>
+							`;
+							li.addEventListener('click', (e) => {
+								e.stopPropagation();
+								currentPoint = idx;
+								updateBulletStates();
+								broadcastState();
+							});
+							bulletsEl.appendChild(li);
+						});
+					}
+
+					updateDots();
+					updateFooterInfo();
+				}
+
+				function updateBulletStates() {
+					const items = bulletsEl?.querySelectorAll('.bullet-item') || [];
+					items.forEach((item, idx) => {
+						item.classList.remove('is-active', 'is-revealed', 'is-dimmed');
+						if (idx === currentPoint) {
+							item.classList.add('is-active');
+						} else if (idx < currentPoint) {
+							item.classList.add('is-revealed');
+						} else {
+							item.classList.add('is-dimmed');
+						}
+					});
+					updateFooterInfo();
+				}
+
+				function updateFooterInfo() {
+					const s = bmsSlides[currentSlide];
+					if (footerInfo && s) {
+						footerInfo.textContent = `Point ${currentPoint + 1} of ${s.bullets.length}`;
+					}
+				}
+
+				function updateDots() {
+					const dots = footerDots?.querySelectorAll('.slide-dot') || [];
+					dots.forEach((d, idx) => {
+						d.classList.toggle('is-active', idx === currentSlide);
+					});
+				}
+
+				function broadcastState() {
+					syncChannel.postMessage({
+						slideIndex: currentSlide,
+						pointIndex: currentPoint
+					});
+				}
+
+				// Actions
+				function nextStep() {
+					const s = bmsSlides[currentSlide];
+					if (!s) return;
+					if (currentPoint < s.bullets.length - 1) {
+						currentPoint++;
+						updateBulletStates();
+					} else if (currentSlide < totalSlides - 1) {
+						currentSlide++;
+						currentPoint = 0;
+						render();
+					}
+					broadcastState();
+				}
+
+				function prevStep() {
+					if (currentPoint > 0) {
+						currentPoint--;
+						updateBulletStates();
+					} else if (currentSlide > 0) {
+						currentSlide--;
+						const prevS = bmsSlides[currentSlide];
+						currentPoint = prevS.bullets.length - 1;
+						render();
+					}
+					broadcastState();
+				}
+
+				function nextSlide() {
+					if (currentSlide < totalSlides - 1) {
+						currentSlide++;
+						currentPoint = 0;
+						render();
+						broadcastState();
+					}
+				}
+
+				function prevSlide() {
+					if (currentSlide > 0) {
+						currentSlide--;
+						currentPoint = 0;
+						render();
+						broadcastState();
+					}
+				}
+
+				function jumpToSlide(idx) {
+					if (idx >= 0 && idx < totalSlides) {
+						currentSlide = idx;
+						currentPoint = 0;
+						render();
+						broadcastState();
+					}
+				}
+
+				function toggleFullscreen() {
+					if (!document.fullscreenElement) {
+						document.documentElement.requestFullscreen();
+					} else {
+						document.exitFullscreen();
+					}
+				}
+
+				// Listen for Remote Sync from Private Cockpit
+				syncChannel.onmessage = (event) => {
+					if (event.data && typeof event.data.slideIndex === 'number') {
+						const { slideIndex, pointIndex } = event.data;
+						if (slideIndex !== currentSlide) {
+							currentSlide = slideIndex;
+							currentPoint = pointIndex || 0;
+							render();
+						} else if (pointIndex !== currentPoint) {
+							currentPoint = pointIndex;
+							updateBulletStates();
+						}
+					}
+				};
+
+				// Click & Keyboard listeners
+				stageEl?.addEventListener('click', (e) => {
+					if (e.target.closest('button') || e.target.closest('a')) return;
+					nextStep();
+				});
+
+				stageEl?.addEventListener('contextmenu', (e) => {
+					e.preventDefault();
+					prevStep();
+				});
+
+				window.addEventListener('keydown', (e) => {
+					if (e.code === 'Space') {
+						e.preventDefault();
+						if (e.shiftKey) prevStep();
+						else nextStep();
+					} else if (e.code === 'ArrowRight') {
+						e.preventDefault();
+						nextStep();
+					} else if (e.code === 'ArrowLeft') {
+						e.preventDefault();
+						prevStep();
+					} else if (e.code === 'ArrowDown' || e.code === 'PageDown') {
+						e.preventDefault();
+						nextSlide();
+					} else if (e.code === 'ArrowUp' || e.code === 'PageUp') {
+						e.preventDefault();
+						prevSlide();
+					} else if (e.code === 'KeyF') {
+						e.preventDefault();
+						toggleFullscreen();
+					} else if (e.code === 'KeyH' || e.key === '?') {
+						e.preventDefault();
+						helpModal.style.display = helpModal.style.display === 'flex' ? 'none' : 'flex';
+					} else if (e.code === 'Escape') {
+						helpModal.style.display = 'none';
+					}
+				});
+
+				helpBtn?.addEventListener('click', () => {
+					helpModal.style.display = 'flex';
+				});
+
+				helpClose?.addEventListener('click', () => {
+					helpModal.style.display = 'none';
+				});
+
+				fsBtn?.addEventListener('click', () => {
+					toggleFullscreen();
+				});
+
+				initDots();
+				render();
+			})();
+		</script>
+	</body>
+</html>

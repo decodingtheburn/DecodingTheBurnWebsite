@@ -1,128 +1,13 @@
 ---
 import TongueLogo from './TongueLogo.astro';
-
-export interface Slide {
-	id: number;
-	badge: string;
-	title: string;
-	bullets: string[];
-	notes?: string;
-}
+import { bmsSlides, type SlideItem } from '../data/slidesData';
 
 interface Props {
-	slides?: Slide[];
+	slides?: SlideItem[];
 	isStandalone?: boolean;
 }
 
-const defaultSlides: Slide[] = [
-	{
-		id: 1,
-		badge: "Presenter Setup",
-		title: "Presenter Guide & Quick Controls",
-		bullets: [
-			"Spacebar or Left-Click or [→] : Advance to next bullet point",
-			"Shift + Spacebar or Right-Click or [←] : Step backward to previous point",
-			"[↓] / Page Down : Jump directly to next slide",
-			"[↑] / Page Up : Jump directly to previous slide",
-			"[F] key : Toggle Fullscreen (Clean OBS Recording Mode)",
-			"[?] or [H] key : Open / close this quick shortcuts guide anytime",
-			"Ready to record? Hit Spacebar to reveal Slide 2 and begin"
-		],
-		notes: "Introductory slide showing all shortcuts. Hit spacebar to start recording."
-	},
-	{
-		id: 2,
-		badge: "Title Slide",
-		title: "How I Solved My Burning Mouth Syndrome (BMS)",
-		bullets: [
-			"An engineer's forensic journey from 10/10 agony to 9 months of full remission",
-			"Beyond 'idiopathic': moving from symptom suppression to root cause debugging",
-			"The two critical triggers: dental hardware flaws and dietary proton fuel",
-			"By Dennis Ethier • DecodingTheBurn.com"
-		],
-		notes: "Introduce yourself, the site, and the central theme of forensic engineering."
-	},
-	{
-		id: 3,
-		badge: "Introduction",
-		title: "Why I Am Sharing My Story",
-		bullets: [
-			"Hey, my name is Dennis. BMS affects thousands, but real solutions are rarely shared",
-			"I know this might not work for everyone, but my remission is 100% real",
-			"Inspired by author Peggy Shaw, who solved her oral burning through dental restoration removal",
-			"Documenting my research on YouTube and my blog first before writing the full book",
-			"Today, self-publishing and sharing medical forensics is more accessible than ever"
-		],
-		notes: "Dennis's recorded intro! Mention Peggy Shaw's book and the plan to write a book."
-	},
-	{
-		id: 4,
-		badge: "The Onset",
-		title: "The Onset of Pain: How the Fire Started",
-		bullets: [
-			"The pain began gradually: subtle, intermittent tingling along gums and upper lip",
-			"Over time, the intermittent burning locked in: constant, exhausting oral heat",
-			"Spiked into an agonizing 10 out of 10 mechanical pain during daily flossing",
-			"Standard doctors called it 'idiopathic' (unknown cause) and advised living with it",
-			"Refused to accept that it was in my head: treated my body as a system to debug"
-		],
-		notes: "Describe the transition from subtle tingle to debilitating allodynia."
-	},
-	{
-		id: 5,
-		badge: "Dietary Discovery",
-		title: "The Dietary Breakthrough: No-Sugar, No-Acid",
-		bullets: [
-			"Realized that everyday 'healthy' foods were acting as high-octane fuel for oral nerves",
-			"Shifted from standard foods to a strict zero-acid, zero-sugar elimination protocol",
-			"Why fruits and vegetables burned: acidic protons (H+) triggering ASIC and TRPV1 channels",
-			"100% Carnivore / Paleolithic Ketogenic diet: pasture meat, animal fat, water, and salt",
-			"Result: Rapid, dramatic calming of oral burning and systemic gut inflammation"
-		],
-		notes: "Explain why fruits and veggies burned (protons/ASIC) and how carnivore cut the fuel."
-	},
-	{
-		id: 6,
-		badge: "Dental Hardware",
-		title: "Dental Hardware: Uncovering the Mechanical Sparks",
-		bullets: [
-			"Diet stopped the fuel, but what physical damage ignited the nerve in the first place?",
-			"Four cervical composite resin patches: overhanging margins trapping chronic biofilm",
-			"Tooth 36: An old crown concealing three deep active cavities missed on standard 2D x-rays",
-			"Mechanical friction and chemical resin hydrolysis delivering galvanic micro-currents to the pulp",
-			"Resolving the hardware: removing defective patches and replacing the infected crown"
-		],
-		notes: "Show that tooth 36 and composite patches were the physical fire starters."
-	},
-	{
-		id: 7,
-		badge: "Biophysics",
-		title: "The Biophysics: The Gut-Trigeminal Axis",
-		bullets: [
-			"Connective tissue vulnerability: past vegetarian years weakened collagen and fascia",
-			"Leaky gut barrier allowing bacterial endotoxins (LPS) into systemic blood circulation",
-			"Circulating endotoxins sensitized the trigeminal ganglion (V2-V3), lowering pain thresholds",
-			"Dual repair: seal the gut barrier with animal nutrition and fix the dental hardware",
-			"Complete remission achieved: 9 continuous months of zero burning and normal flossing"
-		],
-		notes: "Connect the hernia, gut permeability, and trigeminal nerve sensitization."
-	},
-	{
-		id: 8,
-		badge: "The Roadmap",
-		title: "The Roadmap: Documenting the Recovery Blueprint",
-		bullets: [
-			"Launching this YouTube video series to break down the science step by step",
-			"Publishing free diagnostic checklists on DecodingTheBurn.com for dentist and doctor visits",
-			"Preparing the upcoming book to give BMS sufferers a complete forensic recovery manual",
-			"Empowering patients: you are the lead investigator of your own health",
-			"Don't give up hope: intractable pain has physical causes that can be solved"
-		],
-		notes: "Wrap up with call to action: subscribe, visit blog, download checklists."
-	}
-];
-
-const { slides = defaultSlides, isStandalone = false } = Astro.props;
+const { slides = bmsSlides, isStandalone = false } = Astro.props;
 ---
 
 <div class={`deck-wrapper ${isStandalone ? 'standalone-mode' : 'embedded-mode'}`} id="bms-slide-deck">
@@ -131,15 +16,19 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		<div class="deck-top-bar">
 			<div class="deck-title-group">
 				<span class="deck-live-badge">INTERACTIVE PRESENTATION</span>
-				<span class="deck-meta">8 Slides • OBS Ready • Fullscreen Mode</span>
+				<span class="deck-meta">8 Slides • Short 5-Word Cues • Fullscreen Ready</span>
 			</div>
 			<div class="deck-actions">
-				<a href="/presentation/how-i-solved-my-bms" target="_blank" class="deck-btn deck-btn-outline" title="Open Clean Presenter Window for OBS">
-					<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-					<span>Open OBS Window</span>
+				<a href="/viewer/public" target="_blank" class="deck-btn deck-btn-outline" title="Open Clean 16:9 Public Screen for OBS">
+					<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+					<span>Public Viewer</span>
+				</a>
+				<a href="/viewer/private" target="_blank" class="deck-btn deck-btn-outline" title="Open Dennis's Private Presenter Cockpit (Teleprompter)">
+					<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+					<span>Private Cockpit</span>
 				</a>
 				<button type="button" class="deck-btn deck-btn-primary toggle-fullscreen-btn" title="Toggle Fullscreen Presenter Mode (F)">
-					<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+					<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
 					<span>Fullscreen [F]</span>
 				</button>
 			</div>
@@ -153,7 +42,7 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			<div class="slide-stage-header">
 				<div class="slide-badge-box">
 					<span class="slide-counter-badge" id="slide-counter-badge">SLIDE 01 / 08</span>
-					<span class="slide-topic-badge" id="slide-topic-badge">Presenter Setup</span>
+					<span class="slide-topic-badge" id="slide-topic-badge">Setup</span>
 				</div>
 				<div class="slide-brand">
 					<div class="brand-logo-mini">
@@ -165,7 +54,7 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 
 			<!-- Slide Dynamic Content -->
 			<div class="slide-body">
-				<h2 class="slide-title" id="slide-title">Presenter Guide & Quick Controls</h2>
+				<h2 class="slide-title" id="slide-title">Presenter Guide & Controls</h2>
 				
 				<ul class="slide-bullets" id="slide-bullets">
 					<!-- Generated dynamically by script -->
@@ -175,7 +64,7 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			<!-- Slide Footer & Controls -->
 			<div class="slide-stage-footer">
 				<div class="footer-left">
-					<span class="point-counter" id="point-counter">Point 1 of 7</span>
+					<span class="point-counter" id="point-counter">Point 1 of 5</span>
 					<span class="footer-hint">Press <kbd>Spacebar</kbd> to advance</span>
 				</div>
 				<div class="footer-center">
@@ -241,21 +130,21 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 							</div>
 						</div>
 						<div class="help-row">
-							<span class="help-action">Toggle this shortcuts help</span>
+							<span class="help-action">Toggle shortcuts help</span>
 							<div class="help-keys">
 								<kbd>?</kbd> or <kbd>H</kbd>
 							</div>
 						</div>
 					</div>
 					<div class="help-note">
-						<strong>OBS Pro-Tip:</strong> Press <kbd>F</kbd> for clean, borderless presentation during window capture or screen recording.
+						<strong>Viewer Links:</strong> Open <a href="/viewer/public" target="_blank" style="color: #60a5fa; font-weight: bold;">/viewer/public</a> for screen recording, or <a href="/viewer/private" target="_blank" style="color: #f87171; font-weight: bold;">/viewer/private</a> for teleprompter notes.
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- PowerPoint-Style Slide Thumbnail Rail (for Visitors & Dennis) -->
+	<!-- PowerPoint-Style Slide Thumbnail Rail -->
 	<div class="thumbnail-preview-section">
 		<div class="thumbnail-header">
 			<h4>Slide Navigator (Click any slide to jump)</h4>
@@ -309,7 +198,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		const helpCloseBtn = document.getElementById('help-close-btn');
 		const fullscreenBtns = document.querySelectorAll('.toggle-fullscreen-btn');
 
-		// Render Dots
 		function initDots() {
 			if (!dotsContainer) return;
 			dotsContainer.innerHTML = '';
@@ -326,12 +214,10 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			}
 		}
 
-		// Update UI for Current Slide and Point
 		function renderSlide() {
 			const slide = slides[currentSlideIndex];
 			if (!slide) return;
 
-			// Header badges
 			if (counterBadge) {
 				const padSlide = String(currentSlideIndex + 1).padStart(2, '0');
 				const padTotal = String(totalSlides).padStart(2, '0');
@@ -341,12 +227,10 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 				topicBadge.textContent = slide.badge || `Topic ${currentSlideIndex + 1}`;
 			}
 
-			// Title
 			if (titleEl) {
 				titleEl.textContent = slide.title;
 			}
 
-			// Bullets
 			if (bulletsContainer) {
 				bulletsContainer.innerHTML = '';
 				slide.bullets.forEach((bulletText, bIdx) => {
@@ -427,7 +311,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			});
 		}
 
-		// Navigation logic
 		function nextStep() {
 			const slide = slides[currentSlideIndex];
 			if (!slide) return;
@@ -437,7 +320,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 				updateBulletClasses();
 				updatePointCounter();
 			} else {
-				// Advance to next slide
 				if (currentSlideIndex < totalSlides - 1) {
 					currentSlideIndex++;
 					currentPointIndex = 0;
@@ -452,7 +334,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 				updateBulletClasses();
 				updatePointCounter();
 			} else {
-				// Go back to previous slide
 				if (currentSlideIndex > 0) {
 					currentSlideIndex--;
 					const prevSlide = slides[currentSlideIndex];
@@ -486,7 +367,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			}
 		}
 
-		// Toggle Fullscreen
 		function toggleFullscreen() {
 			const target = stageContainer || document.documentElement;
 			if (!document.fullscreenElement) {
@@ -500,7 +380,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			}
 		}
 
-		// Help Modal Toggle
 		function toggleHelp(show) {
 			if (!helpOverlay) return;
 			if (typeof show === 'boolean') {
@@ -510,7 +389,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			}
 		}
 
-		// Event Listeners
 		prevBtn?.addEventListener('click', (e) => {
 			e.stopPropagation();
 			prevStep();
@@ -544,7 +422,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			});
 		});
 
-		// Thumbnail rail clicks
 		document.querySelectorAll('.thumb-card').forEach((card) => {
 			card.addEventListener('click', () => {
 				const idx = parseInt(card.getAttribute('data-slide-index') || '0', 10);
@@ -552,30 +429,24 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			});
 		});
 
-		// Mouse clicks on stage: Left-click advances, Right-click steps back
 		stage?.addEventListener('click', (e) => {
-			// Ignore clicks on control buttons or links
 			if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.help-modal-card')) return;
 			nextStep();
 		});
 
 		stage?.addEventListener('contextmenu', (e) => {
-			// Right-click steps back and prevents context menu
 			e.preventDefault();
 			prevStep();
 		});
 
 		stage?.addEventListener('auxclick', (e) => {
-			// Middle-click toggles help
 			if (e.button === 1) {
 				e.preventDefault();
 				toggleHelp();
 			}
 		});
 
-		// Keyboard Navigation
 		window.addEventListener('keydown', (e) => {
-			// If focus is in an input or textarea, don't intercept
 			if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName || '')) return;
 
 			if (e.code === 'Space') {
@@ -608,7 +479,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			}
 		});
 
-		// Fullscreen state listener
 		document.addEventListener('fullscreenchange', () => {
 			if (document.fullscreenElement) {
 				stageContainer?.classList.add('is-in-fullscreen');
@@ -617,14 +487,12 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 			}
 		});
 
-		// Initialize
 		initDots();
 		renderSlide();
 	})();
 </script>
 
 <style>
-	/* Deck Outer Wrapper */
 	.deck-wrapper {
 		margin: 2.5rem 0 3.5rem 0;
 		width: 100%;
@@ -644,7 +512,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		overflow: hidden;
 	}
 
-	/* Top Bar for Embedded View */
 	.deck-top-bar {
 		display: flex;
 		justify-content: space-between;
@@ -688,9 +555,9 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45rem;
-		font-size: 0.8rem;
+		font-size: 0.78rem;
 		font-weight: 600;
-		padding: 0.45rem 0.85rem;
+		padding: 0.45rem 0.75rem;
 		border-radius: 6px;
 		cursor: pointer;
 		text-decoration: none;
@@ -720,7 +587,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
 	}
 
-	/* 16:9 Presentation Stage */
 	.slide-stage-container {
 		position: relative;
 		width: 100%;
@@ -739,10 +605,9 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		border-radius: 0;
 		box-shadow: none;
 		max-height: 100vh;
-		max-width: 177.78vh; /* 16:9 height lock */
+		max-width: 177.78vh;
 	}
 
-	/* When entering native browser fullscreen */
 	.slide-stage-container:fullscreen,
 	.slide-stage-container.is-in-fullscreen {
 		width: 100vw !important;
@@ -766,7 +631,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		cursor: pointer;
 	}
 
-	/* Stage Header */
 	.slide-stage-header {
 		display: flex;
 		justify-content: space-between;
@@ -824,7 +688,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		color: #e2e8f0;
 	}
 
-	/* Slide Body & Typography */
 	.slide-body {
 		flex: 1;
 		display: flex;
@@ -844,42 +707,34 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		letter-spacing: -0.02em;
 	}
 
-	/* Bullet Points with Step-by-Step Reveal */
 	.slide-bullets {
 		list-style: none;
 		display: flex;
 		flex-direction: column;
-		gap: clamp(0.6rem, 1.2vw, 1rem);
+		gap: clamp(0.7rem, 1.4vw, 1.1rem);
 		padding: 0;
 		margin: 0;
 	}
 
 	.bullet-item {
 		display: flex;
-		align-items: flex-start;
+		align-items: center;
 		gap: 0.85rem;
-		font-size: clamp(0.95rem, 1.6vw, 1.22rem);
-		line-height: 1.38;
-		transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+		font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+		line-height: 1.35;
+		transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 		cursor: pointer;
 	}
 
 	.bullet-marker {
 		display: inline-block;
-		width: 8px;
-		height: 8px;
+		width: 9px;
+		height: 9px;
 		border-radius: 50%;
-		margin-top: 0.55rem;
 		flex-shrink: 0;
-		transition: all 0.22s ease;
+		transition: all 0.2s ease;
 	}
 
-	.bullet-text {
-		transition: all 0.22s ease;
-	}
-
-	/* Point States */
-	/* 1. Active: Current Point (Bright, Full Contrast, Highlighted) */
 	.bullet-item.is-active {
 		opacity: 1;
 		transform: translateX(4px);
@@ -893,11 +748,10 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 
 	.bullet-item.is-active .bullet-text {
 		color: #ffffff;
-		font-weight: 600;
+		font-weight: 700;
 		text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 	}
 
-	/* 2. Revealed: Past Points (Readable, Visible, Soft Contrast) */
 	.bullet-item.is-revealed {
 		opacity: 0.72;
 		transform: translateX(0);
@@ -905,15 +759,13 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 
 	.bullet-item.is-revealed .bullet-marker {
 		background: #94a3b8;
-		box-shadow: none;
 	}
 
 	.bullet-item.is-revealed .bullet-text {
 		color: #cbd5e1;
-		font-weight: 400;
+		font-weight: 500;
 	}
 
-	/* 3. Dimmed: Future Points (Very Grayed Out, Barely Visible) */
 	.bullet-item.is-dimmed {
 		opacity: 0.16;
 		transform: translateX(0);
@@ -925,14 +777,9 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 
 	.bullet-item.is-dimmed .bullet-text {
 		color: #475569;
-		font-weight: 400;
+		font-weight: 500;
 	}
 
-	.bullet-item:hover {
-		opacity: 0.9 !important;
-	}
-
-	/* Stage Footer & Navigation Bar */
 	.slide-stage-footer {
 		display: flex;
 		justify-content: space-between;
@@ -959,7 +806,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		color: #64748b;
 	}
 
-	.footer-hint kbd,
 	kbd {
 		background: rgba(255, 255, 255, 0.08);
 		border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1050,7 +896,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		font-weight: 700;
 	}
 
-	/* Help Modal Overlay */
 	.help-modal-overlay {
 		position: absolute;
 		top: 0;
@@ -1159,7 +1004,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		padding: 0.65rem 0.85rem;
 	}
 
-	/* PowerPoint-Style Thumbnail Rail */
 	.thumbnail-preview-section {
 		margin-top: 1rem;
 		background: #0f131a;
@@ -1291,7 +1135,6 @@ const { slides = defaultSlides, isStandalone = false } = Astro.props;
 		width: 55%;
 	}
 
-	/* Responsive tweaks */
 	@media (max-width: 768px) {
 		.slide-stage {
 			padding: 1.2rem 1.4rem 1rem 1.4rem;
