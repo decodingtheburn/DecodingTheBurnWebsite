@@ -1763,4 +1763,59 @@ body.dyslexic-mode.has-reading-ruler .dyslexic-reading-ruler {
 	display: block;
 }
 
-/* Force Cache Flush: 2026-09-19T18:48:00 */
+/* ==========================================================================
+   Parts of Speech & Advanced Dyslexia Reading Enhancements
+   ========================================================================== */
+
+/* 1. Parts of Speech Color Coding (Montessori & Immersive Reader System) */
+body.pos-colors-active .pos-verb {
+	color: #dc2626 !important; /* Action Red / Crimson */
+	font-weight: 600;
+}
+
+body.pos-colors-active .pos-noun {
+	color: #0284c7 !important; /* Substance Ocean Blue */
+	font-weight: 600;
+}
+
+body.pos-colors-active .pos-adj {
+	color: #059669 !important; /* Descriptor Emerald Green */
+	font-weight: 600;
+}
+
+body.pos-colors-active .pos-adv {
+	color: #d97706 !important; /* Modifier Amber Orange */
+	font-weight: 600;
+}
+
+body.pos-colors-active .pos-pronoun {
+	color: #7c3aed !important; /* Person Purple */
+	font-weight: 600;
+}
+
+/* 2. Bionic Reading (Neuro-Visual Fixation Anchors) */
+.bionic-anchor {
+	font-weight: inherit;
+}
+
+body.bionic-reading-active .bionic-anchor {
+	font-weight: 850 !important;
+	color: inherit;
+}
+
+/* 3. Paragraph Focus Spotlight (Dims surrounding paragraphs) */
+body.focus-spotlight-active .post-content > * {
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+body.focus-spotlight-active .post-content > *:not(:hover):not(.tts-active-block) {
+	opacity: 0.38;
+}
+
+body.focus-spotlight-active .post-content > *:hover,
+body.focus-spotlight-active .post-content > .tts-active-block {
+	opacity: 1;
+	transform: scale(1.006);
+}
+
+/* Force Cache Flush: 2026-09-19T18:52:00 */

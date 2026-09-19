@@ -97,12 +97,36 @@ const { title = 'this article' } = Astro.props;
 					<span class="tts-dyslexic-label">Dyslexic Mode</span>
 					<span class="tts-dyslexic-state" id="tts-dyslexic-state">OFF</span>
 				</button>
+
+				<!-- Quick Mode Chip: Parts of Speech (Verbs in Red, Nouns in Blue) -->
+				<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-pos" title="Color-code parts of speech: Verbs (Red), Nouns (Blue), Adjectives (Green)">
+					<span>🎨 Grammar Colors</span>
+				</button>
+
+				<!-- Quick Mode Chip: Bionic Fixation -->
+				<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-bionic" title="Bionic reading: Bold initial letters to guide eye tracking">
+					<span>🧠 Bionic</span>
+				</button>
+
+				<!-- Quick Mode Chip: Line Focus Ruler -->
+				<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-ruler" title="Line Focus Ruler: Soft tracking beam follows your cursor">
+					<span>📏 Ruler</span>
+				</button>
 			</div>
 		</div>
 
 		<!-- Progress Bar -->
 		<div class="tts-progress-track" id="tts-progress-track" title="Article audio progress">
 			<div class="tts-progress-fill" id="tts-progress-fill"></div>
+		</div>
+
+		<!-- Live Parts of Speech Color Legend (Visible when Grammar Colors is ON) -->
+		<div class="tts-pos-legend" id="tts-pos-legend" style="display: none;">
+			<span class="pos-legend-item"><span class="pos-dot red"></span>Verbs (Red)</span>
+			<span class="pos-legend-item"><span class="pos-dot blue"></span>Nouns (Blue)</span>
+			<span class="pos-legend-item"><span class="pos-dot green"></span>Adjectives (Green)</span>
+			<span class="pos-legend-item"><span class="pos-dot amber"></span>Adverbs (Orange)</span>
+			<span class="pos-legend-item"><span class="pos-dot purple"></span>Pronouns (Purple)</span>
 		</div>
 	</div>
 
@@ -598,6 +622,90 @@ const { title = 'this article' } = Astro.props;
 		box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
 	}
 
+	.tts-btn-chip {
+		padding: 0.42rem 0.68rem;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		color: #475569;
+		font-size: 0.76rem;
+		font-weight: 600;
+		border-radius: 8px;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		transition: all 0.16s ease;
+	}
+
+	.tts-btn-chip:hover {
+		background: #f1f5f9;
+		color: #0f172a;
+		border-color: #cbd5e1;
+	}
+
+	#tts-chip-pos.is-active {
+		background: #fef2f2 !important;
+		border-color: #ef4444 !important;
+		color: #b91c1c !important;
+		box-shadow: 0 0 8px rgba(239, 68, 68, 0.25);
+		font-weight: 700;
+	}
+
+	#tts-chip-bionic.is-active {
+		background: #fdf4ff !important;
+		border-color: #d946ef !important;
+		color: #a21caf !important;
+		box-shadow: 0 0 8px rgba(217, 70, 239, 0.25);
+		font-weight: 700;
+	}
+
+	#tts-chip-ruler.is-active {
+		background: #fefce8 !important;
+		border-color: #eab308 !important;
+		color: #854d0e !important;
+		box-shadow: 0 0 8px rgba(234, 179, 8, 0.25);
+		font-weight: 700;
+	}
+
+	/* Live Parts of Speech Legend Bar */
+	.tts-pos-legend {
+		display: flex;
+		align-items: center;
+		gap: 0.85rem;
+		padding: 0.5rem 1.25rem;
+		background: #fafaf9;
+		border-top: 1px solid #f1f5f9;
+		flex-wrap: wrap;
+		font-size: 0.74rem;
+		color: #475569;
+		animation: fadeInLegend 0.2s ease;
+	}
+
+	@keyframes fadeInLegend {
+		from { opacity: 0; transform: translateY(-4px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	.pos-legend-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		font-weight: 600;
+	}
+
+	.pos-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+
+	.pos-dot.red { background: #dc2626; }
+	.pos-dot.blue { background: #0284c7; }
+	.pos-dot.green { background: #059669; }
+	.pos-dot.amber { background: #d97706; }
+	.pos-dot.purple { background: #7c3aed; }
+
 	/* Floating Quick-Toggle Pill on Page */
 	.dyslexic-floating-toggle {
 		position: fixed;
@@ -763,6 +871,68 @@ const { title = 'this article' } = Astro.props;
 			synth.onvoiceschanged = loadVoices;
 		}
 
+		// Comprehensive rule-based POS classifier for English (Montessori & Immersive Reader standard)
+		const PRONOUNS = new Set([
+			'i', 'me', 'my', 'myself', 'we', 'us', 'our', 'ours', 'ourselves',
+			'you', 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself',
+			'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their',
+			'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'whose', 'this', 'that', 'these', 'those'
+		]);
+
+		const COMMON_VERBS = new Set([
+			'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having',
+			'do', 'does', 'did', 'doing', 'say', 'says', 'said', 'go', 'goes', 'went', 'gone',
+			'going', 'get', 'gets', 'got', 'getting', 'make', 'makes', 'made', 'making',
+			'know', 'knows', 'knew', 'known', 'think', 'thinks', 'thought', 'take', 'takes', 'took',
+			'taken', 'see', 'sees', 'saw', 'seen', 'come', 'comes', 'came', 'want', 'wants',
+			'wanted', 'look', 'looks', 'looked', 'use', 'uses', 'used', 'using', 'find', 'finds',
+			'found', 'give', 'gives', 'gave', 'given', 'tell', 'tells', 'told', 'work', 'works',
+			'worked', 'call', 'calls', 'called', 'try', 'tries', 'tried', 'ask', 'asks', 'asked',
+			'need', 'needs', 'needed', 'feel', 'feels', 'felt', 'become', 'becomes', 'became',
+			'leave', 'leaves', 'left', 'put', 'puts', 'mean', 'means', 'meant', 'keep', 'keeps',
+			'kept', 'let', 'lets', 'begin', 'begins', 'began', 'begun', 'seem', 'seems', 'seemed',
+			'help', 'helps', 'helped', 'show', 'shows', 'showed', 'shown', 'hear', 'hears', 'heard',
+			'run', 'runs', 'ran', 'play', 'plays', 'played', 'move', 'moves', 'moved', 'live',
+			'lives', 'lived', 'living', 'believe', 'believes', 'believed', 'bring', 'brings', 'brought',
+			'happen', 'happens', 'happened', 'write', 'writes', 'wrote', 'written', 'provide',
+			'provides', 'provided', 'sit', 'sits', 'sat', 'stand', 'stands', 'stood', 'lose',
+			'loses', 'lost', 'pay', 'pays', 'paid', 'meet', 'meets', 'met', 'include', 'includes',
+			'included', 'continue', 'continues', 'continued', 'set', 'sets', 'setting', 'learn',
+			'learns', 'learned', 'change', 'changes', 'changed', 'lead', 'leads', 'led', 'understand',
+			'understands', 'understood', 'watch', 'watches', 'watched', 'follow', 'follows', 'followed',
+			'stop', 'stops', 'stopped', 'create', 'creates', 'created', 'speak', 'speaks', 'spoke',
+			'spoken', 'speaking', 'read', 'reads', 'reading', 'allow', 'allows', 'allowed', 'add',
+			'spend', 'spends', 'spent', 'grow', 'grows', 'grew', 'grown', 'open', 'opens', 'opened',
+			'walk', 'walks', 'walked', 'win', 'wins', 'won', 'offer', 'offers', 'offered',
+			'remember', 'remembers', 'remembered', 'love', 'loves', 'loved', 'consider', 'considers',
+			'considered', 'appear', 'appears', 'appeared', 'buy', 'buys', 'bought', 'wait', 'waits',
+			'waited', 'serve', 'serves', 'served', 'die', 'dies', 'died', 'send', 'sends', 'sent',
+			'expect', 'expects', 'expected', 'build', 'builds', 'built', 'stay', 'stays', 'stayed',
+			'fall', 'falls', 'fell', 'fallen', 'cut', 'cuts', 'cutting', 'reach', 'reaches', 'reached',
+			'remain', 'remains', 'remained', 'suggest', 'suggests', 'suggested', 'raise', 'raises',
+			'raised', 'pass', 'passes', 'passed', 'sell', 'sells', 'sold', 'require', 'requires',
+			'required', 'decide', 'decides', 'decided', 'pull', 'pulls', 'pulled', 'solved', 'ignited',
+			'suffered', 'flossing', 'triggered', 'escalated', 'treated', 'investigated', 'healed',
+			'lowered', 'starved', 'rot', 'rotting', 'excavated', 'placed', 'eliminated', 'calmed'
+		]);
+
+		const COMMON_ADVERBS = new Set([
+			'not', 'also', 'very', 'often', 'however', 'too', 'usually', 'really', 'early', 'never',
+			'always', 'sometimes', 'together', 'likely', 'simply', 'generally', 'instead', 'actually',
+			'again', 'almost', 'especially', 'probably', 'already', 'below', 'directly', 'quickly',
+			'easily', 'finally', 'suddenly', 'immediately', 'completely', 'deeply', 'noticeably'
+		]);
+
+		function classifyWord(clean: string): string {
+			if (!clean || clean.length < 2) return '';
+			if (PRONOUNS.has(clean)) return 'pos-pronoun';
+			if (COMMON_ADVERBS.has(clean) || (clean.endsWith('ly') && clean.length > 3)) return 'pos-adv';
+			if (COMMON_VERBS.has(clean) || (clean.endsWith('ed') && clean.length > 4) || (clean.endsWith('ing') && clean.length > 5)) return 'pos-verb';
+			if (clean.endsWith('able') || clean.endsWith('ible') || clean.endsWith('al') || clean.endsWith('ful') || clean.endsWith('ic') || clean.endsWith('ive') || clean.endsWith('ous') || clean.endsWith('less')) return 'pos-adj';
+			if (clean.length > 3) return 'pos-noun';
+			return '';
+		}
+
 		// 2. Tokenize Article DOM (Non-destructive)
 		function tokenizeContent() {
 			const contentContainer = document.querySelector('.post-content');
@@ -819,7 +989,18 @@ const { title = 'this article' } = Astro.props;
 							// Word token
 							const span = document.createElement('span');
 							span.className = 'tts-word';
-							span.textContent = token;
+
+							// Classify part of speech for dyslexic color coding
+							const clean = token.replace(/[^a-zA-Z]/g, '').toLowerCase();
+							const posClass = classifyWord(clean);
+							if (posClass) span.classList.add(posClass);
+
+							// Bionic anchor breakdown: bold first ~45% of word
+							const bionicSplit = token.length <= 3 ? 1 : Math.ceil(token.length * 0.45);
+							const anchorPart = token.slice(0, bionicSplit);
+							const restPart = token.slice(bionicSplit);
+
+							span.innerHTML = `<span class="bionic-anchor">${anchorPart}</span>${restPart}`;
 							frag.appendChild(span);
 							wordSpansInBlock.push(span);
 							totalWordCount++;
@@ -1193,54 +1374,108 @@ const { title = 'this article' } = Astro.props;
 			}
 		});
 
-		// 5. Dyslexic Reading Mode Controller
+		// 5. Accessible & Dyslexic Reading Modes Controller
 		const dyslexicBtn = document.getElementById('tts-dyslexic-btn');
 		const dyslexicBadge = document.getElementById('tts-dyslexic-state');
 		const stickyDyslexicBtn = document.getElementById('tts-sticky-dyslexic');
 		const pillToggle = document.getElementById('dyslexic-pill-toggle');
 		const readingRuler = document.getElementById('dyslexic-reading-ruler');
 
-		function setDyslexicMode(enabled: boolean) {
-			document.body.classList.toggle('dyslexic-mode', enabled);
-			document.body.classList.toggle('has-reading-ruler', enabled);
+		const chipPos = document.getElementById('tts-chip-pos');
+		const chipBionic = document.getElementById('tts-chip-bionic');
+		const chipRuler = document.getElementById('tts-chip-ruler');
+		const posLegend = document.getElementById('tts-pos-legend');
 
+		interface DyslexicSettings {
+			dyslexicMode: boolean;
+			posColors: boolean;
+			bionicReading: boolean;
+			readingRuler: boolean;
+		}
+
+		let dyslexicSettings: DyslexicSettings = {
+			dyslexicMode: false,
+			posColors: false,
+			bionicReading: false,
+			readingRuler: false
+		};
+
+		function applyDyslexicSettings() {
+			// Toggle body classes
+			document.body.classList.toggle('dyslexic-mode', dyslexicSettings.dyslexicMode);
+			document.body.classList.toggle('pos-colors-active', dyslexicSettings.posColors);
+			document.body.classList.toggle('bionic-reading-active', dyslexicSettings.bionicReading);
+			document.body.classList.toggle('has-reading-ruler', dyslexicSettings.readingRuler);
+
+			// Synchronize UI buttons & badges
 			if (dyslexicBtn) {
-				dyslexicBtn.classList.toggle('is-active', enabled);
-				dyslexicBtn.setAttribute('aria-pressed', String(enabled));
+				dyslexicBtn.classList.toggle('is-active', dyslexicSettings.dyslexicMode);
+				dyslexicBtn.setAttribute('aria-pressed', String(dyslexicSettings.dyslexicMode));
 			}
 			if (dyslexicBadge) {
-				dyslexicBadge.textContent = enabled ? 'ON' : 'OFF';
+				dyslexicBadge.textContent = dyslexicSettings.dyslexicMode ? 'ON' : 'OFF';
 			}
 			if (stickyDyslexicBtn) {
-				stickyDyslexicBtn.classList.toggle('is-active', enabled);
+				stickyDyslexicBtn.classList.toggle('is-active', dyslexicSettings.dyslexicMode);
 			}
+
+			if (chipPos) chipPos.classList.toggle('is-active', dyslexicSettings.posColors);
+			if (chipBionic) chipBionic.classList.toggle('is-active', dyslexicSettings.bionicReading);
+			if (chipRuler) chipRuler.classList.toggle('is-active', dyslexicSettings.readingRuler);
+
+			if (posLegend) {
+				posLegend.style.display = dyslexicSettings.posColors ? 'flex' : 'none';
+			}
+
 			try {
-				localStorage.setItem('decoding_dyslexic_mode', enabled ? 'true' : 'false');
-			} catch (err) {
-				// LocalStorage fallback for privacy modes
-			}
+				localStorage.setItem('decoding_dyslexic_settings', JSON.stringify(dyslexicSettings));
+				localStorage.setItem('decoding_dyslexic_mode', dyslexicSettings.dyslexicMode ? 'true' : 'false');
+			} catch (err) {}
 		}
 
 		// Check saved preference on page load
 		try {
-			const isDyslexicSaved = localStorage.getItem('decoding_dyslexic_mode') === 'true';
-			if (isDyslexicSaved) {
-				setDyslexicMode(true);
+			const saved = localStorage.getItem('decoding_dyslexic_settings');
+			if (saved) {
+				dyslexicSettings = { ...dyslexicSettings, ...JSON.parse(saved) };
+			} else if (localStorage.getItem('decoding_dyslexic_mode') === 'true') {
+				dyslexicSettings.dyslexicMode = true;
+				dyslexicSettings.readingRuler = true;
 			}
+			applyDyslexicSettings();
 		} catch (err) {}
 
-		const toggleDyslexic = () => {
-			const isNow = !document.body.classList.contains('dyslexic-mode');
-			setDyslexicMode(isNow);
+		const toggleMasterDyslexic = () => {
+			dyslexicSettings.dyslexicMode = !dyslexicSettings.dyslexicMode;
+			// If activating master dyslexic and no other helper was on, activate ruler as well
+			if (dyslexicSettings.dyslexicMode && !dyslexicSettings.readingRuler) {
+				dyslexicSettings.readingRuler = true;
+			}
+			applyDyslexicSettings();
 		};
 
-		dyslexicBtn?.addEventListener('click', toggleDyslexic);
-		stickyDyslexicBtn?.addEventListener('click', toggleDyslexic);
-		pillToggle?.addEventListener('click', toggleDyslexic);
+		dyslexicBtn?.addEventListener('click', toggleMasterDyslexic);
+		stickyDyslexicBtn?.addEventListener('click', toggleMasterDyslexic);
+		pillToggle?.addEventListener('click', toggleMasterDyslexic);
+
+		chipPos?.addEventListener('click', () => {
+			dyslexicSettings.posColors = !dyslexicSettings.posColors;
+			applyDyslexicSettings();
+		});
+
+		chipBionic?.addEventListener('click', () => {
+			dyslexicSettings.bionicReading = !dyslexicSettings.bionicReading;
+			applyDyslexicSettings();
+		});
+
+		chipRuler?.addEventListener('click', () => {
+			dyslexicSettings.readingRuler = !dyslexicSettings.readingRuler;
+			applyDyslexicSettings();
+		});
 
 		// Reading ruler mouse tracking
 		window.addEventListener('mousemove', (e) => {
-			if (document.body.classList.contains('dyslexic-mode') && readingRuler) {
+			if (dyslexicSettings.readingRuler && readingRuler) {
 				readingRuler.style.top = `${e.clientY}px`;
 			}
 		});
