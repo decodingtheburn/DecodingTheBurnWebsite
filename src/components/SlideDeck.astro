@@ -698,7 +698,7 @@ const { slides = bmsSlides, isStandalone = false } = Astro.props;
 
 	.slide-title {
 		font-family: var(--font-heading, system-ui, sans-serif);
-		font-size: clamp(1.4rem, 2.8vw, 2.25rem);
+		font-size: clamp(1.65rem, 3.2vw, 2.6rem);
 		font-weight: 800;
 		line-height: 1.18;
 		color: #ffffff;
@@ -711,7 +711,7 @@ const { slides = bmsSlides, isStandalone = false } = Astro.props;
 		list-style: none;
 		display: flex;
 		flex-direction: column;
-		gap: clamp(0.7rem, 1.4vw, 1.1rem);
+		gap: clamp(0.85rem, 1.8vw, 1.35rem);
 		padding: 0;
 		margin: 0;
 	}
@@ -719,41 +719,53 @@ const { slides = bmsSlides, isStandalone = false } = Astro.props;
 	.bullet-item {
 		display: flex;
 		align-items: center;
-		gap: 0.85rem;
-		font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+		gap: 1.15rem;
+		font-size: clamp(1.35rem, 2.3vw, 1.85rem);
 		line-height: 1.35;
 		transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 		cursor: pointer;
 	}
 
+	.slide-stage-container:fullscreen .bullet-item,
+	.slide-stage-container.is-in-fullscreen .bullet-item {
+		font-size: clamp(1.65rem, 2.7vw, 2.4rem);
+		gap: 1.35rem;
+	}
+
 	.bullet-marker {
 		display: inline-block;
-		width: 9px;
-		height: 9px;
+		width: 12px;
+		height: 12px;
 		border-radius: 50%;
 		flex-shrink: 0;
 		transition: all 0.2s ease;
 	}
 
+	.slide-stage-container:fullscreen .bullet-marker,
+	.slide-stage-container.is-in-fullscreen .bullet-marker {
+		width: 16px;
+		height: 16px;
+	}
+
 	.bullet-item.is-active {
 		opacity: 1;
-		transform: translateX(4px);
+		transform: translateX(6px);
 	}
 
 	.bullet-item.is-active .bullet-marker {
 		background: #ef4444;
-		box-shadow: 0 0 10px #ef4444, 0 0 20px rgba(239, 68, 68, 0.4);
+		box-shadow: 0 0 14px #ef4444, 0 0 28px rgba(239, 68, 68, 0.5);
 		transform: scale(1.35);
 	}
 
 	.bullet-item.is-active .bullet-text {
 		color: #ffffff;
-		font-weight: 700;
-		text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+		font-weight: 800;
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 	}
 
 	.bullet-item.is-revealed {
-		opacity: 0.72;
+		opacity: 0.88;
 		transform: translateX(0);
 	}
 
@@ -762,21 +774,21 @@ const { slides = bmsSlides, isStandalone = false } = Astro.props;
 	}
 
 	.bullet-item.is-revealed .bullet-text {
-		color: #cbd5e1;
-		font-weight: 500;
+		color: #e2e8f0;
+		font-weight: 600;
 	}
 
 	.bullet-item.is-dimmed {
-		opacity: 0.16;
+		opacity: 0.38;
 		transform: translateX(0);
 	}
 
 	.bullet-item.is-dimmed .bullet-marker {
-		background: #334155;
+		background: #475569;
 	}
 
 	.bullet-item.is-dimmed .bullet-text {
-		color: #475569;
+		color: #cbd5e1;
 		font-weight: 500;
 	}
 
