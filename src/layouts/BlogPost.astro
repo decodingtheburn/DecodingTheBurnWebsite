@@ -69,17 +69,132 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 				color: var(--text-primary);
 				font-weight: 800;
 				margin: 1.5rem auto 1rem auto;
-				max-width: 680px;
+				max-width: var(--reading-max-width, 58ch);
 				text-wrap: balance;
 			}
 			.blog-layout-grid {
 				display: block;
-				max-width: 680px;
+				max-width: var(--reading-max-width, 58ch);
 				margin: 1.5rem auto 0 auto;
 				position: relative;
+				transition: max-width 0.2s ease;
 			}
 			.post-content {
 				width: 100%;
+			}
+
+			/* Section Headings with 3x Right-Aligned Contextual Vector Emojis */
+			.post-content :global(h2) {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1.25rem;
+				font-size: 1.65rem;
+				line-height: 1.28;
+				color: var(--text-primary);
+				font-weight: 800;
+				margin: 3.25rem 0 1.25rem 0;
+				padding-bottom: 0.75rem;
+				border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+			}
+
+			.post-content :global(.heading-emoji-3x) {
+				width: 3.5rem;
+				height: 3.5rem;
+				min-width: 3.5rem;
+				min-height: 3.5rem;
+				object-fit: contain;
+				flex-shrink: 0;
+				margin-left: auto;
+				filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12));
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			@media (max-width: 580px) {
+				.post-content :global(h2) {
+					font-size: 1.35rem;
+					gap: 0.75rem;
+				}
+				.post-content :global(.heading-emoji-3x) {
+					width: 2.5rem;
+					height: 2.5rem;
+					min-width: 2.5rem;
+					min-height: 2.5rem;
+				}
+			}
+
+			/* Book Showcase Card for Peggy Sharr's Survival Guide */
+			.post-content :global(.book-showcase-card) {
+				display: flex;
+				align-items: center;
+				gap: 1.75rem;
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 1.75rem;
+				margin: 2.5rem 0;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+			}
+
+			.post-content :global(.book-cover-container) {
+				flex-shrink: 0;
+				width: 145px;
+			}
+
+			.post-content :global(.book-cover-image) {
+				width: 100%;
+				height: auto;
+				border-radius: 6px;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+				display: block;
+			}
+
+			.post-content :global(.book-details) {
+				flex: 1;
+			}
+
+			.post-content :global(.book-badge) {
+				display: inline-block;
+				font-size: 0.75rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				color: var(--accent);
+				margin-bottom: 0.35rem;
+			}
+
+			.post-content :global(.book-title) {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: var(--text-primary);
+				margin: 0 0 0.25rem 0;
+				line-height: 1.3;
+			}
+
+			.post-content :global(.book-byline) {
+				font-size: 0.88rem;
+				font-weight: 600;
+				color: #64748b;
+				margin: 0 0 0.75rem 0;
+			}
+
+			.post-content :global(.book-summary) {
+				font-size: 0.95rem;
+				color: var(--text-secondary);
+				line-height: 1.6;
+				margin: 0;
+			}
+
+			@media (max-width: 600px) {
+				.post-content :global(.book-showcase-card) {
+					flex-direction: column;
+					text-align: center;
+				}
+				.post-content :global(.book-cover-container) {
+					width: 130px;
+					margin: 0 auto;
+				}
 			}
 		</style>
 	</body>

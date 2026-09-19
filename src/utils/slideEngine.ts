@@ -56,15 +56,15 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 	slides.push({
 		id: 2,
 		badge: "My Story",
-		title: "My Story: 3-Year BMS Forensic Journey",
+		title: "My Story: 18-Month BMS Journey",
 		bullets: [
 			"Sudden oral burning ignited three years ago",
 			"Flossing triggered 10/10 electric agony after patches",
-			"Beyond standard 'idiopathic' medical dead-ends",
-			"Inspired by author Peggy Shaw",
+			"Exhausted all supplements & medications",
+			"Inspired by author Peggy Sharr",
 			"Now in nine months of complete remission"
 		],
-		notes: `Deliver your 1-minute personal story: Started three years ago with a sudden trigger, escalated to 10/10 flossing agony after cervical dental patches. You treated your body like an engineering circuit, investigated the root hardware and fuel, and achieved nine months of complete remission.\n\n🛡️ LEGAL SHIELD: Frame as personal lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others.`
+		notes: `Deliver your personal story: 18 months of relentless burning pain that escalated to 10/10 flossing agony after cervical resin patches. Exhausted supplements and medicines before a 4-day fast and carnivore diet starved the fire, achieving nine months of complete remission.\n\n🛡️ LEGAL SHIELD: Frame as personal lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others.`
 	});
 
 	// Slide 3: Medical Disclaimer

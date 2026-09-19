@@ -143,13 +143,22 @@ const { title = 'this article' } = Astro.props;
 					</div>
 				</div>
 
-				<!-- Row 4: Custom Letter & Word Spacing Sliders -->
+				<!-- Row 4: Custom Layout & Spacing Tuning -->
 				<div class="tts-drawer-section tts-spacing-section">
 					<div class="tts-section-header">
-						<span class="tts-section-title">Spacing Tuning</span>
-						<button type="button" class="tts-reset-link" id="tts-reset-spacing" title="Reset letter and word spacing to standard">Reset Spacing</button>
+						<span class="tts-section-title">Layout & Spacing Tuning</span>
+						<button type="button" class="tts-reset-link" id="tts-reset-spacing" title="Reset column width, letter and word spacing to standard">Reset Tuning</button>
 					</div>
 					<div class="tts-sliders-grid">
+						<!-- Column Width Slider -->
+						<div class="tts-slider-item tts-slider-item-wide">
+							<div class="tts-slider-label-row">
+								<label for="tts-slider-width" class="tts-slider-name">Reading Column Width</label>
+								<span class="tts-slider-val" id="tts-val-width">58ch (~55 chars)</span>
+							</div>
+							<input type="range" id="tts-slider-width" class="tts-range-slider" min="45" max="75" step="1" value="58" aria-label="Adjust reading column width" />
+						</div>
+
 						<!-- Letter Spacing Slider -->
 						<div class="tts-slider-item">
 							<div class="tts-slider-label-row">
@@ -243,9 +252,10 @@ const { title = 'this article' } = Astro.props;
 <style>
 	.tts-reader-wrapper {
 		margin: 1.5rem auto 1.75rem auto;
-		max-width: 680px;
+		max-width: var(--reading-max-width, 58ch);
 		position: relative;
 		font-family: var(--font-body, system-ui, sans-serif);
+		transition: max-width 0.2s ease;
 	}
 
 	.sr-only {
@@ -697,6 +707,10 @@ const { title = 'this article' } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		gap: 0.3rem;
+	}
+
+	.tts-slider-item-wide {
+		grid-column: 1 / -1;
 	}
 
 	.tts-slider-label-row {
@@ -1666,8 +1680,10 @@ const { title = 'this article' } = Astro.props;
 		const pillToggle = document.getElementById('dyslexic-pill-toggle');
 		const readingRuler = document.getElementById('dyslexic-reading-ruler');
 
+		const sliderWidth = document.getElementById('tts-slider-width') as HTMLInputElement | null;
 		const sliderLetter = document.getElementById('tts-slider-letter') as HTMLInputElement | null;
 		const sliderWord = document.getElementById('tts-slider-word') as HTMLInputElement | null;
+		const valWidth = document.getElementById('tts-val-width');
 		const valLetter = document.getElementById('tts-val-letter');
 		const valWord = document.getElementById('tts-val-word');
 		const resetSpacingBtn = document.getElementById('tts-reset-spacing');
@@ -1726,6 +1742,30 @@ const { title = 'this article' } = Astro.props;
 			applyDyslexicSettings();
 		} catch (err) {}
 
+		// Custom Column Width Controller
+		function updateColumnWidth(widthVal: number, persist = true) {
+			document.documentElement.style.setProperty('--reading-max-width', `${widthVal}ch`);
+
+			if (sliderWidth && parseInt(sliderWidth.value, 10) !== widthVal) {
+				sliderWidth.value = String(widthVal);
+			}
+
+			if (valWidth) {
+				valWidth.textContent = `${widthVal}ch (~${Math.round(widthVal * 0.95)} chars)`;
+			}
+
+			if (persist) {
+				try {
+					localStorage.setItem('decoding_reading_width', String(widthVal));
+				} catch (e) {}
+			}
+		}
+
+		sliderWidth?.addEventListener('input', (e) => {
+			const v = parseInt((e.target as HTMLInputElement).value, 10) || 58;
+			updateColumnWidth(v);
+		});
+
 		// Custom Spacing Sliders Controller
 		function updateSpacing(letterVal: number, wordVal: number, persist = true) {
 			const letterStr = letterVal === 0 ? 'normal' : `${letterVal}em`;
@@ -1769,10 +1809,18 @@ const { title = 'this article' } = Astro.props;
 
 		resetSpacingBtn?.addEventListener('click', () => {
 			updateSpacing(0, 0);
+			updateColumnWidth(58);
 		});
 
-		// Restore saved custom spacing on page load
+		// Restore saved custom layout and spacing on page load
 		try {
+			const savedWidth = localStorage.getItem('decoding_reading_width');
+			if (savedWidth) {
+				updateColumnWidth(parseInt(savedWidth, 10), false);
+			} else {
+				updateColumnWidth(58, false);
+			}
+
 			const savedSpacing = localStorage.getItem('decoding_spacing_settings');
 			if (savedSpacing) {
 				const parsed = JSON.parse(savedSpacing);

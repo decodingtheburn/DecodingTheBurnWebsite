@@ -12,26 +12,26 @@ export const bmsSlides: SlideItem[] = [
 		badge: "Why Sharing",
 		title: "Why I'm Sharing This",
 		bullets: [
-			"BMS solutions are rarely shared",
-			"My remission is 100% real",
-			"Forensic journey to complete remission",
-			"Beyond standard 'idiopathic' medical dead-ends",
+			"For patients & clinicians seeking answers",
+			"Sharing what works and what doesn't",
+			"Inspired by author Peggy Sharr",
+			"Collective wisdom to advance research",
 			"By Denis Ethier at DecodingTheBurn"
 		],
-		notes: "Introduce yourself and DecodingTheBurn.com. Explain why you are sharing this: thousands suffer with Burning Mouth Syndrome in silence, but real recovery stories and root cause dissections are virtually non-existent. Frame BMS as an engineering failure: you approached your body like a biophysical circuit with a fault, not a psychological mystery.\n\n🛡️ LEGAL SHIELD: Never claim a universal 'cure'. Frame your journey as a personal forensic investigation leading to complete remission in your individual case."
+		notes: "Introduce yourself and DecodingTheBurn.com. Address fellow BMS sufferers and healthcare professionals looking to help their patients. Explain why you are sharing this: you found a solution for yourself, and while individual biologies differ, sharing both what works and what doesn't work gives everyone a chance to discover custom solutions. Most doctors receive little training on BMS, which is why patient-led research is vital.\n\n🛡️ LEGAL SHIELD: Frame as personal lived-experience advocacy. Never claim a universal cure."
 	},
 	{
 		id: 2,
 		badge: "My Story",
-		title: "My Story: 3-Year BMS Forensic Journey",
+		title: "My Story: 18-Month BMS Journey",
 		bullets: [
 			"Hey, my name is Denis",
-			"Sudden oral burning ignited three years ago",
-			"Flossing triggered 10/10 agony after patches",
-			"Inspired by author Peggy Shaw",
+			"18 months of full, relentless pain",
+			"Months of 10/10 flossing agony",
+			"Exhausted all supplements & medications",
 			"Now 9 months in complete remission"
 		],
-		notes: "Deliver your 1-minute intro: You suffered through three years of relentless burning pain that escalated into 10/10 electric flossing torture after cervical resin patches. Inspired by researcher Peggy Shaw and root-cause physiology, you conducted methodical elimination tests and achieved nine months of complete remission.\n\n🛡️ LEGAL SHIELD: Frame as lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others."
+		notes: "Deliver your story: 18 months of relentless pain, including multiple months of 10/10 flossing agony. You tried everything under the sun in terms of supplements and medications with zero relief. Inspired by author Peggy Sharr, you tested protocols, conducted fasting resets, and reached 9 months of complete drug-free remission.\n\n🛡️ LEGAL SHIELD: Emphasize that what worked for your individual biology may differ from others."
 	},
 	{
 		id: 3,
@@ -40,22 +40,23 @@ export const bmsSlides: SlideItem[] = [
 		bullets: [
 			"Consult a qualified medical professional",
 			"Educational and personal experience only",
-			"Not medical or dental advice"
+			"Not medical or dental advice",
+			"Validating patient and doctor challenges"
 		],
-		notes: "🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this presentation is for educational purposes only. Always consult a qualified medical professional before making any changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context directly complies with YouTube's 2025/2026 medical misinformation policies and sets clear boundaries against unauthorized practice of medicine."
+		notes: "🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an engineer and independent literature researcher sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and I cannot diagnose. This presentation is for educational purposes only. Always consult a qualified medical professional before making any changes to your health or diet. I know how hard it is to find informed doctors, which is why sharing this data is so urgent.'\n\n🛡️ LEGAL SHIELD: Directly complies with medical misinformation policies and establishes scope."
 	},
 	{
 		id: 4,
-		badge: "The Spark",
-		title: "The Beer Trigger Three Years Ago",
+		badge: "First Trigger",
+		title: "My First Trigger: Beer, Wine & Gums",
 		bullets: [
-			"Trois-Pistoles beer ignited oral burning",
-			"Complete burning across oral cavity",
-			"Stopped beer, calm for 6 months",
-			"Assumed temporary isolated reaction",
-			"First clue of mucosal sensitivity"
+			"First pain started 3 years ago",
+			"Beer triggered next-day gum pain",
+			"Hard to know if gums or teeth",
+			"Stopping for days cleared the ache",
+			"Wine and beer flared it immediately"
 		],
-		notes: "Describe the onset three years ago: drinking a strong dark Belgian ale (Trois-Pistoles) triggered an immediate fiery burn. Stopping beer brought 6 months of false calm, making you think it was just a transient reaction.\n\n🛡️ LEGAL SHIELD: Describe your personal experience without claiming that beer causes BMS in general."
+		notes: "Describe your first trigger three years ago: waking up the day after drinking beer with intense pain throughout the gums. It was hard to know if it was the gums or the teeth, because the soreness felt everywhere. Stopping for a few days let it subside, but drinking beer or wine flared it right back. You stopped alcohol and continued normally for 6 months.\n\n🛡️ LEGAL SHIELD: Describe your personal experience without claiming alcohol causes BMS universally."
 	},
 	{
 		id: 5,
@@ -99,15 +100,15 @@ export const bmsSlides: SlideItem[] = [
 	{
 		id: 8,
 		badge: "Remission",
-		title: "Carnivore Breakthrough & 6-Month Yo-Yo",
+		title: "4-Day Fast & Carnivore Breakthrough",
 		bullets: [
-			"Strict meat, fat, salt, water",
-			"Burning stopped altogether everywhere",
-			"Cheated with popcorn and chips",
-			"Pain returned; 6-month yo-yo cycle",
-			"Now 9 months 100% carnivore"
+			"4-day fast to break acidity cycle",
+			"Broke fast with chicken and eggs",
+			"Only pure water and uniodized salt",
+			"Acidity identified as the prime culprit",
+			"Now 9 months strict carnivore remission"
 		],
-		notes: "Describe the breakthrough: carnivore stopped the pain everywhere. Then the 6-month yo-yo cycle: cheating on popcorn and chips brought immediate flare-ups. Testing half an avocado 6 months ago confirmed the sensitivity. Now 9 months strict carnivore with zero sugar.\n\n🛡️ LEGAL SHIELD: Reiterate that this was an individual elimination experiment requiring medical supervision."
+		notes: "Explain the 4-day fast and dietary breakthrough: you took a 4-day fast to give your mouth a complete break from acidity. You broke the fast with just chicken and eggs, water, and salt, cutting everything else out. Keeping acidity and sugar out stopped the pain. Then explain the 6-month yo-yo cycle with snacks before achieving 9 continuous months of complete remission.\n\n🛡️ LEGAL SHIELD: Reiterate that this was an individual elimination experiment requiring medical supervision."
 	},
 	{
 		id: 9,
