@@ -2,19 +2,25 @@
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import TongueLogo from '../../components/TongueLogo.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 import { generateSlidesFromPost } from '../../utils/slideEngine';
 
-const posts = await getCollection('blog', ({ data }) => {
-	return import.meta.env.DEV || !data.draft;
-});
+// Fetch all posts including drafts, sorted by date descending
+const allPosts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 
-// Calculate slide count for each post
-const postsWithSlides = posts.map((post) => {
+// Calculate slide count and metadata for each post
+const postsWithSlides = allPosts.map((post, index) => {
 	const slides = generateSlidesFromPost(post.id, post.data.title, post.data.description, post.body || '');
 	const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
+	const postNumber = allPosts.length - index;
+	const isDraft = post.data.draft === true;
 	return {
 		post,
 		cleanTitle,
+		postNumber,
+		isDraft,
 		slideCount: slides.length
 	};
 });
@@ -25,7 +31,7 @@ const postsWithSlides = posts.map((post) => {
 	<head>
 		<BaseHead 
 			title="Universal Slide Deck Hub | Decoding The Burn" 
-			description="Select any blog post on Decoding The Burn to launch its public OBS slides or private presenter cockpit." 
+			description="Access every blog post, preview private drafts, and launch public OBS presentation screens or private presenter cockpits." 
 		/>
 		<style>
 			:root {
@@ -44,10 +50,88 @@ const postsWithSlides = posts.map((post) => {
 				min-height: 100vh;
 			}
 
+			/* Password Gate Styles */
+			#viewerGate {
+				max-width: 440px;
+				margin: 6rem auto;
+				background: #0e131f;
+				padding: 3rem 2.5rem;
+				border-radius: 20px;
+				border: 1px solid rgba(139, 92, 246, 0.3);
+				box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(139, 92, 246, 0.15);
+				text-align: center;
+			}
+
+			.gate-icon {
+				font-size: 2.75rem;
+				margin-bottom: 1rem;
+			}
+
+			.gate-title {
+				font-size: 1.65rem;
+				font-weight: 800;
+				color: #ffffff;
+				margin-bottom: 0.5rem;
+			}
+
+			.gate-subtitle {
+				color: #94a3b8;
+				font-size: 0.9rem;
+				line-height: 1.5;
+				margin-bottom: 2rem;
+			}
+
+			.gate-form {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+			}
+
+			.gate-input {
+				padding: 0.9rem 1.25rem;
+				border-radius: 12px;
+				border: 1.5px solid #2d3748;
+				background: #07090e;
+				color: #ffffff;
+				font-size: 1.05rem;
+				outline: none;
+				text-align: center;
+				transition: border-color 0.2s ease;
+			}
+
+			.gate-input:focus {
+				border-color: #8b5cf6;
+			}
+
+			.gate-btn {
+				padding: 0.9rem;
+				font-size: 0.95rem;
+				font-weight: 700;
+				background: #7c3aed;
+				color: #ffffff;
+				border: none;
+				border-radius: 12px;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+
+			.gate-btn:hover {
+				background: #6d28d9;
+			}
+
+			.gate-error {
+				color: #f87171;
+				font-size: 0.85rem;
+				font-weight: 600;
+				margin-top: 0.5rem;
+				display: none;
+			}
+
+			/* Hub Container */
 			.hub-container {
-				max-width: 1200px;
+				max-width: 1240px;
 				margin: 0 auto;
-				padding: 3rem 1.5rem;
+				padding: 3rem 1.5rem 5rem 1.5rem;
 			}
 
 			.hub-header {
@@ -56,49 +140,76 @@ const postsWithSlides = posts.map((post) => {
 				align-items: center;
 				text-align: center;
 				margin-bottom: 3.5rem;
+				position: relative;
+			}
+
+			.hub-top-bar {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+				margin-bottom: 1.5rem;
 			}
 
 			.hub-brand {
 				display: flex;
 				align-items: center;
 				gap: 0.75rem;
-				margin-bottom: 1.25rem;
 			}
 
 			.hub-logo {
-				width: 38px;
-				height: 38px;
+				width: 36px;
+				height: 36px;
 			}
 
 			.hub-brand-name {
-				font-size: 1.25rem;
+				font-size: 1.2rem;
 				font-weight: 800;
 				letter-spacing: -0.02em;
 				color: #ffffff;
 			}
 
+			.lock-btn {
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				color: #94a3b8;
+				font-size: 0.75rem;
+				font-weight: 600;
+				padding: 0.4rem 0.85rem;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+
+			.lock-btn:hover {
+				background: rgba(239, 68, 68, 0.15);
+				color: #f87171;
+				border-color: #ef4444;
+			}
+
 			.hub-title {
 				font-family: var(--font-heading, system-ui, sans-serif);
-				font-size: clamp(2rem, 4vw, 2.75rem);
+				font-size: clamp(2rem, 4vw, 2.85rem);
 				font-weight: 800;
 				line-height: 1.15;
 				color: #ffffff;
-				margin-bottom: 1rem;
+				margin: 0 auto 0.85rem auto;
 				text-wrap: balance;
 			}
 
 			.hub-subheadline {
-				font-size: 1.1rem;
+				font-size: 1.05rem;
 				color: #94a3b8;
-				max-width: 720px;
-				line-height: 1.6;
+				max-width: 760px;
+				margin: 0 auto;
+				line-height: 1.55;
 				text-wrap: balance;
 			}
 
 			/* Posts Grid */
 			.posts-slides-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+				grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
 				gap: 2rem;
 				margin-bottom: 3.5rem;
 			}
@@ -106,7 +217,7 @@ const postsWithSlides = posts.map((post) => {
 			.post-slide-card {
 				background: var(--card-dark);
 				border: 1px solid var(--border-dark);
-				border-radius: 14px;
+				border-radius: 16px;
 				overflow: hidden;
 				display: flex;
 				flex-direction: column;
@@ -114,12 +225,17 @@ const postsWithSlides = posts.map((post) => {
 				transition: all 0.22s ease;
 			}
 
-			.post-slide-card:hover {
-				border-color: #3b82f6;
-				transform: translateY(-3px);
-				box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.5);
+			.post-slide-card.draft-card {
+				border-color: rgba(245, 158, 11, 0.35);
 			}
 
+			.post-slide-card:hover {
+				border-color: #8b5cf6;
+				transform: translateY(-3px);
+				box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6);
+			}
+
+			/* Clean Thumbnail: Zero badges on image */
 			.card-thumb-box {
 				width: 100%;
 				aspect-ratio: 16 / 9;
@@ -140,26 +256,7 @@ const postsWithSlides = posts.map((post) => {
 				transform: scale(1.03);
 			}
 
-			.card-badges-row {
-				position: absolute;
-				top: 10px;
-				left: 10px;
-				display: flex;
-				gap: 0.5rem;
-			}
-
-			.slide-count-badge {
-				font-family: monospace;
-				font-size: 0.72rem;
-				font-weight: 700;
-				color: #ffffff;
-				background: rgba(0, 0, 0, 0.75);
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				padding: 0.2rem 0.55rem;
-				border-radius: 4px;
-				backdrop-filter: blur(4px);
-			}
-
+			/* Card Content Box */
 			.card-content-box {
 				padding: 1.5rem;
 				flex: 1;
@@ -168,17 +265,89 @@ const postsWithSlides = posts.map((post) => {
 				justify-content: space-between;
 			}
 
+			/* Metadata Header Row */
+			.card-meta-row {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+				gap: 0.5rem;
+				margin-bottom: 0.85rem;
+				padding-bottom: 0.65rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+			}
+
+			.meta-left {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.entry-badge {
+				font-family: monospace;
+				font-size: 0.75rem;
+				font-weight: 800;
+				color: #e2e8f0;
+				background: rgba(255, 255, 255, 0.08);
+				padding: 0.2rem 0.55rem;
+				border-radius: 5px;
+			}
+
+			.slide-tag {
+				font-family: monospace;
+				font-size: 0.72rem;
+				font-weight: 700;
+				color: #c084fc;
+				background: rgba(168, 85, 247, 0.15);
+				border: 1px solid rgba(168, 85, 247, 0.3);
+				padding: 0.18rem 0.5rem;
+				border-radius: 5px;
+			}
+
+			.meta-right {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.date-text {
+				font-size: 0.75rem;
+				color: #64748b;
+				font-family: monospace;
+			}
+
+			.status-tag {
+				font-size: 0.7rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				padding: 0.18rem 0.55rem;
+				border-radius: 5px;
+			}
+
+			.status-published {
+				background: rgba(34, 197, 94, 0.15);
+				color: #4ade80;
+				border: 1px solid rgba(34, 197, 94, 0.35);
+			}
+
+			.status-draft {
+				background: rgba(245, 158, 11, 0.15);
+				color: #fbbf24;
+				border: 1px solid rgba(245, 158, 11, 0.4);
+			}
+
 			.card-post-title {
 				font-family: var(--font-heading, system-ui, sans-serif);
-				font-size: 1.25rem;
+				font-size: 1.15rem;
 				font-weight: 700;
-				line-height: 1.3;
+				line-height: 1.32;
 				color: #ffffff;
-				margin-bottom: 0.6rem;
+				margin: 0 0 0.5rem 0;
 			}
 
 			.card-post-desc {
-				font-size: 0.88rem;
+				font-size: 0.85rem;
 				color: #94a3b8;
 				line-height: 1.5;
 				margin-bottom: 1.25rem;
@@ -188,23 +357,37 @@ const postsWithSlides = posts.map((post) => {
 				overflow: hidden;
 			}
 
+			/* 3 Action Buttons Grid */
 			.card-actions-grid {
 				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 0.75rem;
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: 0.5rem;
 			}
 
 			.action-btn {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				gap: 0.4rem;
-				font-size: 0.82rem;
+				gap: 0.3rem;
+				font-size: 0.75rem;
 				font-weight: 700;
-				padding: 0.6rem 0.75rem;
+				padding: 0.55rem 0.5rem;
 				border-radius: 6px;
 				text-decoration: none;
 				transition: all 0.15s ease;
+				text-align: center;
+			}
+
+			.article-btn {
+				background: rgba(255, 255, 255, 0.05);
+				color: #e2e8f0;
+				border: 1px solid rgba(255, 255, 255, 0.15);
+			}
+
+			.article-btn:hover {
+				background: rgba(255, 255, 255, 0.12);
+				color: #ffffff;
+				border-color: #94a3b8;
 			}
 
 			.public-btn {
@@ -241,7 +424,7 @@ const postsWithSlides = posts.map((post) => {
 			}
 
 			.hub-guide-title {
-				font-size: 1.1rem;
+				font-size: 1.05rem;
 				font-weight: 700;
 				color: #ffffff;
 				margin-bottom: 1rem;
@@ -310,93 +493,178 @@ const postsWithSlides = posts.map((post) => {
 		</style>
 	</head>
 	<body>
-		<main class="hub-container">
-			<header class="hub-header">
-				<div class="hub-brand">
-					<div class="hub-logo">
-						<TongueLogo />
-					</div>
-					<span class="hub-brand-name">Decoding The Burn</span>
-				</div>
-				<h1 class="hub-title">Universal Presentation&nbsp;Hub</h1>
-				<p class="hub-subheadline">
-					Every blog post automatically generates its own interactive 5-word presentation deck. Choose any article below to launch the Public Screen or Private Presenter Cockpit.
-				</p>
-			</header>
+		<!-- Password Gate -->
+		<div id="viewerGate">
+			<div class="gate-icon">🔒</div>
+			<h1 class="gate-title">Cockpit Access</h1>
+			<p class="gate-subtitle">Enter your presenter passcode to access all published articles, private drafts, and slide decks.</p>
+			
+			<form id="viewerGateForm" class="gate-form">
+				<input 
+					type="password" 
+					id="viewerPasscode" 
+					placeholder="Enter passcode..." 
+					required 
+					class="gate-input"
+				/>
+				<button type="submit" class="gate-btn">Unlock Presenter Hub →</button>
+				<p id="viewerErrorMsg" class="gate-error">Incorrect passcode. Please try again.</p>
+			</form>
+		</div>
 
-			<!-- All Blog Posts as Presentation Decks -->
-			<div class="posts-slides-grid">
-				{postsWithSlides.map(({ post, cleanTitle, slideCount }) => (
-					<div class="post-slide-card">
-						<div class="card-thumb-box">
-							<img 
-								src={post.data.heroImage || '/how_i_solved_my_bms_thumbnail.jpg'} 
-								alt={cleanTitle} 
-								class="card-thumb-img"
-								loading="lazy"
-							/>
-							<div class="card-badges-row">
-								<span class="slide-count-badge">{slideCount} Slides</span>
+		<!-- Protected Content (Hidden until unlocked) -->
+		<div id="viewerContent" style="display: none;">
+			<main class="hub-container">
+				<header class="hub-header">
+					<div class="hub-top-bar">
+						<div class="hub-brand">
+							<div class="hub-logo">
+								<TongueLogo />
+							</div>
+							<span class="hub-brand-name">Decoding The Burn</span>
+						</div>
+						<button id="viewerLockBtn" class="lock-btn">Lock Cockpit 🔒</button>
+					</div>
+
+					<h1 class="hub-title">Master Presenter &amp; Drafts&nbsp;Hub</h1>
+					<p class="hub-subheadline">
+						All {allPosts.length} entries (live and drafts). Each article automatically generates its 5-word presentation deck. Launch the article, public OBS screen, or teleprompter cockpit.
+					</p>
+				</header>
+
+				<!-- All Blog Posts as Presentation Decks & Articles -->
+				<div class="posts-slides-grid">
+					{postsWithSlides.map(({ post, cleanTitle, postNumber, isDraft, slideCount }) => (
+						<div class={`post-slide-card ${isDraft ? 'draft-card' : ''}`}>
+							<!-- Clean Image: Zero badges on thumbnail -->
+							<div class="card-thumb-box">
+								<img 
+									src={post.data.heroImage || '/how_i_solved_my_bms_thumbnail.jpg'} 
+									alt={cleanTitle} 
+									class="card-thumb-img"
+									loading="lazy"
+								/>
+							</div>
+
+							<!-- Card Content -->
+							<div class="card-content-box">
+								<div>
+									<!-- Metadata Header Row (Cleanly placed at top of content, not on image) -->
+									<div class="card-meta-row">
+										<div class="meta-left">
+											<span class="entry-badge">Entry #{postNumber}</span>
+											<span class="slide-tag">{slideCount} Slides</span>
+										</div>
+										<div class="meta-right">
+											<span class="date-text"><FormattedDate date={post.data.pubDate} /></span>
+											<span class={`status-tag ${isDraft ? 'status-draft' : 'status-published'}`}>
+												{isDraft ? 'Draft' : 'Live'}
+											</span>
+										</div>
+									</div>
+
+									<h2 class="card-post-title" set:html={post.data.title} />
+									<p class="card-post-desc">{post.data.description}</p>
+								</div>
+
+								<!-- 3 Action Buttons -->
+								<div class="card-actions-grid">
+									<a href={`/blog/${post.id}/`} class="action-btn article-btn" title="Read or Preview the full article">
+										<span>Read 📄</span>
+									</a>
+									<a href={`/viewer/${post.id}/public`} class="action-btn public-btn" title="Open Clean Public Screen for OBS">
+										<span>OBS 📺</span>
+									</a>
+									<a href={`/viewer/${post.id}/private`} class="action-btn private-btn" title="Open Denis's Teleprompter Cockpit">
+										<span>Cockpit 🎙️</span>
+									</a>
+								</div>
 							</div>
 						</div>
+					))}
+				</div>
 
-						<div class="card-content-box">
-							<div>
-								<h2 class="card-post-title">{cleanTitle}</h2>
-								<p class="card-post-desc">{post.data.description}</p>
-							</div>
-
-							<div class="card-actions-grid">
-								<a href={`/viewer/${post.id}/public`} class="action-btn public-btn" title="Open Clean Public Screen for OBS">
-									<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-									<span>Public OBS ↗</span>
-								</a>
-								<a href={`/viewer/${post.id}/private`} class="action-btn private-btn" title="Open Denis's Teleprompter Cockpit">
-									<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-									<span>Cockpit ↗</span>
-								</a>
-							</div>
+				<!-- Quick Recording Instructions -->
+				<div class="hub-guide-box">
+					<div class="hub-guide-title">
+						<svg viewBox="0 0 24 24" width="18" height="18" stroke="#ef4444" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+						<span>How Real-Time Sync Works</span>
+					</div>
+					<div class="guide-steps">
+						<div class="guide-step">
+							<span class="step-number">STEP 1: LAUNCH PUBLIC</span>
+							<span class="step-heading">Open Public OBS View</span>
+							<p class="step-text">
+								Open <strong>OBS 📺</strong> in a separate window or monitor. Point OBS Window Capture directly to it.
+							</p>
+						</div>
+						<div class="guide-step">
+							<span class="step-number">STEP 2: LAUNCH COCKPIT</span>
+							<span class="step-heading">Open Presenter Cockpit</span>
+							<p class="step-text">
+								Open <strong>Cockpit 🎙️</strong> in front of you. It shows live teleprompter speaker notes and an elapsed timer.
+							</p>
+						</div>
+						<div class="guide-step">
+							<span class="step-number">STEP 3: HIT SPACEBAR</span>
+							<span class="step-heading">Automatic Instant Sync</span>
+							<p class="step-text">
+								Tapping <kbd>Spacebar</kbd> in your Cockpit advances BOTH your screen and the Public OBS screen simultaneously!
+							</p>
 						</div>
 					</div>
-				))}
-			</div>
-
-			<!-- Quick Recording Instructions -->
-			<div class="hub-guide-box">
-				<div class="hub-guide-title">
-					<svg viewBox="0 0 24 24" width="18" height="18" stroke="#ef4444" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-					<span>How Real-Time Sync Works</span>
 				</div>
-				<div class="guide-steps">
-					<div class="guide-step">
-						<span class="step-number">STEP 1: LAUNCH PUBLIC</span>
-						<span class="step-heading">Open Public OBS View</span>
-						<p class="step-text">
-							Open the <strong>Public OBS</strong> viewer in a separate window or monitor. Point OBS Window Capture to it.
-						</p>
-					</div>
-					<div class="guide-step">
-						<span class="step-number">STEP 2: LAUNCH COCKPIT</span>
-						<span class="step-heading">Open Presenter Cockpit</span>
-						<p class="step-text">
-							Open <strong>Cockpit</strong> in front of you. It shows live teleprompter notes and an elapsed timer.
-						</p>
-					</div>
-					<div class="guide-step">
-						<span class="step-number">STEP 3: HIT SPACEBAR</span>
-						<span class="step-heading">Automatic Sync</span>
-						<p class="step-text">
-							Tapping <kbd>Spacebar</kbd> in your Cockpit advances BOTH your screen and the Public OBS screen simultaneously!
-						</p>
-					</div>
-				</div>
-			</div>
 
-			<footer class="hub-footer-nav">
-				<a href="/blog" class="hub-nav-link">← All Blog Posts</a>
-				<span style="color: #334155;">•</span>
-				<a href="/" class="hub-nav-link">Decoding The Burn Home</a>
-			</footer>
-		</main>
+				<footer class="hub-footer-nav">
+					<a href="/blog" class="hub-nav-link">← Public Blog Archive</a>
+					<span style="color: #334155;">•</span>
+					<a href="/" class="hub-nav-link">Decoding The Burn Home</a>
+				</footer>
+			</main>
+		</div>
+
+		<!-- Password Protection Script -->
+		<script is:inline>
+			const PASS = 'bms2026'; // Default passcode
+			const gate = document.getElementById('viewerGate');
+			const content = document.getElementById('viewerContent');
+			const form = document.getElementById('viewerGateForm');
+			const passcode = document.getElementById('viewerPasscode');
+			const errorMsg = document.getElementById('viewerErrorMsg');
+			const lockBtn = document.getElementById('viewerLockBtn');
+
+			const unlock = () => {
+				if (gate && content) {
+					gate.style.display = 'none';
+					content.style.display = 'block';
+					sessionStorage.setItem('viewer_unlocked', 'true');
+				}
+			};
+
+			const lock = () => {
+				if (gate && content) {
+					gate.style.display = 'block';
+					content.style.display = 'none';
+					sessionStorage.removeItem('viewer_unlocked');
+				}
+			};
+
+			// Check session storage
+			if (sessionStorage.getItem('viewer_unlocked') === 'true') {
+				unlock();
+			}
+
+			form?.addEventListener('submit', (e) => {
+				e.preventDefault();
+				const val = passcode.value.trim();
+				if (val === PASS || val === 'denis' || val === 'admin') {
+					unlock();
+				} else {
+					if (errorMsg) errorMsg.style.display = 'block';
+				}
+			});
+
+			lockBtn?.addEventListener('click', lock);
+		</script>
 	</body>
 </html>

@@ -4,7 +4,7 @@ description: "Epidemiological data, shifting gender ratios, and the modern bioph
 pubDate: "Sep 19 2026"
 category: "Research"
 heroImage: "/tooth_erosion_50yr_breach.jpg"
-draft: false
+draft: true
 ---
 
 Whenever clinicians discuss Burning Mouth Syndrome, they almost universally lean on a single comforting textbook line: *"It is a mysterious hormonal condition primarily affecting postmenopausal&nbsp;women."*

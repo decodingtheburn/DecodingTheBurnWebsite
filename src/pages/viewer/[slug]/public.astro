@@ -5,9 +5,7 @@ import TongueLogo from '../../../components/TongueLogo.astro';
 import { generateSlidesFromPost } from '../../../utils/slideEngine';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog', ({ data }) => {
-		return import.meta.env.DEV || !data.draft;
-	});
+	const posts = await getCollection('blog');
 	return posts.map((post) => ({
 		params: { slug: post.id },
 		props: {
