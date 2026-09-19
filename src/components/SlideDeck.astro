@@ -492,7 +492,7 @@ const { slides = bmsSlides, isStandalone = false } = Astro.props;
 	})();
 </script>
 
-<style>
+<style is:global>
 	.deck-wrapper {
 		margin: 2.5rem 0 3.5rem 0;
 		width: 100%;
@@ -722,6 +722,8 @@ const { slides = bmsSlides, isStandalone = false } = Astro.props;
 		gap: 1.15rem;
 		font-size: clamp(1.35rem, 2.3vw, 1.85rem);
 		line-height: 1.35;
+		padding: 0.5rem 0.85rem;
+		border-radius: 8px;
 		transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 		cursor: pointer;
 	}
@@ -730,12 +732,13 @@ const { slides = bmsSlides, isStandalone = false } = Astro.props;
 	.slide-stage-container.is-in-fullscreen .bullet-item {
 		font-size: clamp(1.65rem, 2.7vw, 2.4rem);
 		gap: 1.35rem;
+		padding: 0.65rem 1.15rem;
 	}
 
 	.bullet-marker {
 		display: inline-block;
-		width: 12px;
-		height: 12px;
+		width: 14px;
+		height: 14px;
 		border-radius: 50%;
 		flex-shrink: 0;
 		transition: all 0.2s ease;
@@ -743,53 +746,71 @@ const { slides = bmsSlides, isStandalone = false } = Astro.props;
 
 	.slide-stage-container:fullscreen .bullet-marker,
 	.slide-stage-container.is-in-fullscreen .bullet-marker {
-		width: 16px;
-		height: 16px;
+		width: 18px;
+		height: 18px;
 	}
 
+	.bullet-text {
+		color: #ffffff !important;
+		flex: 1;
+	}
+
+	/* 1. LIVE (ACTIVE) POINT: Glowing Emerald Green (Dennis: green for the live one) */
 	.bullet-item.is-active {
-		opacity: 1;
+		opacity: 1 !important;
+		background: rgba(34, 197, 94, 0.18) !important;
+		border: 2px solid #22c55e !important;
+		box-shadow: 0 0 20px rgba(34, 197, 94, 0.35), inset 0 0 10px rgba(34, 197, 94, 0.15) !important;
 		transform: translateX(6px);
 	}
 
 	.bullet-item.is-active .bullet-marker {
-		background: #ef4444;
-		box-shadow: 0 0 14px #ef4444, 0 0 28px rgba(239, 68, 68, 0.5);
+		background: #22c55e !important;
+		box-shadow: 0 0 14px #22c55e, 0 0 28px rgba(34, 197, 94, 0.7) !important;
 		transform: scale(1.35);
 	}
 
 	.bullet-item.is-active .bullet-text {
-		color: #ffffff;
-		font-weight: 800;
-		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+		color: #ffffff !important;
+		font-weight: 800 !important;
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 	}
 
-	.bullet-item.is-revealed {
-		opacity: 0.88;
-		transform: translateX(0);
-	}
-
-	.bullet-item.is-revealed .bullet-marker {
-		background: #94a3b8;
-	}
-
-	.bullet-item.is-revealed .bullet-text {
-		color: #e2e8f0;
-		font-weight: 600;
-	}
-
+	/* 2. INACTIVE / UPCOMING POINTS: Red Dot Accent with 100% VISIBLE TEXT (Dennis: red for inactive, text visible all the time) */
 	.bullet-item.is-dimmed {
-		opacity: 0.38;
+		opacity: 1 !important; /* 100% visible, NEVER dark or faded */
+		background: rgba(239, 68, 68, 0.06) !important;
+		border: 1.5px solid rgba(239, 68, 68, 0.35) !important;
 		transform: translateX(0);
 	}
 
 	.bullet-item.is-dimmed .bullet-marker {
-		background: #475569;
+		background: #ef4444 !important;
+		box-shadow: 0 0 10px rgba(239, 68, 68, 0.7) !important;
+		transform: scale(1);
 	}
 
 	.bullet-item.is-dimmed .bullet-text {
-		color: #cbd5e1;
-		font-weight: 500;
+		color: #f1f5f9 !important; /* Crisp, readable light text */
+		font-weight: 600 !important;
+	}
+
+	/* 3. REVEALED / PAST POINTS: Clean finished status with soft gray dot */
+	.bullet-item.is-revealed {
+		opacity: 0.88 !important;
+		background: rgba(255, 255, 255, 0.03) !important;
+		border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+		transform: translateX(0);
+	}
+
+	.bullet-item.is-revealed .bullet-marker {
+		background: #64748b !important;
+		box-shadow: none !important;
+	}
+
+	.bullet-item.is-revealed .bullet-text {
+		color: #cbd5e1 !important;
+		font-weight: 600 !important;
 	}
 
 	.slide-stage-footer {

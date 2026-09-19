@@ -11,7 +11,7 @@ import { bmsSlides } from '../../data/slidesData';
 			title="Public Viewer: How I Solved My BMS | Decoding The Burn" 
 			description="Clean, borderless 16:9 public slide presentation for OBS recording and audience viewing." 
 		/>
-		<style>
+		<style is:global>
 			:root {
 				--bg-black: #06080c;
 				--stage-bg: #090c12;
@@ -143,61 +143,81 @@ import { bmsSlides } from '../../data/slidesData';
 				gap: 1.35rem;
 				font-size: clamp(1.65rem, 2.7vw, 2.4rem);
 				line-height: 1.35;
+				padding: 0.65rem 1.15rem;
+				border-radius: 10px;
 				transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+				cursor: pointer;
 			}
 
 			.bullet-dot {
-				width: clamp(14px, 1.3vw, 18px);
-				height: clamp(14px, 1.3vw, 18px);
+				width: clamp(16px, 1.4vw, 20px);
+				height: clamp(16px, 1.4vw, 20px);
 				border-radius: 50%;
 				flex-shrink: 0;
-				transition: all 0.2s ease;
+				transition: all 0.22s ease;
 			}
 
+			.bullet-text {
+				color: #ffffff !important;
+				flex: 1;
+			}
+
+			/* 1. LIVE (ACTIVE) POINT: Glowing Emerald Green (Dennis: green for the live one) */
 			.bullet-item.is-active {
-				opacity: 1;
+				opacity: 1 !important;
+				background: rgba(34, 197, 94, 0.18) !important;
+				border: 2px solid #22c55e !important;
+				box-shadow: 0 0 24px rgba(34, 197, 94, 0.35), inset 0 0 12px rgba(34, 197, 94, 0.15) !important;
 				transform: translateX(10px);
 			}
 
 			.bullet-item.is-active .bullet-dot {
-				background: #ef4444;
-				box-shadow: 0 0 16px #ef4444, 0 0 32px rgba(239, 68, 68, 0.6);
-				transform: scale(1.4);
+				background: #22c55e !important;
+				box-shadow: 0 0 16px #22c55e, 0 0 32px rgba(34, 197, 94, 0.75) !important;
+				transform: scale(1.35);
 			}
 
 			.bullet-item.is-active .bullet-text {
-				color: #ffffff;
-				font-weight: 800;
-				text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+				color: #ffffff !important;
+				font-weight: 800 !important;
+				text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
 			}
 
-			.bullet-item.is-revealed {
-				opacity: 0.88;
-				transform: translateX(0);
-			}
-
-			.bullet-item.is-revealed .bullet-dot {
-				background: #94a3b8;
-				box-shadow: none;
-			}
-
-			.bullet-item.is-revealed .bullet-text {
-				color: #e2e8f0;
-				font-weight: 600;
-			}
-
+			/* 2. INACTIVE / UPCOMING POINTS: Red Dot Accent with 100% VISIBLE TEXT (Dennis: red for inactive, text visible all the time) */
 			.bullet-item.is-dimmed {
-				opacity: 0.38;
+				opacity: 1 !important; /* 100% visible, NEVER dark or faded */
+				background: rgba(239, 68, 68, 0.06) !important;
+				border: 1.5px solid rgba(239, 68, 68, 0.35) !important;
 				transform: translateX(0);
 			}
 
 			.bullet-item.is-dimmed .bullet-dot {
-				background: #475569;
+				background: #ef4444 !important;
+				box-shadow: 0 0 12px rgba(239, 68, 68, 0.75) !important;
+				transform: scale(1);
 			}
 
 			.bullet-item.is-dimmed .bullet-text {
-				color: #cbd5e1;
-				font-weight: 500;
+				color: #f1f5f9 !important; /* Crisp, readable light text */
+				font-weight: 600 !important;
+			}
+
+			/* 3. REVEALED / PAST POINTS: Clean finished status with soft gray dot */
+			.bullet-item.is-revealed {
+				opacity: 0.88 !important;
+				background: rgba(255, 255, 255, 0.03) !important;
+				border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+				transform: translateX(0);
+			}
+
+			.bullet-item.is-revealed .bullet-dot {
+				background: #64748b !important;
+				box-shadow: none !important;
+			}
+
+			.bullet-item.is-revealed .bullet-text {
+				color: #cbd5e1 !important;
+				font-weight: 600 !important;
 			}
 
 			.stage-footer {
