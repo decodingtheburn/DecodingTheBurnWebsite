@@ -16,11 +16,17 @@ const postsWithSlides = allPosts.map((post, index) => {
 	const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
 	const postNumber = allPosts.length - index;
 	const isDraft = post.data.draft === true;
+	const compactDate = post.data.pubDate.toLocaleDateString('en-US', {
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric'
+	});
 	return {
 		post,
 		cleanTitle,
 		postNumber,
 		isDraft,
+		compactDate,
 		slideCount: slides.length
 	};
 });
@@ -226,7 +232,13 @@ const postsWithSlides = allPosts.map((post, index) => {
 			}
 
 			.post-slide-card.draft-card {
-				border-color: rgba(245, 158, 11, 0.35);
+				border-color: rgba(245, 158, 11, 0.45);
+				background: linear-gradient(180deg, rgba(245, 158, 11, 0.04) 0%, var(--card-dark) 25%);
+			}
+
+			.post-slide-card.draft-card:hover {
+				border-color: #f59e0b;
+				box-shadow: 0 20px 45px -10px rgba(245, 158, 11, 0.22);
 			}
 
 			.post-slide-card:hover {
@@ -258,160 +270,235 @@ const postsWithSlides = allPosts.map((post, index) => {
 
 			/* Card Content Box */
 			.card-content-box {
-				padding: 1.5rem;
+				padding: 1.4rem;
 				flex: 1;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 			}
 
-			/* Metadata Header Row */
-			.card-meta-row {
+			/* Meta Header: Row 1 */
+			.card-meta-header {
 				display: flex;
-				flex-wrap: wrap;
 				align-items: center;
 				justify-content: space-between;
 				gap: 0.5rem;
+				margin-bottom: 0.55rem;
+			}
+
+			.meta-badges-group {
+				display: flex;
+				align-items: center;
+				gap: 0.45rem;
+				flex-wrap: wrap;
+			}
+
+			.entry-pill {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.72rem;
+				font-weight: 700;
+				color: #f1f5f9;
+				background: #1e2536;
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				padding: 0.2rem 0.55rem;
+				border-radius: 6px;
+				letter-spacing: 0.02em;
+			}
+
+			.slide-pill {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.3rem;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.72rem;
+				font-weight: 600;
+				color: #d8b4fe;
+				background: rgba(168, 85, 247, 0.14);
+				border: 1px solid rgba(168, 85, 247, 0.35);
+				padding: 0.2rem 0.55rem;
+				border-radius: 6px;
+			}
+
+			.meta-status-group {
+				display: flex;
+				align-items: center;
+			}
+
+			.status-pill {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-size: 0.68rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				padding: 0.2rem 0.6rem;
+				border-radius: 6px;
+			}
+
+			.status-live {
+				background: rgba(34, 197, 94, 0.14);
+				color: #4ade80;
+				border: 1px solid rgba(34, 197, 94, 0.45);
+			}
+
+			.status-draft {
+				background: rgba(245, 158, 11, 0.16);
+				color: #fbbf24;
+				border: 1px solid rgba(245, 158, 11, 0.5);
+			}
+
+			.status-dot {
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				display: inline-block;
+			}
+
+			.dot-live {
+				background: #22c55e;
+				box-shadow: 0 0 6px rgba(34, 197, 94, 0.8);
+			}
+
+			.dot-draft {
+				background: #f59e0b;
+				box-shadow: 0 0 6px rgba(245, 158, 11, 0.8);
+			}
+
+			/* Meta Header: Row 2 Date */
+			.card-date-row {
+				display: flex;
+				align-items: center;
+				gap: 0.35rem;
+				color: #64748b;
+				font-size: 0.78rem;
 				margin-bottom: 0.85rem;
 				padding-bottom: 0.65rem;
 				border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 			}
 
-			.meta-left {
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
+			.date-icon {
+				opacity: 0.75;
+				flex-shrink: 0;
 			}
 
-			.entry-badge {
-				font-family: monospace;
-				font-size: 0.75rem;
-				font-weight: 800;
-				color: #e2e8f0;
-				background: rgba(255, 255, 255, 0.08);
-				padding: 0.2rem 0.55rem;
-				border-radius: 5px;
+			.card-date-text {
+				font-weight: 500;
+				letter-spacing: 0.01em;
 			}
 
-			.slide-tag {
-				font-family: monospace;
-				font-size: 0.72rem;
-				font-weight: 700;
-				color: #c084fc;
-				background: rgba(168, 85, 247, 0.15);
-				border: 1px solid rgba(168, 85, 247, 0.3);
-				padding: 0.18rem 0.5rem;
-				border-radius: 5px;
-			}
-
-			.meta-right {
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-			}
-
-			.date-text {
-				font-size: 0.75rem;
-				color: #64748b;
-				font-family: monospace;
-			}
-
-			.status-tag {
-				font-size: 0.7rem;
-				font-weight: 800;
-				text-transform: uppercase;
-				letter-spacing: 0.04em;
-				padding: 0.18rem 0.55rem;
-				border-radius: 5px;
-			}
-
-			.status-published {
-				background: rgba(34, 197, 94, 0.15);
-				color: #4ade80;
-				border: 1px solid rgba(34, 197, 94, 0.35);
-			}
-
-			.status-draft {
-				background: rgba(245, 158, 11, 0.15);
-				color: #fbbf24;
-				border: 1px solid rgba(245, 158, 11, 0.4);
-			}
-
+			/* Post Title & Description */
 			.card-post-title {
 				font-family: var(--font-heading, system-ui, sans-serif);
 				font-size: 1.15rem;
 				font-weight: 700;
-				line-height: 1.32;
+				line-height: 1.35;
 				color: #ffffff;
-				margin: 0 0 0.5rem 0;
+				margin: 0 0 0.55rem 0;
+				text-wrap: balance;
 			}
 
 			.card-post-desc {
-				font-size: 0.85rem;
+				font-size: 0.86rem;
 				color: #94a3b8;
 				line-height: 1.5;
-				margin-bottom: 1.25rem;
+				margin-bottom: 1.4rem;
 				display: -webkit-box;
 				-webkit-line-clamp: 2;
 				-webkit-box-orient: vertical;
 				overflow: hidden;
+				text-wrap: pretty;
 			}
 
-			/* 3 Action Buttons Grid */
-			.card-actions-grid {
-				display: grid;
-				grid-template-columns: 1fr 1fr 1fr;
-				gap: 0.5rem;
+			/* 2-Tier Action Buttons */
+			.card-actions-wrapper {
+				display: flex;
+				flex-direction: column;
+				gap: 0.55rem;
+				margin-top: auto;
 			}
 
-			.action-btn {
+			.btn-primary-article {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				gap: 0.3rem;
-				font-size: 0.75rem;
+				gap: 0.45rem;
+				width: 100%;
+				padding: 0.62rem 1rem;
+				background: rgba(255, 255, 255, 0.07);
+				border: 1px solid rgba(255, 255, 255, 0.16);
+				border-radius: 8px;
+				color: #f8fafc;
+				font-size: 0.82rem;
 				font-weight: 700;
-				padding: 0.55rem 0.5rem;
-				border-radius: 6px;
 				text-decoration: none;
-				transition: all 0.15s ease;
+				transition: all 0.2s ease;
+				box-sizing: border-box;
+			}
+
+			.btn-primary-article:hover {
+				background: rgba(255, 255, 255, 0.13);
+				border-color: rgba(255, 255, 255, 0.35);
+				color: #ffffff;
+				transform: translateY(-1px);
+			}
+
+			.btn-arrow {
+				transition: transform 0.2s ease;
+				opacity: 0.6;
+			}
+
+			.btn-primary-article:hover .btn-arrow {
+				transform: translateX(3px);
+				opacity: 1;
+			}
+
+			.btn-deck-tools-row {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 0.55rem;
+				width: 100%;
+			}
+
+			.deck-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.35rem;
+				padding: 0.55rem 0.5rem;
+				border-radius: 8px;
+				font-size: 0.76rem;
+				font-weight: 700;
+				text-decoration: none;
+				transition: all 0.18s ease;
+				box-sizing: border-box;
 				text-align: center;
 			}
 
-			.article-btn {
-				background: rgba(255, 255, 255, 0.05);
-				color: #e2e8f0;
-				border: 1px solid rgba(255, 255, 255, 0.15);
-			}
-
-			.article-btn:hover {
-				background: rgba(255, 255, 255, 0.12);
-				color: #ffffff;
-				border-color: #94a3b8;
-			}
-
-			.public-btn {
+			.obs-btn {
 				background: rgba(59, 130, 246, 0.12);
-				color: #60a5fa;
-				border: 1px solid rgba(59, 130, 246, 0.35);
+				color: #93c5fd;
+				border: 1px solid rgba(59, 130, 246, 0.32);
 			}
 
-			.public-btn:hover {
+			.obs-btn:hover {
 				background: #2563eb;
 				color: #ffffff;
 				border-color: #2563eb;
+				box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 			}
 
-			.private-btn {
+			.cockpit-btn {
 				background: rgba(239, 68, 68, 0.12);
-				color: #f87171;
-				border: 1px solid rgba(239, 68, 68, 0.35);
+				color: #fca5a5;
+				border: 1px solid rgba(239, 68, 68, 0.32);
 			}
 
-			.private-btn:hover {
+			.cockpit-btn:hover {
 				background: #dc2626;
 				color: #ffffff;
 				border-color: #dc2626;
+				box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 			}
 
 			/* Guide Box */
@@ -528,13 +615,13 @@ const postsWithSlides = allPosts.map((post, index) => {
 
 					<h1 class="hub-title">Master Presenter &amp; Drafts&nbsp;Hub</h1>
 					<p class="hub-subheadline">
-						All {allPosts.length} entries (live and drafts). Each article automatically generates its 5-word presentation deck. Launch the article, public OBS screen, or teleprompter cockpit.
+						All {allPosts.length} entries (live and drafts). Each article automatically generates its 5-word presentation deck. Launch the article, public OBS screen, or teleprompter&nbsp;cockpit.
 					</p>
 				</header>
 
 				<!-- All Blog Posts as Presentation Decks & Articles -->
 				<div class="posts-slides-grid">
-					{postsWithSlides.map(({ post, cleanTitle, postNumber, isDraft, slideCount }) => (
+					{postsWithSlides.map(({ post, cleanTitle, postNumber, isDraft, compactDate, slideCount }) => (
 						<div class={`post-slide-card ${isDraft ? 'draft-card' : ''}`}>
 							<!-- Clean Image: Zero badges on thumbnail -->
 							<div class="card-thumb-box">
@@ -549,35 +636,58 @@ const postsWithSlides = allPosts.map((post, index) => {
 							<!-- Card Content -->
 							<div class="card-content-box">
 								<div>
-									<!-- Metadata Header Row (Cleanly placed at top of content, not on image) -->
-									<div class="card-meta-row">
-										<div class="meta-left">
-											<span class="entry-badge">Entry #{postNumber}</span>
-											<span class="slide-tag">{slideCount} Slides</span>
-										</div>
-										<div class="meta-right">
-											<span class="date-text"><FormattedDate date={post.data.pubDate} /></span>
-											<span class={`status-tag ${isDraft ? 'status-draft' : 'status-published'}`}>
-												{isDraft ? 'Draft' : 'Live'}
+									<!-- Metadata Header: Entry #, Slides, Status -->
+									<div class="card-meta-header">
+										<div class="meta-badges-group">
+											<span class="entry-pill">Entry #{postNumber}</span>
+											<span class="slide-pill">
+												<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+												{slideCount} Slides
 											</span>
 										</div>
+										<div class="meta-status-group">
+											{isDraft ? (
+												<span class="status-pill status-draft">
+													<span class="status-dot dot-draft"></span>
+													Draft
+												</span>
+											) : (
+												<span class="status-pill status-live">
+													<span class="status-dot dot-live"></span>
+													Live
+												</span>
+											)}
+										</div>
+									</div>
+
+									<!-- Compact Clean Date Row -->
+									<div class="card-date-row">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="date-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+										<span class="card-date-text">{compactDate}</span>
 									</div>
 
 									<h2 class="card-post-title" set:html={post.data.title} />
 									<p class="card-post-desc">{post.data.description}</p>
 								</div>
 
-								<!-- 3 Action Buttons -->
-								<div class="card-actions-grid">
-									<a href={`/blog/${post.id}/`} class="action-btn article-btn" title="Read or Preview the full article">
-										<span>Read 📄</span>
+								<!-- 2-Tier Action Buttons: Full-width Article read/preview + 50/50 Deck Tools -->
+								<div class="card-actions-wrapper">
+									<a href={`/blog/${post.id}/`} class="btn-primary-article" title={isDraft ? "Preview Private Draft Article" : "Read Full Article"}>
+										<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+										<span>{isDraft ? 'Preview Private Draft' : 'Read Full Article'}</span>
+										<span class="btn-arrow">→</span>
 									</a>
-									<a href={`/viewer/${post.id}/public`} class="action-btn public-btn" title="Open Clean Public Screen for OBS">
-										<span>OBS 📺</span>
-									</a>
-									<a href={`/viewer/${post.id}/private`} class="action-btn private-btn" title="Open Denis's Teleprompter Cockpit">
-										<span>Cockpit 🎙️</span>
-									</a>
+
+									<div class="btn-deck-tools-row">
+										<a href={`/viewer/${post.id}/public`} class="deck-btn obs-btn" title="Open Clean Public Screen for OBS">
+											<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+											<span>Public OBS</span>
+										</a>
+										<a href={`/viewer/${post.id}/private`} class="deck-btn cockpit-btn" title="Open Denis's Teleprompter Cockpit">
+											<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+											<span>Cockpit</span>
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
