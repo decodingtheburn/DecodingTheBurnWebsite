@@ -38,8 +38,13 @@ const { title = 'this article' } = Astro.props;
 					<span>🧠 Bionic</span>
 				</button>
 
+				<!-- Quick Phrase Chunking Button -->
+				<button type="button" class="tts-quick-chip" id="tts-quick-chunking" title="Toggle Syntactic Phrase Chunking in dark ink colors">
+					<span>🧩 Chunks</span>
+				</button>
+
 				<!-- Expand / Collapse Drawer Toggle -->
-				<button type="button" class="tts-expand-toggle" id="tts-expand-btn" aria-expanded="false" title="Expand reading and audio options">
+				<button type="button" class="tts-expand-toggle" id="tts-expand-btn" aria-expanded="false" title="Expand reading options and custom spacing sliders">
 					<span class="tts-expand-text">Options</span>
 					<svg class="tts-expand-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.3" fill="none">
 						<polyline points="6 9 12 15 18 9"></polyline>
@@ -101,7 +106,7 @@ const { title = 'this article' } = Astro.props;
 				<!-- Row 2: Reading Accessibility Tools -->
 				<div class="tts-drawer-section">
 					<div class="tts-section-header">
-						<span class="tts-section-title">Reading Accessibility Modes</span>
+						<span class="tts-section-title">Reading Modes</span>
 					</div>
 					<div class="tts-chips-wrap">
 						<!-- Bionic Reading Chip -->
@@ -109,19 +114,14 @@ const { title = 'this article' } = Astro.props;
 							<span>🧠 Bionic Reading</span>
 						</button>
 
+						<!-- Sentence Chunking Chip -->
+						<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-chunking" title="Syntactic Sentence Chunking: Groups phrases in alternating dark fountain-pen inks">
+							<span>🧩 Phrase Chunking</span>
+						</button>
+
 						<!-- Dyslexic Font Chip -->
 						<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-dyslexic-font" title="Lexend dyslexia-friendly typeface and warm page tint">
 							<span>📖 Dyslexic Font</span>
-						</button>
-
-						<!-- Wide Spacing Chip (Optional!) -->
-						<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-spacing" title="Extra letter and word spacing">
-							<span>↔ Wide Spacing</span>
-						</button>
-
-						<!-- Grammar Colors Chip -->
-						<button type="button" class="tts-btn tts-btn-chip" id="tts-chip-pos" title="Color-code parts of speech: Verbs, Nouns, Adjectives, Adverbs, Pronouns">
-							<span>🎨 Grammar Colors</span>
 						</button>
 
 						<!-- Ruler Chip -->
@@ -131,21 +131,42 @@ const { title = 'this article' } = Astro.props;
 					</div>
 				</div>
 
-				<!-- Row 3: Grammar Colors Palette Selector & Legend (Visible when Grammar Colors is ON) -->
-				<div class="tts-pos-panel" id="tts-pos-panel" style="display: none;">
+				<!-- Row 3: Sentence Chunking Dark Ink Legend (Visible when Chunking is ON) -->
+				<div class="tts-pos-panel" id="tts-chunk-panel" style="display: none;">
 					<div class="tts-palette-row">
-						<span class="tts-palette-label">Color Palette:</span>
-						<button type="button" class="tts-palette-btn is-active" data-palette="montessori" title="Montessori Grammar Symbol Standard (Verbs Red, Nouns Blue)">Montessori</button>
-						<button type="button" class="tts-palette-btn" data-palette="microsoft" title="Microsoft Immersive Reader Standard (Nouns Purple, Verbs Red)">Microsoft</button>
-						<button type="button" class="tts-palette-btn" data-palette="pastel" title="Soft Pastel Low Glare Palette">Soft Pastel</button>
+						<span class="tts-palette-label">Dark Phrase Chunks:</span>
+						<span class="pos-legend-item"><span class="pos-dot" style="background: #0f2b5c;"></span>Oxford Navy</span>
+						<span class="pos-legend-item"><span class="pos-dot" style="background: #064e3b;"></span>Forest Emerald</span>
+						<span class="pos-legend-item"><span class="pos-dot" style="background: #831843;"></span>Wine Burgundy</span>
+						<span class="pos-legend-item"><span class="pos-dot" style="background: #312e81;"></span>Royal Indigo</span>
+						<span class="pos-legend-item"><span class="pos-dot" style="background: #78350f;"></span>Dark Umber</span>
 					</div>
+				</div>
 
-					<div class="tts-pos-legend" id="tts-pos-legend">
-						<span class="pos-legend-item"><span class="pos-dot dot-verb"></span>Verbs</span>
-						<span class="pos-legend-item"><span class="pos-dot dot-noun"></span>Nouns</span>
-						<span class="pos-legend-item"><span class="pos-dot dot-adj"></span>Adjectives</span>
-						<span class="pos-legend-item"><span class="pos-dot dot-adv"></span>Adverbs</span>
-						<span class="pos-legend-item"><span class="pos-dot dot-pronoun"></span>Pronouns</span>
+				<!-- Row 4: Custom Letter & Word Spacing Sliders -->
+				<div class="tts-drawer-section tts-spacing-section">
+					<div class="tts-section-header">
+						<span class="tts-section-title">Spacing Tuning</span>
+						<button type="button" class="tts-reset-link" id="tts-reset-spacing" title="Reset letter and word spacing to standard">Reset Spacing</button>
+					</div>
+					<div class="tts-sliders-grid">
+						<!-- Letter Spacing Slider -->
+						<div class="tts-slider-item">
+							<div class="tts-slider-label-row">
+								<label for="tts-slider-letter" class="tts-slider-name">Letter Spacing</label>
+								<span class="tts-slider-val" id="tts-val-letter">Normal</span>
+							</div>
+							<input type="range" id="tts-slider-letter" class="tts-range-slider" min="0" max="0.12" step="0.005" value="0" aria-label="Adjust letter spacing" />
+						</div>
+
+						<!-- Word Spacing Slider -->
+						<div class="tts-slider-item">
+							<div class="tts-slider-label-row">
+								<label for="tts-slider-word" class="tts-slider-name">Word Spacing</label>
+								<span class="tts-slider-val" id="tts-val-word">Normal</span>
+							</div>
+							<input type="range" id="tts-slider-word" class="tts-range-slider" min="0" max="0.35" step="0.01" value="0" aria-label="Adjust word spacing" />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -554,11 +575,21 @@ const { title = 'this article' } = Astro.props;
 		border-color: #cbd5e1;
 	}
 
-	#tts-chip-bionic.is-active {
+	#tts-chip-bionic.is-active,
+	#tts-quick-bionic.is-active {
 		background: #fdf4ff !important;
 		border-color: #d946ef !important;
 		color: #a21caf !important;
 		box-shadow: 0 0 8px rgba(217, 70, 239, 0.25);
+		font-weight: 700;
+	}
+
+	#tts-chip-chunking.is-active,
+	#tts-quick-chunking.is-active {
+		background: #f0fdf4 !important;
+		border-color: #16a34a !important;
+		color: #15803d !important;
+		box-shadow: 0 0 8px rgba(22, 163, 74, 0.25);
 		font-weight: 700;
 	}
 
@@ -570,22 +601,6 @@ const { title = 'this article' } = Astro.props;
 		font-weight: 700;
 	}
 
-	#tts-chip-spacing.is-active {
-		background: #f0fdf4 !important;
-		border-color: #22c55e !important;
-		color: #15803d !important;
-		box-shadow: 0 0 8px rgba(34, 197, 94, 0.25);
-		font-weight: 700;
-	}
-
-	#tts-chip-pos.is-active {
-		background: #fef2f2 !important;
-		border-color: #ef4444 !important;
-		color: #b91c1c !important;
-		box-shadow: 0 0 8px rgba(239, 68, 68, 0.25);
-		font-weight: 700;
-	}
-
 	#tts-chip-ruler.is-active {
 		background: #eff6ff !important;
 		border-color: #3b82f6 !important;
@@ -594,7 +609,7 @@ const { title = 'this article' } = Astro.props;
 		font-weight: 700;
 	}
 
-	/* Color Palette & Legend Panel */
+	/* Sentence Chunking Legend Panel */
 	.tts-pos-panel {
 		display: flex;
 		flex-direction: column;
@@ -609,47 +624,15 @@ const { title = 'this article' } = Astro.props;
 	.tts-palette-row {
 		display: flex;
 		align-items: center;
-		gap: 0.45rem;
+		gap: 0.75rem;
 		flex-wrap: wrap;
 		font-size: 0.74rem;
 	}
 
 	.tts-palette-label {
 		font-weight: 700;
-		color: #64748b;
+		color: #475569;
 		margin-right: 0.15rem;
-	}
-
-	.tts-palette-btn {
-		padding: 0.22rem 0.6rem;
-		font-size: 0.74rem;
-		font-weight: 600;
-		border-radius: 6px;
-		border: 1px solid #e2e8f0;
-		background: #f8fafc;
-		color: #475569;
-		cursor: pointer;
-		transition: all 0.15s ease;
-	}
-
-	.tts-palette-btn:hover {
-		background: #f1f5f9;
-		color: #0f172a;
-	}
-
-	.tts-palette-btn.is-active {
-		background: #0f172a;
-		color: #ffffff;
-		border-color: #0f172a;
-	}
-
-	.tts-pos-legend {
-		display: flex;
-		align-items: center;
-		gap: 0.85rem;
-		flex-wrap: wrap;
-		font-size: 0.74rem;
-		color: #475569;
 	}
 
 	@keyframes fadeInLegend {
@@ -662,20 +645,126 @@ const { title = 'this article' } = Astro.props;
 		align-items: center;
 		gap: 0.35rem;
 		font-weight: 600;
+		color: #334155;
 	}
 
 	.pos-dot {
-		width: 8px;
-		height: 8px;
+		width: 9px;
+		height: 9px;
 		border-radius: 50%;
 		display: inline-block;
 	}
 
-	.dot-verb { background: var(--pos-verb); }
-	.dot-noun { background: var(--pos-noun); }
-	.dot-adj { background: var(--pos-adj); }
-	.dot-adv { background: var(--pos-adv); }
-	.dot-pronoun { background: var(--pos-pronoun); }
+	/* Custom Letter & Word Spacing Sliders */
+	.tts-spacing-section {
+		margin-top: 0.25rem;
+		padding-top: 0.75rem;
+		border-top: 1px dashed #e2e8f0;
+	}
+
+	.tts-reset-link {
+		background: transparent;
+		border: none;
+		color: #64748b;
+		font-size: 0.7rem;
+		font-weight: 600;
+		cursor: pointer;
+		padding: 0.15rem 0.4rem;
+		border-radius: 4px;
+		transition: all 0.15s ease;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.tts-reset-link:hover {
+		color: #c8382c;
+		background: #fef2f2;
+	}
+
+	.tts-sliders-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.85rem 1.25rem;
+	}
+
+	@media (max-width: 580px) {
+		.tts-sliders-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.tts-slider-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+	}
+
+	.tts-slider-label-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 0.74rem;
+	}
+
+	.tts-slider-name {
+		font-weight: 600;
+		color: #334155;
+	}
+
+	.tts-slider-val {
+		font-family: monospace;
+		font-size: 0.7rem;
+		font-weight: 700;
+		color: #0369a1;
+		background: #f0f9ff;
+		padding: 0.1rem 0.4rem;
+		border-radius: 4px;
+		border: 1px solid #bae6fd;
+	}
+
+	.tts-range-slider {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 6px;
+		background: #e2e8f0;
+		border-radius: 9999px;
+		outline: none;
+		cursor: pointer;
+		transition: background 0.16s ease;
+	}
+
+	.tts-range-slider:hover {
+		background: #cbd5e1;
+	}
+
+	.tts-range-slider::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: #0f172a;
+		border: 2px solid #ffffff;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+		cursor: pointer;
+		transition: transform 0.1s ease, background 0.15s ease;
+	}
+
+	.tts-range-slider::-webkit-slider-thumb:hover {
+		transform: scale(1.15);
+		background: #c8382c;
+	}
+
+	.tts-range-slider::-moz-range-thumb {
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: #0f172a;
+		border: 2px solid #ffffff;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+		cursor: pointer;
+	}
 
 	.tts-progress-track {
 		width: 100%;
@@ -1162,6 +1251,34 @@ const { title = 'this article' } = Astro.props;
 					}
 
 					if (sentenceWords.length > 0) {
+						// Assign syntactic phrase chunks to words in this sentence
+						let chunkIdx = 0;
+						let wordsInChunk = 0;
+						const CLAUSE_CONNECTORS = new Set([
+							'and', 'but', 'or', 'so', 'because', 'although', 'though', 'since',
+							'if', 'that', 'which', 'who', 'where', 'when', 'after', 'before',
+							'as', 'with', 'in', 'on', 'at', 'by', 'for', 'to', 'from'
+						]);
+
+						sentenceWords.forEach((wordObj, wIdx) => {
+							const text = wordObj.text.trim();
+							const clean = text.replace(/[^a-zA-Z]/g, '').toLowerCase();
+							const prevWord = wIdx > 0 ? sentenceWords[wIdx - 1].text.trim() : '';
+
+							const prevHadPunct = /[,;:—–)"]$/.test(prevWord);
+							const isConnector = CLAUSE_CONNECTORS.has(clean) && wordsInChunk >= 2;
+							const reachedMax = wordsInChunk >= 4;
+
+							if (wIdx > 0 && (prevHadPunct || isConnector || reachedMax)) {
+								chunkIdx++;
+								wordsInChunk = 0;
+							}
+
+							const colorIdx = chunkIdx % 5;
+							wordObj.el.classList.add(`chunk-${colorIdx}`);
+							wordsInChunk++;
+						});
+
 						sentences.push({
 							id: sentenceCounter,
 							text: sText,
@@ -1539,31 +1656,32 @@ const { title = 'this article' } = Astro.props;
 
 		// 5. Accessible & Dyslexic Reading Modes Controller
 		const quickBionicBtn = document.getElementById('tts-quick-bionic');
+		const quickChunkBtn = document.getElementById('tts-quick-chunking');
 		const chipBionic = document.getElementById('tts-chip-bionic');
+		const chipChunk = document.getElementById('tts-chip-chunking');
 		const chipDyslexicFont = document.getElementById('tts-chip-dyslexic-font');
-		const chipSpacing = document.getElementById('tts-chip-spacing');
-		const chipPos = document.getElementById('tts-chip-pos');
 		const chipRuler = document.getElementById('tts-chip-ruler');
-		const posPanel = document.getElementById('tts-pos-panel');
-		const paletteButtons = document.querySelectorAll<HTMLButtonElement>('.tts-palette-btn');
+		const chunkPanel = document.getElementById('tts-chunk-panel');
 		const stickyBionicBtn = document.getElementById('tts-sticky-bionic');
 		const pillToggle = document.getElementById('dyslexic-pill-toggle');
 		const readingRuler = document.getElementById('dyslexic-reading-ruler');
 
+		const sliderLetter = document.getElementById('tts-slider-letter') as HTMLInputElement | null;
+		const sliderWord = document.getElementById('tts-slider-word') as HTMLInputElement | null;
+		const valLetter = document.getElementById('tts-val-letter');
+		const valWord = document.getElementById('tts-val-word');
+		const resetSpacingBtn = document.getElementById('tts-reset-spacing');
+
 		interface DyslexicSettings {
 			dyslexicMode: boolean;
-			wideSpacing: boolean;
-			posColors: boolean;
-			posPalette: 'montessori' | 'microsoft' | 'pastel';
+			phraseChunking: boolean;
 			bionicReading: boolean;
 			readingRuler: boolean;
 		}
 
 		let dyslexicSettings: DyslexicSettings = {
 			dyslexicMode: false,
-			wideSpacing: false,
-			posColors: false,
-			posPalette: 'montessori',
+			phraseChunking: false,
 			bionicReading: false,
 			readingRuler: false
 		};
@@ -1571,14 +1689,9 @@ const { title = 'this article' } = Astro.props;
 		function applyDyslexicSettings() {
 			// Toggle body classes
 			document.body.classList.toggle('dyslexic-mode', dyslexicSettings.dyslexicMode);
-			document.body.classList.toggle('wide-spacing-active', dyslexicSettings.wideSpacing);
-			document.body.classList.toggle('pos-colors-active', dyslexicSettings.posColors);
+			document.body.classList.toggle('chunking-mode-active', dyslexicSettings.phraseChunking);
 			document.body.classList.toggle('bionic-reading-active', dyslexicSettings.bionicReading);
 			document.body.classList.toggle('has-reading-ruler', dyslexicSettings.readingRuler);
-
-			// Color Palettes
-			document.body.classList.toggle('pos-palette-microsoft', dyslexicSettings.posPalette === 'microsoft');
-			document.body.classList.toggle('pos-palette-pastel', dyslexicSettings.posPalette === 'pastel');
 
 			// Synchronize UI buttons & chips
 			quickBionicBtn?.classList.toggle('is-active', dyslexicSettings.bionicReading);
@@ -1586,18 +1699,15 @@ const { title = 'this article' } = Astro.props;
 			stickyBionicBtn?.classList.toggle('is-active', dyslexicSettings.bionicReading);
 			pillToggle?.classList.toggle('is-active', dyslexicSettings.bionicReading);
 
+			quickChunkBtn?.classList.toggle('is-active', dyslexicSettings.phraseChunking);
+			chipChunk?.classList.toggle('is-active', dyslexicSettings.phraseChunking);
+
 			chipDyslexicFont?.classList.toggle('is-active', dyslexicSettings.dyslexicMode);
-			chipSpacing?.classList.toggle('is-active', dyslexicSettings.wideSpacing);
-			chipPos?.classList.toggle('is-active', dyslexicSettings.posColors);
 			chipRuler?.classList.toggle('is-active', dyslexicSettings.readingRuler);
 
-			if (posPanel) {
-				posPanel.style.display = dyslexicSettings.posColors ? 'flex' : 'none';
+			if (chunkPanel) {
+				chunkPanel.style.display = dyslexicSettings.phraseChunking ? 'flex' : 'none';
 			}
-
-			paletteButtons.forEach((btn) => {
-				btn.classList.toggle('is-active', btn.dataset.palette === dyslexicSettings.posPalette);
-			});
 
 			try {
 				localStorage.setItem('decoding_dyslexic_settings', JSON.stringify(dyslexicSettings));
@@ -1616,8 +1726,67 @@ const { title = 'this article' } = Astro.props;
 			applyDyslexicSettings();
 		} catch (err) {}
 
+		// Custom Spacing Sliders Controller
+		function updateSpacing(letterVal: number, wordVal: number, persist = true) {
+			const letterStr = letterVal === 0 ? 'normal' : `${letterVal}em`;
+			const wordStr = wordVal === 0 ? 'normal' : `${wordVal}em`;
+
+			document.documentElement.style.setProperty('--user-letter-spacing', letterStr);
+			document.documentElement.style.setProperty('--user-word-spacing', wordStr);
+
+			if (sliderLetter && parseFloat(sliderLetter.value) !== letterVal) {
+				sliderLetter.value = String(letterVal);
+			}
+			if (sliderWord && parseFloat(sliderWord.value) !== wordVal) {
+				sliderWord.value = String(wordVal);
+			}
+
+			if (valLetter) {
+				valLetter.textContent = letterVal === 0 ? 'Normal' : `+${letterVal}em`;
+			}
+			if (valWord) {
+				valWord.textContent = wordVal === 0 ? 'Normal' : `+${wordVal}em`;
+			}
+
+			if (persist) {
+				try {
+					localStorage.setItem('decoding_spacing_settings', JSON.stringify({ letter: letterVal, word: wordVal }));
+				} catch (e) {}
+			}
+		}
+
+		sliderLetter?.addEventListener('input', (e) => {
+			const v = parseFloat((e.target as HTMLInputElement).value) || 0;
+			const currentWord = sliderWord ? parseFloat(sliderWord.value) || 0 : 0;
+			updateSpacing(v, currentWord);
+		});
+
+		sliderWord?.addEventListener('input', (e) => {
+			const v = parseFloat((e.target as HTMLInputElement).value) || 0;
+			const currentLetter = sliderLetter ? parseFloat(sliderLetter.value) || 0 : 0;
+			updateSpacing(currentLetter, v);
+		});
+
+		resetSpacingBtn?.addEventListener('click', () => {
+			updateSpacing(0, 0);
+		});
+
+		// Restore saved custom spacing on page load
+		try {
+			const savedSpacing = localStorage.getItem('decoding_spacing_settings');
+			if (savedSpacing) {
+				const parsed = JSON.parse(savedSpacing);
+				updateSpacing(Number(parsed.letter) || 0, Number(parsed.word) || 0, false);
+			}
+		} catch (e) {}
+
 		const toggleBionic = () => {
 			dyslexicSettings.bionicReading = !dyslexicSettings.bionicReading;
+			applyDyslexicSettings();
+		};
+
+		const toggleChunking = () => {
+			dyslexicSettings.phraseChunking = !dyslexicSettings.phraseChunking;
 			applyDyslexicSettings();
 		};
 
@@ -1626,34 +1795,17 @@ const { title = 'this article' } = Astro.props;
 		stickyBionicBtn?.addEventListener('click', toggleBionic);
 		pillToggle?.addEventListener('click', toggleBionic);
 
+		quickChunkBtn?.addEventListener('click', toggleChunking);
+		chipChunk?.addEventListener('click', toggleChunking);
+
 		chipDyslexicFont?.addEventListener('click', () => {
 			dyslexicSettings.dyslexicMode = !dyslexicSettings.dyslexicMode;
-			applyDyslexicSettings();
-		});
-
-		chipSpacing?.addEventListener('click', () => {
-			dyslexicSettings.wideSpacing = !dyslexicSettings.wideSpacing;
-			applyDyslexicSettings();
-		});
-
-		chipPos?.addEventListener('click', () => {
-			dyslexicSettings.posColors = !dyslexicSettings.posColors;
 			applyDyslexicSettings();
 		});
 
 		chipRuler?.addEventListener('click', () => {
 			dyslexicSettings.readingRuler = !dyslexicSettings.readingRuler;
 			applyDyslexicSettings();
-		});
-
-		paletteButtons.forEach((btn) => {
-			btn.addEventListener('click', () => {
-				const pal = btn.dataset.palette as any;
-				if (pal && ['montessori', 'microsoft', 'pastel'].includes(pal)) {
-					dyslexicSettings.posPalette = pal;
-					applyDyslexicSettings();
-				}
-			});
 		});
 
 		// Reading ruler mouse tracking
