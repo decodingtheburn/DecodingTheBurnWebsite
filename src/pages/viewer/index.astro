@@ -1,14 +1,31 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import TongueLogo from '../../components/TongueLogo.astro';
+import { generateSlidesFromPost } from '../../utils/slideEngine';
+
+const posts = await getCollection('blog', ({ data }) => {
+	return import.meta.env.DEV || !data.draft;
+});
+
+// Calculate slide count for each post
+const postsWithSlides = posts.map((post) => {
+	const slides = generateSlidesFromPost(post.id, post.data.title, post.data.description, post.body || '');
+	const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
+	return {
+		post,
+		cleanTitle,
+		slideCount: slides.length
+	};
+});
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="Presentation Hub: Public & Private Viewers | Decoding The Burn" 
-			description="Choose your presentation mode: Public Viewer for OBS screen capture or Private Presenter Cockpit with speaker notes and teleprompter." 
+			title="Universal Slide Deck Hub | Decoding The Burn" 
+			description="Select any blog post on Decoding The Burn to launch its public OBS slides or private presenter cockpit." 
 		/>
 		<style>
 			:root {
@@ -28,7 +45,7 @@ import TongueLogo from '../../components/TongueLogo.astro';
 			}
 
 			.hub-container {
-				max-width: 1080px;
+				max-width: 1200px;
 				margin: 0 auto;
 				padding: 3rem 1.5rem;
 			}
@@ -73,135 +90,148 @@ import TongueLogo from '../../components/TongueLogo.astro';
 			.hub-subheadline {
 				font-size: 1.1rem;
 				color: #94a3b8;
-				max-width: 680px;
+				max-width: 720px;
 				line-height: 1.6;
 				text-wrap: balance;
 			}
 
-			.viewers-grid {
+			/* Posts Grid */
+			.posts-slides-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 				gap: 2rem;
 				margin-bottom: 3.5rem;
 			}
 
-			.viewer-card {
+			.post-slide-card {
 				background: var(--card-dark);
-				border: 2px solid var(--border-dark);
-				border-radius: 16px;
-				padding: 2.25rem 2rem;
+				border: 1px solid var(--border-dark);
+				border-radius: 14px;
+				overflow: hidden;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				text-decoration: none;
-				color: inherit;
-				position: relative;
-				overflow: hidden;
 				transition: all 0.22s ease;
 			}
 
-			.viewer-card:hover {
-				border-color: #ef4444;
-				transform: translateY(-4px);
-				box-shadow: 0 20px 45px -10px rgba(239, 68, 68, 0.25);
-			}
-
-			.viewer-card.public-card:hover {
+			.post-slide-card:hover {
 				border-color: #3b82f6;
-				box-shadow: 0 20px 45px -10px rgba(59, 130, 246, 0.25);
+				transform: translateY(-3px);
+				box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.5);
 			}
 
-			.card-tag {
+			.card-thumb-box {
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				background: #090c12;
+				position: relative;
+				overflow: hidden;
+				border-bottom: 1px solid var(--border-dark);
+			}
+
+			.card-thumb-img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.3s ease;
+			}
+
+			.post-slide-card:hover .card-thumb-img {
+				transform: scale(1.03);
+			}
+
+			.card-badges-row {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				display: flex;
+				gap: 0.5rem;
+			}
+
+			.slide-count-badge {
 				font-family: monospace;
 				font-size: 0.72rem;
 				font-weight: 700;
-				letter-spacing: 0.08em;
-				padding: 0.25rem 0.65rem;
-				border-radius: 6px;
-				display: inline-block;
-				margin-bottom: 1.25rem;
-				width: fit-content;
-			}
-
-			.public-tag {
-				color: #60a5fa;
-				background: rgba(59, 130, 246, 0.12);
-				border: 1px solid rgba(59, 130, 246, 0.3);
-			}
-
-			.private-tag {
-				color: #f87171;
-				background: rgba(239, 68, 68, 0.12);
-				border: 1px solid rgba(239, 68, 68, 0.3);
-			}
-
-			.card-title {
-				font-family: var(--font-heading, system-ui, sans-serif);
-				font-size: 1.6rem;
-				font-weight: 700;
 				color: #ffffff;
-				margin-bottom: 0.75rem;
+				background: rgba(0, 0, 0, 0.75);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				padding: 0.2rem 0.55rem;
+				border-radius: 4px;
+				backdrop-filter: blur(4px);
 			}
 
-			.card-desc {
-				font-size: 0.95rem;
-				color: #94a3b8;
-				line-height: 1.55;
-				margin-bottom: 1.5rem;
-			}
-
-			.card-features {
-				list-style: none;
-				padding: 0;
-				margin: 0 0 2rem 0;
+			.card-content-box {
+				padding: 1.5rem;
+				flex: 1;
 				display: flex;
 				flex-direction: column;
-				gap: 0.65rem;
+				justify-content: space-between;
 			}
 
-			.card-feature-item {
-				display: flex;
-				align-items: center;
-				gap: 0.6rem;
+			.card-post-title {
+				font-family: var(--font-heading, system-ui, sans-serif);
+				font-size: 1.25rem;
+				font-weight: 700;
+				line-height: 1.3;
+				color: #ffffff;
+				margin-bottom: 0.6rem;
+			}
+
+			.card-post-desc {
 				font-size: 0.88rem;
-				color: #cbd5e1;
+				color: #94a3b8;
+				line-height: 1.5;
+				margin-bottom: 1.25rem;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
 			}
 
-			.card-feature-item svg {
-				flex-shrink: 0;
-				color: #22c55e;
+			.card-actions-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 0.75rem;
 			}
 
-			.card-action-btn {
+			.action-btn {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				gap: 0.5rem;
-				font-size: 0.95rem;
+				gap: 0.4rem;
+				font-size: 0.82rem;
 				font-weight: 700;
-				padding: 0.85rem 1.5rem;
-				border-radius: 8px;
-				transition: all 0.18s ease;
+				padding: 0.6rem 0.75rem;
+				border-radius: 6px;
+				text-decoration: none;
+				transition: all 0.15s ease;
 			}
 
 			.public-btn {
-				background: #2563eb;
-				color: #ffffff;
+				background: rgba(59, 130, 246, 0.12);
+				color: #60a5fa;
+				border: 1px solid rgba(59, 130, 246, 0.35);
 			}
 
 			.public-btn:hover {
-				background: #3b82f6;
+				background: #2563eb;
+				color: #ffffff;
+				border-color: #2563eb;
 			}
 
 			.private-btn {
-				background: #c8382c;
-				color: #ffffff;
+				background: rgba(239, 68, 68, 0.12);
+				color: #f87171;
+				border: 1px solid rgba(239, 68, 68, 0.35);
 			}
 
 			.private-btn:hover {
 				background: #dc2626;
+				color: #ffffff;
+				border-color: #dc2626;
 			}
 
+			/* Guide Box */
 			.hub-guide-box {
 				background: #0d1118;
 				border: 1px solid #1e2638;
@@ -251,6 +281,16 @@ import TongueLogo from '../../components/TongueLogo.astro';
 				line-height: 1.45;
 			}
 
+			kbd {
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				border-radius: 4px;
+				padding: 0.15rem 0.4rem;
+				font-family: monospace;
+				font-size: 0.75rem;
+				color: #f1f5f9;
+			}
+
 			.hub-footer-nav {
 				display: flex;
 				justify-content: center;
@@ -278,113 +318,82 @@ import TongueLogo from '../../components/TongueLogo.astro';
 					</div>
 					<span class="hub-brand-name">Decoding The Burn</span>
 				</div>
-				<h1 class="hub-title">Presentation Control&nbsp;Center</h1>
+				<h1 class="hub-title">Universal Presentation&nbsp;Hub</h1>
 				<p class="hub-subheadline">
-					Choose your viewer mode below. Both viewers automatically sync in real-time when running on multiple screens or inside OBS.
+					Every blog post automatically generates its own interactive 5-word presentation deck. Choose any article below to launch the Public Screen or Private Presenter Cockpit.
 				</p>
 			</header>
 
-			<div class="viewers-grid">
-				<!-- Public Viewer Card -->
-				<a href="/viewer/public" class="viewer-card public-card">
-					<div>
-						<span class="card-tag public-tag">FOR AUDIENCE & OBS</span>
-						<h2 class="card-title">Public Viewer</h2>
-						<p class="card-desc">
-							The clean, borderless slide presentation. Shows 5-word bullet reveals, large titles, and brand logo. Perfect for screen capture.
-						</p>
-						<ul class="card-features">
-							<li class="card-feature-item">
-								<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-								<span>Short, punchy 5-word bullet points</span>
-							</li>
-							<li class="card-feature-item">
-								<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-								<span>Step-by-step Spacebar reveal</span>
-							</li>
-							<li class="card-feature-item">
-								<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-								<span>Borderless 16:9 widescreen canvas</span>
-							</li>
-							<li class="card-feature-item">
-								<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-								<span>Syncs with your Private Cockpit</span>
-							</li>
-						</ul>
-					</div>
-					<div class="card-action-btn public-btn">
-						<span>Launch Public Viewer</span>
-						<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-					</div>
-				</a>
+			<!-- All Blog Posts as Presentation Decks -->
+			<div class="posts-slides-grid">
+				{postsWithSlides.map(({ post, cleanTitle, slideCount }) => (
+					<div class="post-slide-card">
+						<div class="card-thumb-box">
+							<img 
+								src={post.data.heroImage || '/how_i_solved_my_bms_thumbnail.jpg'} 
+								alt={cleanTitle} 
+								class="card-thumb-img"
+								loading="lazy"
+							/>
+							<div class="card-badges-row">
+								<span class="slide-count-badge">{slideCount} Slides</span>
+							</div>
+						</div>
 
-				<!-- Private Presenter Card -->
-				<a href="/viewer/private" class="viewer-card private-card">
-					<div>
-						<span class="card-tag private-tag">FOR DENNIS (SPEAKER)</span>
-						<h2 class="card-title">Private Cockpit</h2>
-						<p class="card-desc">
-							Your personal teleprompter and control dashboard. Displays live talking points, elapsed timer, next slide preview, and remote controls.
-						</p>
-						<ul class="card-features">
-							<li class="card-feature-item">
-								<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-								<span>Full speaker notes and talking points</span>
-							</li>
-							<li class="card-feature-item">
-								<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-								<span>Live elapsed recording timer</span>
-							</li>
-							<li class="card-feature-item">
-								<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-								<span>Upcoming slide preview window</span>
-							</li>
-							<li class="card-feature-item">
-								<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-								<span>Remote controls the Public Viewer</span>
-							</li>
-						</ul>
+						<div class="card-content-box">
+							<div>
+								<h2 class="card-post-title">{cleanTitle}</h2>
+								<p class="card-post-desc">{post.data.description}</p>
+							</div>
+
+							<div class="card-actions-grid">
+								<a href={`/viewer/${post.id}/public`} class="action-btn public-btn" title="Open Clean Public Screen for OBS">
+									<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+									<span>Public OBS ↗</span>
+								</a>
+								<a href={`/viewer/${post.id}/private`} class="action-btn private-btn" title="Open Dennis's Teleprompter Cockpit">
+									<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+									<span>Cockpit ↗</span>
+								</a>
+							</div>
+						</div>
 					</div>
-					<div class="card-action-btn private-btn">
-						<span>Launch Private Cockpit</span>
-						<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-					</div>
-				</a>
+				))}
 			</div>
 
-			<!-- Recording Setup Guide -->
+			<!-- Quick Recording Instructions -->
 			<div class="hub-guide-box">
 				<div class="hub-guide-title">
 					<svg viewBox="0 0 24 24" width="18" height="18" stroke="#ef4444" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-					<span>How to Record with OBS (Dual or Single Monitor)</span>
+					<span>How Real-Time Sync Works</span>
 				</div>
 				<div class="guide-steps">
 					<div class="guide-step">
-						<span class="step-number">OPTION A: DUAL SCREEN</span>
-						<span class="step-heading">Open Both Viewers</span>
+						<span class="step-number">STEP 1: LAUNCH PUBLIC</span>
+						<span class="step-heading">Open Public OBS View</span>
 						<p class="step-text">
-							Put <strong>Public Viewer</strong> on Monitor 2 (capture this in OBS). Open <strong>Private Cockpit</strong> on Monitor 1. When you press Spacebar on Monitor 1, Monitor 2 updates automatically!
+							Open the <strong>Public OBS</strong> viewer in a separate window or monitor. Point OBS Window Capture to it.
 						</p>
 					</div>
 					<div class="guide-step">
-						<span class="step-number">OPTION B: SINGLE SCREEN</span>
-						<span class="step-heading">Window Capture Mode</span>
+						<span class="step-number">STEP 2: LAUNCH COCKPIT</span>
+						<span class="step-heading">Open Presenter Cockpit</span>
 						<p class="step-text">
-							Open Public Viewer in a separate browser window and point OBS Window Capture to it. Keep Private Cockpit active in front of you while talking.
+							Open <strong>Cockpit</strong> in front of you. It shows live teleprompter notes and an elapsed timer.
 						</p>
 					</div>
 					<div class="guide-step">
-						<span class="step-number">STEP 3: KEYBOARD SHORTCUTS</span>
-						<span class="step-heading">Spacebar Navigation</span>
+						<span class="step-number">STEP 3: HIT SPACEBAR</span>
+						<span class="step-heading">Automatic Sync</span>
 						<p class="step-text">
-							Use <kbd>Spacebar</kbd> to step through each 5-word bullet. Use <kbd>Shift+Space</kbd> to step back. Hit <kbd>F</kbd> anytime for full borderless view.
+							Tapping <kbd>Spacebar</kbd> in your Cockpit advances BOTH your screen and the Public OBS screen simultaneously!
 						</p>
 					</div>
 				</div>
 			</div>
 
 			<footer class="hub-footer-nav">
-				<a href="/blog/how-i-solved-my-burning-mouth-syndrome" class="hub-nav-link">← Read the Full Blog Post</a>
+				<a href="/blog" class="hub-nav-link">← All Blog Posts</a>
 				<span style="color: #334155;">•</span>
 				<a href="/" class="hub-nav-link">Decoding The Burn Home</a>
 			</footer>

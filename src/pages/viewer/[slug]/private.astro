@@ -1,0 +1,779 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import TongueLogo from '../../../components/TongueLogo.astro';
+import { generateSlidesFromPost } from '../../../utils/slideEngine';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog', ({ data }) => {
+		return import.meta.env.DEV || !data.draft;
+	});
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: {
+			post,
+			slides: generateSlidesFromPost(post.id, post.data.title, post.data.description, post.body || '')
+		},
+	}));
+}
+
+const { post, slides } = Astro.props;
+const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title={`Presenter Cockpit: ${cleanTitle} | Decoding The Burn`}
+			description={`Dennis's private presenter dashboard for ${cleanTitle} with live teleprompter notes and timer.`}
+		/>
+		<style>
+			:root {
+				--bg-darkest: #07090d;
+				--panel-bg: #0d1118;
+				--border-color: #212a3d;
+				--accent-red: #ef4444;
+			}
+
+			html, body {
+				margin: 0;
+				padding: 0;
+				background: var(--bg-darkest);
+				color: #f1f5f9;
+				font-family: var(--font-body, system-ui, sans-serif);
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.cockpit-top-bar {
+				background: #0a0d14;
+				border-bottom: 1px solid var(--border-color);
+				padding: 0.75rem 1.5rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: sticky;
+				top: 0;
+				z-index: 100;
+			}
+
+			.top-left {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
+
+			.cockpit-logo-link {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+				text-decoration: none;
+				color: #ffffff;
+			}
+
+			.logo-mini {
+				width: 26px;
+				height: 26px;
+			}
+
+			.logo-title {
+				font-size: 0.95rem;
+				font-weight: 800;
+				letter-spacing: -0.01em;
+			}
+
+			.slide-status-badge {
+				font-family: monospace;
+				font-size: 0.8rem;
+				font-weight: 700;
+				color: #cbd5e1;
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				padding: 0.25rem 0.65rem;
+				border-radius: 6px;
+			}
+
+			.topic-status-badge {
+				font-size: 0.78rem;
+				font-weight: 700;
+				color: #f87171;
+				background: rgba(239, 68, 68, 0.1);
+				border: 1px solid rgba(239, 68, 68, 0.25);
+				padding: 0.25rem 0.75rem;
+				border-radius: 6px;
+			}
+
+			.top-center {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
+
+			.timer-box {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+				background: rgba(0, 0, 0, 0.4);
+				border: 1px solid var(--border-color);
+				border-radius: 8px;
+				padding: 0.35rem 0.85rem;
+			}
+
+			.timer-display {
+				font-family: monospace;
+				font-size: 1.15rem;
+				font-weight: 700;
+				color: #38bdf8;
+				letter-spacing: 0.05em;
+			}
+
+			.timer-btn {
+				background: transparent;
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				color: #94a3b8;
+				font-size: 0.72rem;
+				font-weight: 600;
+				padding: 0.2rem 0.5rem;
+				border-radius: 4px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.timer-btn:hover {
+				background: rgba(255, 255, 255, 0.1);
+				color: #ffffff;
+			}
+
+			.top-right {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+			}
+
+			.sync-pill {
+				font-size: 0.75rem;
+				font-weight: 600;
+				color: #22c55e;
+				background: rgba(34, 197, 94, 0.1);
+				border: 1px solid rgba(34, 197, 94, 0.25);
+				padding: 0.25rem 0.65rem;
+				border-radius: 6px;
+				display: flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+
+			.sync-led {
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				background: #22c55e;
+				box-shadow: 0 0 6px #22c55e;
+			}
+
+			.top-action-link {
+				font-size: 0.78rem;
+				font-weight: 600;
+				color: #cbd5e1;
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid var(--border-color);
+				padding: 0.35rem 0.75rem;
+				border-radius: 6px;
+				text-decoration: none;
+				transition: all 0.18s ease;
+			}
+
+			.top-action-link:hover {
+				color: #ffffff;
+				background: rgba(255, 255, 255, 0.1);
+				border-color: #475569;
+			}
+
+			.cockpit-main {
+				flex: 1;
+				display: grid;
+				grid-template-columns: 1.15fr 0.85fr;
+				gap: 1.5rem;
+				padding: 1.5rem;
+				box-sizing: border-box;
+				max-width: 1700px;
+				margin: 0 auto;
+				width: 100%;
+			}
+
+			.slide-panel {
+				background: var(--panel-bg);
+				border: 1px solid var(--border-color);
+				border-radius: 12px;
+				padding: 2rem 2.5rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
+			.slide-title-display {
+				font-family: var(--font-heading, system-ui, sans-serif);
+				font-size: clamp(1.75rem, 2.5vw, 2.4rem);
+				font-weight: 800;
+				line-height: 1.18;
+				color: #ffffff;
+				margin: 0 0 2rem 0;
+				text-wrap: balance;
+				letter-spacing: -0.02em;
+			}
+
+			.cockpit-bullets {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+			}
+
+			.cockpit-bullet-item {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+				font-weight: 600;
+				line-height: 1.35;
+				cursor: pointer;
+				padding: 0.4rem 0.6rem;
+				border-radius: 6px;
+				transition: all 0.2s ease;
+			}
+
+			.cockpit-bullet-item:hover {
+				background: rgba(255, 255, 255, 0.04);
+			}
+
+			.bullet-dot-indicator {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				flex-shrink: 0;
+				transition: all 0.2s ease;
+			}
+
+			.cockpit-bullet-item.is-active {
+				background: rgba(239, 68, 68, 0.12);
+				border: 1px solid rgba(239, 68, 68, 0.3);
+			}
+
+			.cockpit-bullet-item.is-active .bullet-dot-indicator {
+				background: #ef4444;
+				box-shadow: 0 0 10px #ef4444;
+				transform: scale(1.3);
+			}
+
+			.cockpit-bullet-item.is-active .bullet-text-content {
+				color: #ffffff;
+				font-weight: 700;
+			}
+
+			.cockpit-bullet-item.is-revealed .bullet-dot-indicator {
+				background: #64748b;
+			}
+
+			.cockpit-bullet-item.is-revealed .bullet-text-content {
+				color: #cbd5e1;
+				font-weight: 500;
+			}
+
+			.cockpit-bullet-item.is-dimmed {
+				opacity: 0.25;
+			}
+
+			.cockpit-bullet-item.is-dimmed .bullet-dot-indicator {
+				background: #334155;
+			}
+
+			.cockpit-bullet-item.is-dimmed .bullet-text-content {
+				color: #475569;
+			}
+
+			.cockpit-nav-dock {
+				margin-top: 2rem;
+				padding-top: 1.25rem;
+				border-top: 1px solid var(--border-color);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.nav-buttons-group {
+				display: flex;
+				gap: 0.75rem;
+			}
+
+			.nav-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 0.95rem;
+				font-weight: 700;
+				padding: 0.65rem 1.25rem;
+				border-radius: 8px;
+				cursor: pointer;
+				border: none;
+				transition: all 0.15s ease;
+			}
+
+			.nav-btn-prev {
+				background: #1e293b;
+				color: #e2e8f0;
+				border: 1px solid #334155;
+			}
+
+			.nav-btn-prev:hover {
+				background: #334155;
+				color: #ffffff;
+			}
+
+			.nav-btn-next {
+				background: #c8382c;
+				color: #ffffff;
+				box-shadow: 0 0 14px rgba(200, 56, 44, 0.4);
+			}
+
+			.nav-btn-next:hover {
+				background: #dc2626;
+				box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+			}
+
+			.nav-status-text {
+				font-size: 0.85rem;
+				color: #94a3b8;
+			}
+
+			.notes-panel {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+
+			.notes-card {
+				background: var(--panel-bg);
+				border: 1px solid var(--border-color);
+				border-radius: 12px;
+				padding: 1.75rem;
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.card-header-label {
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				color: #38bdf8;
+				margin-bottom: 0.85rem;
+				display: flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+
+			.notes-content-box {
+				background: #090c12;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 8px;
+				padding: 1.25rem;
+				flex: 1;
+				overflow-y: auto;
+				font-size: 1.05rem;
+				line-height: 1.65;
+				color: #e2e8f0;
+			}
+
+			.next-preview-card {
+				background: var(--panel-bg);
+				border: 1px solid var(--border-color);
+				border-radius: 12px;
+				padding: 1.25rem 1.5rem;
+			}
+
+			.next-preview-title {
+				font-size: 1.05rem;
+				font-weight: 700;
+				color: #ffffff;
+				margin: 0.25rem 0 0.5rem 0;
+			}
+
+			.next-preview-first-bullet {
+				font-size: 0.9rem;
+				color: #94a3b8;
+				display: flex;
+				align-items: center;
+				gap: 0.45rem;
+			}
+
+			.slide-switcher-bar {
+				background: #0a0d14;
+				border-top: 1px solid var(--border-color);
+				padding: 0.85rem 1.5rem;
+				display: flex;
+				gap: 0.65rem;
+				overflow-x: auto;
+			}
+
+			.switch-pill {
+				flex: 0 0 auto;
+				background: rgba(255, 255, 255, 0.04);
+				border: 1px solid var(--border-color);
+				color: #94a3b8;
+				font-size: 0.78rem;
+				font-weight: 600;
+				padding: 0.35rem 0.85rem;
+				border-radius: 6px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.switch-pill:hover {
+				background: rgba(255, 255, 255, 0.1);
+				color: #ffffff;
+			}
+
+			.switch-pill.is-active {
+				background: rgba(239, 68, 68, 0.15);
+				border-color: #ef4444;
+				color: #ffffff;
+				font-weight: 700;
+			}
+
+			@media (max-width: 1024px) {
+				.cockpit-main {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="cockpit-top-bar">
+			<div class="top-left">
+				<a href="/viewer" class="cockpit-logo-link" title="Return to Hub">
+					<div class="logo-mini">
+						<TongueLogo />
+					</div>
+					<span class="logo-title">Presenter Cockpit</span>
+				</a>
+				<span class="slide-status-badge" id="cockpit-slide-badge">SLIDE 01 / {String(slides.length).padStart(2, '0')}</span>
+				<span class="topic-status-badge" id="cockpit-topic-badge">{slides[0]?.badge || 'Setup'}</span>
+			</div>
+
+			<div class="top-center">
+				<div class="timer-box">
+					<svg viewBox="0 0 24 24" width="16" height="16" stroke="#38bdf8" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+					<span class="timer-display" id="timer-display">00:00</span>
+					<button type="button" class="timer-btn" id="timer-toggle-btn">Start</button>
+					<button type="button" class="timer-btn" id="timer-reset-btn">Reset</button>
+				</div>
+			</div>
+
+			<div class="top-right">
+				<div class="sync-pill" title="Public Viewer window will follow your actions">
+					<span class="sync-led"></span>
+					<span>Broadcasting Live</span>
+				</div>
+				<a href={`/viewer/${post.id}/public`} target="_blank" class="top-action-link" title="Open Public screen in separate tab">
+					<span>Open Public Tab ↗</span>
+				</a>
+			</div>
+		</header>
+
+		<main class="cockpit-main">
+			<section class="slide-panel">
+				<div>
+					<h1 class="slide-title-display" id="cockpit-title">{slides[0]?.title}</h1>
+					<ul class="cockpit-bullets" id="cockpit-bullets-list"></ul>
+				</div>
+
+				<div class="cockpit-nav-dock">
+					<span class="nav-status-text" id="cockpit-point-status">Point 1 of {slides[0]?.bullets.length || 5}</span>
+					<div class="nav-buttons-group">
+						<button type="button" class="nav-btn nav-btn-prev" id="btn-prev-point">
+							<span>← Prev (Shift+Space)</span>
+						</button>
+						<button type="button" class="nav-btn nav-btn-next" id="btn-next-point">
+							<span>Next Point (Spacebar) →</span>
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="notes-panel">
+				<div class="notes-card">
+					<div class="card-header-label">
+						<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+						<span>DENNIS'S TALKING POINTS (TELEPROMPTER)</span>
+					</div>
+					<div class="notes-content-box" id="speaker-notes-box">
+						<p>{slides[0]?.notes}</p>
+					</div>
+				</div>
+
+				<div class="next-preview-card">
+					<div class="card-header-label" style="color: #94a3b8;">
+						<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						<span>UPCOMING NEXT SLIDE</span>
+					</div>
+					<h3 class="next-preview-title" id="next-preview-title">{slides[1]?.title || 'Next Slide'}</h3>
+					<div class="next-preview-first-bullet" id="next-preview-bullet">
+						<span style="color: #ef4444;">•</span>
+						<span id="next-preview-text">{slides[1]?.bullets[0] || ''}</span>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<nav class="slide-switcher-bar" id="switcher-bar">
+			{slides.map((s, idx) => (
+				<button 
+					type="button" 
+					class={`switch-pill ${idx === 0 ? 'is-active' : ''}`}
+					data-slide-index={idx}
+					id={`switch-btn-${idx}`}
+				>
+					<span>{idx + 1}. {s.badge}</span>
+				</button>
+			))}
+		</nav>
+
+		<script define:vars={{ slides, slug: post.id }}>
+			(function () {
+				let currentSlide = 0;
+				let currentPoint = 0;
+				const totalSlides = slides.length;
+
+				const syncChannel = new BroadcastChannel(`bms_deck_sync_${slug}`);
+
+				const slideBadge = document.getElementById('cockpit-slide-badge');
+				const topicBadge = document.getElementById('cockpit-topic-badge');
+				const titleEl = document.getElementById('cockpit-title');
+				const bulletsList = document.getElementById('cockpit-bullets-list');
+				const pointStatus = document.getElementById('cockpit-point-status');
+				const notesBox = document.getElementById('speaker-notes-box');
+				const nextTitle = document.getElementById('next-preview-title');
+				const nextText = document.getElementById('next-preview-text');
+				const prevBtn = document.getElementById('btn-prev-point');
+				const nextBtn = document.getElementById('btn-next-point');
+				const switcherButtons = document.querySelectorAll('.switch-pill');
+
+				let timerInterval = null;
+				let timerSeconds = 0;
+				const timerDisplay = document.getElementById('timer-display');
+				const timerToggleBtn = document.getElementById('timer-toggle-btn');
+				const timerResetBtn = document.getElementById('timer-reset-btn');
+
+				function updateTimerDisplay() {
+					if (!timerDisplay) return;
+					const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+					const secs = String(timerSeconds % 60).padStart(2, '0');
+					timerDisplay.textContent = `${mins}:${secs}`;
+				}
+
+				timerToggleBtn?.addEventListener('click', () => {
+					if (timerInterval) {
+						clearInterval(timerInterval);
+						timerInterval = null;
+						timerToggleBtn.textContent = 'Resume';
+					} else {
+						timerInterval = setInterval(() => {
+							timerSeconds++;
+							updateTimerDisplay();
+						}, 1000);
+						timerToggleBtn.textContent = 'Pause';
+					}
+				});
+
+				timerResetBtn?.addEventListener('click', () => {
+					clearInterval(timerInterval);
+					timerInterval = null;
+					timerSeconds = 0;
+					updateTimerDisplay();
+					if (timerToggleBtn) timerToggleBtn.textContent = 'Start';
+				});
+
+				function render() {
+					const s = slides[currentSlide];
+					if (!s) return;
+
+					if (slideBadge) {
+						slideBadge.textContent = `SLIDE ${String(currentSlide + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+					}
+					if (topicBadge) {
+						topicBadge.textContent = s.badge;
+					}
+					if (titleEl) {
+						titleEl.textContent = s.title;
+					}
+
+					if (bulletsList) {
+						bulletsList.innerHTML = '';
+						s.bullets.forEach((bText, idx) => {
+							const li = document.createElement('li');
+							li.className = 'cockpit-bullet-item';
+							if (idx === currentPoint) {
+								li.classList.add('is-active');
+							} else if (idx < currentPoint) {
+								li.classList.add('is-revealed');
+							} else {
+								li.classList.add('is-dimmed');
+							}
+
+							li.innerHTML = `
+								<span class="bullet-dot-indicator"></span>
+								<span class="bullet-text-content">${bText}</span>
+							`;
+
+							li.addEventListener('click', () => {
+								currentPoint = idx;
+								updateBulletStates();
+								broadcastState();
+							});
+
+							bulletsList.appendChild(li);
+						});
+					}
+
+					if (notesBox) {
+						notesBox.innerHTML = `<p>${s.notes || 'Discuss this section.'}</p>`;
+					}
+
+					if (currentSlide < totalSlides - 1) {
+						const nextS = slides[currentSlide + 1];
+						if (nextTitle) nextTitle.textContent = nextS.title;
+						if (nextText) nextText.textContent = nextS.bullets[0] || '';
+					} else {
+						if (nextTitle) nextTitle.textContent = 'End of Presentation';
+						if (nextText) nextText.textContent = 'Wrap up your video!';
+					}
+
+					if (pointStatus) {
+						pointStatus.textContent = `Point ${currentPoint + 1} of ${s.bullets.length}`;
+					}
+
+					switcherButtons.forEach((btn, idx) => {
+						btn.classList.toggle('is-active', idx === currentSlide);
+					});
+				}
+
+				function updateBulletStates() {
+					const items = bulletsList?.querySelectorAll('.cockpit-bullet-item') || [];
+					items.forEach((item, idx) => {
+						item.classList.remove('is-active', 'is-revealed', 'is-dimmed');
+						if (idx === currentPoint) {
+							item.classList.add('is-active');
+						} else if (idx < currentPoint) {
+							item.classList.add('is-revealed');
+						} else {
+							item.classList.add('is-dimmed');
+						}
+					});
+					const s = slides[currentSlide];
+					if (pointStatus && s) {
+						pointStatus.textContent = `Point ${currentPoint + 1} of ${s.bullets.length}`;
+					}
+				}
+
+				function broadcastState() {
+					syncChannel.postMessage({
+						slideIndex: currentSlide,
+						pointIndex: currentPoint
+					});
+				}
+
+				function nextStep() {
+					const s = slides[currentSlide];
+					if (!s) return;
+					if (currentPoint < s.bullets.length - 1) {
+						currentPoint++;
+						updateBulletStates();
+					} else if (currentSlide < totalSlides - 1) {
+						currentSlide++;
+						currentPoint = 0;
+						render();
+					}
+					broadcastState();
+				}
+
+				function prevStep() {
+					if (currentPoint > 0) {
+						currentPoint--;
+						updateBulletStates();
+					} else if (currentSlide > 0) {
+						currentSlide--;
+						const prevS = slides[currentSlide];
+						currentPoint = prevS.bullets.length - 1;
+						render();
+					}
+					broadcastState();
+				}
+
+				function nextSlide() {
+					if (currentSlide < totalSlides - 1) {
+						currentSlide++;
+						currentPoint = 0;
+						render();
+						broadcastState();
+					}
+				}
+
+				function prevSlide() {
+					if (currentSlide > 0) {
+						currentSlide--;
+						currentPoint = 0;
+						render();
+						broadcastState();
+					}
+				}
+
+				function jumpToSlide(idx) {
+					if (idx >= 0 && idx < totalSlides) {
+						currentSlide = idx;
+						currentPoint = 0;
+						render();
+						broadcastState();
+					}
+				}
+
+				nextBtn?.addEventListener('click', nextStep);
+				prevBtn?.addEventListener('click', prevStep);
+
+				switcherButtons.forEach((btn) => {
+					btn.addEventListener('click', () => {
+						const idx = parseInt(btn.getAttribute('data-slide-index') || '0', 10);
+						jumpToSlide(idx);
+					});
+				});
+
+				window.addEventListener('keydown', (e) => {
+					if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName || '')) return;
+
+					if (e.code === 'Space') {
+						e.preventDefault();
+						if (e.shiftKey) prevStep();
+						else nextStep();
+					} else if (e.code === 'ArrowRight') {
+						e.preventDefault();
+						nextStep();
+					} else if (e.code === 'ArrowLeft') {
+						e.preventDefault();
+						prevStep();
+					} else if (e.code === 'ArrowDown' || e.code === 'PageDown') {
+						e.preventDefault();
+						nextSlide();
+					} else if (e.code === 'ArrowUp' || e.code === 'PageUp') {
+						e.preventDefault();
+						prevSlide();
+					}
+				});
+
+				render();
+			})();
+		</script>
+	</body>
+</html>
