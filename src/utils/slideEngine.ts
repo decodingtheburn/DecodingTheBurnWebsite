@@ -29,25 +29,47 @@ export function toFiveWordCue(text: string, maxWords = 7): string {
 export function generateSlidesFromPost(slug: string, title: string, description: string, body: string): SlideItem[] {
 	const slides: SlideItem[] = [];
 
-	// Slide 1: Title Slide
+	// Extract sections from body
+	const rawSections = body.split(/^##\s+/m);
+	const preambleText = (rawSections[0] || '').trim();
+
+	// Cues from description or preamble
 	const descCues = description
 		? description.split(/[.;]/).map(s => toFiveWordCue(s)).filter(s => s.length > 5).slice(0, 3)
-		: ["Forensic journey and clinical analysis", "Decoding the root causes of oral pain", "By Denis Ethier at DecodingTheBurn"];
+		: ["BMS solutions are rarely shared", "Forensic analysis of oral pain", "By Denis Ethier at DecodingTheBurn"];
 
+	// Slide 1: Why I'm Sharing This
 	slides.push({
 		id: 1,
-		badge: "Title",
-		title: cleanText(title),
+		badge: "Why Sharing",
+		title: "Why I'm Sharing This",
 		bullets: [
-			...descCues,
-			"By Denis Ethier at DecodingTheBurn"
+			"BMS recovery stories are rarely shared",
+			"My complete remission is 100% real",
+			toFiveWordCue(cleanText(title)) || "Forensic analysis of oral pain",
+			...descCues.slice(0, 2)
 		],
-		notes: `Introduction: "${cleanText(title)}". Explain why this topic matters and what viewers/readers will discover.\n\n🛡️ LEGAL SHIELD: Never claim a universal 'cure'. Frame your journey as an individual forensic investigation.`
+		notes: `Introduction: "${cleanText(title)}". Explain why you are sharing this specific video/post with the BMS community. Introduce DecodingTheBurn.com.\n\n🛡️ LEGAL SHIELD: Never claim a universal 'cure'. Frame your journey as an individual forensic investigation.`
 	});
 
-	// Slide 2: Medical & Literature Disclaimer
+	// Slide 2: My Story
 	slides.push({
 		id: 2,
+		badge: "My Story",
+		title: "My Story: 3-Year BMS Forensic Journey",
+		bullets: [
+			"Sudden oral burning ignited three years ago",
+			"Flossing triggered 10/10 electric agony after patches",
+			"Beyond standard 'idiopathic' medical dead-ends",
+			"Inspired by author Peggy Shaw",
+			"Now in nine months of complete remission"
+		],
+		notes: `Deliver your 1-minute personal story: Started three years ago with a sudden trigger, escalated to 10/10 flossing agony after cervical dental patches. You treated your body like an engineering circuit, investigated the root hardware and fuel, and achieved nine months of complete remission.\n\n🛡️ LEGAL SHIELD: Frame as personal lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others.`
+	});
+
+	// Slide 3: Medical & Literature Disclaimer
+	slides.push({
+		id: 3,
 		badge: "Disclaimer",
 		title: "Medical & Literature Disclaimer",
 		bullets: [
@@ -57,36 +79,10 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 			"Consult physician before dietary shifts",
 			"Everyone's biological makeup is unique"
 		],
-		notes: `🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this video is for educational and forensic purposes only. BMS is complex and everyone's biology is different, so please consult your doctor before making any major changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context satisfies YouTube medical misinformation policies and sets clear boundaries against unauthorized practice of medicine.`
+		notes: `🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this video is for educational and forensic purposes only. BMS is complex and everyone's biology is different, so please consult your doctor before making any major changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context directly complies with YouTube medical misinformation policies and sets clear boundaries against unauthorized practice of medicine.`
 	});
 
-	// Split body by H2 headings (## Heading)
-	const rawSections = body.split(/^##\s+/m);
-	let slideCounter = 3;
-
-	// Slide 3: Intro Preamble (if present before first ##)
-	const preambleText = (rawSections[0] || '').trim();
-	if (preambleText.length > 40) {
-		const preambleParagraphs = preambleText.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
-		const preambleCues = preambleParagraphs.map(p => {
-			const firstSent = p.split(/[.!?]+/)[0] || '';
-			return toFiveWordCue(firstSent);
-		}).filter(Boolean).slice(0, 5);
-
-		slides.push({
-			id: slideCounter++,
-			badge: "My Story",
-			title: "Why I Am Sharing This",
-			bullets: preambleCues.length > 0 ? preambleCues : [
-				"Hey, my name is Denis",
-				"BMS solutions are rarely shared",
-				"My remission is 100% real",
-				"Inspired by author Peggy Shaw",
-				"YouTube series, blog, upcoming book"
-			],
-			notes: cleanText(preambleText)
-		});
-	}
+	let slideCounter = 4;
 
 	rawSections.forEach((sec, idx) => {
 		if (idx === 0) return; // Skip preamble handled above

@@ -9,19 +9,32 @@ export interface SlideItem {
 export const bmsSlides: SlideItem[] = [
 	{
 		id: 1,
-		badge: "Title",
-		title: "How I Solved My BMS",
+		badge: "Why Sharing",
+		title: "Why I'm Sharing This",
 		bullets: [
+			"BMS solutions are rarely shared",
+			"My remission is 100% real",
 			"Forensic journey to complete remission",
-			"From 10/10 flossing agony to zero",
-			"Beyond the 'idiopathic' medical label",
-			"Solving the hidden physical triggers",
+			"Beyond standard 'idiopathic' medical dead-ends",
 			"By Denis Ethier at DecodingTheBurn"
 		],
-		notes: "Introduce yourself and DecodingTheBurn.com. Frame BMS as an engineering failure: you approached your body like a biophysical circuit with a fault, not a psychological mystery.\n\n🛡️ LEGAL SHIELD: Never claim a universal 'cure'. Frame your journey as a personal forensic investigation leading to complete remission in your individual case."
+		notes: "Introduce yourself and DecodingTheBurn.com. Explain why you are sharing this: thousands suffer with Burning Mouth Syndrome in silence, but real recovery stories and root cause dissections are virtually non-existent. Frame BMS as an engineering failure: you approached your body like a biophysical circuit with a fault, not a psychological mystery.\n\n🛡️ LEGAL SHIELD: Never claim a universal 'cure'. Frame your journey as a personal forensic investigation leading to complete remission in your individual case."
 	},
 	{
 		id: 2,
+		badge: "My Story",
+		title: "My Story: 3-Year BMS Forensic Journey",
+		bullets: [
+			"Hey, my name is Denis",
+			"Sudden oral burning ignited three years ago",
+			"Flossing triggered 10/10 agony after patches",
+			"Inspired by author Peggy Shaw",
+			"Now 9 months in complete remission"
+		],
+		notes: "Deliver your 1-minute intro: You suffered through three years of relentless burning pain that escalated into 10/10 electric flossing torture after cervical resin patches. Inspired by researcher Peggy Shaw and root-cause physiology, you conducted methodical elimination tests and achieved nine months of complete remission.\n\n🛡️ LEGAL SHIELD: Frame as lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others."
+	},
+	{
+		id: 3,
 		badge: "Disclaimer",
 		title: "Medical & Literature Disclaimer",
 		bullets: [
@@ -32,19 +45,6 @@ export const bmsSlides: SlideItem[] = [
 			"Everyone's biological makeup is unique"
 		],
 		notes: "🎙️ READ VERBATIM OPENING DISCLAIMER:\n'Before we get started, a quick reminder: I am an independent literature researcher and a patient sharing my personal story living with Burning Mouth Syndrome. I am not a doctor or dentist, and this video is for educational and forensic purposes only. BMS is complex and everyone's biology is different, so please consult your doctor before making any major changes to your health or diet.'\n\n🛡️ LEGAL SHIELD: This spoken context directly complies with YouTube's 2025/2026 medical misinformation policies and sets clear boundaries against unauthorized practice of medicine."
-	},
-	{
-		id: 3,
-		badge: "My Story",
-		title: "Why I Am Sharing This",
-		bullets: [
-			"Hey, my name is Denis",
-			"BMS solutions are rarely shared",
-			"My remission is 100% real",
-			"Inspired by author Peggy Shaw",
-			"YouTube series, blog, upcoming book"
-		],
-		notes: "Deliver your 1-minute intro: Thousands suffer with BMS, but real recovery stories are scarce. Acknowledge it might not work for everyone, but your remission is real. Mention Peggy Shaw's book on removing dental materials. Announce your YouTube series, blog posts, and the upcoming book.\n\n🛡️ LEGAL SHIELD: Frame as lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others."
 	},
 	{
 		id: 4,

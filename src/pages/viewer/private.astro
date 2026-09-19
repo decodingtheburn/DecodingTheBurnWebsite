@@ -169,20 +169,25 @@ const slides = post
 
 			.top-action-link {
 				font-size: 0.78rem;
-				font-weight: 600;
-				color: #cbd5e1;
-				background: rgba(255, 255, 255, 0.05);
-				border: 1px solid var(--border-color);
-				padding: 0.35rem 0.75rem;
+				font-weight: 700;
+				color: #93c5fd;
+				background: rgba(59, 130, 246, 0.16);
+				border: 1px solid rgba(59, 130, 246, 0.4);
+				padding: 0.35rem 0.85rem;
 				border-radius: 6px;
 				text-decoration: none;
-				transition: all 0.18s ease;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				transition: all 0.2s ease;
 			}
 
 			.top-action-link:hover {
 				color: #ffffff;
-				background: rgba(255, 255, 255, 0.1);
-				border-color: #475569;
+				background: #2563eb;
+				border-color: #2563eb;
+				box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+				transform: translateY(-1px);
 			}
 
 			/* Main Cockpit Layout */
@@ -788,8 +793,8 @@ const slides = post
 					</div>
 					<span class="logo-title">Presenter Cockpit</span>
 				</a>
-				<span class="slide-status-badge" id="cockpit-slide-badge">SLIDE 01 / 08</span>
-				<span class="topic-status-badge" id="cockpit-topic-badge">Title</span>
+				<span class="slide-status-badge" id="cockpit-slide-badge">SLIDE 01 / {String(bmsSlides.length).padStart(2, '0')}</span>
+				<span class="topic-status-badge" id="cockpit-topic-badge">Why Sharing</span>
 			</div>
 
 			<div class="top-center">
@@ -810,7 +815,8 @@ const slides = post
 					<span>Broadcasting to Public Viewer</span>
 				</div>
 				<a href="/viewer/public" target="_blank" class="top-action-link" title="Open Public Viewer in separate window">
-					<span>Open Public Tab ↗</span>
+					<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+					<span>Open Public View 📺 ↗</span>
 				</a>
 			</div>
 		</header>
@@ -820,7 +826,7 @@ const slides = post
 			<!-- Left: Teleprompter Slide Canvas -->
 			<section class="slide-panel">
 				<div>
-					<h1 class="slide-title-display" id="cockpit-title">How I Solved My BMS</h1>
+					<h1 class="slide-title-display" id="cockpit-title">Why I'm Sharing This</h1>
 					<ul class="cockpit-bullets" id="cockpit-bullets-list">
 						<!-- Bullets rendered dynamically -->
 					</ul>

@@ -66,6 +66,39 @@ const slides = post
 				align-items: center;
 				width: 100%;
 				z-index: 10;
+				position: relative;
+			}
+
+			.stage-header-actions {
+				position: absolute;
+				right: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.top-cockpit-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.76rem;
+				font-weight: 700;
+				color: #fca5a5;
+				background: rgba(239, 68, 68, 0.14);
+				border: 1px solid rgba(239, 68, 68, 0.35);
+				padding: 0.32rem 0.75rem;
+				border-radius: 6px;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			.top-cockpit-link:hover {
+				background: #dc2626;
+				color: #ffffff;
+				border-color: #dc2626;
+				box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
 			}
 
 			.header-brand {
@@ -336,12 +369,20 @@ const slides = post
 	<body>
 		<div class="public-canvas-wrapper" id="canvas-wrapper">
 			<div class="public-slide-stage" id="public-stage">
+				<!-- Clean Centered Header with Cockpit Link -->
 				<header class="stage-header">
 					<div class="header-brand">
 						<div class="brand-logo-box">
 							<TongueLogo />
 						</div>
 						<span class="brand-title">Decoding The Burn</span>
+					</div>
+
+					<div class="stage-header-actions">
+						<a href="/viewer/private" target="_blank" class="top-cockpit-link" title="Open Denis's Teleprompter Cockpit in a new tab">
+							<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+							<span>Open Cockpit 🎙️ ↗</span>
+						</a>
 					</div>
 				</header>
 

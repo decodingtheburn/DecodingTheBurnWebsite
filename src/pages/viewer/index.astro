@@ -16,6 +16,7 @@ const postsWithSlides = allPosts.map((post, index) => {
 	const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
 	const postNumber = allPosts.length - index;
 	const isDraft = post.data.draft === true;
+	const category = post.data.category || 'My Experience';
 	const compactDate = post.data.pubDate.toLocaleDateString('en-US', {
 		month: 'short',
 		day: 'numeric',
@@ -26,10 +27,17 @@ const postsWithSlides = allPosts.map((post, index) => {
 		cleanTitle,
 		postNumber,
 		isDraft,
+		category,
 		compactDate,
 		slideCount: slides.length
 	};
 });
+
+const totalSlides = postsWithSlides.reduce((acc, p) => acc + p.slideCount, 0);
+const liveCount = postsWithSlides.filter(p => !p.isDraft).length;
+const draftCount = postsWithSlides.filter(p => p.isDraft).length;
+const myExpCount = postsWithSlides.filter(p => p.category === 'My Experience').length;
+const researchCount = postsWithSlides.filter(p => p.category === 'Research').length;
 ---
 
 <!doctype html>
@@ -135,9 +143,9 @@ const postsWithSlides = allPosts.map((post, index) => {
 
 			/* Hub Container */
 			.hub-container {
-				max-width: 1240px;
+				max-width: 1440px;
 				margin: 0 auto;
-				padding: 3rem 1.5rem 5rem 1.5rem;
+				padding: 2.5rem 1.5rem 5rem 1.5rem;
 			}
 
 			.hub-header {
@@ -145,7 +153,7 @@ const postsWithSlides = allPosts.map((post, index) => {
 				flex-direction: column;
 				align-items: center;
 				text-align: center;
-				margin-bottom: 3.5rem;
+				margin-bottom: 3rem;
 				position: relative;
 			}
 
@@ -212,12 +220,336 @@ const postsWithSlides = allPosts.map((post, index) => {
 				text-wrap: balance;
 			}
 
+			/* Hub 2-Column Layout */
+			.hub-layout {
+				display: grid;
+				grid-template-columns: 290px 1fr;
+				gap: 2.5rem;
+				align-items: start;
+				margin-bottom: 3.5rem;
+			}
+
+			@media (max-width: 1024px) {
+				.hub-layout {
+					grid-template-columns: 1fr;
+					gap: 2rem;
+				}
+			}
+
+			/* Left Sidebar */
+			.hub-sidebar {
+				background: #0c1018;
+				border: 1px solid var(--border-dark);
+				border-radius: 14px;
+				padding: 1.5rem;
+				position: sticky;
+				top: 1.5rem;
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+
+			.filter-block {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+			}
+
+			.filter-label {
+				font-size: 0.74rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				color: #94a3b8;
+			}
+
+			.search-input-wrapper {
+				position: relative;
+				display: flex;
+				align-items: center;
+			}
+
+			.search-icon {
+				position: absolute;
+				left: 0.85rem;
+				color: #64748b;
+				pointer-events: none;
+			}
+
+			.hub-search-input {
+				width: 100%;
+				padding: 0.65rem 2rem 0.65rem 2.4rem;
+				background: #06090e;
+				border: 1px solid #1e2638;
+				border-radius: 8px;
+				color: #ffffff;
+				font-size: 0.85rem;
+				outline: none;
+				transition: all 0.18s ease;
+				box-sizing: border-box;
+			}
+
+			.hub-search-input:focus {
+				border-color: #8b5cf6;
+				box-shadow: 0 0 10px rgba(139, 92, 246, 0.25);
+			}
+
+			.search-clear-btn {
+				position: absolute;
+				right: 0.6rem;
+				background: transparent;
+				border: none;
+				color: #64748b;
+				font-size: 1.15rem;
+				cursor: pointer;
+				padding: 0.2rem;
+				line-height: 1;
+			}
+
+			.search-clear-btn:hover {
+				color: #ffffff;
+			}
+
+			/* Status & Category Filters */
+			.filter-buttons-list {
+				display: flex;
+				flex-direction: column;
+				gap: 0.35rem;
+			}
+
+			.filter-pill-btn {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.55rem 0.75rem;
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid transparent;
+				border-radius: 8px;
+				color: #cbd5e1;
+				font-size: 0.82rem;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.16s ease;
+				text-align: left;
+			}
+
+			.filter-pill-btn:hover {
+				background: rgba(255, 255, 255, 0.07);
+				color: #ffffff;
+			}
+
+			.filter-pill-btn.active {
+				background: rgba(139, 92, 246, 0.16);
+				border-color: rgba(139, 92, 246, 0.45);
+				color: #ffffff;
+				font-weight: 700;
+			}
+
+			.filter-pill-name {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.filter-count-badge {
+				font-family: ui-monospace, SFMono-Regular, monospace;
+				font-size: 0.72rem;
+				padding: 0.15rem 0.5rem;
+				border-radius: 4px;
+				background: rgba(255, 255, 255, 0.08);
+				color: #94a3b8;
+			}
+
+			.filter-pill-btn.active .filter-count-badge {
+				background: #7c3aed;
+				color: #ffffff;
+			}
+
+			/* Sort Select */
+			.hub-select {
+				width: 100%;
+				padding: 0.65rem 0.75rem;
+				background: #06090e;
+				border: 1px solid #1e2638;
+				border-radius: 8px;
+				color: #f1f5f9;
+				font-size: 0.82rem;
+				outline: none;
+				cursor: pointer;
+				transition: border-color 0.18s ease;
+			}
+
+			.hub-select:focus {
+				border-color: #8b5cf6;
+			}
+
+			/* Category Buttons */
+			.category-pill-btn {
+				display: flex;
+				align-items: center;
+				padding: 0.45rem 0.75rem;
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid transparent;
+				border-radius: 6px;
+				color: #94a3b8;
+				font-size: 0.8rem;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.16s ease;
+			}
+
+			.category-pill-btn:hover {
+				color: #e2e8f0;
+				background: rgba(255, 255, 255, 0.06);
+			}
+
+			.category-pill-btn.active {
+				background: rgba(255, 255, 255, 0.1);
+				border-color: rgba(255, 255, 255, 0.2);
+				color: #ffffff;
+				font-weight: 700;
+			}
+
+			/* Deck Inventory Summary Card */
+			.sidebar-summary-card {
+				background: #070a10;
+				border: 1px solid #182030;
+				border-radius: 10px;
+				padding: 1rem;
+			}
+
+			.summary-card-title {
+				font-size: 0.72rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				color: #64748b;
+				margin-bottom: 0.75rem;
+			}
+
+			.summary-stats-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 0.5rem;
+				margin-bottom: 0.65rem;
+			}
+
+			.stat-box {
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.06);
+				border-radius: 6px;
+				padding: 0.5rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.stat-number {
+				font-family: ui-monospace, SFMono-Regular, monospace;
+				font-size: 1.15rem;
+				font-weight: 800;
+				color: #ffffff;
+			}
+
+			.stat-label {
+				font-size: 0.68rem;
+				color: #94a3b8;
+			}
+
+			.summary-note {
+				font-size: 0.73rem;
+				color: #64748b;
+				line-height: 1.4;
+				margin: 0;
+			}
+
+			.reset-filters-btn {
+				background: rgba(239, 68, 68, 0.12);
+				border: 1px solid rgba(239, 68, 68, 0.35);
+				color: #f87171;
+				padding: 0.55rem 0.85rem;
+				border-radius: 8px;
+				font-size: 0.8rem;
+				font-weight: 700;
+				cursor: pointer;
+				transition: all 0.18s ease;
+				text-align: center;
+			}
+
+			.reset-filters-btn:hover {
+				background: #ef4444;
+				color: #ffffff;
+			}
+
+			/* Results Bar */
+			.results-bar {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 1.25rem;
+				padding-bottom: 0.75rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+			}
+
+			.results-count-text {
+				font-size: 0.88rem;
+				color: #94a3b8;
+			}
+
+			.results-count-text strong {
+				color: #ffffff;
+			}
+
+			/* Empty Results State */
+			.empty-results-state {
+				text-align: center;
+				padding: 4rem 2rem;
+				background: var(--card-dark);
+				border: 1px dashed var(--border-dark);
+				border-radius: 16px;
+				margin-bottom: 3.5rem;
+			}
+
+			.empty-icon {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+			}
+
+			.empty-title {
+				font-size: 1.2rem;
+				font-weight: 700;
+				color: #ffffff;
+				margin: 0 0 0.5rem 0;
+			}
+
+			.empty-desc {
+				font-size: 0.9rem;
+				color: #94a3b8;
+				margin: 0 0 1.5rem 0;
+			}
+
+			.empty-reset-btn {
+				background: #7c3aed;
+				color: #ffffff;
+				border: none;
+				padding: 0.65rem 1.25rem;
+				font-size: 0.85rem;
+				font-weight: 700;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: background 0.18s ease;
+			}
+
+			.empty-reset-btn:hover {
+				background: #6d28d9;
+			}
+
 			/* Posts Grid */
 			.posts-slides-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-				gap: 2rem;
-				margin-bottom: 3.5rem;
+				grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+				gap: 1.75rem;
+				margin-bottom: 2.5rem;
 			}
 
 			.post-slide-card {
@@ -619,108 +951,231 @@ const postsWithSlides = allPosts.map((post, index) => {
 					</p>
 				</header>
 
-				<!-- All Blog Posts as Presentation Decks & Articles -->
-				<div class="posts-slides-grid">
-					{postsWithSlides.map(({ post, cleanTitle, postNumber, isDraft, compactDate, slideCount }) => (
-						<div class={`post-slide-card ${isDraft ? 'draft-card' : ''}`}>
-							<!-- Clean Image: Zero badges on thumbnail -->
-							<div class="card-thumb-box">
-								<img 
-									src={post.data.heroImage || '/how_i_solved_my_bms_thumbnail.jpg'} 
-									alt={cleanTitle} 
-									class="card-thumb-img"
-									loading="lazy"
+				<!-- Hub 2-Column Layout: Left Sidebar Filters + Right Presentations Content -->
+				<div class="hub-layout">
+					<!-- Left Sidebar Filters -->
+					<aside class="hub-sidebar" id="hubSidebar">
+						<!-- Search Filter -->
+						<div class="filter-block">
+							<label for="hubSearchInput" class="filter-label">Search Decks</label>
+							<div class="search-input-wrapper">
+								<svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+								<input 
+									type="text" 
+									id="hubSearchInput" 
+									placeholder="Filter title, keywords..." 
+									class="hub-search-input"
+									autocomplete="off"
 								/>
-							</div>
-
-							<!-- Card Content -->
-							<div class="card-content-box">
-								<div>
-									<!-- Metadata Header: Entry #, Slides, Status -->
-									<div class="card-meta-header">
-										<div class="meta-badges-group">
-											<span class="entry-pill">Entry #{postNumber}</span>
-											<span class="slide-pill">
-												<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-												{slideCount} Slides
-											</span>
-										</div>
-										<div class="meta-status-group">
-											{isDraft ? (
-												<span class="status-pill status-draft">
-													<span class="status-dot dot-draft"></span>
-													Draft
-												</span>
-											) : (
-												<span class="status-pill status-live">
-													<span class="status-dot dot-live"></span>
-													Live
-												</span>
-											)}
-										</div>
-									</div>
-
-									<!-- Compact Clean Date Row -->
-									<div class="card-date-row">
-										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="date-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-										<span class="card-date-text">{compactDate}</span>
-									</div>
-
-									<h2 class="card-post-title" set:html={post.data.title} />
-									<p class="card-post-desc">{post.data.description}</p>
-								</div>
-
-								<!-- 2-Tier Action Buttons: Full-width Article read/preview + 50/50 Deck Tools -->
-								<div class="card-actions-wrapper">
-									<a href={`/blog/${post.id}/`} class="btn-primary-article" title={isDraft ? "Preview Private Draft Article" : "Read Full Article"}>
-										<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-										<span>{isDraft ? 'Preview Private Draft' : 'Read Full Article'}</span>
-										<span class="btn-arrow">→</span>
-									</a>
-
-									<div class="btn-deck-tools-row">
-										<a href={`/viewer/${post.id}/public`} class="deck-btn obs-btn" title="Open Clean Public Screen for OBS">
-											<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-											<span>Public OBS</span>
-										</a>
-										<a href={`/viewer/${post.id}/private`} class="deck-btn cockpit-btn" title="Open Denis's Teleprompter Cockpit">
-											<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-											<span>Cockpit</span>
-										</a>
-									</div>
-								</div>
+								<button type="button" id="hubSearchClear" class="search-clear-btn" title="Clear search" style="display: none;">&times;</button>
 							</div>
 						</div>
-					))}
-				</div>
 
-				<!-- Quick Recording Instructions -->
-				<div class="hub-guide-box">
-					<div class="hub-guide-title">
-						<svg viewBox="0 0 24 24" width="18" height="18" stroke="#ef4444" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-						<span>How Real-Time Sync Works</span>
-					</div>
-					<div class="guide-steps">
-						<div class="guide-step">
-							<span class="step-number">STEP 1: LAUNCH PUBLIC</span>
-							<span class="step-heading">Open Public OBS View</span>
-							<p class="step-text">
-								Open <strong>OBS 📺</strong> in a separate window or monitor. Point OBS Window Capture directly to it.
+						<!-- Status Filter -->
+						<div class="filter-block">
+							<span class="filter-label">Status</span>
+							<div class="filter-buttons-list">
+								<button type="button" class="filter-pill-btn active" data-status="all">
+									<span class="filter-pill-name">All Entries</span>
+									<span class="filter-count-badge">{allPosts.length}</span>
+								</button>
+								<button type="button" class="filter-pill-btn" data-status="live">
+									<span class="filter-pill-name">
+										<span class="status-dot dot-live"></span>
+										Live Articles
+									</span>
+									<span class="filter-count-badge">{liveCount}</span>
+								</button>
+								<button type="button" class="filter-pill-btn" data-status="draft">
+									<span class="filter-pill-name">
+										<span class="status-dot dot-draft"></span>
+										Private Drafts
+									</span>
+									<span class="filter-count-badge">{draftCount}</span>
+								</button>
+							</div>
+						</div>
+
+						<!-- Sort Options -->
+						<div class="filter-block">
+							<label for="hubSortSelect" class="filter-label">Sort Order</label>
+							<select id="hubSortSelect" class="hub-select">
+								<option value="entry-desc">Entry # (Newest First)</option>
+								<option value="entry-asc">Entry # (Oldest First)</option>
+								<option value="slides-desc">Slide Count (Most First)</option>
+								<option value="title-asc">Title (A - Z)</option>
+							</select>
+						</div>
+
+						<!-- Category Filters -->
+						<div class="filter-block">
+							<span class="filter-label">Category</span>
+							<div class="filter-buttons-list">
+								<button type="button" class="category-pill-btn active" data-category="all">
+									<span>All Categories</span>
+								</button>
+								<button type="button" class="category-pill-btn" data-category="My Experience">
+									<span>My Experience ({myExpCount})</span>
+								</button>
+								<button type="button" class="category-pill-btn" data-category="Research">
+									<span>Research ({researchCount})</span>
+								</button>
+							</div>
+						</div>
+
+						<!-- Quick Presentation Deck Summary Card -->
+						<div class="sidebar-summary-card">
+							<div class="summary-card-title">Deck Inventory</div>
+							<div class="summary-stats-grid">
+								<div class="stat-box">
+									<span class="stat-number">{allPosts.length}</span>
+									<span class="stat-label">Decks Ready</span>
+								</div>
+								<div class="stat-box">
+									<span class="stat-number">{totalSlides}</span>
+									<span class="stat-label">Total Slides</span>
+								</div>
+							</div>
+							<p class="summary-note">
+								Every post generates teleprompter notes and clean 16:9 OBS&nbsp;screens.
 							</p>
 						</div>
-						<div class="guide-step">
-							<span class="step-number">STEP 2: LAUNCH COCKPIT</span>
-							<span class="step-heading">Open Presenter Cockpit</span>
-							<p class="step-text">
-								Open <strong>Cockpit 🎙️</strong> in front of you. It shows live teleprompter speaker notes and an elapsed timer.
-							</p>
+
+						<!-- Reset Filters Button -->
+						<button type="button" id="resetFiltersBtn" class="reset-filters-btn" style="display: none;">
+							<span>Reset Filters ↺</span>
+						</button>
+					</aside>
+
+					<!-- Right Main Content Area -->
+					<div class="hub-main-content">
+						<!-- Results Bar -->
+						<div class="results-bar">
+							<div class="results-count-text">
+								Showing <strong id="visibleCountText">{allPosts.length}</strong> of {allPosts.length} presentations
+							</div>
 						</div>
-						<div class="guide-step">
-							<span class="step-number">STEP 3: HIT SPACEBAR</span>
-							<span class="step-heading">Automatic Instant Sync</span>
-							<p class="step-text">
-								Tapping <kbd>Spacebar</kbd> in your Cockpit advances BOTH your screen and the Public OBS screen simultaneously!
-							</p>
+
+						<!-- All Blog Posts as Presentation Decks & Articles -->
+						<div class="posts-slides-grid" id="postsGrid">
+							{postsWithSlides.map(({ post, cleanTitle, postNumber, isDraft, category, compactDate, slideCount }) => (
+								<div 
+									class={`post-slide-card ${isDraft ? 'draft-card' : ''}`}
+									data-entry={postNumber}
+									data-status={isDraft ? 'draft' : 'live'}
+									data-category={category}
+									data-slides={slideCount}
+									data-title={cleanTitle.toLowerCase()}
+									data-desc={(post.data.description || '').toLowerCase()}
+								>
+									<!-- Clean Image: Zero badges on thumbnail -->
+									<div class="card-thumb-box">
+										<img 
+											src={post.data.heroImage || '/how_i_solved_my_bms_thumbnail.jpg'} 
+											alt={cleanTitle} 
+											class="card-thumb-img"
+											loading="lazy"
+										/>
+									</div>
+
+									<!-- Card Content -->
+									<div class="card-content-box">
+										<div>
+											<!-- Metadata Header: Entry #, Slides, Status -->
+											<div class="card-meta-header">
+												<div class="meta-badges-group">
+													<span class="entry-pill">Entry #{postNumber}</span>
+													<span class="slide-pill">
+														<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+														{slideCount} Slides
+													</span>
+												</div>
+												<div class="meta-status-group">
+													{isDraft ? (
+														<span class="status-pill status-draft">
+															<span class="status-dot dot-draft"></span>
+															Draft
+														</span>
+													) : (
+														<span class="status-pill status-live">
+															<span class="status-dot dot-live"></span>
+															Live
+														</span>
+													)}
+												</div>
+											</div>
+
+											<!-- Compact Clean Date Row -->
+											<div class="card-date-row">
+												<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="date-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+												<span class="card-date-text">{compactDate}</span>
+											</div>
+
+											<h2 class="card-post-title" set:html={post.data.title} />
+											<p class="card-post-desc">{post.data.description}</p>
+										</div>
+
+										<!-- 2-Tier Action Buttons: Full-width Article read/preview + 50/50 Deck Tools -->
+										<div class="card-actions-wrapper">
+											<a href={`/blog/${post.id}/`} class="btn-primary-article" title={isDraft ? "Preview Private Draft Article" : "Read Full Article"}>
+												<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+												<span>{isDraft ? 'Preview Private Draft' : 'Read Full Article'}</span>
+												<span class="btn-arrow">→</span>
+											</a>
+
+											<div class="btn-deck-tools-row">
+												<a href={`/viewer/${post.id}/public`} class="deck-btn obs-btn" title="Open Clean Public Screen for OBS">
+													<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+													<span>Public OBS</span>
+												</a>
+												<a href={`/viewer/${post.id}/private`} class="deck-btn cockpit-btn" title="Open Denis's Teleprompter Cockpit">
+													<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+													<span>Cockpit</span>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
+
+						<!-- Empty Search State -->
+						<div class="empty-results-state" id="emptyState" style="display: none;">
+							<div class="empty-icon">🔍</div>
+							<h3 class="empty-title">No matching presentations found</h3>
+							<p class="empty-desc">Try clearing your search terms or selecting a different status filter.</p>
+							<button type="button" class="empty-reset-btn" id="emptyResetBtn">Reset Filters</button>
+						</div>
+
+						<!-- Quick Recording Instructions -->
+						<div class="hub-guide-box">
+							<div class="hub-guide-title">
+								<svg viewBox="0 0 24 24" width="18" height="18" stroke="#ef4444" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+								<span>How Real-Time Sync Works</span>
+							</div>
+							<div class="guide-steps">
+								<div class="guide-step">
+									<span class="step-number">STEP 1: LAUNCH PUBLIC</span>
+									<span class="step-heading">Open Public OBS View</span>
+									<p class="step-text">
+										Open <strong>OBS 📺</strong> in a separate window or monitor. Point OBS Window Capture directly to it.
+									</p>
+								</div>
+								<div class="guide-step">
+									<span class="step-number">STEP 2: LAUNCH COCKPIT</span>
+									<span class="step-heading">Open Presenter Cockpit</span>
+									<p class="step-text">
+										Open <strong>Cockpit 🎙️</strong> in front of you. It shows live teleprompter speaker notes and an elapsed timer.
+									</p>
+								</div>
+								<div class="guide-step">
+									<span class="step-number">STEP 3: HIT SPACEBAR</span>
+									<span class="step-heading">Automatic Instant Sync</span>
+									<p class="step-text">
+										Tapping <kbd>Spacebar</kbd> in your Cockpit advances BOTH your screen and the Public OBS screen simultaneously!
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -733,7 +1188,7 @@ const postsWithSlides = allPosts.map((post, index) => {
 			</main>
 		</div>
 
-		<!-- Password Protection Script -->
+		<!-- Password Protection & Filter Script -->
 		<script is:inline>
 			const PASS = 'bms2026'; // Default passcode
 			const gate = document.getElementById('viewerGate');
@@ -775,6 +1230,136 @@ const postsWithSlides = allPosts.map((post, index) => {
 			});
 
 			lockBtn?.addEventListener('click', lock);
+
+			// Client-Side Filter & Search Engine
+			const searchInput = document.getElementById('hubSearchInput');
+			const searchClear = document.getElementById('hubSearchClear');
+			const sortSelect = document.getElementById('hubSortSelect');
+			const statusButtons = document.querySelectorAll('.filter-pill-btn');
+			const categoryButtons = document.querySelectorAll('.category-pill-btn');
+			const resetBtn = document.getElementById('resetFiltersBtn');
+			const emptyResetBtn = document.getElementById('emptyResetBtn');
+			const visibleCountText = document.getElementById('visibleCountText');
+			const emptyState = document.getElementById('emptyState');
+			const postsGrid = document.getElementById('postsGrid');
+			const allCards = Array.from(document.querySelectorAll('.post-slide-card'));
+
+			let currentStatus = 'all';
+			let currentCategory = 'all';
+			let currentSearch = '';
+			let currentSort = 'entry-desc';
+
+			function applyFiltersAndSort() {
+				let visibleCount = 0;
+
+				allCards.forEach((card) => {
+					const cardStatus = card.getAttribute('data-status') || '';
+					const cardCategory = card.getAttribute('data-category') || '';
+					const cardTitle = card.getAttribute('data-title') || '';
+					const cardDesc = card.getAttribute('data-desc') || '';
+
+					const statusMatch = currentStatus === 'all' || cardStatus === currentStatus;
+					const categoryMatch = currentCategory === 'all' || cardCategory === currentCategory;
+					const searchMatch = !currentSearch || cardTitle.includes(currentSearch) || cardDesc.includes(currentSearch);
+
+					if (statusMatch && categoryMatch && searchMatch) {
+						card.style.display = 'flex';
+						visibleCount++;
+					} else {
+						card.style.display = 'none';
+					}
+				});
+
+				// Sort visible cards
+				const visibleCards = allCards.filter(c => c.style.display !== 'none');
+				visibleCards.sort((a, b) => {
+					const entryA = parseInt(a.getAttribute('data-entry') || '0', 10);
+					const entryB = parseInt(b.getAttribute('data-entry') || '0', 10);
+					const slidesA = parseInt(a.getAttribute('data-slides') || '0', 10);
+					const slidesB = parseInt(b.getAttribute('data-slides') || '0', 10);
+					const titleA = a.getAttribute('data-title') || '';
+					const titleB = b.getAttribute('data-title') || '';
+
+					if (currentSort === 'entry-desc') return entryB - entryA;
+					if (currentSort === 'entry-asc') return entryA - entryB;
+					if (currentSort === 'slides-desc') return slidesB - slidesA;
+					if (currentSort === 'title-asc') return titleA.localeCompare(titleB);
+					return 0;
+				});
+
+				// Reorder in DOM
+				if (postsGrid) {
+					visibleCards.forEach(card => postsGrid.appendChild(card));
+				}
+
+				// Update results display
+				if (visibleCountText) visibleCountText.textContent = String(visibleCount);
+				if (emptyState) emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+				if (postsGrid) postsGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
+
+				// Reset / Clear buttons
+				const hasActiveFilters = currentStatus !== 'all' || currentCategory !== 'all' || currentSearch.length > 0;
+				if (resetBtn) resetBtn.style.display = hasActiveFilters ? 'block' : 'none';
+				if (searchClear) searchClear.style.display = currentSearch.length > 0 ? 'block' : 'none';
+			}
+
+			searchInput?.addEventListener('input', (e) => {
+				currentSearch = e.target.value.trim().toLowerCase();
+				applyFiltersAndSort();
+			});
+
+			searchClear?.addEventListener('click', () => {
+				if (searchInput) searchInput.value = '';
+				currentSearch = '';
+				applyFiltersAndSort();
+			});
+
+			sortSelect?.addEventListener('change', (e) => {
+				currentSort = e.target.value;
+				applyFiltersAndSort();
+			});
+
+			statusButtons.forEach(btn => {
+				btn.addEventListener('click', () => {
+					statusButtons.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+					currentStatus = btn.getAttribute('data-status') || 'all';
+					applyFiltersAndSort();
+				});
+			});
+
+			categoryButtons.forEach(btn => {
+				btn.addEventListener('click', () => {
+					categoryButtons.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+					currentCategory = btn.getAttribute('data-category') || 'all';
+					applyFiltersAndSort();
+				});
+			});
+
+			function resetFilters() {
+				if (searchInput) searchInput.value = '';
+				currentSearch = '';
+				currentStatus = 'all';
+				currentCategory = 'all';
+				currentSort = 'entry-desc';
+				if (sortSelect) sortSelect.value = 'entry-desc';
+
+				statusButtons.forEach(b => {
+					if (b.getAttribute('data-status') === 'all') b.classList.add('active');
+					else b.classList.remove('active');
+				});
+
+				categoryButtons.forEach(b => {
+					if (b.getAttribute('data-category') === 'all') b.classList.add('active');
+					else b.classList.remove('active');
+				});
+
+				applyFiltersAndSort();
+			}
+
+			resetBtn?.addEventListener('click', resetFilters);
+			emptyResetBtn?.addEventListener('click', resetFilters);
 		</script>
 	</body>
 </html>
