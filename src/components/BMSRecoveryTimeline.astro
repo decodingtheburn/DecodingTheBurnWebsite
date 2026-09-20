@@ -1,0 +1,854 @@
+---
+// Interactive CSS/JS BMS Forensic Timeline Component
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+const timelineSteps = [
+	{
+		step: 1,
+		timeframe: "~3 Years Ago",
+		shortTitle: "First Trigger",
+		title: "The First Trigger: Beer, Wine, and Aching Gums",
+		painLevel: 4,
+		painColor: "#f59e0b",
+		statusBadge: "Intermittent Ache",
+		icon: "🍺",
+		incident: "The day after drinking Trois-Pistoles dark ale or red wine, intense aching flared throughout my gums and teeth.",
+		action: "Recognized alcohol as a direct trigger and stopped drinking alcohol completely.",
+		discovery: "The burning cleared within days, leading to six full months completely pain-free."
+	},
+	{
+		step: 2,
+		timeframe: "6 Months Later",
+		shortTitle: "Second Wave",
+		title: "The Second Wave: Coffee and Spreading Living Fire",
+		painLevel: 7,
+		painColor: "#ea580c",
+		statusBadge: "Constant Nerve Fire",
+		icon: "☕",
+		incident: "Six months into being pain-free, coffee triggered a fierce flare that spread across my palate, cheeks, lips, and nose.",
+		action: "Cut coffee immediately, but eliminating it was no longer enough to stop the spread.",
+		discovery: "The condition transformed from an occasional ache into a 24/7 relentless living fire."
+	},
+	{
+		step: 3,
+		timeframe: "Dental Phase",
+		shortTitle: "Medical Maze",
+		title: "5 Dentists, 5 Doctors, and Four Cervical Patches",
+		painLevel: 10,
+		painColor: "#dc2626",
+		statusBadge: "Peak 10/10 Agony",
+		icon: "🦷",
+		incident: "Consulted five dentists and five medical doctors; received contradictory advice and no clear solutions.",
+		action: "Dentist placed four cervical composite resin patches for gum recession (teeth 16, 24, 26, 44).",
+		discovery: "Daily hygiene became excruciating: flossing canine and premolar triggered unbearable 10/10 shock agony."
+	},
+	{
+		step: 4,
+		timeframe: "Dietary Audit",
+		shortTitle: "Blueberry pH",
+		title: "The Elimination Diet and Blueberry Acid Realization",
+		painLevel: 8,
+		painColor: "#e11d48",
+		statusBadge: "Acid Fuel Identified",
+		icon: "🫐",
+		incident: "Stripped diet down to ten 'gentle' foods, but burning persisted from daily fresh blueberries.",
+		action: "Checked chemical data: discovered blueberry pH is 3.0 to 3.2, bathing sensitized root tubules in acid.",
+		discovery: "Cut blueberries immediately; baseline pain dropped noticeably, confirming dietary acids as active fuel."
+	},
+	{
+		step: 5,
+		timeframe: "Biochemical Reset",
+		shortTitle: "Fast & Carnivore",
+		title: "4-Day Fast, Acidity Reset, and Carnivore Breakthrough",
+		painLevel: 2,
+		painColor: "#10b981",
+		statusBadge: "Starving the Fire",
+		icon: "🥩",
+		incident: "Realized tissues needed a total break from acidity, sugars, and bacterial fermentation.",
+		action: "Completed a 4-day water fast, broke it with chicken and eggs, and transitioned to 100% carnivore.",
+		discovery: "Cutting plant acids and sugars basically stopped the pain. Cheat snacks triggered instant flares, proving half-measures fail."
+	},
+	{
+		step: 6,
+		timeframe: "Month 6 Carnivore",
+		shortTitle: "Tooth 36 Decay",
+		title: "Uncovering Tooth 36 and Three Hidden Cavities",
+		painLevel: 0.5,
+		painColor: "#059669",
+		statusBadge: "Physical Spark Removed",
+		icon: "🔍",
+		incident: "A dental hygienist school instructor spotted an apical lesion under an old crown that five prior dentists missed.",
+		action: "Dentist sectioned the crown and uncovered three active cavities rotting for years beneath the metal.",
+		discovery: "Excavated all three cavities and sealed a new crown. Chronic lower jaw pain stopped permanently."
+	},
+	{
+		step: 7,
+		timeframe: "Present Day",
+		shortTitle: "Symptom-Free",
+		title: "Nine Months Symptom-Free and Living Pain-Free",
+		painLevel: 0,
+		painColor: "#16a34a",
+		statusBadge: "Fully Symptom-Free",
+		icon: "🛡️",
+		incident: "Maintained 100% carnivore with zero sugar, zero plant acids, and gentle oral hygiene habits.",
+		action: "Documenting forensic findings, launching the podcast, and publishing video breakdowns for the BMS community.",
+		discovery: "Demonstrated that BMS is not psychosomatic: combining hardware repair with fuel starvation completely stops the burn."
+	}
+];
+---
+
+<div class={`bms-timeline-widget ${className}`} id="bmsTimelineWidget" aria-label="Interactive BMS Recovery Timeline">
+	<div class="timeline-card">
+		<!-- Header -->
+		<div class="timeline-header">
+			<div class="header-text-block">
+				<h3 class="timeline-widget-title">Forensic BMS Recovery Timeline</h3>
+				<p class="timeline-widget-subtitle">
+					Step through each milestone of my three-year investigation from initial trigger to stopping my symptoms completely.
+				</p>
+			</div>
+			<button type="button" id="timelineAutoplayBtn" class="timeline-autoplay-btn" aria-label="Play timeline slideshow">
+				<span class="play-icon" aria-hidden="true">▶</span>
+				<span class="btn-caption">Auto-Play</span>
+			</button>
+		</div>
+
+		<!-- Step Rail / Milestones -->
+		<div class="timeline-rail-wrap" role="tablist" aria-label="Recovery Milestones">
+			<div class="rail-progress-track">
+				<div class="rail-progress-fill" id="railProgressFill"></div>
+			</div>
+
+			<div class="rail-nodes-container">
+				{timelineSteps.map((item, idx) => (
+					<button 
+						type="button" 
+						role="tab"
+						id={`timelineTab-${idx}`}
+						class={`rail-node-btn ${idx === 0 ? 'active' : ''}`} 
+						data-step-index={idx}
+						aria-selected={idx === 0 ? 'true' : 'false'}
+						aria-controls="timelineActiveCard"
+					>
+						<span class="node-bullet">
+							<span class="node-number">{item.step}</span>
+						</span>
+						<span class="node-label">
+							<span class="node-time">{item.timeframe}</span>
+							<span class="node-name">{item.shortTitle}</span>
+						</span>
+					</button>
+				))}
+			</div>
+		</div>
+
+		<!-- Dynamic Pain Index Gauge -->
+		<div class="pain-gauge-container">
+			<div class="pain-gauge-header">
+				<span class="pain-gauge-label">Reported Pain Severity:</span>
+				<span class="pain-gauge-value" id="painGaugeValue">4 / 10 (Intermittent Ache)</span>
+			</div>
+			<div class="pain-gauge-bar-wrap" aria-hidden="true">
+				<div class="pain-gauge-fill" id="painGaugeFill" style="width: 40%; background: #f59e0b;"></div>
+			</div>
+			<div class="pain-scale-legend">
+				<span>0/10 Pain-Free</span>
+				<span>5/10 Moderate</span>
+				<span>10/10 Debilitating Agony</span>
+			</div>
+		</div>
+
+		<!-- Active Card Display -->
+		<div class="active-step-card" id="timelineActiveCard" role="tabpanel">
+			<div class="step-card-header">
+				<div class="badge-time-row">
+					<span class="step-timeframe-tag" id="cardTimeframe">~3 Years Ago</span>
+					<span class="step-status-tag" id="cardStatusBadge">Intermittent Ache</span>
+				</div>
+				<h4 class="step-card-heading" id="cardTitle">
+					The First Trigger: Beer, Wine, and Aching Gums
+				</h4>
+			</div>
+
+			<div class="step-details-grid">
+				<div class="detail-box incident-box">
+					<div class="detail-box-title">
+						<span class="box-icon" aria-hidden="true">⚠️</span>
+						<span>What Happened:</span>
+					</div>
+					<p class="detail-box-text" id="cardIncident">
+						The day after drinking Trois-Pistoles dark ale or red wine, intense aching flared throughout my gums and teeth.
+					</p>
+				</div>
+
+				<div class="detail-box action-box">
+					<div class="detail-box-title">
+						<span class="box-icon" aria-hidden="true">🧪</span>
+						<span>Action Taken:</span>
+					</div>
+					<p class="detail-box-text" id="cardAction">
+						Recognized alcohol as a direct trigger and stopped drinking alcohol completely.
+					</p>
+				</div>
+
+				<div class="detail-box result-box">
+					<div class="detail-box-title">
+						<span class="box-icon" aria-hidden="true">💡</span>
+						<span>Forensic Discovery:</span>
+					</div>
+					<p class="detail-box-text" id="cardDiscovery">
+						The burning cleared within days, leading to six full months completely pain-free.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer Controls -->
+		<div class="timeline-footer-controls">
+			<button type="button" id="timelinePrevBtn" class="timeline-nav-btn" disabled>
+				&larr; Previous Milestone
+			</button>
+
+			<div class="timeline-step-indicator" id="timelineStepIndicator">
+				Milestone <span id="currentStepNum">1</span> of 7
+			</div>
+
+			<button type="button" id="timelineNextBtn" class="timeline-nav-btn">
+				Next Milestone &rarr;
+			</button>
+		</div>
+	</div>
+</div>
+
+<script>
+	const initBMSTimeline = () => {
+		const stepsData = [
+			{
+				step: 1,
+				timeframe: "~3 Years Ago",
+				title: "The First Trigger: Beer, Wine, and Aching Gums",
+				painLevel: 4,
+				painText: "4 / 10 (Intermittent Ache)",
+				painColor: "#f59e0b",
+				statusBadge: "Intermittent Ache",
+				incident: "The day after drinking Trois-Pistoles dark ale or red wine, intense aching flared throughout my gums and teeth.",
+				action: "Recognized alcohol as a direct trigger and stopped drinking alcohol completely.",
+				discovery: "The burning cleared within days, leading to six full months completely pain-free."
+			},
+			{
+				step: 2,
+				timeframe: "6 Months Later",
+				title: "The Second Wave: Coffee and Spreading Living Fire",
+				painLevel: 7,
+				painText: "7 / 10 (Spreading Living Fire)",
+				painColor: "#ea580c",
+				statusBadge: "Constant Nerve Fire",
+				incident: "Six months into being pain-free, coffee triggered a fierce flare that spread across my palate, cheeks, lips, and nose.",
+				action: "Cut coffee immediately, but eliminating it was no longer enough to stop the spread.",
+				discovery: "The condition transformed from an occasional ache into a 24/7 relentless living fire."
+			},
+			{
+				step: 3,
+				timeframe: "Dental Phase",
+				title: "5 Dentists, 5 Doctors, and Four Cervical Patches",
+				painLevel: 10,
+				painText: "10 / 10 (Debilitating Flossing Agony)",
+				painColor: "#dc2626",
+				statusBadge: "Peak 10/10 Agony",
+				incident: "Consulted five dentists and five medical doctors; received contradictory advice and no clear solutions.",
+				action: "Dentist placed four cervical composite resin patches for gum recession (teeth 16, 24, 26, 44).",
+				discovery: "Daily hygiene became excruciating: flossing canine and premolar triggered unbearable 10/10 shock agony."
+			},
+			{
+				step: 4,
+				timeframe: "Dietary Audit",
+				title: "The Elimination Diet and Blueberry Acid Realization",
+				painLevel: 8,
+				painText: "8 / 10 (Acid Tubule Irritation)",
+				painColor: "#e11d48",
+				statusBadge: "Acid Fuel Identified",
+				incident: "Stripped diet down to ten 'gentle' foods, but burning persisted from daily fresh blueberries.",
+				action: "Checked chemical data: discovered blueberry pH is 3.0 to 3.2, bathing sensitized root tubules in acid.",
+				discovery: "Cut blueberries immediately; baseline pain dropped noticeably, confirming dietary acids as active fuel."
+			},
+			{
+				step: 5,
+				timeframe: "Biochemical Reset",
+				title: "4-Day Fast, Acidity Reset, and Carnivore Breakthrough",
+				painLevel: 2,
+				painText: "2 / 10 (Rapid Acidity Cooling)",
+				painColor: "#10b981",
+				statusBadge: "Starving the Fire",
+				incident: "Realized tissues needed a total break from acidity, sugars, and bacterial fermentation.",
+				action: "Completed a 4-day water fast, broke it with chicken and eggs, and transitioned to 100% carnivore.",
+				discovery: "Cutting plant acids and sugars basically stopped the pain. Cheat snacks triggered instant flares, proving half-measures fail."
+			},
+			{
+				step: 6,
+				timeframe: "Month 6 Carnivore",
+				title: "Uncovering Tooth 36 and Three Hidden Cavities",
+				painLevel: 0.5,
+				painText: "0.5 / 10 (Jaw Nerve Quieted)",
+				painColor: "#059669",
+				statusBadge: "Physical Spark Removed",
+				incident: "A dental hygienist school instructor spotted an apical lesion under an old crown that five prior dentists missed.",
+				action: "Dentist sectioned the crown and uncovered three active cavities rotting for years beneath the metal.",
+				discovery: "Excavated all three cavities and sealed a new crown. Chronic lower jaw pain stopped permanently."
+			},
+			{
+				step: 7,
+				timeframe: "Present Day",
+				title: "Nine Months Symptom-Free and Living Pain-Free",
+				painLevel: 0,
+				painText: "0 / 10 (Completely Symptom-Free)",
+				painColor: "#16a34a",
+				statusBadge: "Fully Symptom-Free",
+				incident: "Maintained 100% carnivore with zero sugar, zero plant acids, and gentle oral hygiene habits.",
+				action: "Documenting forensic findings, launching the podcast, and publishing video breakdowns for the BMS community.",
+				discovery: "Demonstrated that BMS is not psychosomatic: combining hardware repair with fuel starvation completely stops the burn."
+			}
+		];
+
+		const widget = document.getElementById('bmsTimelineWidget');
+		if (!widget) return;
+
+		let currentIndex = 0;
+		let autoplayTimer: number | null = null;
+
+		const railNodes = widget.querySelectorAll('.rail-node-btn');
+		const railProgressFill = document.getElementById('railProgressFill');
+		const painGaugeValue = document.getElementById('painGaugeValue');
+		const painGaugeFill = document.getElementById('painGaugeFill');
+
+		const cardTimeframe = document.getElementById('cardTimeframe');
+		const cardStatusBadge = document.getElementById('cardStatusBadge');
+		const cardTitle = document.getElementById('cardTitle');
+		const cardIncident = document.getElementById('cardIncident');
+		const cardAction = document.getElementById('cardAction');
+		const cardDiscovery = document.getElementById('cardDiscovery');
+
+		const prevBtn = document.getElementById('timelinePrevBtn') as HTMLButtonElement | null;
+		const nextBtn = document.getElementById('timelineNextBtn') as HTMLButtonElement | null;
+		const currentStepNum = document.getElementById('currentStepNum');
+		const autoplayBtn = document.getElementById('timelineAutoplayBtn') as HTMLButtonElement | null;
+		const playIcon = autoplayBtn?.querySelector('.play-icon');
+		const btnCaption = autoplayBtn?.querySelector('.btn-caption');
+
+		const updateTimelineUI = (index: number) => {
+			if (index < 0 || index >= stepsData.length) return;
+			currentIndex = index;
+			const data = stepsData[index];
+
+			// Update node active states
+			railNodes.forEach((node, i) => {
+				if (i === index) {
+					node.classList.add('active');
+					node.setAttribute('aria-selected', 'true');
+				} else {
+					node.classList.remove('active');
+					node.setAttribute('aria-selected', 'false');
+				}
+			});
+
+			// Update progress bar
+			if (railProgressFill) {
+				const pct = (index / (stepsData.length - 1)) * 100;
+				railProgressFill.style.width = `${pct}%`;
+			}
+
+			// Update Pain Gauge
+			if (painGaugeValue && painGaugeFill) {
+				painGaugeValue.textContent = data.painText;
+				painGaugeValue.style.color = data.painColor;
+				const gaugePct = (data.painLevel / 10) * 100;
+				painGaugeFill.style.width = `${gaugePct}%`;
+				painGaugeFill.style.background = data.painColor;
+			}
+
+			// Update Active Card Details
+			if (cardTimeframe) cardTimeframe.textContent = data.timeframe;
+			if (cardStatusBadge) cardStatusBadge.textContent = data.statusBadge;
+			if (cardTitle) cardTitle.textContent = data.title;
+			if (cardIncident) cardIncident.textContent = data.incident;
+			if (cardAction) cardAction.textContent = data.action;
+			if (cardDiscovery) cardDiscovery.textContent = data.discovery;
+
+			// Update Controls
+			if (currentStepNum) currentStepNum.textContent = (index + 1).toString();
+			if (prevBtn) prevBtn.disabled = index === 0;
+			if (nextBtn) nextBtn.disabled = index === stepsData.length - 1;
+		};
+
+		// Node Click Listeners
+		railNodes.forEach((node, i) => {
+			node.addEventListener('click', () => {
+				stopAutoplay();
+				updateTimelineUI(i);
+			});
+		});
+
+		// Prev / Next Listeners
+		prevBtn?.addEventListener('click', () => {
+			stopAutoplay();
+			if (currentIndex > 0) updateTimelineUI(currentIndex - 1);
+		});
+
+		nextBtn?.addEventListener('click', () => {
+			stopAutoplay();
+			if (currentIndex < stepsData.length - 1) updateTimelineUI(currentIndex + 1);
+		});
+
+		// Autoplay Functionality
+		const stopAutoplay = () => {
+			if (autoplayTimer !== null) {
+				clearInterval(autoplayTimer);
+				autoplayTimer = null;
+				if (playIcon) playIcon.textContent = '▶';
+				if (btnCaption) btnCaption.textContent = 'Auto-Play';
+			}
+		};
+
+		const startAutoplay = () => {
+			if (playIcon) playIcon.textContent = '⏸';
+			if (btnCaption) btnCaption.textContent = 'Pause';
+			autoplayTimer = window.setInterval(() => {
+				if (currentIndex >= stepsData.length - 1) {
+					updateTimelineUI(0);
+				} else {
+					updateTimelineUI(currentIndex + 1);
+				}
+			}, 3800);
+		};
+
+		autoplayBtn?.addEventListener('click', () => {
+			if (autoplayTimer !== null) {
+				stopAutoplay();
+			} else {
+				startAutoplay();
+			}
+		});
+
+		// Initial load
+		updateTimelineUI(0);
+	};
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initBMSTimeline);
+	} else {
+		initBMSTimeline();
+	}
+</script>
+
+<style>
+	.bms-timeline-widget {
+		width: 100%;
+		margin: 2.5rem 0 3rem 0;
+		font-family: inherit;
+	}
+
+	.timeline-card {
+		background: #ffffff;
+		border: 1px solid var(--card-border, #e2e8f0);
+		border-radius: 24px;
+		padding: 2.25rem 2rem;
+		box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.08);
+		position: relative;
+		overflow: hidden;
+	}
+
+	/* Header */
+	.timeline-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.timeline-widget-title {
+		font-size: 1.45rem;
+		font-weight: 800;
+		color: #0f172a;
+		margin: 0 0 0.4rem 0;
+		letter-spacing: -0.02em;
+		text-wrap: balance;
+	}
+
+	.timeline-widget-subtitle {
+		font-size: 0.95rem;
+		color: #475569;
+		margin: 0;
+		line-height: 1.55;
+		text-wrap: pretty;
+	}
+
+	.timeline-autoplay-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.5rem 0.95rem;
+		border-radius: 9999px;
+		border: 1px solid #cbd5e1;
+		background: #f8fafc;
+		color: #1e293b;
+		font-size: 0.85rem;
+		font-weight: 700;
+		cursor: pointer;
+		white-space: nowrap;
+		transition: all 0.2s ease;
+		flex-shrink: 0;
+	}
+
+	.timeline-autoplay-btn:hover {
+		background: #f1f5f9;
+		border-color: #94a3b8;
+	}
+
+	.play-icon {
+		font-size: 0.75rem;
+		line-height: 1;
+	}
+
+	/* Rail & Nodes */
+	.timeline-rail-wrap {
+		position: relative;
+		margin-bottom: 2rem;
+		padding: 0.5rem 0;
+	}
+
+	.rail-progress-track {
+		position: absolute;
+		top: 18px;
+		left: 20px;
+		right: 20px;
+		height: 4px;
+		background: #e2e8f0;
+		border-radius: 2px;
+		z-index: 1;
+	}
+
+	.rail-progress-fill {
+		height: 100%;
+		background: linear-gradient(90deg, #c8382c 0%, #16a34a 100%);
+		border-radius: 2px;
+		width: 0%;
+		transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.rail-nodes-container {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+
+	.rail-node-btn {
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 60px;
+		text-align: center;
+		transition: transform 0.15s ease;
+	}
+
+	.rail-node-btn:hover {
+		transform: translateY(-2px);
+	}
+
+	.node-bullet {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: #ffffff;
+		border: 3px solid #cbd5e1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 0.45rem;
+		transition: all 0.25s ease;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	}
+
+	.node-number {
+		font-size: 0.85rem;
+		font-weight: 800;
+		color: #475569;
+	}
+
+	.rail-node-btn.active .node-bullet {
+		border-color: #c8382c;
+		background: #c8382c;
+		box-shadow: 0 0 0 4px rgba(200, 56, 44, 0.2);
+	}
+
+	.rail-node-btn.active .node-number {
+		color: #ffffff;
+	}
+
+	.node-label {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2px;
+	}
+
+	.node-time {
+		font-size: 0.72rem;
+		font-weight: 700;
+		color: #64748b;
+		white-space: nowrap;
+	}
+
+	.node-name {
+		font-size: 0.78rem;
+		font-weight: 600;
+		color: #0f172a;
+		line-height: 1.2;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.rail-node-btn.active .node-name {
+		color: #c8382c;
+		font-weight: 800;
+	}
+
+	/* Pain Gauge */
+	.pain-gauge-container {
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 14px;
+		padding: 1rem 1.25rem;
+		margin-bottom: 1.75rem;
+	}
+
+	.pain-gauge-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.5rem;
+		font-size: 0.9rem;
+	}
+
+	.pain-gauge-label {
+		font-weight: 700;
+		color: #334155;
+	}
+
+	.pain-gauge-value {
+		font-weight: 800;
+		font-size: 0.95rem;
+		transition: color 0.3s ease;
+	}
+
+	.pain-gauge-bar-wrap {
+		width: 100%;
+		height: 8px;
+		background: #e2e8f0;
+		border-radius: 9999px;
+		overflow: hidden;
+		margin-bottom: 0.4rem;
+	}
+
+	.pain-gauge-fill {
+		height: 100%;
+		border-radius: 9999px;
+		transition: width 0.4s ease, background-color 0.4s ease;
+	}
+
+	.pain-scale-legend {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.72rem;
+		font-weight: 600;
+		color: #94a3b8;
+	}
+
+	/* Active Card */
+	.active-step-card {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 18px;
+		padding: 1.75rem 1.5rem;
+		margin-bottom: 1.75rem;
+		box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+	}
+
+	.step-card-header {
+		margin-bottom: 1.5rem;
+	}
+
+	.badge-time-row {
+		display: flex;
+		gap: 0.6rem;
+		align-items: center;
+		margin-bottom: 0.65rem;
+		flex-wrap: wrap;
+	}
+
+	.step-timeframe-tag {
+		background: #0f172a;
+		color: #ffffff;
+		font-size: 0.75rem;
+		font-weight: 800;
+		padding: 0.25rem 0.65rem;
+		border-radius: 6px;
+		letter-spacing: 0.02em;
+	}
+
+	.step-status-tag {
+		background: #fef2f2;
+		color: #c8382c;
+		border: 1px solid #fecaca;
+		font-size: 0.75rem;
+		font-weight: 700;
+		padding: 0.2rem 0.6rem;
+		border-radius: 6px;
+	}
+
+	.step-card-heading {
+		font-size: 1.3rem;
+		font-weight: 800;
+		color: #0f172a;
+		margin: 0;
+		line-height: 1.35;
+		text-wrap: balance;
+	}
+
+	.step-details-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+
+	@media (min-width: 640px) {
+		.step-details-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.detail-box {
+		padding: 1.15rem 1rem;
+		border-radius: 12px;
+		border: 1px solid #e2e8f0;
+		background: #f8fafc;
+	}
+
+	.detail-box-title {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.85rem;
+		font-weight: 800;
+		color: #1e293b;
+		margin-bottom: 0.5rem;
+	}
+
+	.box-icon {
+		font-size: 1rem;
+		line-height: 1;
+	}
+
+	.detail-box-text {
+		font-size: 0.88rem;
+		color: #475569;
+		line-height: 1.55;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.incident-box {
+		border-left: 3px solid #f59e0b;
+	}
+
+	.action-box {
+		border-left: 3px solid #3b82f6;
+	}
+
+	.result-box {
+		border-left: 3px solid #10b981;
+	}
+
+	/* Footer Controls */
+	.timeline-footer-controls {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.timeline-nav-btn {
+		background: #ffffff;
+		border: 1px solid #cbd5e1;
+		border-radius: 10px;
+		padding: 0.65rem 1.15rem;
+		font-size: 0.88rem;
+		font-weight: 700;
+		color: #1e293b;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.timeline-nav-btn:hover:not(:disabled) {
+		background: #f1f5f9;
+		border-color: #94a3b8;
+	}
+
+	.timeline-nav-btn:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+
+	.timeline-step-indicator {
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: #64748b;
+	}
+
+	/* Mobile Adjustments */
+	@media (max-width: 680px) {
+		.timeline-card {
+			padding: 1.5rem 1.25rem;
+		}
+
+		.timeline-rail-wrap {
+			overflow-x: auto;
+			padding-bottom: 1rem;
+			scrollbar-width: thin;
+		}
+
+		.rail-progress-track {
+			width: 480px;
+		}
+
+		.rail-nodes-container {
+			width: 480px;
+		}
+
+		.node-name {
+			display: none;
+		}
+
+		.timeline-footer-controls {
+			flex-direction: column;
+			gap: 0.75rem;
+		}
+
+		.timeline-nav-btn {
+			width: 100%;
+			text-align: center;
+		}
+	}
+</style>
