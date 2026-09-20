@@ -73,16 +73,16 @@ export const bmsSlides: SlideItem[] = [
 	},
 	{
 		id: 6,
-		badge: "Dental Trap",
-		title: "The Dental Trap: Four Patches & Agony",
+		badge: "Medical Maze",
+		title: "The Medical Maze: Five Dentists & Contradictions",
 		bullets: [
-			"Dental cleaning helped once only",
-			"Four cervical composite resin patches",
-			"Flossing triggered 10/10 burning agony",
-			"Desperate enough to consider extractions",
-			"Standard dentists lacked real answers"
+			"Met five dentists and five doctors",
+			"Endured contradictory and inaccurate advice",
+			"Five practitioners missed active cavities",
+			"Defective crown and patches overlooked",
+			"Flossing triggered 10/10 burning agony"
 		],
-		notes: "Describe your dental visits: scaling helped briefly, then 4 composite patches were placed along the gumline for recession. Flossing became pure torture: 10/10 electric agony. You were so desperate you considered extracting your teeth.\n\n🛡️ LEGAL SHIELD: Avoid accusing individual clinicians; focus on how cervical patches can cause allodynia in sensitized patients."
+		notes: "Describe your medical maze: you met five dentists and five medical doctors. On top of the awful pain itself, getting contradictory information felt terrible. Clinicians gave plain wrong advice or missed critical clues. Five dentists missed an active cavity, five missed a defective crown, and cervical patches were placed that escalated your agony. Flossing became pure torture: 10/10 electric shock.\n\n🛡️ LEGAL SHIELD: Avoid accusing individual clinicians; focus on systemic gaps in diagnostic training for orofacial neuropathic pain."
 	},
 	{
 		id: 7,
