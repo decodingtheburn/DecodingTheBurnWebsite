@@ -1,0 +1,575 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Be a Guest on the Podcast | Decoding The Burn" 
+			description="Join Denis Ethier on the Decoding The Burn podcast. Calling patients, dentists, doctors, and researchers to share insights on Burning Mouth Syndrome." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="podcast-page-container">
+			<div class="podcast-disclaimer-wrap">
+				<MedicalDisclaimer />
+			</div>
+
+			<header class="podcast-hero">
+				<h1 class="podcast-title">Join the Conversation on Decoding The&nbsp;Burn</h1>
+				<p class="podcast-lead-subhead">
+					I am launching a podcast to bring patients, dentists, doctors, and researchers together. If you want to share your clinical perspective or lived experience, apply below to join&nbsp;me.
+				</p>
+			</header>
+
+			<section class="guest-categories-grid" aria-label="Who we are inviting">
+				<div class="category-card">
+					<div class="category-icon-wrapper" aria-hidden="true">
+						<span class="category-emoji">👤</span>
+					</div>
+					<h2 class="category-title">BMS Patients</h2>
+					<p class="category-description">
+						Share your lived story, your triggers, what treatments failed, and what strategies helped calm your&nbsp;burning.
+					</p>
+				</div>
+
+				<div class="category-card">
+					<div class="category-icon-wrapper" aria-hidden="true">
+						<span class="category-emoji">🦷</span>
+					</div>
+					<h2 class="category-title">Dentists & Specialists</h2>
+					<p class="category-description">
+						Discuss cervical margins, root exposure, failing crown restorations, subgingival bacteria, and periodontal&nbsp;health.
+					</p>
+				</div>
+
+				<div class="category-card">
+					<div class="category-icon-wrapper" aria-hidden="true">
+						<span class="category-emoji">🩺</span>
+					</div>
+					<h2 class="category-title">Medical Doctors</h2>
+					<p class="category-description">
+						Explore trigeminal neuropathy, autonomic dysregulation, small-fiber nerves, and the gaps in modern clinical&nbsp;training.
+					</p>
+				</div>
+
+				<div class="category-card">
+					<div class="category-icon-wrapper" aria-hidden="true">
+						<span class="category-emoji">🔬</span>
+					</div>
+					<h2 class="category-title">Researchers</h2>
+					<p class="category-description">
+						Highlight emerging science on acid-sensing ion channels, salivary chemistry, nerve regeneration, and objective&nbsp;biomarkers.
+					</p>
+				</div>
+			</section>
+
+			<section class="podcast-form-card">
+				<div class="form-header">
+					<h2 class="form-heading">Apply to Be a Guest</h2>
+					<p class="form-subtext">
+						Fill out this quick form. Denis reviews every submission personally and will follow up with you by&nbsp;email.
+					</p>
+				</div>
+
+				<form 
+					id="podcast-guest-form" 
+					action="https://formsubmit.co/denis@denisethier.com" 
+					method="POST" 
+					class="guest-form"
+				>
+					<!-- FormSubmit Configuration -->
+					<input type="hidden" name="_subject" value="[BMS Podcast Guest Application] Decoding The Burn" />
+					<input type="hidden" name="_captcha" value="false" />
+					<input type="hidden" name="_template" value="table" />
+
+					<!-- Guest Role Selection -->
+					<div class="form-group">
+						<label class="form-label">I am applying as a:</label>
+						<div class="role-selector-grid">
+							<label class="role-pill">
+								<input type="radio" name="guest_role" value="BMS Patient" checked />
+								<span class="role-label-content">👤 BMS Patient</span>
+							</label>
+
+							<label class="role-pill">
+								<input type="radio" name="guest_role" value="Dentist / Periodontist" />
+								<span class="role-label-content">🦷 Dentist / Periodontist</span>
+							</label>
+
+							<label class="role-pill">
+								<input type="radio" name="guest_role" value="Medical Doctor" />
+								<span class="role-label-content">🩺 Medical Doctor</span>
+							</label>
+
+							<label class="role-pill">
+								<input type="radio" name="guest_role" value="Scientific Researcher" />
+								<span class="role-label-content">🔬 Researcher</span>
+							</label>
+
+							<label class="role-pill">
+								<input type="radio" name="guest_role" value="Other Specialist" />
+								<span class="role-label-content">💡 Other Specialist</span>
+							</label>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group flex-1">
+							<label for="guest-name" class="form-label">Your Name</label>
+							<input 
+								type="text" 
+								id="guest-name" 
+								name="name" 
+								placeholder="e.g., Denis Ethier" 
+								required 
+								class="text-input" 
+							/>
+						</div>
+
+						<div class="form-group flex-1">
+							<label for="guest-email" class="form-label">Your Email Address</label>
+							<input 
+								type="email" 
+								id="guest-email" 
+								name="email" 
+								placeholder="e.g., name@example.com" 
+								required 
+								class="text-input" 
+							/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="guest-story" class="form-label">
+							What do you do, and what would you like to share on the podcast?
+						</label>
+						<textarea 
+							id="guest-story" 
+							name="background_and_story" 
+							rows="5" 
+							placeholder="Tell me about your clinical background, research focus, or personal journey with Burning Mouth Syndrome. What insights would you bring to fellow listeners?" 
+							required 
+							class="text-area-input"
+						></textarea>
+					</div>
+
+					<div class="form-submit-row">
+						<button type="submit" id="guest-submit-btn" class="btn btn-primary submit-btn">
+							<span class="btn-text">Send Guest Application &rarr;</span>
+							<span class="btn-spinner hidden" aria-hidden="true">Submitting...</span>
+						</button>
+					</div>
+
+					<p class="privacy-notice">
+						Your email and information remain strictly private. I will only use your details to contact you regarding the&nbsp;podcast.
+					</p>
+				</form>
+
+				<!-- Success State Card -->
+				<div id="form-success-box" class="form-success-card hidden" role="alert">
+					<div class="success-icon-circle">✓</div>
+					<h3 class="success-title">Thank you for your application!</h3>
+					<p class="success-message">
+						Your details have been sent directly to Denis Ethier at <strong class="user-email-highlight">denis@denisethier.com</strong>.
+					</p>
+					<p class="success-followup">
+						I review every application carefully and will reach out to you by email soon to discuss episode planning and&nbsp;scheduling.
+					</p>
+					<button type="button" id="reset-form-btn" class="btn btn-outline success-reset-btn">
+						Submit Another Note
+					</button>
+				</div>
+
+				<!-- Error Banner -->
+				<div id="form-error-banner" class="form-error-banner hidden" role="alert">
+					An error occurred while submitting. Please try again, or email Denis directly at 
+					<a href="mailto:denis@denisethier.com">denis@denisethier.com</a>.
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			const setupGuestForm = () => {
+				const form = document.getElementById('podcast-guest-form') as HTMLFormElement | null;
+				const submitBtn = document.getElementById('guest-submit-btn') as HTMLButtonElement | null;
+				const btnText = submitBtn?.querySelector('.btn-text');
+				const btnSpinner = submitBtn?.querySelector('.btn-spinner');
+				const successBox = document.getElementById('form-success-box');
+				const errorBanner = document.getElementById('form-error-banner');
+				const resetBtn = document.getElementById('reset-form-btn');
+
+				if (!form || !submitBtn) return;
+
+				form.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					errorBanner?.classList.add('hidden');
+
+					// UI loading state
+					submitBtn.disabled = true;
+					btnText?.classList.add('hidden');
+					btnSpinner?.classList.remove('hidden');
+
+					const formData = new FormData(form);
+
+					try {
+						const response = await fetch(form.action, {
+							method: 'POST',
+							body: formData,
+							headers: {
+								'Accept': 'application/json'
+							}
+						});
+
+						if (response.ok) {
+							form.classList.add('hidden');
+							successBox?.classList.remove('hidden');
+							successBox?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+						} else {
+							// Fallback to normal form submit if JSON endpoint is blocked
+							form.submit();
+						}
+					} catch (err) {
+						// Network failure fallback
+						form.submit();
+					} finally {
+						submitBtn.disabled = false;
+						btnText?.classList.remove('hidden');
+						btnSpinner?.classList.add('hidden');
+					}
+				});
+
+				resetBtn?.addEventListener('click', () => {
+					form.reset();
+					successBox?.classList.add('hidden');
+					form.classList.remove('hidden');
+				});
+			};
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', setupGuestForm);
+			} else {
+				setupGuestForm();
+			}
+		</script>
+
+		<style>
+			.podcast-page-container {
+				max-width: 860px;
+				margin: 1.5rem auto 5rem;
+				padding: 0 1.5rem;
+			}
+
+			.podcast-disclaimer-wrap {
+				margin-bottom: 2rem;
+			}
+
+			.podcast-hero {
+				text-align: center;
+				margin-bottom: 3rem;
+			}
+
+			.podcast-title {
+				font-size: clamp(2.25rem, 5vw, 3.25rem);
+				font-weight: 800;
+				color: #000000;
+				letter-spacing: -0.03em;
+				line-height: 1.15;
+				margin-bottom: 1.25rem;
+				text-wrap: balance;
+			}
+
+			.podcast-lead-subhead {
+				font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+				color: #334155;
+				line-height: 1.65;
+				max-width: 760px;
+				margin: 0 auto;
+				text-wrap: balance;
+			}
+
+			.guest-categories-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+				gap: 1.25rem;
+				margin-bottom: 3.5rem;
+			}
+
+			.category-card {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				border-radius: 18px;
+				padding: 1.5rem 1.25rem;
+				box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+				display: flex;
+				flex-direction: column;
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.category-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
+			}
+
+			.category-icon-wrapper {
+				width: 44px;
+				height: 44px;
+				border-radius: 12px;
+				background: #f8fafc;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 1rem;
+				border: 1px solid #e2e8f0;
+			}
+
+			.category-emoji {
+				font-size: 1.5rem;
+				line-height: 1;
+			}
+
+			.category-title {
+				font-size: 1.1rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin-bottom: 0.5rem;
+			}
+
+			.category-description {
+				font-size: 0.88rem;
+				color: #475569;
+				line-height: 1.55;
+				margin-bottom: 0;
+				text-wrap: pretty;
+			}
+
+			.podcast-form-card {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				border-radius: 24px;
+				padding: 3rem 2.5rem;
+				box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.08);
+			}
+
+			.form-header {
+				text-align: center;
+				margin-bottom: 2.25rem;
+			}
+
+			.form-heading {
+				font-size: 1.75rem;
+				font-weight: 800;
+				color: #000000;
+				letter-spacing: -0.02em;
+				margin-bottom: 0.5rem;
+			}
+
+			.form-subtext {
+				font-size: 1rem;
+				color: #475569;
+				max-width: 620px;
+				margin: 0 auto;
+				text-wrap: balance;
+			}
+
+			.guest-form {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+
+			.form-row {
+				display: flex;
+				gap: 1.25rem;
+			}
+
+			@media (max-width: 640px) {
+				.form-row {
+					flex-direction: column;
+				}
+				.podcast-form-card {
+					padding: 2rem 1.5rem;
+				}
+			}
+
+			.flex-1 {
+				flex: 1;
+			}
+
+			.form-group {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+			}
+
+			.form-label {
+				font-size: 0.92rem;
+				font-weight: 700;
+				color: #1e293b;
+			}
+
+			.role-selector-grid {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+			}
+
+			.role-pill {
+				cursor: pointer;
+				position: relative;
+			}
+
+			.role-pill input[type="radio"] {
+				position: absolute;
+				opacity: 0;
+				pointer-events: none;
+			}
+
+			.role-label-content {
+				display: inline-block;
+				padding: 0.55rem 1rem;
+				border-radius: 9999px;
+				background: #f8fafc;
+				border: 1px solid #cbd5e1;
+				font-size: 0.88rem;
+				font-weight: 600;
+				color: #334155;
+				transition: all 0.15s ease;
+				user-select: none;
+			}
+
+			.role-pill input[type="radio"]:checked + .role-label-content {
+				background: #c8382c;
+				border-color: #c8382c;
+				color: #ffffff;
+				box-shadow: 0 4px 12px rgba(200, 56, 44, 0.25);
+			}
+
+			.role-pill:hover .role-label-content {
+				border-color: #94a3b8;
+			}
+
+			.text-input,
+			.text-area-input {
+				width: 100%;
+				padding: 0.85rem 1rem;
+				border-radius: 12px;
+				border: 1px solid #cbd5e1;
+				background: #ffffff;
+				font-family: inherit;
+				font-size: 0.95rem;
+				color: #0f172a;
+				transition: border-color 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.text-input:focus,
+			.text-area-input:focus {
+				outline: none;
+				border-color: #c8382c;
+				box-shadow: 0 0 0 3px rgba(200, 56, 44, 0.12);
+			}
+
+			.text-area-input {
+				resize: vertical;
+				min-height: 120px;
+			}
+
+			.form-submit-row {
+				margin-top: 0.5rem;
+			}
+
+			.submit-btn {
+				width: 100%;
+				padding: 1rem 1.5rem;
+				font-size: 1.05rem;
+				font-weight: 700;
+				border-radius: 12px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+				transition: background 0.2s ease, transform 0.1s ease;
+			}
+
+			.privacy-notice {
+				text-align: center;
+				font-size: 0.82rem;
+				color: #64748b;
+				margin-top: 0.5rem;
+				margin-bottom: 0;
+			}
+
+			/* Success Card */
+			.form-success-card {
+				text-align: center;
+				padding: 2.5rem 1.5rem;
+			}
+
+			.success-icon-circle {
+				width: 56px;
+				height: 56px;
+				border-radius: 50%;
+				background: #dcfce7;
+				color: #16a34a;
+				font-size: 1.75rem;
+				font-weight: 800;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0 auto 1.25rem;
+				border: 2px solid #bbf7d0;
+			}
+
+			.success-title {
+				font-size: 1.5rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin-bottom: 0.75rem;
+			}
+
+			.success-message {
+				font-size: 1.05rem;
+				color: #334155;
+				margin-bottom: 0.5rem;
+				line-height: 1.6;
+			}
+
+			.user-email-highlight {
+				color: #c8382c;
+				font-weight: 700;
+			}
+
+			.success-followup {
+				font-size: 0.95rem;
+				color: #64748b;
+				margin-bottom: 2rem;
+				line-height: 1.6;
+			}
+
+			.success-reset-btn {
+				margin: 0 auto;
+			}
+
+			.form-error-banner {
+				margin-top: 1rem;
+				padding: 0.85rem 1.25rem;
+				border-radius: 10px;
+				background: #fef2f2;
+				border: 1px solid #fecaca;
+				color: #991b1b;
+				font-size: 0.9rem;
+				text-align: center;
+			}
+
+			.hidden {
+				display: none !important;
+			}
+		</style>
+	</body>
+</html>
