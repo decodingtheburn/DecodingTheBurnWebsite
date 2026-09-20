@@ -136,7 +136,7 @@ My journey into mouth taping didn't start with BMS, but with understanding human
 
 ## My BMS Bedtime Protocol (Trial This!)
 
-If you're coming here from my [YouTube video](https://www.youtube.com/@decodingtheburn), here is the step-by-step checklist I use every night:
+If you're coming here from my [YouTube video](https://www.youtube.com/@DecodingTheBurning), here is the step-by-step checklist I use every night:
 
 <div style="display: grid; gap: 1.5rem; margin: 2rem 0;">
 	<div style="background: #ffffff; border: 1px solid var(--card-border); border-left: 4px solid var(--accent); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden; box-shadow: var(--shadow-sm);">
