@@ -11,8 +11,8 @@ import authorPhoto from '../assets/denis-ethier.png';
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="Write to Me" 
-			description="Send a message directly to Denis Ethier, founder of Decoding The Burn." 
+			title="Ask a Question | Decoding The Burn" 
+			description="Ask a question directly to Denis Ethier, founder of Decoding The Burn." 
 		/>
 	</head>
 	<body>
@@ -24,22 +24,26 @@ import authorPhoto from '../assets/denis-ethier.png';
 					alt="Denis Ethier" 
 					class="contact-hero-img" 
 					width={1200} 
-					height={675}
+					height={675} 
 				/>
 			</div>
 
-			<h1 class="contact-page-title">Write to Me</h1>
+			<h1 class="contact-page-title">Ask a&nbsp;Question</h1>
 
 			<div class="contact-disclaimer-wrapper">
 				<MedicalDisclaimer />
 			</div>
 
 			<p class="contact-lead-text">
-				Whether you're a patient dealing with symptoms, a caregiver seeking advice, or a clinician interested in my data, I welcome your thoughts. I read every message and do my best to reply personally.
+				Whether you are a patient dealing with symptoms, a caregiver seeking insight, or a clinician with a question about my data, I welcome your note. I read every question and do my best to reply&nbsp;personally.
 			</p>
 			
 			<div class="contact-form-card">
-				<form action="mailto:decodingtheburn@gmail.com" method="post" enctype="text/plain" class="contact-form-inner">
+				<form action="https://formsubmit.co/denis@denisethier.com" method="POST" class="contact-form-inner">
+					<input type="hidden" name="_subject" value="[Question for Denis] Decoding The Burn" />
+					<input type="hidden" name="_captcha" value="false" />
+					<input type="hidden" name="_template" value="table" />
+
 					<div class="form-group">
 						<label for="contact-name">Your Name</label>
 						<input type="text" id="contact-name" name="name" placeholder="Denis Ethier" required />
@@ -51,11 +55,11 @@ import authorPhoto from '../assets/denis-ethier.png';
 					</div>
 					
 					<div class="form-group">
-						<label for="contact-message">Message</label>
-						<textarea id="contact-message" name="message" rows="5" placeholder="Share your story, question, or research note..." required></textarea>
+						<label for="contact-message">Your Question</label>
+						<textarea id="contact-message" name="question" rows="5" placeholder="Ask your question about BMS, triggers, dental findings, or research..." required></textarea>
 					</div>
 					
-					<button type="submit" class="btn btn-primary contact-submit-btn">Write to Denis →</button>
+					<button type="submit" class="btn btn-primary contact-submit-btn">Send Question &rarr;</button>
 				</form>
 			</div>
 		</main>
