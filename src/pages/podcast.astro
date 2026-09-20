@@ -25,6 +25,48 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				<p class="podcast-lead-subhead">
 					I am launching a podcast to bring patients, dentists, doctors, and researchers together. If you want to share your clinical perspective or lived experience, apply below to join&nbsp;me.
 				</p>
+
+				<!-- Notify of First Episode Form -->
+				<div class="podcast-notify-box">
+					<div class="notify-icon-badge" aria-hidden="true">🎙️</div>
+					<h2 class="notify-title">Be Notified of Our First&nbsp;Episode</h2>
+					<p class="notify-subtext">
+						Drop your email below to receive a direct link the day episode one goes live. No spam,&nbsp;ever.
+					</p>
+
+					<form 
+						id="podcast-notify-form" 
+						action="https://formsubmit.co/denis@denisethier.com" 
+						method="POST" 
+						class="notify-form"
+					>
+						<!-- FormSubmit Configuration -->
+						<input type="hidden" name="_subject" value="[BMS Podcast] New First Episode Notification Subscriber" />
+						<input type="hidden" name="_captcha" value="false" />
+						<input type="hidden" name="_template" value="table" />
+						<input type="hidden" name="form_type" value="First Episode Notification" />
+
+						<div class="notify-input-row">
+							<input 
+								type="email" 
+								name="email" 
+								placeholder="Enter your email address..." 
+								required 
+								class="notify-email-input"
+								aria-label="Email address for podcast notification"
+							/>
+							<button type="submit" id="notify-submit-btn" class="btn btn-primary notify-submit-btn">
+								<span class="notify-btn-text">Notify Me &rarr;</span>
+								<span class="notify-btn-spinner hidden" aria-hidden="true">Subscribing...</span>
+							</button>
+						</div>
+					</form>
+
+					<div id="notify-success-box" class="notify-success-msg hidden" role="alert">
+						<span class="notify-check-icon">✓</span>
+						<span>You are on the list! I will email you as soon as our first episode&nbsp;airs.</span>
+					</div>
+				</div>
 			</header>
 
 			<section class="guest-categories-grid" aria-label="Who we are inviting">
@@ -250,6 +292,48 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 					successBox?.classList.add('hidden');
 					form.classList.remove('hidden');
 				});
+
+				// Top Notify Form Handler
+				const notifyForm = document.getElementById('podcast-notify-form') as HTMLFormElement | null;
+				const notifySubmitBtn = document.getElementById('notify-submit-btn') as HTMLButtonElement | null;
+				const notifyBtnText = notifySubmitBtn?.querySelector('.notify-btn-text');
+				const notifyBtnSpinner = notifySubmitBtn?.querySelector('.notify-btn-spinner');
+				const notifySuccessBox = document.getElementById('notify-success-box');
+
+				if (notifyForm && notifySubmitBtn) {
+					notifyForm.addEventListener('submit', async (e) => {
+						e.preventDefault();
+
+						notifySubmitBtn.disabled = true;
+						notifyBtnText?.classList.add('hidden');
+						notifyBtnSpinner?.classList.remove('hidden');
+
+						const formData = new FormData(notifyForm);
+
+						try {
+							const response = await fetch(notifyForm.action, {
+								method: 'POST',
+								body: formData,
+								headers: {
+									'Accept': 'application/json'
+								}
+							});
+
+							if (response.ok) {
+								notifyForm.classList.add('hidden');
+								notifySuccessBox?.classList.remove('hidden');
+							} else {
+								notifyForm.submit();
+							}
+						} catch (err) {
+							notifyForm.submit();
+						} finally {
+							notifySubmitBtn.disabled = false;
+							notifyBtnText?.classList.remove('hidden');
+							notifyBtnSpinner?.classList.add('hidden');
+						}
+					});
+				}
 			};
 
 			if (document.readyState === 'loading') {
@@ -292,6 +376,105 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				max-width: 760px;
 				margin: 0 auto;
 				text-wrap: balance;
+			}
+
+			/* Top Notify Box */
+			.podcast-notify-box {
+				background: #ffffff;
+				border: 1px solid #fecaca;
+				border-radius: 20px;
+				padding: 2.25rem 2rem;
+				max-width: 640px;
+				margin: 2.5rem auto 0;
+				text-align: center;
+				box-shadow: 0 12px 32px -8px rgba(200, 56, 44, 0.08);
+			}
+
+			.notify-icon-badge {
+				font-size: 1.75rem;
+				line-height: 1;
+				margin-bottom: 0.75rem;
+			}
+
+			.notify-title {
+				font-size: 1.5rem;
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.02em;
+				margin-bottom: 0.5rem;
+				text-wrap: balance;
+			}
+
+			.notify-subtext {
+				font-size: 0.95rem;
+				color: #475569;
+				line-height: 1.55;
+				margin-bottom: 1.25rem;
+				text-wrap: pretty;
+			}
+
+			.notify-input-row {
+				display: flex;
+				gap: 0.75rem;
+			}
+
+			@media (max-width: 540px) {
+				.notify-input-row {
+					flex-direction: column;
+				}
+			}
+
+			.notify-email-input {
+				flex: 1;
+				padding: 0.85rem 1.1rem;
+				border-radius: 12px;
+				border: 1px solid #cbd5e1;
+				background: #ffffff;
+				font-family: inherit;
+				font-size: 0.95rem;
+				color: #0f172a;
+				transition: border-color 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.notify-email-input:focus {
+				outline: none;
+				border-color: #c8382c;
+				box-shadow: 0 0 0 3px rgba(200, 56, 44, 0.12);
+			}
+
+			.notify-submit-btn {
+				padding: 0.85rem 1.5rem;
+				font-size: 0.95rem;
+				font-weight: 700;
+				border-radius: 12px;
+				white-space: nowrap;
+				cursor: pointer;
+			}
+
+			.notify-success-msg {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.6rem;
+				padding: 1rem 1.25rem;
+				border-radius: 12px;
+				background: #f0fdf4;
+				border: 1px solid #bbf7d0;
+				color: #166534;
+				font-size: 0.95rem;
+				font-weight: 600;
+			}
+
+			.notify-check-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				background: #16a34a;
+				color: #ffffff;
+				font-size: 0.85rem;
 			}
 
 			.guest-categories-grid {
