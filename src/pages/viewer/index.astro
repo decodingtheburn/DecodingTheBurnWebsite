@@ -36,8 +36,13 @@ const postsWithSlides = allPosts.map((post, index) => {
 const totalSlides = postsWithSlides.reduce((acc, p) => acc + p.slideCount, 0);
 const liveCount = postsWithSlides.filter(p => !p.isDraft).length;
 const draftCount = postsWithSlides.filter(p => p.isDraft).length;
-const myExpCount = postsWithSlides.filter(p => p.category === 'My Experience').length;
-const researchCount = postsWithSlides.filter(p => p.category === 'Research').length;
+
+// Dynamic category counts
+const categoryMap = new Map<string, number>();
+postsWithSlides.forEach(p => {
+	categoryMap.set(p.category, (categoryMap.get(p.category) || 0) + 1);
+});
+const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] - a[1]);
 ---
 
 <!doctype html>
@@ -365,28 +370,44 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 				color: #ffffff;
 			}
 
-			/* Sort Select */
-			.hub-select {
-				width: 100%;
-				padding: 0.65rem 0.75rem;
-				background: #06090e;
-				border: 1px solid #1e2638;
+			/* Sort & Group Multi-Buttons */
+			.sort-pill-btn,
+			.group-pill-btn {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.5rem 0.75rem;
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid transparent;
 				border-radius: 8px;
-				color: #f1f5f9;
+				color: #cbd5e1;
 				font-size: 0.82rem;
-				outline: none;
+				font-weight: 600;
 				cursor: pointer;
-				transition: border-color 0.18s ease;
+				transition: all 0.16s ease;
+				text-align: left;
 			}
 
-			.hub-select:focus {
-				border-color: #8b5cf6;
+			.sort-pill-btn:hover,
+			.group-pill-btn:hover {
+				background: rgba(255, 255, 255, 0.07);
+				color: #ffffff;
+			}
+
+			.sort-pill-btn.active,
+			.group-pill-btn.active {
+				background: rgba(139, 92, 246, 0.18);
+				border-color: rgba(139, 92, 246, 0.5);
+				color: #ffffff;
+				font-weight: 700;
+				box-shadow: 0 0 12px rgba(139, 92, 246, 0.2);
 			}
 
 			/* Category Buttons */
 			.category-pill-btn {
 				display: flex;
 				align-items: center;
+				justify-content: space-between;
 				padding: 0.45rem 0.75rem;
 				background: rgba(255, 255, 255, 0.03);
 				border: 1px solid transparent;
@@ -404,10 +425,81 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 			}
 
 			.category-pill-btn.active {
-				background: rgba(255, 255, 255, 0.1);
-				border-color: rgba(255, 255, 255, 0.2);
+				background: rgba(139, 92, 246, 0.16);
+				border-color: rgba(139, 92, 246, 0.45);
 				color: #ffffff;
 				font-weight: 700;
+			}
+
+			.category-pill-btn .filter-count-badge {
+				font-family: ui-monospace, SFMono-Regular, monospace;
+				font-size: 0.72rem;
+				padding: 0.12rem 0.45rem;
+				border-radius: 4px;
+				background: rgba(255, 255, 255, 0.08);
+				color: #94a3b8;
+			}
+
+			.category-pill-btn.active .filter-count-badge {
+				background: #7c3aed;
+				color: #ffffff;
+			}
+
+			/* Grouped Viewport Styling */
+			.hub-grouped-container {
+				display: flex;
+				flex-direction: column;
+				gap: 2.25rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.hub-group-section {
+				background: rgba(15, 19, 26, 0.55);
+				border: 1px solid rgba(255, 255, 255, 0.07);
+				border-radius: 18px;
+				padding: 1.5rem;
+				box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+			}
+
+			.hub-group-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding-bottom: 0.85rem;
+				margin-bottom: 1.35rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+			}
+
+			.hub-group-title-wrap {
+				display: flex;
+				align-items: center;
+				gap: 0.65rem;
+			}
+
+			.hub-group-icon {
+				color: #a855f7;
+				display: flex;
+				align-items: center;
+			}
+
+			.hub-group-title {
+				font-family: var(--font-heading, system-ui, sans-serif);
+				font-size: 1.2rem;
+				font-weight: 700;
+				color: #ffffff;
+				margin: 0;
+				letter-spacing: -0.01em;
+			}
+
+			.hub-group-badge {
+				font-family: ui-monospace, SFMono-Regular, monospace;
+				font-size: 0.72rem;
+				font-weight: 700;
+				padding: 0.2rem 0.6rem;
+				border-radius: 6px;
+				background: rgba(139, 92, 246, 0.16);
+				color: #c084fc;
+				border: 1px solid rgba(139, 92, 246, 0.35);
 			}
 
 			/* Deck Inventory Summary Card */
@@ -996,15 +1088,60 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 							</div>
 						</div>
 
-						<!-- Sort Options -->
+						<!-- Sort Options (Multi-button) -->
 						<div class="filter-block">
-							<label for="hubSortSelect" class="filter-label">Sort Order</label>
-							<select id="hubSortSelect" class="hub-select">
-								<option value="entry-desc">Entry # (Newest First)</option>
-								<option value="entry-asc">Entry # (Oldest First)</option>
-								<option value="slides-desc">Slide Count (Most First)</option>
-								<option value="title-asc">Title (A - Z)</option>
-							</select>
+							<span class="filter-label">Sort Order</span>
+							<div class="filter-buttons-list sort-buttons-list">
+								<button type="button" class="sort-pill-btn active" data-sort="entry-desc">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+										Newest First
+									</span>
+								</button>
+								<button type="button" class="sort-pill-btn" data-sort="entry-asc">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+										Oldest First
+									</span>
+								</button>
+								<button type="button" class="sort-pill-btn" data-sort="slides-desc">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line></svg>
+										Most Slides
+									</span>
+								</button>
+								<button type="button" class="sort-pill-btn" data-sort="title-asc">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h6"/></svg>
+										Title (A - Z)
+									</span>
+								</button>
+							</div>
+						</div>
+
+						<!-- Group By Filter (Multi-button) -->
+						<div class="filter-block">
+							<span class="filter-label">Group By</span>
+							<div class="filter-buttons-list group-buttons-list">
+								<button type="button" class="group-pill-btn active" data-group="none">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+										None (Flat Grid)
+									</span>
+								</button>
+								<button type="button" class="group-pill-btn" data-group="category">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+										Category
+									</span>
+								</button>
+								<button type="button" class="group-pill-btn" data-group="date">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+										Month &amp; Year
+									</span>
+								</button>
+							</div>
 						</div>
 
 						<!-- Category Filters -->
@@ -1013,13 +1150,14 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 							<div class="filter-buttons-list">
 								<button type="button" class="category-pill-btn active" data-category="all">
 									<span>All Categories</span>
+									<span class="filter-count-badge">{allPosts.length}</span>
 								</button>
-								<button type="button" class="category-pill-btn" data-category="My Experience">
-									<span>My Experience ({myExpCount})</span>
-								</button>
-								<button type="button" class="category-pill-btn" data-category="Research">
-									<span>Research ({researchCount})</span>
-								</button>
+								{dynamicCategories.map(([catName, count]) => (
+									<button type="button" class="category-pill-btn" data-category={catName}>
+										<span>{catName}</span>
+										<span class="filter-count-badge">{count}</span>
+									</button>
+								))}
 							</div>
 						</div>
 
@@ -1067,6 +1205,8 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 									data-slides={slideCount}
 									data-title={cleanTitle.toLowerCase()}
 									data-desc={(post.data.description || '').toLowerCase()}
+									data-timestamp={post.data.pubDate.valueOf()}
+									data-month-year={post.data.pubDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
 								>
 									<!-- Clean Image: Zero badges on thumbnail -->
 									<div class="card-thumb-box">
@@ -1138,6 +1278,9 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 								</div>
 							))}
 						</div>
+						
+						<!-- Dynamic Grouped Viewport -->
+						<div class="hub-grouped-container" id="hubGroupedContainer" style="display: none;"></div>
 
 						<!-- Empty Search State -->
 						<div class="empty-results-state" id="emptyState" style="display: none;">
@@ -1231,10 +1374,11 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 
 			lockBtn?.addEventListener('click', lock);
 
-			// Client-Side Filter & Search Engine
+			// Client-Side Filter, Multi-Button Sort & Grouping Engine
 			const searchInput = document.getElementById('hubSearchInput');
 			const searchClear = document.getElementById('hubSearchClear');
-			const sortSelect = document.getElementById('hubSortSelect');
+			const sortButtons = document.querySelectorAll('.sort-pill-btn');
+			const groupButtons = document.querySelectorAll('.group-pill-btn');
 			const statusButtons = document.querySelectorAll('.filter-pill-btn');
 			const categoryButtons = document.querySelectorAll('.category-pill-btn');
 			const resetBtn = document.getElementById('resetFiltersBtn');
@@ -1242,12 +1386,14 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 			const visibleCountText = document.getElementById('visibleCountText');
 			const emptyState = document.getElementById('emptyState');
 			const postsGrid = document.getElementById('postsGrid');
+			const hubGroupedContainer = document.getElementById('hubGroupedContainer');
 			const allCards = Array.from(document.querySelectorAll('.post-slide-card'));
 
 			let currentStatus = 'all';
 			let currentCategory = 'all';
 			let currentSearch = '';
 			let currentSort = 'entry-desc';
+			let currentGroup = 'none';
 
 			function applyFiltersAndSort() {
 				let visibleCount = 0;
@@ -1279,26 +1425,120 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 					const slidesB = parseInt(b.getAttribute('data-slides') || '0', 10);
 					const titleA = a.getAttribute('data-title') || '';
 					const titleB = b.getAttribute('data-title') || '';
+					const timeA = parseInt(a.getAttribute('data-timestamp') || '0', 10);
+					const timeB = parseInt(b.getAttribute('data-timestamp') || '0', 10);
 
-					if (currentSort === 'entry-desc') return entryB - entryA;
-					if (currentSort === 'entry-asc') return entryA - entryB;
-					if (currentSort === 'slides-desc') return slidesB - slidesA;
+					if (currentSort === 'entry-desc') return entryB - entryA || timeB - timeA;
+					if (currentSort === 'entry-asc') return entryA - entryB || timeA - timeB;
+					if (currentSort === 'slides-desc') return slidesB - slidesA || entryB - entryA;
 					if (currentSort === 'title-asc') return titleA.localeCompare(titleB);
 					return 0;
 				});
 
-				// Reorder in DOM
-				if (postsGrid) {
-					visibleCards.forEach(card => postsGrid.appendChild(card));
+				// Render by Group mode
+				if (currentGroup === 'none') {
+					if (hubGroupedContainer) {
+						hubGroupedContainer.style.display = 'none';
+						hubGroupedContainer.innerHTML = '';
+					}
+					if (postsGrid) {
+						postsGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
+						visibleCards.forEach(card => postsGrid.appendChild(card));
+					}
+				} else {
+					if (postsGrid) {
+						postsGrid.style.display = 'none';
+					}
+					if (hubGroupedContainer) {
+						hubGroupedContainer.style.display = visibleCount === 0 ? 'none' : 'flex';
+						hubGroupedContainer.innerHTML = '';
+
+						const groupsMap = new Map();
+
+						visibleCards.forEach(card => {
+							let groupKey = '';
+							let groupTitle = '';
+							const timestamp = parseInt(card.getAttribute('data-timestamp') || '0', 10);
+
+							if (currentGroup === 'category') {
+								groupKey = card.getAttribute('data-category') || 'Uncategorized';
+								groupTitle = groupKey;
+							} else if (currentGroup === 'date') {
+								groupKey = card.getAttribute('data-month-year') || 'Other';
+								groupTitle = groupKey;
+							}
+
+							if (!groupsMap.has(groupKey)) {
+								groupsMap.set(groupKey, {
+									title: groupTitle,
+									cards: [],
+									timestamp: timestamp
+								});
+							}
+							groupsMap.get(groupKey).cards.push(card);
+							if (timestamp > groupsMap.get(groupKey).timestamp) {
+								groupsMap.get(groupKey).timestamp = timestamp;
+							}
+						});
+
+						const sortedGroups = Array.from(groupsMap.values());
+						if (currentGroup === 'date') {
+							if (currentSort === 'entry-asc') {
+								sortedGroups.sort((a, b) => a.timestamp - b.timestamp);
+							} else {
+								sortedGroups.sort((a, b) => b.timestamp - a.timestamp);
+							}
+						} else if (currentGroup === 'category') {
+							sortedGroups.sort((a, b) => a.title.localeCompare(b.title));
+						}
+
+						sortedGroups.forEach(group => {
+							const section = document.createElement('div');
+							section.className = 'hub-group-section';
+
+							const header = document.createElement('div');
+							header.className = 'hub-group-header';
+
+							const titleWrap = document.createElement('div');
+							titleWrap.className = 'hub-group-title-wrap';
+
+							const iconSpan = document.createElement('span');
+							iconSpan.className = 'hub-group-icon';
+							iconSpan.innerHTML = currentGroup === 'category' 
+								? `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`
+								: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
+
+							const h3 = document.createElement('h3');
+							h3.className = 'hub-group-title';
+							h3.textContent = group.title;
+
+							const badge = document.createElement('span');
+							badge.className = 'hub-group-badge';
+							badge.textContent = `${group.cards.length} deck${group.cards.length > 1 ? 's' : ''}`;
+
+							titleWrap.appendChild(iconSpan);
+							titleWrap.appendChild(h3);
+							titleWrap.appendChild(badge);
+							header.appendChild(titleWrap);
+							section.appendChild(header);
+
+							const grid = document.createElement('div');
+							grid.className = 'posts-slides-grid';
+							group.cards.forEach(card => grid.appendChild(card));
+							section.appendChild(grid);
+
+							hubGroupedContainer.appendChild(section);
+						});
+					}
 				}
 
 				// Update results display
 				if (visibleCountText) visibleCountText.textContent = String(visibleCount);
 				if (emptyState) emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-				if (postsGrid) postsGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
+				if (postsGrid && currentGroup === 'none') postsGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
 
 				// Reset / Clear buttons
-				const hasActiveFilters = currentStatus !== 'all' || currentCategory !== 'all' || currentSearch.length > 0;
+				const hasActiveFilters = currentStatus !== 'all' || currentCategory !== 'all' || currentSearch.length > 0 || currentSort !== 'entry-desc' || currentGroup !== 'none';
 				if (resetBtn) resetBtn.style.display = hasActiveFilters ? 'block' : 'none';
 				if (searchClear) searchClear.style.display = currentSearch.length > 0 ? 'block' : 'none';
 			}
@@ -1314,9 +1554,22 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 				applyFiltersAndSort();
 			});
 
-			sortSelect?.addEventListener('change', (e) => {
-				currentSort = e.target.value;
-				applyFiltersAndSort();
+			sortButtons.forEach(btn => {
+				btn.addEventListener('click', () => {
+					sortButtons.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+					currentSort = btn.getAttribute('data-sort') || 'entry-desc';
+					applyFiltersAndSort();
+				});
+			});
+
+			groupButtons.forEach(btn => {
+				btn.addEventListener('click', () => {
+					groupButtons.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+					currentGroup = btn.getAttribute('data-group') || 'none';
+					applyFiltersAndSort();
+				});
 			});
 
 			statusButtons.forEach(btn => {
@@ -1343,7 +1596,7 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 				currentStatus = 'all';
 				currentCategory = 'all';
 				currentSort = 'entry-desc';
-				if (sortSelect) sortSelect.value = 'entry-desc';
+				currentGroup = 'none';
 
 				statusButtons.forEach(b => {
 					if (b.getAttribute('data-status') === 'all') b.classList.add('active');
@@ -1352,6 +1605,16 @@ const researchCount = postsWithSlides.filter(p => p.category === 'Research').len
 
 				categoryButtons.forEach(b => {
 					if (b.getAttribute('data-category') === 'all') b.classList.add('active');
+					else b.classList.remove('active');
+				});
+
+				sortButtons.forEach(b => {
+					if (b.getAttribute('data-sort') === 'entry-desc') b.classList.add('active');
+					else b.classList.remove('active');
+				});
+
+				groupButtons.forEach(b => {
+					if (b.getAttribute('data-group') === 'none') b.classList.add('active');
 					else b.classList.remove('active');
 				});
 
