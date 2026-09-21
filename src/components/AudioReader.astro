@@ -1017,7 +1017,10 @@ const { title = 'this article' } = Astro.props;
 		let playbackRate = 1.0;
 		let availableVoices: SpeechSynthesisVoice[] = [];
 		let selectedVoice: SpeechSynthesisVoice | null = null;
-		let keepAliveTimer: number | null = null;
+		let activeUtterance: SpeechSynthesisUtterance | null = null;
+		let watchdogTimer: number | null = null;
+		let isAdvancing = false;
+		let isUserStopped = false;
 
 		// DOM Elements
 		const mainPlayBtn = document.getElementById('tts-main-play-btn');
@@ -1322,21 +1325,33 @@ const { title = 'this article' } = Astro.props;
 			});
 		}
 
-		// Helper: Sentence splitter with regex boundary
+		// Helper: Sentence splitter with regex boundary and abbreviation protection
 		function splitIntoSentences(text: string): string[] {
+			// Protect common abbreviations and titles so periods don't trigger false sentence splits
+			const protectedText = text
+				.replace(/\b(Dr|Mr|Mrs|Ms|Prof|vs|etc|i\.e|e\.g)\./gi, '$1§dot§')
+				.replace(/&nbsp;|\u00A0/g, ' ');
+
+			let rawSentences: string[] = [];
+
 			if (typeof Intl !== 'undefined' && (Intl as any).Segmenter) {
 				try {
 					const segmenter = new (Intl as any).Segmenter('en', { granularity: 'sentence' });
-					return Array.from(segmenter.segment(text)).map((s: any) => s.segment.trim()).filter(Boolean);
+					rawSentences = Array.from(segmenter.segment(protectedText)).map((s: any) => s.segment.trim()).filter(Boolean);
 				} catch (e) {
 					// fallback to regex below
 				}
 			}
-			return text
-				.replace(/([.?!])\s+(?=[A-Z0-9"'])/g, '$1|~|')
-				.split('|~|')
-				.map((s) => s.trim())
-				.filter(Boolean);
+
+			if (rawSentences.length === 0) {
+				rawSentences = protectedText
+					.replace(/([.?!])\s+(?=[A-Z0-9"'])/g, '$1|~|')
+					.split('|~|')
+					.map((s) => s.trim())
+					.filter(Boolean);
+			}
+
+			return rawSentences.map((s) => s.replace(/§dot§/g, '.').trim()).filter(Boolean);
 		}
 
 		tokenizeContent();
@@ -1418,7 +1433,49 @@ const { title = 'this article' } = Astro.props;
 			}
 		}
 
-		function playSentence(idx: number) {
+		function clearWatchdog() {
+			if (watchdogTimer !== null) {
+				clearTimeout(watchdogTimer);
+				watchdogTimer = null;
+			}
+		}
+
+		function startWatchdog(text: string, idx: number) {
+			clearWatchdog();
+			// Generous watchdog timeout: ~10 chars per second at current rate + 6s buffer
+			const charRate = 10 * Math.max(0.5, playbackRate);
+			const expectedSecs = Math.max(5, (text.length / charRate) + 6);
+			watchdogTimer = window.setTimeout(() => {
+				if (playbackState === 'PLAYING' && currentSentenceIdx === idx) {
+					console.warn('[TTS] Watchdog timeout triggered on sentence:', idx, '- auto-advancing');
+					advanceToNextSentence();
+				}
+			}, expectedSecs * 1000);
+		}
+
+		function advanceToNextSentence() {
+			if (playbackState !== 'PLAYING' || isAdvancing) return;
+			isAdvancing = true;
+			clearWatchdog();
+
+			const nextIdx = currentSentenceIdx + 1;
+			if (nextIdx >= sentences.length) {
+				stopPlayback();
+				if (statusMsg) statusMsg.textContent = 'Finished reading article.';
+				isAdvancing = false;
+				return;
+			}
+
+			// Clean 40ms pause between sentences gives the browser engine time to finalize previous utterance
+			window.setTimeout(() => {
+				isAdvancing = false;
+				if (playbackState === 'PLAYING') {
+					playSentence(nextIdx, false);
+				}
+			}, 40);
+		}
+
+		function playSentence(idx: number, isManualJump: boolean = true) {
 			if (!synth) return;
 			if (idx < 0 || idx >= sentences.length) {
 				stopPlayback();
@@ -1426,7 +1483,14 @@ const { title = 'this article' } = Astro.props;
 				return;
 			}
 
-			synth.cancel(); // Cancel any lingering utterance
+			clearWatchdog();
+			isUserStopped = false;
+
+			// Only cancel if user initiated a manual jump or reset, never on natural sentence transitions
+			if (isManualJump) {
+				synth.cancel();
+			}
+
 			currentSentenceIdx = idx;
 			currentWordIdx = -1;
 			playbackState = 'PLAYING';
@@ -1435,9 +1499,19 @@ const { title = 'this article' } = Astro.props;
 			highlightSentence(idx);
 
 			const sentenceData = sentences[idx];
-			const utterance = new SpeechSynthesisUtterance(sentenceData.text);
+			const textToSpeak = (sentenceData.text || '').replace(/\u00A0/g, ' ').trim();
+			if (!textToSpeak) {
+				advanceToNextSentence();
+				return;
+			}
+
+			const utterance = new SpeechSynthesisUtterance(textToSpeak);
 			utterance.rate = playbackRate;
 			if (selectedVoice) utterance.voice = selectedVoice;
+
+			// Global reference prevents Chromium V8 garbage collector from terminating speech mid-sentence
+			activeUtterance = utterance;
+			(window as any).__ttsActiveUtterance = utterance;
 
 			utterance.onboundary = (e) => {
 				if (e.name === 'word') {
@@ -1446,57 +1520,66 @@ const { title = 'this article' } = Astro.props;
 			};
 
 			utterance.onend = () => {
+				clearWatchdog();
+				activeUtterance = null;
+				(window as any).__ttsActiveUtterance = null;
+
 				if (playbackState === 'PLAYING') {
-					playSentence(currentSentenceIdx + 1);
+					advanceToNextSentence();
 				}
 			};
 
 			utterance.onerror = (e) => {
-				if (e.error === 'interrupted' || e.error === 'canceled') return;
+				clearWatchdog();
+				activeUtterance = null;
+				(window as any).__ttsActiveUtterance = null;
+
+				if (isUserStopped) return;
+
+				// If an utterance fails or is interrupted, smoothly recover by advancing to next sentence
 				if (playbackState === 'PLAYING') {
-					playSentence(currentSentenceIdx + 1);
+					console.warn('[TTS] Utterance error:', e.error, 'on sentence:', idx);
+					window.setTimeout(() => {
+						if (playbackState === 'PLAYING') {
+							advanceToNextSentence();
+						}
+					}, 50);
 				}
 			};
 
-			synth.speak(utterance);
-			startKeepAlive();
-		}
-
-		function startKeepAlive() {
-			stopKeepAlive();
-			// Chromium keepalive: keeps synthesis alive on long pauses
-			keepAliveTimer = window.setInterval(() => {
-				if (synth.speaking && !synth.paused) {
-					synth.pause();
-					synth.resume();
-				}
-			}, 10000);
-		}
-
-		function stopKeepAlive() {
-			if (keepAliveTimer !== null) {
-				clearInterval(keepAliveTimer);
-				keepAliveTimer = null;
+			// Resume synthesizer if browser has it in a suspended or paused state
+			if (synth.paused) {
+				synth.resume();
 			}
+
+			synth.speak(utterance);
+			startWatchdog(textToSpeak, idx);
 		}
 
 		function pausePlayback() {
 			if (!synth) return;
-			synth.cancel(); // Clears current spoken chunk safely
+			isUserStopped = true;
+			clearWatchdog();
+			synth.cancel();
+			activeUtterance = null;
+			(window as any).__ttsActiveUtterance = null;
 			playbackState = 'PAUSED';
-			stopKeepAlive();
 			updateButtonStates();
 			if (statusMsg) statusMsg.textContent = `Paused at sentence ${currentSentenceIdx + 1}. Click play to resume.`;
 		}
 
 		function resumePlayback() {
-			playSentence(currentSentenceIdx);
+			isUserStopped = false;
+			playSentence(currentSentenceIdx, true);
 		}
 
 		function stopPlayback() {
 			if (!synth) return;
+			isUserStopped = true;
+			clearWatchdog();
 			synth.cancel();
-			stopKeepAlive();
+			activeUtterance = null;
+			(window as any).__ttsActiveUtterance = null;
 			clearHighlights();
 			playbackState = 'STOPPED';
 			currentSentenceIdx = 0;
@@ -1510,7 +1593,7 @@ const { title = 'this article' } = Astro.props;
 		}
 
 		function jumpToSentence(idx: number) {
-			playSentence(idx);
+			playSentence(idx, true);
 		}
 
 		function updateButtonStates() {
@@ -1866,7 +1949,7 @@ const { title = 'this article' } = Astro.props;
 		// Cleanup when navigating away or unmounting
 		window.addEventListener('beforeunload', () => {
 			synth.cancel();
-			stopKeepAlive();
+			clearWatchdog();
 		});
 	})();
 </script>
