@@ -4,7 +4,7 @@ description: "How the wisdom from YouTube's top carnivore experts helped me take
 pubDate: "Sep 05 2026"
 category: "Research"
 heroImage: "/thumbnails/carnivore-dark.jpg"
-draft: false
+draft: true
 entryNumber: 3
 ---
 

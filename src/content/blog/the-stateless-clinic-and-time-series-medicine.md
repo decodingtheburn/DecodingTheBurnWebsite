@@ -4,7 +4,7 @@ description: "Why brilliant clinicians are constrained by snapshot exams, what s
 pubDate: "Sep 21 2026"
 category: "Philosophy & Science"
 heroImage: "/recession_composite_patches_annotated.jpg"
-draft: false
+draft: true
 entryNumber: 9
 ---
 

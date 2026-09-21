@@ -4,7 +4,7 @@ description: "How tens of thousands of dismissed patients on r/noburp teamed up 
 pubDate: "Sep 21 2026"
 category: "Philosophy & Science"
 heroImage: "/how_i_solved_my_bms_thumbnail.jpg"
-draft: false
+draft: true
 entryNumber: 12
 ---
 

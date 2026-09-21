@@ -4,7 +4,7 @@ description: "How sub-millimeter periodontal endoscopy replaces blind probing wi
 pubDate: "Sep 21 2026"
 category: "Research"
 heroImage: "/tooth_recession_pocket_cej_annotated.jpg"
-draft: false
+draft: true
 entryNumber: 11
 ---
 

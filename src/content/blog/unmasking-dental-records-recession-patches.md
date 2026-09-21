@@ -4,7 +4,7 @@ description: "Why composite resin patches and deep cleanings could not stop my 1
 pubDate: "Sep 18 2026"
 category: "My Experience"
 heroImage: "/recession_composite_patches_annotated.jpg"
-draft: false
+draft: true
 entryNumber: 4
 ---
 
