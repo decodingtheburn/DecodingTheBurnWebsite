@@ -28,15 +28,13 @@ const posts = sortPostsDescending(rawPosts);
 				{
 					posts.map((post, index) => {
 						const postNumber = post.data.entryNumber ?? (posts.length - index);
-						const displayTag = post.data.tags?.[0] || post.data.category || 'Experiment';
 						return (
 						<article class="card">
 							<a href={`/blog/${post.id}/`}>
 								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
 								<div class="card-body">
 									<div class="card-meta">
-										<span class="meta-tag">{displayTag}</span>
-										<span class="meta-date">Entry #{postNumber} • <FormattedDate date={post.data.pubDate} /></span>
+										<span class="meta-post-info"><strong class="meta-post-number">Post #{postNumber}</strong> • <FormattedDate date={post.data.pubDate} /></span>
 									</div>
 									<h3 set:html={post.data.title} />
 									<p>{post.data.description}</p>

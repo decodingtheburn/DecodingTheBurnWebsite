@@ -94,15 +94,14 @@ const monthsSymptomFree = (currentDate.getFullYear() - symptomFreeStartYear) * 1
 			<div class="grid">
 				{
 					posts.slice(0, 3).map((post, index) => {
-						const postNumber = index + 1;
+						const postNumber = post.data.entryNumber ?? (index + 1);
 						return (
 						<article class="card">
 							<a href={`/blog/${post.id}/`}>
 								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
 								<div class="card-body">
 									<div class="card-meta">
-										<span class="meta-entry">Entry {postNumber}</span>
-										<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
+										<span class="meta-post-info"><strong class="meta-post-number">Post #{postNumber}</strong> • <FormattedDate date={post.data.pubDate} /></span>
 									</div>
 									<h3>{post.data.title}</h3>
 									<p>{post.data.description}</p>
