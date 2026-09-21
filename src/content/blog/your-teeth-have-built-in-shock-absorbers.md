@@ -4,7 +4,7 @@ description: "Why human teeth are suspended in microscopic hydraulic slings, how
 pubDate: "Sep 21 2026"
 category: "Biomechanics"
 heroImage: "/periodontal_cross_section_annotated.jpg"
-draft: false
+draft: true
 entryNumber: 10
 ---
 
