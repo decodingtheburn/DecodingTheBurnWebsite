@@ -80,6 +80,40 @@ Tens of thousands of patients have been permanently cured, all because a patient
 
 ---
 
+## Watch Dr. Bastian Explain the Biology and Botox&nbsp;Procedure
+
+To understand just how transformative it is when a clinician listens directly to patient data, watch Dr. Bastian explain the anatomy, diagnostic criteria, and endoscopic Botox injection in his live educational webinar:
+
+<div style="max-width: 720px; margin: 2.5rem auto 1rem; border-radius: 20px; overflow: hidden; border: 1px solid #fecdd3; box-shadow: 0 16px 40px -10px rgba(136, 19, 35, 0.25);">
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe 
+            src="https://www.youtube.com/embed/RnP3uDyh3uw" 
+            title="Dr. Robert Bastian - Live R-CPD (No-Burp) Comprehensive Webinar" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+        ></iframe>
+    </div>
+</div>
+<p style="text-align: center; font-size: 0.85rem; color: #64748b; margin-bottom: 2.5rem;">Source: <a href="https://www.youtube.com/watch?v=RnP3uDyh3uw" target="_blank" rel="noopener noreferrer" style="color: #be123c; font-weight: 600;">Dr. Robert Bastian Live R-CPD Webinar (Laryngopedia)</a></p>
+
+And in this follow-up Q&A, Dr. Bastian dives deep into the most common patient questions regarding Botox dosage, side effects, and long-term remission:
+
+<div style="max-width: 720px; margin: 2.5rem auto 1rem; border-radius: 20px; overflow: hidden; border: 1px solid #fecdd3; box-shadow: 0 16px 40px -10px rgba(136, 19, 35, 0.25);">
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe 
+            src="https://www.youtube.com/embed/T2B4VMagUJg" 
+            title="Can't Burp? Dr. Bastian Answers Common Patient Questions" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+        ></iframe>
+    </div>
+</div>
+<p style="text-align: center; font-size: 0.85rem; color: #64748b; margin-bottom: 2.5rem;">Source: <a href="https://www.youtube.com/watch?v=T2B4VMagUJg" target="_blank" rel="noopener noreferrer" style="color: #be123c; font-weight: 600;">Dr. Bastian Q&A Part 1 (Laryngopedia)</a></p>
+
+---
+
 ## Where Burning Mouth Syndrome Stands&nbsp;Today
 
 Burning Mouth Syndrome is currently sitting in the exact same ditch where R-CPD was stuck for thirty years.
