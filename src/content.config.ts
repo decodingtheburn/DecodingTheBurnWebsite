@@ -15,6 +15,7 @@ const blog = defineCollection({
 			heroImage: z.string().optional(),
 			category: z.string().default('My Experience'),
 			draft: z.boolean().default(false),
+			entryNumber: z.number().optional(),
 		}),
 });
 

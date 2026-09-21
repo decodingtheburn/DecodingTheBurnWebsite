@@ -4,17 +4,18 @@ import BaseHead from '../../components/BaseHead.astro';
 import TongueLogo from '../../components/TongueLogo.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { generateSlidesFromPost } from '../../utils/slideEngine';
+import { sortPostsDescending, getPostEntryNumber, sortPostsAscending } from '../../utils/postUtils';
 
-// Fetch all posts including drafts, sorted by date descending
-const allPosts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+// Fetch all posts including drafts, sorted deterministically by entry number descending
+const rawPosts = await getCollection('blog');
+const allPostsAscending = sortPostsAscending(rawPosts);
+const allPosts = sortPostsDescending(rawPosts);
 
 // Calculate slide count and metadata for each post
-const postsWithSlides = allPosts.map((post, index) => {
+const postsWithSlides = allPosts.map((post) => {
 	const slides = generateSlidesFromPost(post.id, post.data.title, post.data.description, post.body || '');
 	const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
-	const postNumber = allPosts.length - index;
+	const postNumber = getPostEntryNumber(post, allPostsAscending);
 	const isDraft = post.data.draft === true;
 	const category = post.data.category || 'My Experience';
 	const compactDate = post.data.pubDate.toLocaleDateString('en-US', {

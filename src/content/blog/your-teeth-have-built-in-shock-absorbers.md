@@ -5,6 +5,7 @@ pubDate: "Sep 21 2026"
 category: "Biomechanics"
 heroImage: "/periodontal_cross_section_annotated.jpg"
 draft: false
+entryNumber: 10
 ---
 
 Most people imagine human teeth as solid rocks anchored directly into the jawbone, like fence posts set in concrete. 

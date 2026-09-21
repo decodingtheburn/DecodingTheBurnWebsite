@@ -5,6 +5,7 @@ pubDate: "Sep 19 2026"
 category: "My Experience"
 heroImage: "/tooth_erosion_50yr_breach.jpg"
 draft: true
+entryNumber: 6
 ---
 
 If you are like me, you are probably searching for a solution, either for yourself or because you are a doctor or dentist looking for answers for your patients. When Burning Mouth Syndrome struck me in my fifties, every clinician I saw asked the exact same skeptical&nbsp;question:

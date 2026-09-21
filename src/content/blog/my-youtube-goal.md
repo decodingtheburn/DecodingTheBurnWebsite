@@ -5,6 +5,7 @@ pubDate: "Aug 31 2026"
 category: "My Experience"
 heroImage: "/thumbnails/target-dark.jpg"
 draft: true
+entryNumber: 2
 ---
 
 Welcome to Decoding The Burn. If you are here, you likely know the struggle of Burning Mouth Syndrome (BMS). My goal with this website is to ensure that no one has to face this condition alone.

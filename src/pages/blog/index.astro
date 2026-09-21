@@ -5,12 +5,10 @@ import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import FormattedDate from '../../components/FormattedDate.astro';
+import { sortPostsDescending } from '../../utils/postUtils';
 
-const posts = (await getCollection('blog', ({ data }) => {
-	return !data.draft;
-})).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = sortPostsDescending(rawPosts);
 ---
 
 <!doctype html>

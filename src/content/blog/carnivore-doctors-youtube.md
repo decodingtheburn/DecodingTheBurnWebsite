@@ -5,6 +5,7 @@ pubDate: "Sep 05 2026"
 category: "Research"
 heroImage: "/thumbnails/carnivore-dark.jpg"
 draft: false
+entryNumber: 3
 ---
 
 After struggling with Burning Mouth Syndrome (BMS) for so long, I was willing to try almost anything to find relief. My journey into the world of the carnivore diet didn't happen overnight, but it was sparked by a series of failed experiments and a pivotal moment of discovery on YouTube.

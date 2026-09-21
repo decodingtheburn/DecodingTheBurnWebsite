@@ -8,12 +8,10 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import { sortPostsDescending } from '../utils/postUtils';
 
-const posts = (await getCollection('blog', ({ data }) => {
-	return !data.draft;
-})).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = sortPostsDescending(rawPosts);
 
 // Dynamic calculation of symptom-free duration based on June 2025 (last severe burning)
 const symptomFreeStartYear = 2025;

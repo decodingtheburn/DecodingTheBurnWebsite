@@ -5,6 +5,7 @@ pubDate: "Sep 21 2026"
 category: "Research"
 heroImage: "/tooth_recession_pocket_cej_annotated.jpg"
 draft: false
+entryNumber: 11
 ---
 
 For more than a century, periodontal treatment has operated almost entirely in the dark.

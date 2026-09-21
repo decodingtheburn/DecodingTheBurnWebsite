@@ -5,6 +5,7 @@ pubDate: "Sep 21 2026"
 category: "Philosophy & Science"
 heroImage: "/how_i_solved_my_bms_thumbnail.jpg"
 draft: false
+entryNumber: 12
 ---
 
 For decades, thousands of people around the world lived with a physical symptom so strange that almost no medical doctor believed them.

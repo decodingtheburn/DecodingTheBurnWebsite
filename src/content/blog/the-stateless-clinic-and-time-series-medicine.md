@@ -5,6 +5,7 @@ pubDate: "Sep 21 2026"
 category: "Philosophy & Science"
 heroImage: "/recession_composite_patches_annotated.jpg"
 draft: false
+entryNumber: 9
 ---
 
 As a computer programmer by trade, whenever a complex software system crashes, I never attempt to debug it by glancing at a single line of code in an isolated vacuum. 
