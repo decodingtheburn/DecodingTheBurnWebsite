@@ -25,7 +25,7 @@ Then came the internet, a visionary community, and one doctor who chose to liste
 
 ---
 
-## The Birth of r/noburp and the Power of Patient Observation
+## The Birth of r/noburp and the Power of Patient&nbsp;Observation
 
 In the early 2010s, isolated individuals who thought they were medical freaks discovered each other on Reddit in a community called **r/noburp**.
 
@@ -40,7 +40,7 @@ All they needed was a medical professional with enough humility and systems-leve
 
 ---
 
-## Enter Dr. Robert Bastian: The Power of Mechanistic Thinking
+## Enter Dr. Robert Bastian: The Power of Mechanistic&nbsp;Thinking
 
 In 2015, a frustrated patient walked into the Bastian Voice Institute in Downers Grove, Illinois, and sat down with **Dr. Robert Bastian**, an experienced otolaryngologist and laryngologist.
 
@@ -60,7 +60,7 @@ Dr. Bastian gave the condition a formal anatomical name: **Retrograde Cricophary
 
 ---
 
-## The Botox Breakthrough: A Permanent Cure for a Life-Altering Disorder
+## The Botox Breakthrough: A Permanent Cure for a Life-Altering&nbsp;Disorder
 
 Having isolated the mechanical root cause, Dr. Bastian devised an extraordinarily elegant intervention: **Botox (botulinum toxin)**.
 
@@ -79,7 +79,7 @@ Tens of thousands of patients have been permanently cured, all because a patient
 
 ---
 
-## Where Burning Mouth Syndrome Stands Today
+## Where Burning Mouth Syndrome Stands&nbsp;Today
 
 Burning Mouth Syndrome is currently sitting in the exact same ditch where R-CPD was stuck for thirty years.
 
@@ -93,46 +93,46 @@ Just like the early R-CPD patients, BMS sufferers are treated as psychosomatic m
 
 ---
 
-## The Mechanical Reality: What Dentists Miss
+## The Mechanical Reality: What Dentists&nbsp;Miss
 
 As a software programmer living with BMS, I refuse to accept "idiopathic" as an answer. In computer systems, a persistent critical alarm never fires without a hardware or software fault.
 
 When you look beneath the surface of a "normal-looking mouth," the engineering reality of BMS emerges:
 
-### 1. The Tubule-Pulp-Nerve Highway
+### 1. The Tubule-Pulp-Nerve&nbsp;Highway
 Human teeth are not solid glass. Beneath the enamel lies dentin, which contains up to 30,000 microscopic fluid-filled **dentinal tubules** per square millimeter. When root recession, enamel erosion, or cervical abfraction notches expose these tubules at the gumline, they become open physical pipelines leading straight into the vascular pulp chamber.
 
-### 2. Subgingival Biofilms and Endotoxins
+### 2. Subgingival Biofilms and&nbsp;Endotoxins
 In deep periodontal pockets (like the 6mm pockets around my Tooth 36 and 46), anaerobic bacteria produce potent inflammatory toxins, specifically **Lipopolysaccharides (LPS)**. These endotoxins do not stay confined to the gum pocket. They seep into open tubules, creating chronic, low-grade sub-clinical pulpal inflammation.
 
-### 3. Degrading Composite Margins
+### 3. Degrading Composite&nbsp;Margins
 Millions of patients have 15 to 20 year old cervical composite patches placed over gumline notches. Over decades, composite resin hydrolyzes and shrinks. While the top of the patch looks fine from above, the subgingival margin inside the dark pocket breaks down, creating a micro-leakage gap that traps aggressive biofilm right against naked dentin.
 
-### 4. Central Trigeminal Sensitization
+### 4. Central Trigeminal&nbsp;Sensitization
 The pulpal nerves connect directly to the mandibular (V3) and maxillary (V2) branches of the **Trigeminal Nerve**. Chronic, unaddressed toxic signaling from exposed roots slowly lowers the firing threshold of the entire nerve complex. Eventually, the central nervous system becomes sensitized: the sensory nerves of the tongue begin misinterpreting normal salivary contact as blistering heat (**allodynia**).
 
-The mouth looks "pink and normal" on a 5-minute visual exam, but underneath, a structural biochemical cascade is driving relentless neural firing.
+The mouth looks "pink and normal" on a 5-minute visual exam, but underneath, a structural biochemical cascade is driving relentless neural&nbsp;firing.
 
 ---
 
-## The BMS Playbook: How We Execute the Bastian Model
+## The BMS Playbook: How We Execute the Bastian&nbsp;Model
 
 The success of r/noburp gives us the exact roadmap to solve Burning Mouth Syndrome:
 
-### Phase 1: Build the Open Patient Registry
+### Phase 1: Build the Open Patient&nbsp;Registry
 Just like r/noburp cataloged symptoms, we must aggregate real-time patient telemetry:
 * Correlating bite mechanics (crossbites, clenching, abfractions) with nerve symptoms.
 * Tracking the age and integrity of cervical composite fillings.
 * Documenting periodontal pocket depths and tooth wear patterns alongside pain timelines.
 * Publishing open datasets and self-experiment logs through platforms like **DecodingTheBurn.com**.
 
-### Phase 2: Shift from Symptoms to Sub-Phenotypes
+### Phase 2: Shift from Symptoms to&nbsp;Sub-Phenotypes
 We must stop treating "Burning Mouth Syndrome" as a single monolithic disorder. Just as Dr. Bastian distinguished retrograde cricopharyngeus failure from general dysphagia, we must categorize BMS into actionable structural sub-types:
 * **Tubule-Leakage Phenotype:** Driven by exposed dentin, root recession, and subgingival composite failure.
 * **Biomechanical Shear Phenotype:** Driven by crossbite lateral flexure and periodontal ligament trauma.
 * **Epithelial Barrier Phenotype:** Driven by salivary chemistry, nutritional deficiencies, and mucosa permeability.
 
-### Phase 3: Partner with the "Dr. Bastians" of Oral Medicine
+### Phase 3: Partner with the "Dr. Bastians" of Oral&nbsp;Medicine
 We do not need to fight closed-minded clinicians. We need to identify and collaborate with forward-thinking biological dentists, periodontists, endoscopists, and neurologists who:
 * Use **perioscopy** (micro-endoscopy) to visually inspect subgingival composite margins at 48x magnification.
 * Test non-invasive root desensitization, laser tubule sealing, and biomimetic resin restoration.
@@ -140,10 +140,10 @@ We do not need to fight closed-minded clinicians. We need to identify and collab
 
 ---
 
-## Moving from Helplessness to Engineering
+## Moving from Helplessness to&nbsp;Engineering
 
 The story of Dr. Robert Bastian and the no-burp community proves that medicine does not advance through institutional consensus alone. It advances when informed, observant patients organize their ground-truth data and find clinicians brave enough to investigate mechanisms rather than prescribing sedatives.
 
-Burning mouth syndrome is not a mystery of the mind. It is a failure of oral micro-architecture and neural signaling.
+Burning mouth syndrome is not a mystery of the mind. It is a failure of oral micro-architecture and neural&nbsp;signaling.
 
-By treating the human body as a complex, observable system, we will turn BMS from a lifelong sentence into an engineered, solved problem.
+By treating the human body as a complex, observable system, we will turn BMS from a lifelong sentence into an engineered, solved&nbsp;problem.
