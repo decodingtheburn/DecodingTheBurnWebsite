@@ -26,6 +26,8 @@ const {
 	slug,
 	showAudioReader = Boolean(slug),
 	entryNumber,
+	category,
+	tags = [],
 } = Astro.props;
 
 // Filter headings to only show h2 and h3
@@ -68,7 +70,13 @@ if (!postNumber && slug) {
 								<span class="post-entry-pill">Entry #{postNumber}</span>
 							</span>
 						)}
-						{postNumber && <span class="post-meta-dot" aria-hidden="true">•</span>}
+						{(tags?.[0] || category) && (
+							<>
+								<span class="post-meta-dot" aria-hidden="true">•</span>
+								<span class="post-meta-tag">{tags?.[0] || category}</span>
+							</>
+						)}
+						<span class="post-meta-dot" aria-hidden="true">•</span>
 						<span class="post-meta-date">
 							<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="post-meta-icon" aria-hidden="true">
 								<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -138,6 +146,18 @@ if (!postNumber && slug) {
 				padding: 0.18rem 0.5rem;
 				border-radius: 5px;
 				letter-spacing: 0.01em;
+				white-space: nowrap;
+			}
+			.post-meta-tag {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.74rem;
+				font-weight: 700;
+				color: #be123c;
+				background: #fff1f2;
+				border: 1px solid #fecdd3;
+				padding: 0.16rem 0.5rem;
+				border-radius: 5px;
+				letter-spacing: 0.02em;
 				white-space: nowrap;
 			}
 			.post-meta-dot {
@@ -305,6 +325,40 @@ if (!postNumber && slug) {
 				text-decoration: none;
 				opacity: 0.85;
 				transform: translateX(2px);
+			}
+
+			/* Mission Callout Card */
+			.post-content :global(.mission-callout-box) {
+				background: #fff1f2;
+				border: 1px solid #fecdd3;
+				border-left: 4px solid #be123c;
+				border-radius: 12px;
+				padding: 1.25rem 1.5rem;
+				margin: 2.25rem 0;
+			}
+
+			.post-content :global(.mission-tag-pill) {
+				display: inline-block;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.72rem;
+				font-weight: 700;
+				color: #be123c;
+				background: #ffffff;
+				border: 1px solid #fecdd3;
+				padding: 0.15rem 0.5rem;
+				border-radius: 4px;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+				margin-bottom: 0.5rem;
+			}
+
+			.post-content :global(.mission-callout-text) {
+				font-size: 1.05rem;
+				line-height: 1.55;
+				color: #881337;
+				font-weight: 600;
+				margin: 0;
+				text-wrap: pretty;
 			}
 		</style>
 	</body>
