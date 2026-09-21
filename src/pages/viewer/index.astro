@@ -370,9 +370,10 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				color: #ffffff;
 			}
 
-			/* Sort & Group Multi-Buttons */
+			/* Sort, Group & Column Multi-Buttons */
 			.sort-pill-btn,
-			.group-pill-btn {
+			.group-pill-btn,
+			.col-pill-btn {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
@@ -389,13 +390,15 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.sort-pill-btn:hover,
-			.group-pill-btn:hover {
+			.group-pill-btn:hover,
+			.col-pill-btn:hover {
 				background: rgba(255, 255, 255, 0.07);
 				color: #ffffff;
 			}
 
 			.sort-pill-btn.active,
-			.group-pill-btn.active {
+			.group-pill-btn.active,
+			.col-pill-btn.active {
 				background: rgba(139, 92, 246, 0.18);
 				border-color: rgba(139, 92, 246, 0.5);
 				color: #ffffff;
@@ -445,61 +448,66 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				color: #ffffff;
 			}
 
-			/* Grouped Viewport Styling */
+			/* Grouped Viewport Styling - Light Pink Red Theme */
 			.hub-grouped-container {
 				display: flex;
 				flex-direction: column;
-				gap: 2.25rem;
+				gap: 2.75rem;
 				margin-bottom: 2.5rem;
 			}
 
 			.hub-group-section {
-				background: rgba(15, 19, 26, 0.55);
-				border: 1px solid rgba(255, 255, 255, 0.07);
-				border-radius: 18px;
-				padding: 1.5rem;
-				box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+				background: linear-gradient(180deg, rgba(254, 226, 226, 0.07) 0%, rgba(255, 241, 242, 0.02) 100%);
+				border: 1px solid rgba(251, 113, 133, 0.28);
+				border-radius: 20px;
+				padding: 1.75rem;
+				box-shadow: 0 12px 35px -10px rgba(225, 29, 72, 0.14);
 			}
 
+			/* Prominent Category Headline with Light Pink Red Background */
 			.hub-group-header {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				padding-bottom: 0.85rem;
-				margin-bottom: 1.35rem;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+				background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
+				border: 1px solid #fda4af;
+				border-radius: 14px;
+				padding: 0.95rem 1.4rem;
+				margin-bottom: 1.75rem;
+				box-shadow: 0 6px 22px -4px rgba(225, 29, 72, 0.22);
 			}
 
 			.hub-group-title-wrap {
 				display: flex;
 				align-items: center;
-				gap: 0.65rem;
+				gap: 0.75rem;
 			}
 
 			.hub-group-icon {
-				color: #a855f7;
+				color: #be123c;
 				display: flex;
 				align-items: center;
 			}
 
 			.hub-group-title {
 				font-family: var(--font-heading, system-ui, sans-serif);
-				font-size: 1.2rem;
-				font-weight: 700;
-				color: #ffffff;
+				font-size: 1.35rem;
+				font-weight: 800;
+				color: #881337;
 				margin: 0;
 				letter-spacing: -0.01em;
 			}
 
 			.hub-group-badge {
 				font-family: ui-monospace, SFMono-Regular, monospace;
-				font-size: 0.72rem;
-				font-weight: 700;
-				padding: 0.2rem 0.6rem;
-				border-radius: 6px;
-				background: rgba(139, 92, 246, 0.16);
-				color: #c084fc;
-				border: 1px solid rgba(139, 92, 246, 0.35);
+				font-size: 0.75rem;
+				font-weight: 800;
+				padding: 0.3rem 0.75rem;
+				border-radius: 9999px;
+				background: #be123c;
+				color: #ffffff;
+				letter-spacing: 0.03em;
+				box-shadow: 0 2px 8px rgba(190, 18, 60, 0.35);
 			}
 
 			/* Deck Inventory Summary Card */
@@ -636,12 +644,37 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				background: #6d28d9;
 			}
 
-			/* Posts Grid */
+			/* Posts Grid & Dynamic Column Controls */
 			.posts-slides-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
 				gap: 1.75rem;
 				margin-bottom: 2.5rem;
+			}
+
+			.posts-slides-grid.cols-1 {
+				grid-template-columns: 1fr !important;
+			}
+
+			.posts-slides-grid.cols-2 {
+				grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+			}
+
+			.posts-slides-grid.cols-3 {
+				grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+			}
+
+			@media (max-width: 1024px) {
+				.posts-slides-grid.cols-3 {
+					grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+				}
+			}
+
+			@media (max-width: 720px) {
+				.posts-slides-grid.cols-2,
+				.posts-slides-grid.cols-3 {
+					grid-template-columns: 1fr !important;
+				}
 			}
 
 			.post-slide-card {
@@ -1144,6 +1177,31 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 							</div>
 						</div>
 
+						<!-- Cards Per Row (1, 2, or 3 side by side) -->
+						<div class="filter-block">
+							<span class="filter-label">Cards Per Row</span>
+							<div class="filter-buttons-list col-buttons-list">
+								<button type="button" class="col-pill-btn" data-cols="1">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+										1 Card (Full Width)
+									</span>
+								</button>
+								<button type="button" class="col-pill-btn active" data-cols="2">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="8" height="16" rx="1.5"/><rect x="13" y="4" width="8" height="16" rx="1.5"/></svg>
+										2 Cards Side-by-Side
+									</span>
+								</button>
+								<button type="button" class="col-pill-btn" data-cols="3">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="5.5" height="16" rx="1"/><rect x="9.25" y="4" width="5.5" height="16" rx="1"/><rect x="16.5" y="4" width="5.5" height="16" rx="1"/></svg>
+										3 Cards Side-by-Side
+									</span>
+								</button>
+							</div>
+						</div>
+
 						<!-- Category Filters -->
 						<div class="filter-block">
 							<span class="filter-label">Category</span>
@@ -1195,7 +1253,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 						</div>
 
 						<!-- All Blog Posts as Presentation Decks & Articles -->
-						<div class="posts-slides-grid" id="postsGrid">
+						<div class="posts-slides-grid cols-2" id="postsGrid">
 							{postsWithSlides.map(({ post, cleanTitle, postNumber, isDraft, category, compactDate, slideCount }) => (
 								<div 
 									class={`post-slide-card ${isDraft ? 'draft-card' : ''}`}
@@ -1379,6 +1437,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			const searchClear = document.getElementById('hubSearchClear');
 			const sortButtons = document.querySelectorAll('.sort-pill-btn');
 			const groupButtons = document.querySelectorAll('.group-pill-btn');
+			const colButtons = document.querySelectorAll('.col-pill-btn');
 			const statusButtons = document.querySelectorAll('.filter-pill-btn');
 			const categoryButtons = document.querySelectorAll('.category-pill-btn');
 			const resetBtn = document.getElementById('resetFiltersBtn');
@@ -1394,6 +1453,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			let currentSearch = '';
 			let currentSort = 'entry-desc';
 			let currentGroup = 'none';
+			let currentCols = '2';
 
 			function applyFiltersAndSort() {
 				let visibleCount = 0;
@@ -1442,6 +1502,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 						hubGroupedContainer.innerHTML = '';
 					}
 					if (postsGrid) {
+						postsGrid.className = `posts-slides-grid cols-${currentCols}`;
 						postsGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
 						visibleCards.forEach(card => postsGrid.appendChild(card));
 					}
@@ -1505,8 +1566,8 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 							const iconSpan = document.createElement('span');
 							iconSpan.className = 'hub-group-icon';
 							iconSpan.innerHTML = currentGroup === 'category' 
-								? `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`
-								: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
+								? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`
+								: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
 
 							const h3 = document.createElement('h3');
 							h3.className = 'hub-group-title';
@@ -1523,7 +1584,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 							section.appendChild(header);
 
 							const grid = document.createElement('div');
-							grid.className = 'posts-slides-grid';
+							grid.className = `posts-slides-grid cols-${currentCols}`;
 							group.cards.forEach(card => grid.appendChild(card));
 							section.appendChild(grid);
 
@@ -1538,7 +1599,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				if (postsGrid && currentGroup === 'none') postsGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
 
 				// Reset / Clear buttons
-				const hasActiveFilters = currentStatus !== 'all' || currentCategory !== 'all' || currentSearch.length > 0 || currentSort !== 'entry-desc' || currentGroup !== 'none';
+				const hasActiveFilters = currentStatus !== 'all' || currentCategory !== 'all' || currentSearch.length > 0 || currentSort !== 'entry-desc' || currentGroup !== 'none' || currentCols !== '2';
 				if (resetBtn) resetBtn.style.display = hasActiveFilters ? 'block' : 'none';
 				if (searchClear) searchClear.style.display = currentSearch.length > 0 ? 'block' : 'none';
 			}
@@ -1572,6 +1633,15 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				});
 			});
 
+			colButtons.forEach(btn => {
+				btn.addEventListener('click', () => {
+					colButtons.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+					currentCols = btn.getAttribute('data-cols') || '2';
+					applyFiltersAndSort();
+				});
+			});
+
 			statusButtons.forEach(btn => {
 				btn.addEventListener('click', () => {
 					statusButtons.forEach(b => b.classList.remove('active'));
@@ -1597,6 +1667,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				currentCategory = 'all';
 				currentSort = 'entry-desc';
 				currentGroup = 'none';
+				currentCols = '2';
 
 				statusButtons.forEach(b => {
 					if (b.getAttribute('data-status') === 'all') b.classList.add('active');
@@ -1615,6 +1686,11 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 
 				groupButtons.forEach(b => {
 					if (b.getAttribute('data-group') === 'none') b.classList.add('active');
+					else b.classList.remove('active');
+				});
+
+				colButtons.forEach(b => {
+					if (b.getAttribute('data-cols') === '2') b.classList.add('active');
 					else b.classList.remove('active');
 				});
 
