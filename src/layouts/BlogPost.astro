@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -8,6 +8,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 import AuthorBox from '../components/AuthorBox.astro';
 import AudioReader from '../components/AudioReader.astro';
 import { Image } from 'astro:assets';
+import { getPostEntryNumber, sortPostsAscending } from '../utils/postUtils';
 
 interface Props extends CollectionEntry<'blog'>['data'] {
 	headings?: { depth: number; slug: string; text: string }[];
@@ -15,10 +16,30 @@ interface Props extends CollectionEntry<'blog'>['data'] {
 	showAudioReader?: boolean;
 }
 
-const { title, description, pubDate, updatedDate, heroImage, headings = [], slug, showAudioReader = Boolean(slug) } = Astro.props;
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	headings = [],
+	slug,
+	showAudioReader = Boolean(slug),
+	entryNumber,
+} = Astro.props;
 
 // Filter headings to only show h2 and h3
 const toc = (headings || []).filter((h) => h.depth <= 3);
+
+let postNumber = entryNumber;
+if (!postNumber && slug) {
+	const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+	const sorted = sortPostsAscending(allPosts);
+	const current = allPosts.find((p) => p.id === slug);
+	if (current) {
+		postNumber = getPostEntryNumber(current, sorted);
+	}
+}
 ---
 
 <html lang="en">
@@ -41,12 +62,29 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 				<h1 set:html={title} />
 
 				<div class="post-meta">
-					<span>Published on <FormattedDate date={pubDate} /></span>
-					{
-						updatedDate && (
-							<span> • Updated on <FormattedDate date={updatedDate} /></span>
-						)
-					}
+					<div class="post-meta-lockup">
+						{postNumber && (
+							<span class="post-meta-entry">
+								<span class="post-entry-pill">Entry #{postNumber}</span>
+							</span>
+						)}
+						{postNumber && <span class="post-meta-dot" aria-hidden="true">•</span>}
+						<span class="post-meta-date">
+							<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="post-meta-icon" aria-hidden="true">
+								<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+								<line x1="16" y1="2" x2="16" y2="6"></line>
+								<line x1="8" y1="2" x2="8" y2="6"></line>
+								<line x1="3" y1="10" x2="21" y2="10"></line>
+							</svg>
+							<span>Published on <FormattedDate date={pubDate} /></span>
+						</span>
+						{updatedDate && (
+							<>
+								<span class="post-meta-dot" aria-hidden="true">•</span>
+								<span class="post-meta-updated">Updated on <FormattedDate date={updatedDate} /></span>
+							</>
+						)}
+					</div>
 				</div>
 				<MedicalDisclaimer />
 
@@ -71,6 +109,59 @@ const toc = (headings || []).filter((h) => h.depth <= 3);
 				margin: 1.5rem auto 1rem auto;
 				max-width: var(--reading-max-width, 58ch);
 				text-wrap: balance;
+			}
+			.post-meta {
+				max-width: var(--reading-max-width, 58ch);
+				margin: 0 auto 1.5rem auto;
+				display: flex;
+				align-items: center;
+			}
+			.post-meta-lockup {
+				display: inline-flex;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 0.45rem 0.65rem;
+				padding: 0.35rem 0.85rem;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 8px;
+				font-size: 0.85rem;
+				color: #64748b;
+				line-height: 1.4;
+			}
+			.post-entry-pill {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.76rem;
+				font-weight: 700;
+				color: #0f172a;
+				background: #e2e8f0;
+				padding: 0.18rem 0.5rem;
+				border-radius: 5px;
+				letter-spacing: 0.01em;
+				white-space: nowrap;
+			}
+			.post-meta-dot {
+				color: #cbd5e1;
+				font-weight: 700;
+				user-select: none;
+			}
+			.post-meta-date {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				color: #475569;
+				font-weight: 500;
+				white-space: nowrap;
+			}
+			.post-meta-icon {
+				color: #64748b;
+				flex-shrink: 0;
+			}
+			.post-meta-updated {
+				color: #64748b;
+				font-weight: 400;
+				font-size: 0.82rem;
+				white-space: nowrap;
 			}
 			.blog-layout-grid {
 				display: block;
