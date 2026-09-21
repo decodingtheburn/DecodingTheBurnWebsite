@@ -54,30 +54,39 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 		/>
 		<style>
 			:root {
-				--bg-dark: #07090e;
-				--card-dark: #0f131a;
-				--border-dark: #1e2638;
-				--accent-red: #c8382c;
+				--bg-pink: #881337;
+				--bg-pink-dark: #4c0519;
+				--accent-rose: #be123c;
+				--accent-hover: #9f1239;
+				--card-bg: #ffffff;
+				--card-border: #fecdd3;
+				--card-border-hover: #e11d48;
+				--text-primary: #0f172a;
+				--text-secondary: #475569;
+				--text-muted: #64748b;
 			}
 
 			html, body {
 				margin: 0;
 				padding: 0;
-				background: var(--bg-dark);
-				color: #f1f5f9;
+				background-color: #881337;
+				background-image: 
+					radial-gradient(circle 1200px at 50% -100px, #9d174d 0%, #881337 55%, #4c0519 100%);
+				background-attachment: fixed;
+				color: #0f172a;
 				font-family: var(--font-body, system-ui, sans-serif);
 				min-height: 100vh;
 			}
 
-			/* Password Gate Styles */
+			/* Password Gate Styles (Light Theme Card on Dark Pink Background) */
 			#viewerGate {
 				max-width: 440px;
 				margin: 6rem auto;
-				background: #0e131f;
+				background: #ffffff;
 				padding: 3rem 2.5rem;
 				border-radius: 20px;
-				border: 1px solid rgba(139, 92, 246, 0.3);
-				box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(139, 92, 246, 0.15);
+				border: 1px solid #fecdd3;
+				box-shadow: 0 25px 60px -15px rgba(76, 5, 25, 0.45), 0 10px 25px rgba(0, 0, 0, 0.15);
 				text-align: center;
 			}
 
@@ -89,12 +98,12 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			.gate-title {
 				font-size: 1.65rem;
 				font-weight: 800;
-				color: #ffffff;
+				color: #881337;
 				margin-bottom: 0.5rem;
 			}
 
 			.gate-subtitle {
-				color: #94a3b8;
+				color: #475569;
 				font-size: 0.9rem;
 				line-height: 1.5;
 				margin-bottom: 2rem;
@@ -109,24 +118,26 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			.gate-input {
 				padding: 0.9rem 1.25rem;
 				border-radius: 12px;
-				border: 1.5px solid #2d3748;
-				background: #07090e;
-				color: #ffffff;
+				border: 1.5px solid #cbd5e1;
+				background: #f8fafc;
+				color: #0f172a;
 				font-size: 1.05rem;
 				outline: none;
 				text-align: center;
-				transition: border-color 0.2s ease;
+				transition: all 0.2s ease;
 			}
 
 			.gate-input:focus {
-				border-color: #8b5cf6;
+				border-color: #be123c;
+				background: #ffffff;
+				box-shadow: 0 0 0 3px rgba(190, 18, 60, 0.15);
 			}
 
 			.gate-btn {
 				padding: 0.9rem;
 				font-size: 0.95rem;
 				font-weight: 700;
-				background: #7c3aed;
+				background: #be123c;
 				color: #ffffff;
 				border: none;
 				border-radius: 12px;
@@ -135,11 +146,12 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.gate-btn:hover {
-				background: #6d28d9;
+				background: #9f1239;
+				box-shadow: 0 4px 15px rgba(190, 18, 60, 0.35);
 			}
 
 			.gate-error {
-				color: #f87171;
+				color: #dc2626;
 				font-size: 0.85rem;
 				font-weight: 600;
 				margin-top: 0.5rem;
@@ -189,21 +201,22 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.lock-btn {
-				background: rgba(255, 255, 255, 0.05);
-				border: 1px solid rgba(255, 255, 255, 0.15);
-				color: #94a3b8;
+				background: rgba(255, 255, 255, 0.16);
+				border: 1px solid rgba(255, 255, 255, 0.35);
+				color: #ffffff;
 				font-size: 0.75rem;
-				font-weight: 600;
-				padding: 0.4rem 0.85rem;
+				font-weight: 700;
+				padding: 0.45rem 0.95rem;
 				border-radius: 8px;
 				cursor: pointer;
+				backdrop-filter: blur(8px);
 				transition: all 0.2s ease;
 			}
 
 			.lock-btn:hover {
-				background: rgba(239, 68, 68, 0.15);
-				color: #f87171;
-				border-color: #ef4444;
+				background: #ffffff;
+				color: #881337;
+				border-color: #ffffff;
 			}
 
 			.hub-title {
@@ -214,15 +227,17 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				color: #ffffff;
 				margin: 0 auto 0.85rem auto;
 				text-wrap: balance;
+				text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 			}
 
 			.hub-subheadline {
 				font-size: 1.05rem;
-				color: #94a3b8;
+				color: #fce7f3;
 				max-width: 760px;
 				margin: 0 auto;
 				line-height: 1.55;
 				text-wrap: balance;
+				font-weight: 500;
 			}
 
 			/* Hub 2-Column Layout */
@@ -241,17 +256,18 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				}
 			}
 
-			/* Left Sidebar */
+			/* Left Sidebar (Crisp Light Card) */
 			.hub-sidebar {
-				background: #0c1018;
-				border: 1px solid var(--border-dark);
-				border-radius: 14px;
+				background: #ffffff;
+				border: 1px solid #fecdd3;
+				border-radius: 20px;
 				padding: 1.5rem;
 				position: sticky;
 				top: 1.5rem;
 				display: flex;
 				flex-direction: column;
 				gap: 1.5rem;
+				box-shadow: 0 16px 36px -8px rgba(76, 5, 25, 0.22), 0 4px 16px -2px rgba(15, 23, 42, 0.06);
 			}
 
 			.filter-block {
@@ -265,7 +281,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				font-weight: 800;
 				text-transform: uppercase;
 				letter-spacing: 0.06em;
-				color: #94a3b8;
+				color: #881337;
 			}
 
 			.search-input-wrapper {
@@ -284,10 +300,10 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			.hub-search-input {
 				width: 100%;
 				padding: 0.65rem 2rem 0.65rem 2.4rem;
-				background: #06090e;
-				border: 1px solid #1e2638;
+				background: #f8fafc;
+				border: 1.5px solid #e2e8f0;
 				border-radius: 8px;
-				color: #ffffff;
+				color: #0f172a;
 				font-size: 0.85rem;
 				outline: none;
 				transition: all 0.18s ease;
@@ -295,8 +311,9 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.hub-search-input:focus {
-				border-color: #8b5cf6;
-				box-shadow: 0 0 10px rgba(139, 92, 246, 0.25);
+				border-color: #be123c;
+				background: #ffffff;
+				box-shadow: 0 0 0 3px rgba(190, 18, 60, 0.12);
 			}
 
 			.search-clear-btn {
@@ -312,7 +329,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.search-clear-btn:hover {
-				color: #ffffff;
+				color: #be123c;
 			}
 
 			/* Status & Category Filters */
@@ -322,15 +339,18 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				gap: 0.35rem;
 			}
 
-			.filter-pill-btn {
+			.filter-pill-btn,
+			.sort-pill-btn,
+			.group-pill-btn,
+			.col-pill-btn {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				padding: 0.55rem 0.75rem;
-				background: rgba(255, 255, 255, 0.03);
-				border: 1px solid transparent;
+				padding: 0.52rem 0.75rem;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
 				border-radius: 8px;
-				color: #cbd5e1;
+				color: #334155;
 				font-size: 0.82rem;
 				font-weight: 600;
 				cursor: pointer;
@@ -338,16 +358,24 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				text-align: left;
 			}
 
-			.filter-pill-btn:hover {
-				background: rgba(255, 255, 255, 0.07);
-				color: #ffffff;
+			.filter-pill-btn:hover,
+			.sort-pill-btn:hover,
+			.group-pill-btn:hover,
+			.col-pill-btn:hover {
+				background: #fff1f2;
+				border-color: #fecdd3;
+				color: #881337;
 			}
 
-			.filter-pill-btn.active {
-				background: rgba(139, 92, 246, 0.16);
-				border-color: rgba(139, 92, 246, 0.45);
+			.filter-pill-btn.active,
+			.sort-pill-btn.active,
+			.group-pill-btn.active,
+			.col-pill-btn.active {
+				background: #be123c;
+				border-color: #be123c;
 				color: #ffffff;
 				font-weight: 700;
+				box-shadow: 0 4px 12px rgba(190, 18, 60, 0.25);
 			}
 
 			.filter-pill-name {
@@ -361,49 +389,14 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				font-size: 0.72rem;
 				padding: 0.15rem 0.5rem;
 				border-radius: 4px;
-				background: rgba(255, 255, 255, 0.08);
-				color: #94a3b8;
+				background: #e2e8f0;
+				color: #475569;
 			}
 
 			.filter-pill-btn.active .filter-count-badge {
-				background: #7c3aed;
-				color: #ffffff;
-			}
-
-			/* Sort, Group & Column Multi-Buttons */
-			.sort-pill-btn,
-			.group-pill-btn,
-			.col-pill-btn {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				padding: 0.5rem 0.75rem;
-				background: rgba(255, 255, 255, 0.03);
-				border: 1px solid transparent;
-				border-radius: 8px;
-				color: #cbd5e1;
-				font-size: 0.82rem;
-				font-weight: 600;
-				cursor: pointer;
-				transition: all 0.16s ease;
-				text-align: left;
-			}
-
-			.sort-pill-btn:hover,
-			.group-pill-btn:hover,
-			.col-pill-btn:hover {
-				background: rgba(255, 255, 255, 0.07);
-				color: #ffffff;
-			}
-
-			.sort-pill-btn.active,
-			.group-pill-btn.active,
-			.col-pill-btn.active {
-				background: rgba(139, 92, 246, 0.18);
-				border-color: rgba(139, 92, 246, 0.5);
-				color: #ffffff;
-				font-weight: 700;
-				box-shadow: 0 0 12px rgba(139, 92, 246, 0.2);
+				background: #ffffff;
+				color: #881337;
+				font-weight: 800;
 			}
 
 			/* Category Buttons */
@@ -412,10 +405,10 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				align-items: center;
 				justify-content: space-between;
 				padding: 0.45rem 0.75rem;
-				background: rgba(255, 255, 255, 0.03);
-				border: 1px solid transparent;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
 				border-radius: 6px;
-				color: #94a3b8;
+				color: #475569;
 				font-size: 0.8rem;
 				font-weight: 600;
 				cursor: pointer;
@@ -423,15 +416,17 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.category-pill-btn:hover {
-				color: #e2e8f0;
-				background: rgba(255, 255, 255, 0.06);
+				color: #881337;
+				background: #fff1f2;
+				border-color: #fecdd3;
 			}
 
 			.category-pill-btn.active {
-				background: rgba(139, 92, 246, 0.16);
-				border-color: rgba(139, 92, 246, 0.45);
+				background: #be123c;
+				border-color: #be123c;
 				color: #ffffff;
 				font-weight: 700;
+				box-shadow: 0 4px 12px rgba(190, 18, 60, 0.25);
 			}
 
 			.category-pill-btn .filter-count-badge {
@@ -439,16 +434,17 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				font-size: 0.72rem;
 				padding: 0.12rem 0.45rem;
 				border-radius: 4px;
-				background: rgba(255, 255, 255, 0.08);
-				color: #94a3b8;
+				background: #e2e8f0;
+				color: #475569;
 			}
 
 			.category-pill-btn.active .filter-count-badge {
-				background: #7c3aed;
-				color: #ffffff;
+				background: #ffffff;
+				color: #881337;
+				font-weight: 800;
 			}
 
-			/* Grouped Viewport Styling - Light Pink Red Theme */
+			/* Grouped Viewport Styling - Light Panel on Dark Pink Canvas */
 			.hub-grouped-container {
 				display: flex;
 				flex-direction: column;
@@ -457,14 +453,14 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.hub-group-section {
-				background: linear-gradient(180deg, rgba(254, 226, 226, 0.07) 0%, rgba(255, 241, 242, 0.02) 100%);
-				border: 1px solid rgba(251, 113, 133, 0.28);
+				background: #ffffff;
+				border: 1px solid #fecdd3;
 				border-radius: 20px;
 				padding: 1.75rem;
-				box-shadow: 0 12px 35px -10px rgba(225, 29, 72, 0.14);
+				box-shadow: 0 16px 36px -8px rgba(76, 5, 25, 0.22);
 			}
 
-			/* Prominent Category Headline with Light Pink Red Background */
+			/* Semantic H2 Category Headline with Rose Header Banner */
 			.hub-group-header {
 				display: flex;
 				align-items: center;
@@ -472,9 +468,9 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
 				border: 1px solid #fda4af;
 				border-radius: 14px;
-				padding: 0.95rem 1.4rem;
+				padding: 1rem 1.4rem;
 				margin-bottom: 1.75rem;
-				box-shadow: 0 6px 22px -4px rgba(225, 29, 72, 0.22);
+				box-shadow: 0 4px 15px -2px rgba(190, 18, 60, 0.15);
 			}
 
 			.hub-group-title-wrap {
@@ -502,7 +498,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				font-family: ui-monospace, SFMono-Regular, monospace;
 				font-size: 0.75rem;
 				font-weight: 800;
-				padding: 0.3rem 0.75rem;
+				padding: 0.35rem 0.85rem;
 				border-radius: 9999px;
 				background: #be123c;
 				color: #ffffff;
@@ -512,9 +508,9 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 
 			/* Deck Inventory Summary Card */
 			.sidebar-summary-card {
-				background: #070a10;
-				border: 1px solid #182030;
-				border-radius: 10px;
+				background: #fff1f2;
+				border: 1px solid #fecdd3;
+				border-radius: 12px;
 				padding: 1rem;
 			}
 
@@ -523,7 +519,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				font-weight: 800;
 				text-transform: uppercase;
 				letter-spacing: 0.06em;
-				color: #64748b;
+				color: #881337;
 				margin-bottom: 0.75rem;
 			}
 
@@ -535,8 +531,8 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.stat-box {
-				background: rgba(255, 255, 255, 0.03);
-				border: 1px solid rgba(255, 255, 255, 0.06);
+				background: #ffffff;
+				border: 1px solid #fecdd3;
 				border-radius: 6px;
 				padding: 0.5rem;
 				display: flex;
@@ -548,12 +544,12 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				font-family: ui-monospace, SFMono-Regular, monospace;
 				font-size: 1.15rem;
 				font-weight: 800;
-				color: #ffffff;
+				color: #be123c;
 			}
 
 			.stat-label {
 				font-size: 0.68rem;
-				color: #94a3b8;
+				color: #475569;
 			}
 
 			.summary-note {
@@ -564,9 +560,9 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.reset-filters-btn {
-				background: rgba(239, 68, 68, 0.12);
-				border: 1px solid rgba(239, 68, 68, 0.35);
-				color: #f87171;
+				background: #fee2e2;
+				border: 1px solid #fca5a5;
+				color: #b91c1c;
 				padding: 0.55rem 0.85rem;
 				border-radius: 8px;
 				font-size: 0.8rem;
@@ -577,7 +573,8 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.reset-filters-btn:hover {
-				background: #ef4444;
+				background: #dc2626;
+				border-color: #dc2626;
 				color: #ffffff;
 			}
 
@@ -588,26 +585,28 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				align-items: center;
 				margin-bottom: 1.25rem;
 				padding-bottom: 0.75rem;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+				border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 			}
 
 			.results-count-text {
 				font-size: 0.88rem;
-				color: #94a3b8;
+				color: #fce7f3;
 			}
 
 			.results-count-text strong {
 				color: #ffffff;
+				font-weight: 800;
 			}
 
 			/* Empty Results State */
 			.empty-results-state {
 				text-align: center;
 				padding: 4rem 2rem;
-				background: var(--card-dark);
-				border: 1px dashed var(--border-dark);
-				border-radius: 16px;
+				background: #ffffff;
+				border: 2px dashed #fecdd3;
+				border-radius: 20px;
 				margin-bottom: 3.5rem;
+				box-shadow: 0 16px 36px -8px rgba(76, 5, 25, 0.15);
 			}
 
 			.empty-icon {
@@ -617,19 +616,19 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 
 			.empty-title {
 				font-size: 1.2rem;
-				font-weight: 700;
-				color: #ffffff;
+				font-weight: 800;
+				color: #881337;
 				margin: 0 0 0.5rem 0;
 			}
 
 			.empty-desc {
 				font-size: 0.9rem;
-				color: #94a3b8;
+				color: #475569;
 				margin: 0 0 1.5rem 0;
 			}
 
 			.empty-reset-btn {
-				background: #7c3aed;
+				background: #be123c;
 				color: #ffffff;
 				border: none;
 				padding: 0.65rem 1.25rem;
@@ -641,7 +640,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.empty-reset-btn:hover {
-				background: #6d28d9;
+				background: #9f1239;
 			}
 
 			/* Posts Grid & Dynamic Column Controls */
@@ -677,41 +676,43 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				}
 			}
 
+			/* Post Slide Cards: Light Theme like /blog */
 			.post-slide-card {
-				background: var(--card-dark);
-				border: 1px solid var(--border-dark);
-				border-radius: 16px;
+				background: #ffffff;
+				border: 1px solid #fecdd3;
+				border-radius: 20px;
 				overflow: hidden;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				transition: all 0.22s ease;
+				transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+				box-shadow: 0 16px 36px -8px rgba(76, 5, 25, 0.15), 0 4px 16px -2px rgba(15, 23, 42, 0.04);
 			}
 
 			.post-slide-card.draft-card {
-				border-color: rgba(245, 158, 11, 0.45);
-				background: linear-gradient(180deg, rgba(245, 158, 11, 0.04) 0%, var(--card-dark) 25%);
+				border-color: #fcd34d;
+				background: linear-gradient(180deg, #fffbeb 0%, #ffffff 35%);
 			}
 
 			.post-slide-card.draft-card:hover {
 				border-color: #f59e0b;
-				box-shadow: 0 20px 45px -10px rgba(245, 158, 11, 0.22);
+				box-shadow: 0 24px 48px -10px rgba(245, 158, 11, 0.25);
 			}
 
 			.post-slide-card:hover {
-				border-color: #8b5cf6;
-				transform: translateY(-3px);
-				box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6);
+				border-color: #be123c;
+				transform: translateY(-5px);
+				box-shadow: 0 24px 48px -10px rgba(76, 5, 25, 0.25), 0 8px 20px -4px rgba(15, 23, 42, 0.08);
 			}
 
 			/* Clean Thumbnail: Zero badges on image */
 			.card-thumb-box {
 				width: 100%;
 				aspect-ratio: 16 / 9;
-				background: #090c12;
+				background: #f1f5f9;
 				position: relative;
 				overflow: hidden;
-				border-bottom: 1px solid var(--border-dark);
+				border-bottom: 1px solid #f1f5f9;
 			}
 
 			.card-thumb-img {
@@ -727,7 +728,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 
 			/* Card Content Box */
 			.card-content-box {
-				padding: 1.4rem;
+				padding: 1.5rem;
 				flex: 1;
 				display: flex;
 				flex-direction: column;
@@ -740,7 +741,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				align-items: center;
 				justify-content: space-between;
 				gap: 0.5rem;
-				margin-bottom: 0.55rem;
+				margin-bottom: 0.65rem;
 			}
 
 			.meta-badges-group {
@@ -754,9 +755,9 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 				font-size: 0.72rem;
 				font-weight: 700;
-				color: #f1f5f9;
-				background: #1e2536;
-				border: 1px solid rgba(255, 255, 255, 0.15);
+				color: #1e293b;
+				background: #f1f5f9;
+				border: 1px solid #e2e8f0;
 				padding: 0.2rem 0.55rem;
 				border-radius: 6px;
 				letter-spacing: 0.02em;
@@ -768,10 +769,10 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				gap: 0.3rem;
 				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 				font-size: 0.72rem;
-				font-weight: 600;
-				color: #d8b4fe;
-				background: rgba(168, 85, 247, 0.14);
-				border: 1px solid rgba(168, 85, 247, 0.35);
+				font-weight: 700;
+				color: #be123c;
+				background: #fff1f2;
+				border: 1px solid #fecdd3;
 				padding: 0.2rem 0.55rem;
 				border-radius: 6px;
 			}
@@ -794,15 +795,15 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.status-live {
-				background: rgba(34, 197, 94, 0.14);
-				color: #4ade80;
-				border: 1px solid rgba(34, 197, 94, 0.45);
+				background: #dcfce7;
+				color: #166534;
+				border: 1px solid #bbf7d0;
 			}
 
 			.status-draft {
-				background: rgba(245, 158, 11, 0.16);
-				color: #fbbf24;
-				border: 1px solid rgba(245, 158, 11, 0.5);
+				background: #fef3c7;
+				color: #92400e;
+				border: 1px solid #fde68a;
 			}
 
 			.status-dot {
@@ -814,12 +815,10 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 
 			.dot-live {
 				background: #22c55e;
-				box-shadow: 0 0 6px rgba(34, 197, 94, 0.8);
 			}
 
 			.dot-draft {
 				background: #f59e0b;
-				box-shadow: 0 0 6px rgba(245, 158, 11, 0.8);
 			}
 
 			/* Meta Header: Row 2 Date */
@@ -831,7 +830,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				font-size: 0.78rem;
 				margin-bottom: 0.85rem;
 				padding-bottom: 0.65rem;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+				border-bottom: 1px solid #f1f5f9;
 			}
 
 			.date-icon {
@@ -848,16 +847,16 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			.card-post-title {
 				font-family: var(--font-heading, system-ui, sans-serif);
 				font-size: 1.15rem;
-				font-weight: 700;
+				font-weight: 800;
 				line-height: 1.35;
-				color: #ffffff;
+				color: #0f172a;
 				margin: 0 0 0.55rem 0;
 				text-wrap: balance;
 			}
 
 			.card-post-desc {
 				font-size: 0.86rem;
-				color: #94a3b8;
+				color: #475569;
 				line-height: 1.5;
 				margin-bottom: 1.4rem;
 				display: -webkit-box;
@@ -881,11 +880,11 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 				justify-content: center;
 				gap: 0.45rem;
 				width: 100%;
-				padding: 0.62rem 1rem;
-				background: rgba(255, 255, 255, 0.07);
-				border: 1px solid rgba(255, 255, 255, 0.16);
+				padding: 0.65rem 1rem;
+				background: #fff1f2;
+				border: 1px solid #fda4af;
 				border-radius: 8px;
-				color: #f8fafc;
+				color: #9f1239;
 				font-size: 0.82rem;
 				font-weight: 700;
 				text-decoration: none;
@@ -894,15 +893,16 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.btn-primary-article:hover {
-				background: rgba(255, 255, 255, 0.13);
-				border-color: rgba(255, 255, 255, 0.35);
+				background: #be123c;
+				border-color: #be123c;
 				color: #ffffff;
 				transform: translateY(-1px);
+				box-shadow: 0 4px 12px rgba(190, 18, 60, 0.25);
 			}
 
 			.btn-arrow {
 				transition: transform 0.2s ease;
-				opacity: 0.6;
+				opacity: 0.8;
 			}
 
 			.btn-primary-article:hover .btn-arrow {
@@ -933,44 +933,45 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.obs-btn {
-				background: rgba(59, 130, 246, 0.12);
-				color: #93c5fd;
-				border: 1px solid rgba(59, 130, 246, 0.32);
+				background: #eff6ff;
+				color: #1d4ed8;
+				border: 1px solid #bfdbfe;
 			}
 
 			.obs-btn:hover {
 				background: #2563eb;
 				color: #ffffff;
 				border-color: #2563eb;
-				box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+				box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 			}
 
 			.cockpit-btn {
-				background: rgba(239, 68, 68, 0.12);
-				color: #fca5a5;
-				border: 1px solid rgba(239, 68, 68, 0.32);
+				background: #fff1f2;
+				color: #be123c;
+				border: 1px solid #fecdd3;
 			}
 
 			.cockpit-btn:hover {
-				background: #dc2626;
+				background: #be123c;
 				color: #ffffff;
-				border-color: #dc2626;
-				box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+				border-color: #be123c;
+				box-shadow: 0 4px 12px rgba(190, 18, 60, 0.25);
 			}
 
 			/* Guide Box */
 			.hub-guide-box {
-				background: #0d1118;
-				border: 1px solid #1e2638;
-				border-radius: 12px;
+				background: #ffffff;
+				border: 1px solid #fecdd3;
+				border-radius: 16px;
 				padding: 1.75rem 2rem;
 				margin-bottom: 3rem;
+				box-shadow: 0 12px 30px -6px rgba(76, 5, 25, 0.18);
 			}
 
 			.hub-guide-title {
 				font-size: 1.05rem;
-				font-weight: 700;
-				color: #ffffff;
+				font-weight: 800;
+				color: #881337;
 				margin-bottom: 1rem;
 				display: flex;
 				align-items: center;
@@ -992,30 +993,30 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			.step-number {
 				font-family: monospace;
 				font-size: 0.8rem;
-				font-weight: 700;
-				color: #ef4444;
+				font-weight: 800;
+				color: #be123c;
 			}
 
 			.step-heading {
 				font-size: 0.95rem;
-				font-weight: 600;
-				color: #e2e8f0;
+				font-weight: 700;
+				color: #0f172a;
 			}
 
 			.step-text {
 				font-size: 0.85rem;
-				color: #94a3b8;
+				color: #475569;
 				line-height: 1.45;
 			}
 
 			kbd {
-				background: rgba(255, 255, 255, 0.08);
-				border: 1px solid rgba(255, 255, 255, 0.15);
+				background: #f1f5f9;
+				border: 1px solid #cbd5e1;
 				border-radius: 4px;
 				padding: 0.15rem 0.4rem;
 				font-family: monospace;
 				font-size: 0.75rem;
-				color: #f1f5f9;
+				color: #0f172a;
 			}
 
 			.hub-footer-nav {
@@ -1025,8 +1026,9 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			}
 
 			.hub-nav-link {
-				color: #94a3b8;
+				color: #fce7f3;
 				font-size: 0.9rem;
+				font-weight: 600;
 				text-decoration: none;
 				transition: color 0.18s ease;
 			}
@@ -1309,7 +1311,7 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 												<span class="card-date-text">{compactDate}</span>
 											</div>
 
-											<h2 class="card-post-title" set:html={post.data.title} />
+											<h3 class="card-post-title" set:html={post.data.title} />
 											<p class="card-post-desc">{post.data.description}</p>
 										</div>
 
@@ -1456,6 +1458,13 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			let currentCols = '2';
 
 			function applyFiltersAndSort() {
+				// Safely ensure all cards are attached to postsGrid before re-filtering and grouping
+				allCards.forEach(card => {
+					if (card.parentElement !== postsGrid && postsGrid) {
+						postsGrid.appendChild(card);
+					}
+				});
+
 				let visibleCount = 0;
 
 				allCards.forEach((card) => {
@@ -1569,16 +1578,16 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 								? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`
 								: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
 
-							const h3 = document.createElement('h3');
-							h3.className = 'hub-group-title';
-							h3.textContent = group.title;
+							const h2 = document.createElement('h2');
+							h2.className = 'hub-group-title';
+							h2.textContent = group.title;
 
 							const badge = document.createElement('span');
 							badge.className = 'hub-group-badge';
 							badge.textContent = `${group.cards.length} deck${group.cards.length > 1 ? 's' : ''}`;
 
 							titleWrap.appendChild(iconSpan);
-							titleWrap.appendChild(h3);
+							titleWrap.appendChild(h2);
 							titleWrap.appendChild(badge);
 							header.appendChild(titleWrap);
 							section.appendChild(header);
