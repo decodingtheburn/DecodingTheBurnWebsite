@@ -447,63 +447,79 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			/* Grouped Viewport Styling - Light Panel on Dark Pink Canvas */
 			.hub-grouped-container {
 				display: flex;
+			/* Grouped Viewport Styling - Light Panel on Dark Pink Canvas */
+			.hub-grouped-container {
+				display: flex;
 				flex-direction: column;
-				gap: 2.75rem;
+				gap: 3.5rem;
 				margin-bottom: 2.5rem;
 			}
 
 			.hub-group-section {
 				background: #ffffff;
 				border: 1px solid #fecdd3;
-				border-radius: 20px;
-				padding: 1.75rem;
-				box-shadow: 0 16px 36px -8px rgba(76, 5, 25, 0.22);
+				border-radius: 24px;
+				padding: 2.25rem 2.25rem 1.5rem 2.25rem;
+				box-shadow: 0 20px 45px -10px rgba(76, 5, 25, 0.25);
 			}
 
-			/* Semantic H2 Category Headline with Rose Header Banner */
+			@media (max-width: 640px) {
+				.hub-group-section {
+					padding: 1.5rem 1.25rem 1rem 1.25rem;
+					border-radius: 18px;
+				}
+			}
+
+			/* Bold White Category Headline with Vibrant Crimson/Pink Header Banner */
 			.hub-group-header {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
-				border: 1px solid #fda4af;
-				border-radius: 14px;
-				padding: 1rem 1.4rem;
-				margin-bottom: 1.75rem;
-				box-shadow: 0 4px 15px -2px rgba(190, 18, 60, 0.15);
+				background: linear-gradient(135deg, #be123c 0%, #9d174d 55%, #881337 100%);
+				border: 1px solid rgba(254, 205, 211, 0.4);
+				border-radius: 18px;
+				padding: 1.6rem 2.25rem;
+				margin-bottom: 2.25rem;
+				box-shadow: 0 10px 30px -4px rgba(136, 19, 55, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
+			}
+
+			@media (max-width: 640px) {
+				.hub-group-header {
+					padding: 1.2rem 1.4rem;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 0.75rem;
+				}
 			}
 
 			.hub-group-title-wrap {
-				display: flex;
-				align-items: center;
-				gap: 0.75rem;
-			}
-
-			.hub-group-icon {
-				color: #be123c;
 				display: flex;
 				align-items: center;
 			}
 
 			.hub-group-title {
 				font-family: var(--font-heading, system-ui, sans-serif);
-				font-size: 1.35rem;
+				font-size: clamp(1.65rem, 2.75vw, 2.25rem);
 				font-weight: 800;
-				color: #881337;
+				color: #ffffff;
 				margin: 0;
-				letter-spacing: -0.01em;
+				letter-spacing: -0.025em;
+				line-height: 1.18;
+				text-wrap: balance;
+				text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 			}
 
 			.hub-group-badge {
 				font-family: ui-monospace, SFMono-Regular, monospace;
-				font-size: 0.75rem;
+				font-size: 0.82rem;
 				font-weight: 800;
-				padding: 0.35rem 0.85rem;
+				padding: 0.45rem 1.15rem;
 				border-radius: 9999px;
-				background: #be123c;
-				color: #ffffff;
+				background: #ffffff;
+				color: #881337;
 				letter-spacing: 0.03em;
-				box-shadow: 0 2px 8px rgba(190, 18, 60, 0.35);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+				flex-shrink: 0;
 			}
 
 			/* Deck Inventory Summary Card */
@@ -646,34 +662,60 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			/* Posts Grid & Dynamic Column Controls */
 			.posts-slides-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+				grid-template-columns: repeat(2, minmax(0, 1fr));
 				gap: 1.75rem;
-				margin-bottom: 2.5rem;
+				margin-bottom: 2rem;
 			}
 
-			.posts-slides-grid.cols-1 {
+			.posts-slides-grid.cols-1,
+			.hub-group-section .posts-slides-grid.cols-1 {
 				grid-template-columns: 1fr !important;
 			}
 
-			.posts-slides-grid.cols-2 {
+			.posts-slides-grid.cols-2,
+			.hub-group-section .posts-slides-grid.cols-2 {
 				grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 			}
 
-			.posts-slides-grid.cols-3 {
+			.posts-slides-grid.cols-3,
+			.hub-group-section .posts-slides-grid.cols-3 {
 				grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 			}
 
-			@media (max-width: 1024px) {
-				.posts-slides-grid.cols-3 {
-					grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+			@media (max-width: 640px) {
+				.posts-slides-grid.cols-2,
+				.posts-slides-grid.cols-3,
+				.hub-group-section .posts-slides-grid.cols-2,
+				.hub-group-section .posts-slides-grid.cols-3 {
+					grid-template-columns: 1fr !important;
 				}
 			}
 
-			@media (max-width: 720px) {
-				.posts-slides-grid.cols-2,
-				.posts-slides-grid.cols-3 {
-					grid-template-columns: 1fr !important;
-				}
+			.card-thumb-link {
+				display: block;
+				text-decoration: none;
+				cursor: pointer;
+				overflow: hidden;
+			}
+
+			.card-thumb-link:focus-visible {
+				outline: 3px solid #be123c;
+				outline-offset: -3px;
+			}
+
+			.card-title-link {
+				color: #0f172a;
+				text-decoration: none;
+				transition: color 0.18s ease;
+				display: inline;
+			}
+
+			.card-title-link:hover {
+				color: #be123c;
+			}
+
+			.post-slide-card:hover .card-title-link {
+				color: #be123c;
 			}
 
 			/* Post Slide Cards: Light Theme like /blog */
@@ -1268,15 +1310,23 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 									data-timestamp={post.data.pubDate.valueOf()}
 									data-month-year={post.data.pubDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
 								>
-									<!-- Clean Image: Zero badges on thumbnail -->
-									<div class="card-thumb-box">
-										<img 
-											src={post.data.heroImage || '/how_i_solved_my_bms_thumbnail.jpg'} 
-											alt={cleanTitle} 
-											class="card-thumb-img"
-											loading="lazy"
-										/>
-									</div>
+									<!-- Clickable Thumbnail -> Opens Article in New Tab -->
+									<a 
+										href={`/blog/${post.id}/`} 
+										target="_blank" 
+										rel="noopener noreferrer" 
+										class="card-thumb-link"
+										title={`Read "${cleanTitle}" in a new tab`}
+									>
+										<div class="card-thumb-box">
+											<img 
+												src={post.data.heroImage || '/how_i_solved_my_bms_thumbnail.jpg'} 
+												alt={cleanTitle} 
+												class="card-thumb-img"
+												loading="lazy"
+											/>
+										</div>
+									</a>
 
 									<!-- Card Content -->
 									<div class="card-content-box">
@@ -1311,13 +1361,23 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 												<span class="card-date-text">{compactDate}</span>
 											</div>
 
-											<h3 class="card-post-title" set:html={post.data.title} />
+											<!-- Clickable Headline -> Opens Article in New Tab -->
+											<h3 class="card-post-title">
+												<a 
+													href={`/blog/${post.id}/`} 
+													target="_blank" 
+													rel="noopener noreferrer" 
+													class="card-title-link"
+													title={`Read "${cleanTitle}" in a new tab`}
+													set:html={post.data.title}
+												/>
+											</h3>
 											<p class="card-post-desc">{post.data.description}</p>
 										</div>
 
 										<!-- 2-Tier Action Buttons: Full-width Article read/preview + 50/50 Deck Tools -->
 										<div class="card-actions-wrapper">
-											<a href={`/blog/${post.id}/`} class="btn-primary-article" title={isDraft ? "Preview Private Draft Article" : "Read Full Article"}>
+											<a href={`/blog/${post.id}/`} target="_blank" rel="noopener noreferrer" class="btn-primary-article" title={isDraft ? "Preview Private Draft Article in New Tab" : "Read Full Article in New Tab"}>
 												<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
 												<span>{isDraft ? 'Preview Private Draft' : 'Read Full Article'}</span>
 												<span class="btn-arrow">→</span>
@@ -1572,12 +1632,6 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 							const titleWrap = document.createElement('div');
 							titleWrap.className = 'hub-group-title-wrap';
 
-							const iconSpan = document.createElement('span');
-							iconSpan.className = 'hub-group-icon';
-							iconSpan.innerHTML = currentGroup === 'category' 
-								? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`
-								: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
-
 							const h2 = document.createElement('h2');
 							h2.className = 'hub-group-title';
 							h2.textContent = group.title;
@@ -1586,10 +1640,9 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 							badge.className = 'hub-group-badge';
 							badge.textContent = `${group.cards.length} deck${group.cards.length > 1 ? 's' : ''}`;
 
-							titleWrap.appendChild(iconSpan);
 							titleWrap.appendChild(h2);
-							titleWrap.appendChild(badge);
 							header.appendChild(titleWrap);
+							header.appendChild(badge);
 							section.appendChild(header);
 
 							const grid = document.createElement('div');
