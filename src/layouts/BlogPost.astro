@@ -427,6 +427,175 @@ if (!postNumber && slug) {
 				color: #0f172a;
 				font-weight: 700;
 			}
+
+			/* Episode & Trigger Progression Cards */
+			.post-content :global(.episode-card) {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 1.85rem 2rem;
+				margin: 2.25rem 0;
+				box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.post-content :global(.episode-card:hover) {
+				box-shadow: 0 8px 26px -4px rgba(0, 0, 0, 0.08);
+			}
+
+			.post-content :global(.episode-card-header) {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				margin-bottom: 1.35rem;
+				padding-bottom: 1rem;
+				border-bottom: 1px solid #f1f5f9;
+				flex-wrap: wrap;
+			}
+
+			.post-content :global(.episode-badge) {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.74rem;
+				font-weight: 700;
+				color: #4338ca;
+				background: #eef2ff;
+				border: 1px solid #c7d2fe;
+				padding: 0.22rem 0.65rem;
+				border-radius: 6px;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+				white-space: nowrap;
+			}
+
+			.post-content :global(.episode-card-title) {
+				font-size: 1.3rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0;
+				line-height: 1.25;
+				letter-spacing: -0.02em;
+			}
+
+			.post-content :global(.episode-field) {
+				margin-bottom: 1.2rem;
+			}
+
+			.post-content :global(.episode-field:last-child) {
+				margin-bottom: 0;
+			}
+
+			.post-content :global(.field-label) {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.72rem;
+				font-weight: 800;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+				padding: 0.18rem 0.55rem;
+				border-radius: 4px;
+				margin-bottom: 0.45rem;
+			}
+
+			.post-content :global(.label-trigger) {
+				color: #be123c;
+				background: #fff1f2;
+				border: 1px solid #fecdd3;
+			}
+
+			.post-content :global(.label-symptom) {
+				color: #c2410c;
+				background: #fff7ed;
+				border: 1px solid #fed7aa;
+			}
+
+			.post-content :global(.label-action) {
+				color: #1d4ed8;
+				background: #eff6ff;
+				border: 1px solid #bfdbfe;
+			}
+
+			.post-content :global(.label-discovery) {
+				color: #047857;
+				background: #ecfdf5;
+				border: 1px solid #a7f3d0;
+			}
+
+			.post-content :global(.label-logic) {
+				color: #6b21a8;
+				background: #faf5ff;
+				border: 1px solid #e9d5ff;
+			}
+
+			.post-content :global(.field-value-trigger) {
+				font-size: 1.12rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin: 0;
+				line-height: 1.4;
+			}
+
+			.post-content :global(.field-value-text) {
+				font-size: 0.96rem;
+				color: #334155;
+				line-height: 1.6;
+				margin: 0;
+				text-wrap: pretty;
+			}
+
+			.post-content :global(.field-value-action) {
+				font-size: 0.96rem;
+				color: #1e293b;
+				line-height: 1.6;
+				margin: 0;
+				font-weight: 500;
+				text-wrap: pretty;
+			}
+
+			.post-content :global(.field-value-discovery) {
+				background: #f8fafc;
+				border-left: 4px solid #059669;
+				padding: 0.85rem 1.15rem;
+				border-radius: 0 8px 8px 0;
+				font-size: 0.95rem;
+				color: #064e3b;
+				line-height: 1.6;
+				margin: 0;
+				font-weight: 500;
+				text-wrap: pretty;
+			}
+
+			.post-content :global(.field-value-logic) {
+				background: #faf5ff;
+				border-left: 4px solid #9333ea;
+				padding: 0.95rem 1.25rem;
+				border-radius: 0 8px 8px 0;
+				font-size: 0.98rem;
+				color: #581c87;
+				line-height: 1.65;
+				margin: 0;
+				font-weight: 500;
+				text-wrap: pretty;
+			}
+
+			@media (max-width: 640px) {
+				.post-content :global(.episode-card) {
+					padding: 1.35rem 1.25rem;
+					margin: 1.75rem 0;
+				}
+
+				.post-content :global(.episode-card-header) {
+					flex-direction: column-reverse;
+					align-items: flex-start;
+					gap: 0.5rem;
+				}
+
+				.post-content :global(.episode-card-title) {
+					font-size: 1.2rem;
+				}
+			}
 		</style>
 	</body>
 </html>
