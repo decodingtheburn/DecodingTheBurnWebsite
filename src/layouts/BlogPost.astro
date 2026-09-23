@@ -577,13 +577,16 @@ if (!postNumber && slug) {
 				text-wrap: pretty;
 			}
 
-			/* Zoomable Image / Lightbox Container */
+			/* Zoomable Image / Lightbox Container - Branded Subtle Background & Border Accent */
 			.post-content :global(.zoomable-image-container) {
 				margin: 1.5rem 0;
-				border-radius: 12px;
+				border-radius: 14px;
 				overflow: hidden;
-				border: 1px solid #e2e8f0;
-				background: #f8fafc;
+				border: none;
+				border-top: 3px solid #7c3aed;
+				border-bottom: 3px solid #7c3aed;
+				background: #faf5ff;
+				box-shadow: 0 4px 18px -2px rgba(124, 58, 237, 0.08);
 			}
 
 			.post-content :global(.zoomable-image-trigger) {
@@ -591,35 +594,19 @@ if (!postNumber && slug) {
 				position: relative;
 				cursor: zoom-in;
 				margin: 0;
-				padding: 0;
+				padding: 0.35rem;
 			}
 
 			.post-content :global(.zoomable-image-trigger img) {
 				width: 100%;
 				height: auto;
 				display: block;
+				border-radius: 10px;
 				transition: transform 0.25s ease, filter 0.25s ease;
 			}
 
 			.post-content :global(.zoomable-image-trigger:hover img) {
-				filter: brightness(1.02);
-			}
-
-			.post-content :global(.zoom-hint-badge) {
-				position: absolute;
-				bottom: 0.85rem;
-				right: 0.85rem;
-				display: inline-flex;
-				align-items: center;
-				gap: 0.35rem;
-				background: rgba(15, 23, 42, 0.85);
-				color: #ffffff;
-				backdrop-filter: blur(4px);
-				padding: 0.3rem 0.65rem;
-				border-radius: 6px;
-				font-size: 0.75rem;
-				font-weight: 600;
-				pointer-events: none;
+				filter: brightness(1.03);
 			}
 
 			/* Supplement Clean Diamond Bullet Lists */
