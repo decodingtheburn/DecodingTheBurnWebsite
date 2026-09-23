@@ -15,6 +15,20 @@ const { title = 'this article' } = Astro.props;
 		<!-- 1. Sleek Compact Bar (Small and minimal by default) -->
 		<div class="tts-compact-bar" id="tts-compact-bar">
 			<div class="tts-compact-left">
+				<span class="tts-compact-title">Listen to this article</span>
+				<span class="tts-compact-time" id="tts-time-est">Estimating...</span>
+			</div>
+
+			<div class="tts-compact-right">
+				<!-- Expand / Collapse Drawer Toggle (Options on the left of Listen) -->
+				<button type="button" class="tts-expand-toggle" id="tts-expand-btn" aria-expanded="false" title="Expand reading options and audio controls">
+					<span class="tts-expand-text">Options</span>
+					<svg class="tts-expand-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.3" fill="none">
+						<polyline points="6 9 12 15 18 9"></polyline>
+					</svg>
+				</button>
+
+				<!-- Listen Play Button (On far right) -->
 				<button type="button" class="tts-compact-play-btn" id="tts-compact-play" title="Listen to this article" aria-label="Listen to this article">
 					<svg class="tts-play-icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
 						<polygon points="6 3 20 12 6 21 6 3"></polygon>
@@ -24,31 +38,6 @@ const { title = 'this article' } = Astro.props;
 						<rect x="14" y="4" width="4" height="16" rx="1"></rect>
 					</svg>
 					<span class="tts-compact-play-label" id="tts-compact-play-label">Listen</span>
-				</button>
-
-				<div class="tts-compact-meta">
-					<span class="tts-compact-title">Listen to Article</span>
-					<span class="tts-compact-time" id="tts-time-est">Estimating...</span>
-				</div>
-			</div>
-
-			<div class="tts-compact-right">
-				<!-- Quick Bionic Reading Button (Keeps Bionic 1 click away) -->
-				<button type="button" class="tts-quick-chip" id="tts-quick-bionic" title="Toggle Bionic Reading: Bold initial letters to guide eye tracking">
-					<span>🧠 Bionic</span>
-				</button>
-
-				<!-- Quick Phrase Chunking Button -->
-				<button type="button" class="tts-quick-chip" id="tts-quick-chunking" title="Toggle Syntactic Phrase Chunking in dark ink colors">
-					<span>🧩 Chunks</span>
-				</button>
-
-				<!-- Expand / Collapse Drawer Toggle -->
-				<button type="button" class="tts-expand-toggle" id="tts-expand-btn" aria-expanded="false" title="Expand reading options and custom spacing sliders">
-					<span class="tts-expand-text">Options</span>
-					<svg class="tts-expand-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.3" fill="none">
-						<polyline points="6 9 12 15 18 9"></polyline>
-					</svg>
 				</button>
 			</div>
 		</div>

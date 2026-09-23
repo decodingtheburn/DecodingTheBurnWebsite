@@ -15,20 +15,21 @@ const { class: className = '' } = Astro.props;
 
 <style>
 	.disclaimer-compact {
-		max-width: 760px;
+		max-width: var(--reading-max-width, 58ch);
 		width: 100%;
 		margin: 0 auto;
-		padding-bottom: 35px;
-		text-align: left;
+		padding-bottom: 1.5rem;
+		text-align: center;
 		background: transparent;
 		border: none;
 	}
 
 	.disclaimer-text {
-		font-size: 0.65rem; /* 1.1x bigger than 0.58rem */
-		line-height: 1.45;
-		color: #64748b; /* subtle light-medium gray */
-		margin: 0;
+		font-size: 0.68rem;
+		line-height: 1.5;
+		color: #64748b;
+		margin: 0 auto;
+		text-align: center;
 		text-wrap: balance;
 	}
 

@@ -65,35 +65,21 @@ if (!postNumber && slug) {
 				<h1 set:html={title} />
 
 				<div class="post-meta">
-					<div class="post-meta-lockup">
+					<p class="post-meta-text">
+						<span>Published on <FormattedDate date={pubDate} /></span>
 						{postNumber && (
-							<span class="post-meta-entry">
-								<span class="post-entry-pill">Post #{postNumber}</span>
-							</span>
-						)}
-						{(tags?.[0] || category) && (
 							<>
 								<span class="post-meta-dot" aria-hidden="true">•</span>
-								<span class="post-meta-tag">{tags?.[0] || category}</span>
+								<span class="post-meta-entry">Post #{postNumber}</span>
 							</>
 						)}
-						<span class="post-meta-dot" aria-hidden="true">•</span>
-						<span class="post-meta-date">
-							<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="post-meta-icon" aria-hidden="true">
-								<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-								<line x1="16" y1="2" x2="16" y2="6"></line>
-								<line x1="8" y1="2" x2="8" y2="6"></line>
-								<line x1="3" y1="10" x2="21" y2="10"></line>
-							</svg>
-							<span>Published on <FormattedDate date={pubDate} /></span>
-						</span>
 						{updatedDate && (
 							<>
 								<span class="post-meta-dot" aria-hidden="true">•</span>
 								<span class="post-meta-updated">Updated on <FormattedDate date={updatedDate} /></span>
 							</>
 						)}
-					</div>
+					</p>
 				</div>
 				<MedicalDisclaimer />
 
@@ -177,68 +163,31 @@ if (!postNumber && slug) {
 			}
 			.post-meta {
 				max-width: var(--reading-max-width, 58ch);
-				margin: 0 auto 1.5rem auto;
+				margin: 0 auto 1.25rem auto;
+			}
+			.post-meta-text {
+				font-size: 0.88rem;
+				color: #64748b;
+				margin: 0;
+				line-height: 1.5;
 				display: flex;
 				align-items: center;
-			}
-			.post-meta-lockup {
-				display: inline-flex;
-				align-items: center;
 				flex-wrap: wrap;
-				gap: 0.45rem 0.65rem;
-				padding: 0.35rem 0.85rem;
-				background: #f8fafc;
-				border: 1px solid #e2e8f0;
-				border-radius: 8px;
-				font-size: 0.85rem;
-				color: #64748b;
-				line-height: 1.4;
+				gap: 0.45rem;
 			}
-			.post-entry-pill {
-				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-				font-size: 0.76rem;
-				font-weight: 700;
-				color: #0f172a;
-				background: #e2e8f0;
-				padding: 0.18rem 0.5rem;
-				border-radius: 5px;
-				letter-spacing: 0.01em;
-				white-space: nowrap;
-			}
-			.post-meta-tag {
-				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-				font-size: 0.74rem;
-				font-weight: 700;
-				color: #be123c;
-				background: #fff1f2;
-				border: 1px solid #fecdd3;
-				padding: 0.16rem 0.5rem;
-				border-radius: 5px;
-				letter-spacing: 0.02em;
-				white-space: nowrap;
+			.post-meta-entry {
+				font-weight: 600;
+				color: #475569;
 			}
 			.post-meta-dot {
 				color: #cbd5e1;
 				font-weight: 700;
 				user-select: none;
 			}
-			.post-meta-date {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.35rem;
-				color: #475569;
-				font-weight: 500;
-				white-space: nowrap;
-			}
-			.post-meta-icon {
-				color: #64748b;
-				flex-shrink: 0;
-			}
 			.post-meta-updated {
 				color: #64748b;
 				font-weight: 400;
-				font-size: 0.82rem;
-				white-space: nowrap;
+				font-size: 0.85rem;
 			}
 			.blog-layout-grid {
 				display: block;
@@ -650,7 +599,7 @@ if (!postNumber && slug) {
 			/* Zoomable Image / Lightbox Container - Branded Subtle Background & Border Accent */
 			.post-content :global(.zoomable-image-container) {
 				margin: 1.5rem 0;
-				border-radius: 14px;
+				border-radius: 12px;
 				overflow: hidden;
 				border: none;
 				border-top: 3px solid #7c3aed;
@@ -664,14 +613,14 @@ if (!postNumber && slug) {
 				position: relative;
 				cursor: zoom-in;
 				margin: 0;
-				padding: 0.35rem;
+				padding: 0;
 			}
 
 			.post-content :global(.zoomable-image-trigger img) {
 				width: 100%;
 				height: auto;
 				display: block;
-				border-radius: 10px;
+				border-radius: 9px;
 				transition: transform 0.25s ease, filter 0.25s ease;
 			}
 
