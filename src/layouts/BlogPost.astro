@@ -433,73 +433,65 @@ if (!postNumber && slug) {
 			   ============================================================ */
 			.post-content :global(.casebook-timeline) {
 				position: relative;
-				margin: 3.5rem 0 2rem 0;
-				padding-left: 3rem;
-			}
-
-			/* Continuous vertical spine rail */
-			.post-content :global(.casebook-timeline::before) {
-				content: '';
-				position: absolute;
-				top: 0.5rem;
-				bottom: 1.5rem;
-				left: 1.05rem;
-				width: 2px;
-				background: linear-gradient(to bottom, #cbd5e1 0%, #94a3b8 60%, #10b981 100%);
+				margin: 3rem 0 2rem 0;
+				padding-left: 2.75rem;
 			}
 
 			/* Milestone Item */
 			.post-content :global(.casebook-item) {
 				position: relative;
-				margin-bottom: 3.25rem;
+				margin-bottom: 2.75rem;
 			}
 
 			.post-content :global(.casebook-item:last-child) {
 				margin-bottom: 1.5rem;
 			}
 
-			/* Step Marker Node on the Rail */
+			/* Step Marker Node */
 			.post-content :global(.casebook-node) {
 				position: absolute;
-				left: -3rem;
-				top: 0.1rem;
-				width: 2.15rem;
-				height: 2.15rem;
+				left: -2.75rem;
+				top: 0.15rem;
+				width: 1.95rem;
+				height: 1.95rem;
 				border-radius: 50%;
 				background: #ffffff;
-				border: 2px solid #94a3b8;
+				border: 1.5px solid #cbd5e1;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 				font-size: 0.72rem;
-				font-weight: 800;
-				color: #334155;
-				box-shadow: 0 0 0 4px #ffffff, 0 2px 8px rgba(0, 0, 0, 0.08);
-				z-index: 2;
+				font-weight: 700;
+				color: #475569;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+				z-index: 1;
 			}
 
 			/* Milestone color states */
 			.post-content :global(.casebook-item.state-amber .casebook-node) {
 				border-color: #f59e0b;
 				color: #d97706;
+				background: #fffbeb;
 			}
 
 			.post-content :global(.casebook-item.state-red .casebook-node) {
-				border-color: #e11d48;
-				color: #be123c;
+				border-color: #f43f5e;
+				color: #e11d48;
+				background: #fff1f2;
 			}
 
 			.post-content :global(.casebook-item.state-purple .casebook-node) {
-				border-color: #8b5cf6;
-				color: #6d28d9;
+				border-color: #a855f7;
+				color: #7c3aed;
+				background: #faf5ff;
 			}
 
 			.post-content :global(.casebook-item.state-breakthrough .casebook-node) {
 				border-color: #10b981;
 				background: #ecfdf5;
 				color: #059669;
-				box-shadow: 0 0 0 4px #ffffff, 0 0 14px rgba(16, 185, 129, 0.35);
+				box-shadow: 0 0 0 3px #ffffff, 0 0 12px rgba(16, 185, 129, 0.25);
 			}
 
 			/* Header */
@@ -508,51 +500,93 @@ if (!postNumber && slug) {
 				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 				font-size: 0.72rem;
 				font-weight: 700;
-				letter-spacing: 0.08em;
+				letter-spacing: 0.06em;
 				text-transform: uppercase;
 				color: #64748b;
-				margin-bottom: 0.3rem;
+				margin-bottom: 0.25rem;
 			}
 
 			.post-content :global(.casebook-title) {
-				font-size: 1.35rem;
+				font-size: 1.28rem;
 				font-weight: 800;
 				color: #0f172a;
-				line-height: 1.3;
+				line-height: 1.35;
 				letter-spacing: -0.02em;
-				margin: 0 0 0.85rem 0;
+				margin: 0 0 0.75rem 0;
 			}
 
 			/* Narrative paragraph */
 			.post-content :global(.casebook-narrative) {
-				font-size: 1.02rem;
+				font-size: 1rem;
 				line-height: 1.7;
 				color: #334155;
-				margin: 0 0 1rem 0;
+				margin: 0 0 0.85rem 0;
 				text-wrap: pretty;
 			}
 
-			/* Forensic Discovery Callout (Minimalist Magazine Pullout) */
+			/* Discovery / Dead End Callout Box */
 			.post-content :global(.casebook-discovery) {
+				width: 100%;
 				background: #f8fafc;
-				border-left: 3px solid #059669;
-				padding: 0.9rem 1.25rem;
-				border-radius: 0 8px 8px 0;
-				font-size: 0.95rem;
-				line-height: 1.62;
-				color: #064e3b;
+				border: 1px solid #e2e8f0;
+				padding: 0.85rem 1.15rem;
+				border-radius: 10px;
+				font-size: 0.875rem;
+				line-height: 1.55;
+				color: #334155;
 				text-wrap: pretty;
 			}
 
 			.post-content :global(.casebook-discovery-label) {
 				display: block;
 				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-				font-size: 0.7rem;
+				font-size: 0.68rem;
 				font-weight: 800;
-				letter-spacing: 0.06em;
+				letter-spacing: 0.05em;
 				text-transform: uppercase;
-				color: #047857;
+				color: #475569;
 				margin-bottom: 0.25rem;
+			}
+
+			/* State-based Discovery Box Styling */
+			.post-content :global(.casebook-item.state-red .casebook-discovery) {
+				background: #fef2f2;
+				border-color: #fee2e2;
+				color: #991b1b;
+			}
+
+			.post-content :global(.casebook-item.state-red .casebook-discovery-label) {
+				color: #dc2626;
+			}
+
+			.post-content :global(.casebook-item.state-amber .casebook-discovery) {
+				background: #fffbeb;
+				border-color: #fef3c7;
+				color: #92400e;
+			}
+
+			.post-content :global(.casebook-item.state-amber .casebook-discovery-label) {
+				color: #d97706;
+			}
+
+			.post-content :global(.casebook-item.state-purple .casebook-discovery) {
+				background: #faf5ff;
+				border-color: #f3e8ff;
+				color: #6b21a8;
+			}
+
+			.post-content :global(.casebook-item.state-purple .casebook-discovery-label) {
+				color: #7c3aed;
+			}
+
+			.post-content :global(.casebook-item.state-breakthrough .casebook-discovery) {
+				background: #ecfdf5;
+				border-color: #a7f3d0;
+				color: #065f46;
+			}
+
+			.post-content :global(.casebook-item.state-breakthrough .casebook-discovery-label) {
+				color: #059669;
 			}
 
 			/* Breakthrough Obsidian Master Card */
