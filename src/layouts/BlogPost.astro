@@ -107,6 +107,61 @@ if (!postNumber && slug) {
 			</article>
 		</main>
 		<Footer />
+
+		<div id="image-lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Expanded Image">
+			<button class="lightbox-close-btn" id="lightbox-close" aria-label="Close image">✕</button>
+			<img id="lightbox-img" src="" alt="Enlarged view" />
+		</div>
+
+		<script>
+			function initLightbox() {
+				const triggers = document.querySelectorAll('.zoomable-image-trigger');
+				const modal = document.getElementById('image-lightbox');
+				const modalImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+				const closeBtn = document.getElementById('lightbox-close');
+
+				if (!modal || !modalImg) return;
+
+				triggers.forEach((trigger) => {
+					trigger.addEventListener('click', (e) => {
+						e.preventDefault();
+						const img = trigger.querySelector('img');
+						if (img && modalImg) {
+							modalImg.src = img.src;
+							modalImg.alt = img.alt || 'Enlarged view';
+							modal.classList.add('active');
+							document.body.style.overflow = 'hidden';
+						}
+					});
+				});
+
+				function closeModal() {
+					if (modal) {
+						modal.classList.remove('active');
+						document.body.style.overflow = '';
+					}
+				}
+
+				if (closeBtn) closeBtn.addEventListener('click', closeModal);
+				modal.addEventListener('click', (e) => {
+					if (e.target === modal || e.target === closeBtn) {
+						closeModal();
+					}
+				});
+
+				document.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape' && modal.classList.contains('active')) {
+						closeModal();
+					}
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initLightbox);
+			} else {
+				initLightbox();
+			}
+		</script>
 		<style>
 			.blog-post h1 {
 				font-size: 2.25rem;
@@ -447,7 +502,7 @@ if (!postNumber && slug) {
 				margin-bottom: 1.5rem;
 			}
 
-			/* Step Marker Node */
+			/* Step Marker Node - Unified Brand Purple */
 			.post-content :global(.casebook-node) {
 				position: absolute;
 				left: -2.75rem;
@@ -455,43 +510,17 @@ if (!postNumber && slug) {
 				width: 1.95rem;
 				height: 1.95rem;
 				border-radius: 50%;
-				background: #ffffff;
-				border: 1.5px solid #cbd5e1;
+				background: #faf5ff;
+				border: 1.5px solid #a855f7;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 				font-size: 0.72rem;
 				font-weight: 700;
-				color: #475569;
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-				z-index: 1;
-			}
-
-			/* Milestone color states */
-			.post-content :global(.casebook-item.state-amber .casebook-node) {
-				border-color: #f59e0b;
-				color: #d97706;
-				background: #fffbeb;
-			}
-
-			.post-content :global(.casebook-item.state-red .casebook-node) {
-				border-color: #f43f5e;
-				color: #e11d48;
-				background: #fff1f2;
-			}
-
-			.post-content :global(.casebook-item.state-purple .casebook-node) {
-				border-color: #a855f7;
 				color: #7c3aed;
-				background: #faf5ff;
-			}
-
-			.post-content :global(.casebook-item.state-breakthrough .casebook-node) {
-				border-color: #10b981;
-				background: #ecfdf5;
-				color: #059669;
-				box-shadow: 0 0 0 3px #ffffff, 0 0 12px rgba(16, 185, 129, 0.25);
+				box-shadow: 0 1px 3px rgba(124, 58, 237, 0.12);
+				z-index: 1;
 			}
 
 			/* Header */
@@ -534,7 +563,7 @@ if (!postNumber && slug) {
 				font-size: 0.95rem;
 				font-weight: 800;
 				letter-spacing: -0.01em;
-				color: #0f766e;
+				color: #7c3aed;
 				margin: 0 0 0.35rem 0;
 			}
 
@@ -546,21 +575,126 @@ if (!postNumber && slug) {
 				text-wrap: pretty;
 			}
 
-			/* State-based Outcome Title Accent Colors */
-			.post-content :global(.casebook-item.state-amber .casebook-outcome-title) {
-				color: #d97706;
+			/* Zoomable Image / Lightbox Container */
+			.post-content :global(.zoomable-image-container) {
+				margin: 1.5rem 0;
+				border-radius: 12px;
+				overflow: hidden;
+				border: 1px solid #e2e8f0;
+				background: #f8fafc;
 			}
 
-			.post-content :global(.casebook-item.state-red .casebook-outcome-title) {
-				color: #e11d48;
+			.post-content :global(.zoomable-image-trigger) {
+				display: block;
+				position: relative;
+				cursor: zoom-in;
+				margin: 0;
+				padding: 0;
 			}
 
-			.post-content :global(.casebook-item.state-purple .casebook-outcome-title) {
-				color: #7c3aed;
+			.post-content :global(.zoomable-image-trigger img) {
+				width: 100%;
+				height: auto;
+				display: block;
+				transition: transform 0.25s ease, filter 0.25s ease;
+			}
+
+			.post-content :global(.zoomable-image-trigger:hover img) {
+				filter: brightness(1.02);
+			}
+
+			.post-content :global(.zoom-hint-badge) {
+				position: absolute;
+				bottom: 0.85rem;
+				right: 0.85rem;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				background: rgba(15, 23, 42, 0.85);
+				color: #ffffff;
+				backdrop-filter: blur(4px);
+				padding: 0.3rem 0.65rem;
+				border-radius: 6px;
+				font-size: 0.75rem;
+				font-weight: 600;
+				pointer-events: none;
+			}
+
+			.post-content :global(.supplement-pills-grid) {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+				gap: 0.5rem;
+				margin: 1.25rem 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.post-content :global(.supplement-pill-item) {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-left: 3px solid #7c3aed;
+				border-radius: 6px;
+				padding: 0.45rem 0.75rem;
+				font-size: 0.84rem;
+				line-height: 1.4;
+				color: #334155;
+				display: flex;
+				align-items: center;
 			}
 
 			.post-content :global(.casebook-item.state-breakthrough .casebook-outcome-title) {
-				color: #059669;
+				color: #7c3aed;
+			}
+
+			/* Lightbox modal overlay */
+			.lightbox-modal {
+				position: fixed;
+				inset: 0;
+				background: rgba(15, 23, 42, 0.92);
+				backdrop-filter: blur(8px);
+				z-index: 9999;
+				display: none;
+				align-items: center;
+				justify-content: center;
+				padding: 1.5rem;
+				cursor: zoom-out;
+			}
+
+			.lightbox-modal.active {
+				display: flex;
+			}
+
+			.lightbox-modal img {
+				max-width: 95vw;
+				max-height: 90vh;
+				object-fit: contain;
+				border-radius: 8px;
+				box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+				cursor: default;
+			}
+
+			.lightbox-close-btn {
+				position: absolute;
+				top: 1.5rem;
+				right: 1.5rem;
+				background: rgba(255, 255, 255, 0.15);
+				border: 1px solid rgba(255, 255, 255, 0.3);
+				color: #ffffff;
+				font-size: 1.5rem;
+				line-height: 1;
+				width: 2.75rem;
+				height: 2.75rem;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: background 0.2s ease, transform 0.2s ease;
+			}
+
+			.lightbox-close-btn:hover {
+				background: rgba(255, 255, 255, 0.3);
+				transform: scale(1.08);
 			}
 
 			/* Breakthrough Obsidian Master Card */
