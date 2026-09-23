@@ -515,77 +515,51 @@ if (!postNumber && slug) {
 				margin: 0 0 0.75rem 0;
 			}
 
-			/* Narrative paragraph */
+			/* Narrative intro paragraph (larger prominent font) */
 			.post-content :global(.casebook-narrative) {
-				font-size: 1rem;
-				line-height: 1.7;
-				color: #334155;
-				margin: 0 0 0.85rem 0;
+				font-size: 1.125rem;
+				line-height: 1.75;
+				color: #1e293b;
+				margin: 0 0 1rem 0;
 				text-wrap: pretty;
 			}
 
-			/* Discovery / Dead End Callout Box */
-			.post-content :global(.casebook-discovery) {
-				width: 100%;
-				background: #f8fafc;
-				border: 1px solid #e2e8f0;
-				padding: 0.85rem 1.15rem;
-				border-radius: 10px;
-				font-size: 0.875rem;
-				line-height: 1.55;
-				color: #334155;
-				text-wrap: pretty;
+			/* Outcome / Finding (Plain Typographic, No Background, No Box) */
+			.post-content :global(.casebook-outcome) {
+				margin-top: 0.85rem;
+				padding: 0;
 			}
 
-			.post-content :global(.casebook-discovery-label) {
-				display: block;
-				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-				font-size: 0.68rem;
+			.post-content :global(.casebook-outcome-title) {
+				font-size: 0.95rem;
 				font-weight: 800;
-				letter-spacing: 0.05em;
-				text-transform: uppercase;
+				letter-spacing: -0.01em;
+				color: #0f766e;
+				margin: 0 0 0.35rem 0;
+			}
+
+			.post-content :global(.casebook-outcome-text) {
+				font-size: 0.96rem;
+				line-height: 1.65;
 				color: #475569;
-				margin-bottom: 0.25rem;
+				margin: 0;
+				text-wrap: pretty;
 			}
 
-			/* State-based Discovery Box Styling */
-			.post-content :global(.casebook-item.state-red .casebook-discovery) {
-				background: #fef2f2;
-				border-color: #fee2e2;
-				color: #991b1b;
-			}
-
-			.post-content :global(.casebook-item.state-red .casebook-discovery-label) {
-				color: #dc2626;
-			}
-
-			.post-content :global(.casebook-item.state-amber .casebook-discovery) {
-				background: #fffbeb;
-				border-color: #fef3c7;
-				color: #92400e;
-			}
-
-			.post-content :global(.casebook-item.state-amber .casebook-discovery-label) {
+			/* State-based Outcome Title Accent Colors */
+			.post-content :global(.casebook-item.state-amber .casebook-outcome-title) {
 				color: #d97706;
 			}
 
-			.post-content :global(.casebook-item.state-purple .casebook-discovery) {
-				background: #faf5ff;
-				border-color: #f3e8ff;
-				color: #6b21a8;
+			.post-content :global(.casebook-item.state-red .casebook-outcome-title) {
+				color: #e11d48;
 			}
 
-			.post-content :global(.casebook-item.state-purple .casebook-discovery-label) {
+			.post-content :global(.casebook-item.state-purple .casebook-outcome-title) {
 				color: #7c3aed;
 			}
 
-			.post-content :global(.casebook-item.state-breakthrough .casebook-discovery) {
-				background: #ecfdf5;
-				border-color: #a7f3d0;
-				color: #065f46;
-			}
-
-			.post-content :global(.casebook-item.state-breakthrough .casebook-discovery-label) {
+			.post-content :global(.casebook-item.state-breakthrough .casebook-outcome-title) {
 				color: #059669;
 			}
 
