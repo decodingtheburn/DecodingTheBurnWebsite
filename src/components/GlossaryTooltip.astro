@@ -1,0 +1,282 @@
+---
+// GlossaryTooltip.astro - Global Zero-Maintenance Wikipedia-style Term Explainer
+import { GLOSSARY_TERMS } from '../data/glossary';
+
+// Serialize glossary data safely for client-side injection
+const glossaryJson = JSON.stringify(GLOSSARY_TERMS);
+---
+
+<!-- Global Floating Glossary Tooltip Container -->
+<div id="glossary-preview-popup" class="glossary-popup-card" role="tooltip" aria-hidden="true">
+	<div class="glossary-popup-header">
+		<h4 class="glossary-popup-term" id="glossary-term-title">Term</h4>
+		<span class="glossary-popup-badge" id="glossary-term-category">Category</span>
+	</div>
+	<p class="glossary-popup-def" id="glossary-term-def"></p>
+	<div class="glossary-popup-context" id="glossary-term-context" style="display: none;"></div>
+	<div class="glossary-popup-footer">
+		<a href="/glossary" id="glossary-term-link" class="glossary-popup-link">
+			<span>View in Glossary</span>
+			<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M5 12h14M12 5l7 7-7 7"/>
+			</svg>
+		</a>
+		<span class="glossary-popup-hint">DecodingTheBurn Medical Index</span>
+	</div>
+</div>
+
+<script is:inline define:vars={{ glossaryJson }}>
+	(() => {
+		const termsData = JSON.parse(glossaryJson || '[]');
+		if (!termsData || termsData.length === 0) return;
+
+		// Build map of lowercased tokens -> term object
+		// Sort patterns by length descending so longer phrases match before sub-words (e.g. "Periapical Lesion" before "Periapical")
+		const termLookup = new Map();
+		const patternList = [];
+
+		termsData.forEach((entry) => {
+			const names = [entry.term, ...(entry.aliases || [])];
+			names.forEach((name) => {
+				if (!name || name.length < 2) return;
+				const lower = name.toLowerCase().trim();
+				termLookup.set(lower, entry);
+				patternList.push({
+					raw: name,
+					lower: lower,
+					length: name.length
+				});
+			});
+		});
+
+		// Deduplicate and sort longest first
+		const uniquePatterns = Array.from(
+			new Map(patternList.map((p) => [p.lower, p])).values()
+		).sort((a, b) => b.length - a.length);
+
+		// Helper: Escape regex special characters
+		function escapeRegex(str) {
+			return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		}
+
+		// Master regex matching all glossary phrases with word boundaries
+		const regexPattern = new RegExp(
+			'\\b(' + uniquePatterns.map((p) => escapeRegex(p.raw)).join('|') + ')\\b',
+			'gi'
+		);
+
+		// Scan post content and wrap terms
+		function autoTagGlossaryTerms() {
+			const container = document.querySelector('.post-content') || document.querySelector('article') || document.querySelector('main');
+			if (!container) return;
+
+			// Elements to exclude from auto-linking
+			const forbiddenTags = new Set(['A', 'BUTTON', 'SCRIPT', 'STYLE', 'PRE', 'CODE', 'INPUT', 'SELECT', 'TEXTAREA', 'H1', 'NOSCRIPT', 'SVG']);
+
+			// Walk all text nodes
+			const walker = document.createTreeWalker(
+				container,
+				NodeFilter.SHOW_TEXT,
+				{
+					acceptNode(node) {
+						if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+						
+						let parent = node.parentElement;
+						while (parent && parent !== container) {
+							if (forbiddenTags.has(parent.tagName) || parent.classList.contains('glossary-term') || parent.classList.contains('tts-ignore')) {
+								return NodeFilter.FILTER_REJECT;
+							}
+							parent = parent.parentElement;
+						}
+						return NodeFilter.FILTER_ACCEPT;
+					}
+				}
+			);
+
+			const textNodes = [];
+			let currentNode;
+			while ((currentNode = walker.nextNode())) {
+				textNodes.push(currentNode);
+			}
+
+			// Keep track of matched terms to avoid over-saturating (max 3 highlights per term per page)
+			const termOccurrences = new Map();
+
+			textNodes.forEach((node) => {
+				const text = node.nodeValue;
+				if (!text || !regexPattern.test(text)) return;
+
+				// Reset regex state
+				regexPattern.lastIndex = 0;
+
+				const frag = document.createDocumentFragment();
+				let lastIdx = 0;
+				let match;
+				let hasReplacements = false;
+
+				while ((match = regexPattern.exec(text)) !== null) {
+					const matchedText = match[0];
+					const matchStart = match.index;
+					const matchEnd = matchStart + matchedText.length;
+					const lowerMatch = matchedText.toLowerCase();
+					const entry = termLookup.get(lowerMatch);
+
+					if (!entry) continue;
+
+					const count = termOccurrences.get(entry.term) || 0;
+					if (count >= 4) {
+						// Don't overlink the exact same term more than 4 times per post
+						continue;
+					}
+
+					// Append text prior to match
+					if (matchStart > lastIdx) {
+						frag.appendChild(document.createTextNode(text.slice(lastIdx, matchStart)));
+					}
+
+					// Create interactive term span
+					const span = document.createElement('span');
+					span.className = 'glossary-term';
+					span.dataset.glossaryTerm = entry.term;
+					span.textContent = matchedText;
+					frag.appendChild(span);
+
+					termOccurrences.set(entry.term, count + 1);
+					lastIdx = matchEnd;
+					hasReplacements = true;
+				}
+
+				if (hasReplacements) {
+					if (lastIdx < text.length) {
+						frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+					}
+					node.parentNode?.replaceChild(frag, node);
+				}
+			});
+		}
+
+		// Tooltip popup UI logic
+		function initTooltipUI() {
+			const popup = document.getElementById('glossary-preview-popup');
+			const titleEl = document.getElementById('glossary-term-title');
+			const categoryEl = document.getElementById('glossary-term-category');
+			const defEl = document.getElementById('glossary-term-def');
+			const contextEl = document.getElementById('glossary-term-context');
+			const linkEl = document.getElementById('glossary-term-link');
+
+			if (!popup || !titleEl || !categoryEl || !defEl || !linkEl) return;
+
+			let hideTimeout = null;
+			let currentTarget = null;
+
+			function showTooltip(target, entry) {
+				clearTimeout(hideTimeout);
+				currentTarget = target;
+
+				titleEl.textContent = entry.term;
+				categoryEl.textContent = entry.category;
+				defEl.textContent = entry.shortDef;
+
+				if (contextEl) {
+					if (entry.patientContext) {
+						contextEl.textContent = 'Clinical note: ' + entry.patientContext;
+						contextEl.style.display = 'block';
+					} else {
+						contextEl.style.display = 'none';
+					}
+				}
+
+				// Generate slug for anchor link in glossary page
+				const slug = entry.term.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+				linkEl.href = `/glossary#${slug}`;
+
+				// Calculate position relative to viewport
+				const rect = target.getBoundingClientRect();
+				const popupWidth = 320;
+				const margin = 12;
+
+				let left = rect.left + (rect.width / 2) - (popupWidth / 2);
+				// Clamp horizontally within screen
+				if (left < margin) left = margin;
+				if (left + popupWidth > window.innerWidth - margin) {
+					left = window.innerWidth - popupWidth - margin;
+				}
+
+				// Place above if room, else below
+				const estimatedHeight = 180;
+				let top = rect.bottom + 8;
+				if (rect.bottom + estimatedHeight > window.innerHeight && rect.top - estimatedHeight > margin) {
+					top = rect.top - estimatedHeight - 8;
+				}
+
+				popup.style.left = `${left}px`;
+				popup.style.top = `${top}px`;
+				popup.classList.add('is-visible');
+				popup.setAttribute('aria-hidden', 'false');
+				target.classList.add('is-active-term');
+			}
+
+			function hideTooltip() {
+				hideTimeout = setTimeout(() => {
+					popup.classList.remove('is-visible');
+					popup.setAttribute('aria-hidden', 'true');
+					if (currentTarget) {
+						currentTarget.classList.remove('is-active-term');
+						currentTarget = null;
+					}
+				}, 120);
+			}
+
+			// Delegate hover on glossary terms
+			document.addEventListener('mouseover', (e) => {
+				const target = e.target?.closest('.glossary-term');
+				if (target && target.dataset.glossaryTerm) {
+					const termKey = target.dataset.glossaryTerm.toLowerCase();
+					const entry = termLookup.get(termKey);
+					if (entry) {
+						showTooltip(target, entry);
+					}
+				} else if (e.target?.closest('#glossary-preview-popup')) {
+					clearTimeout(hideTimeout);
+				}
+			});
+
+			document.addEventListener('mouseout', (e) => {
+				const target = e.target?.closest('.glossary-term');
+				if (target || e.target?.closest('#glossary-preview-popup')) {
+					hideTooltip();
+				}
+			});
+
+			// Touch / Mobile tap support
+			document.addEventListener('click', (e) => {
+				const target = e.target?.closest('.glossary-term');
+				if (target && target.dataset.glossaryTerm) {
+					e.preventDefault();
+					const termKey = target.dataset.glossaryTerm.toLowerCase();
+					const entry = termLookup.get(termKey);
+					if (entry) {
+						showTooltip(target, entry);
+					}
+				} else if (!e.target?.closest('#glossary-preview-popup')) {
+					popup.classList.remove('is-visible');
+					if (currentTarget) {
+						currentTarget.classList.remove('is-active-term');
+						currentTarget = null;
+					}
+				}
+			});
+		}
+
+		function init() {
+			autoTagGlossaryTerms();
+			initTooltipUI();
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', init);
+		} else {
+			init();
+		}
+	})();
+</script>

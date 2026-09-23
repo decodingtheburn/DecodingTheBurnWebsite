@@ -1,0 +1,362 @@
+---
+// src/pages/glossary.astro - Comprehensive Medical & Dental Glossary
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import { GLOSSARY_TERMS, type GlossaryEntry } from '../data/glossary';
+
+const title = 'Medical & Dental Glossary: Biophysical Terms Explained';
+const description = 'Clear, plain-language explanations of oral receptors, trigeminal pathways, dental hardware, and dietary biophysics relevant to Burning Mouth Syndrome.';
+
+// Group terms by category
+const categories: GlossaryEntry['category'][] = [
+	'Biophysics & Receptors',
+	'Dental Hardware & Anatomy',
+	'Biochemistry & Diet',
+	'Diagnostics & Clinical Terms'
+];
+
+const categoryDescriptions: Record<GlossaryEntry['category'], string> = {
+	'Biophysics & Receptors': 'Cellular channels and peripheral nerve sensors that transmit heat, acid, and burn signaling.',
+	'Dental Hardware & Anatomy': 'Tooth anatomy, roots, dental restorations, crowns, and oral nervous system structures.',
+	'Biochemistry & Diet': 'Metabolic pathways, bacterial acid fermentation, elimination protocols, and water mineral chemistry.',
+	'Diagnostics & Clinical Terms': 'Clinical procedures, medical diagnoses, dental techniques, and prescription therapies.'
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="glossary-page-container">
+				<header class="glossary-hero">
+					<div class="glossary-badge-pill">Clinical & Biophysical Knowledge Base</div>
+					<h1 class="glossary-hero-title">Decoding The Burn Glossary</h1>
+					<p class="glossary-hero-subtitle">
+						Plain-language forensic breakdowns of complex dental, receptor, and biochemical terms used throughout our patient-led research.
+					</p>
+					<div class="glossary-quick-nav">
+						{categories.map((cat) => (
+							<a href={`#category-${cat.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} class="glossary-nav-chip">
+								{cat}
+							</a>
+						))}
+					</div>
+				</header>
+
+				<MedicalDisclaimer />
+
+				<div class="glossary-content-section">
+					{categories.map((cat) => {
+						const termsInCat = GLOSSARY_TERMS.filter((t) => t.category === cat);
+						const catSlug = `category-${cat.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+						return (
+							<section class="glossary-category-block" id={catSlug}>
+								<div class="category-header">
+									<h2 class="category-title">{cat}</h2>
+									<p class="category-desc">{categoryDescriptions[cat]}</p>
+								</div>
+
+								<div class="terms-grid">
+									{termsInCat.map((entry) => {
+										const termSlug = entry.term.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+										return (
+											<article class="glossary-card" id={termSlug}>
+												<div class="card-top">
+													<h3 class="card-term">{entry.term}</h3>
+													<span class="card-category-tag">{entry.category}</span>
+												</div>
+
+												{entry.aliases && entry.aliases.length > 0 && (
+													<div class="card-aliases">
+														<span class="aliases-label">Also known as:</span>
+														{entry.aliases.map((alias) => (
+															<span class="alias-pill">{alias}</span>
+														))}
+													</div>
+												)}
+
+												<p class="card-short-def">
+													<strong>Summary:</strong> {entry.shortDef}
+												</p>
+
+												<p class="card-detailed-def">
+													{entry.detailedDef}
+												</p>
+
+												{entry.patientContext && (
+													<div class="card-patient-context">
+														<span class="context-label">💡 Lived Experience & Forensic Context:</span>
+														<p class="context-text">{entry.patientContext}</p>
+													</div>
+												)}
+											</article>
+										);
+									})}
+								</div>
+							</section>
+						);
+					})}
+				</div>
+
+				<div class="glossary-cta-box">
+					<h3>Read Denis's Full Investigation</h3>
+					<p>Explore the complete three-year chronological incident log from initial alcohol trigger to 100% carnivore remission and dental hardware resolution.</p>
+					<a href="/blog/how-i-solved-my-burning-mouth-syndrome/" class="btn btn-primary">
+						Read My BMS Story
+					</a>
+				</div>
+			</div>
+		</main>
+		<Footer />
+
+		<style>
+			.glossary-page-container {
+				max-width: 860px;
+				margin: 0 auto;
+				padding: 2.5rem 1.25rem 4rem 1.25rem;
+			}
+
+			.glossary-hero {
+				text-align: center;
+				margin-bottom: 2.5rem;
+			}
+
+			.glossary-badge-pill {
+				display: inline-block;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.76rem;
+				font-weight: 700;
+				color: #7c3aed;
+				background: #faf5ff;
+				border: 1px solid #e9d5ff;
+				padding: 0.25rem 0.75rem;
+				border-radius: 9999px;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				margin-bottom: 1rem;
+			}
+
+			.glossary-hero-title {
+				font-size: 2.35rem;
+				font-weight: 800;
+				color: var(--text-primary, #0f172a);
+				line-height: 1.2;
+				letter-spacing: -0.03em;
+				margin: 0 0 1rem 0;
+				text-wrap: balance;
+			}
+
+			.glossary-hero-subtitle {
+				font-size: 1.1rem;
+				line-height: 1.65;
+				color: #475569;
+				max-width: 640px;
+				margin: 0 auto 1.75rem auto;
+				text-wrap: pretty;
+			}
+
+			.glossary-quick-nav {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.5rem;
+				margin-top: 1rem;
+			}
+
+			.glossary-nav-chip {
+				background: #ffffff;
+				border: 1px solid #cbd5e1;
+				border-radius: 9999px;
+				padding: 0.35rem 0.85rem;
+				font-size: 0.82rem;
+				font-weight: 600;
+				color: #334155;
+				text-decoration: none;
+				transition: all 0.16s ease;
+			}
+
+			.glossary-nav-chip:hover {
+				background: #faf5ff;
+				border-color: #a855f7;
+				color: #7c3aed;
+				transform: translateY(-1px);
+			}
+
+			.glossary-category-block {
+				margin: 3.5rem 0;
+				scroll-margin-top: 2rem;
+			}
+
+			.category-header {
+				border-bottom: 2px solid #f1f5f9;
+				padding-bottom: 0.85rem;
+				margin-bottom: 1.75rem;
+			}
+
+			.category-title {
+				font-size: 1.6rem;
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.02em;
+				margin: 0 0 0.35rem 0;
+			}
+
+			.category-desc {
+				font-size: 0.95rem;
+				color: #64748b;
+				margin: 0;
+			}
+
+			.terms-grid {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+
+			.glossary-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-left: 4px solid #7c3aed;
+				border-radius: 12px;
+				padding: 1.5rem 1.75rem;
+				box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+				scroll-margin-top: 2rem;
+				transition: border-color 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.glossary-card:hover,
+			.glossary-card:target {
+				border-left-color: #6d28d9;
+				box-shadow: 0 6px 20px rgba(124, 58, 237, 0.1);
+			}
+
+			.card-top {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 0.75rem;
+				flex-wrap: wrap;
+				margin-bottom: 0.6rem;
+			}
+
+			.card-term {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0;
+				letter-spacing: -0.015em;
+			}
+
+			.card-category-tag {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.68rem;
+				font-weight: 700;
+				color: #7c3aed;
+				background: #faf5ff;
+				border: 1px solid #e9d5ff;
+				padding: 0.15rem 0.5rem;
+				border-radius: 4px;
+			}
+
+			.card-aliases {
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 0.35rem;
+				margin-bottom: 0.85rem;
+			}
+
+			.aliases-label {
+				font-size: 0.76rem;
+				color: #94a3b8;
+				font-weight: 600;
+			}
+
+			.alias-pill {
+				background: #f1f5f9;
+				color: #475569;
+				font-size: 0.72rem;
+				font-weight: 600;
+				padding: 0.1rem 0.45rem;
+				border-radius: 4px;
+			}
+
+			.card-short-def {
+				font-size: 0.96rem;
+				line-height: 1.6;
+				color: #1e293b;
+				margin: 0 0 0.65rem 0;
+			}
+
+			.card-detailed-def {
+				font-size: 0.92rem;
+				line-height: 1.65;
+				color: #475569;
+				margin: 0 0 1rem 0;
+			}
+
+			.card-patient-context {
+				background: #f8fafc;
+				border: 1px solid #edf2f7;
+				border-left: 3px solid #0ea5e9;
+				border-radius: 6px;
+				padding: 0.75rem 1rem;
+			}
+
+			.context-label {
+				display: block;
+				font-size: 0.78rem;
+				font-weight: 700;
+				color: #0284c7;
+				margin-bottom: 0.25rem;
+			}
+
+			.context-text {
+				font-size: 0.88rem;
+				line-height: 1.55;
+				color: #334155;
+				margin: 0;
+			}
+
+			.glossary-cta-box {
+				background: linear-gradient(145deg, #090d16 0%, #15102a 100%);
+				color: #ffffff;
+				border-radius: 16px;
+				padding: 2.25rem 2rem;
+				text-align: center;
+				margin-top: 4rem;
+				box-shadow: 0 16px 40px rgba(15, 23, 42, 0.25);
+			}
+
+			.glossary-cta-box h3 {
+				color: #ffffff;
+				font-size: 1.45rem;
+				font-weight: 800;
+				margin: 0 0 0.65rem 0;
+			}
+
+			.glossary-cta-box p {
+				color: #cbd5e1;
+				font-size: 0.98rem;
+				line-height: 1.6;
+				max-width: 580px;
+				margin: 0 auto 1.5rem auto;
+			}
+
+			@media (max-width: 600px) {
+				.glossary-hero-title {
+					font-size: 1.85rem;
+				}
+				.glossary-card {
+					padding: 1.25rem 1rem;
+				}
+			}
+		</style>
+	</body>
+</html>

@@ -1651,13 +1651,7 @@ nav {
 	display: inline;
 	border-radius: 3px;
 	transition: background-color 0.12s ease, color 0.12s ease, box-shadow 0.12s ease;
-	cursor: pointer;
-}
-
-.tts-word:hover {
-	background-color: rgba(200, 56, 44, 0.08);
-	text-decoration: underline;
-	text-decoration-color: rgba(200, 56, 44, 0.4);
+	cursor: text;
 }
 
 /* Active Sentence: Warm, subtle crimson wash */
@@ -1677,6 +1671,126 @@ nav {
 	box-shadow: 0 2px 10px rgba(200, 56, 44, 0.4);
 	font-weight: 700;
 	border-bottom: none !important;
+}
+
+/* ==========================================================================
+   Wikipedia-Style Interactive Medical & Dental Glossary Preview System
+   ========================================================================== */
+.glossary-term {
+	text-decoration: underline dotted 1.5px #7c3aed;
+	text-underline-offset: 3px;
+	color: inherit;
+	cursor: help;
+	border-radius: 2px;
+	transition: background-color 0.15s ease, text-decoration-color 0.15s ease;
+	position: relative;
+	display: inline;
+}
+
+.glossary-term:hover,
+.glossary-term.is-active-term {
+	background-color: rgba(124, 58, 237, 0.08);
+	text-decoration-color: #7c3aed;
+}
+
+/* Floating Wikipedia-style hover preview card */
+.glossary-popup-card {
+	position: fixed;
+	z-index: 99999;
+	width: 320px;
+	max-width: calc(100vw - 2rem);
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.18), 0 4px 12px -2px rgba(124, 58, 237, 0.08);
+	padding: 1rem 1.15rem;
+	pointer-events: auto;
+	opacity: 0;
+	transform: translateY(6px);
+	transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+	font-family: var(--font-body, system-ui, sans-serif);
+}
+
+.glossary-popup-card.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.glossary-popup-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	margin-bottom: 0.4rem;
+	border-bottom: 1px solid #f1f5f9;
+	padding-bottom: 0.4rem;
+}
+
+.glossary-popup-term {
+	font-size: 0.95rem;
+	font-weight: 800;
+	color: #0f172a;
+	margin: 0;
+	letter-spacing: -0.01em;
+}
+
+.glossary-popup-badge {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.65rem;
+	font-weight: 700;
+	color: #7c3aed;
+	background: #faf5ff;
+	border: 1px solid #e9d5ff;
+	padding: 0.12rem 0.4rem;
+	border-radius: 4px;
+	white-space: nowrap;
+}
+
+.glossary-popup-def {
+	font-size: 0.86rem;
+	line-height: 1.55;
+	color: #334155;
+	margin: 0 0 0.55rem 0;
+}
+
+.glossary-popup-context {
+	background: #f8fafc;
+	border-left: 3px solid #7c3aed;
+	border-radius: 4px;
+	padding: 0.4rem 0.6rem;
+	font-size: 0.78rem;
+	line-height: 1.45;
+	color: #475569;
+	margin: 0 0 0.65rem 0;
+}
+
+.glossary-popup-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.74rem;
+	padding-top: 0.35rem;
+	border-top: 1px dashed #e2e8f0;
+}
+
+.glossary-popup-link {
+	color: #7c3aed;
+	font-weight: 700;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	transition: color 0.15s ease;
+}
+
+.glossary-popup-link:hover {
+	color: #6d28d9;
+	text-decoration: underline;
+}
+
+.glossary-popup-hint {
+	color: #94a3b8;
+	font-size: 0.68rem;
 }
 
 @media print {
