@@ -1,16 +1,22 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { sortPostsDescending } from '../utils/postUtils';
+
+const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = sortPostsDescending(rawPosts);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="Be a Guest on the Podcast | Decoding The Burn" 
-			description="Join Denis Ethier on the Decoding The Burn podcast. Calling patients, dentists, doctors, and researchers to share insights on Burning Mouth Syndrome." 
+			title="The Decoding the Burning Mouth Syndrome Podcast | Denis Ethier" 
+			description="The Decoding the Burning Mouth Syndrome Podcast. Advancing scientific research on Burning Mouth Syndrome through radical data transparency and patient-clinician conversations." 
 		/>
 	</head>
 	<body>
@@ -20,18 +26,32 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				<MedicalDisclaimer />
 			</div>
 
+			<!-- Hero Section -->
 			<header class="podcast-hero">
-				<h1 class="podcast-title">Join the Conversation on Decoding The&nbsp;Burn</h1>
+				<h1 class="podcast-title">The Decoding the Burning Mouth Syndrome Podcast</h1>
 				<p class="podcast-lead-subhead">
-					I am launching a podcast to bring patients, dentists, doctors, and researchers together. If you want to share your clinical perspective or lived experience, apply below to join&nbsp;me.
+					Advancing scientific research on Burning Mouth Syndrome through radical data transparency, patient-clinician conversations, and forensic root-cause&nbsp;investigation.
 				</p>
 
-				<!-- Notify of First Episode Form -->
-				<div class="podcast-notify-box">
+				<!-- Quick Nav Action Buttons -->
+				<div class="podcast-quick-actions">
+					<a href="#episodes" class="btn btn-primary action-btn">
+						<span>🎧 Browse Episodes</span>
+					</a>
+					<a href="/podcast/guest-guide" class="btn btn-outline action-btn">
+						<span>📋 BMS Sufferer Guest Guide</span>
+					</a>
+					<a href="#apply" class="btn btn-outline action-btn">
+						<span>🎙️ Apply to Be a Guest</span>
+					</a>
+				</div>
+
+				<!-- Notify of New Episode Box -->
+				<div class="podcast-notify-box" id="notify">
 					<div class="notify-icon-badge" aria-hidden="true">🎙️</div>
-					<h2 class="notify-title">Be Notified of Our First&nbsp;Episode</h2>
+					<h2 class="notify-title">Get Notified of New Episodes</h2>
 					<p class="notify-subtext">
-						Drop your email below to receive a direct link the day episode one goes live. No spam,&nbsp;ever.
+						Drop your email below to receive a direct link as new podcast interviews and case studies go live. No spam,&nbsp;ever.
 					</p>
 
 					<form 
@@ -40,11 +60,10 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 						method="POST" 
 						class="notify-form"
 					>
-						<!-- FormSubmit Configuration -->
-						<input type="hidden" name="_subject" value="[BMS Podcast] New First Episode Notification Subscriber" />
+						<input type="hidden" name="_subject" value="[BMS Podcast] New Episode Subscriber" />
 						<input type="hidden" name="_captcha" value="false" />
 						<input type="hidden" name="_template" value="table" />
-						<input type="hidden" name="form_type" value="First Episode Notification" />
+						<input type="hidden" name="form_type" value="Podcast Episode Notification" />
 
 						<div class="notify-input-row">
 							<input 
@@ -64,59 +83,120 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 					<div id="notify-success-box" class="notify-success-msg hidden" role="alert">
 						<span class="notify-check-icon">✓</span>
-						<span>You are on the list! I will email you as soon as our first episode&nbsp;airs.</span>
+						<span>You are on the list! I will email you as soon as the next episode&nbsp;airs.</span>
 					</div>
 				</div>
 			</header>
 
-			<section class="guest-categories-grid" aria-label="Who we are inviting">
-				<div class="category-card">
-					<div class="category-icon-wrapper" aria-hidden="true">
-						<span class="category-emoji">👤</span>
+			<!-- Episodes & Casebook Archive Section -->
+			<section class="episodes-section" id="episodes">
+				<div class="section-header-row">
+					<div>
+						<h2 class="episodes-heading">Podcast Episodes & Research Notes</h2>
+						<p class="episodes-subheading">Listen, read, and explore our full series of deep dives, self-experiments, and clinical case studies.</p>
 					</div>
-					<h2 class="category-title">BMS Patients</h2>
-					<p class="category-description">
-						Share your lived story, your triggers, what treatments failed, and what strategies helped calm your&nbsp;burning.
-					</p>
+					<a href="/podcast/guest-guide" class="guest-guide-link">
+						<span>View Guest Guide & Questions →</span>
+					</a>
 				</div>
 
-				<div class="category-card">
-					<div class="category-icon-wrapper" aria-hidden="true">
-						<span class="category-emoji">🦷</span>
-					</div>
-					<h2 class="category-title">Dentists & Specialists</h2>
-					<p class="category-description">
-						Discuss cervical margins, root exposure, failing crown restorations, subgingival bacteria, and periodontal&nbsp;health.
-					</p>
-				</div>
-
-				<div class="category-card">
-					<div class="category-icon-wrapper" aria-hidden="true">
-						<span class="category-emoji">🩺</span>
-					</div>
-					<h2 class="category-title">Medical Doctors</h2>
-					<p class="category-description">
-						Explore trigeminal neuropathy, autonomic dysregulation, small-fiber nerves, and the gaps in modern clinical&nbsp;training.
-					</p>
-				</div>
-
-				<div class="category-card">
-					<div class="category-icon-wrapper" aria-hidden="true">
-						<span class="category-emoji">🔬</span>
-					</div>
-					<h2 class="category-title">Researchers</h2>
-					<p class="category-description">
-						Highlight emerging science on acid-sensing ion channels, salivary chemistry, nerve regeneration, and objective&nbsp;biomarkers.
-					</p>
+				<div class="episodes-grid">
+					{
+						posts.map((post, index) => {
+							const episodeNumber = post.data.entryNumber ?? (posts.length - index);
+							const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
+							return (
+								<article class="episode-card">
+									<a href={`/blog/${post.id}/`} class="episode-card-link">
+										<div class="episode-img" style={`background-image: url(${imageSrc || '/how-i-solved-my-bms-youtube-thumbnail.jpg'})`}>
+											<span class="episode-badge">Episode #{episodeNumber}</span>
+										</div>
+										<div class="episode-body">
+											<div class="episode-meta">
+												<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
+												{post.data.category && (
+													<>
+														<span class="meta-dot">•</span>
+														<span class="meta-category">{post.data.category}</span>
+													</>
+												)}
+											</div>
+											<h3 class="episode-title" set:html={post.data.title} />
+											<p class="episode-desc">{post.data.description}</p>
+											<div class="episode-footer">
+												<span class="listen-link">Listen & Read Episode →</span>
+											</div>
+										</div>
+									</a>
+								</article>
+							);
+						})
+					}
 				</div>
 			</section>
 
-			<section class="podcast-form-card">
+			<!-- Guest Categories Grid -->
+			<section class="guest-categories-section">
+				<div class="section-center-head">
+					<h2 class="section-title">Who We Interview on the Podcast</h2>
+					<p class="section-subtitle">We bring four key perspectives together to advance scientific understanding from every angle.</p>
+				</div>
+
+				<div class="guest-categories-grid" aria-label="Who we are inviting">
+					<div class="category-card">
+						<div class="category-icon-wrapper" aria-hidden="true">
+							<span class="category-emoji">👤</span>
+						</div>
+						<h3 class="category-title">BMS Patients</h3>
+						<p class="category-description">
+							Share your timeline, onset triggers, pain fluctuations, what failed, and what strategies brought you&nbsp;relief.
+						</p>
+						<a href="/podcast/guest-guide" class="category-guide-link">View Sufferer Questions →</a>
+					</div>
+
+					<div class="category-card">
+						<div class="category-icon-wrapper" aria-hidden="true">
+							<span class="category-emoji">🦷</span>
+						</div>
+						<h3 class="category-title">Dentists & Specialists</h3>
+						<p class="category-description">
+							Discuss cervical margins, exposed tubules, hidden crown decay, galvanism, and periodontal biofilm&nbsp;pathways.
+						</p>
+					</div>
+
+					<div class="category-card">
+						<div class="category-icon-wrapper" aria-hidden="true">
+							<span class="category-emoji">🩺</span>
+						</div>
+						<h3 class="category-title">Medical Doctors</h3>
+						<p class="category-description">
+							Explore small-fiber neuropathy, trigeminal sensory pathways, autonomic dysfunction, and gaps in modern clinical&nbsp;training.
+						</p>
+					</div>
+
+					<div class="category-card">
+						<div class="category-icon-wrapper" aria-hidden="true">
+							<span class="category-emoji">🔬</span>
+						</div>
+						<h3 class="category-title">Researchers</h3>
+						<p class="category-description">
+							Highlight emerging science on acid-sensing ion channels (ASIC/TRPV1), salivary chemistry, and dietary elimination&nbsp;trials.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Apply to Be a Guest Section -->
+			<section class="podcast-form-card" id="apply">
 				<div class="form-header">
-					<h2 class="form-heading">Apply to Be a Guest</h2>
+					<h2 class="form-heading">Apply to Be a Guest on the Podcast</h2>
 					<p class="form-subtext">
-						Fill out this quick form. Denis reviews every submission personally and will follow up with you by&nbsp;email.
+						Whether you are a patient living with BMS or a clinician with insights to share, Denis reviews every submission personally.
 					</p>
+					<div class="guest-guide-callout">
+						<span>Looking for the interview format? Check out the </span>
+						<a href="/podcast/guest-guide" class="inline-guide-link"><strong>BMS Sufferer Guest Guide & Question List →</strong></a>
+					</div>
 				</div>
 
 				<form 
@@ -125,7 +205,6 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 					method="POST" 
 					class="guest-form"
 				>
-					<!-- FormSubmit Configuration -->
 					<input type="hidden" name="_subject" value="[BMS Podcast Guest Application] Decoding The Burn" />
 					<input type="hidden" name="_captcha" value="false" />
 					<input type="hidden" name="_template" value="table" />
@@ -189,7 +268,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 					<div class="form-group">
 						<label for="guest-story" class="form-label">
-							What do you do, and what would you like to share on the podcast?
+							What is your background, and what would you like to share?
 						</label>
 						<textarea 
 							id="guest-story" 
@@ -209,7 +288,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 					</div>
 
 					<p class="privacy-notice">
-						Your email and information remain strictly private. I will only use your details to contact you regarding the&nbsp;podcast.
+						Your email and information remain strictly confidential. I will only use your details to coordinate podcast appearances.
 					</p>
 				</form>
 
@@ -221,7 +300,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 						Your details have been sent directly to Denis Ethier at <strong class="user-email-highlight">denis@denisethier.com</strong>.
 					</p>
 					<p class="success-followup">
-						I review every application carefully and will reach out to you by email soon to discuss episode planning and&nbsp;scheduling.
+						I review every application personally and will reach out to you by email to coordinate scheduling.
 					</p>
 					<button type="button" id="reset-form-btn" class="btn btn-outline success-reset-btn">
 						Submit Another Note
@@ -253,7 +332,6 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 					e.preventDefault();
 					errorBanner?.classList.add('hidden');
 
-					// UI loading state
 					submitBtn.disabled = true;
 					btnText?.classList.add('hidden');
 					btnSpinner?.classList.remove('hidden');
@@ -274,11 +352,9 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 							successBox?.classList.remove('hidden');
 							successBox?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 						} else {
-							// Fallback to normal form submit if JSON endpoint is blocked
 							form.submit();
 						}
 					} catch (err) {
-						// Network failure fallback
 						form.submit();
 					} finally {
 						submitBtn.disabled = false;
@@ -345,7 +421,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 		<style>
 			.podcast-page-container {
-				max-width: 860px;
+				max-width: 1080px;
 				margin: 1.5rem auto 5rem;
 				padding: 0 1.5rem;
 			}
@@ -356,7 +432,10 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			.podcast-hero {
 				text-align: center;
-				margin-bottom: 3rem;
+				margin-bottom: 4rem;
+				max-width: 860px;
+				margin-left: auto;
+				margin-right: auto;
 			}
 
 			.podcast-title {
@@ -376,6 +455,21 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				max-width: 760px;
 				margin: 0 auto;
 				text-wrap: balance;
+			}
+
+			.podcast-quick-actions {
+				display: flex;
+				justify-content: center;
+				gap: 0.85rem;
+				flex-wrap: wrap;
+				margin-top: 2rem;
+			}
+
+			.action-btn {
+				padding: 0.75rem 1.4rem;
+				font-weight: 700;
+				text-decoration: none;
+				font-size: 0.95rem;
 			}
 
 			/* Top Notify Box */
@@ -448,96 +542,273 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				font-weight: 700;
 				border-radius: 12px;
 				white-space: nowrap;
-				cursor: pointer;
 			}
 
 			.notify-success-msg {
+				margin-top: 1rem;
+				padding: 0.85rem 1rem;
+				background: #f0fdf4;
+				border: 1px solid #bbf7d0;
+				border-radius: 10px;
+				color: #166534;
+				font-size: 0.92rem;
+				font-weight: 600;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				gap: 0.6rem;
-				padding: 1rem 1.25rem;
-				border-radius: 12px;
-				background: #f0fdf4;
-				border: 1px solid #bbf7d0;
-				color: #166534;
-				font-size: 0.95rem;
-				font-weight: 600;
+				gap: 0.5rem;
 			}
 
-			.notify-check-icon {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				width: 24px;
-				height: 24px;
-				border-radius: 50%;
-				background: #16a34a;
+			/* Episodes Section */
+			.episodes-section {
+				margin-bottom: 5rem;
+			}
+
+			.section-header-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+				margin-bottom: 2rem;
+				gap: 1.5rem;
+				flex-wrap: wrap;
+				border-bottom: 2px solid #f1f5f9;
+				padding-bottom: 1.25rem;
+			}
+
+			.episodes-heading {
+				font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.025em;
+				margin: 0 0 0.4rem 0;
+			}
+
+			.episodes-subheading {
+				font-size: 1.05rem;
+				color: #64748b;
+				margin: 0;
+			}
+
+			.guest-guide-link {
+				font-weight: 700;
+				color: #be123c;
+				font-size: 0.95rem;
+				text-decoration: none;
+				white-space: nowrap;
+				transition: color 0.15s ease;
+			}
+
+			.guest-guide-link:hover {
+				color: #9f1239;
+				text-decoration: underline;
+			}
+
+			.episodes-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+				gap: 1.75rem;
+			}
+
+			.episode-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.05);
+				transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.episode-card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.08);
+				border-color: #cbd5e1;
+			}
+
+			.episode-card-link {
+				color: inherit;
+				text-decoration: none;
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+			}
+
+			.episode-img {
+				width: 100%;
+				height: 190px;
+				background-size: cover;
+				background-position: center;
+				position: relative;
+				border-bottom: 1px solid #f1f5f9;
+			}
+
+			.episode-badge {
+				position: absolute;
+				bottom: 0.75rem;
+				left: 0.75rem;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.74rem;
+				font-weight: 800;
 				color: #ffffff;
-				font-size: 0.85rem;
+				background: rgba(15, 23, 42, 0.85);
+				backdrop-filter: blur(4px);
+				padding: 0.2rem 0.6rem;
+				border-radius: 6px;
+				letter-spacing: 0.02em;
+			}
+
+			.episode-body {
+				padding: 1.35rem 1.5rem 1.5rem;
+				display: flex;
+				flex-direction: column;
+				flex: 1;
+			}
+
+			.episode-meta {
+				display: flex;
+				align-items: center;
+				gap: 0.45rem;
+				font-size: 0.8rem;
+				color: #64748b;
+				margin-bottom: 0.6rem;
+			}
+
+			.meta-dot {
+				color: #cbd5e1;
+			}
+
+			.meta-category {
+				font-weight: 600;
+				color: #be123c;
+			}
+
+			.episode-title {
+				font-size: 1.2rem;
+				font-weight: 800;
+				line-height: 1.35;
+				color: #0f172a;
+				margin: 0 0 0.65rem 0;
+				letter-spacing: -0.015em;
+			}
+
+			.episode-desc {
+				font-size: 0.92rem;
+				line-height: 1.55;
+				color: #475569;
+				margin: 0 0 1.25rem 0;
+				display: -webkit-box;
+				-webkit-line-clamp: 3;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				flex: 1;
+			}
+
+			.episode-footer {
+				margin-top: auto;
+				padding-top: 0.75rem;
+				border-top: 1px solid #f1f5f9;
+			}
+
+			.listen-link {
+				font-size: 0.88rem;
+				font-weight: 700;
+				color: #be123c;
+			}
+
+			/* Guest Categories */
+			.guest-categories-section {
+				margin-bottom: 5rem;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 3rem 2rem;
+			}
+
+			.section-center-head {
+				text-align: center;
+				max-width: 650px;
+				margin: 0 auto 2.5rem auto;
+			}
+
+			.section-title {
+				font-size: clamp(1.65rem, 3vw, 2.1rem);
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.5rem 0;
+				letter-spacing: -0.02em;
+				text-wrap: balance;
+			}
+
+			.section-subtitle {
+				font-size: 1.05rem;
+				color: #475569;
+				margin: 0;
+				line-height: 1.6;
+				text-wrap: balance;
 			}
 
 			.guest-categories-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 				gap: 1.25rem;
-				margin-bottom: 3.5rem;
 			}
 
 			.category-card {
 				background: #ffffff;
-				border: 1px solid var(--card-border);
-				border-radius: 18px;
-				padding: 1.5rem 1.25rem;
-				box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+				border: 1px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 1.65rem;
 				display: flex;
 				flex-direction: column;
-				transition: transform 0.2s ease, box-shadow 0.2s ease;
-			}
-
-			.category-card:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
 			}
 
 			.category-icon-wrapper {
-				width: 44px;
-				height: 44px;
-				border-radius: 12px;
-				background: #f8fafc;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				margin-bottom: 1rem;
-				border: 1px solid #e2e8f0;
-			}
-
-			.category-emoji {
-				font-size: 1.5rem;
-				line-height: 1;
+				font-size: 1.85rem;
+				margin-bottom: 0.75rem;
 			}
 
 			.category-title {
-				font-size: 1.1rem;
-				font-weight: 700;
+				font-size: 1.15rem;
+				font-weight: 800;
 				color: #0f172a;
-				margin-bottom: 0.5rem;
+				margin: 0 0 0.5rem 0;
 			}
 
 			.category-description {
-				font-size: 0.88rem;
-				color: #475569;
+				font-size: 0.92rem;
 				line-height: 1.55;
-				margin-bottom: 0;
-				text-wrap: pretty;
+				color: #475569;
+				margin: 0 0 1rem 0;
+				flex: 1;
 			}
 
+			.category-guide-link {
+				font-size: 0.86rem;
+				font-weight: 700;
+				color: #be123c;
+				text-decoration: none;
+			}
+
+			.category-guide-link:hover {
+				text-decoration: underline;
+			}
+
+			/* Guest Application Card */
 			.podcast-form-card {
 				background: #ffffff;
-				border: 1px solid var(--card-border);
+				border: 1px solid #e2e8f0;
 				border-radius: 24px;
 				padding: 3rem 2.5rem;
-				box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.08);
+				max-width: 860px;
+				margin: 0 auto;
+				box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.06);
+			}
+
+			@media (max-width: 640px) {
+				.podcast-form-card {
+					padding: 2rem 1.5rem;
+				}
 			}
 
 			.form-header {
@@ -546,25 +817,53 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			}
 
 			.form-heading {
-				font-size: 1.75rem;
+				font-size: clamp(1.65rem, 3.5vw, 2.25rem);
 				font-weight: 800;
-				color: #000000;
-				letter-spacing: -0.02em;
-				margin-bottom: 0.5rem;
+				color: #0f172a;
+				letter-spacing: -0.025em;
+				margin-bottom: 0.65rem;
+				text-wrap: balance;
 			}
 
 			.form-subtext {
-				font-size: 1rem;
+				font-size: 1.05rem;
 				color: #475569;
-				max-width: 620px;
-				margin: 0 auto;
+				max-width: 600px;
+				margin: 0 auto 1rem auto;
+				line-height: 1.6;
 				text-wrap: balance;
+			}
+
+			.guest-guide-callout {
+				display: inline-block;
+				background: #fff1f2;
+				border: 1px solid #fecdd3;
+				padding: 0.5rem 1rem;
+				border-radius: 8px;
+				font-size: 0.92rem;
+				color: #9f1239;
+				margin-top: 0.5rem;
+			}
+
+			.inline-guide-link {
+				color: #be123c;
+				text-decoration: none;
+			}
+
+			.inline-guide-link:hover {
+				text-decoration: underline;
 			}
 
 			.guest-form {
 				display: flex;
 				flex-direction: column;
 				gap: 1.5rem;
+			}
+
+			.form-group {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
 			}
 
 			.form-row {
@@ -576,19 +875,10 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				.form-row {
 					flex-direction: column;
 				}
-				.podcast-form-card {
-					padding: 2rem 1.5rem;
-				}
 			}
 
 			.flex-1 {
 				flex: 1;
-			}
-
-			.form-group {
-				display: flex;
-				flex-direction: column;
-				gap: 0.5rem;
 			}
 
 			.form-label {
@@ -598,9 +888,9 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			}
 
 			.role-selector-grid {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.5rem;
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+				gap: 0.65rem;
 			}
 
 			.role-pill {
@@ -608,40 +898,38 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				position: relative;
 			}
 
-			.role-pill input[type="radio"] {
+			.role-pill input {
 				position: absolute;
 				opacity: 0;
-				pointer-events: none;
+				width: 0;
+				height: 0;
 			}
 
 			.role-label-content {
-				display: inline-block;
-				padding: 0.55rem 1rem;
-				border-radius: 9999px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.65rem 0.85rem;
 				background: #f8fafc;
-				border: 1px solid #cbd5e1;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 10px;
 				font-size: 0.88rem;
 				font-weight: 600;
 				color: #334155;
-				transition: all 0.15s ease;
-				user-select: none;
+				text-align: center;
+				transition: all 0.16s ease;
 			}
 
-			.role-pill input[type="radio"]:checked + .role-label-content {
-				background: #c8382c;
-				border-color: #c8382c;
-				color: #ffffff;
-				box-shadow: 0 4px 12px rgba(200, 56, 44, 0.25);
+			.role-pill input:checked + .role-label-content {
+				background: #fff1f2;
+				border-color: #be123c;
+				color: #be123c;
+				font-weight: 700;
+				box-shadow: 0 0 0 1px #be123c;
 			}
 
-			.role-pill:hover .role-label-content {
-				border-color: #94a3b8;
-			}
-
-			.text-input,
-			.text-area-input {
-				width: 100%;
-				padding: 0.85rem 1rem;
+			.text-input, .text-area-input {
+				padding: 0.85rem 1.1rem;
 				border-radius: 12px;
 				border: 1px solid #cbd5e1;
 				background: #ffffff;
@@ -651,16 +939,10 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				transition: border-color 0.2s ease, box-shadow 0.2s ease;
 			}
 
-			.text-input:focus,
-			.text-area-input:focus {
+			.text-input:focus, .text-area-input:focus {
 				outline: none;
-				border-color: #c8382c;
-				box-shadow: 0 0 0 3px rgba(200, 56, 44, 0.12);
-			}
-
-			.text-area-input {
-				resize: vertical;
-				min-height: 120px;
+				border-color: #be123c;
+				box-shadow: 0 0 0 3px rgba(190, 18, 60, 0.12);
 			}
 
 			.form-submit-row {
@@ -669,26 +951,19 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			.submit-btn {
 				width: 100%;
-				padding: 1rem 1.5rem;
+				padding: 1rem;
 				font-size: 1.05rem;
 				font-weight: 700;
 				border-radius: 12px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				cursor: pointer;
-				transition: background 0.2s ease, transform 0.1s ease;
 			}
 
 			.privacy-notice {
-				text-align: center;
 				font-size: 0.82rem;
 				color: #64748b;
-				margin-top: 0.5rem;
-				margin-bottom: 0;
+				text-align: center;
+				margin: 0;
 			}
 
-			/* Success Card */
 			.form-success-card {
 				text-align: center;
 				padding: 2.5rem 1.5rem;
@@ -697,56 +972,44 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			.success-icon-circle {
 				width: 56px;
 				height: 56px;
-				border-radius: 50%;
 				background: #dcfce7;
 				color: #16a34a;
+				border-radius: 50%;
 				font-size: 1.75rem;
-				font-weight: 800;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				margin: 0 auto 1.25rem;
-				border: 2px solid #bbf7d0;
+				margin: 0 auto 1.25rem auto;
+				font-weight: 800;
 			}
 
 			.success-title {
-				font-size: 1.5rem;
+				font-size: 1.6rem;
 				font-weight: 800;
 				color: #0f172a;
-				margin-bottom: 0.75rem;
+				margin-bottom: 0.65rem;
 			}
 
 			.success-message {
 				font-size: 1.05rem;
 				color: #334155;
 				margin-bottom: 0.5rem;
-				line-height: 1.6;
-			}
-
-			.user-email-highlight {
-				color: #c8382c;
-				font-weight: 700;
 			}
 
 			.success-followup {
 				font-size: 0.95rem;
 				color: #64748b;
-				margin-bottom: 2rem;
-				line-height: 1.6;
-			}
-
-			.success-reset-btn {
-				margin: 0 auto;
+				margin-bottom: 1.5rem;
 			}
 
 			.form-error-banner {
 				margin-top: 1rem;
-				padding: 0.85rem 1.25rem;
-				border-radius: 10px;
+				padding: 1rem;
 				background: #fef2f2;
-				border: 1px solid #fecaca;
+				border: 1px solid #fca5a5;
+				border-radius: 10px;
 				color: #991b1b;
-				font-size: 0.9rem;
+				font-size: 0.92rem;
 				text-align: center;
 			}
 
