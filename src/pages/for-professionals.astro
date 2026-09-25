@@ -1,75 +1,296 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { sortPostsDescending } from '../utils/postUtils';
 
-const pubDate = new Date('2026-09-04');
+const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
+// Show posts tagged 'clinician' or 'both', or clinical deep dives
+const clinicianPosts = sortPostsDescending(rawPosts).filter(post => {
+	const tags = post.data.tags || [];
+	return tags.includes('clinician') || tags.includes('both') || post.id.includes('perioscopy') || post.id.includes('stateless-clinic') || post.id.includes('unmasking-dental') || post.id.includes('playbook') || post.id.includes('50-year');
+});
 ---
 
-<Layout
-	title="A Patient's Perspective for Healthcare Professionals & Researchers"
-	description="Clinical observations, self-tracking data, and collaborative hypotheses from a data-focused patient living with Burning Mouth Syndrome (BMS)."
-	pubDate={pubDate}
->
-	<div class="professionals-page">
-		<p class="lead" style="font-size: 1.25rem; line-height: 1.75; color: var(--text-primary); margin-bottom: 2rem;">
-			Burning Mouth Syndrome (BMS) remains one of the most perplexing and under-researched neuropathic conditions in modern medicine. When I was diagnosed, I was stunned by how few clinical roadmaps existed for patients like me.
-		</p>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="For Clinicians & Researchers | Decoding The Burn" 
+			description="How dentists, periodontists, and physicians can collaborate with patient-led time-series data to discover clinical blind spots in Burning Mouth Syndrome." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="audience-page-container">
+			<div class="disclaimer-wrap">
+				<MedicalDisclaimer />
+			</div>
 
-		<div style="background: var(--accent-light); border-left: 4px solid var(--accent); border: 1px solid var(--accent-border); padding: 1.75rem 2rem; border-radius: 12px; margin: 2.5rem 0;">
-			<h3 style="margin-top: 0; color: var(--text-primary); font-size: 1.3rem; margin-bottom: 0.5rem;">Why I Am Documenting My Data</h3>
-			<p style="margin-bottom: 0; color: var(--text-secondary); line-height: 1.65;">
-				With a background in software engineering, UI design, and systems architecture, my instinct was not to surrender to ambiguity. I am not a physician and I do not give medical advice; instead, I treat my condition as an open, high-resolution case study and aggregate data from hundreds of fellow sufferers to help bridge the gap between patient reality and clinical&nbsp;inquiry.
-			</p>
-		</div>
-
-		<h2>Key Observations from My Personal Trials</h2>
-		<p>
-			Over months of structured self-monitoring and conversations with clinical practitioners, several physiological correlations have become undeniable in my personal case:
-		</p>
-
-		<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; margin: 2.5rem 0;">
-			<div style="background: #ffffff; border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
-				<h4 style="color: var(--accent); margin-top: 0; margin-bottom: 0.75rem; font-size: 1.15rem;">1. Nocturnal Mucosal Dehydration & Trigeminal Sensitization</h4>
-				<p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0;">
-					When mouth breathing occurs during sleep, the loss of the protective salivary film leaves peripheral nerve endings in the lingual mucosa vulnerable to micro-abrasion and evaporative cooling stress. Restoring nasal breathing overnight via lip taping eliminated my severe morning flares within 72 hours.
+			<!-- Hero Section with Avatar -->
+			<header class="audience-hero">
+				<div class="audience-avatar-badge badge-blue">
+					<span class="avatar-icon" aria-hidden="true">🩺</span>
+					<span class="avatar-label">BMS Clinician Portal</span>
+				</div>
+				<h1 class="audience-title">How Clinicians &amp; Dentists Can Use This Site</h1>
+				<p class="audience-subtitle">
+					When a patient sits in your chair with excruciating 10/10 oral burning and an unremarkable mucosa, it is frustrating for everyone. Here is how longitudinal patient data can help uncover clinical blind spots.
 				</p>
-			</div>
+			</header>
 
-			<div style="background: #ffffff; border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
-				<h4 style="color: var(--accent); margin-top: 0; margin-bottom: 0.75rem; font-size: 1.15rem;">2. Small-Fiber Neuropathic Parallels</h4>
-				<p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0;">
-					My sensory symptoms (dysgeusia, thermal burning, allodynia to mild spices) mirror peripheral small-fiber neuropathies. Many patients I speak with report concurrent subclinical dysautonomia, Raynaud's-like vasospasms, or chronic cervical spine tension that may affect the chorda tympani or lingual nerve path.
-				</p>
-			</div>
+			<!-- Video Message Card / Message from Denis -->
+			<section class="video-message-card">
+				<div class="video-message-inner">
+					<div class="video-badge badge-blue-text">A Message from Denis to Practitioners</div>
+					<h2 class="video-card-title">"I Get Why You Are Stuck, and I Am Not Mad at You"</h2>
+					<p class="video-card-copy">
+						As a patient who saw five dentists and five physicians, I know the immense pressure you face. You have 15 minutes per patient, strict clinical guidelines, and standard textbooks that label BMS as 'idiopathic' or psychogenic. I know you want to help, but routine tests are not designed to capture subtle mechanical leaks or microscopic biofilm dynamics. This platform is designed to give you the longitudinal, real-world data and time-series observations you cannot collect during a brief office visit.
+					</p>
+					<div class="video-action-box">
+						<span class="video-note">📹 Clinician Orientation Video Coming Soon</span>
+					</div>
+				</div>
+			</section>
 
-			<div style="background: #ffffff; border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
-				<h4 style="color: var(--accent); margin-top: 0; margin-bottom: 0.75rem; font-size: 1.15rem;">3. Salivary Electrolyte Balance vs Fluid Volume</h4>
-				<p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0;">
-					Simply drinking high volumes of hypotonic water aggravated my mucosal burning. Only when I balanced mineral electrolyte levels and stimulated resting salivary flow with non-acidic xylitol did mucosal healing accelerate.
-				</p>
-			</div>
-		</div>
+			<!-- 3 Core Ways Clinicians Can Leverage This Research -->
+			<section class="methodology-section">
+				<h2 class="section-heading">Clinical Blind Spots We Investigate</h2>
+				<div class="methodology-grid">
+					<div class="method-card">
+						<div class="method-num num-blue">01</div>
+						<h3 class="method-title">Biomechanical Micro-Leaks</h3>
+						<p class="method-text">
+							Explore how subtle cervical restoration overhangs, micro-abfractions along the cemento-enamel junction (CEJ), and exposed dentinal tubules create peripheral neuropathic firing loops that look completely normal on standard visual inspection.
+						</p>
+					</div>
 
-		<h2>How I am Using AI & Data Structuring</h2>
-		<p>
-			Traditional BMS research is hampered by fragmented, subjective self-reports. I am developing structured questionnaires and using modern AI classification to:
-		</p>
-		<ul style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 2.5rem;">
-			<li><strong>Cluster Phenotypes:</strong> Separate primary neuropathic cases from secondary mucosal, metabolic, or biomechanical drivers.</li>
-			<li><strong>Identify Intervention Efficacy:</strong> Measure which conservative daily protocols (sleep tape, diet, supplements) show reproducible statistical significance across patient sub-groups.</li>
-			<li><strong>Open-Source Anonymized Datasets:</strong> Make structured patient logs freely available to clinical researchers and academic institutions studying orofacial pain.</li>
-		</ul>
+					<div class="method-card">
+						<div class="method-num num-blue">02</div>
+						<h3 class="method-title">Phase-Contrast Microscopy &amp; Biofilms</h3>
+						<p class="method-text">
+							Review clinical protocols (such as Dr. Mark Bonner's periodontology method) evaluating subgingival parasites (<em>Entamoeba gingivalis</em>) and motile amoebae that conventional scaling and radiographs routinely miss.
+						</p>
+					</div>
 
-		<!-- Professional Collaboration Box -->
-		<div style="background: #ffffff; border: 1px solid var(--card-border); padding: 3rem 2.5rem; border-radius: 24px; margin: 3.5rem 0; text-align: center; box-shadow: var(--shadow-md);">
-			<span class="meta-tag" style="display: inline-block; margin-bottom: 1rem;">Clinical Dialogue</span>
-			<h3 style="margin-top: 0; font-size: 1.85rem; margin-bottom: 0.85rem; color: var(--text-primary); font-weight: 800;">Let's Connect & Collaborate</h3>
-			<p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.65; font-size: 1.05rem;">
-				If you are an oral medicine specialist, ENT, neurologist, or researcher interested in reviewing my case notes, examining survey metrics, or testing clinical hypotheses, I would welcome the opportunity to speak with you.
-			</p>
-			<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-				<a href="/contact" class="btn btn-primary" style="padding: 0.9rem 2.5rem;">Reach Out Directly →</a>
-				<a href="/research" class="btn btn-outline" style="padding: 0.9rem 2rem;">Review My Research Outline</a>
-			</div>
-		</div>
-	</div>
-</Layout>
+					<div class="method-card">
+						<div class="method-num num-blue">03</div>
+						<h3 class="method-title">Time-Series Patient Elimination Data</h3>
+						<p class="method-text">
+							Analyze dense N=1 longitudinal datasets mapping dietary acid exposure (coffee, alcohol, citrus), nocturnal salivary evaporation, and oral mucosal recovery across thousands of tracked hours.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Relevant Articles for Clinicians -->
+			<section class="posts-section">
+				<h2 class="section-heading">Clinical Investigations &amp; Case Studies</h2>
+				<p class="section-subheading">Technical dissections, periodontal microscopy, and hardware mechanics for dentists and medical doctors.</p>
+
+				<div class="grid">
+					{
+						clinicianPosts.map((post, index) => {
+							const postNumber = post.data.entryNumber ?? (index + 1);
+							const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
+							return (
+								<article class="card">
+									<a href={`/blog/${post.id}/`}>
+										<div class="card-img" style={`background-image: url(${imageSrc || '/blog-placeholder-2.jpg'})`}></div>
+										<div class="card-body">
+											<div class="card-meta">
+												<span class="meta-post-info"><strong class="meta-post-number">Post #{postNumber}</strong> • <FormattedDate date={post.data.pubDate} /></span>
+											</div>
+											<h3>{post.data.title}</h3>
+											<p>{post.data.description}</p>
+											<span class="view-story">Read Clinical Case &rarr;</span>
+										</div>
+									</a>
+								</article>
+							);
+						})
+					}
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<style>
+			.audience-page-container {
+				max-width: 1080px;
+				margin: 1.5rem auto 5rem;
+				padding: 0 1.5rem;
+			}
+
+			.disclaimer-wrap {
+				margin-bottom: 2rem;
+			}
+
+			.audience-hero {
+				text-align: center;
+				margin-bottom: 3.5rem;
+			}
+
+			.audience-avatar-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.4rem 1.1rem;
+				border-radius: 9999px;
+				font-size: 0.85rem;
+				font-weight: 700;
+				margin-bottom: 1.25rem;
+			}
+
+			.badge-blue {
+				background: #eff6ff;
+				border: 1px solid #bfdbfe;
+				color: #1d4ed8;
+			}
+
+			.badge-blue-text {
+				color: #1d4ed8 !important;
+			}
+
+			.num-blue {
+				color: #1d4ed8 !important;
+			}
+
+			.avatar-icon {
+				font-size: 1.1rem;
+			}
+
+			.audience-title {
+				font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.025em;
+				line-height: 1.15;
+				margin: 0 0 1.25rem 0;
+				text-wrap: balance;
+			}
+
+			.audience-subtitle {
+				font-size: 1.2rem;
+				line-height: 1.65;
+				color: #475569;
+				max-width: 800px;
+				margin: 0 auto;
+				text-wrap: balance;
+			}
+
+			/* Video Message Card */
+			.video-message-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 3rem 2.5rem;
+				margin-bottom: 4rem;
+				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+			}
+
+			.video-badge {
+				font-size: 0.82rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				margin-bottom: 0.5rem;
+			}
+
+			.video-card-title {
+				font-size: clamp(1.6rem, 3vw, 2.1rem);
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 1.25rem 0;
+			}
+
+			.video-card-copy {
+				font-size: 1.15rem;
+				line-height: 1.75;
+				color: #334155;
+				margin-bottom: 2rem;
+				text-wrap: pretty;
+			}
+
+			.video-action-box {
+				background: #f8fafc;
+				border: 1px dashed #cbd5e1;
+				border-radius: 12px;
+				padding: 1.25rem;
+				text-align: center;
+			}
+
+			.video-note {
+				font-size: 0.95rem;
+				font-weight: 600;
+				color: #64748b;
+			}
+
+			/* Methodology Section */
+			.methodology-section {
+				margin-bottom: 4.5rem;
+			}
+
+			.section-heading {
+				font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+				font-weight: 800;
+				color: #0f172a;
+				text-align: center;
+				margin: 0 0 0.75rem 0;
+				letter-spacing: -0.02em;
+			}
+
+			.section-subheading {
+				text-align: center;
+				font-size: 1.1rem;
+				color: #64748b;
+				max-width: 650px;
+				margin: 0 auto 2.5rem auto;
+				text-wrap: balance;
+			}
+
+			.methodology-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+
+			.method-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 20px;
+				padding: 2.25rem 2rem;
+				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
+			}
+
+			.method-num {
+				font-size: 1.5rem;
+				font-weight: 900;
+				margin-bottom: 0.75rem;
+			}
+
+			.method-title {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.75rem 0;
+			}
+
+			.method-text {
+				font-size: 1rem;
+				line-height: 1.65;
+				color: #475569;
+				margin: 0;
+				text-wrap: pretty;
+			}
+
+			.posts-section {
+				margin-bottom: 4rem;
+			}
+		</style>
+	</body>
+</html>

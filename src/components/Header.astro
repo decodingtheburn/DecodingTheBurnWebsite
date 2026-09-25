@@ -15,9 +15,34 @@ import TongueLogo from './TongueLogo.astro';
   <div class="nav-links" id="nav-links">
     <a href="/blog/how-i-solved-my-burning-mouth-syndrome/">My Story</a>
     <a href="/podcast">Podcast</a>
-    <a href="/podcast/about">About the Podcast</a>
-    <a href="/open-science">Open Science</a>
-    <a href="/mission">Our Mission</a>
+    
+    <!-- About Dropdown Menu -->
+    <div class="nav-dropdown">
+      <button type="button" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+        <span>About</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" class="chevron-icon">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="dropdown-menu">
+        <a href="/podcast/about">About the Podcast</a>
+        <a href="/open-science">Open Science</a>
+        <a href="/mission">Our Mission</a>
+      </div>
+    </div>
+
+    <!-- Audience Portals with Avatars -->
+    <div class="audience-nav-group">
+      <a href="/for-patients" class="audience-link patient-nav-link" title="Guide for BMS Patients">
+        <span class="nav-avatar-icon">🛡️</span>
+        <span class="nav-avatar-text">Patients</span>
+      </a>
+      <a href="/for-professionals" class="audience-link clinician-nav-link" title="Guide for Clinicians & Dentists">
+        <span class="nav-avatar-icon">🩺</span>
+        <span class="nav-avatar-text">Clinicians</span>
+      </a>
+    </div>
+
     <div class="mobile-actions">
         <a href="/follow" class="btn btn-primary">Follow Us</a>
     </div>
@@ -54,26 +79,151 @@ import TongueLogo from './TongueLogo.astro';
   }
 </script>
 
-<style>
-  .nav-youtube-link {
+  /* Dropdown Menu */
+  .nav-dropdown {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+  }
+
+  .dropdown-trigger {
+    background: transparent;
+    border: none;
     color: #000000;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 0.25rem 0.4rem;
     transition: color 0.2s ease;
   }
 
-  .nav-youtube-link:hover {
-    color: #c8382c;
+  .dropdown-trigger:hover,
+  .nav-dropdown:hover .dropdown-trigger {
+    color: var(--accent);
   }
 
-  .youtube-nav-icon {
-    color: #ff0000;
-    flex-shrink: 0;
+  .chevron-icon {
     transition: transform 0.2s ease;
   }
 
-  .nav-youtube-link:hover .youtube-nav-icon {
-    transform: scale(1.18);
+  .nav-dropdown:hover .chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.12);
+    min-width: 190px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 1050;
+  }
+
+  .nav-dropdown:hover .dropdown-menu,
+  .nav-dropdown:focus-within .dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(2px);
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 0.6rem 1.15rem;
+    color: #334155 !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .dropdown-menu a:hover {
+    background: #f8fafc;
+    color: var(--accent) !important;
+  }
+
+  /* Audience Avatar Nav Badges */
+  .audience-nav-group {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .audience-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.32rem 0.75rem;
+    border-radius: 9999px;
+    text-decoration: none !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    transition: all 0.2s ease;
+  }
+
+  .patient-nav-link {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+    color: #be123c !important;
+  }
+
+  .patient-nav-link:hover {
+    background: #ffe4e6;
+    border-color: #fda4af;
+    transform: translateY(-1px);
+  }
+
+  .clinician-nav-link {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8 !important;
+  }
+
+  .clinician-nav-link:hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+    transform: translateY(-1px);
+  }
+
+  .nav-avatar-icon {
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .dropdown-menu {
+      position: static;
+      transform: none;
+      box-shadow: none;
+      border: none;
+      padding-left: 1rem;
+      opacity: 1;
+      pointer-events: auto;
+      display: block;
+    }
+    .chevron-icon {
+      display: none;
+    }
+    .audience-nav-group {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.75rem;
+      padding: 0 2rem;
+    }
+    .audience-link {
+      width: 100%;
+      justify-content: center;
+      padding: 0.6rem 1rem;
+    }
   }
 </style>

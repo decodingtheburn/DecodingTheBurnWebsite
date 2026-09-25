@@ -4,7 +4,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://decodingtheburn.com',
+	site: 'https://www.decodingtheburn.com',
 	devToolbar: {
 		enabled: false,
 	},

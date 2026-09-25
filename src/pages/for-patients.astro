@@ -1,76 +1,287 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { sortPostsDescending } from '../utils/postUtils';
 
-const pubDate = new Date('2026-09-04');
+const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
+// Show posts tagged 'patient' or 'both', or default core recovery stories
+const patientPosts = sortPostsDescending(rawPosts).filter(post => {
+	const tags = post.data.tags || [];
+	return tags.includes('patient') || tags.includes('both') || post.id.includes('how-i-solved') || post.id.includes('mouth-taping') || post.id.includes('20-second') || post.id.includes('playbook');
+});
 ---
 
-<Layout
-	title="What I Wish I Knew When My BMS Began"
-	description="My personal guide, daily routines, and management protocols for fellow sufferers living with Burning Mouth Syndrome."
-	pubDate={pubDate}
->
-	<div class="patients-page">
-		<p class="lead" style="font-size: 1.25rem; line-height: 1.75; color: var(--text-primary); margin-bottom: 2rem;">
-			When my mouth first felt like it had been scalded with boiling coffee, I spent months in a spiral of panic. I went from dentist to ENT to neurologist, only to hear the same infuriating phrase: <em>"Everything looks completely normal."</em>
-		</p>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="For Patients | Decoding The Burn" 
+			description="How BMS sufferers can use this site, explore my elimination methodology, and navigate daily recovery tools." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="audience-page-container">
+			<div class="disclaimer-wrap">
+				<MedicalDisclaimer />
+			</div>
 
-		<div style="background: var(--accent-light); border-left: 4px solid var(--accent); border: 1px solid var(--accent-border); padding: 1.75rem 2rem; border-radius: 12px; margin: 2.5rem 0;">
-			<h3 style="margin-top: 0; color: var(--text-primary); font-size: 1.3rem; margin-bottom: 0.5rem;">You Are Not Imagining This</h3>
-			<p style="margin-bottom: 0; color: var(--text-secondary); line-height: 1.65;">
-				I want you to hear this clearly: <strong>your pain is real</strong>. Burning Mouth Syndrome is a legitimate neuropathic condition. Even when there are no visible sores or lesions, the nerve endings in your oral mucosa are hyper-firing. You are not alone, and you do not have to accept that "nothing can be done."
-			</p>
-		</div>
-
-		<h2>The Exact Protocol That Gave Me My Life Back</h2>
-		<p>
-			Because traditional medicine had no answers, I decided to treat my own body as a research lab. I tracked every meal, my sleep quality, my saliva flow, and my daily pain scores. These four interventions are what brought my daily pain from an agonizing 8/10 down to zero:
-		</p>
-
-		<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; margin: 2.5rem 0;">
-			<div style="background: #ffffff; border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
-				<h4 style="color: var(--accent); margin-top: 0; margin-bottom: 0.75rem; font-size: 1.15rem;">1. 🌙 Night Mouth Taping</h4>
-				<p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1.25rem;">
-					This was my single biggest breakthrough. I discovered I was mouth-breathing during sleep, which dried out my oral mucosa and left my nerve endings unprotected. Gently taping my lips shut with medical tape forced nasal breathing and eliminated my unbearable morning burn.
+			<!-- Hero Section with Avatar -->
+			<header class="audience-hero">
+				<div class="audience-avatar-badge">
+					<span class="avatar-icon" aria-hidden="true">🛡️</span>
+					<span class="avatar-label">BMS Patient Portal</span>
+				</div>
+				<h1 class="audience-title">How Patients Can Use This Site</h1>
+				<p class="audience-subtitle">
+					When you are in agonizing 10/10 pain and doctors say "everything looks normal," you need clarity, validation, and a structured way forward. Here is how to use my lived journey to find your own answers.
 				</p>
-				<a href="/blog/mouth-taping-bms" style="color: var(--accent); font-weight: 700; font-size: 0.9rem;">Read my mouth taping experiment →</a>
-			</div>
+			</header>
 
-			<div style="background: #ffffff; border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
-				<h4 style="color: var(--accent); margin-top: 0; margin-bottom: 0.75rem; font-size: 1.15rem;">2. 🪥 Ditching SLS & Foaming Toothpaste</h4>
-				<p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0;">
-					Sodium Lauryl Sulfate (SLS) is the harsh foaming agent found in almost all conventional toothpastes. For someone with BMS, it is like rubbing sandpaper on a burn. When I switched to a pure, non-foaming, SLS-free toothpaste, my mouth tissue finally had a chance to calm down.
-				</p>
-			</div>
+			<!-- Video Placeholder / Message from Denis -->
+			<section class="video-message-card">
+				<div class="video-message-inner">
+					<div class="video-badge">A Personal Message from Denis</div>
+					<h2 class="video-card-title">"I Get What You Are Going Through"</h2>
+					<p class="video-card-copy">
+						I spent three agonizing years with a mouth that felt like boiling oil. I know the terror of eating, the frustration of cleanings that make it worse, and the despair of hearing that nothing is physically wrong. You are not losing your mind. Your pain is real, and by systematically testing and eliminating daily triggers, we can work together to turn down the heat.
+					</p>
+					<div class="video-action-box">
+						<span class="video-note">📹 Personal Video Orientation Coming Soon</span>
+					</div>
+				</div>
+			</section>
 
-			<div style="background: #ffffff; border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md);">
-				<h4 style="color: var(--accent); margin-top: 0; margin-bottom: 0.75rem; font-size: 1.15rem;">3. 💧 Mineral Hydration & Saliva Stimulators</h4>
-				<p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0;">
-					Drinking plain tap water actually washed away my residual protective enzymes. I switched to sipping electrolyte-mineralized water throughout the day and used 100% xylitol mints after eating to stimulate my body's natural saliva production without irritating the nerves.
-				</p>
-			</div>
-		</div>
+			<!-- 3 Core Ways Patients Can Use This Platform -->
+			<section class="methodology-section">
+				<h2 class="section-heading">How My Methodology Helps You</h2>
+				<div class="methodology-grid">
+					<div class="method-card">
+						<div class="method-num">01</div>
+						<h3 class="method-title">The Trigger Elimination Process</h3>
+						<p class="method-text">
+							Learn how to systematically test and remove acidic foods, abrasive foaming toothpastes (SLS), and night mouth-breathing so your oral tissues have time to rest and calm down.
+						</p>
+					</div>
 
-		<h2>How I Tracked and Eliminated My Triggers</h2>
-		<p>
-			Through daily tracking in a personal spreadsheet, I uncovered unexpected dietary and lifestyle triggers that were causing major flame-ups 24 to 48 hours later:
-		</p>
-		<ul style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 2.5rem;">
-			<li><strong>Hidden Acids:</strong> Coffee, hot sauces, citrus, and vinegars directly irritated my lingual mucosa.</li>
-			<li><strong>Artificial Sweeteners & Cinnamon:</strong> Cinnamon flavoring (cinnamates) and certain synthetic sweeteners triggered intense burning within hours.</li>
-			<li><strong>Stress Spikes & Shallow Breathing:</strong> When I'm in fight-or-flight, my salivary glands restrict output. Learning physiological sigh breathing helped deactivate that pain loop.</li>
-		</ul>
+					<div class="method-card">
+						<div class="method-num">02</div>
+						<h3 class="method-title">Prepare for Your Next Dental Visit</h3>
+						<p class="method-text">
+							Use our appointment recording guide and data request checklist so you can bring structured notes to your dentist, understand clinical terms, and ask the right questions.
+						</p>
+					</div>
 
-		<!-- Patient CTA Box -->
-		<div style="background: #ffffff; border: 1px solid var(--card-border); padding: 3rem 2.5rem; border-radius: 24px; margin: 3.5rem 0; text-align: center; box-shadow: var(--shadow-md);">
-			<span class="meta-tag" style="display: inline-block; margin-bottom: 1rem;">Let's Connect</span>
-			<h3 style="margin-top: 0; font-size: 1.85rem; margin-bottom: 0.85rem; color: var(--text-primary); font-weight: 800;">Participate in My Ongoing Research</h3>
-			<p style="color: var(--text-secondary); max-width: 580px; margin: 0 auto 2rem; line-height: 1.65; font-size: 1.05rem;">
-				I want to learn what you're experiencing. By participating with me, you can contribute your symptom patterns to our community dataset and get first access to what's working.
-			</p>
-			<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-				<a href="/join" class="btn btn-primary" style="padding: 0.9rem 2.5rem; color: #ffffff !important; text-decoration: none;">Participate With Me →</a>
-				<a href="/research" class="btn btn-outline" style="padding: 0.9rem 2rem;">Read About My Survey</a>
-			</div>
-		</div>
-	</div>
-</Layout>
+					<div class="method-card">
+						<div class="method-num">03</div>
+						<h3 class="method-title">Learn from the Podcast Interviews</h3>
+						<p class="method-text">
+							Listen to in-depth, transparent conversations with leading dentists, periodontists, and fellow sufferers who share what is actually working in clinical practice.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Relevant Articles for Patients -->
+			<section class="posts-section">
+				<h2 class="section-heading">Patient Guides &amp; Practical Case Studies</h2>
+				<p class="section-subheading">Practical articles, elimination logs, and daily habits written specifically for sufferers.</p>
+
+				<div class="grid">
+					{
+						patientPosts.map((post, index) => {
+							const postNumber = post.data.entryNumber ?? (index + 1);
+							const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
+							return (
+								<article class="card">
+									<a href={`/blog/${post.id}/`}>
+										<div class="card-img" style={`background-image: url(${imageSrc || '/blog-placeholder-1.jpg'})`}></div>
+										<div class="card-body">
+											<div class="card-meta">
+												<span class="meta-post-info"><strong class="meta-post-number">Post #{postNumber}</strong> • <FormattedDate date={post.data.pubDate} /></span>
+											</div>
+											<h3>{post.data.title}</h3>
+											<p>{post.data.description}</p>
+											<span class="view-story">Read Guide &rarr;</span>
+										</div>
+									</a>
+								</article>
+							);
+						})
+					}
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<style>
+			.audience-page-container {
+				max-width: 1080px;
+				margin: 1.5rem auto 5rem;
+				padding: 0 1.5rem;
+			}
+
+			.disclaimer-wrap {
+				margin-bottom: 2rem;
+			}
+
+			.audience-hero {
+				text-align: center;
+				margin-bottom: 3.5rem;
+			}
+
+			.audience-avatar-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				background: #fef2f2;
+				border: 1px solid #fecaca;
+				color: #be123c;
+				padding: 0.4rem 1.1rem;
+				border-radius: 9999px;
+				font-size: 0.85rem;
+				font-weight: 700;
+				margin-bottom: 1.25rem;
+			}
+
+			.avatar-icon {
+				font-size: 1.1rem;
+			}
+
+			.audience-title {
+				font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.025em;
+				line-height: 1.15;
+				margin: 0 0 1.25rem 0;
+				text-wrap: balance;
+			}
+
+			.audience-subtitle {
+				font-size: 1.2rem;
+				line-height: 1.65;
+				color: #475569;
+				max-width: 800px;
+				margin: 0 auto;
+				text-wrap: balance;
+			}
+
+			/* Video Message Card */
+			.video-message-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 3rem 2.5rem;
+				margin-bottom: 4rem;
+				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+			}
+
+			.video-badge {
+				font-size: 0.82rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: #be123c;
+				margin-bottom: 0.5rem;
+			}
+
+			.video-card-title {
+				font-size: clamp(1.6rem, 3vw, 2.1rem);
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 1.25rem 0;
+			}
+
+			.video-card-copy {
+				font-size: 1.15rem;
+				line-height: 1.75;
+				color: #334155;
+				margin-bottom: 2rem;
+				text-wrap: pretty;
+			}
+
+			.video-action-box {
+				background: #f8fafc;
+				border: 1px dashed #cbd5e1;
+				border-radius: 12px;
+				padding: 1.25rem;
+				text-align: center;
+			}
+
+			.video-note {
+				font-size: 0.95rem;
+				font-weight: 600;
+				color: #64748b;
+			}
+
+			/* Methodology Section */
+			.methodology-section {
+				margin-bottom: 4.5rem;
+			}
+
+			.section-heading {
+				font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+				font-weight: 800;
+				color: #0f172a;
+				text-align: center;
+				margin: 0 0 0.75rem 0;
+				letter-spacing: -0.02em;
+			}
+
+			.section-subheading {
+				text-align: center;
+				font-size: 1.1rem;
+				color: #64748b;
+				max-width: 650px;
+				margin: 0 auto 2.5rem auto;
+				text-wrap: balance;
+			}
+
+			.methodology-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+
+			.method-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 20px;
+				padding: 2.25rem 2rem;
+				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
+			}
+
+			.method-num {
+				font-size: 1.5rem;
+				font-weight: 900;
+				color: #be123c;
+				margin-bottom: 0.75rem;
+			}
+
+			.method-title {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.75rem 0;
+			}
+
+			.method-text {
+				font-size: 1rem;
+				line-height: 1.65;
+				color: #475569;
+				margin: 0;
+				text-wrap: pretty;
+			}
+
+			.posts-section {
+				margin-bottom: 4rem;
+			}
+		</style>
+	</body>
+</html>
