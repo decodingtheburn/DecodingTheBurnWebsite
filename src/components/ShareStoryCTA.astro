@@ -1,0 +1,99 @@
+---
+// Inline Share Your Story Call To Action Component
+interface Props {
+	variant?: 'mid' | 'end';
+}
+
+const { variant = 'mid' } = Astro.props;
+---
+
+<div class={`story-cta-card ${variant === 'end' ? 'story-cta-end' : 'story-cta-mid'}`}>
+	<div class="story-cta-badge">Community Insights</div>
+	<h3 class="story-cta-title">Have You Experienced Burning Mouth&nbsp;Syndrome?</h3>
+	<p class="story-cta-desc">
+		Every pattern, trigger, and dental observation helps us decode this condition together. Share your story to help us find real solutions for more&nbsp;people.
+	</p>
+	<a href="/share-your-story" class="btn btn-primary story-cta-button">
+		Share Your Story &rarr;
+	</a>
+</div>
+
+<style>
+	.story-cta-card {
+		background: #ffffff;
+		border: 1px solid var(--card-border);
+		border-radius: 20px;
+		padding: 2.75rem 2.25rem;
+		text-align: center;
+		box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07);
+		margin: 3.5rem auto;
+		max-width: 760px;
+	}
+
+	.story-cta-end {
+		margin-top: 3.5rem;
+		margin-bottom: 2.5rem;
+		border-left: 4px solid #c8382c;
+	}
+
+	.story-cta-mid {
+		margin: 3.5rem auto;
+		border-left: 4px solid #c8382c;
+	}
+
+	.story-cta-badge {
+		display: inline-block;
+		font-size: 0.78rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 1.2px;
+		color: #c8382c;
+		margin-bottom: 0.75rem;
+	}
+
+	.story-cta-title {
+		font-size: clamp(1.4rem, 3.2vw, 1.85rem);
+		font-weight: 800;
+		color: #000000;
+		margin: 0 0 0.85rem;
+		line-height: 1.25;
+		text-wrap: balance;
+	}
+
+	.story-cta-desc {
+		font-size: 1.05rem;
+		color: #475569;
+		line-height: 1.6;
+		max-width: 640px;
+		margin: 0 auto 1.75rem;
+		text-wrap: balance;
+	}
+
+	.story-cta-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.85rem 2rem;
+		font-size: 1rem;
+		font-weight: 700;
+		border-radius: 12px;
+		text-decoration: none;
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+	}
+
+	.story-cta-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(200, 56, 44, 0.25);
+	}
+
+	@media (max-width: 640px) {
+		.story-cta-card {
+			padding: 2rem 1.5rem;
+			margin: 2.5rem auto;
+		}
+
+		.story-cta-button {
+			width: 100%;
+		}
+	}
+</style>
