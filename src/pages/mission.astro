@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import { Image } from 'astro:assets';
+import authorPhoto from '../assets/denis-ethier.png';
 ---
 
 <!doctype html>
@@ -15,171 +17,176 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 	</head>
 	<body>
 		<Header />
-		<main class="mission-page-container">
-			<div class="disclaimer-wrap">
-				<MedicalDisclaimer />
+		<main>
+			<!-- Hero Section Following Homepage Model -->
+			<section class="hero-centered-wrapper">
+				<div class="hero-centered-header">
+					<MedicalDisclaimer />
+					<h1 class="hero-centered-title">
+						The Human Glue: Bridging Patients &amp;&nbsp;Doctors
+					</h1>
+					<p class="hero-centered-subtitle">
+						We connect lived patient time-series data with clinical neuroscience to bridge the communication chasm.
+						Here is why uniting sufferers, dentists, and physicians is the key to lasting&nbsp;relief.
+					</p>
+				</div>
+
+				<!-- Video on Top -->
+				<div class="hero-video-centered">
+					<div class="video-placeholder-wrapper" style="cursor: default;">
+						<Image 
+							src={authorPhoto} 
+							alt="Denis Ethier - Our Mission and Bridge" 
+							class="video-placeholder-img" 
+							width={1400} 
+							height={788}
+						/>
+					</div>
+				</div>
+
+				<!-- Story Card Under Video -->
+				<article class="personal-story-section">
+					<h2 class="story-heading">My Story &amp; Why We Need the Human&nbsp;Glue</h2>
+					<div class="story-lead">
+						<p>
+							After consulting five dentists and five medical doctors with severe 10/10 oral pain, I witnessed firsthand the communication chasm in modern medicine. When you are in agony, you need urgency. But busy clinicians with 15-minute appointment slots must maintain detachment, often writing 'idiopathic discomfort with anxiety' in charts when you feel like your mouth is on&nbsp;fire.
+						</p>
+						<p>
+							I realized that doctors aren't malicious, they simply lack the tools and time to capture dense time-series data. The mission of Decoding The Burn is to serve as the human glue: translating lived patient observations into objective clinical terms so patients and clinicians can solve this mystery&nbsp;together.
+						</p>
+						<p class="continue-reading-p">
+							<a href="/podcast" class="continue-reading-link">Listen to the latest podcast discussions &rarr;</a>
+						</p>
+					</div>
+				</article>
+			</section>
+
+			<div class="mission-content-container">
+				<!-- 1. The Core Problem: The Communication Chasm -->
+				<section class="mission-section">
+					<div class="problem-card">
+						<h2 class="section-title">The Communication Chasm in Modern Medicine</h2>
+						<p class="section-lead">
+							When you walk into a specialist clinic with severe 10/10 oral burning, your life is in crisis. Every meal is a battle with fire, and you cannot sleep. But for the busy clinician seeing dozens of complex patients a day, they must maintain emotional detachment to manage clinical volume. As a result, acute patient agony often gets translated into standardized, sanitized medical&nbsp;jargon:
+						</p>
+						<div class="quote-contrast-grid">
+							<div class="contrast-box patient-side">
+								<span class="box-label label-red">What the Patient Experiences</span>
+								<p class="quote-text">"My mouth is on fire 24/7. When I drink coffee or eat an orange, the burning shoots to a blinding 10/10. I can't concentrate on my job or sleep at night."</p>
+							</div>
+							<div class="contrast-box chart-side">
+								<span class="box-label label-blue">What Gets Written in the Chart</span>
+								<p class="quote-text">"Oral mucosa appears unremarkable. Mild-to-moderate neuropathic discomfort (3-5/10) with anxious overlay. Etiology idiopathic. Reassure patient."</p>
+							</div>
+						</div>
+						<p class="section-foot">
+							When patients request their medical records and see their 10/10 agony reduced to a <em>"mild 3/10 with anxiety"</em>, they choke. They feel gaslighted, insulted, and abandoned. Many give up entirely. This is where the podcast steps&nbsp;in.
+						</p>
+					</div>
+				</section>
+
+				<!-- 2. The Human Glue Diagram & Architecture -->
+				<section class="mission-section">
+					<h2 class="section-title text-center">How The Podcast Acts as the Human Glue</h2>
+					<p class="section-lead text-center">
+						We don't assign blame or attack doctors. We translate the two worlds so both sides can collaborate on real biological&nbsp;solutions.
+					</p>
+
+					<div class="glue-diagram-container">
+						<div class="diagram-hub">
+							<span class="hub-label">The Podcast &amp; Research Hub</span>
+							<h3 class="hub-title">Decoding The Burn &bull; The BMS Podcast</h3>
+							<p class="hub-motto">"The Rosetta Stone Between Lived Agony &amp; Clinical Science"</p>
+						</div>
+
+						<div class="diagram-branches">
+							<!-- Branch 1: For Patients -->
+							<div class="branch-card branch-patient">
+								<div class="branch-header">
+									<span class="branch-icon" aria-hidden="true">🛡️</span>
+									<h4 class="branch-title">For Patients &amp; Sufferers</h4>
+								</div>
+								<ul class="branch-list">
+									<li><strong>Decodes Medical Jargon:</strong> Explains why doctors write "3/10" or "anxious" so patients don't panic, take it personally, or despair.</li>
+									<li><strong>Biophysical Validation:</strong> Demonstrates that your burning has physical ion-channel and hardware mechanisms, not "imagined stress."</li>
+									<li><strong>Constructive Communication:</strong> Teaches patients how to speak with dentists and doctors with clear, structured time-series logs.</li>
+								</ul>
+							</div>
+
+							<!-- Branch 2: For Clinicians -->
+							<div class="branch-card branch-clinician">
+								<div class="branch-header">
+									<span class="branch-icon" aria-hidden="true">🩺</span>
+									<h4 class="branch-title">For Clinicians &amp; Researchers</h4>
+								</div>
+								<ul class="branch-list">
+									<li><strong>The High-Functioning 10/10:</strong> Explains why stoic, articulate patients are still in excruciating pain despite not screaming in the chair.</li>
+									<li><strong>Hardware &amp; Acid Mechanics:</strong> Shares high-resolution data on subgingival crown leaks, exposed dentin tubules, and dietary acid triggers.</li>
+									<li><strong>Beyond "Luck" &amp; Placebo:</strong> Proves that dietary elimination remission is reproducible biophysics and biochemistry, not a fluke.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- 3. Our Three Core Pillars -->
+				<section class="mission-section">
+					<h2 class="section-title">The Three Pillars of Our Mission</h2>
+					<div class="pillars-grid">
+						<div class="pillar-card">
+							<span class="pillar-num">01</span>
+							<h3 class="pillar-heading">Radical Data Transparency</h3>
+							<p class="pillar-desc">
+								We share every radiograph, symptom log, dietary protocol, and dental record publicly. By putting real N=1 data in the open, we eliminate guesswork and give researchers a tangible baseline to&nbsp;study.
+							</p>
+						</div>
+
+						<div class="pillar-card">
+							<span class="pillar-num">02</span>
+							<h3 class="pillar-heading">Root-Cause Engineering</h3>
+							<p class="pillar-desc">
+								We treat the human mouth like a high-precision electrical and biochemical system. When a nerve fires distress, we don't just sedate the brain with pharmaceuticals; we track down the physical trigger causing the&nbsp;leak.
+							</p>
+						</div>
+
+						<div class="pillar-card">
+							<span class="pillar-num">03</span>
+							<h3 class="pillar-heading">Collaborative Problem-Solving</h3>
+							<p class="pillar-desc">
+								We invite dentists, oral medicine specialists, neurologists, and academic researchers to brainstorm openly on air without the fear of needing perfect textbook answers. Real discoveries happen through open&nbsp;dialogue.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- CTA Box -->
+				<section class="mission-cta-box">
+					<h2 class="cta-title">Be Part of the Solution</h2>
+					<p class="cta-subtitle">
+						Whether you are enduring BMS, practicing dentistry, or researching neuropathic pain, your voice and data can help solve this puzzle for&nbsp;millions.
+					</p>
+					<div class="cta-actions">
+						<a href="/podcast#apply" class="btn btn-primary cta-btn">Apply to Be a Guest &rarr;</a>
+						<a href="/blog/how-i-solved-my-burning-mouth-syndrome/" class="btn btn-outline cta-btn">Read Post #1: My Journey</a>
+					</div>
+				</section>
 			</div>
-
-			<!-- Hero Header -->
-			<header class="mission-hero">
-				<h1 class="mission-title">The Human Glue: Bridging Patients &amp; Doctors</h1>
-				<p class="mission-subtitle">
-					Why we are connecting lived patient time-series data with clinical neuroscience to solve Burning Mouth Syndrome once and for&nbsp;all.
-				</p>
-			</header>
-
-			<!-- 1. The Core Problem: The Communication Chasm -->
-			<section class="mission-section">
-				<div class="problem-card">
-					<h2 class="section-title">The Communication Chasm in Modern Medicine</h2>
-					<p class="section-lead">
-						When you walk into a specialist clinic with severe 10/10 oral burning, your life is in crisis. Every meal is a battle with fire, and you cannot sleep. But for the busy clinician seeing dozens of complex patients a day, they must maintain emotional detachment to manage clinical volume. As a result, acute patient agony often gets translated into standardized, sanitized medical&nbsp;jargon:
-					</p>
-					<div class="quote-contrast-grid">
-						<div class="contrast-box patient-side">
-							<span class="box-tag tag-red">What the Patient Experiences</span>
-							<p class="quote-text">"My mouth is on fire 24/7. When I drink coffee or eat an orange, the burning shoots to a blinding 10/10. I can't concentrate on my job or sleep at night."</p>
-						</div>
-						<div class="contrast-box chart-side">
-							<span class="box-tag tag-blue">What Gets Written in the Chart</span>
-							<p class="quote-text">"Oral mucosa appears unremarkable. Mild-to-moderate neuropathic discomfort (3–5/10) with anxious overlay. Etiology idiopathic. Reassure patient."</p>
-						</div>
-					</div>
-					<p class="section-foot">
-						When patients request their medical records and see their 10/10 agony reduced to a <em>"mild 3/10 with anxiety"</em>, they choke. They feel gaslighted, insulted, and abandoned. Many give up entirely. This is where the podcast steps&nbsp;in.
-					</p>
-				</div>
-			</section>
-
-			<!-- 2. The Human Glue Diagram & Architecture -->
-			<section class="mission-section">
-				<h2 class="section-title text-center">How The Podcast Acts as the Human Glue</h2>
-				<p class="section-lead text-center">
-					We don't assign blame or attack doctors. We translate the two worlds so both sides can collaborate on real biological&nbsp;solutions.
-				</p>
-
-				<div class="glue-diagram-container">
-					<div class="diagram-hub">
-						<span class="hub-label">THE PODCAST &amp; RESEARCH HUB</span>
-						<h3 class="hub-title">Decoding The Burn &bull; The BMS Podcast</h3>
-						<p class="hub-motto">"The Rosetta Stone Between Lived Agony &amp; Clinical Science"</p>
-					</div>
-
-					<div class="diagram-branches">
-						<!-- Branch 1: For Patients -->
-						<div class="branch-card branch-patient">
-							<div class="branch-header">
-								<span class="branch-icon" aria-hidden="true">🛡️</span>
-								<h4 class="branch-title">For Patients &amp; Sufferers</h4>
-							</div>
-							<ul class="branch-list">
-								<li><strong>Decodes Medical Jargon:</strong> Explains why doctors write "3/10" or "anxious" so patients don't panic, take it personally, or despair.</li>
-								<li><strong>Biophysical Validation:</strong> Demonstrates that your burning has physical ion-channel and hardware mechanisms, not "imagined stress."</li>
-								<li><strong>Constructive Communication:</strong> Teaches patients how to speak with dentists and doctors with clear, structured time-series logs.</li>
-							</ul>
-						</div>
-
-						<!-- Branch 2: For Clinicians -->
-						<div class="branch-card branch-clinician">
-							<div class="branch-header">
-								<span class="branch-icon" aria-hidden="true">🩺</span>
-								<h4 class="branch-title">For Clinicians &amp; Researchers</h4>
-							</div>
-							<ul class="branch-list">
-								<li><strong>The High-Functioning 10/10:</strong> Explains why stoic, articulate patients are still in excruciating pain despite not screaming in the chair.</li>
-								<li><strong>Hardware &amp; Acid Mechanics:</strong> Shares high-resolution data on subgingival crown leaks, exposed dentin tubules, and dietary acid triggers.</li>
-								<li><strong>Beyond "Luck" &amp; Placebo:</strong> Proves that dietary elimination remission is reproducible biophysics and biochemistry, not a fluke.</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<!-- 3. Our Three Core Pillars -->
-			<section class="mission-section">
-				<h2 class="section-title">The Three Pillars of Our Mission</h2>
-				<div class="pillars-grid">
-					<div class="pillar-card">
-						<span class="pillar-num">01</span>
-						<h3 class="pillar-heading">Radical Data Transparency</h3>
-						<p class="pillar-desc">
-							We share every radiograph, symptom log, dietary protocol, and dental invoice publicly. By putting real N=1 data in the open, we eliminate guesswork and give researchers a tangible baseline to study.
-						</p>
-					</div>
-
-					<div class="pillar-card">
-						<span class="pillar-num">02</span>
-						<h3 class="pillar-heading">Root-Cause Engineering</h3>
-						<p class="pillar-desc">
-							We treat the human mouth like a high-precision electrical and biochemical system. When a nerve fires distress, we don't just sedate the brain with pharmaceuticals; we track down the physical trigger causing the leak.
-						</p>
-					</div>
-
-					<div class="pillar-card">
-						<span class="pillar-num">03</span>
-						<h3 class="pillar-heading">Collaborative Problem-Solving</h3>
-						<p class="pillar-desc">
-							We invite dentists, oral medicine specialists, neurologists, and academic researchers to brainstorm openly on air without the fear of needing perfect textbook answers. Real discoveries happen through open dialogue.
-						</p>
-					</div>
-				</div>
-			</section>
-
-			<!-- CTA Box -->
-			<section class="mission-cta-box">
-				<h2 class="cta-title">Be Part of the Solution</h2>
-				<p class="cta-subtitle">
-					Whether you are enduring BMS, practicing dentistry, or researching neuropathic pain, your voice and data can help solve this puzzle for millions.
-				</p>
-				<div class="cta-actions">
-					<a href="/podcast#apply" class="btn btn-primary cta-btn">Apply to Be a Guest &rarr;</a>
-					<a href="/blog/how-i-solved-my-burning-mouth-syndrome/" class="btn btn-outline cta-btn">Read Post #1: My Journey</a>
-				</div>
-			</section>
 		</main>
 		<Footer />
 
 		<style>
-			.mission-page-container {
-				max-width: 920px;
-				margin: 0 auto;
-				padding: 2.5rem 1.5rem 6rem 1.5rem;
-			}
-
-			.disclaimer-wrap {
-				margin-bottom: 2rem;
-			}
-
-			.mission-hero {
-				text-align: center;
-				margin-bottom: 3.5rem;
-			}
-
-			.mission-title {
-				font-size: clamp(2.1rem, 4.5vw, 3.2rem);
-				font-weight: 800;
-				color: #0f172a;
-				letter-spacing: -0.025em;
-				line-height: 1.15;
-				margin: 0 auto 1.25rem auto;
-				text-wrap: balance;
-			}
-
-			.mission-subtitle {
-				font-size: 1.2rem;
-				line-height: 1.6;
-				color: #334155;
-				max-width: 760px;
-				margin: 0 auto;
-				text-wrap: balance;
+			.mission-content-container {
+				max-width: 1080px;
+				margin: 1rem auto 5rem;
+				padding: 0 1.5rem;
 			}
 
 			.mission-section {
-				margin-bottom: 4rem;
+				margin-bottom: 4.5rem;
 			}
 
 			.section-title {
-				font-size: 1.85rem;
+				font-size: clamp(1.75rem, 3.5vw, 2.25rem);
 				font-weight: 800;
 				color: #0f172a;
 				margin: 0 0 1.25rem 0;
@@ -187,8 +194,8 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			}
 
 			.section-lead {
-				font-size: 1.08rem;
-				line-height: 1.68;
+				font-size: 1.1rem;
+				line-height: 1.7;
 				color: #334155;
 				margin-bottom: 1.75rem;
 				text-wrap: pretty;
@@ -200,9 +207,9 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			.problem-card {
 				background: #ffffff;
-				border: 1px solid #e2e8f0;
-				border-radius: 20px;
-				padding: 2.5rem;
+				border: 1px solid var(--card-border);
+				border-radius: 24px;
+				padding: 2.75rem 2.5rem;
 				box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05);
 			}
 
@@ -214,7 +221,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			}
 
 			.contrast-box {
-				border-radius: 14px;
+				border-radius: 16px;
 				padding: 1.75rem;
 				display: flex;
 				flex-direction: column;
@@ -230,39 +237,32 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				border: 1px solid #bfdbfe;
 			}
 
-			.box-tag {
+			.box-label {
 				align-self: flex-start;
-				font-family: ui-monospace, monospace;
-				font-size: 0.75rem;
-				font-weight: 800;
-				padding: 0.2rem 0.6rem;
-				border-radius: 6px;
-				text-transform: uppercase;
-				letter-spacing: 0.04em;
-				margin-bottom: 0.85rem;
+				font-size: 0.92rem;
+				font-weight: 700;
+				margin-bottom: 0.75rem;
 			}
 
-			.tag-red {
-				background: #ffe4e6;
+			.label-red {
 				color: #be123c;
 			}
 
-			.tag-blue {
-				background: #dbeafe;
+			.label-blue {
 				color: #1d4ed8;
 			}
 
 			.quote-text {
-				font-size: 1rem;
-				line-height: 1.6;
+				font-size: 1.05rem;
+				line-height: 1.65;
 				color: #1e293b;
 				font-style: italic;
 				margin: 0;
 			}
 
 			.section-foot {
-				font-size: 1.02rem;
-				line-height: 1.65;
+				font-size: 1.05rem;
+				line-height: 1.7;
 				color: #475569;
 				margin: 0;
 				text-wrap: pretty;
@@ -270,32 +270,30 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			/* Glue Diagram Styling */
 			.glue-diagram-container {
-				background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-				border: 2px solid #e2e8f0;
+				background: #ffffff;
+				border: 1px solid var(--card-border);
 				border-radius: 24px;
 				padding: 2.5rem 2rem;
 				margin-top: 2rem;
-				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06);
+				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
 			}
 
 			.diagram-hub {
-				background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-				border-radius: 16px;
-				padding: 2rem;
+				background: #0f172a;
+				border-radius: 18px;
+				padding: 2.25rem 2rem;
 				text-align: center;
 				color: #ffffff;
 				margin-bottom: 2rem;
-				box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.25);
+				box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.2);
 			}
 
 			.hub-label {
 				display: block;
-				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-				font-size: 0.82rem;
-				font-weight: 800;
-				color: #c084fc;
-				letter-spacing: 0.12em;
-				margin-bottom: 0.75rem;
+				font-size: 0.88rem;
+				font-weight: 700;
+				color: #a78bfa;
+				margin-bottom: 0.5rem;
 			}
 
 			.hub-title {
@@ -306,7 +304,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			}
 
 			.hub-motto {
-				font-size: 1rem;
+				font-size: 1.05rem;
 				color: #cbd5e1;
 				font-style: italic;
 				margin: 0;
@@ -319,11 +317,10 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			}
 
 			.branch-card {
-				background: #ffffff;
+				background: #f8fafc;
 				border: 1px solid #e2e8f0;
-				border-radius: 16px;
+				border-radius: 18px;
 				padding: 2rem;
-				box-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.04);
 			}
 
 			.branch-header {
@@ -332,7 +329,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				gap: 0.75rem;
 				margin-bottom: 1.25rem;
 				padding-bottom: 0.85rem;
-				border-bottom: 1px solid #f1f5f9;
+				border-bottom: 1px solid #e2e8f0;
 			}
 
 			.branch-icon {
@@ -349,101 +346,89 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			.branch-list {
 				margin: 0;
 				padding-left: 1.25rem;
-				font-size: 0.95rem;
-				line-height: 1.65;
+				display: flex;
+				flex-direction: column;
+				gap: 0.85rem;
 				color: #334155;
+				font-size: 0.98rem;
+				line-height: 1.6;
 			}
 
-			.branch-list li {
-				margin-bottom: 0.85rem;
-			}
-
-			.branch-list li:last-child {
-				margin-bottom: 0;
-			}
-
-			.branch-list strong {
-				color: #0f172a;
-			}
-
-			/* Pillars */
+			/* Pillars Styling */
 			.pillars-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-				gap: 1.5rem;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
 			}
 
 			.pillar-card {
 				background: #ffffff;
-				border: 1px solid #e2e8f0;
-				border-radius: 16px;
-				padding: 2rem 1.75rem;
+				border: 1px solid var(--card-border);
+				border-radius: 20px;
+				padding: 2.25rem 2rem;
 				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
 			}
 
 			.pillar-num {
-				font-family: ui-monospace, monospace;
-				font-size: 1.6rem;
-				font-weight: 900;
-				color: #7c3aed;
 				display: block;
-				margin-bottom: 0.6rem;
+				font-size: 1.5rem;
+				font-weight: 900;
+				color: #c8382c;
+				margin-bottom: 0.75rem;
 			}
 
 			.pillar-heading {
-				font-size: 1.22rem;
+				font-size: 1.25rem;
 				font-weight: 800;
 				color: #0f172a;
-				margin: 0 0 0.65rem 0;
+				margin: 0 0 0.75rem 0;
 			}
 
 			.pillar-desc {
-				font-size: 0.95rem;
-				line-height: 1.6;
+				font-size: 1rem;
+				line-height: 1.65;
 				color: #475569;
 				margin: 0;
 				text-wrap: pretty;
 			}
 
-			/* CTA */
+			/* CTA Box */
 			.mission-cta-box {
-				background: linear-gradient(135deg, #090d16 0%, #15102a 100%);
-				border: 1px solid rgba(168, 85, 247, 0.3);
-				border-radius: 20px;
-				padding: 2.75rem 2rem;
+				background: #fdfbf7;
+				border: 1px solid var(--card-border);
+				border-radius: 24px;
+				padding: 3.5rem 2.5rem;
 				text-align: center;
-				margin-top: 3.5rem;
-				color: #ffffff;
-				box-shadow: 0 16px 40px -8px rgba(15, 23, 42, 0.35);
+				margin-bottom: 5rem;
 			}
 
-			.mission-cta-box .cta-title {
-				font-size: 1.75rem;
+			.cta-title {
+				font-size: clamp(1.8rem, 3.5vw, 2.3rem);
 				font-weight: 800;
-				color: #ffffff;
-				margin: 0 0 0.65rem 0;
+				color: #0f172a;
+				margin: 0 0 1rem 0;
 			}
 
-			.mission-cta-box .cta-subtitle {
-				font-size: 1.05rem;
-				line-height: 1.6;
-				color: #cbd5e1;
-				max-width: 640px;
-				margin: 0 auto 1.75rem auto;
+			.cta-subtitle {
+				font-size: 1.15rem;
+				line-height: 1.65;
+				color: #475569;
+				max-width: 650px;
+				margin: 0 auto 2rem auto;
 				text-wrap: balance;
 			}
 
 			.cta-actions {
 				display: flex;
 				justify-content: center;
-				gap: 1rem;
+				gap: 1.25rem;
 				flex-wrap: wrap;
 			}
 
 			.cta-btn {
-				padding: 0.8rem 1.75rem;
-				font-weight: 700;
-				text-decoration: none;
+				padding: 0.95rem 2.25rem;
+				font-size: 1.05rem;
 			}
 		</style>
 	</body>

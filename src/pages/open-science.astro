@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import { Image } from 'astro:assets';
+import authorPhoto from '../assets/denis-ethier.png';
 ---
 
 <!doctype html>
@@ -15,27 +17,58 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 	</head>
 	<body>
 		<Header />
-		<main class="open-science-container">
-			<div class="disclaimer-wrap">
-				<MedicalDisclaimer />
-			</div>
+		<main>
+			<!-- Hero Section Following Homepage Model -->
+			<section class="hero-centered-wrapper">
+				<div class="hero-centered-header">
+					<MedicalDisclaimer />
+					<h1 class="hero-centered-title">
+						Open Science at Decoding the&nbsp;Burn
+					</h1>
+					<p class="hero-centered-subtitle">
+						We publish all research data, clinical interview transcripts, and recovery protocols openly.
+						Here is why radical data transparency and patient-led science belong to&nbsp;everyone.
+					</p>
+				</div>
 
-			<!-- Hero Header -->
-			<header class="page-hero">
-				<h1 class="page-title">Open Science at Decoding the Burn</h1>
-				<p class="page-subheadline">
-					Why we publish all research data, clinical interview transcripts, and recovery protocols with radical transparency and zero paywalls.
-				</p>
-			</header>
+				<!-- Video on Top -->
+				<div class="hero-video-centered">
+					<div class="video-placeholder-wrapper" style="cursor: default;">
+						<Image 
+							src={authorPhoto} 
+							alt="Denis Ethier - Open Science and Patient-Led Research" 
+							class="video-placeholder-img" 
+							width={1400} 
+							height={788}
+						/>
+					</div>
+				</div>
+
+				<!-- Story Card Under Video -->
+				<article class="personal-story-section">
+					<h2 class="story-heading">My Story &amp; Why I Committed to Open&nbsp;Science</h2>
+					<div class="story-lead">
+						<p>
+							When I was suffering through 10/10 burning mouth agony, I quickly ran into medical silos, paywalled research papers, and fragmented clinical studies. I had to pay for academic journal access and decipher complex biochemistry on my own just to understand what was inflaming my&nbsp;tongue.
+						</p>
+						<p>
+							I promised myself that if I found answers, I would publish everything in the open. No paywalls, no expensive courses, and no closed doors. Every symptom log, clinical consult recording, and recovery protocol on this platform is completely free and accessible for both patients and&nbsp;practitioners.
+						</p>
+						<p class="continue-reading-p">
+							<a href="/podcast/about" class="continue-reading-link">Learn more about the podcast &rarr;</a>
+						</p>
+					</div>
+				</article>
+			</section>
 
 			<!-- Core Manifesto Section -->
-			<section class="manifesto-card">
+			<section class="open-science-content-container">
 				<h2 class="section-title">The Open Science Manifesto</h2>
 				<p class="lead-text">
-					For decades, patients suffering from Burning Mouth Syndrome have been isolated behind closed medical silos, fragmented clinical studies, and expensive academic paywalls.
+					For decades, patients suffering from Burning Mouth Syndrome have been isolated behind closed medical silos, fragmented clinical studies, and expensive academic&nbsp;paywalls.
 				</p>
 				<p class="body-text">
-					At <strong>Decoding The Burn</strong>, we believe that life-saving health insights should belong to everyone. We practice <em>Patient-Led Open Science</em>, combining authentic lived recovery experiences with rigorous clinical investigation and published microbiology.
+					At <strong>Decoding The Burn</strong>, we believe that life-saving health insights should belong to everyone. We practice <em>Patient-Led Open Science</em>, combining authentic lived recovery experiences with rigorous clinical investigation and published&nbsp;microbiology.
 				</p>
 
 				<div class="pillar-grid">
@@ -44,16 +77,16 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 						<div class="pillar-number">01</div>
 						<h3 class="pillar-title">Radical Data Transparency</h3>
 						<p class="pillar-desc">
-							Every self-experiment, symptom tracking timeline, dental intervention, and outcome is logged publicly so other sufferers can analyze what worked, what failed, and why.
+							Every self-experiment, symptom tracking timeline, dental intervention, and outcome is logged publicly so other sufferers can analyze what worked, what failed, and&nbsp;why.
 						</p>
 					</div>
 
 					<!-- Pillar 2 -->
 					<div class="pillar-box">
 						<div class="pillar-number">02</div>
-						<h3 class="pillar-title">Zero Paywalls & Open Access</h3>
+						<h3 class="pillar-title">Zero Paywalls &amp; Open Access</h3>
 						<p class="pillar-desc">
-							All podcast episodes, full audio/video transcripts, guest question templates, and clinical breakdowns are 100% free and licensed under Creative Commons for open research.
+							All podcast episodes, full audio/video transcripts, guest question templates, and clinical breakdowns are 100% free and licensed for open&nbsp;research.
 						</p>
 					</div>
 
@@ -62,46 +95,46 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 						<div class="pillar-number">03</div>
 						<h3 class="pillar-title">Patient-Clinician Collaboration</h3>
 						<p class="pillar-desc">
-							We bridge the gap between patient observations and clinical science, interviewing leading dentists, periodontists, and oral medicine researchers to uncover biological root causes.
+							We bridge the gap between patient observations and clinical science, interviewing leading dentists, periodontists, and oral medicine researchers to uncover biological root&nbsp;causes.
 						</p>
 					</div>
 				</div>
 			</section>
 
 			<!-- What This Means For You Section -->
-			<section class="audience-breakdown-section">
-				<h2 class="section-title">What Open Science Means For You</h2>
+			<section class="open-science-content-container audience-breakdown-section">
+				<h2 class="section-title">What Open Science Means For&nbsp;You</h2>
 
 				<div class="audience-grid">
 					<div class="audience-card">
 						<h3 class="audience-heading">For Patients &amp; Families</h3>
 						<ul class="audience-list">
-							<li>Free access to structured symptom tracking frameworks and recovery timelines.</li>
-							<li>In-depth interview transcripts you can print and bring directly to your healthcare provider.</li>
-							<li>A supportive, research-grounded space proving your pain is real and biological.</li>
+							<li>Free access to structured symptom tracking frameworks and recovery&nbsp;timelines.</li>
+							<li>In-depth interview transcripts you can print and bring directly to your healthcare&nbsp;provider.</li>
+							<li>A supportive, research-grounded space proving your pain is real and&nbsp;biological.</li>
 						</ul>
 					</div>
 
 					<div class="audience-card">
 						<h3 class="audience-heading">For Clinicians &amp; Researchers</h3>
 						<ul class="audience-list">
-							<li>Rich, longitudinal N=1 patient datasets detailing triggers, interventions, and remission phases.</li>
-							<li>An open platform to share clinical hypotheses, microscopy techniques, and biofilm findings.</li>
-							<li>Direct collaboration opportunities through our podcast and case discussions.</li>
+							<li>Rich, longitudinal N=1 patient datasets detailing triggers, interventions, and remission&nbsp;phases.</li>
+							<li>An open platform to share clinical hypotheses, microscopy techniques, and biofilm&nbsp;findings.</li>
+							<li>Direct collaboration opportunities through our podcast and case&nbsp;discussions.</li>
 						</ul>
 					</div>
 				</div>
 			</section>
 
 			<!-- How You Can Participate & Support -->
-			<section class="support-section">
+			<section class="open-science-content-container support-section">
 				<h2 class="section-title">Engage With Our Open Research</h2>
 				<p class="support-text">
-					Open science grows through collective wisdom. Explore our open research, listen to the podcast, or connect with our community.
+					Open science grows through collective wisdom. Explore our open research, listen to the podcast, or connect with our&nbsp;community.
 				</p>
 
 				<div class="cta-actions-row">
-					<a href="/podcast/" class="action-btn primary-btn">
+					<a href="/podcast/" class="btn btn-primary" style="padding: 0.95rem 2.5rem; font-size: 1.05rem;">
 						Explore the Podcast &rarr;
 					</a>
 				</div>
@@ -110,55 +143,10 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 		<Footer />
 
 		<style>
-			.open-science-container {
-				max-width: 960px;
-				margin: 1.5rem auto 5rem;
+			.open-science-content-container {
+				max-width: 1080px;
+				margin: 1rem auto 4.5rem;
 				padding: 0 1.5rem;
-			}
-
-			.disclaimer-wrap {
-				margin-bottom: 2rem;
-			}
-
-			/* Page Hero */
-			.page-hero {
-				text-align: center;
-				margin-bottom: 3.5rem;
-			}
-
-			.page-title {
-				font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-				font-weight: 800;
-				color: #0f172a;
-				letter-spacing: -0.025em;
-				line-height: 1.15;
-				margin: 0 0 1.25rem 0;
-				text-wrap: balance;
-			}
-
-			.page-subheadline {
-				font-size: 1.2rem;
-				color: #475569;
-				max-width: 760px;
-				margin: 0 auto;
-				line-height: 1.6;
-				text-wrap: balance;
-			}
-
-			/* Manifesto Card */
-			.manifesto-card {
-				background: #ffffff;
-				border: 1px solid #e2e8f0;
-				border-radius: 24px;
-				padding: 3.5rem 3rem;
-				margin-bottom: 3.5rem;
-				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
-			}
-
-			@media (max-width: 640px) {
-				.manifesto-card {
-					padding: 2.25rem 1.5rem;
-				}
 			}
 
 			.section-title {
@@ -172,7 +160,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			}
 
 			.lead-text {
-				font-size: 1.25rem;
+				font-size: 1.2rem;
 				font-weight: 500;
 				line-height: 1.7;
 				color: #1e293b;
@@ -183,7 +171,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			}
 
 			.body-text {
-				font-size: 1.1rem;
+				font-size: 1.05rem;
 				line-height: 1.75;
 				color: #475569;
 				text-align: center;
@@ -195,17 +183,18 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			/* Pillars Grid */
 			.pillar-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 				gap: 2rem;
 				margin-top: 2rem;
 			}
 
 			.pillar-box {
-				background: #f8fafc;
-				border: 1px solid #e2e8f0;
-				border-radius: 16px;
-				padding: 2rem 1.75rem;
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				border-radius: 20px;
+				padding: 2.25rem 2rem;
 				text-align: left;
+				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
 				transition: transform 0.2s ease, box-shadow 0.2s ease;
 			}
 
@@ -217,7 +206,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			.pillar-number {
 				font-size: 1.5rem;
 				font-weight: 900;
-				color: #7c3aed;
+				color: #c8382c;
 				margin-bottom: 0.75rem;
 			}
 
@@ -238,109 +227,81 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			/* Audience Section */
 			.audience-breakdown-section {
-				margin-bottom: 3.5rem;
+				margin-bottom: 4.5rem;
 			}
 
 			.audience-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 				gap: 2rem;
 				margin-top: 2rem;
 			}
 
 			.audience-card {
 				background: #ffffff;
-				border: 1px solid #e2e8f0;
+				border: 1px solid var(--card-border);
 				border-radius: 20px;
-				padding: 2.5rem 2rem;
+				padding: 2.5rem 2.25rem;
 				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
 			}
 
 			.audience-heading {
-				font-size: 1.35rem;
+				font-size: 1.3rem;
 				font-weight: 800;
 				color: #0f172a;
 				margin: 0 0 1.25rem 0;
-				padding-bottom: 0.75rem;
-				border-bottom: 2px solid #f1f5f9;
 			}
 
 			.audience-list {
-				list-style-type: disc;
-				padding-left: 1.25rem;
+				list-style: none;
+				padding: 0;
 				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
 			}
 
 			.audience-list li {
-				font-size: 1.02rem;
-				line-height: 1.65;
+				position: relative;
+				padding-left: 1.75rem;
+				font-size: 1rem;
+				line-height: 1.6;
 				color: #334155;
-				margin-bottom: 0.85rem;
 				text-wrap: pretty;
 			}
 
-			.audience-list li:last-child {
-				margin-bottom: 0;
+			.audience-list li::before {
+				content: "✓";
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-weight: 800;
+				color: #c8382c;
 			}
 
-			/* Support / CTA Section */
+			/* Support Section */
 			.support-section {
-				background: #f8fafc;
-				border: 1px solid #e2e8f0;
+				text-align: center;
+				background: #fdfbf7;
+				border: 1px solid var(--card-border);
 				border-radius: 24px;
 				padding: 3rem 2rem;
-				text-align: center;
+				margin-bottom: 5rem;
 			}
 
 			.support-text {
 				font-size: 1.15rem;
+				line-height: 1.65;
 				color: #475569;
 				max-width: 680px;
 				margin: 0 auto 2rem auto;
-				line-height: 1.65;
 				text-wrap: balance;
 			}
 
 			.cta-actions-row {
 				display: flex;
-				flex-wrap: wrap;
 				justify-content: center;
 				gap: 1rem;
-			}
-
-			.action-btn {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 1.05rem;
-				font-weight: 800;
-				padding: 0.95rem 1.85rem;
-				border-radius: 9999px;
-				text-decoration: none;
-				transition: background 0.2s ease, transform 0.2s ease;
-			}
-
-			.primary-btn {
-				background: #7c3aed;
-				color: #ffffff !important;
-				box-shadow: 0 6px 20px -3px rgba(124, 58, 237, 0.35);
-			}
-
-			.primary-btn:hover {
-				background: #6d28d9;
-				transform: translateY(-2px);
-			}
-
-			.secondary-btn {
-				background: #ffffff;
-				color: #0f172a !important;
-				border: 1px solid #cbd5e1;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-			}
-
-			.secondary-btn:hover {
-				background: #f1f5f9;
-				transform: translateY(-2px);
 			}
 		</style>
 	</body>
