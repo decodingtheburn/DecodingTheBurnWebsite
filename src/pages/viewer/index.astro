@@ -44,6 +44,208 @@ postsWithSlides.forEach(p => {
 	categoryMap.set(p.category, (categoryMap.get(p.category) || 0) + 1);
 });
 const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] - a[1]);
+
+// Static Pages Directory in Main Menu Order
+const staticPages = [
+	{
+		title: "Homepage",
+		href: "/",
+		category: "Main Navigation",
+		menuOrder: 1,
+		badge: "Core",
+		description: "Main entry point, Denis's introduction, core mission overview, and the latest research bulletins.",
+		icon: "🏠",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "My Story: 10/10 to 0/10 Pain Reduction",
+		href: "/blog/how-i-solved-my-burning-mouth-syndrome/",
+		category: "Main Navigation",
+		menuOrder: 2,
+		badge: "Post #1",
+		description: "The complete 3-year investigative case study from severe agony to sustained 0/10 pain.",
+		icon: "📖",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "The Podcast Hub",
+		href: "/podcast/",
+		category: "Main Navigation",
+		menuOrder: 3,
+		badge: "Media",
+		description: "Episode directory, patient interviews, clinical discussions, and YouTube broadcasts.",
+		icon: "🎙️",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "For Patients",
+		href: "/for-patients/",
+		category: "Audience Portals",
+		menuOrder: 4,
+		badge: "Guide",
+		description: "Actionable forensic playbook, symptom trackers, trigger elimination, and patient peer stories.",
+		icon: "🩺",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "For Clinicians & Professionals",
+		href: "/for-professionals/",
+		category: "Audience Portals",
+		menuOrder: 5,
+		badge: "Clinical",
+		description: "Biophysical mechanisms, hidden crown decay, microscopic tubule leakage, and cross-discipline data.",
+		icon: "👨‍⚕️",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "About the Podcast",
+		href: "/podcast/about/",
+		category: "About Menu",
+		menuOrder: 6,
+		badge: "About",
+		description: "Why Denis started the podcast, show format, research goals, and host background.",
+		icon: "🎧",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Open Science Framework",
+		href: "/open-science/",
+		category: "About Menu",
+		menuOrder: 7,
+		badge: "Research",
+		description: "Radical transparency, decentralized data sharing, time-series telemetry, and patient-led research.",
+		icon: "🔬",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Our Mission: Bridging People & Data",
+		href: "/mission/",
+		category: "About Menu",
+		menuOrder: 8,
+		badge: "Mission",
+		description: "Connecting Patients, Dentists, Doctors, and Researchers around a unified shared data hub.",
+		icon: "🌐",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Follow the Discoveries",
+		href: "/follow/",
+		category: "Community & Channels",
+		menuOrder: 9,
+		badge: "Channels",
+		description: "Direct access to YouTube, private Facebook group, Reddit r/DecodingBMS, and email notes.",
+		icon: "📡",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Research Hub & Literature Review",
+		href: "/research/",
+		category: "Research & Science",
+		menuOrder: 10,
+		badge: "Papers",
+		description: "Deep-dive clinical studies, PubMed citations, acid-sensing ion channels (ASIC), and pH biology.",
+		icon: "📚",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Clinical Glossary",
+		href: "/glossary/",
+		category: "Reference",
+		menuOrder: 11,
+		badge: "Index",
+		description: "Alphabetical directory of medical, dental, biochemical, and neurological terms.",
+		icon: "📑",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Podcast Guest Guide",
+		href: "/podcast/guest-guide/",
+		category: "Podcast Network",
+		menuOrder: 12,
+		badge: "Guide",
+		description: "Recording checklist, audio/video setup, and prep notes for invited podcast guests.",
+		icon: "🎙️",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Professional Guest Guide",
+		href: "/podcast/professional-guide/",
+		category: "Podcast Network",
+		menuOrder: 13,
+		badge: "Guide",
+		description: "Specialized clinical topic overview and interview framing for dentists, doctors, and scientists.",
+		icon: "💼",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Join the Network",
+		href: "/join/",
+		category: "Community",
+		menuOrder: 14,
+		badge: "Connect",
+		description: "Join our growing network of patients, clinicians, and researchers decoding BMS together.",
+		icon: "🤝",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Contact Denis",
+		href: "/contact/",
+		category: "Communication",
+		menuOrder: 15,
+		badge: "Contact",
+		description: "Direct message form to send case notes, research tips, or interview inquiries.",
+		icon: "✉️",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Medical & Legal Disclaimers",
+		href: "/disclaimers/",
+		category: "Legal & Transparency",
+		menuOrder: 16,
+		badge: "Legal",
+		description: "Important health statements, N=1 educational framing, and non-prescriptive medical notice.",
+		icon: "⚖️",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Privacy Policy",
+		href: "/privacy/",
+		category: "Legal & Transparency",
+		menuOrder: 17,
+		badge: "Legal",
+		description: "Zero-tracking principles, data security, and transparent privacy commitments.",
+		icon: "🔒",
+		isPublic: true,
+		indexed: true,
+	},
+	{
+		title: "Terms of Use",
+		href: "/terms/",
+		category: "Legal & Transparency",
+		menuOrder: 18,
+		badge: "Legal",
+		description: "Clear guidelines on content usage, copyright, and platform rules.",
+		icon: "📜",
+		isPublic: true,
+		indexed: true,
+	},
+];
 ---
 
 <!doctype html>
@@ -1077,6 +1279,255 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 			.hub-nav-link:hover {
 				color: #ffffff;
 			}
+
+			/* Static Pages & Site Tree Sections */
+			.hub-extra-section {
+				background: #ffffff;
+				border: 1px solid #fecdd3;
+				border-radius: 24px;
+				padding: 2.25rem 2.25rem 2rem 2.25rem;
+				box-shadow: 0 20px 45px -10px rgba(76, 5, 25, 0.25);
+				margin-top: 3.5rem;
+				margin-bottom: 2.5rem;
+			}
+
+			@media (max-width: 640px) {
+				.hub-extra-section {
+					padding: 1.5rem 1.25rem 1.25rem 1.25rem;
+					border-radius: 18px;
+				}
+			}
+
+			.section-header-banner {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				background: linear-gradient(135deg, #be123c 0%, #9d174d 55%, #881337 100%);
+				border: 1px solid rgba(254, 205, 211, 0.4);
+				border-radius: 18px;
+				padding: 1.5rem 2rem;
+				margin-bottom: 2rem;
+				box-shadow: 0 10px 30px -4px rgba(136, 19, 55, 0.35);
+			}
+
+			@media (max-width: 640px) {
+				.section-header-banner {
+					padding: 1.2rem 1.4rem;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 0.75rem;
+				}
+			}
+
+			.section-banner-title {
+				font-family: var(--font-heading, system-ui, sans-serif);
+				font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+				font-weight: 800;
+				color: #ffffff;
+				margin: 0;
+				letter-spacing: -0.02em;
+			}
+
+			.section-banner-subtitle {
+				color: #fce7f3;
+				font-size: 0.88rem;
+				margin: 0.25rem 0 0 0;
+			}
+
+			.section-banner-badge {
+				font-family: ui-monospace, SFMono-Regular, monospace;
+				font-size: 0.82rem;
+				font-weight: 800;
+				padding: 0.4rem 1rem;
+				border-radius: 9999px;
+				background: #ffffff;
+				color: #881337;
+				flex-shrink: 0;
+			}
+
+			/* Static Pages Grid */
+			.static-pages-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.25rem;
+			}
+
+			@media (max-width: 860px) {
+				.static-pages-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			.static-page-card {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 14px;
+				padding: 1.25rem 1.4rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				transition: all 0.22s ease;
+			}
+
+			.static-page-card:hover {
+				background: #ffffff;
+				border-color: #be123c;
+				transform: translateY(-3px);
+				box-shadow: 0 12px 28px -6px rgba(190, 18, 60, 0.15);
+			}
+
+			.static-card-top {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 0.75rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.static-card-title-group {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+			}
+
+			.static-card-icon {
+				font-size: 1.35rem;
+				line-height: 1;
+			}
+
+			.static-card-title {
+				font-size: 1.05rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin: 0;
+			}
+
+			.static-card-order-pill {
+				font-family: ui-monospace, monospace;
+				font-size: 0.7rem;
+				font-weight: 800;
+				background: #f1f5f9;
+				color: #475569;
+				padding: 0.15rem 0.5rem;
+				border-radius: 6px;
+				border: 1px solid #cbd5e1;
+				white-space: nowrap;
+			}
+
+			.static-card-desc {
+				font-size: 0.85rem;
+				color: #475569;
+				line-height: 1.45;
+				margin: 0.25rem 0 1rem 0;
+			}
+
+			.static-card-actions {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				border-top: 1px solid #e2e8f0;
+				padding-top: 0.75rem;
+				margin-top: auto;
+			}
+
+			.static-card-route {
+				font-family: ui-monospace, monospace;
+				font-size: 0.75rem;
+				color: #881337;
+				font-weight: 600;
+			}
+
+			.static-card-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				background: #be123c;
+				color: #ffffff;
+				font-size: 0.78rem;
+				font-weight: 700;
+				padding: 0.35rem 0.85rem;
+				border-radius: 6px;
+				text-decoration: none;
+				transition: background 0.18s ease;
+			}
+
+			.static-card-btn:hover {
+				background: #9f1239;
+			}
+
+			/* Logical Site Tree Diagram */
+			.site-tree-container {
+				background: #0f172a;
+				border: 1px solid #1e293b;
+				border-radius: 16px;
+				padding: 2rem;
+				color: #f1f5f9;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.88rem;
+				line-height: 1.7;
+				overflow-x: auto;
+				box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+			}
+
+			.tree-root {
+				color: #fb7185;
+				font-weight: 800;
+				font-size: 1.05rem;
+				margin-bottom: 0.75rem;
+			}
+
+			.tree-section-title {
+				color: #38bdf8;
+				font-weight: 700;
+			}
+
+			.tree-branch {
+				color: #64748b;
+			}
+
+			.tree-page-link {
+				color: #e2e8f0;
+				text-decoration: none;
+				transition: color 0.15s ease;
+			}
+
+			.tree-page-link:hover {
+				color: #fb7185;
+				text-decoration: underline;
+			}
+
+			.tree-badge-indexed {
+				background: rgba(34, 197, 94, 0.15);
+				color: #4ade80;
+				border: 1px solid rgba(34, 197, 94, 0.35);
+				padding: 0.1rem 0.45rem;
+				border-radius: 4px;
+				font-size: 0.68rem;
+				font-weight: 700;
+				margin-left: 0.5rem;
+			}
+
+			.tree-badge-noindex {
+				background: rgba(239, 68, 68, 0.15);
+				color: #f87171;
+				border: 1px solid rgba(239, 68, 68, 0.35);
+				padding: 0.1rem 0.45rem;
+				border-radius: 4px;
+				font-size: 0.68rem;
+				font-weight: 700;
+				margin-left: 0.5rem;
+			}
+
+			.tree-badge-draft {
+				background: rgba(245, 158, 11, 0.15);
+				color: #fbbf24;
+				border: 1px solid rgba(245, 158, 11, 0.35);
+				padding: 0.1rem 0.45rem;
+				border-radius: 4px;
+				font-size: 0.68rem;
+				font-weight: 700;
+				margin-left: 0.5rem;
+			}
 		</style>
 	</head>
 	<body>
@@ -1441,6 +1892,98 @@ const dynamicCategories = Array.from(categoryMap.entries()).sort((a, b) => b[1] 
 						</div>
 					</div>
 				</div>
+
+				<!-- SECTION 2: STATIC PAGES DIRECTORY (ORDERED BY MAIN MENU) -->
+				<section class="hub-extra-section" id="staticPagesSection">
+					<div class="section-header-banner">
+						<div>
+							<h2 class="section-banner-title">Static Pages &amp; Public Routes</h2>
+							<p class="section-banner-subtitle">Complete directory of all {staticPages.length} core pages on DecodingTheBurn.com, ordered by the main navigation menu.</p>
+						</div>
+						<span class="section-banner-badge">{staticPages.length} Public Pages</span>
+					</div>
+
+					<div class="static-pages-grid">
+						{staticPages.map((page) => (
+							<div class="static-page-card">
+								<div>
+									<div class="static-card-top">
+										<div class="static-card-title-group">
+											<span class="static-card-icon">{page.icon}</span>
+											<h3 class="static-card-title">{page.title}</h3>
+										</div>
+										<span class="static-card-order-pill">#{page.menuOrder} &bull; {page.category}</span>
+									</div>
+									<p class="static-card-desc">{page.description}</p>
+								</div>
+								<div class="static-card-actions">
+									<span class="static-card-route">{page.href}</span>
+									<a href={page.href} target="_blank" rel="noopener noreferrer" class="static-card-btn" title={`Open ${page.title} in a new tab`}>
+										<span>View Page</span>
+										<span>→</span>
+									</a>
+								</div>
+							</div>
+						))}
+					</div>
+				</section>
+
+				<!-- SECTION 3: LOGICAL ARCHITECTURAL SITE TREE -->
+				<section class="hub-extra-section" id="siteTreeSection">
+					<div class="section-header-banner">
+						<div>
+							<h2 class="section-banner-title">Logical Site Structure &amp; SEO Topology Tree</h2>
+							<p class="section-banner-subtitle">Hierarchical diagram of all indexable pages, private teleprompters, protected drafts, and XML endpoints.</p>
+						</div>
+						<span class="section-banner-badge">Site Architecture</span>
+					</div>
+
+					<div class="site-tree-container">
+<div class="tree-root">🌐 decodingtheburn.com/ (Root Domain)</div>
+<div class="tree-branch">├── <span class="tree-section-title">🌟 Main Navigation &amp; Narrative Core</span></div>
+<div class="tree-branch">│   ├── <a href="/" target="_blank" class="tree-page-link">/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Homepage &amp; Research Hero)</span></div>
+<div class="tree-branch">│   ├── <a href="/blog/how-i-solved-my-burning-mouth-syndrome/" target="_blank" class="tree-page-link">/blog/how-i-solved-my-burning-mouth-syndrome/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Post #1: 10/10 to 0/10 Case Study)</span></div>
+<div class="tree-branch">│   ├── <a href="/podcast/" target="_blank" class="tree-page-link">/podcast/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Podcast Episode Directory)</span></div>
+<div class="tree-branch">│   ├── <a href="/mission/" target="_blank" class="tree-page-link">/mission/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Bridging Patients, Dentists, Doctors &amp; Researchers)</span></div>
+<div class="tree-branch">│   ├── <a href="/open-science/" target="_blank" class="tree-page-link">/open-science/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Radical Transparency &amp; Time-Series Framework)</span></div>
+<div class="tree-branch">│   └── <a href="/research/" target="_blank" class="tree-page-link">/research/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Biophysical Hypotheses &amp; Literature Review)</span></div>
+<div class="tree-branch">│</div>
+<div class="tree-branch">├── <span class="tree-section-title">👥 Audience Portals &amp; Specialized Guides</span></div>
+<div class="tree-branch">│   ├── <a href="/for-patients/" target="_blank" class="tree-page-link">/for-patients/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Patient Recovery Playbook &amp; Checklists)</span></div>
+<div class="tree-branch">│   ├── <a href="/for-clinicians/" target="_blank" class="tree-page-link">/for-clinicians/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Clinical Etiology &amp; Tubule Hypotheses)</span></div>
+<div class="tree-branch">│   ├── <a href="/for-professionals/" target="_blank" class="tree-page-link">/for-professionals/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Multidisciplinary Provider Hub)</span></div>
+<div class="tree-branch">│   ├── <a href="/podcast/about/" target="_blank" class="tree-page-link">/podcast/about/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Show Format &amp; Host Story)</span></div>
+<div class="tree-branch">│   ├── <a href="/podcast/guest-guide/" target="_blank" class="tree-page-link">/podcast/guest-guide/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Guest Setup &amp; Audio Checklist)</span></div>
+<div class="tree-branch">│   └── <a href="/podcast/professional-guide/" target="_blank" class="tree-page-link">/podcast/professional-guide/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Clinician Interview Briefing)</span></div>
+<div class="tree-branch">│</div>
+<div class="tree-branch">├── <span class="tree-section-title">📡 Community Channels, Glossary &amp; Legal</span></div>
+<div class="tree-branch">│   ├── <a href="/follow/" target="_blank" class="tree-page-link">/follow/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(YouTube, FB Group, Reddit r/DecodingBMS, Newsletter)</span></div>
+<div class="tree-branch">│   ├── <a href="/join/" target="_blank" class="tree-page-link">/join/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Patient &amp; Provider Registry)</span></div>
+<div class="tree-branch">│   ├── <a href="/contact/" target="_blank" class="tree-page-link">/contact/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Direct Message Form)</span></div>
+<div class="tree-branch">│   ├── <a href="/glossary/" target="_blank" class="tree-page-link">/glossary/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(A–Z Dental &amp; Clinical Terms)</span></div>
+<div class="tree-branch">│   ├── <a href="/disclaimers/" target="_blank" class="tree-page-link">/disclaimers/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Medical Disclaimers)</span></div>
+<div class="tree-branch">│   ├── <a href="/privacy/" target="_blank" class="tree-page-link">/privacy/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Privacy Policy)</span></div>
+<div class="tree-branch">│   └── <a href="/terms/" target="_blank" class="tree-page-link">/terms/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Terms of Use)</span></div>
+<div class="tree-branch">│</div>
+<div class="tree-branch">├── <span class="tree-section-title">📚 Blog Archive &amp; Private Research Drafts</span></div>
+<div class="tree-branch">│   ├── <a href="/blog/" target="_blank" class="tree-page-link">/blog/</a> <span class="tree-badge-indexed">Indexed</span> <span style="color: #64748b;">(Public Blog Index)</span></div>
+<div class="tree-branch">│   ├── <span style="color: #e2e8f0;">/blog/how-i-solved-my-burning-mouth-syndrome/</span> <span class="tree-badge-indexed">Indexed</span></div>
+<div class="tree-branch">│   └── <span style="color: #fbbf24;">/blog/[16-draft-slugs]/</span> <span class="tree-badge-noindex">Noindex</span> <span class="tree-badge-draft">Draft</span> <span style="color: #64748b;">(Previewable via /drafts with passcode)</span></div>
+<div class="tree-branch">│</div>
+<div class="tree-branch">├── <span class="tree-section-title">🎛️ Presenter Engines &amp; Internal Previews (Protected)</span></div>
+<div class="tree-branch">│   ├── <a href="/viewer/" class="tree-page-link">/viewer/</a> <span class="tree-badge-noindex">Noindex</span> <span style="color: #64748b;">(Universal Slide Deck &amp; Presenter Hub)</span></div>
+<div class="tree-branch">│   ├── <span style="color: #e2e8f0;">/viewer/[slug]/public/</span> <span class="tree-badge-noindex">Noindex</span> <span style="color: #64748b;">(Clean 16:9 Borderless Screens for OBS)</span></div>
+<div class="tree-branch">│   ├── <span style="color: #e2e8f0;">/viewer/[slug]/private/</span> <span class="tree-badge-noindex">Noindex</span> <span style="color: #64748b;">(Denis's Teleprompter Cockpits)</span></div>
+<div class="tree-branch">│   ├── <a href="/drafts/" target="_blank" class="tree-page-link">/drafts/</a> <span class="tree-badge-noindex">Noindex</span> <span style="color: #64748b;">(Drafts Passcode Gate)</span></div>
+<div class="tree-branch">│   ├── <a href="/presentation/how-i-solved-my-bms/" target="_blank" class="tree-page-link">/presentation/how-i-solved-my-bms/</a> <span class="tree-badge-noindex">Noindex</span> <span style="color: #64748b;">(Fullscreen Slide Deck)</span></div>
+<div class="tree-branch">│   └── <a href="/thumbnails-preview/" target="_blank" class="tree-page-link">/thumbnails-preview/</a> <span class="tree-badge-noindex">Noindex</span> <span style="color: #64748b;">(20 Thumbnail Lab)</span></div>
+<div class="tree-branch">│</div>
+<div class="tree-branch">└── <span class="tree-section-title">🗺️ Machine-Readable SEO Endpoints</span></div>
+<div class="tree-branch">    ├── <a href="/sitemap.xml" target="_blank" class="tree-page-link">/sitemap.xml</a> <span class="tree-badge-indexed">SEO Feed</span> <span style="color: #64748b;">(Clean XML with only indexed pages &amp; posts)</span></div>
+<div class="tree-branch">    ├── <a href="/sitemap-index.xml" target="_blank" class="tree-page-link">/sitemap-index.xml</a> <span class="tree-badge-indexed">SEO Feed</span> <span style="color: #64748b;">(Astro Auto-Generated Index)</span></div>
+<div class="tree-branch">    └── <a href="/rss.xml" target="_blank" class="tree-page-link">/rss.xml</a> <span class="tree-badge-indexed">RSS Feed</span> <span style="color: #64748b;">(Live RSS 2.0 Feed)</span></div>
+					</div>
+				</section>
 
 				<footer class="hub-footer-nav">
 					<a href="/blog" class="hub-nav-link">← Public Blog Archive</a>
