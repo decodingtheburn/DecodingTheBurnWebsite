@@ -5,7 +5,7 @@ import { getEntry } from 'astro:content';
 import { generateSlidesFromPost } from '../../utils/slideEngine';
 import { bmsSlides } from '../../data/slidesData';
 
-const post = await getEntry('blog', 'how-i-solved-my-burning-mouth-syndrome');
+const post = await getEntry('blog', 'how-i-reduced-my-bms-pain-from-10-to-0');
 const slides = post 
 	? generateSlidesFromPost(post.id, post.data.title, post.data.description, post.body || '')
 	: bmsSlides;
