@@ -15,55 +15,53 @@ import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
 	</head>
 	<body>
 		<Header />
-		<main class="about-podcast-container">
-			<div class="disclaimer-wrap">
-				<MedicalDisclaimer />
-			</div>
-
-			<!-- Thumbnail at Top -->
-			<div class="podcast-hero-thumbnail-wrap">
-				<img 
-					src="/about-podcast-thumbnail.jpg" 
-					alt="The Decoding the Burning Mouth Syndrome Podcast hosted by Denis Ethier" 
-					class="podcast-hero-thumbnail"
-					loading="eager"
-				/>
-			</div>
-
-			<!-- Host & Patient Profile Card (Centered) -->
-			<section class="host-profile-card">
-				<h1 class="podcast-show-title">About the Podcast</h1>
-				
-				<div class="host-badge-group">
-					<p class="host-role-title">Denis Ethier</p>
-					<p class="patient-headline-large">BMS Patient</p>
-					<p class="host-location-text">Host of the Podcast • Quebec, Canada</p>
-				</div>
-
-				<div class="podcast-mission-copy">
-					<p>
-						I created this podcast because millions of people with Burning Mouth Syndrome are told that their agonizing pain is "all in their head."
-					</p>
-					<p>
-						As a former severe sufferer who reached 100% sustained remission after 3 agonizing years, I interview patients, dentists, doctors, and researchers to investigate real biophysical root causes.
-					</p>
-					<p>
-						Our mission is radical data transparency, connecting the brightest minds across clinical medicine, and accelerating permanent answers for everyone navigating this&nbsp;condition.
+		<main>
+			<!-- Hero Section Following Homepage Model -->
+			<section class="hero-centered-wrapper">
+				<div class="hero-centered-header">
+					<MedicalDisclaimer />
+					<h1 class="hero-centered-title">
+						About the Podcast
+					</h1>
+					<p class="hero-centered-subtitle">
+						Interviews with patients, dentists, and researchers exploring biophysical root causes.
+						Here is why open dialogue and clinical transparency are the key to permanent&nbsp;answers.
 					</p>
 				</div>
 
-				<!-- Direct Link to My Story -->
-				<div class="story-link-box">
-					<a href="/blog/how-i-solved-my-burning-mouth-syndrome/" class="story-btn">
-						<span>Read My Full 3-Year BMS Recovery Story &rarr;</span>
-					</a>
+				<!-- Thumbnail on Top (Using existing podcast thumbnail) -->
+				<div class="hero-video-centered">
+					<div class="video-placeholder-wrapper" style="cursor: default;">
+						<img 
+							src="/about-podcast-thumbnail.jpg" 
+							alt="The Decoding the Burning Mouth Syndrome Podcast hosted by Denis Ethier" 
+							class="video-placeholder-img" 
+							loading="eager"
+						/>
+					</div>
 				</div>
+
+				<!-- Story Card Under Video -->
+				<article class="personal-story-section">
+					<h2 class="story-heading">My Story &amp; Why I Started This&nbsp;Podcast</h2>
+					<div class="story-lead">
+						<p>
+							I created this podcast because millions of people with Burning Mouth Syndrome are told that their agonizing pain is all in their head. After consulting five dentists and five medical doctors who couldn't find a physical cause, I realized that traditional 15-minute appointments were not designed to solve complex chronic&nbsp;conditions.
+						</p>
+						<p>
+							As a patient who reached sustained remission after three agonizing years of testing and elimination, I interview patients, dentists, periodontists, and medical researchers to investigate real biophysical triggers. Our mission is radical data transparency, connecting clinical minds, and accelerating real discoveries so no one navigates this fire&nbsp;alone.
+						</p>
+						<p class="continue-reading-p">
+							<a href="/blog/how-i-solved-my-burning-mouth-syndrome/" class="continue-reading-link">Read my complete 3-year recovery story &rarr;</a>
+						</p>
+					</div>
+				</article>
 			</section>
 
 			<!-- Action Cards: Join, Subscribe & Follow -->
-			<section class="podcast-actions-section">
-				<h2 class="actions-heading">Follow &amp; Support the Podcast</h2>
-				<p class="actions-subhead">Join our growing community of patients and clinicians decoding Burning Mouth Syndrome.</p>
+			<section class="podcast-content-container">
+				<h2 class="section-title">Follow &amp; Support the Podcast</h2>
+				<p class="section-subhead">Join our growing community of patients and clinicians decoding Burning Mouth&nbsp;Syndrome.</p>
 
 				<div class="action-grid-centered">
 					<!-- Action 1: YouTube -->
@@ -74,7 +72,7 @@ import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
 							</svg>
 						</div>
 						<h3 class="tile-title">Subscribe on YouTube</h3>
-						<p class="tile-text">Watch video podcast episodes, case presentations, and radiographic breakdowns.</p>
+						<p class="tile-text">Watch video podcast episodes, case presentations, and radiographic&nbsp;breakdowns.</p>
 						<a href="https://www.youtube.com/@DecodingTheBurning?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="tile-btn youtube-btn">
 							Subscribe on YouTube &rarr;
 						</a>
@@ -88,7 +86,7 @@ import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
 							</svg>
 						</div>
 						<h3 class="tile-title">Join Episode Updates</h3>
-						<p class="tile-text">Get notified directly when new patient interviews and clinical findings air.</p>
+						<p class="tile-text">Get notified directly when new patient interviews and clinical findings&nbsp;air.</p>
 						<a href="/podcast#notify" class="tile-btn email-btn">
 							Get Notified of New Episodes &rarr;
 						</a>
@@ -100,10 +98,25 @@ import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
 							<span style="font-size: 2.75rem; line-height: 1;">🎙️</span>
 						</div>
 						<h3 class="tile-title">Apply to Be a Guest</h3>
-						<p class="tile-text">Whether you're a patient with a story or a clinician with insights, come on the show.</p>
+						<p class="tile-text">Whether you're a patient with a story or a clinician with insights, join the&nbsp;show.</p>
 						<a href="/podcast#apply" class="tile-btn guest-btn">
 							Apply to Be a Guest &rarr;
 						</a>
+					</div>
+				</div>
+
+				<!-- Host & Guide Links Section -->
+				<div class="host-info-card">
+					<div class="host-info-content">
+						<h3 class="host-name">Denis Ethier</h3>
+						<p class="host-subtitle">BMS Patient &amp; Host &bull; Quebec, Canada</p>
+						<p class="host-bio">
+							Leading patient-led clinical research to connect sufferers with compassionate dentists, periodontists, and medical researchers worldwide.
+						</p>
+					</div>
+					<div class="guide-links-row">
+						<a href="/podcast/guest-guide" class="guide-link">Guest Preparation Guide &rarr;</a>
+						<a href="/podcast/professional-guide" class="guide-link">Clinician Discussion Guide &rarr;</a>
 					</div>
 				</div>
 			</section>
@@ -111,175 +124,45 @@ import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
 		<Footer />
 
 		<style>
-			.about-podcast-container {
-				max-width: 920px;
-				margin: 1.5rem auto 5rem;
+			.podcast-content-container {
+				max-width: 1080px;
+				margin: 1rem auto 5rem;
 				padding: 0 1.5rem;
-				text-align: center;
 			}
 
-			.disclaimer-wrap {
-				margin-bottom: 2rem;
-			}
-
-			/* Top Thumbnail Presentation */
-			.podcast-hero-thumbnail-wrap {
-				width: 100%;
-				max-width: 840px;
-				margin: 0 auto 3rem auto;
-				border-radius: 20px;
-				overflow: hidden;
-				box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.18);
-				border: 1px solid rgba(15, 23, 42, 0.1);
-				background: #0f172a;
-				aspect-ratio: 16 / 9;
-			}
-
-			.podcast-hero-thumbnail {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				display: block;
-			}
-
-			/* Centered Host Profile Card */
-			.host-profile-card {
-				background: #ffffff;
-				border: 1px solid #e2e8f0;
-				border-radius: 24px;
-				padding: 3.5rem 2.5rem;
-				margin-bottom: 4rem;
-				box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.06);
-				text-align: center;
-			}
-
-			@media (max-width: 640px) {
-				.host-profile-card {
-					padding: 2.25rem 1.5rem;
-				}
-			}
-
-			.podcast-show-title {
-				font-size: clamp(2rem, 4vw, 2.75rem);
-				font-weight: 800;
-				color: #0f172a;
-				letter-spacing: -0.025em;
-				margin: 0 0 1.5rem 0;
-				text-wrap: balance;
-			}
-
-			.host-badge-group {
-				margin-bottom: 2.5rem;
-			}
-
-			.host-role-title {
-				font-size: 1.4rem;
-				font-weight: 800;
-				color: #0f172a;
-				margin: 0 0 0.35rem 0;
-			}
-
-			.patient-headline-large {
-				font-size: clamp(2.2rem, 5vw, 3.2rem);
-				font-weight: 900;
-				color: #be123c;
-				line-height: 1.1;
-				letter-spacing: -0.02em;
-				margin: 0.25rem 0;
-				text-transform: uppercase;
-			}
-
-			.host-location-text {
-				font-size: 1.1rem;
-				font-weight: 600;
-				color: #64748b;
-				margin: 0.5rem 0 0 0;
-			}
-
-			.podcast-mission-copy {
-				max-width: 720px;
-				margin: 0 auto 2.5rem auto;
-				text-align: center;
-			}
-
-			.podcast-mission-copy p {
-				font-size: 1.18rem;
-				line-height: 1.75;
-				color: #334155;
-				margin-bottom: 1.25rem;
-				text-wrap: pretty;
-			}
-
-			.podcast-mission-copy p:last-child {
-				margin-bottom: 0;
-			}
-
-			.story-link-box {
-				margin-top: 2.5rem;
-				padding-top: 2rem;
-				border-top: 1px solid #f1f5f9;
-				display: flex;
-				justify-content: center;
-			}
-
-			.story-btn {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				gap: 0.5rem;
-				background: #7c3aed;
-				color: #ffffff !important;
-				font-size: 1.1rem;
-				font-weight: 800;
-				padding: 1rem 2.25rem;
-				border-radius: 9999px;
-				text-decoration: none;
-				transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-				box-shadow: 0 6px 20px -3px rgba(124, 58, 237, 0.35);
-			}
-
-			.story-btn:hover {
-				background: #6d28d9;
-				transform: translateY(-2px);
-				box-shadow: 0 10px 25px -3px rgba(124, 58, 237, 0.45);
-			}
-
-			/* Action Blocks Section */
-			.podcast-actions-section {
-				margin-top: 2rem;
-				text-align: center;
-			}
-
-			.actions-heading {
+			.section-title {
 				font-size: clamp(1.75rem, 3.5vw, 2.25rem);
 				font-weight: 800;
 				color: #0f172a;
 				margin: 0 0 0.5rem 0;
 				letter-spacing: -0.02em;
+				text-align: center;
 				text-wrap: balance;
 			}
 
-			.actions-subhead {
+			.section-subhead {
 				font-size: 1.05rem;
 				color: #64748b;
 				max-width: 600px;
 				margin: 0 auto 2.5rem auto;
 				line-height: 1.6;
+				text-align: center;
 				text-wrap: balance;
 			}
 
 			.action-grid-centered {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-				gap: 1.75rem;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2rem;
 				justify-content: center;
+				margin-bottom: 3.5rem;
 			}
 
 			.action-tile {
 				background: #ffffff;
-				border: 1px solid #e2e8f0;
+				border: 1px solid var(--card-border);
 				border-radius: 20px;
-				padding: 2.25rem 1.75rem;
+				padding: 2.5rem 2rem;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -309,7 +192,7 @@ import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
 			}
 
 			.tile-text {
-				font-size: 0.95rem;
+				font-size: 0.98rem;
 				line-height: 1.6;
 				color: #475569;
 				margin: 0 0 1.5rem 0;
@@ -357,6 +240,62 @@ import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
 			.guest-btn:hover {
 				background: #000000;
 				transform: translateY(-1px);
+			}
+
+			/* Host Info Card */
+			.host-info-card {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				border-radius: 20px;
+				padding: 2.5rem;
+				text-align: center;
+				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
+				margin-top: 1rem;
+			}
+
+			.host-name {
+				font-size: 1.4rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.35rem 0;
+			}
+
+			.host-subtitle {
+				font-size: 1.05rem;
+				font-weight: 700;
+				color: #be123c;
+				margin: 0 0 1rem 0;
+			}
+
+			.host-bio {
+				font-size: 1.05rem;
+				line-height: 1.65;
+				color: #475569;
+				max-width: 650px;
+				margin: 0 auto 1.75rem auto;
+				text-wrap: pretty;
+			}
+
+			.guide-links-row {
+				display: flex;
+				justify-content: center;
+				gap: 2rem;
+				flex-wrap: wrap;
+				padding-top: 1.5rem;
+				border-top: 1px solid #f1f5f9;
+			}
+
+			.guide-link {
+				font-size: 0.95rem;
+				font-weight: 700;
+				color: #7c3aed;
+				text-decoration: none;
+				transition: color 0.15s ease;
+			}
+
+			.guide-link:hover {
+				color: #5b21b6;
+				text-decoration: underline;
 			}
 		</style>
 	</body>
