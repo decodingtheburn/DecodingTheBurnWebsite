@@ -186,14 +186,100 @@ if (!postNumber && slug) {
 				postContent.insertBefore(ctaContainer, targetElement);
 			}
 
+			function initTopicKeyboardNavigation() {
+				// Gather all topic heading anchors in order
+				function getTopics(): HTMLElement[] {
+					const postContent = document.getElementById('blog-post-content');
+					if (!postContent) return [];
+					
+					const selectors = 'h2, h3, .casebook-item, .tldr-card, .casebook-substep, .story-cta-card';
+					const elements = Array.from(postContent.querySelectorAll<HTMLElement>(selectors));
+					
+					// Filter out hidden elements or nested sub-elements
+					return elements.filter((el) => {
+						const isVisible = el.offsetWidth > 0 && el.offsetHeight > 0;
+						return isVisible;
+					});
+				}
+
+				function navigateTopic(direction: 'next' | 'prev') {
+					const topics = getTopics();
+					if (topics.length === 0) return;
+
+					const offsetMargin = 90; // Header clearance
+					const currentScrollY = window.scrollY + offsetMargin;
+
+					if (direction === 'next') {
+						// Find first topic positioned strictly below current reading view
+						const nextTopic = topics.find((el) => {
+							const top = el.getBoundingClientRect().top + window.scrollY;
+							return top > currentScrollY + 15;
+						});
+
+						if (nextTopic) {
+							const targetY = nextTopic.getBoundingClientRect().top + window.scrollY - 80;
+							window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+						}
+					} else {
+						// Find previous topic strictly above current reading view
+						const prevTopics = topics.filter((el) => {
+							const top = el.getBoundingClientRect().top + window.scrollY;
+							return top < currentScrollY - 15;
+						});
+
+						if (prevTopics.length > 0) {
+							const prevTopic = prevTopics[prevTopics.length - 1];
+							const targetY = prevTopic.getBoundingClientRect().top + window.scrollY - 80;
+							window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+						} else {
+							// If at top topic, scroll to post headline
+							window.scrollTo({ top: 0, behavior: 'smooth' });
+						}
+					}
+				}
+
+				window.addEventListener('keydown', (e: KeyboardEvent) => {
+					// Never intercept keys when user is typing in forms or search boxes
+					const activeTag = (document.activeElement?.tagName || '').toUpperCase();
+					const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(activeTag) || (document.activeElement as HTMLElement)?.isContentEditable;
+					if (isInputActive) return;
+
+					// Don't intercept if modifier keys like Ctrl / Meta / Alt are pressed (unless Shift)
+					if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+					// 1. Spacebar / Shift+Spacebar: Next / Prev topic
+					// Check if audio reader is actively playing; if playing, let audio reader toggle pause
+					const isAudioPlaying = (window as any).__ttsPlaybackState === 'PLAYING';
+
+					if (e.code === 'Space' && !isAudioPlaying) {
+						e.preventDefault();
+						if (e.shiftKey) {
+							navigateTopic('prev');
+						} else {
+							navigateTopic('next');
+						}
+					} else if (e.key === 'j' || e.key === 'J' || e.key === 'n' || e.key === 'N') {
+						// Vi / Reader style shortcut: J or N for Next topic
+						e.preventDefault();
+						navigateTopic('next');
+					} else if (e.key === 'k' || e.key === 'K' || e.key === 'p' || e.key === 'P') {
+						// Vi / Reader style shortcut: K or P for Previous topic
+						e.preventDefault();
+						navigateTopic('prev');
+					}
+				});
+			}
+
 			if (document.readyState === 'loading') {
 				document.addEventListener('DOMContentLoaded', () => {
 					initLightbox();
 					initMidPostCTA();
+					initTopicKeyboardNavigation();
 				});
 			} else {
 				initLightbox();
 				initMidPostCTA();
+				initTopicKeyboardNavigation();
 			}
 		</script>
 		<style>

@@ -1472,6 +1472,7 @@ const { title = 'this article' } = Astro.props;
 			currentSentenceIdx = idx;
 			currentWordIdx = -1;
 			playbackState = 'PLAYING';
+			(window as any).__ttsPlaybackState = 'PLAYING';
 			updateButtonStates();
 
 			highlightSentence(idx);
@@ -1542,6 +1543,7 @@ const { title = 'this article' } = Astro.props;
 			activeUtterance = null;
 			(window as any).__ttsActiveUtterance = null;
 			playbackState = 'PAUSED';
+			(window as any).__ttsPlaybackState = 'PAUSED';
 			updateButtonStates();
 			if (statusMsg) statusMsg.textContent = `Paused at sentence ${currentSentenceIdx + 1}. Click play to resume.`;
 		}
@@ -1560,6 +1562,7 @@ const { title = 'this article' } = Astro.props;
 			(window as any).__ttsActiveUtterance = null;
 			clearHighlights();
 			playbackState = 'STOPPED';
+			(window as any).__ttsPlaybackState = 'STOPPED';
 			currentSentenceIdx = 0;
 			currentWordIdx = -1;
 			updateButtonStates();
