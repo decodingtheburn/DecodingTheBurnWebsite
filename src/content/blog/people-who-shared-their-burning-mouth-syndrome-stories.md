@@ -112,7 +112,7 @@ After three agonizing years of burning mouth pain, consulting ten clinicians who
 * **The Fuel (Chemical Irritation):** I discovered that dietary plant acids (from coffee, beer, wine, and acidic foods) combined with bacterial fermentation of sugars directly ignited sensitized oral nerves. Switching to a strict carnivore elimination diet (zero acids, zero fermentable sugars) produced complete symptomatic remission in two&nbsp;weeks.
 * **The Hardware (Physical Sparks):** Six months into remission, a specialized dental hygienist evaluation revealed that three active cavities were rotting undetected beneath an old crown on tooth 36. Replacing that defective crown extinguished the deep nerve spark once and for&nbsp;all.
 
-You can read my complete clinical timeline and forensic findings in my detailed post, [How I Solved My Burning Mouth Syndrome (BMS)](/blog/how-i-solved-my-burning-mouth-syndrome/).
+You can read my complete clinical timeline and forensic findings in my detailed post, [How I Reduced My BMS Pain from 10/10 to 0/10](/blog/how-i-solved-my-burning-mouth-syndrome/).
 
 ---
 
