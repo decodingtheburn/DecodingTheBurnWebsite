@@ -29,6 +29,7 @@ const {
 	entryNumber,
 	category,
 	tags = [],
+	draft = false,
 } = Astro.props;
 
 // Filter headings to only show h2 and h3
@@ -47,7 +48,7 @@ if (!postNumber && slug) {
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} noindex={draft} />
 	</head>
 
 	<body>
