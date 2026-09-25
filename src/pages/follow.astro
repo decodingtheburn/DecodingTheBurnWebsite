@@ -28,7 +28,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				</p>
 			</header>
 
-			<!-- 2 Clear Big Action Blocks -->
+			<!-- 3 Clear Action Blocks: YouTube, Facebook, Email -->
 			<section class="action-steps-container">
 				
 				<!-- Action 1: YouTube -->
@@ -56,7 +56,32 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 					</div>
 				</div>
 
-				<!-- Action 2: Mailing List -->
+				<!-- Action 2: Facebook Group -->
+				<div class="action-card card-facebook">
+					<div class="card-body">
+						<div class="card-icon-wrap" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="144" height="144" fill="#1877f2">
+								<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+							</svg>
+						</div>
+						<h2 class="card-heading">Join Facebook Group</h2>
+						<p class="card-text">
+							Connect directly with fellow BMS patients, share daily observations, ask questions, and engage with the community in real&nbsp;time.
+						</p>
+						<div class="card-btn-wrap">
+							<a 
+								href="https://www.facebook.com/groups/decodingtheburn/" 
+								target="_blank" 
+								rel="noopener noreferrer" 
+								class="big-action-btn facebook-btn"
+							>
+								<span>Join Facebook Group &rarr;</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Action 3: Mailing List -->
 				<div class="action-card card-email">
 					<div class="card-body">
 						<div class="card-icon-wrap" aria-hidden="true">
@@ -66,7 +91,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 						</div>
 						<h2 class="card-heading">Join the Mailing List</h2>
 						<p class="card-text">
-							Receive direct emails when new case studies, episode transcripts, and research breakthroughs are published. No spam, no sales pitches, strictly high-value&nbsp;updates.
+							Receive direct emails when new case studies, episode transcripts, and research breakthroughs are published. No spam, strictly high-value&nbsp;updates.
 						</p>
 						
 						<form 
@@ -84,7 +109,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 								<input 
 									type="email" 
 									name="email" 
-									placeholder="Enter your best email address..." 
+									placeholder="Enter your email address..." 
 									required 
 									class="email-input-field"
 									aria-label="Email address for newsletter"
@@ -153,7 +178,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 		<style>
 			.follow-page-container {
-				max-width: 960px;
+				max-width: 1200px;
 				margin: 0 auto;
 				padding: 2.5rem 1.5rem 6rem 1.5rem;
 			}
@@ -188,7 +213,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			.action-steps-container {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
 				gap: 2rem;
 				margin-bottom: 3.5rem;
 			}
@@ -217,6 +242,15 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			.card-youtube:hover {
 				border-color: #fca5a5;
+			}
+
+			.card-facebook {
+				border-color: #dbeafe;
+				background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+			}
+
+			.card-facebook:hover {
+				border-color: #93c5fd;
 			}
 
 			.card-email {
@@ -283,6 +317,18 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			.youtube-btn:hover {
 				background: #cc0000;
+				color: #ffffff;
+				transform: translateY(-1px);
+			}
+
+			.facebook-btn {
+				background: #1877f2;
+				color: #ffffff;
+				box-shadow: 0 6px 20px -3px rgba(24, 119, 242, 0.35);
+			}
+
+			.facebook-btn:hover {
+				background: #166fe5;
 				color: #ffffff;
 				transform: translateY(-1px);
 			}
