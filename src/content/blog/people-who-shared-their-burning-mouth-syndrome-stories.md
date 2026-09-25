@@ -6,6 +6,7 @@ category: "Patient Stories"
 heroImage: "/how-i-solved-my-bms-youtube-thumbnail.jpg"
 draft: true
 entryNumber: 15
+tags: ['patient', 'both']
 ---
 
 If you have ever sat in a sterile dental or medical office, listened to a specialist review your clean x-rays and spotless bloodwork, and heard them whisper that your burning mouth is "probably just stress or anxiety," you know the devastating isolation of Burning Mouth Syndrome&nbsp;(BMS).

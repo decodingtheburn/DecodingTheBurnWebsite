@@ -6,6 +6,7 @@ category: "Philosophy & Science"
 heroImage: "/recession_composite_patches_annotated.jpg"
 draft: true
 entryNumber: 13
+tags: ['clinician', 'both']
 ---
 
 In modern medicine and dentistry, there is a rigid, unspoken dogma that dictates how clinicians are trained to&nbsp;think:

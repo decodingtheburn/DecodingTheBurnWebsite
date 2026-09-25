@@ -6,6 +6,7 @@ category: "My Experience"
 heroImage: "/recession_composite_patches_annotated.jpg"
 draft: true
 entryNumber: 4
+tags: ['clinician', 'both']
 ---
 
 For nearly four years, my daily life was dictated by an agonizing, mysterious sensation inside my mouth. At baseline, it felt like a relentless low-grade fire, fluctuating between a 3 and 5 out of 10, especially harsh in the morning hours. But the real terror came with daily oral hygiene. 

@@ -6,6 +6,7 @@ category: "Clinical Research"
 heroImage: "/tooth_erosion_50yr_breach.jpg"
 draft: true
 entryNumber: 14
+tags: ['patient', 'clinician', 'both']
 ---
 
 When people transition to a vegetarian or vegan lifestyle, they usually do so for ethical principles, environmental stewardship, or cardiovascular longevity. They expect radiant health, lower inflammation, and spotless medical&nbsp;checkups.

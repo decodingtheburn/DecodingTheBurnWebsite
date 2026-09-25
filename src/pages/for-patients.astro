@@ -8,10 +8,10 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { sortPostsDescending } from '../utils/postUtils';
 
 const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
-// Show posts tagged 'patient' or 'both', or default core recovery stories
+// Show posts tagged 'patient' or 'both'
 const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 	const tags = post.data.tags || [];
-	return tags.includes('patient') || tags.includes('both') || post.id.includes('how-i-solved') || post.id.includes('mouth-taping') || post.id.includes('20-second') || post.id.includes('playbook');
+	return tags.includes('patient') || tags.includes('both');
 });
 ---
 
@@ -30,57 +30,57 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 				<MedicalDisclaimer />
 			</div>
 
-			<!-- Hero Section with Avatar -->
+			<!-- Hero Section -->
 			<header class="audience-hero">
-				<div class="audience-avatar-badge">
+				<div class="audience-eyebrow">
 					<span class="avatar-icon" aria-hidden="true">🛡️</span>
-					<span class="avatar-label">BMS Patient Portal</span>
+					<span>Patient Guidance &amp; Resources</span>
 				</div>
-				<h1 class="audience-title">How Patients Can Use This Site</h1>
+				<h1 class="audience-title">How Patients Can Use This&nbsp;Site</h1>
 				<p class="audience-subtitle">
-					When you are in agonizing 10/10 pain and doctors say "everything looks normal," you need clarity, validation, and a structured way forward. Here is how to use my lived journey to find your own answers.
+					When you are in agonizing 10/10 pain and doctors say "everything looks normal," you need clarity, validation, and a structured path forward. Here is how to use my lived journey to find your own&nbsp;answers.
 				</p>
 			</header>
 
-			<!-- Video Placeholder / Message from Denis -->
+			<!-- Video Message Card / Message from Denis -->
 			<section class="video-message-card">
 				<div class="video-message-inner">
-					<div class="video-badge">A Personal Message from Denis</div>
-					<h2 class="video-card-title">"I Get What You Are Going Through"</h2>
+					<div class="video-kicker">Personal Orientation</div>
+					<h2 class="video-card-title">"I Get What You Are Going&nbsp;Through"</h2>
 					<p class="video-card-copy">
-						I spent three agonizing years with a mouth that felt like boiling oil. I know the terror of eating, the frustration of cleanings that make it worse, and the despair of hearing that nothing is physically wrong. You are not losing your mind. Your pain is real, and by systematically testing and eliminating daily triggers, we can work together to turn down the heat.
+						I spent three agonizing years with a mouth that felt like boiling oil. I know the terror of eating, the frustration of cleanings that make it worse, and the despair of hearing that nothing is physically wrong. You are not losing your mind. Your pain is real, and by systematically testing and eliminating daily triggers, we can work together to turn down the&nbsp;heat.
 					</p>
 					<div class="video-action-box">
-						<span class="video-note">📹 Personal Video Orientation Coming Soon</span>
+						<span class="video-note">📹 Personal Video Orientation Coming&nbsp;Soon</span>
 					</div>
 				</div>
 			</section>
 
 			<!-- 3 Core Ways Patients Can Use This Platform -->
 			<section class="methodology-section">
-				<h2 class="section-heading">How My Methodology Helps You</h2>
+				<h2 class="section-heading">How My Methodology Helps&nbsp;You</h2>
 				<div class="methodology-grid">
 					<div class="method-card">
 						<div class="method-num">01</div>
-						<h3 class="method-title">The Trigger Elimination Process</h3>
+						<h3 class="method-title">The Trigger Elimination&nbsp;Process</h3>
 						<p class="method-text">
-							Learn how to systematically test and remove acidic foods, abrasive foaming toothpastes (SLS), and night mouth-breathing so your oral tissues have time to rest and calm down.
+							Learn how to systematically test and remove acidic foods, abrasive foaming toothpastes (SLS), and night mouth-breathing so your oral tissues have time to rest and calm&nbsp;down.
 						</p>
 					</div>
 
 					<div class="method-card">
 						<div class="method-num">02</div>
-						<h3 class="method-title">Prepare for Your Next Dental Visit</h3>
+						<h3 class="method-title">Prepare for Your Next Dental&nbsp;Visit</h3>
 						<p class="method-text">
-							Use our appointment recording guide and data request checklist so you can bring structured notes to your dentist, understand clinical terms, and ask the right questions.
+							Use our appointment recording guide and data request checklist so you can bring structured notes to your dentist, understand clinical terms, and ask the right&nbsp;questions.
 						</p>
 					</div>
 
 					<div class="method-card">
 						<div class="method-num">03</div>
-						<h3 class="method-title">Learn from the Podcast Interviews</h3>
+						<h3 class="method-title">Learn from the Podcast&nbsp;Interviews</h3>
 						<p class="method-text">
-							Listen to in-depth, transparent conversations with leading dentists, periodontists, and fellow sufferers who share what is actually working in clinical practice.
+							Listen to in-depth, transparent conversations with leading dentists, periodontists, and fellow sufferers who share what is actually working in clinical&nbsp;practice.
 						</p>
 					</div>
 				</div>
@@ -88,8 +88,8 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 
 			<!-- Relevant Articles for Patients -->
 			<section class="posts-section">
-				<h2 class="section-heading">Patient Guides &amp; Practical Case Studies</h2>
-				<p class="section-subheading">Practical articles, elimination logs, and daily habits written specifically for sufferers.</p>
+				<h2 class="section-heading">Patient Guides &amp; Practical Case&nbsp;Studies</h2>
+				<p class="section-subheading">Practical articles, elimination logs, and daily habits written specifically for&nbsp;sufferers.</p>
 
 				<div class="grid">
 					{
@@ -134,22 +134,18 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 				margin-bottom: 3.5rem;
 			}
 
-			.audience-avatar-badge {
+			.audience-eyebrow {
 				display: inline-flex;
 				align-items: center;
 				gap: 0.5rem;
-				background: #fef2f2;
-				border: 1px solid #fecaca;
-				color: #be123c;
-				padding: 0.4rem 1.1rem;
-				border-radius: 9999px;
-				font-size: 0.85rem;
+				font-size: 0.95rem;
 				font-weight: 700;
-				margin-bottom: 1.25rem;
+				color: #be123c;
+				margin-bottom: 0.85rem;
 			}
 
 			.avatar-icon {
-				font-size: 1.1rem;
+				font-size: 1.15rem;
 			}
 
 			.audience-title {
@@ -181,13 +177,11 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
 			}
 
-			.video-badge {
-				font-size: 0.82rem;
-				font-weight: 800;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
+			.video-kicker {
+				font-size: 0.9rem;
+				font-weight: 700;
 				color: #be123c;
-				margin-bottom: 0.5rem;
+				margin-bottom: 0.65rem;
 			}
 
 			.video-card-title {

@@ -6,6 +6,7 @@ category: "Philosophy & Science"
 heroImage: "/recession_composite_patches_annotated.jpg"
 draft: true
 entryNumber: 9
+tags: ['clinician', 'both']
 ---
 
 As a computer programmer by trade, whenever a complex software system crashes, I never attempt to debug it by glancing at a single line of code in an isolated vacuum. 

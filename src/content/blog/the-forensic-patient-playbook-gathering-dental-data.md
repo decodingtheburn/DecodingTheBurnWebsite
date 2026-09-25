@@ -6,6 +6,7 @@ category: "Patient-Led Science"
 heroImage: "/recession_composite_patches_annotated.jpg"
 draft: true
 entryNumber: 15
+tags: ['patient', 'clinician', 'both']
 ---
 
 When you sit in a dental chair with agonizing, 10/10 oral burning, your nervous system is in survival mode. You are trying to manage the pain, follow instructions, and keep your mouth open under bright surgical lights.

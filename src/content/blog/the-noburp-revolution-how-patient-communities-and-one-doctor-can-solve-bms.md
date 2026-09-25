@@ -6,6 +6,7 @@ category: "Philosophy & Science"
 heroImage: "/how_i_solved_my_bms_thumbnail.jpg"
 draft: true
 entryNumber: 12
+tags: ['patient', 'clinician', 'both']
 ---
 
 For decades, thousands of people around the world lived with a physical symptom so strange that almost no medical doctor believed them.

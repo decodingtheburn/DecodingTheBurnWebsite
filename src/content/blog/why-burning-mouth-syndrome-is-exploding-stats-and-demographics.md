@@ -6,6 +6,7 @@ category: "Research"
 heroImage: "/tooth_erosion_50yr_breach.jpg"
 draft: true
 entryNumber: 5
+tags: ['patient', 'clinician', 'both']
 ---
 
 Whenever clinicians discuss Burning Mouth Syndrome, they almost universally lean on a single comforting textbook line: *"It is a mysterious hormonal condition primarily affecting postmenopausal&nbsp;women."*

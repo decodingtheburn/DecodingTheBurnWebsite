@@ -6,6 +6,7 @@ category: "My Experience"
 heroImage: "/thumbnails/mouth-smile-dark.jpg"
 draft: true
 entryNumber: 8
+tags: ['patient', 'both']
 ---
 
 I know that for lots of us living with **Burning Mouth Syndrome (BMS)**, the nights can be the hardest. I used to wake up with a mouth that felt like sandpaper, my burning sensation amplified by hours of mouth breathing and extreme dryness.

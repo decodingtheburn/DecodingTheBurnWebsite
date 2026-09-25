@@ -8,10 +8,10 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { sortPostsDescending } from '../utils/postUtils';
 
 const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
-// Show posts tagged 'clinician' or 'both', or clinical deep dives
+// Show posts tagged 'clinician' or 'both'
 const clinicianPosts = sortPostsDescending(rawPosts).filter(post => {
 	const tags = post.data.tags || [];
-	return tags.includes('clinician') || tags.includes('both') || post.id.includes('perioscopy') || post.id.includes('stateless-clinic') || post.id.includes('unmasking-dental') || post.id.includes('playbook') || post.id.includes('50-year');
+	return tags.includes('clinician') || tags.includes('both');
 });
 ---
 
@@ -30,41 +30,41 @@ const clinicianPosts = sortPostsDescending(rawPosts).filter(post => {
 				<MedicalDisclaimer />
 			</div>
 
-			<!-- Hero Section with Avatar -->
+			<!-- Hero Section -->
 			<header class="audience-hero">
-				<div class="audience-avatar-badge badge-blue">
+				<div class="audience-eyebrow eyebrow-blue">
 					<span class="avatar-icon" aria-hidden="true">🩺</span>
-					<span class="avatar-label">BMS Clinician Portal</span>
+					<span>Clinician &amp; Researcher Portal</span>
 				</div>
-				<h1 class="audience-title">How Clinicians &amp; Dentists Can Use This Site</h1>
+				<h1 class="audience-title">How Clinicians &amp; Dentists Can Use This&nbsp;Site</h1>
 				<p class="audience-subtitle">
-					When a patient sits in your chair with excruciating 10/10 oral burning and an unremarkable mucosa, it is frustrating for everyone. Here is how longitudinal patient data can help uncover clinical blind spots.
+					When a patient sits in your chair with excruciating 10/10 oral burning and an unremarkable mucosa, it is frustrating for everyone. Here is how longitudinal patient data can help uncover clinical blind&nbsp;spots.
 				</p>
 			</header>
 
 			<!-- Video Message Card / Message from Denis -->
 			<section class="video-message-card">
 				<div class="video-message-inner">
-					<div class="video-badge badge-blue-text">A Message from Denis to Practitioners</div>
-					<h2 class="video-card-title">"I Get Why You Are Stuck, and I Am Not Mad at You"</h2>
+					<div class="video-kicker kicker-blue">Practitioner Orientation</div>
+					<h2 class="video-card-title">"I Get Why You Are Stuck, and I Am Not Mad at&nbsp;You"</h2>
 					<p class="video-card-copy">
-						As a patient who saw five dentists and five physicians, I know the immense pressure you face. You have 15 minutes per patient, strict clinical guidelines, and standard textbooks that label BMS as 'idiopathic' or psychogenic. I know you want to help, but routine tests are not designed to capture subtle mechanical leaks or microscopic biofilm dynamics. This platform is designed to give you the longitudinal, real-world data and time-series observations you cannot collect during a brief office visit.
+						As a patient who saw five dentists and five physicians, I know the immense pressure you face. You have 15 minutes per patient, strict clinical guidelines, and standard textbooks that label BMS as 'idiopathic' or psychogenic. I know you want to help, but routine tests are not designed to capture subtle mechanical leaks or microscopic biofilm dynamics. This platform is designed to give you the longitudinal, real-world data and time-series observations you cannot collect during a brief office&nbsp;visit.
 					</p>
 					<div class="video-action-box">
-						<span class="video-note">📹 Clinician Orientation Video Coming Soon</span>
+						<span class="video-note">📹 Clinician Orientation Video Coming&nbsp;Soon</span>
 					</div>
 				</div>
 			</section>
 
 			<!-- 3 Core Ways Clinicians Can Leverage This Research -->
 			<section class="methodology-section">
-				<h2 class="section-heading">Clinical Blind Spots We Investigate</h2>
+				<h2 class="section-heading">Clinical Blind Spots We&nbsp;Investigate</h2>
 				<div class="methodology-grid">
 					<div class="method-card">
 						<div class="method-num num-blue">01</div>
 						<h3 class="method-title">Biomechanical Micro-Leaks</h3>
 						<p class="method-text">
-							Explore how subtle cervical restoration overhangs, micro-abfractions along the cemento-enamel junction (CEJ), and exposed dentinal tubules create peripheral neuropathic firing loops that look completely normal on standard visual inspection.
+							Explore how subtle cervical restoration overhangs, micro-abfractions along the cemento-enamel junction (CEJ), and exposed dentinal tubules create peripheral neuropathic firing loops that look completely normal on standard visual&nbsp;inspection.
 						</p>
 					</div>
 
@@ -72,15 +72,15 @@ const clinicianPosts = sortPostsDescending(rawPosts).filter(post => {
 						<div class="method-num num-blue">02</div>
 						<h3 class="method-title">Phase-Contrast Microscopy &amp; Biofilms</h3>
 						<p class="method-text">
-							Review clinical protocols (such as Dr. Mark Bonner's periodontology method) evaluating subgingival parasites (<em>Entamoeba gingivalis</em>) and motile amoebae that conventional scaling and radiographs routinely miss.
+							Review clinical protocols (such as Dr. Mark Bonner's periodontology method) evaluating subgingival parasites (<em>Entamoeba gingivalis</em>) and motile amoebae that conventional scaling and radiographs routinely&nbsp;miss.
 						</p>
 					</div>
 
 					<div class="method-card">
 						<div class="method-num num-blue">03</div>
-						<h3 class="method-title">Time-Series Patient Elimination Data</h3>
+						<h3 class="method-title">Time-Series Patient Elimination&nbsp;Data</h3>
 						<p class="method-text">
-							Analyze dense N=1 longitudinal datasets mapping dietary acid exposure (coffee, alcohol, citrus), nocturnal salivary evaporation, and oral mucosal recovery across thousands of tracked hours.
+							Analyze dense N=1 longitudinal datasets mapping dietary acid exposure (coffee, alcohol, citrus), nocturnal salivary evaporation, and oral mucosal recovery across thousands of tracked&nbsp;hours.
 						</p>
 					</div>
 				</div>
@@ -88,8 +88,8 @@ const clinicianPosts = sortPostsDescending(rawPosts).filter(post => {
 
 			<!-- Relevant Articles for Clinicians -->
 			<section class="posts-section">
-				<h2 class="section-heading">Clinical Investigations &amp; Case Studies</h2>
-				<p class="section-subheading">Technical dissections, periodontal microscopy, and hardware mechanics for dentists and medical doctors.</p>
+				<h2 class="section-heading">Clinical Investigations &amp; Case&nbsp;Studies</h2>
+				<p class="section-subheading">Technical dissections, periodontal microscopy, and hardware mechanics for dentists and medical&nbsp;doctors.</p>
 
 				<div class="grid">
 					{
@@ -134,25 +134,17 @@ const clinicianPosts = sortPostsDescending(rawPosts).filter(post => {
 				margin-bottom: 3.5rem;
 			}
 
-			.audience-avatar-badge {
+			.audience-eyebrow {
 				display: inline-flex;
 				align-items: center;
 				gap: 0.5rem;
-				padding: 0.4rem 1.1rem;
-				border-radius: 9999px;
-				font-size: 0.85rem;
+				font-size: 0.95rem;
 				font-weight: 700;
-				margin-bottom: 1.25rem;
+				margin-bottom: 0.85rem;
 			}
 
-			.badge-blue {
-				background: #eff6ff;
-				border: 1px solid #bfdbfe;
+			.eyebrow-blue {
 				color: #1d4ed8;
-			}
-
-			.badge-blue-text {
-				color: #1d4ed8 !important;
 			}
 
 			.num-blue {
@@ -160,7 +152,7 @@ const clinicianPosts = sortPostsDescending(rawPosts).filter(post => {
 			}
 
 			.avatar-icon {
-				font-size: 1.1rem;
+				font-size: 1.15rem;
 			}
 
 			.audience-title {
@@ -192,12 +184,14 @@ const clinicianPosts = sortPostsDescending(rawPosts).filter(post => {
 				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
 			}
 
-			.video-badge {
-				font-size: 0.82rem;
-				font-weight: 800;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				margin-bottom: 0.5rem;
+			.video-kicker {
+				font-size: 0.9rem;
+				font-weight: 700;
+				margin-bottom: 0.65rem;
+			}
+
+			.kicker-blue {
+				color: #1d4ed8;
 			}
 
 			.video-card-title {
