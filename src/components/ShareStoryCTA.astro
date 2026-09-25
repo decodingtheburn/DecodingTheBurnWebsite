@@ -1,5 +1,5 @@
 ---
-// Inline Share Your Story Call To Action Component
+// High-Contrast Brand Share Your Story Call To Action Component
 interface Props {
 	variant?: 'mid' | 'end';
 }
@@ -8,92 +8,141 @@ const { variant = 'mid' } = Astro.props;
 ---
 
 <div class={`story-cta-card ${variant === 'end' ? 'story-cta-end' : 'story-cta-mid'}`}>
-	<div class="story-cta-badge">Community Insights</div>
-	<h3 class="story-cta-title">Have You Experienced Burning Mouth&nbsp;Syndrome?</h3>
-	<p class="story-cta-desc">
-		Every pattern, trigger, and dental observation helps us decode this condition together. Share your story to help us find real solutions for more&nbsp;people.
-	</p>
-	<a href="/share-your-story" class="btn btn-primary story-cta-button">
-		Share Your Story &rarr;
-	</a>
+	<div class="story-cta-inner">
+		<div class="story-cta-icon-wrapper" aria-hidden="true">
+			<svg class="story-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<rect width="20" height="16" x="2" y="4" rx="2"></rect>
+				<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+			</svg>
+		</div>
+		<h3 class="story-cta-main-title">Share Your BMS&nbsp;Story</h3>
+		<p class="story-cta-subheadline">
+			Share your story of what worked and what didn't work. Every pattern and observation helps us find real answers for the entire&nbsp;community.
+		</p>
+		<a href="/share-your-story" class="story-cta-button">
+			<span>Send Your Story</span>
+			<svg class="story-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+				<line x1="5" y1="12" x2="19" y2="12"></line>
+				<polyline points="12 5 19 12 12 19"></polyline>
+			</svg>
+		</a>
+	</div>
 </div>
 
 <style>
 	.story-cta-card {
-		background: #ffffff;
-		border: 1px solid var(--card-border);
-		border-radius: 20px;
-		padding: 2.75rem 2.25rem;
+		background: linear-gradient(135deg, #c8382c 0%, #991b1b 100%);
+		border-radius: 24px;
+		padding: 3.25rem 2.5rem;
 		text-align: center;
-		box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07);
-		margin: 3.5rem auto;
+		box-shadow: 0 20px 40px -10px rgba(185, 28, 28, 0.4);
+		margin: 3.75rem auto;
 		max-width: 760px;
+		color: #ffffff;
+		position: relative;
+		overflow: hidden;
 	}
 
-	.story-cta-end {
-		margin-top: 3.5rem;
-		margin-bottom: 2.5rem;
-		border-left: 4px solid #c8382c;
+	.story-cta-card::before {
+		content: '';
+		position: absolute;
+		top: -40%;
+		right: -20%;
+		width: 320px;
+		height: 320px;
+		background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+		border-radius: 50%;
+		pointer-events: none;
 	}
 
-	.story-cta-mid {
-		margin: 3.5rem auto;
-		border-left: 4px solid #c8382c;
+	.story-cta-inner {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
-	.story-cta-badge {
-		display: inline-block;
-		font-size: 0.78rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 1.2px;
-		color: #c8382c;
-		margin-bottom: 0.75rem;
+	.story-cta-icon-wrapper {
+		width: 64px;
+		height: 64px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.18);
+		border: 1.5px solid rgba(255, 255, 255, 0.35);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 1.25rem;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 	}
 
-	.story-cta-title {
-		font-size: clamp(1.4rem, 3.2vw, 1.85rem);
+	.story-cta-icon {
+		width: 30px;
+		height: 30px;
+		color: #ffffff;
+	}
+
+	.story-cta-main-title {
+		font-size: clamp(2rem, 4.2vw, 2.75rem);
 		font-weight: 800;
-		color: #000000;
-		margin: 0 0 0.85rem;
-		line-height: 1.25;
+		color: #ffffff;
+		margin: 0 0 1rem;
+		line-height: 1.15;
+		letter-spacing: -0.025em;
 		text-wrap: balance;
 	}
 
-	.story-cta-desc {
-		font-size: 1.05rem;
-		color: #475569;
+	.story-cta-subheadline {
+		font-size: 1.15rem;
+		color: rgba(255, 255, 255, 0.94);
 		line-height: 1.6;
 		max-width: 640px;
-		margin: 0 auto 1.75rem;
+		margin: 0 auto 2rem;
 		text-wrap: balance;
 	}
 
 	.story-cta-button {
 		display: inline-flex;
 		align-items: center;
-		justify-content: center;
-		padding: 0.85rem 2rem;
-		font-size: 1rem;
-		font-weight: 700;
-		border-radius: 12px;
+		gap: 0.6rem;
+		background: #ffffff;
+		color: #991b1b;
+		padding: 1rem 2.5rem;
+		font-size: 1.1rem;
+		font-weight: 800;
+		border-radius: 14px;
 		text-decoration: none;
-		transition: transform 0.15s ease, box-shadow 0.15s ease;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+		transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 	}
 
 	.story-cta-button:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 8px 20px rgba(200, 56, 44, 0.25);
+		box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+		background: #fffafa;
+		color: #7f1d1d;
+	}
+
+	.story-btn-arrow {
+		width: 19px;
+		height: 19px;
+		transition: transform 0.15s ease;
+	}
+
+	.story-cta-button:hover .story-btn-arrow {
+		transform: translateX(3px);
 	}
 
 	@media (max-width: 640px) {
 		.story-cta-card {
-			padding: 2rem 1.5rem;
-			margin: 2.5rem auto;
+			padding: 2.5rem 1.5rem;
+			margin: 2.75rem auto;
+			border-radius: 20px;
 		}
 
 		.story-cta-button {
 			width: 100%;
+			justify-content: center;
 		}
 	}
 </style>

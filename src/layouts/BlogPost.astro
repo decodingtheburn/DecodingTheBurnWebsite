@@ -162,14 +162,25 @@ if (!postNumber && slug) {
 				const ctaContainer = document.createElement('div');
 				ctaContainer.className = 'story-cta-card story-cta-mid';
 				ctaContainer.innerHTML = `
-					<div class="story-cta-badge">Community Insights</div>
-					<h3 class="story-cta-title">Have You Experienced Burning Mouth&nbsp;Syndrome?</h3>
-					<p class="story-cta-desc">
-						Every pattern, trigger, and dental observation helps us decode this condition together. Share your story to help us find real solutions for more&nbsp;people.
-					</p>
-					<a href="/share-your-story" class="btn btn-primary story-cta-button">
-						Share Your Story &rarr;
-					</a>
+					<div class="story-cta-inner">
+						<div class="story-cta-icon-wrapper" aria-hidden="true">
+							<svg class="story-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<rect width="20" height="16" x="2" y="4" rx="2"></rect>
+								<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+							</svg>
+						</div>
+						<h3 class="story-cta-main-title">Share Your BMS&nbsp;Story</h3>
+						<p class="story-cta-subheadline">
+							Share your story of what worked and what didn't work. Every pattern and observation helps us find real answers for the entire&nbsp;community.
+						</p>
+						<a href="/share-your-story" class="story-cta-button">
+							<span>Send Your Story</span>
+							<svg class="story-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+								<polyline points="12 5 19 12 12 19"></polyline>
+							</svg>
+						</a>
+					</div>
 				`;
 
 				postContent.insertBefore(ctaContainer, targetElement);
