@@ -5,6 +5,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
+import authorPhoto from '../assets/denis-ethier.png';
 import { sortPostsDescending } from '../utils/postUtils';
 
 const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -25,39 +27,52 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 	</head>
 	<body>
 		<Header />
-		<main class="audience-page-container">
-			<div class="disclaimer-wrap">
-				<MedicalDisclaimer />
-			</div>
-
-			<!-- Hero Section -->
-			<header class="audience-hero">
-				<div class="audience-eyebrow">
-					<span class="avatar-icon" aria-hidden="true">🛡️</span>
-					<span>Patient Guidance &amp; Resources</span>
-				</div>
-				<h1 class="audience-title">How Patients Can Use This&nbsp;Site</h1>
-				<p class="audience-subtitle">
-					When you are in agonizing 10/10 pain and doctors say "everything looks normal," you need clarity, validation, and a structured path forward. Here is how to use my lived journey to find your own&nbsp;answers.
-				</p>
-			</header>
-
-			<!-- Video Message Card / Message from Denis -->
-			<section class="video-message-card">
-				<div class="video-message-inner">
-					<div class="video-kicker">Personal Orientation</div>
-					<h2 class="video-card-title">"I Get What You Are Going&nbsp;Through"</h2>
-					<p class="video-card-copy">
-						I spent three agonizing years with a mouth that felt like boiling oil. I know the terror of eating, the frustration of cleanings that make it worse, and the despair of hearing that nothing is physically wrong. You are not losing your mind. Your pain is real, and by systematically testing and eliminating daily triggers, we can work together to turn down the&nbsp;heat.
+		<main>
+			<!-- Hero Section Following Homepage Model -->
+			<section class="hero-centered-wrapper">
+				<div class="hero-centered-header">
+					<MedicalDisclaimer />
+					<h1 class="hero-centered-title">
+						How Patients Can Use This&nbsp;Site
+					</h1>
+					<p class="hero-centered-subtitle">
+						When you are in agonizing 10/10 pain and tests come back normal, you need practical answers.
+						Here is how to use my lived journey and elimination methodology to guide your own&nbsp;recovery.
 					</p>
-					<div class="video-action-box">
-						<span class="video-note">📹 Personal Video Orientation Coming&nbsp;Soon</span>
+				</div>
+
+				<!-- Video on Top -->
+				<div class="hero-video-centered">
+					<div class="video-placeholder-wrapper" style="cursor: default;">
+						<Image 
+							src={authorPhoto} 
+							alt="Denis Ethier - BMS Patient Orientation Video" 
+							class="video-placeholder-img" 
+							width={1400} 
+							height={788}
+						/>
 					</div>
 				</div>
+
+				<!-- My Story Card Under Video -->
+				<article class="personal-story-section">
+					<h2 class="story-heading">My Story &amp; How This Site Can Help&nbsp;You</h2>
+					<div class="story-lead">
+						<p>
+							In early 2025, I woke up with severe Burning Mouth Syndrome that quickly escalated to a daily 10/10 agony. Eating felt like chewing hot glass, and five dentists and five medical doctors all told me my mouth looked completely&nbsp;healthy.
+						</p>
+						<p>
+							I refused to give up. I started systematically testing and eliminating variables: acidic foods, toothpaste abrasives, and night mouth-breathing. That method helped bring my burning down to sustained remission, and now I am sharing every step so you don't have to navigate this fire&nbsp;alone.
+						</p>
+						<p class="continue-reading-p">
+							<a href="/blog/how-i-solved-my-burning-mouth-syndrome/" class="continue-reading-link">Read my complete recovery story &rarr;</a>
+						</p>
+					</div>
+				</article>
 			</section>
 
 			<!-- 3 Core Ways Patients Can Use This Platform -->
-			<section class="methodology-section">
+			<section class="methodology-container">
 				<h2 class="section-heading">How My Methodology Helps&nbsp;You</h2>
 				<div class="methodology-grid">
 					<div class="method-card">
@@ -87,135 +102,46 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 			</section>
 
 			<!-- Relevant Articles for Patients -->
-			<section class="posts-section">
-				<h2 class="section-heading">Patient Guides &amp; Practical Case&nbsp;Studies</h2>
-				<p class="section-subheading">Practical articles, elimination logs, and daily habits written specifically for&nbsp;sufferers.</p>
-
-				<div class="grid">
-					{
-						patientPosts.map((post, index) => {
-							const postNumber = post.data.entryNumber ?? (index + 1);
-							const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
-							return (
-								<article class="card">
-									<a href={`/blog/${post.id}/`}>
-										<div class="card-img" style={`background-image: url(${imageSrc || '/blog-placeholder-1.jpg'})`}></div>
-										<div class="card-body">
-											<div class="card-meta">
-												<span class="meta-post-info"><strong class="meta-post-number">Post #{postNumber}</strong> • <FormattedDate date={post.data.pubDate} /></span>
-											</div>
-											<h3>{post.data.title}</h3>
-											<p>{post.data.description}</p>
-											<span class="view-story">Read Guide &rarr;</span>
-										</div>
-									</a>
-								</article>
-							);
-						})
-					}
-				</div>
+			<section class="section-header recent-posts-header">
+				<h2 class="recent-posts-title">Patient Guides &amp; Practical Case&nbsp;Studies</h2>
+				<p class="recent-posts-subtitle">Practical articles, elimination logs, and daily habits written specifically for&nbsp;sufferers.</p>
 			</section>
+
+			<div class="grid">
+				{
+					patientPosts.map((post, index) => {
+						const postNumber = post.data.entryNumber ?? (index + 1);
+						const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
+						return (
+							<article class="card">
+								<a href={`/blog/${post.id}/`}>
+									<div class="card-img" style={`background-image: url(${imageSrc || '/blog-placeholder-1.jpg'})`}></div>
+									<div class="card-body">
+										<div class="card-meta">
+											<span class="meta-post-info"><strong class="meta-post-number">Post #{postNumber}</strong> • <FormattedDate date={post.data.pubDate} /></span>
+										</div>
+										<h3>{post.data.title}</h3>
+										<p>{post.data.description}</p>
+										<span class="view-story">Read Guide &rarr;</span>
+									</div>
+								</a>
+							</article>
+						);
+					})
+				}
+			</div>
+
+			<div style="text-align: center; margin: 3rem 0;">
+				<a href="/blog" class="btn btn-outline" style="padding: 0.85rem 2.25rem;">View All Blog Entries +</a>
+			</div>
 		</main>
 		<Footer />
 
 		<style>
-			.audience-page-container {
+			.methodology-container {
 				max-width: 1080px;
-				margin: 1.5rem auto 5rem;
+				margin: 1.5rem auto 4.5rem;
 				padding: 0 1.5rem;
-			}
-
-			.disclaimer-wrap {
-				margin-bottom: 2rem;
-			}
-
-			.audience-hero {
-				text-align: center;
-				margin-bottom: 3.5rem;
-			}
-
-			.audience-eyebrow {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				font-size: 0.95rem;
-				font-weight: 700;
-				color: #be123c;
-				margin-bottom: 0.85rem;
-			}
-
-			.avatar-icon {
-				font-size: 1.15rem;
-			}
-
-			.audience-title {
-				font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-				font-weight: 800;
-				color: #0f172a;
-				letter-spacing: -0.025em;
-				line-height: 1.15;
-				margin: 0 0 1.25rem 0;
-				text-wrap: balance;
-			}
-
-			.audience-subtitle {
-				font-size: 1.2rem;
-				line-height: 1.65;
-				color: #475569;
-				max-width: 800px;
-				margin: 0 auto;
-				text-wrap: balance;
-			}
-
-			/* Video Message Card */
-			.video-message-card {
-				background: #ffffff;
-				border: 1px solid #e2e8f0;
-				border-radius: 24px;
-				padding: 3rem 2.5rem;
-				margin-bottom: 4rem;
-				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
-			}
-
-			.video-kicker {
-				font-size: 0.9rem;
-				font-weight: 700;
-				color: #be123c;
-				margin-bottom: 0.65rem;
-			}
-
-			.video-card-title {
-				font-size: clamp(1.6rem, 3vw, 2.1rem);
-				font-weight: 800;
-				color: #0f172a;
-				margin: 0 0 1.25rem 0;
-			}
-
-			.video-card-copy {
-				font-size: 1.15rem;
-				line-height: 1.75;
-				color: #334155;
-				margin-bottom: 2rem;
-				text-wrap: pretty;
-			}
-
-			.video-action-box {
-				background: #f8fafc;
-				border: 1px dashed #cbd5e1;
-				border-radius: 12px;
-				padding: 1.25rem;
-				text-align: center;
-			}
-
-			.video-note {
-				font-size: 0.95rem;
-				font-weight: 600;
-				color: #64748b;
-			}
-
-			/* Methodology Section */
-			.methodology-section {
-				margin-bottom: 4.5rem;
 			}
 
 			.section-heading {
@@ -223,29 +149,19 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 				font-weight: 800;
 				color: #0f172a;
 				text-align: center;
-				margin: 0 0 0.75rem 0;
+				margin: 0 0 2rem 0;
 				letter-spacing: -0.02em;
-			}
-
-			.section-subheading {
-				text-align: center;
-				font-size: 1.1rem;
-				color: #64748b;
-				max-width: 650px;
-				margin: 0 auto 2.5rem auto;
-				text-wrap: balance;
 			}
 
 			.methodology-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 				gap: 2rem;
-				margin-top: 2rem;
 			}
 
 			.method-card {
 				background: #ffffff;
-				border: 1px solid #e2e8f0;
+				border: 1px solid var(--card-border);
 				border-radius: 20px;
 				padding: 2.25rem 2rem;
 				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
@@ -254,7 +170,7 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 			.method-num {
 				font-size: 1.5rem;
 				font-weight: 900;
-				color: #be123c;
+				color: #c8382c;
 				margin-bottom: 0.75rem;
 			}
 
@@ -271,10 +187,6 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 				color: #475569;
 				margin: 0;
 				text-wrap: pretty;
-			}
-
-			.posts-section {
-				margin-bottom: 4rem;
 			}
 		</style>
 	</body>

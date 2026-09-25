@@ -15,8 +15,10 @@ import TongueLogo from './TongueLogo.astro';
   <div class="nav-links" id="nav-links">
     <a href="/blog/how-i-solved-my-burning-mouth-syndrome/">My Story</a>
     <a href="/podcast">Podcast</a>
+    <a href="/for-patients">Patients</a>
+    <a href="/for-professionals">Clinicians</a>
     
-    <!-- About Dropdown Menu -->
+    <!-- About Dropdown Menu (last item) -->
     <div class="nav-dropdown">
       <button type="button" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
         <span>About</span>
@@ -29,18 +31,6 @@ import TongueLogo from './TongueLogo.astro';
         <a href="/open-science">Open Science</a>
         <a href="/mission">Our Mission</a>
       </div>
-    </div>
-
-    <!-- Audience Portals with Avatars -->
-    <div class="audience-nav-group">
-      <a href="/for-patients" class="audience-link patient-nav-link" title="Guide for BMS Patients">
-        <span class="nav-avatar-icon">🛡️</span>
-        <span class="nav-avatar-text">Patients</span>
-      </a>
-      <a href="/for-professionals" class="audience-link clinician-nav-link" title="Guide for Clinicians & Dentists">
-        <span class="nav-avatar-icon">🩺</span>
-        <span class="nav-avatar-text">Clinicians</span>
-      </a>
     </div>
 
     <div class="mobile-actions">
@@ -154,53 +144,6 @@ import TongueLogo from './TongueLogo.astro';
     color: var(--accent) !important;
   }
 
-  /* Audience Avatar Nav Badges */
-  .audience-nav-group {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .audience-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.32rem 0.75rem;
-    border-radius: 9999px;
-    text-decoration: none !important;
-    font-size: 0.82rem !important;
-    font-weight: 700 !important;
-    transition: all 0.2s ease;
-  }
-
-  .patient-nav-link {
-    background: #fff1f2;
-    border: 1px solid #fecdd3;
-    color: #be123c !important;
-  }
-
-  .patient-nav-link:hover {
-    background: #ffe4e6;
-    border-color: #fda4af;
-    transform: translateY(-1px);
-  }
-
-  .clinician-nav-link {
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    color: #1d4ed8 !important;
-  }
-
-  .clinician-nav-link:hover {
-    background: #dbeafe;
-    border-color: #93c5fd;
-    transform: translateY(-1px);
-  }
-
-  .nav-avatar-icon {
-    font-size: 0.95rem;
-  }
-
   @media (max-width: 768px) {
     .dropdown-menu {
       position: static;
@@ -214,17 +157,6 @@ import TongueLogo from './TongueLogo.astro';
     }
     .chevron-icon {
       display: none;
-    }
-    .audience-nav-group {
-      flex-direction: column;
-      width: 100%;
-      gap: 0.75rem;
-      padding: 0 2rem;
-    }
-    .audience-link {
-      width: 100%;
-      justify-content: center;
-      padding: 0.6rem 1rem;
     }
   }
 </style>
