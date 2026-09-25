@@ -1,0 +1,392 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Follow Us & Join the Movement | Decoding The Burn" 
+			description="Subscribe to Decoding The Burn on YouTube and join our private email list to follow patient case studies, podcast interviews, and research updates." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="follow-page-container">
+			<div class="disclaimer-wrap">
+				<MedicalDisclaimer />
+			</div>
+
+			<!-- Hero Header -->
+			<header class="follow-hero">
+				<h1 class="follow-title">Follow Us &amp; Stay Connected</h1>
+				<p class="follow-subtitle">
+					Join other patients, dentists, and researchers following our journey to decode Burning Mouth Syndrome through data transparency and video&nbsp;interviews.
+				</p>
+			</header>
+
+			<!-- 2 Clear Big Action Blocks -->
+			<section class="action-steps-container">
+				
+				<!-- Action 1: YouTube -->
+				<div class="action-card card-youtube">
+					<div class="card-body">
+						<span class="step-label">Action 1</span>
+						<div class="card-icon-wrap" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="144" height="144" fill="#ff0000">
+								<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+							</svg>
+						</div>
+						<h2 class="card-heading">Subscribe on YouTube</h2>
+						<p class="card-text">
+							Watch all our video podcast interviews with patients, dentists, and researchers. See live breakdowns of radiographs, trigger tests, and symptom timeline charts.
+						</p>
+						<div class="card-btn-wrap">
+							<a 
+								href="https://www.youtube.com/@DecodingTheBurning?sub_confirmation=1" 
+								target="_blank" 
+								rel="noopener noreferrer" 
+								class="big-action-btn youtube-btn"
+							>
+								<span>Subscribe on YouTube &rarr;</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Action 2: Mailing List -->
+				<div class="action-card card-email">
+					<div class="card-body">
+						<span class="step-label step-label-purple">Action 2</span>
+						<div class="card-icon-wrap" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="144" height="144" fill="#7c3aed">
+								<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+							</svg>
+						</div>
+						<h2 class="card-heading">Join the Mailing List</h2>
+						<p class="card-text">
+							Receive direct emails when new case studies, episode transcripts, and research breakthroughs are published. No spam, no sales pitches, strictly high-value&nbsp;updates.
+						</p>
+						
+						<form 
+							id="follow-newsletter-form" 
+							action="https://formsubmit.co/denis@denisethier.com" 
+							method="POST" 
+							class="follow-form"
+						>
+							<input type="hidden" name="_subject" value="[Decoding The Burn] New Newsletter Subscriber" />
+							<input type="hidden" name="_captcha" value="false" />
+							<input type="hidden" name="_template" value="table" />
+							<input type="hidden" name="form_type" value="Main Newsletter Subscription" />
+
+							<div class="form-input-stack">
+								<input 
+									type="email" 
+									name="email" 
+									placeholder="Enter your best email address..." 
+									required 
+									class="email-input-field"
+									aria-label="Email address for newsletter"
+								/>
+								<button type="submit" id="follow-submit-btn" class="big-action-btn email-submit-btn">
+									<span class="btn-label">Join Mailing List &rarr;</span>
+									<span class="btn-spinner hidden" aria-hidden="true">Joining...</span>
+								</button>
+							</div>
+						</form>
+
+						<div id="follow-success-box" class="follow-success-msg hidden" role="alert">
+							<span class="check-icon">✓</span>
+							<span>You are on the list! Thank you for joining our community.</span>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+			<!-- Quick Backlinks -->
+			<div class="bottom-nav-links">
+				<a href="/podcast" class="subtle-link">&larr; Visit Podcast Hub</a>
+				<a href="/mission" class="subtle-link">Read Our Mission &rarr;</a>
+			</div>
+		</main>
+		<Footer />
+
+		<script>
+			const form = document.getElementById('follow-newsletter-form') as HTMLFormElement;
+			const submitBtn = document.getElementById('follow-submit-btn') as HTMLButtonElement;
+			const btnLabel = submitBtn?.querySelector('.btn-label');
+			const btnSpinner = submitBtn?.querySelector('.btn-spinner');
+			const successBox = document.getElementById('follow-success-box');
+
+			if (form) {
+				form.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					if (btnLabel && btnSpinner && submitBtn) {
+						btnLabel.classList.add('hidden');
+						btnSpinner.classList.remove('hidden');
+						submitBtn.disabled = true;
+					}
+
+					try {
+						const formData = new FormData(form);
+						const response = await fetch(form.action, {
+							method: 'POST',
+							body: formData,
+							headers: { 'Accept': 'application/json' }
+						});
+
+						if (response.ok) {
+							form.reset();
+							form.classList.add('hidden');
+							successBox?.classList.remove('hidden');
+						} else {
+							form.submit(); // fallback
+						}
+					} catch (err) {
+						form.submit(); // fallback
+					}
+				});
+			}
+		</script>
+
+		<style>
+			.follow-page-container {
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 2.5rem 1.5rem 6rem 1.5rem;
+			}
+
+			.disclaimer-wrap {
+				margin-bottom: 2rem;
+			}
+
+			.follow-hero {
+				text-align: center;
+				margin-bottom: 3.5rem;
+			}
+
+			.follow-title {
+				font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.025em;
+				line-height: 1.15;
+				margin: 0 auto 1.25rem auto;
+				text-wrap: balance;
+			}
+
+			.follow-subtitle {
+				font-size: 1.2rem;
+				line-height: 1.6;
+				color: #334155;
+				max-width: 740px;
+				margin: 0 auto;
+				text-wrap: balance;
+			}
+
+			.action-steps-container {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+				gap: 2rem;
+				margin-bottom: 3.5rem;
+			}
+
+			.action-card {
+				background: #ffffff;
+				border: 2px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 2.5rem 2.25rem;
+				display: flex;
+				flex-direction: column;
+				position: relative;
+				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06);
+				transition: transform 0.2s ease, border-color 0.2s ease;
+			}
+
+			.action-card:hover {
+				transform: translateY(-2px);
+				border-color: #cbd5e1;
+			}
+
+			.card-youtube {
+				border-color: #fee2e2;
+				background: linear-gradient(180deg, #ffffff 0%, #fffbfb 100%);
+			}
+
+			.card-youtube:hover {
+				border-color: #fca5a5;
+			}
+
+			.card-email {
+				border-color: #ede9fe;
+				background: linear-gradient(180deg, #ffffff 0%, #faf8ff 100%);
+			}
+
+			.card-email:hover {
+				border-color: #c4b5fd;
+			}
+
+			.card-body {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				height: 100%;
+			}
+
+			.step-label {
+				display: block;
+				font-size: 1rem;
+				font-weight: 700;
+				color: #dc2626;
+				letter-spacing: normal;
+				margin-bottom: 1.5rem;
+			}
+
+			.step-label-purple {
+				color: #7c3aed;
+			}
+
+			.card-icon-wrap {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-bottom: 1.5rem;
+			}
+
+			.card-heading {
+				font-size: 1.65rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.85rem 0;
+				letter-spacing: -0.02em;
+				text-wrap: balance;
+			}
+
+			.card-text {
+				font-size: 1.02rem;
+				line-height: 1.65;
+				color: #475569;
+				margin: 0 0 2rem 0;
+				text-wrap: pretty;
+				flex-grow: 1;
+			}
+
+			.big-action-btn {
+				display: block;
+				width: 100%;
+				text-align: center;
+				padding: 1.1rem 1.5rem;
+				border-radius: 14px;
+				font-size: 1.1rem;
+				font-weight: 800;
+				text-decoration: none;
+				cursor: pointer;
+				border: none;
+				transition: all 0.2s ease;
+			}
+
+			.youtube-btn {
+				background: #ff0000;
+				color: #ffffff;
+				box-shadow: 0 6px 20px -3px rgba(255, 0, 0, 0.35);
+			}
+
+			.youtube-btn:hover {
+				background: #cc0000;
+				color: #ffffff;
+				transform: translateY(-1px);
+			}
+
+			.email-submit-btn {
+				background: #7c3aed;
+				color: #ffffff;
+				box-shadow: 0 6px 20px -3px rgba(124, 58, 237, 0.35);
+			}
+
+			.email-submit-btn:hover {
+				background: #6d28d9;
+				transform: translateY(-1px);
+			}
+
+			.follow-form {
+				width: 100%;
+			}
+
+			.form-input-stack {
+				display: flex;
+				flex-direction: column;
+				gap: 0.85rem;
+			}
+
+			.email-input-field {
+				width: 100%;
+				padding: 0.95rem 1.25rem;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 12px;
+				font-size: 1rem;
+				color: #0f172a;
+				background: #ffffff;
+				outline: none;
+				box-sizing: border-box;
+				transition: border-color 0.2s ease;
+			}
+
+			.email-input-field:focus {
+				border-color: #7c3aed;
+				box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+			}
+
+			.follow-success-msg {
+				background: #ecfdf5;
+				border: 1.5px solid #a7f3d0;
+				border-radius: 12px;
+				padding: 1rem 1.25rem;
+				color: #065f46;
+				font-weight: 700;
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				font-size: 0.98rem;
+			}
+
+			.check-icon {
+				font-size: 1.2rem;
+				font-weight: 900;
+			}
+
+			.bottom-nav-links {
+				display: flex;
+				justify-content: center;
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+
+			.subtle-link {
+				color: #64748b;
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+			}
+
+			.subtle-link:hover {
+				color: #0f172a;
+				text-decoration: underline;
+			}
+
+			.hidden {
+				display: none !important;
+			}
+
+			@media (max-width: 640px) {
+				.action-steps-container {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</body>
+</html>

@@ -1,0 +1,347 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Open Science | Decoding The Burn" 
+			description="Our Open Science manifesto: Why all Burning Mouth Syndrome research data, transcripts, protocols, and self-experiments are published freely for patients and clinicians." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="open-science-container">
+			<div class="disclaimer-wrap">
+				<MedicalDisclaimer />
+			</div>
+
+			<!-- Hero Header -->
+			<header class="page-hero">
+				<h1 class="page-title">Open Science at Decoding the Burn</h1>
+				<p class="page-subheadline">
+					Why we publish all research data, clinical interview transcripts, and recovery protocols with radical transparency and zero paywalls.
+				</p>
+			</header>
+
+			<!-- Core Manifesto Section -->
+			<section class="manifesto-card">
+				<h2 class="section-title">The Open Science Manifesto</h2>
+				<p class="lead-text">
+					For decades, patients suffering from Burning Mouth Syndrome have been isolated behind closed medical silos, fragmented clinical studies, and expensive academic paywalls.
+				</p>
+				<p class="body-text">
+					At <strong>Decoding The Burn</strong>, we believe that life-saving health insights should belong to everyone. We practice <em>Patient-Led Open Science</em>, combining authentic lived recovery experiences with rigorous clinical investigation and published microbiology.
+				</p>
+
+				<div class="pillar-grid">
+					<!-- Pillar 1 -->
+					<div class="pillar-box">
+						<div class="pillar-number">01</div>
+						<h3 class="pillar-title">Radical Data Transparency</h3>
+						<p class="pillar-desc">
+							Every self-experiment, symptom tracking timeline, dental intervention, and outcome is logged publicly so other sufferers can analyze what worked, what failed, and why.
+						</p>
+					</div>
+
+					<!-- Pillar 2 -->
+					<div class="pillar-box">
+						<div class="pillar-number">02</div>
+						<h3 class="pillar-title">Zero Paywalls & Open Access</h3>
+						<p class="pillar-desc">
+							All podcast episodes, full audio/video transcripts, guest question templates, and clinical breakdowns are 100% free and licensed under Creative Commons for open research.
+						</p>
+					</div>
+
+					<!-- Pillar 3 -->
+					<div class="pillar-box">
+						<div class="pillar-number">03</div>
+						<h3 class="pillar-title">Patient-Clinician Collaboration</h3>
+						<p class="pillar-desc">
+							We bridge the gap between patient observations and clinical science, interviewing leading dentists, periodontists, and oral medicine researchers to uncover biological root causes.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- What This Means For You Section -->
+			<section class="audience-breakdown-section">
+				<h2 class="section-title">What Open Science Means For You</h2>
+
+				<div class="audience-grid">
+					<div class="audience-card">
+						<h3 class="audience-heading">For Patients &amp; Families</h3>
+						<ul class="audience-list">
+							<li>Free access to structured symptom tracking frameworks and recovery timelines.</li>
+							<li>In-depth interview transcripts you can print and bring directly to your healthcare provider.</li>
+							<li>A supportive, research-grounded space proving your pain is real and biological.</li>
+						</ul>
+					</div>
+
+					<div class="audience-card">
+						<h3 class="audience-heading">For Clinicians &amp; Researchers</h3>
+						<ul class="audience-list">
+							<li>Rich, longitudinal N=1 patient datasets detailing triggers, interventions, and remission phases.</li>
+							<li>An open platform to share clinical hypotheses, microscopy techniques, and biofilm findings.</li>
+							<li>Direct collaboration opportunities through our podcast and case discussions.</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- How You Can Participate & Support -->
+			<section class="support-section">
+				<h2 class="section-title">Engage With Our Open Research</h2>
+				<p class="support-text">
+					Open science grows through collective wisdom. Explore our open research, listen to the podcast, or connect with our community.
+				</p>
+
+				<div class="cta-actions-row">
+					<a href="/podcast/" class="action-btn primary-btn">
+						Explore the Podcast &rarr;
+					</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<style>
+			.open-science-container {
+				max-width: 960px;
+				margin: 1.5rem auto 5rem;
+				padding: 0 1.5rem;
+			}
+
+			.disclaimer-wrap {
+				margin-bottom: 2rem;
+			}
+
+			/* Page Hero */
+			.page-hero {
+				text-align: center;
+				margin-bottom: 3.5rem;
+			}
+
+			.page-title {
+				font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.025em;
+				line-height: 1.15;
+				margin: 0 0 1.25rem 0;
+				text-wrap: balance;
+			}
+
+			.page-subheadline {
+				font-size: 1.2rem;
+				color: #475569;
+				max-width: 760px;
+				margin: 0 auto;
+				line-height: 1.6;
+				text-wrap: balance;
+			}
+
+			/* Manifesto Card */
+			.manifesto-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 3.5rem 3rem;
+				margin-bottom: 3.5rem;
+				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+			}
+
+			@media (max-width: 640px) {
+				.manifesto-card {
+					padding: 2.25rem 1.5rem;
+				}
+			}
+
+			.section-title {
+				font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.02em;
+				margin: 0 0 1.5rem 0;
+				text-align: center;
+				text-wrap: balance;
+			}
+
+			.lead-text {
+				font-size: 1.25rem;
+				font-weight: 500;
+				line-height: 1.7;
+				color: #1e293b;
+				text-align: center;
+				max-width: 800px;
+				margin: 0 auto 1.5rem auto;
+				text-wrap: pretty;
+			}
+
+			.body-text {
+				font-size: 1.1rem;
+				line-height: 1.75;
+				color: #475569;
+				text-align: center;
+				max-width: 780px;
+				margin: 0 auto 3rem auto;
+				text-wrap: pretty;
+			}
+
+			/* Pillars Grid */
+			.pillar-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+
+			.pillar-box {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 2rem 1.75rem;
+				text-align: left;
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.pillar-box:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.06);
+			}
+
+			.pillar-number {
+				font-size: 1.5rem;
+				font-weight: 900;
+				color: #7c3aed;
+				margin-bottom: 0.75rem;
+			}
+
+			.pillar-title {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.75rem 0;
+			}
+
+			.pillar-desc {
+				font-size: 0.98rem;
+				line-height: 1.65;
+				color: #475569;
+				margin: 0;
+				text-wrap: pretty;
+			}
+
+			/* Audience Section */
+			.audience-breakdown-section {
+				margin-bottom: 3.5rem;
+			}
+
+			.audience-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+
+			.audience-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 20px;
+				padding: 2.5rem 2rem;
+				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
+			}
+
+			.audience-heading {
+				font-size: 1.35rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 1.25rem 0;
+				padding-bottom: 0.75rem;
+				border-bottom: 2px solid #f1f5f9;
+			}
+
+			.audience-list {
+				list-style-type: disc;
+				padding-left: 1.25rem;
+				margin: 0;
+			}
+
+			.audience-list li {
+				font-size: 1.02rem;
+				line-height: 1.65;
+				color: #334155;
+				margin-bottom: 0.85rem;
+				text-wrap: pretty;
+			}
+
+			.audience-list li:last-child {
+				margin-bottom: 0;
+			}
+
+			/* Support / CTA Section */
+			.support-section {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 3rem 2rem;
+				text-align: center;
+			}
+
+			.support-text {
+				font-size: 1.15rem;
+				color: #475569;
+				max-width: 680px;
+				margin: 0 auto 2rem auto;
+				line-height: 1.65;
+				text-wrap: balance;
+			}
+
+			.cta-actions-row {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 1rem;
+			}
+
+			.action-btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.05rem;
+				font-weight: 800;
+				padding: 0.95rem 1.85rem;
+				border-radius: 9999px;
+				text-decoration: none;
+				transition: background 0.2s ease, transform 0.2s ease;
+			}
+
+			.primary-btn {
+				background: #7c3aed;
+				color: #ffffff !important;
+				box-shadow: 0 6px 20px -3px rgba(124, 58, 237, 0.35);
+			}
+
+			.primary-btn:hover {
+				background: #6d28d9;
+				transform: translateY(-2px);
+			}
+
+			.secondary-btn {
+				background: #ffffff;
+				color: #0f172a !important;
+				border: 1px solid #cbd5e1;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+			}
+
+			.secondary-btn:hover {
+				background: #f1f5f9;
+				transform: translateY(-2px);
+			}
+		</style>
+	</body>
+</html>

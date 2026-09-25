@@ -32,21 +32,52 @@ const posts = sortPostsDescending(rawPosts);
 				<p class="podcast-lead-subhead">
 					Advancing scientific research on Burning Mouth Syndrome through radical data transparency, patient-clinician conversations, and forensic root-cause&nbsp;investigation.
 				</p>
+			</header>
 
-				<!-- Quick Nav Action Buttons -->
-				<div class="podcast-quick-actions">
-					<a href="#episodes" class="btn btn-primary action-btn">
-						<span>🎧 Browse Episodes</span>
-					</a>
-					<a href="/podcast/guest-guide" class="btn btn-outline action-btn">
-						<span>📋 BMS Sufferer Guest Guide</span>
-					</a>
-					<a href="#apply" class="btn btn-outline action-btn">
-						<span>🎙️ Apply to Be a Guest</span>
-					</a>
+			<!-- Episodes & Casebook Archive Section (Now at Top) -->
+			<section class="episodes-section" id="episodes">
+				<div class="episodes-center-head">
+					<h2 class="episodes-heading">Podcast Episodes &amp; Research Notes</h2>
+					<p class="episodes-subheading">Listen, read, and explore our full series of deep dives, self-experiments, and clinical case studies.</p>
 				</div>
 
-				<!-- Notify of New Episode Box -->
+				<div class="episodes-grid">
+					{
+						posts.filter(p => p.id === 'how-i-solved-my-burning-mouth-syndrome').map((post) => {
+							const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
+							return (
+								<article class="episode-card">
+									<a href={`/blog/${post.id}/`} class="episode-card-link">
+										<div class="episode-img-wrapper">
+											<img 
+												src={imageSrc || '/how-i-solved-my-bms-youtube-thumbnail.jpg'} 
+												alt={post.data.title} 
+												class="episode-img" 
+												loading="lazy"
+											/>
+										</div>
+										<div class="episode-body">
+											<div class="episode-meta">
+												<span class="episode-number-badge">Episode 1</span>
+												<span class="meta-dot">•</span>
+												<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
+											</div>
+											<h3 class="episode-title" set:html={post.data.title} />
+											<p class="episode-desc">{post.data.description}</p>
+											<div class="episode-footer">
+												<span class="listen-link">Listen &amp; Read Episode &rarr;</span>
+											</div>
+										</div>
+									</a>
+								</article>
+							);
+						})
+					}
+				</div>
+			</section>
+
+			<!-- Notify of New Episode Box (Positioned Below Episode List) -->
+			<section class="notify-wrap-section">
 				<div class="podcast-notify-box" id="notify">
 					<div class="notify-icon-badge" aria-hidden="true">🎙️</div>
 					<h2 class="notify-title">Get Notified of New Episodes</h2>
@@ -74,7 +105,7 @@ const posts = sortPostsDescending(rawPosts);
 								class="notify-email-input"
 								aria-label="Email address for podcast notification"
 							/>
-							<button type="submit" id="notify-submit-btn" class="btn btn-primary notify-submit-btn">
+							<button type="submit" id="notify-submit-btn" class="notify-submit-btn">
 								<span class="notify-btn-text">Notify Me &rarr;</span>
 								<span class="notify-btn-spinner hidden" aria-hidden="true">Subscribing...</span>
 							</button>
@@ -85,53 +116,6 @@ const posts = sortPostsDescending(rawPosts);
 						<span class="notify-check-icon">✓</span>
 						<span>You are on the list! I will email you as soon as the next episode&nbsp;airs.</span>
 					</div>
-				</div>
-			</header>
-
-			<!-- Episodes & Casebook Archive Section -->
-			<section class="episodes-section" id="episodes">
-				<div class="section-header-row">
-					<div>
-						<h2 class="episodes-heading">Podcast Episodes & Research Notes</h2>
-						<p class="episodes-subheading">Listen, read, and explore our full series of deep dives, self-experiments, and clinical case studies.</p>
-					</div>
-					<a href="/podcast/guest-guide" class="guest-guide-link">
-						<span>View Guest Guide & Questions →</span>
-					</a>
-				</div>
-
-				<div class="episodes-grid">
-					{
-						posts.map((post, index) => {
-							const episodeNumber = post.data.entryNumber ?? (posts.length - index);
-							const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
-							return (
-								<article class="episode-card">
-									<a href={`/blog/${post.id}/`} class="episode-card-link">
-										<div class="episode-img" style={`background-image: url(${imageSrc || '/how-i-solved-my-bms-youtube-thumbnail.jpg'})`}>
-											<span class="episode-badge">Episode #{episodeNumber}</span>
-										</div>
-										<div class="episode-body">
-											<div class="episode-meta">
-												<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
-												{post.data.category && (
-													<>
-														<span class="meta-dot">•</span>
-														<span class="meta-category">{post.data.category}</span>
-													</>
-												)}
-											</div>
-											<h3 class="episode-title" set:html={post.data.title} />
-											<p class="episode-desc">{post.data.description}</p>
-											<div class="episode-footer">
-												<span class="listen-link">Listen & Read Episode →</span>
-											</div>
-										</div>
-									</a>
-								</article>
-							);
-						})
-					}
 				</div>
 			</section>
 
@@ -145,20 +129,19 @@ const posts = sortPostsDescending(rawPosts);
 				<div class="guest-categories-grid" aria-label="Who we are inviting">
 					<div class="category-card">
 						<div class="category-icon-wrapper" aria-hidden="true">
-							<span class="category-emoji">👤</span>
+							<span class="category-emoji">🗣️</span>
 						</div>
-						<h3 class="category-title">BMS Patients</h3>
+						<h3 class="category-title">Patients</h3>
 						<p class="category-description">
 							Share your timeline, onset triggers, pain fluctuations, what failed, and what strategies brought you&nbsp;relief.
 						</p>
-						<a href="/podcast/guest-guide" class="category-guide-link">View Sufferer Questions →</a>
 					</div>
 
 					<div class="category-card">
 						<div class="category-icon-wrapper" aria-hidden="true">
 							<span class="category-emoji">🦷</span>
 						</div>
-						<h3 class="category-title">Dentists & Specialists</h3>
+						<h3 class="category-title">Dentists &amp; Specialists</h3>
 						<p class="category-description">
 							Discuss cervical margins, exposed tubules, hidden crown decay, galvanism, and periodontal biofilm&nbsp;pathways.
 						</p>
@@ -193,9 +176,15 @@ const posts = sortPostsDescending(rawPosts);
 					<p class="form-subtext">
 						Whether you are a patient living with BMS or a clinician with insights to share, Denis reviews every submission personally.
 					</p>
-					<div class="guest-guide-callout">
-						<span>Looking for the interview format? Check out the </span>
-						<a href="/podcast/guest-guide" class="inline-guide-link"><strong>BMS Sufferer Guest Guide & Question List →</strong></a>
+					<div class="guest-guide-callout-grid">
+						<div class="guest-guide-callout-item">
+							<span class="guide-callout-label">For Patients:</span>
+							<a href="/podcast/guest-guide" class="inline-guide-link"><strong>BMS Sufferer Guest Guide &amp; Question List &rarr;</strong></a>
+						</div>
+						<div class="guest-guide-callout-item">
+							<span class="guide-callout-label">For Clinicians &amp; Researchers:</span>
+							<a href="/podcast/professional-guide" class="inline-guide-link"><strong>Clinician &amp; Researcher Guide &rarr;</strong></a>
+						</div>
 					</div>
 				</div>
 
@@ -214,13 +203,13 @@ const posts = sortPostsDescending(rawPosts);
 						<label class="form-label">I am applying as a:</label>
 						<div class="role-selector-grid">
 							<label class="role-pill">
-								<input type="radio" name="guest_role" value="BMS Patient" checked />
-								<span class="role-label-content">👤 BMS Patient</span>
+								<input type="radio" name="guest_role" value="Patient" checked />
+								<span class="role-label-content">🗣️ Patient</span>
 							</label>
 
 							<label class="role-pill">
-								<input type="radio" name="guest_role" value="Dentist / Periodontist" />
-								<span class="role-label-content">🦷 Dentist / Periodontist</span>
+								<input type="radio" name="guest_role" value="Dentist" />
+								<span class="role-label-content">🦷 Dentist</span>
 							</label>
 
 							<label class="role-pill">
@@ -460,50 +449,51 @@ const posts = sortPostsDescending(rawPosts);
 			.podcast-quick-actions {
 				display: flex;
 				justify-content: center;
-				gap: 0.85rem;
-				flex-wrap: wrap;
 				margin-top: 2rem;
 			}
 
-			.action-btn {
-				padding: 0.75rem 1.4rem;
-				font-weight: 700;
+			.apply-btn-prominent {
+				padding: 0.95rem 2rem;
+				font-weight: 800;
+				font-size: 1.05rem;
+				border-radius: 14px;
 				text-decoration: none;
-				font-size: 0.95rem;
+				box-shadow: 0 6px 20px -3px rgba(190, 18, 60, 0.35);
 			}
 
-			/* Top Notify Box */
+			/* Top Notify Box in Brand Red */
 			.podcast-notify-box {
-				background: #ffffff;
-				border: 1px solid #fecaca;
+				background: linear-gradient(135deg, #be123c 0%, #9f1239 100%);
+				border: 1px solid #e11d48;
 				border-radius: 20px;
 				padding: 2.25rem 2rem;
 				max-width: 640px;
 				margin: 2.5rem auto 0;
 				text-align: center;
-				box-shadow: 0 12px 32px -8px rgba(200, 56, 44, 0.08);
+				color: #ffffff;
+				box-shadow: 0 14px 36px -6px rgba(190, 18, 60, 0.35);
 			}
 
 			.notify-icon-badge {
-				font-size: 1.75rem;
+				font-size: 2rem;
 				line-height: 1;
 				margin-bottom: 0.75rem;
 			}
 
 			.notify-title {
-				font-size: 1.5rem;
+				font-size: 1.6rem;
 				font-weight: 800;
-				color: #0f172a;
+				color: #ffffff;
 				letter-spacing: -0.02em;
 				margin-bottom: 0.5rem;
 				text-wrap: balance;
 			}
 
 			.notify-subtext {
-				font-size: 0.95rem;
-				color: #475569;
+				font-size: 0.98rem;
+				color: #ffe4e6;
 				line-height: 1.55;
-				margin-bottom: 1.25rem;
+				margin-bottom: 1.35rem;
 				text-wrap: pretty;
 			}
 
@@ -520,9 +510,9 @@ const posts = sortPostsDescending(rawPosts);
 
 			.notify-email-input {
 				flex: 1;
-				padding: 0.85rem 1.1rem;
+				padding: 0.9rem 1.15rem;
 				border-radius: 12px;
-				border: 1px solid #cbd5e1;
+				border: 1.5px solid rgba(255, 255, 255, 0.3);
 				background: #ffffff;
 				font-family: inherit;
 				font-size: 0.95rem;
@@ -532,27 +522,37 @@ const posts = sortPostsDescending(rawPosts);
 
 			.notify-email-input:focus {
 				outline: none;
-				border-color: #c8382c;
-				box-shadow: 0 0 0 3px rgba(200, 56, 44, 0.12);
+				border-color: #ffffff;
+				box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 			}
 
 			.notify-submit-btn {
-				padding: 0.85rem 1.5rem;
-				font-size: 0.95rem;
-				font-weight: 700;
+				padding: 0.9rem 1.6rem;
+				font-size: 0.98rem;
+				font-weight: 800;
 				border-radius: 12px;
 				white-space: nowrap;
+				background: #0f172a;
+				color: #ffffff;
+				border: none;
+				cursor: pointer;
+				transition: background 0.2s ease, transform 0.2s ease;
+			}
+
+			.notify-submit-btn:hover {
+				background: #000000;
+				transform: translateY(-1px);
 			}
 
 			.notify-success-msg {
 				margin-top: 1rem;
 				padding: 0.85rem 1rem;
-				background: #f0fdf4;
-				border: 1px solid #bbf7d0;
+				background: rgba(255, 255, 255, 0.15);
+				border: 1px solid rgba(255, 255, 255, 0.3);
 				border-radius: 10px;
-				color: #166534;
-				font-size: 0.92rem;
-				font-weight: 600;
+				color: #ffffff;
+				font-size: 0.95rem;
+				font-weight: 700;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -564,15 +564,12 @@ const posts = sortPostsDescending(rawPosts);
 				margin-bottom: 5rem;
 			}
 
-			.section-header-row {
-				display: flex;
-				justify-content: space-between;
-				align-items: flex-end;
-				margin-bottom: 2rem;
-				gap: 1.5rem;
-				flex-wrap: wrap;
-				border-bottom: 2px solid #f1f5f9;
-				padding-bottom: 1.25rem;
+			.episodes-center-head {
+				text-align: center;
+				max-width: 700px;
+				margin: 0 auto 2.5rem auto;
+				border-bottom: 2px solid #e2e8f0;
+				padding-bottom: 1.5rem;
 			}
 
 			.episodes-heading {
@@ -580,33 +577,23 @@ const posts = sortPostsDescending(rawPosts);
 				font-weight: 800;
 				color: #0f172a;
 				letter-spacing: -0.025em;
-				margin: 0 0 0.4rem 0;
+				margin: 0 0 0.5rem 0;
+				text-wrap: balance;
 			}
 
 			.episodes-subheading {
 				font-size: 1.05rem;
 				color: #64748b;
 				margin: 0;
+				text-wrap: balance;
 			}
 
-			.guest-guide-link {
-				font-weight: 700;
-				color: #be123c;
-				font-size: 0.95rem;
-				text-decoration: none;
-				white-space: nowrap;
-				transition: color 0.15s ease;
-			}
-
-			.guest-guide-link:hover {
-				color: #9f1239;
-				text-decoration: underline;
-			}
-
+			/* Max 2 side-by-side, centered when odd or single */
 			.episodes-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-				gap: 1.75rem;
+				grid-template-columns: repeat(auto-fit, minmax(340px, 480px));
+				justify-content: center;
+				gap: 2rem;
 			}
 
 			.episode-card {
@@ -614,15 +601,18 @@ const posts = sortPostsDescending(rawPosts);
 				border: 1px solid #e2e8f0;
 				border-radius: 16px;
 				overflow: hidden;
-				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.05);
+				box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
 				transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 				display: flex;
 				flex-direction: column;
+				width: 100%;
+				max-width: 480px;
+				margin: 0 auto;
 			}
 
 			.episode-card:hover {
 				transform: translateY(-3px);
-				box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.08);
+				box-shadow: 0 14px 30px -4px rgba(15, 23, 42, 0.12);
 				border-color: #cbd5e1;
 			}
 
@@ -634,32 +624,28 @@ const posts = sortPostsDescending(rawPosts);
 				height: 100%;
 			}
 
-			.episode-img {
+			.episode-img-wrapper {
 				width: 100%;
-				height: 190px;
-				background-size: cover;
-				background-position: center;
-				position: relative;
+				aspect-ratio: 16 / 9;
+				overflow: hidden;
+				background: #0f172a;
 				border-bottom: 1px solid #f1f5f9;
 			}
 
-			.episode-badge {
-				position: absolute;
-				bottom: 0.75rem;
-				left: 0.75rem;
-				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-				font-size: 0.74rem;
-				font-weight: 800;
-				color: #ffffff;
-				background: rgba(15, 23, 42, 0.85);
-				backdrop-filter: blur(4px);
-				padding: 0.2rem 0.6rem;
-				border-radius: 6px;
-				letter-spacing: 0.02em;
+			.episode-img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+				transition: transform 0.25s ease;
+			}
+
+			.episode-card:hover .episode-img {
+				transform: scale(1.02);
 			}
 
 			.episode-body {
-				padding: 1.35rem 1.5rem 1.5rem;
+				padding: 1.5rem 1.65rem 1.65rem;
 				display: flex;
 				flex-direction: column;
 				flex: 1;
@@ -668,14 +654,20 @@ const posts = sortPostsDescending(rawPosts);
 			.episode-meta {
 				display: flex;
 				align-items: center;
-				gap: 0.45rem;
-				font-size: 0.8rem;
-				color: #64748b;
-				margin-bottom: 0.6rem;
+				gap: 0.5rem;
+				font-size: 0.88rem;
+				color: #475569;
+				margin-bottom: 0.65rem;
+			}
+
+			.episode-number-badge {
+				font-weight: 700;
+				color: #be123c;
 			}
 
 			.meta-dot {
-				color: #cbd5e1;
+				color: #be123c;
+				font-weight: 800;
 			}
 
 			.meta-category {
@@ -684,7 +676,7 @@ const posts = sortPostsDescending(rawPosts);
 			}
 
 			.episode-title {
-				font-size: 1.2rem;
+				font-size: 1.28rem;
 				font-weight: 800;
 				line-height: 1.35;
 				color: #0f172a;
@@ -693,8 +685,8 @@ const posts = sortPostsDescending(rawPosts);
 			}
 
 			.episode-desc {
-				font-size: 0.92rem;
-				line-height: 1.55;
+				font-size: 0.94rem;
+				line-height: 1.6;
 				color: #475569;
 				margin: 0 0 1.25rem 0;
 				display: -webkit-box;
@@ -706,23 +698,24 @@ const posts = sortPostsDescending(rawPosts);
 
 			.episode-footer {
 				margin-top: auto;
-				padding-top: 0.75rem;
+				padding-top: 0.85rem;
 				border-top: 1px solid #f1f5f9;
 			}
 
 			.listen-link {
-				font-size: 0.88rem;
+				font-size: 0.92rem;
 				font-weight: 700;
 				color: #be123c;
 			}
 
-			/* Guest Categories */
+			/* Guest Categories - 2x2 on vertical/portrait and desktop */
 			.guest-categories-section {
+				margin-top: 4.5rem;
 				margin-bottom: 5rem;
-				background: #f8fafc;
+				background: #f1f5f9;
 				border: 1px solid #e2e8f0;
 				border-radius: 24px;
-				padding: 3rem 2rem;
+				padding: 3.5rem 2.25rem;
 			}
 
 			.section-center-head {
@@ -750,59 +743,64 @@ const posts = sortPostsDescending(rawPosts);
 
 			.guest-categories-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-				gap: 1.25rem;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.5rem;
+			}
+
+			@media (max-width: 600px) {
+				.guest-categories-grid {
+					grid-template-columns: 1fr;
+				}
 			}
 
 			.category-card {
 				background: #ffffff;
 				border: 1px solid #e2e8f0;
 				border-radius: 16px;
-				padding: 1.65rem;
+				padding: 2rem 1.85rem;
 				display: flex;
 				flex-direction: column;
+				box-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.04);
 			}
 
 			.category-icon-wrapper {
-				font-size: 1.85rem;
-				margin-bottom: 0.75rem;
+				font-size: 3.5rem;
+				line-height: 1.1;
+				margin-bottom: 1rem;
+				user-select: none;
+			}
+
+			.category-emoji {
+				display: inline-block;
+				transform: scale(1);
 			}
 
 			.category-title {
-				font-size: 1.15rem;
+				font-size: 1.25rem;
 				font-weight: 800;
 				color: #0f172a;
 				margin: 0 0 0.5rem 0;
 			}
 
 			.category-description {
-				font-size: 0.92rem;
-				line-height: 1.55;
+				font-size: 0.96rem;
+				line-height: 1.6;
 				color: #475569;
-				margin: 0 0 1rem 0;
+				margin: 0;
 				flex: 1;
+				text-wrap: pretty;
 			}
 
-			.category-guide-link {
-				font-size: 0.86rem;
-				font-weight: 700;
-				color: #be123c;
-				text-decoration: none;
-			}
-
-			.category-guide-link:hover {
-				text-decoration: underline;
-			}
-
-			/* Guest Application Card */
+			/* Inverted Striking Guest Application Card */
 			.podcast-form-card {
-				background: #ffffff;
-				border: 1px solid #e2e8f0;
+				background: linear-gradient(135deg, #090d16 0%, #15102a 100%);
+				border: 1px solid rgba(168, 85, 247, 0.3);
 				border-radius: 24px;
-				padding: 3rem 2.5rem;
+				padding: 3.25rem 2.75rem;
 				max-width: 860px;
 				margin: 0 auto;
-				box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.06);
+				color: #ffffff;
+				box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
 			}
 
 			@media (max-width: 640px) {
@@ -813,40 +811,56 @@ const posts = sortPostsDescending(rawPosts);
 
 			.form-header {
 				text-align: center;
-				margin-bottom: 2.25rem;
+				margin-bottom: 2.5rem;
 			}
 
 			.form-heading {
-				font-size: clamp(1.65rem, 3.5vw, 2.25rem);
+				font-size: clamp(1.75rem, 3.5vw, 2.35rem);
 				font-weight: 800;
-				color: #0f172a;
+				color: #ffffff;
 				letter-spacing: -0.025em;
-				margin-bottom: 0.65rem;
+				margin-bottom: 0.75rem;
 				text-wrap: balance;
 			}
 
 			.form-subtext {
 				font-size: 1.05rem;
-				color: #475569;
-				max-width: 600px;
-				margin: 0 auto 1rem auto;
+				color: #cbd5e1;
+				max-width: 620px;
+				margin: 0 auto 1.5rem auto;
 				line-height: 1.6;
 				text-wrap: balance;
 			}
 
-			.guest-guide-callout {
-				display: inline-block;
-				background: #fff1f2;
-				border: 1px solid #fecdd3;
-				padding: 0.5rem 1rem;
-				border-radius: 8px;
-				font-size: 0.92rem;
-				color: #9f1239;
-				margin-top: 0.5rem;
+			.guest-guide-callout-grid {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 1rem;
+				flex-wrap: wrap;
+				margin-top: 1rem;
+			}
+
+			.guest-guide-callout-item {
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				padding: 0.65rem 1.15rem;
+				border-radius: 12px;
+				font-size: 0.9rem;
+				color: #e2e8f0;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
+
+			.guide-callout-label {
+				color: #cbd5e1;
+				font-size: 0.85rem;
 			}
 
 			.inline-guide-link {
-				color: #be123c;
+				color: #f43f5e;
 				text-decoration: none;
 			}
 
@@ -882,14 +896,14 @@ const posts = sortPostsDescending(rawPosts);
 			}
 
 			.form-label {
-				font-size: 0.92rem;
+				font-size: 0.95rem;
 				font-weight: 700;
-				color: #1e293b;
+				color: #f1f5f9;
 			}
 
 			.role-selector-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 				gap: 0.65rem;
 			}
 
@@ -909,40 +923,44 @@ const posts = sortPostsDescending(rawPosts);
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				padding: 0.65rem 0.85rem;
-				background: #f8fafc;
-				border: 1.5px solid #cbd5e1;
-				border-radius: 10px;
-				font-size: 0.88rem;
+				padding: 0.75rem 0.85rem;
+				background: rgba(255, 255, 255, 0.06);
+				border: 1.5px solid rgba(255, 255, 255, 0.15);
+				border-radius: 12px;
+				font-size: 0.9rem;
 				font-weight: 600;
-				color: #334155;
+				color: #e2e8f0;
 				text-align: center;
 				transition: all 0.16s ease;
 			}
 
 			.role-pill input:checked + .role-label-content {
-				background: #fff1f2;
-				border-color: #be123c;
-				color: #be123c;
+				background: #be123c;
+				border-color: #f43f5e;
+				color: #ffffff;
 				font-weight: 700;
-				box-shadow: 0 0 0 1px #be123c;
+				box-shadow: 0 0 0 1px #f43f5e;
 			}
 
 			.text-input, .text-area-input {
-				padding: 0.85rem 1.1rem;
+				padding: 0.95rem 1.2rem;
 				border-radius: 12px;
-				border: 1px solid #cbd5e1;
-				background: #ffffff;
+				border: 1.5px solid rgba(255, 255, 255, 0.2);
+				background: rgba(15, 23, 42, 0.6);
 				font-family: inherit;
-				font-size: 0.95rem;
-				color: #0f172a;
+				font-size: 0.98rem;
+				color: #ffffff;
 				transition: border-color 0.2s ease, box-shadow 0.2s ease;
 			}
 
 			.text-input:focus, .text-area-input:focus {
 				outline: none;
-				border-color: #be123c;
-				box-shadow: 0 0 0 3px rgba(190, 18, 60, 0.12);
+				border-color: #f43f5e;
+				box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.25);
+			}
+
+			.text-input::placeholder, .text-area-input::placeholder {
+				color: #64748b;
 			}
 
 			.form-submit-row {
@@ -951,15 +969,26 @@ const posts = sortPostsDescending(rawPosts);
 
 			.submit-btn {
 				width: 100%;
-				padding: 1rem;
-				font-size: 1.05rem;
-				font-weight: 700;
-				border-radius: 12px;
+				padding: 1.1rem;
+				font-size: 1.1rem;
+				font-weight: 800;
+				border-radius: 14px;
+				background: #be123c;
+				color: #ffffff;
+				border: none;
+				cursor: pointer;
+				box-shadow: 0 6px 20px -3px rgba(190, 18, 60, 0.4);
+				transition: background 0.2s ease, transform 0.2s ease;
+			}
+
+			.submit-btn:hover {
+				background: #9f1239;
+				transform: translateY(-1px);
 			}
 
 			.privacy-notice {
-				font-size: 0.82rem;
-				color: #64748b;
+				font-size: 0.85rem;
+				color: #94a3b8;
 				text-align: center;
 				margin: 0;
 			}

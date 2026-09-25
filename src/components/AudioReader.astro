@@ -1301,17 +1301,6 @@ const { title = 'this article' } = Astro.props;
 				const minutes = Math.max(1, Math.round(totalWordCount / 140));
 				timeEstEl.textContent = `~${minutes} min listen`;
 			}
-
-			// Add interactive click listener to jump directly to any sentence
-			contentContainer.addEventListener('click', (e) => {
-				const target = (e.target as HTMLElement)?.closest('.tts-word') as HTMLElement | null;
-				if (!target || !target.dataset.sentenceIdx) return;
-
-				const targetIdx = parseInt(target.dataset.sentenceIdx, 10);
-				if (!isNaN(targetIdx) && targetIdx >= 0 && targetIdx < sentences.length) {
-					jumpToSentence(targetIdx);
-				}
-			});
 		}
 
 		// Helper: Sentence splitter with regex boundary and abbreviation protection

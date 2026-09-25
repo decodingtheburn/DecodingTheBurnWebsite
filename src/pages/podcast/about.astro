@@ -1,0 +1,363 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="About the Podcast | Decoding The Burn" 
+			description="About The Decoding the Burning Mouth Syndrome Podcast hosted by Denis Ethier, BMS patient in Quebec, Canada. Advancing patient-led science and clinical solutions." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="about-podcast-container">
+			<div class="disclaimer-wrap">
+				<MedicalDisclaimer />
+			</div>
+
+			<!-- Thumbnail at Top -->
+			<div class="podcast-hero-thumbnail-wrap">
+				<img 
+					src="/about-podcast-thumbnail.jpg" 
+					alt="The Decoding the Burning Mouth Syndrome Podcast hosted by Denis Ethier" 
+					class="podcast-hero-thumbnail"
+					loading="eager"
+				/>
+			</div>
+
+			<!-- Host & Patient Profile Card (Centered) -->
+			<section class="host-profile-card">
+				<h1 class="podcast-show-title">About the Podcast</h1>
+				
+				<div class="host-badge-group">
+					<p class="host-role-title">Denis Ethier</p>
+					<p class="patient-headline-large">BMS Patient</p>
+					<p class="host-location-text">Host of the Podcast • Quebec, Canada</p>
+				</div>
+
+				<div class="podcast-mission-copy">
+					<p>
+						I created this podcast because millions of people with Burning Mouth Syndrome are told that their agonizing pain is "all in their head."
+					</p>
+					<p>
+						As a former severe sufferer who reached 100% sustained remission after 3 agonizing years, I interview patients, dentists, doctors, and researchers to investigate real biophysical root causes.
+					</p>
+					<p>
+						Our mission is radical data transparency, connecting the brightest minds across clinical medicine, and accelerating permanent answers for everyone navigating this&nbsp;condition.
+					</p>
+				</div>
+
+				<!-- Direct Link to My Story -->
+				<div class="story-link-box">
+					<a href="/blog/how-i-solved-my-burning-mouth-syndrome/" class="story-btn">
+						<span>Read My Full 3-Year BMS Recovery Story &rarr;</span>
+					</a>
+				</div>
+			</section>
+
+			<!-- Action Cards: Join, Subscribe & Follow -->
+			<section class="podcast-actions-section">
+				<h2 class="actions-heading">Follow &amp; Support the Podcast</h2>
+				<p class="actions-subhead">Join our growing community of patients and clinicians decoding Burning Mouth Syndrome.</p>
+
+				<div class="action-grid-centered">
+					<!-- Action 1: YouTube -->
+					<div class="action-tile youtube-tile">
+						<div class="tile-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="48" height="48" fill="#ff0000">
+								<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+							</svg>
+						</div>
+						<h3 class="tile-title">Subscribe on YouTube</h3>
+						<p class="tile-text">Watch video podcast episodes, case presentations, and radiographic breakdowns.</p>
+						<a href="https://www.youtube.com/@DecodingTheBurning?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="tile-btn youtube-btn">
+							Subscribe on YouTube &rarr;
+						</a>
+					</div>
+
+					<!-- Action 2: Email List -->
+					<div class="action-tile email-tile">
+						<div class="tile-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="48" height="48" fill="#7c3aed">
+								<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+							</svg>
+						</div>
+						<h3 class="tile-title">Join Episode Updates</h3>
+						<p class="tile-text">Get notified directly when new patient interviews and clinical findings air.</p>
+						<a href="/podcast#notify" class="tile-btn email-btn">
+							Get Notified of New Episodes &rarr;
+						</a>
+					</div>
+
+					<!-- Action 3: Be a Guest -->
+					<div class="action-tile guest-tile">
+						<div class="tile-icon" aria-hidden="true">
+							<span style="font-size: 2.75rem; line-height: 1;">🎙️</span>
+						</div>
+						<h3 class="tile-title">Apply to Be a Guest</h3>
+						<p class="tile-text">Whether you're a patient with a story or a clinician with insights, come on the show.</p>
+						<a href="/podcast#apply" class="tile-btn guest-btn">
+							Apply to Be a Guest &rarr;
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<style>
+			.about-podcast-container {
+				max-width: 920px;
+				margin: 1.5rem auto 5rem;
+				padding: 0 1.5rem;
+				text-align: center;
+			}
+
+			.disclaimer-wrap {
+				margin-bottom: 2rem;
+			}
+
+			/* Top Thumbnail Presentation */
+			.podcast-hero-thumbnail-wrap {
+				width: 100%;
+				max-width: 840px;
+				margin: 0 auto 3rem auto;
+				border-radius: 20px;
+				overflow: hidden;
+				box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.18);
+				border: 1px solid rgba(15, 23, 42, 0.1);
+				background: #0f172a;
+				aspect-ratio: 16 / 9;
+			}
+
+			.podcast-hero-thumbnail {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+
+			/* Centered Host Profile Card */
+			.host-profile-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 3.5rem 2.5rem;
+				margin-bottom: 4rem;
+				box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.06);
+				text-align: center;
+			}
+
+			@media (max-width: 640px) {
+				.host-profile-card {
+					padding: 2.25rem 1.5rem;
+				}
+			}
+
+			.podcast-show-title {
+				font-size: clamp(2rem, 4vw, 2.75rem);
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.025em;
+				margin: 0 0 1.5rem 0;
+				text-wrap: balance;
+			}
+
+			.host-badge-group {
+				margin-bottom: 2.5rem;
+			}
+
+			.host-role-title {
+				font-size: 1.4rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.35rem 0;
+			}
+
+			.patient-headline-large {
+				font-size: clamp(2.2rem, 5vw, 3.2rem);
+				font-weight: 900;
+				color: #be123c;
+				line-height: 1.1;
+				letter-spacing: -0.02em;
+				margin: 0.25rem 0;
+				text-transform: uppercase;
+			}
+
+			.host-location-text {
+				font-size: 1.1rem;
+				font-weight: 600;
+				color: #64748b;
+				margin: 0.5rem 0 0 0;
+			}
+
+			.podcast-mission-copy {
+				max-width: 720px;
+				margin: 0 auto 2.5rem auto;
+				text-align: center;
+			}
+
+			.podcast-mission-copy p {
+				font-size: 1.18rem;
+				line-height: 1.75;
+				color: #334155;
+				margin-bottom: 1.25rem;
+				text-wrap: pretty;
+			}
+
+			.podcast-mission-copy p:last-child {
+				margin-bottom: 0;
+			}
+
+			.story-link-box {
+				margin-top: 2.5rem;
+				padding-top: 2rem;
+				border-top: 1px solid #f1f5f9;
+				display: flex;
+				justify-content: center;
+			}
+
+			.story-btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+				background: #7c3aed;
+				color: #ffffff !important;
+				font-size: 1.1rem;
+				font-weight: 800;
+				padding: 1rem 2.25rem;
+				border-radius: 9999px;
+				text-decoration: none;
+				transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+				box-shadow: 0 6px 20px -3px rgba(124, 58, 237, 0.35);
+			}
+
+			.story-btn:hover {
+				background: #6d28d9;
+				transform: translateY(-2px);
+				box-shadow: 0 10px 25px -3px rgba(124, 58, 237, 0.45);
+			}
+
+			/* Action Blocks Section */
+			.podcast-actions-section {
+				margin-top: 2rem;
+				text-align: center;
+			}
+
+			.actions-heading {
+				font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.5rem 0;
+				letter-spacing: -0.02em;
+				text-wrap: balance;
+			}
+
+			.actions-subhead {
+				font-size: 1.05rem;
+				color: #64748b;
+				max-width: 600px;
+				margin: 0 auto 2.5rem auto;
+				line-height: 1.6;
+				text-wrap: balance;
+			}
+
+			.action-grid-centered {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 1.75rem;
+				justify-content: center;
+			}
+
+			.action-tile {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 20px;
+				padding: 2.25rem 1.75rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.05);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.action-tile:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.09);
+			}
+
+			.tile-icon {
+				margin-bottom: 1.25rem;
+				height: 52px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.tile-title {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.65rem 0;
+			}
+
+			.tile-text {
+				font-size: 0.95rem;
+				line-height: 1.6;
+				color: #475569;
+				margin: 0 0 1.5rem 0;
+				flex: 1;
+				text-wrap: pretty;
+			}
+
+			.tile-btn {
+				width: 100%;
+				padding: 0.85rem 1.25rem;
+				border-radius: 12px;
+				font-size: 0.95rem;
+				font-weight: 800;
+				text-decoration: none;
+				display: inline-block;
+				text-align: center;
+				transition: background 0.2s ease, transform 0.2s ease;
+			}
+
+			.youtube-btn {
+				background: #ff0000;
+				color: #ffffff !important;
+			}
+
+			.youtube-btn:hover {
+				background: #cc0000;
+				transform: translateY(-1px);
+			}
+
+			.email-btn {
+				background: #7c3aed;
+				color: #ffffff !important;
+			}
+
+			.email-btn:hover {
+				background: #6d28d9;
+				transform: translateY(-1px);
+			}
+
+			.guest-btn {
+				background: #0f172a;
+				color: #ffffff !important;
+			}
+
+			.guest-btn:hover {
+				background: #000000;
+				transform: translateY(-1px);
+			}
+		</style>
+	</body>
+</html>
