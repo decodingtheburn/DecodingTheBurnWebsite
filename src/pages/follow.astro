@@ -28,7 +28,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				</p>
 			</header>
 
-			<!-- 3 Clear Action Blocks: YouTube, Facebook, Email -->
+			<!-- 4 Clear Action Blocks: YouTube, Facebook, Reddit, Email -->
 			<section class="action-steps-container">
 				
 				<!-- Action 1: YouTube -->
@@ -81,7 +81,32 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 					</div>
 				</div>
 
-				<!-- Action 3: Mailing List -->
+				<!-- Action 3: Reddit Community -->
+				<div class="action-card card-reddit">
+					<div class="card-body">
+						<div class="card-icon-wrap" aria-hidden="true">
+							<svg viewBox="0 0 24 24" width="144" height="144" fill="#ff4500">
+								<path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.56 1.25 1.248a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.56 12 8 12.56 8 13.25c0 .687.56 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+							</svg>
+						</div>
+						<h2 class="card-heading">Join r/DecodingBMS</h2>
+						<p class="card-text">
+							Participate in discussions, compare symptom protocols, share literature, and connect with the Reddit BMS&nbsp;community.
+						</p>
+						<div class="card-btn-wrap">
+							<a 
+								href="https://www.reddit.com/r/DecodingBMS/" 
+								target="_blank" 
+								rel="noopener noreferrer" 
+								class="big-action-btn reddit-btn"
+							>
+								<span>Join on Reddit &rarr;</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Action 4: Mailing List -->
 				<div class="action-card card-email">
 					<div class="card-body">
 						<div class="card-icon-wrap" aria-hidden="true">
@@ -213,7 +238,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			.action-steps-container {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 				gap: 2rem;
 				margin-bottom: 3.5rem;
 			}
@@ -222,7 +247,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				background: #ffffff;
 				border: 2px solid #e2e8f0;
 				border-radius: 24px;
-				padding: 2.5rem 2.25rem;
+				padding: 2.5rem 2rem;
 				display: flex;
 				flex-direction: column;
 				position: relative;
@@ -251,6 +276,15 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			.card-facebook:hover {
 				border-color: #93c5fd;
+			}
+
+			.card-reddit {
+				border-color: #ffedd5;
+				background: linear-gradient(180deg, #ffffff 0%, #fffbf7 100%);
+			}
+
+			.card-reddit:hover {
+				border-color: #fdba74;
 			}
 
 			.card-email {
@@ -299,9 +333,9 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 				display: block;
 				width: 100%;
 				text-align: center;
-				padding: 1.1rem 1.5rem;
+				padding: 1.1rem 1.25rem;
 				border-radius: 14px;
-				font-size: 1.1rem;
+				font-size: 1.05rem;
 				font-weight: 800;
 				text-decoration: none;
 				cursor: pointer;
@@ -329,6 +363,18 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 
 			.facebook-btn:hover {
 				background: #166fe5;
+				color: #ffffff;
+				transform: translateY(-1px);
+			}
+
+			.reddit-btn {
+				background: #ff4500;
+				color: #ffffff;
+				box-shadow: 0 6px 20px -3px rgba(255, 69, 0, 0.35);
+			}
+
+			.reddit-btn:hover {
+				background: #e03d00;
 				color: #ffffff;
 				transform: translateY(-1px);
 			}
