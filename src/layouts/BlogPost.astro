@@ -92,12 +92,32 @@ if (!postNumber && slug) {
 						<slot />
 					</div>
 				</div>
-				<ShareStoryCTA variant="end" />
 				<AuthorBox />
+				<ShareStoryCTA variant="end" />
 				<GlossaryTooltip />
 			</article>
 		</main>
 		<Footer />
+
+		<!-- Slide-in Toast at 50% scroll -->
+		<div id="story-slide-toast" class="story-slide-toast" role="complementary" aria-label="Share Your Story Prompt">
+			<button class="slide-toast-close" id="slide-toast-close" aria-label="Dismiss">&times;</button>
+			<div class="slide-toast-content">
+				<div class="slide-toast-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect width="20" height="16" x="2" y="4" rx="2"></rect>
+						<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+					</svg>
+				</div>
+				<div class="slide-toast-text">
+					<strong class="slide-toast-title">Share Your BMS&nbsp;Story</strong>
+					<p class="slide-toast-desc">What worked or didn't work for you? Every pattern helps the community.</p>
+				</div>
+			</div>
+			<a href="/share-your-story" class="slide-toast-btn">
+				<span>Send Your Story</span>
+			</a>
+		</div>
 
 		<div id="image-lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Expanded Image">
 			<button class="lightbox-close-btn" id="lightbox-close" aria-label="Close image">✕</button>
@@ -147,43 +167,31 @@ if (!postNumber && slug) {
 				});
 			}
 
-			function initMidPostCTA() {
-				const postContent = document.getElementById('blog-post-content');
-				if (!postContent) return;
+			function initSlideToast() {
+				const toast = document.getElementById('story-slide-toast');
+				const closeBtn = document.getElementById('slide-toast-close');
+				if (!toast) return;
 
-				const children = Array.from(postContent.children);
-				if (children.length < 6) return;
+				let dismissed = false;
+				let shown = false;
 
-				const midIndex = Math.floor(children.length / 2);
-				const targetElement = children[midIndex];
+				closeBtn?.addEventListener('click', () => {
+					toast.classList.remove('visible');
+					dismissed = true;
+				});
 
-				if (postContent.querySelector('.story-cta-mid')) return;
+				window.addEventListener('scroll', () => {
+					if (dismissed || shown) return;
 
-				const ctaContainer = document.createElement('div');
-				ctaContainer.className = 'story-cta-card story-cta-mid';
-				ctaContainer.innerHTML = `
-					<div class="story-cta-inner">
-						<div class="story-cta-icon-wrapper" aria-hidden="true">
-							<svg class="story-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<rect width="20" height="16" x="2" y="4" rx="2"></rect>
-								<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-							</svg>
-						</div>
-						<h3 class="story-cta-main-title">Share Your BMS&nbsp;Story</h3>
-						<p class="story-cta-subheadline">
-							Share your story of what worked and what didn't work. Every pattern and observation helps us find real answers for the entire&nbsp;community.
-						</p>
-						<a href="/share-your-story" class="story-cta-button">
-							<span>Send Your Story</span>
-							<svg class="story-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-								<line x1="5" y1="12" x2="19" y2="12"></line>
-								<polyline points="12 5 19 12 12 19"></polyline>
-							</svg>
-						</a>
-					</div>
-				`;
+					const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+					if (docHeight <= 0) return;
 
-				postContent.insertBefore(ctaContainer, targetElement);
+					const scrollPercent = (window.scrollY / docHeight) * 100;
+					if (scrollPercent >= 50) {
+						toast.classList.add('visible');
+						shown = true;
+					}
+				}, { passive: true });
 			}
 
 			function initTopicKeyboardNavigation() {
@@ -273,16 +281,121 @@ if (!postNumber && slug) {
 			if (document.readyState === 'loading') {
 				document.addEventListener('DOMContentLoaded', () => {
 					initLightbox();
-					initMidPostCTA();
+					initSlideToast();
 					initTopicKeyboardNavigation();
 				});
 			} else {
 				initLightbox();
-				initMidPostCTA();
+				initSlideToast();
 				initTopicKeyboardNavigation();
 			}
 		</script>
 		<style>
+			/* Slide-in Toast Notification at 50% scroll */
+			.story-slide-toast {
+				position: fixed;
+				bottom: 24px;
+				right: 24px;
+				background: #0f172a;
+				border: 1px solid rgba(239, 68, 68, 0.4);
+				border-radius: 16px;
+				padding: 1.15rem 1.35rem;
+				display: flex;
+				flex-direction: column;
+				gap: 0.85rem;
+				max-width: 340px;
+				width: calc(100vw - 32px);
+				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(239, 68, 68, 0.15);
+				z-index: 1000;
+				transform: translateY(120px) scale(0.95);
+				opacity: 0;
+				pointer-events: none;
+				transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+			}
+
+			.story-slide-toast.visible {
+				transform: translateY(0) scale(1);
+				opacity: 1;
+				pointer-events: auto;
+			}
+
+			.slide-toast-close {
+				position: absolute;
+				top: 8px;
+				right: 12px;
+				background: transparent;
+				border: none;
+				color: #94a3b8;
+				font-size: 1.4rem;
+				line-height: 1;
+				cursor: pointer;
+				padding: 2px;
+				transition: color 0.15s ease;
+			}
+
+			.slide-toast-close:hover {
+				color: #ffffff;
+			}
+
+			.slide-toast-content {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.85rem;
+			}
+
+			.slide-toast-icon {
+				width: 36px;
+				height: 36px;
+				border-radius: 50%;
+				background: rgba(239, 68, 68, 0.15);
+				color: #ef4444;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+			}
+
+			.slide-toast-icon svg {
+				width: 18px;
+				height: 18px;
+			}
+
+			.slide-toast-text {
+				display: flex;
+				flex-direction: column;
+				gap: 0.2rem;
+			}
+
+			.slide-toast-title {
+				color: #ffffff;
+				font-size: 0.95rem;
+				font-weight: 700;
+				line-height: 1.2;
+			}
+
+			.slide-toast-desc {
+				color: #cbd5e1;
+				font-size: 0.78rem;
+				line-height: 1.35;
+				margin: 0;
+			}
+
+			.slide-toast-btn {
+				background: linear-gradient(135deg, #c8382c 0%, #991b1b 100%);
+				color: #ffffff;
+				font-size: 0.85rem;
+				font-weight: 700;
+				text-align: center;
+				padding: 0.55rem 1rem;
+				border-radius: 8px;
+				text-decoration: none;
+				transition: transform 0.15s ease, filter 0.15s ease;
+			}
+
+			.slide-toast-btn:hover {
+				filter: brightness(1.1);
+				transform: translateY(-1px);
+			}
 			.blog-post h1 {
 				font-size: clamp(2.4rem, 5.2vw, 4.0rem);
 				line-height: 1.14;
