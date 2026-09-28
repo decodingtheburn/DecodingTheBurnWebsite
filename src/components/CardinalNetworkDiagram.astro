@@ -1,0 +1,337 @@
+---
+// CardinalNetworkDiagram.astro - Reusable Cardinal Bridge Diagram (Symbols)
+---
+
+<div class="cardinal-network-wrapper">
+	<!-- Cardinal Grid Layout: North (Patients), West (Doctors), East (Dentists), South (Researchers), Center (Shared Data) -->
+	<div class="cardinal-grid">
+		<!-- North: Patients -->
+		<div class="cardinal-node node-north">
+			<div class="cardinal-card card-patient">
+				<span class="cardinal-icon" aria-hidden="true">🗣️</span>
+				<h3 class="cardinal-title">Patients</h3>
+				<ul class="card-item-list">
+					<li>BMS Type 1</li>
+					<li>BMS Type 2</li>
+					<li>BMS Type 3</li>
+				</ul>
+			</div>
+			<div class="connector-arrow arrow-vertical" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#be123c" stroke-width="2.5">
+					<path d="M12 3v18M5 10l7-7 7 7M5 14l7 7 7-7"/>
+				</svg>
+			</div>
+		</div>
+
+		<!-- West: Doctors -->
+		<div class="cardinal-node node-west">
+			<div class="cardinal-card card-doctor">
+				<span class="cardinal-icon" aria-hidden="true">🩺</span>
+				<h3 class="cardinal-title">Doctors</h3>
+				<ul class="card-item-list">
+					<li>GPs</li>
+					<li>Neurologists</li>
+					<li>Gastroenterologists</li>
+					<li>Allergists</li>
+					<li>ENTs</li>
+				</ul>
+			</div>
+			<div class="connector-arrow arrow-horizontal arrow-west-center" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1d4ed8" stroke-width="2.5">
+					<path d="M3 12h18M10 5l-7 7 7 7M14 5l7 7-7 7"/>
+				</svg>
+			</div>
+		</div>
+
+		<!-- Center: Shared BMS Data Hub -->
+		<div class="cardinal-node node-center">
+			<div class="center-data-circle">
+				<span class="center-icon" aria-hidden="true">📊</span>
+				<h3 class="center-title">Shared BMS&nbsp;Data</h3>
+				<ul class="center-data-list">
+					<li>Patient Symptom Logs</li>
+					<li>Dental &amp; Clinical Records</li>
+					<li>Scientific &amp; Lab Studies</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- East: Dentists -->
+		<div class="cardinal-node node-east">
+			<div class="connector-arrow arrow-horizontal arrow-east-center" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#059669" stroke-width="2.5">
+					<path d="M3 12h18M10 5l-7 7 7 7M14 5l7 7-7 7"/>
+				</svg>
+			</div>
+			<div class="cardinal-card card-dentist">
+				<span class="cardinal-icon" aria-hidden="true">🦷</span>
+				<h3 class="cardinal-title">Dentists</h3>
+				<ul class="card-item-list">
+					<li>Periodontists</li>
+					<li>Endodontists</li>
+					<li>Prosthodontists</li>
+					<li>Oral Surgeons</li>
+					<li>Oral Medicine</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- South: Researchers -->
+		<div class="cardinal-node node-south">
+			<div class="connector-arrow arrow-vertical" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#7c3aed" stroke-width="2.5">
+					<path d="M12 3v18M5 10l7-7 7 7M5 14l7 7 7-7"/>
+				</svg>
+			</div>
+			<div class="cardinal-card card-researcher">
+				<span class="cardinal-icon" aria-hidden="true">🔬</span>
+				<h3 class="cardinal-title">Researchers</h3>
+				<ul class="card-item-list">
+					<li>Neuroscience</li>
+					<li>Oral Biology</li>
+					<li>Microbiology</li>
+					<li>Biomechanical Physics</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	/* Cardinal Network Diagram Styling */
+	.cardinal-network-wrapper {
+		background: #ffffff;
+		border: 1px solid var(--card-border, #e2e8f0);
+		border-radius: 24px;
+		padding: 3rem 2rem;
+		margin: 2.5rem 0;
+		box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+	}
+
+	.cardinal-grid {
+		display: grid;
+		grid-template-columns: minmax(240px, 260px) minmax(270px, 290px) minmax(240px, 260px);
+		grid-template-rows: auto auto auto;
+		align-items: center;
+		justify-content: center;
+		gap: 1.25rem;
+		margin: 0 auto;
+	}
+
+	.node-north {
+		grid-column: 2;
+		grid-row: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.node-west {
+		grid-column: 1;
+		grid-row: 2;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.5rem;
+	}
+
+	.node-center {
+		grid-column: 2;
+		grid-row: 2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.node-east {
+		grid-column: 3;
+		grid-row: 2;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.5rem;
+	}
+
+	.node-south {
+		grid-column: 2;
+		grid-row: 3;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.cardinal-card {
+		width: 100%;
+		max-width: 250px;
+		border-radius: 20px;
+		padding: 1.4rem 1.25rem;
+		text-align: center;
+		box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.06);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.cardinal-card:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 10px 22px -3px rgba(15, 23, 42, 0.1);
+	}
+
+	/* Patients: Warm Rose/Crimson theme */
+	.card-patient {
+		background: linear-gradient(180deg, #fff1f2 0%, #ffe4e6 100%);
+		border: 2px solid #fda4af;
+	}
+	.card-patient .cardinal-title {
+		color: #9f1239;
+	}
+	.card-patient .card-item-list li {
+		color: #881337;
+	}
+
+	/* Doctors: Crisp Royal Slate-Blue theme */
+	.card-doctor {
+		background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+		border: 2px solid #93c5fd;
+	}
+	.card-doctor .cardinal-title {
+		color: #1e40af;
+	}
+	.card-doctor .card-item-list li {
+		color: #1e3a8a;
+	}
+
+	/* Dentists: Dark Medium Green / Mint Forest theme */
+	.card-dentist {
+		background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 100%);
+		border: 2px solid #6ee7b7;
+	}
+	.card-dentist .cardinal-title {
+		color: #065f46;
+	}
+	.card-dentist .card-item-list li {
+		color: #064e3b;
+	}
+
+	/* Researchers: Rich Indigo / Purple theme */
+	.card-researcher {
+		background: linear-gradient(180deg, #f5f3ff 0%, #ede9fe 100%);
+		border: 2px solid #c4b5fd;
+	}
+	.card-researcher .cardinal-title {
+		color: #5b21b6;
+	}
+	.card-researcher .card-item-list li {
+		color: #4c1d95;
+	}
+
+	.cardinal-icon {
+		font-size: 3.25rem;
+		line-height: 1;
+		margin-bottom: 0.5rem;
+		display: block;
+	}
+
+	.cardinal-title {
+		font-size: 1.75rem;
+		font-weight: 800;
+		margin: 0 0 0.35rem 0;
+		line-height: 1.15;
+	}
+
+	.card-item-list {
+		list-style-type: disc;
+		padding-left: 1.15rem;
+		margin: 0.5rem auto 0 auto;
+		display: inline-block;
+		text-align: left;
+	}
+
+	.card-item-list li {
+		font-size: 0.85rem;
+		font-weight: 600;
+		line-height: 1.45;
+		margin-bottom: 0.15rem;
+	}
+
+	.connector-arrow {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* Center Data Circle: Elegant Crisp White Card with Multi-tone Border & Glow */
+	.center-data-circle {
+		width: 275px;
+		height: 275px;
+		border-radius: 50%;
+		background: #ffffff;
+		color: #0f172a;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 1.5rem 1.25rem;
+		border: 3px solid #6366f1;
+		box-shadow: 0 12px 35px -5px rgba(99, 102, 241, 0.18), 0 0 0 6px rgba(238, 242, 255, 0.9);
+		text-align: center;
+	}
+
+	.center-icon {
+		font-size: 2.75rem;
+		line-height: 1;
+		display: block;
+		margin-bottom: 0.35rem;
+	}
+
+	.center-title {
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: #1e1b4b;
+		margin: 0;
+		line-height: 1.25;
+	}
+
+	.center-data-list {
+		list-style-type: disc;
+		padding-left: 1.15rem;
+		margin: 0.65rem auto 0 auto;
+		display: inline-block;
+		text-align: left;
+	}
+
+	.center-data-list li {
+		font-size: 0.82rem;
+		font-weight: 600;
+		color: #334155;
+		line-height: 1.45;
+		margin-bottom: 0.15rem;
+	}
+
+	@media (max-width: 860px) {
+		.cardinal-grid {
+			display: flex;
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+
+		.cardinal-node {
+			width: 100%;
+			max-width: 320px;
+		}
+
+		.connector-arrow {
+			display: none;
+		}
+
+		.center-data-circle {
+			width: 100%;
+			max-width: 300px;
+			height: auto;
+			border-radius: 20px;
+			padding: 2rem 1.5rem;
+		}
+	}
+</style>

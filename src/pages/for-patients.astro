@@ -6,6 +6,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
 import InteractiveProgressionChart from '../components/InteractiveProgressionChart.astro';
+import CardinalNetworkDiagram from '../components/CardinalNetworkDiagram.astro';
 ---
 
 <!doctype html>
@@ -60,6 +61,15 @@ import InteractiveProgressionChart from '../components/InteractiveProgressionCha
 					<!-- Interactive 3-Year Progression Timeline Graph -->
 					<div class="message-chart-wrapper">
 						<InteractiveProgressionChart title="My 3-Year BMS Progression &amp; Triggers" />
+					</div>
+
+					<!-- Collaborative Cardinal Network Diagram -->
+					<div class="network-diagram-container">
+						<h3 class="diagram-section-title">Bridging Patients, Clinicians &amp;&nbsp;Data</h3>
+						<p class="diagram-section-subtitle">
+							Real breakthroughs happen when patient observations, dental mechanics, medical diagnostics, and laboratory research connect around open&nbsp;data.
+						</p>
+						<CardinalNetworkDiagram />
 					</div>
 
 					<!-- Focused Share Your Story CTA -->
@@ -150,6 +160,30 @@ import InteractiveProgressionChart from '../components/InteractiveProgressionCha
 
 	.message-chart-wrapper {
 		margin: 2.5rem 0 3.5rem;
+	}
+
+	.network-diagram-container {
+		margin: 3.5rem 0;
+		text-align: center;
+	}
+
+	.diagram-section-title {
+		font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+		font-weight: 800;
+		color: var(--text-primary);
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		margin: 0 auto 0.75rem;
+		text-wrap: balance;
+	}
+
+	.diagram-section-subtitle {
+		font-size: 1.05rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		max-width: 680px;
+		margin: 0 auto 1.5rem;
+		text-wrap: balance;
 	}
 
 	.collab-cta-box {

@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
+import CardinalNetworkDiagram from '../components/CardinalNetworkDiagram.astro';
 ---
 
 <!doctype html>
@@ -69,100 +70,7 @@ import authorPhoto from '../assets/denis-ethier.png';
 						Real discoveries happen when patient observations, dental mechanics, medical diagnostics, and laboratory science connect around open research&nbsp;data.
 					</p>
 
-					<div class="cardinal-network-wrapper">
-						<!-- Cardinal Grid Layout: North (Patients), West (Doctors), East (Dentists), South (Researchers), Center (Shared Data) -->
-						<div class="cardinal-grid">
-							<!-- North: Patients -->
-							<div class="cardinal-node node-north">
-								<div class="cardinal-card card-patient">
-									<span class="cardinal-icon" aria-hidden="true">🗣️</span>
-									<h3 class="cardinal-title">Patients</h3>
-									<ul class="card-item-list">
-										<li>BMS Type 1</li>
-										<li>BMS Type 2</li>
-										<li>BMS Type 3</li>
-									</ul>
-								</div>
-								<div class="connector-arrow arrow-vertical" aria-hidden="true">
-									<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#be123c" stroke-width="2.5">
-										<path d="M12 3v18M5 10l7-7 7 7M5 14l7 7 7-7"/>
-									</svg>
-								</div>
-							</div>
-
-							<!-- West: Doctors -->
-							<div class="cardinal-node node-west">
-								<div class="cardinal-card card-doctor">
-									<span class="cardinal-icon" aria-hidden="true">🩺</span>
-									<h3 class="cardinal-title">Doctors</h3>
-									<ul class="card-item-list">
-										<li>GPs</li>
-										<li>Neurologists</li>
-										<li>Gastroenterologists</li>
-										<li>Allergists</li>
-										<li>ENTs</li>
-									</ul>
-								</div>
-								<div class="connector-arrow arrow-horizontal arrow-west-center" aria-hidden="true">
-									<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1d4ed8" stroke-width="2.5">
-										<path d="M3 12h18M10 5l-7 7 7 7M14 5l7 7-7 7"/>
-									</svg>
-								</div>
-							</div>
-
-							<!-- Center: Shared BMS Data Hub -->
-							<div class="cardinal-node node-center">
-								<div class="center-data-circle">
-									<span class="center-icon" aria-hidden="true">📊</span>
-									<h3 class="center-title">Shared BMS&nbsp;Data</h3>
-									<ul class="center-data-list">
-										<li>Patient Symptom Logs</li>
-										<li>Dental &amp; Clinical Records</li>
-										<li>Scientific &amp; Lab Studies</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- East: Dentists -->
-							<div class="cardinal-node node-east">
-								<div class="connector-arrow arrow-horizontal arrow-east-center" aria-hidden="true">
-									<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#059669" stroke-width="2.5">
-										<path d="M3 12h18M10 5l-7 7 7 7M14 5l7 7-7 7"/>
-									</svg>
-								</div>
-								<div class="cardinal-card card-dentist">
-									<span class="cardinal-icon" aria-hidden="true">🦷</span>
-									<h3 class="cardinal-title">Dentists</h3>
-									<ul class="card-item-list">
-										<li>Periodontists</li>
-										<li>Endodontists</li>
-										<li>Prosthodontists</li>
-										<li>Oral Surgeons</li>
-										<li>Oral Medicine</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- South: Researchers -->
-							<div class="cardinal-node node-south">
-								<div class="connector-arrow arrow-vertical" aria-hidden="true">
-									<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#7c3aed" stroke-width="2.5">
-										<path d="M12 3v18M5 10l7-7 7 7M5 14l7 7 7-7"/>
-									</svg>
-								</div>
-								<div class="cardinal-card card-researcher">
-									<span class="cardinal-icon" aria-hidden="true">🔬</span>
-									<h3 class="cardinal-title">Researchers</h3>
-									<ul class="card-item-list">
-										<li>Neuroscience</li>
-										<li>Oral Biology</li>
-										<li>Microbiology</li>
-										<li>Biomechanical Physics</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+					<CardinalNetworkDiagram />
 				</section>
 
 				<!-- CTA Box -->
