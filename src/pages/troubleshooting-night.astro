@@ -44,15 +44,26 @@ import authorPhoto from '../assets/denis-ethier.png';
 
 				<!-- Main Description & Invitation -->
 				<article class="personal-story-section">
+					<div class="schedule-time-banner">
+						<div class="time-badge">
+							<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="10"></circle>
+								<polyline points="12 6 12 12 16 14"></polyline>
+							</svg>
+							<span>Wednesday Nights at 7:00 PM Eastern Time</span>
+						</div>
+						<p class="time-subnote">Minimum 3 participants to host. Join the mailing list to receive weekly confirmation.</p>
+					</div>
+
 					<div class="story-lead">
 						<p class="story-paragraph">
-							If you are living with Burning Mouth Syndrome, you know how isolating the daily rollercoaster can be. The physical burning is agonizing, but the mental exhaustion of trying to figure out why a flare happened—and having no one who truly understands to bounce ideas off of—is just as challenging.
+							If you are living with Burning Mouth Syndrome, you know how isolating the daily rollercoaster can be. The physical burning is agonizing, but the mental exhaustion of trying to figure out why a flare happened, with no one who truly understands to bounce ideas off of, is just as challenging.
 						</p>
 						<p class="story-paragraph">
-							That is why we host a <strong>Weekly Discussion Group Call</strong>. This is an open, constructive, and forward-looking live video gathering where we compare notes, share what is making our symptoms better or worse, discuss newly identified dietary or dental triggers, and learn from each other's lived observations.
+							That is why we host our <strong>Weekly Group Call every Wednesday night at 7:00 PM Eastern Time</strong>. This is an open, constructive, and forward-looking live video gathering where we compare notes, share what makes our symptoms better or worse, discuss newly identified dietary or dental triggers, and learn from each other's lived observations.
 						</p>
 						<p class="story-paragraph">
-							If you would like to participate or drop in to listen, please <a href="#join-circle" class="inline-story-link">join our notification list below</a> so you can receive updates and access links for our upcoming calls.
+							We require a minimum of 3 participants to run each session. Please <a href="#join-circle" class="inline-story-link">join our notification list below</a> to receive the confirmation email and private meeting link the day before.
 						</p>
 					</div>
 
@@ -187,9 +198,12 @@ import authorPhoto from '../assets/denis-ethier.png';
 
 					<!-- Registration Box -->
 					<div class="collab-cta-box" id="join-circle">
+						<div class="cta-schedule-highlight">
+							<span>Weekly • Every Wednesday at 7:00 PM Eastern Time</span>
+						</div>
 						<h3 class="collab-cta-title">Join the Notification List</h3>
 						<p class="collab-cta-text">
-							Enter your email below so I can notify you 24 hours before our next Weekly Discussion Group Call.
+							Enter your email below. We require a minimum of 3 participants to host each call, and I will email you 24 hours prior to confirm and send the live meeting&nbsp;link.
 						</p>
 						
 						<!-- MailerLite Form Embed / Direct Submit -->
@@ -206,7 +220,7 @@ import authorPhoto from '../assets/denis-ethier.png';
 								<button type="submit" class="btn btn-primary circle-submit-btn">Notify Me</button>
 							</div>
 						</form>
-						<p class="circle-privacy-note">Zero spam. You will only receive notifications about upcoming group calls.</p>
+						<p class="circle-privacy-note">Zero spam. You will only receive confirmation and links for our Wednesday night group calls.</p>
 					</div>
 				</article>
 			</section>
@@ -279,6 +293,45 @@ import authorPhoto from '../assets/denis-ethier.png';
 		padding: 3rem 2.5rem;
 		margin-bottom: 2rem;
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+	}
+
+	.schedule-time-banner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		margin-bottom: 2rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid #e2e8f0;
+	}
+
+	.time-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: #fee2e2;
+		color: #991b1b;
+		font-weight: 800;
+		font-size: 1.05rem;
+		padding: 0.5rem 1.15rem;
+		border-radius: 30px;
+		margin-bottom: 0.5rem;
+	}
+
+	.time-subnote {
+		font-size: 0.92rem;
+		color: var(--text-secondary);
+		margin: 0;
+		font-weight: 500;
+	}
+
+	.cta-schedule-highlight {
+		font-size: 0.95rem;
+		font-weight: 800;
+		color: #fca5a5;
+		margin-bottom: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
 	}
 
 	.story-lead {
