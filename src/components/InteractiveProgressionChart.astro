@@ -12,9 +12,27 @@ const {
 ---
 
 <div class={`interactive-progression-container ${className}`} id="bms-progression-widget">
-	<!-- Header -->
+	<!-- Header with Expand/Collapse Toggle -->
 	<div class="widget-header">
-		<h3 class="widget-title">{title}</h3>
+		<div class="widget-header-left">
+			<h3 class="widget-title">{title}</h3>
+			<span class="widget-subtitle">Interactive 3-Year Pain & Triggers Timeline</span>
+		</div>
+		<button 
+			type="button" 
+			class="chart-expand-btn" 
+			id="chart-expand-toggle"
+			aria-label="Toggle wide view"
+			title="Expand to full width"
+		>
+			<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<polyline points="15 3 21 3 21 9"></polyline>
+				<polyline points="9 21 3 21 3 15"></polyline>
+				<line x1="21" y1="3" x2="14" y2="10"></line>
+				<line x1="3" y1="21" x2="10" y2="14"></line>
+			</svg>
+			<span class="btn-text">Expand View</span>
+		</button>
 	</div>
 
 	<!-- Chart Box -->
@@ -287,30 +305,128 @@ const {
 </div>
 
 <style>
+	/* Breakout Container: Naturally wider than the text column on desktop for high-impact clarity */
 	.interactive-progression-container {
 		background: radial-gradient(120% 120% at 50% 0%, #1e1136 0%, #0d081a 60%, #080410 100%);
-		border: 1px solid rgba(168, 85, 247, 0.25);
+		border: 1px solid rgba(168, 85, 247, 0.3);
 		border-radius: 1.25rem;
-		padding: 1.75rem;
-		margin: 2.5rem 0;
+		padding: 1.5rem 1.75rem;
+		margin: 3rem 0;
 		color: #e2e8f0;
 		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 		position: relative;
-		overflow: hidden;
+		width: 100%;
+		transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+		z-index: 10;
 	}
 
+	/* Wide Breakout on Desktops */
+	@media (min-width: 900px) {
+		.interactive-progression-container {
+			width: calc(100% + 180px);
+			max-width: 1080px;
+			margin-left: -90px;
+			margin-right: -90px;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.interactive-progression-container {
+			width: calc(100% + 320px);
+			max-width: 1200px;
+			margin-left: -160px;
+			margin-right: -160px;
+		}
+	}
+
+	/* Fullscreen / Full-Width Expand Mode */
+	.interactive-progression-container.is-expanded {
+		position: fixed !important;
+		top: 2.5vh;
+		left: 2.5vw;
+		width: 95vw !important;
+		max-width: 1500px !important;
+		height: 95vh;
+		margin: 0 !important;
+		z-index: 99999 !important;
+		display: flex;
+		flex-direction: column;
+		box-shadow: 0 30px 100px rgba(0, 0, 0, 0.9), 0 0 0 100vmax rgba(0, 0, 0, 0.85);
+		padding: 2rem 2.5rem;
+		backdrop-filter: blur(12px);
+	}
+
+	.interactive-progression-container.is-expanded .chart-wrapper {
+		flex: 1;
+		display: flex;
+		align-items: center;
+	}
+
+	.interactive-progression-container.is-expanded .chart-canvas-inner {
+		width: 100%;
+		min-width: 1000px;
+	}
+
+	/* Header */
 	.widget-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		margin-bottom: 1.25rem;
-		border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+		border-bottom: 1px solid rgba(168, 85, 247, 0.18);
 		padding-bottom: 0.85rem;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.widget-header-left {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
 	}
 
 	.widget-title {
-		font-size: 1.45rem;
-		font-weight: 700;
-		color: #f8fafc;
+		font-size: 1.4rem;
+		font-weight: 800;
+		color: #ffffff;
 		margin: 0;
-		line-height: 1.3;
+		line-height: 1.2;
+		letter-spacing: -0.01em;
+	}
+
+	.widget-subtitle {
+		font-size: 0.82rem;
+		color: #c084fc;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+	}
+
+	/* Expand Button */
+	.chart-expand-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: rgba(168, 85, 247, 0.15);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		color: #e9d5ff;
+		padding: 0.45rem 0.85rem;
+		border-radius: 0.5rem;
+		font-size: 0.82rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.chart-expand-btn:hover {
+		background: rgba(168, 85, 247, 0.3);
+		border-color: rgba(168, 85, 247, 0.6);
+		color: #ffffff;
+		transform: translateY(-1px);
+	}
+
+	.expand-icon {
+		width: 15px;
+		height: 15px;
 	}
 
 	/* Chart Canvas */
@@ -436,7 +552,6 @@ const {
 		stroke-width: 2.5;
 		filter: drop-shadow(0 0 10px #a855f7);
 	}
-
 </style>
 
 <script>
@@ -444,10 +559,37 @@ const {
 		const widget = document.getElementById('bms-progression-widget');
 		if (!widget) return;
 
+		const expandBtn = document.getElementById('chart-expand-toggle');
 		const svg = document.getElementById('progression-svg') as unknown as SVGSVGElement;
 		const cursorLayer = document.getElementById('interactive-cursor');
 		const cursorLine = document.getElementById('cursor-vertical-line');
 		const cursorPoint = document.getElementById('cursor-point');
+
+		// Toggle Expand / Breakout mode
+		if (expandBtn) {
+			expandBtn.addEventListener('click', () => {
+				const isExpanded = widget.classList.toggle('is-expanded');
+				const btnText = expandBtn.querySelector('.btn-text');
+				if (btnText) {
+					btnText.textContent = isExpanded ? 'Exit Fullscreen' : 'Expand View';
+				}
+				if (isExpanded) {
+					document.body.style.overflow = 'hidden';
+				} else {
+					document.body.style.overflow = '';
+				}
+			});
+
+			// Close on Escape key
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && widget.classList.contains('is-expanded')) {
+					widget.classList.remove('is-expanded');
+					document.body.style.overflow = '';
+					const btnText = expandBtn.querySelector('.btn-text');
+					if (btnText) btnText.textContent = 'Expand View';
+				}
+			});
+		}
 
 		if (!svg) return;
 
