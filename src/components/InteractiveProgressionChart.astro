@@ -1,0 +1,852 @@
+---
+// InteractiveProgressionChart.astro - Universal Interactive BMS Pain Progression Graph (0-10 Scale over 3 Years)
+interface Props {
+	class?: string;
+	title?: string;
+	subtitle?: string;
+}
+
+const {
+	class: className = '',
+	title = "Denis's 3-Year BMS Pain & Recovery Progression",
+	subtitle = "Interactive timeline tracking the 6 initial pre-carnivore waves (8-10/10), the 6-month carnivore yo-yo cycle (2-5/10), and the 1-year stable remission (0-1/10)."
+} = Astro.props;
+---
+
+<div class={`interactive-progression-container ${className}`} id="bms-progression-widget">
+	<!-- Header & Controls -->
+	<div class="widget-header">
+		<div class="widget-title-group">
+			<span class="widget-kicker">Interactive Data Visualization</span>
+			<h3 class="widget-title">{title}</h3>
+			<p class="widget-subtitle">{subtitle}</p>
+		</div>
+
+		<div class="widget-controls" role="group" aria-label="Timeline phase selector">
+			<button class="phase-btn active" data-phase="all">All 3 Years</button>
+			<button class="phase-btn" data-phase="phase1">1. Pre-Carnivore (8 to 10)</button>
+			<button class="phase-btn" data-phase="phase2">2. Carnivore Yo-Yo (2 to 5)</button>
+			<button class="phase-btn" data-phase="phase3">3. 1-Year Remission (0 to 1)</button>
+		</div>
+	</div>
+
+	<!-- Chart Box -->
+	<div class="chart-wrapper" id="chart-scroll-container">
+		<div class="chart-canvas-inner">
+			<!-- SVG Data Canvas -->
+			<svg 
+				id="progression-svg" 
+				viewBox="0 0 1200 480" 
+				class="progression-svg" 
+				preserveAspectRatio="xMidYMid meet"
+			>
+				<defs>
+					<!-- Gradients for Curve and Zones -->
+					<linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+						<stop offset="0%" stop-color="#ef4444" />
+						<stop offset="25%" stop-color="#f59e0b" />
+						<stop offset="50%" stop-color="#ef4444" />
+						<stop offset="60%" stop-color="#06b6d4" />
+						<stop offset="80%" stop-color="#3b82f6" />
+						<stop offset="90%" stop-color="#10b981" />
+						<stop offset="100%" stop-color="#10b981" />
+					</linearGradient>
+
+					<linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+						<stop offset="0%" stop-color="rgba(239, 68, 68, 0.25)" />
+						<stop offset="50%" stop-color="rgba(59, 130, 246, 0.15)" />
+						<stop offset="100%" stop-color="rgba(16, 185, 129, 0.02)" />
+					</linearGradient>
+
+					<!-- Glow Filter -->
+					<filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+						<feGaussianBlur stdDeviation="3.5" result="blur" />
+						<feMerge>
+							<feMergeNode in="blur" />
+							<feMergeNode in="SourceGraphic" />
+						</feMerge>
+					</filter>
+
+					<!-- Arrow Markers -->
+					<marker id="arrowRed" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+						<path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#ef4444" />
+					</marker>
+					<marker id="arrowAmber" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+						<path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#f59e0b" />
+					</marker>
+					<marker id="arrowCyan" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+						<path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#06b6d4" />
+					</marker>
+					<marker id="arrowGreen" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+						<path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#10b981" />
+					</marker>
+				</defs>
+
+				<!-- Background Severity Bands -->
+				<!-- Red Zone: Severe (Pain 7-10) -> Y: 60 to 168 -->
+				<rect x="80" y="60" width="1080" height="108" fill="rgba(239, 68, 68, 0.05)" />
+				<text x="1150" y="80" class="zone-label zone-red">Severe (8 to 10)</text>
+
+				<!-- Amber Zone: Moderate / Yo-Yo (Pain 3-6) -> Y: 168 to 312 -->
+				<rect x="80" y="168" width="1080" height="144" fill="rgba(245, 158, 11, 0.04)" />
+				<text x="1150" y="188" class="zone-label zone-amber">Yo-Yo Zone (2 to 5)</text>
+
+				<!-- Green Zone: Baseline / Remission (Pain 0-2) -> Y: 312 to 420 -->
+				<rect x="80" y="312" width="1080" height="108" fill="rgba(16, 185, 129, 0.05)" />
+				<text x="1150" y="405" class="zone-label zone-green">Remission (0 to 1)</text>
+
+				<!-- Horizontal Grid Lines & Y-Axis Labels (0 to 10 Scale) -->
+				<!-- Pain 10: Y=60, Pain 8: Y=132, Pain 5: Y=240, Pain 2: Y=348, Pain 0: Y=420 -->
+				<!-- Formula: Y = 420 - (Pain * 36) -->
+				<g class="grid-lines">
+					<line x1="80" y1="60" x2="1160" y2="60" class="grid-line line-10" />
+					<text x="65" y="65" class="axis-label y-val">10</text>
+
+					<line x1="80" y1="132" x2="1160" y2="132" class="grid-line" />
+					<text x="65" y="137" class="axis-label y-val">8</text>
+
+					<line x1="80" y1="240" x2="1160" y2="240" class="grid-line line-highlight" />
+					<text x="65" y="245" class="axis-label y-val val-5">5</text>
+
+					<line x1="80" y1="348" x2="1160" y2="348" class="grid-line" />
+					<text x="65" y="353" class="axis-label y-val">2</text>
+
+					<line x1="80" y1="420" x2="1160" y2="420" class="grid-line axis-x-base" />
+					<text x="65" y="425" class="axis-label y-val">0</text>
+				</g>
+
+				<!-- Phase Divider Vertical Markers -->
+				<g class="phase-dividers">
+					<!-- Phase 1 to Phase 2 Divider (X=600) -->
+					<line x1="600" y1="40" x2="600" y2="420" class="phase-divider-line" />
+					<rect x="520" y="20" width="160" height="24" rx="4" class="phase-badge-bg phase2-badge" />
+					<text x="600" y="36" class="phase-divider-text">Carnivore Yo-Yo (6 Mo)</text>
+
+					<!-- Phase 2 to Phase 3 Divider (X=900) -->
+					<line x1="900" y1="40" x2="900" y2="420" class="phase-divider-line" />
+					<rect x="830" y="20" width="140" height="24" rx="4" class="phase-badge-bg phase3-badge" />
+					<text x="900" y="36" class="phase-divider-text">1-Year Remission</text>
+				</g>
+
+				<!-- Filled Area Under Curve -->
+				<path 
+					id="progression-area"
+					class="curve-area"
+					d="
+						M 90 420
+						L 90 96
+						C 110 96, 125 384, 150 384
+						C 180 384, 200 384, 220 384
+						C 240 384, 255 132, 275 132
+						C 290 132, 305 276, 325 276
+						C 340 276, 355 168, 375 168
+						C 395 168, 415 312, 435 312
+						C 455 312, 470 168, 490 168
+						C 505 168, 520 384, 545 384
+						C 565 384, 575 384, 585 384
+						C 595 384, 605 96, 620 96
+						C 635 96, 645 348, 660 348
+						C 675 348, 685 240, 700 240
+						C 715 240, 725 360, 740 360
+						C 755 360, 765 240, 780 240
+						C 795 240, 805 360, 820 360
+						C 835 360, 845 240, 860 240
+						C 875 240, 885 384, 900 384
+						C 950 400, 1000 420, 1050 420
+						C 1070 420, 1080 384, 1090 384
+						C 1100 384, 1110 420, 1120 420
+						L 1150 420
+						Z
+					"
+					fill="url(#areaGradient)"
+				/>
+
+				<!-- Main Glowing Line Path -->
+				<path 
+					id="progression-curve"
+					class="curve-line"
+					d="
+						M 90 96
+						C 110 96, 125 384, 150 384
+						C 180 384, 200 384, 220 384
+						C 240 384, 255 132, 275 132
+						C 290 132, 305 276, 325 276
+						C 340 276, 355 168, 375 168
+						C 395 168, 415 312, 435 312
+						C 455 312, 470 168, 490 168
+						C 505 168, 520 384, 545 384
+						C 565 384, 575 384, 585 384
+						C 595 384, 605 96, 620 96
+						C 635 96, 645 348, 660 348
+						C 675 348, 685 240, 700 240
+						C 715 240, 725 360, 740 360
+						C 755 360, 765 240, 780 240
+						C 795 240, 805 360, 820 360
+						C 835 360, 845 240, 860 240
+						C 875 240, 885 384, 900 384
+						C 950 400, 1000 420, 1050 420
+						C 1070 420, 1080 384, 1090 384
+						C 1100 384, 1110 420, 1120 420
+						L 1150 420
+					"
+					fill="none"
+					stroke="url(#curveGradient)"
+					stroke-width="4.5"
+					filter="url(#glow)"
+				/>
+
+				<!-- Visual Annotation Arrows & Callouts on Top of Waves -->
+				<g class="annotations-layer">
+					<!-- Wave 1: Cut Beer/Wine -->
+					<line x1="90" y1="65" x2="90" y2="86" class="annotation-arrow" marker-end="url(#arrowRed)" />
+					<text x="90" y="55" class="annotation-text peak-text">1. Cut Beer & Wine</text>
+
+					<!-- Valley 1: 6 Mo Pain-Free -->
+					<text x="185" y="370" class="annotation-text valley-text">6 Months 1-2/10</text>
+
+					<!-- Wave 2: Coffee Flare -->
+					<line x1="275" y1="100" x2="275" y2="122" class="annotation-arrow" marker-end="url(#arrowRed)" />
+					<text x="275" y="90" class="annotation-text peak-text">2. Cut Coffee</text>
+
+					<!-- Wave 3: Dental Cleaning -->
+					<line x1="375" y1="135" x2="375" y2="158" class="annotation-arrow" marker-end="url(#arrowAmber)" />
+					<text x="375" y="125" class="annotation-text peak-text">3. Deep Cleaning</text>
+
+					<!-- Wave 4: Cut Fruits/Blueberries -->
+					<line x1="490" y1="135" x2="490" y2="158" class="annotation-arrow" marker-end="url(#arrowAmber)" />
+					<text x="490" y="125" class="annotation-text peak-text">4. Cut Fruits (pH 3.0)</text>
+
+					<!-- Valley 5: 4 Cervical Patches -->
+					<text x="545" y="370" class="annotation-text valley-text">5. 4 Composite Patches (6 Mo Relief)</text>
+
+					<!-- Wave 6: Patches Wore Down / 10/10 Peak -->
+					<line x1="620" y1="65" x2="620" y2="86" class="annotation-arrow" marker-end="url(#arrowRed)" />
+					<text x="620" y="55" class="annotation-text peak-text">6. Patches Wore Down (10/10)</text>
+
+					<!-- Carnivore Shift -->
+					<line x1="660" y1="318" x2="660" y2="338" class="annotation-arrow" marker-end="url(#arrowCyan)" />
+					<text x="660" y="308" class="annotation-text phase2-text">Carnivore Transition</text>
+
+					<!-- Yo-Yo Cheat Spikes (Max 5/10) -->
+					<line x1="700" y1="210" x2="700" y2="230" class="annotation-arrow" marker-end="url(#arrowAmber)" />
+					<text x="700" y="200" class="annotation-text yo-yo-text">Cheat Spike (5/10 Max)</text>
+
+					<line x1="780" y1="210" x2="780" y2="230" class="annotation-arrow" marker-end="url(#arrowAmber)" />
+					<text x="780" y="200" class="annotation-text yo-yo-text">Cheat Flare</text>
+
+					<line x1="860" y1="210" x2="860" y2="230" class="annotation-arrow" marker-end="url(#arrowAmber)" />
+					<text x="860" y="200" class="annotation-text yo-yo-text">Grocery Temptation</text>
+
+					<!-- Phase 3: Remission Baseline -->
+					<text x="980" y="440" class="annotation-text remission-text">Radical Carnivore Baseline (0 to 1/10)</text>
+
+					<!-- Cheese Nuance Blip -->
+					<line x1="1090" y1="355" x2="1090" y2="375" class="annotation-arrow" marker-end="url(#arrowGreen)" />
+					<text x="1090" y="345" class="annotation-text cheese-text">Cheese Blip (1/10)</text>
+				</g>
+
+				<!-- Interactive Milestone Pins / Nodes -->
+				<g id="milestone-pins-group">
+					<!-- Node 1 -->
+					<circle cx="90" cy="96" r="7" class="milestone-pin" data-id="1" data-pain="9" data-title="Occurrence #1: Beer & Wine Trigger" data-time="3 Years Ago" data-desc="Intense gum aching after dark ale. Cut alcohol completely, granting 6 full months pain-free." />
+					<!-- Node 2 -->
+					<circle cx="185" cy="384" r="6" class="milestone-pin" data-id="2" data-pain="1.5" data-title="6 Months of Alcohol-Free Relief" data-time="~2.8 Years Ago" data-desc="Completely pain-free until sudden resurgence of widespread fire." />
+					<!-- Node 3 -->
+					<circle cx="275" cy="132" r="7" class="milestone-pin" data-id="3" data-pain="8" data-title="Occurrence #2: Morning Coffee Flare" data-time="~2.5 Years Ago" data-desc="Burning flared across palate, inner cheeks, lips, and nose. Cut coffee, but burning persisted." />
+					<!-- Node 4 -->
+					<circle cx="375" cy="168" r="7" class="milestone-pin" data-id="4" data-pain="7" data-title="Occurrence #3: First Dental Cleaning" data-time="~2.2 Years Ago" data-desc="Comprehensive ultrasonic cleaning removed subgingival plaque, providing temporary cooling." />
+					<!-- Node 5 -->
+					<circle cx="490" cy="168" r="7" class="milestone-pin" data-id="5" data-pain="7" data-title="Occurrence #4: Removing Fruits & Blueberries" data-time="~1.8 Years Ago" data-desc="Discovered blueberries sit at pH ~3.0. Eliminating fruits took the razor edge off the burn." />
+					<!-- Node 6 -->
+					<circle cx="545" cy="384" r="7" class="milestone-pin" data-id="6" data-pain="1.5" data-title="Occurrence #5: 4 Cervical Composite Patches" data-time="~1.5 Years Ago" data-desc="Dentist placed composite resin over exposed root surfaces. Shielding dentin gave 6 months relief." />
+					<!-- Node 7 -->
+					<circle cx="620" cy="96" r="8" class="milestone-pin pin-critical" data-id="7" data-pain="10" data-title="Occurrence #6: Patches Wore Down & 10/10 Agony" data-time="~1 Year Ago" data-desc="Composite bonding degraded. Consulted 4 dentists with zero solutions. Peak 10/10 living fire." />
+					<!-- Node 8 -->
+					<circle cx="660" cy="348" r="7" class="milestone-pin" data-id="8" data-pain="2" data-title="Transition to Zero-Acid Carnivore" data-time="~11 Months Ago" data-desc="All-meat protocol starved chemical fuel. Pain dropped from 10/10 to 2/10 over 10 days." />
+					<!-- Node 9 -->
+					<circle cx="700" cy="240" r="7" class="milestone-pin pin-yoyo" data-id="9" data-pain="5" data-title="The Grocery Store Cheat & 72h Latency" data-time="~9 Months Ago" data-desc="Day 1 popcorn felt fine; Day 3 inflammation peaked at 5/10. Pain never exceeded 5 during carnivore phase." />
+					<!-- Node 10 -->
+					<circle cx="740" cy="360" r="6" class="milestone-pin" data-id="10" data-pain="1.5" data-title="3-Day Meat Reset" data-time="~8 Months Ago" data-desc="Strict beef and water reset the inflammation back down to 1-2/10." />
+					<!-- Node 11 -->
+					<circle cx="780" cy="240" r="7" class="milestone-pin pin-yoyo" data-id="11" data-pain="5" data-title="Evening Cheat Split Testing" data-time="~7 Months Ago" data-desc="Tried 2 carnivore meals + 1 dinner cheat. Consistently triggered a 5/10 flare within 48-72 hours." />
+					<!-- Node 12 -->
+					<circle cx="860" cy="240" r="7" class="milestone-pin pin-yoyo" data-id="12" data-pain="5" data-title="Final Yo-Yo Cycle & Acceptance" data-time="~6 Months Ago" data-desc="Fed up with cyclical anxiety. Realized mucosal tolerance requires strict baseline discipline." />
+					<!-- Node 13 -->
+					<circle cx="950" cy="405" r="7" class="milestone-pin pin-success" data-id="13" data-pain="0.5" data-title="1-Year Remission: Meat, Eggs & Seafood" data-time="Last 1 Year - Present" data-desc="Steady baseline between 0/10 and 1/10 with zero acute burning or nerve flare-ups." />
+					<!-- Node 14 -->
+					<circle cx="1090" cy="384" r="6" class="milestone-pin" data-id="14" data-pain="1" data-title="Cheese Tolerance Trade-off" data-time="Present Day" data-desc="Eating cheese across 2 meals causes a mild 1/10 blip; well-tolerated and accepted with full awareness." />
+				</g>
+
+				<!-- Interactive Crosshair & Cursor Point -->
+				<g id="interactive-cursor" class="interactive-cursor-layer" style="display: none;">
+					<line id="cursor-vertical-line" x1="0" y1="50" x2="0" y2="420" class="cursor-line" />
+					<circle id="cursor-point" cx="0" cy="0" r="9" class="cursor-pulse-point" />
+				</g>
+
+				<!-- X-Axis Timeline Labels -->
+				<g class="x-axis-labels">
+					<text x="90" y="455" class="axis-time-label label-start">3 Years Ago</text>
+					<text x="275" y="455" class="axis-time-label">2.5 Yrs</text>
+					<text x="490" y="455" class="axis-time-label">1.8 Yrs</text>
+					<text x="620" y="455" class="axis-time-label">1 Year Ago</text>
+					<text x="740" y="455" class="axis-time-label">8 Mo Ago</text>
+					<text x="900" y="455" class="axis-time-label">Last 1 Year</text>
+					<text x="1120" y="455" class="axis-time-label label-end">Today (Remission)</text>
+				</g>
+			</svg>
+
+			<!-- Floating Tooltip Box -->
+			<div id="chart-tooltip" class="chart-tooltip" style="display: none;">
+				<div class="tooltip-header">
+					<span id="tooltip-time" class="tooltip-time">Timeframe</span>
+					<span id="tooltip-pain" class="tooltip-pain-pill">Pain 5/10</span>
+				</div>
+				<h4 id="tooltip-title" class="tooltip-title">Milestone Title</h4>
+				<p id="tooltip-desc" class="tooltip-desc">Description text</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Active Detail Card Below Graphic -->
+	<div class="active-milestone-card" id="milestone-card">
+		<div class="card-badge-row">
+			<span class="card-step-badge" id="card-step">Milestone #1</span>
+			<span class="card-time-badge" id="card-time">3 Years Ago</span>
+			<span class="card-pain-badge" id="card-pain">Pain: 9 / 10</span>
+		</div>
+		<h4 class="card-title" id="card-title">Occurrence #1: Beer & Wine Trigger</h4>
+		<p class="card-desc" id="card-desc">
+			Intense gum aching after drinking Trois-Pistoles dark ale or red wine. Recognizing alcohol as a direct trigger and eliminating it completely led to six full months of pain-free living.
+		</p>
+		<div class="card-tip">
+			💡 <em>Hover or tap any milestone point along the curve to inspect each phase of the journey.</em>
+		</div>
+	</div>
+</div>
+
+<style>
+	.interactive-progression-container {
+		background: radial-gradient(120% 120% at 50% 0%, #1e1136 0%, #0d081a 60%, #080410 100%);
+		border: 1px solid rgba(168, 85, 247, 0.25);
+		border-radius: 1.25rem;
+		padding: 1.75rem;
+		margin: 2.5rem 0;
+		color: #e2e8f0;
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.widget-header {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+		border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+		padding-bottom: 1.25rem;
+	}
+
+	@media (min-width: 768px) {
+		.widget-header {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-end;
+		}
+	}
+
+	.widget-kicker {
+		font-size: 0.8125rem;
+		font-weight: 600;
+		color: #c084fc;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		display: block;
+		margin-bottom: 0.25rem;
+	}
+
+	.widget-title {
+		font-size: 1.375rem;
+		font-weight: 700;
+		color: #f8fafc;
+		margin: 0;
+		line-height: 1.3;
+	}
+
+	.widget-subtitle {
+		font-size: 0.875rem;
+		color: #94a3b8;
+		margin: 0.35rem 0 0 0;
+		max-width: 650px;
+		line-height: 1.5;
+	}
+
+	.widget-controls {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.phase-btn {
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		color: #cbd5e1;
+		font-size: 0.775rem;
+		font-weight: 600;
+		padding: 0.45rem 0.85rem;
+		border-radius: 0.5rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.phase-btn:hover {
+		background: rgba(168, 85, 247, 0.2);
+		border-color: rgba(168, 85, 247, 0.4);
+		color: #ffffff;
+	}
+
+	.phase-btn.active {
+		background: #7c3aed;
+		border-color: #a855f7;
+		color: #ffffff;
+		box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+	}
+
+	/* Chart Canvas */
+	.chart-wrapper {
+		position: relative;
+		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		background: rgba(10, 6, 20, 0.6);
+		border-radius: 0.75rem;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		padding: 0.5rem 0;
+	}
+
+	.chart-canvas-inner {
+		min-width: 800px;
+		position: relative;
+	}
+
+	.progression-svg {
+		width: 100%;
+		height: auto;
+		display: block;
+		user-select: none;
+	}
+
+	/* SVG Styles */
+	.zone-label {
+		font-size: 11px;
+		font-weight: 600;
+		text-anchor: end;
+	}
+	.zone-red { fill: #f87171; opacity: 0.7; }
+	.zone-amber { fill: #fbbf24; opacity: 0.7; }
+	.zone-green { fill: #34d399; opacity: 0.7; }
+
+	.grid-line {
+		stroke: rgba(255, 255, 255, 0.08);
+		stroke-width: 1;
+		stroke-dasharray: 4 4;
+	}
+	.line-10 {
+		stroke: rgba(239, 68, 68, 0.25);
+	}
+	.line-highlight {
+		stroke: rgba(245, 158, 11, 0.3);
+		stroke-dasharray: 6 3;
+	}
+	.axis-x-base {
+		stroke: rgba(255, 255, 255, 0.25);
+		stroke-width: 1.5;
+		stroke-dasharray: none;
+	}
+
+	.axis-label {
+		fill: #94a3b8;
+		font-size: 12px;
+		font-weight: 600;
+		text-anchor: end;
+	}
+	.val-5 { fill: #fbbf24; font-weight: 700; }
+
+	.phase-divider-line {
+		stroke: rgba(168, 85, 247, 0.35);
+		stroke-width: 1.5;
+		stroke-dasharray: 6 4;
+	}
+	.phase-badge-bg {
+		fill: #2e1065;
+		stroke: rgba(168, 85, 247, 0.5);
+		stroke-width: 1;
+	}
+	.phase-divider-text {
+		fill: #e9d5ff;
+		font-size: 10px;
+		font-weight: 700;
+		text-anchor: middle;
+	}
+
+	.annotation-arrow {
+		stroke-width: 1.5;
+		opacity: 0.8;
+	}
+	.peak-text {
+		fill: #f87171;
+		font-size: 10px;
+		font-weight: 700;
+		text-anchor: middle;
+	}
+	.valley-text {
+		fill: #6ee7b7;
+		font-size: 10px;
+		font-weight: 600;
+		text-anchor: middle;
+	}
+	.phase2-text {
+		fill: #38bdf8;
+		font-size: 10px;
+		font-weight: 700;
+		text-anchor: middle;
+	}
+	.yo-yo-text {
+		fill: #fbbf24;
+		font-size: 10px;
+		font-weight: 700;
+		text-anchor: middle;
+	}
+	.remission-text {
+		fill: #34d399;
+		font-size: 11px;
+		font-weight: 700;
+		text-anchor: middle;
+	}
+	.cheese-text {
+		fill: #a7f3d0;
+		font-size: 9.5px;
+		font-weight: 600;
+		text-anchor: middle;
+	}
+
+	.axis-time-label {
+		fill: #cbd5e1;
+		font-size: 11px;
+		font-weight: 600;
+		text-anchor: middle;
+	}
+	.label-start { text-anchor: start; fill: #f87171; font-weight: 700; }
+	.label-end { text-anchor: end; fill: #34d399; font-weight: 700; }
+
+	/* Milestone Pins */
+	.milestone-pin {
+		fill: #0f172a;
+		stroke: #38bdf8;
+		stroke-width: 2.5;
+		cursor: pointer;
+		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	.milestone-pin:hover, .milestone-pin.active-pin {
+		fill: #38bdf8;
+		stroke: #ffffff;
+		stroke-width: 3.5;
+		r: 10;
+		filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
+	}
+	.pin-critical {
+		stroke: #ef4444;
+	}
+	.pin-critical:hover, .pin-critical.active-pin {
+		fill: #ef4444;
+		filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
+	}
+	.pin-yoyo {
+		stroke: #f59e0b;
+	}
+	.pin-yoyo:hover, .pin-yoyo.active-pin {
+		fill: #f59e0b;
+		filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.8));
+	}
+	.pin-success {
+		stroke: #10b981;
+	}
+	.pin-success:hover, .pin-success.active-pin {
+		fill: #10b981;
+		filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
+	}
+
+	/* Interactive Cursor */
+	.cursor-line {
+		stroke: rgba(168, 85, 247, 0.6);
+		stroke-width: 1.5;
+		stroke-dasharray: 4 4;
+	}
+	.cursor-pulse-point {
+		fill: #a855f7;
+		stroke: #ffffff;
+		stroke-width: 2.5;
+		filter: drop-shadow(0 0 10px #a855f7);
+	}
+
+	/* Tooltip */
+	.chart-tooltip {
+		position: absolute;
+		pointer-events: none;
+		background: rgba(15, 23, 42, 0.95);
+		border: 1px solid #a855f7;
+		border-radius: 0.65rem;
+		padding: 0.75rem 1rem;
+		width: 240px;
+		color: #f8fafc;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+		backdrop-filter: blur(8px);
+		z-index: 20;
+		transform: translate(-50%, -120%);
+		transition: opacity 0.15s ease, transform 0.15s ease;
+	}
+
+	.tooltip-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.35rem;
+	}
+	.tooltip-time {
+		font-size: 0.75rem;
+		color: #94a3b8;
+		font-weight: 600;
+	}
+	.tooltip-pain-pill {
+		font-size: 0.7rem;
+		font-weight: 700;
+		padding: 0.15rem 0.45rem;
+		border-radius: 9999px;
+		background: rgba(239, 68, 68, 0.2);
+		color: #f87171;
+		border: 1px solid rgba(239, 68, 68, 0.4);
+	}
+	.tooltip-title {
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: #ffffff;
+		margin: 0 0 0.35rem 0;
+		line-height: 1.3;
+	}
+	.tooltip-desc {
+		font-size: 0.775rem;
+		color: #cbd5e1;
+		margin: 0;
+		line-height: 1.4;
+	}
+
+	/* Milestone Card Below Chart */
+	.active-milestone-card {
+		margin-top: 1.25rem;
+		background: rgba(15, 23, 42, 0.75);
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 0.85rem;
+		padding: 1.25rem;
+		transition: all 0.3s ease;
+	}
+
+	.card-badge-row {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		margin-bottom: 0.65rem;
+		flex-wrap: wrap;
+	}
+
+	.card-step-badge {
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: #c084fc;
+		background: rgba(168, 85, 247, 0.15);
+		padding: 0.25rem 0.6rem;
+		border-radius: 0.35rem;
+		border: 1px solid rgba(168, 85, 247, 0.3);
+	}
+
+	.card-time-badge {
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: #94a3b8;
+	}
+
+	.card-pain-badge {
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: #f87171;
+		background: rgba(239, 68, 68, 0.15);
+		padding: 0.25rem 0.6rem;
+		border-radius: 0.35rem;
+		border: 1px solid rgba(239, 68, 68, 0.3);
+	}
+
+	.card-title {
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: #f8fafc;
+		margin: 0 0 0.5rem 0;
+		line-height: 1.35;
+	}
+
+	.card-desc {
+		font-size: 0.925rem;
+		color: #cbd5e1;
+		line-height: 1.6;
+		margin: 0 0 0.75rem 0;
+	}
+
+	.card-tip {
+		font-size: 0.8rem;
+		color: #a855f7;
+	}
+</style>
+
+<script>
+	function initProgressionChart() {
+		const widget = document.getElementById('bms-progression-widget');
+		if (!widget) return;
+
+		const svg = document.getElementById('progression-svg') as unknown as SVGSVGElement;
+		const tooltip = document.getElementById('chart-tooltip');
+		const tooltipTime = document.getElementById('tooltip-time');
+		const tooltipPain = document.getElementById('tooltip-pain');
+		const tooltipTitle = document.getElementById('tooltip-title');
+		const tooltipDesc = document.getElementById('tooltip-desc');
+
+		const cursorLayer = document.getElementById('interactive-cursor');
+		const cursorLine = document.getElementById('cursor-vertical-line');
+		const cursorPoint = document.getElementById('cursor-point');
+
+		const cardStep = document.getElementById('card-step');
+		const cardTime = document.getElementById('card-time');
+		const cardPain = document.getElementById('card-pain');
+		const cardTitle = document.getElementById('card-title');
+		const cardDesc = document.getElementById('card-desc');
+
+		const pins = widget.querySelectorAll('.milestone-pin');
+		const phaseBtns = widget.querySelectorAll('.phase-btn');
+		const scrollContainer = document.getElementById('chart-scroll-container');
+
+		if (!svg) return;
+
+		// Milestone click/hover handler
+		pins.forEach((pin) => {
+			const triggerUpdate = () => {
+				pins.forEach((p) => p.classList.remove('active-pin'));
+				pin.classList.add('active-pin');
+
+				const id = pin.getAttribute('data-id');
+				const pain = pin.getAttribute('data-pain');
+				const title = pin.getAttribute('data-title');
+				const time = pin.getAttribute('data-time');
+				const desc = pin.getAttribute('data-desc');
+
+				if (cardStep) cardStep.textContent = `Milestone #${id}`;
+				if (cardTime) cardTime.textContent = time || '';
+				if (cardPain) {
+					cardPain.textContent = `Pain: ${pain} / 10`;
+					const painNum = parseFloat(pain || '0');
+					if (painNum >= 7) {
+						cardPain.style.color = '#f87171';
+						cardPain.style.background = 'rgba(239, 68, 68, 0.15)';
+						cardPain.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+					} else if (painNum >= 3) {
+						cardPain.style.color = '#fbbf24';
+						cardPain.style.background = 'rgba(245, 158, 11, 0.15)';
+						cardPain.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+					} else {
+						cardPain.style.color = '#34d399';
+						cardPain.style.background = 'rgba(16, 185, 129, 0.15)';
+						cardPain.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+					}
+				}
+				if (cardTitle) cardTitle.textContent = title || '';
+				if (cardDesc) cardDesc.textContent = desc || '';
+			};
+
+			pin.addEventListener('click', triggerUpdate);
+			pin.addEventListener('mouseenter', () => {
+				triggerUpdate();
+				const cx = parseFloat(pin.getAttribute('cx') || '0');
+				const cy = parseFloat(pin.getAttribute('cy') || '0');
+				const pain = pin.getAttribute('data-pain');
+				const title = pin.getAttribute('data-title');
+				const time = pin.getAttribute('data-time');
+				const desc = pin.getAttribute('data-desc');
+
+				if (tooltip && tooltipTime && tooltipPain && tooltipTitle && tooltipDesc) {
+					tooltipTime.textContent = time || '';
+					tooltipPain.textContent = `Pain ${pain}/10`;
+					tooltipTitle.textContent = title || '';
+					tooltipDesc.textContent = desc || '';
+
+					// Position tooltip relative to SVG canvas
+					const svgRect = svg.getBoundingClientRect();
+					const scaleX = svgRect.width / 1200;
+					const scaleY = svgRect.height / 480;
+
+					tooltip.style.left = `${cx * scaleX}px`;
+					tooltip.style.top = `${cy * scaleY - 15}px`;
+					tooltip.style.display = 'block';
+				}
+			});
+
+			pin.addEventListener('mouseleave', () => {
+				if (tooltip) tooltip.style.display = 'none';
+			});
+		});
+
+		// Phase zoom & filter buttons
+		phaseBtns.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				phaseBtns.forEach((b) => b.classList.remove('active'));
+				btn.classList.add('active');
+
+				const phase = btn.getAttribute('data-phase');
+				if (phase === 'all') {
+					svg.setAttribute('viewBox', '0 0 1200 480');
+					if (scrollContainer) scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+				} else if (phase === 'phase1') {
+					svg.setAttribute('viewBox', '50 0 620 480');
+					if (scrollContainer) scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+				} else if (phase === 'phase2') {
+					svg.setAttribute('viewBox', '580 0 360 480');
+					if (scrollContainer) scrollContainer.scrollTo({ left: 300, behavior: 'smooth' });
+				} else if (phase === 'phase3') {
+					svg.setAttribute('viewBox', '860 0 340 480');
+					if (scrollContainer) scrollContainer.scrollTo({ left: 600, behavior: 'smooth' });
+				}
+			});
+		});
+
+		// Mouse tracking on SVG
+		svg.addEventListener('mousemove', (e: MouseEvent) => {
+			const rect = svg.getBoundingClientRect();
+			const x = ((e.clientX - rect.left) / rect.width) * 1200;
+			const y = ((e.clientY - rect.top) / rect.height) * 480;
+
+			if (cursorLayer && cursorLine && cursorPoint && x >= 80 && x <= 1150) {
+				cursorLayer.style.display = 'block';
+				cursorLine.setAttribute('x1', `${x}`);
+				cursorLine.setAttribute('x2', `${x}`);
+				cursorPoint.setAttribute('cx', `${x}`);
+				cursorPoint.setAttribute('cy', `${Math.min(Math.max(y, 60), 420)}`);
+			}
+		});
+
+		svg.addEventListener('mouseleave', () => {
+			if (cursorLayer) cursorLayer.style.display = 'none';
+		});
+	}
+
+	// Initialize on page load and Astro view transitions
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initProgressionChart);
+	} else {
+		initProgressionChart();
+	}
+	document.addEventListener('astro:page-load', initProgressionChart);
+</script>
