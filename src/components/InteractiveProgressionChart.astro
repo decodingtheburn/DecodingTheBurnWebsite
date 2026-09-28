@@ -88,32 +88,6 @@ const {
 					<text x="55" y="425" class="axis-label y-val">0</text>
 				</g>
 
-				<!-- Dotted Micro-Spikes Inside Valleys (Zero Text, Pure Visual Detail) -->
-				<g class="valley-dotted-spikes">
-					<line x1="165" y1="416" x2="165" y2="385" class="micro-spike" />
-					<line x1="195" y1="416" x2="195" y2="375" class="micro-spike" />
-					<line x1="220" y1="416" x2="220" y2="390" class="micro-spike" />
-
-					<line x1="325" y1="416" x2="325" y2="380" class="micro-spike" />
-					<line x1="355" y1="416" x2="355" y2="370" class="micro-spike" />
-					<line x1="375" y1="416" x2="375" y2="385" class="micro-spike" />
-
-					<line x1="480" y1="416" x2="480" y2="380" class="micro-spike" />
-					<line x1="510" y1="416" x2="510" y2="375" class="micro-spike" />
-					<line x1="530" y1="416" x2="530" y2="385" class="micro-spike" />
-
-					<line x1="635" y1="416" x2="635" y2="380" class="micro-spike" />
-					<line x1="660" y1="416" x2="660" y2="375" class="micro-spike" />
-
-					<line x1="775" y1="416" x2="775" y2="385" class="micro-spike" />
-					<line x1="805" y1="416" x2="805" y2="375" class="micro-spike" />
-					<line x1="825" y1="416" x2="825" y2="390" class="micro-spike" />
-
-					<line x1="1130" y1="416" x2="1130" y2="400" class="micro-spike" />
-					<line x1="1170" y1="416" x2="1170" y2="395" class="micro-spike" />
-					<line x1="1280" y1="416" x2="1280" y2="405" class="micro-spike" />
-				</g>
-
 				<!-- Filled Area Under Curve (Smooth Curvy Béziers) -->
 				<path 
 					id="progression-area"
@@ -212,14 +186,32 @@ const {
 
 				<!-- Visual Annotations & Titles (Large Numbers, Pure White Titles Underneath) -->
 				<g class="annotations-layer">
-					<!-- Peak 1: #1 Beer and Wine -->
-					<line x1="124" y1="92" x2="124" y2="122" class="annotation-arrow" marker-end="url(#arrowRed)" />
+					<!-- Peak 1: #1 Beer and Wine with Hand-Drawn Arrow -->
 					<text x="124" y="58" class="annotation-num">#1</text>
 					<text x="124" y="80" class="annotation-title annotation-beer-wine">Beer & Wine</text>
+					<!-- Hand-drawn style red arrow curving smoothly down to mountain top -->
+					<g class="hand-drawn-arrow-group">
+						<path 
+							d="M 124 88 C 122 98, 126 108, 124 122" 
+							fill="none" 
+							stroke="#ef4444" 
+							stroke-width="2.2" 
+							stroke-linecap="round" 
+						/>
+						<!-- Hand-drawn dual-stroke arrowhead -->
+						<path 
+							d="M 119 114 C 121 118, 123 121, 124 124 C 125 121, 127 118, 129 114" 
+							fill="none" 
+							stroke="#ef4444" 
+							stroke-width="2.2" 
+							stroke-linecap="round" 
+							stroke-linejoin="round"
+						/>
+					</g>
 
-					<!-- Valley 1: 6 Months Pain-Free -->
-					<text x="195" y="380" class="annotation-text valley-text">6 Months</text>
-					<text x="195" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<!-- Valley 1: 6 Months Pain-Free (Centered in Valley floor, tight line height) -->
+					<text x="202" y="388" class="annotation-text valley-text">6 Months</text>
+					<text x="202" y="400" class="annotation-text valley-text">Pain-Free</text>
 
 					<!-- Peak 2: #2 Coffee -->
 					<line x1="282" y1="92" x2="282" y2="122" class="annotation-arrow" marker-end="url(#arrowRed)" />
@@ -227,8 +219,8 @@ const {
 					<text x="282" y="80" class="annotation-title">Coffee</text>
 
 					<!-- Valley 2: 6 Months Pain-Free -->
-					<text x="355" y="380" class="annotation-text valley-text">6 Months</text>
-					<text x="355" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<text x="360" y="388" class="annotation-text valley-text">6 Months</text>
+					<text x="360" y="400" class="annotation-text valley-text">Pain-Free</text>
 
 					<!-- Peak 3: #3 Dental Cleaning -->
 					<line x1="438" y1="92" x2="438" y2="122" class="annotation-arrow" marker-end="url(#arrowAmber)" />
@@ -236,8 +228,8 @@ const {
 					<text x="438" y="80" class="annotation-title">Dental Cleaning</text>
 
 					<!-- Valley 3: 6 Months Pain-Free -->
-					<text x="510" y="380" class="annotation-text valley-text">6 Months</text>
-					<text x="510" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<text x="515" y="388" class="annotation-text valley-text">6 Months</text>
+					<text x="515" y="400" class="annotation-text valley-text">Pain-Free</text>
 
 					<!-- Peak 4: #4 Most Fruits -->
 					<line x1="593" y1="92" x2="593" y2="122" class="annotation-arrow" marker-end="url(#arrowAmber)" />
@@ -245,8 +237,8 @@ const {
 					<text x="593" y="80" class="annotation-title">Most Fruits</text>
 
 					<!-- Valley 4: 3-4 Months Pain-Free -->
-					<text x="655" y="380" class="annotation-text valley-text">3-4 Months</text>
-					<text x="655" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<text x="662" y="388" class="annotation-text valley-text">3-4 Months</text>
+					<text x="662" y="400" class="annotation-text valley-text">Pain-Free</text>
 
 					<!-- Peak 5: #5 4 Cervical Patches -->
 					<line x1="734" y1="58" x2="734" y2="88" class="annotation-arrow" marker-end="url(#arrowRed)" />
@@ -254,8 +246,8 @@ const {
 					<text x="734" y="46" class="annotation-title">4 Cervical Patches</text>
 
 					<!-- Valley 5: 6 Months Pain-Free -->
-					<text x="805" y="380" class="annotation-text valley-text">6 Months</text>
-					<text x="805" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<text x="810" y="388" class="annotation-text valley-text">6 Months</text>
+					<text x="810" y="400" class="annotation-text valley-text">Pain-Free</text>
 
 					<!-- Peak 6: #6 All Acids -->
 					<line x1="901" y1="22" x2="901" y2="52" class="annotation-arrow" marker-end="url(#arrowRed)" />
@@ -376,12 +368,6 @@ const {
 	}
 	.val-5 { fill: #fbbf24; font-weight: 700; }
 
-	.micro-spike {
-		stroke: rgba(168, 85, 247, 0.35);
-		stroke-width: 1.5;
-		stroke-dasharray: 2 3;
-	}
-
 	.annotation-arrow {
 		stroke-width: 1.5;
 		opacity: 0.8;
@@ -410,10 +396,14 @@ const {
 
 	.valley-text {
 		fill: #6ee7b7;
-		font-size: 10px;
+		font-size: 10.5px;
 		font-weight: 600;
 		text-anchor: middle;
-		line-height: 1.2;
+		dominant-baseline: middle;
+	}
+
+	.hand-drawn-arrow-group path {
+		filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.4));
 	}
 	
 	.yo-yo-text {
