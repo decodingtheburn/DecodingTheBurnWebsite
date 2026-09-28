@@ -1,0 +1,440 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import { Image } from 'astro:assets';
+import authorPhoto from '../assets/denis-ethier.png';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="BMS Troubleshooting Night | Decoding The Burn" 
+			description="Join our weekly positive, solution-oriented live troubleshooting circle for Burning Mouth Syndrome sufferers to compare notes, identify triggers, and support each other." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero-centered-wrapper">
+				<div class="hero-centered-header">
+					<MedicalDisclaimer />
+					<h1 class="hero-centered-title">
+						BMS Troubleshooting Night
+					</h1>
+					<p class="hero-centered-subtitle">
+						A weekly live, positive problem-solving circle for sufferers to compare notes, identify hidden triggers, and find relief together.
+					</p>
+				</div>
+
+				<!-- Host Photo / Community Banner -->
+				<div class="hero-video-centered">
+					<div class="video-placeholder-wrapper" style="cursor: default;">
+						<Image 
+							src={authorPhoto} 
+							alt="Denis Ethier - Host of BMS Troubleshooting Night" 
+							class="video-placeholder-img" 
+							width={1400} 
+							height={788}
+						/>
+					</div>
+				</div>
+
+				<!-- Main Description & Invitation -->
+				<article class="personal-story-section">
+					<div class="story-lead">
+						<p class="story-paragraph">
+							If you are living with Burning Mouth Syndrome, you know how isolating the daily rollercoaster can be. The physical burning is agonizing, but the mental exhaustion of trying to figure out why a flare happened—and having no one who truly understands to bounce ideas off of—is just as challenging.
+						</p>
+						<p class="story-paragraph">
+							That is why we host a weekly <strong>BMS Troubleshooting Night</strong>. This is an open, constructive, and forward-looking live video gathering where we compare notes, share what is making our symptoms better or worse, discuss newly identified dietary or dental triggers, and learn from each other's lived observations.
+						</p>
+					</div>
+
+					<!-- Friendly Community Guidelines Box -->
+					<div class="guidelines-card">
+						<div class="guidelines-header">
+							<div class="guidelines-icon" aria-hidden="true">
+								<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+								</svg>
+							</div>
+							<h2 class="guidelines-title">Our Circle Guidelines</h2>
+						</div>
+
+						<ul class="guidelines-list">
+							<li>
+								<strong>Yes, We Can Talk About the Pain:</strong> There is zero judgment here. We understand the desperation, the tears, and the emotional toll this fire takes on your daily life. Acknowledging the reality of what we feel is the first step.
+							</li>
+							<li>
+								<strong>Our Core Focus is Solutions &amp; Triggers:</strong> While we validate the struggle, our collective energy is dedicated to constructive discovery: <em>What did you eat 48 hours before the flare? Did dental scaling help or hurt? Have you noticed pH sensitivities?</em>
+							</li>
+							<li>
+								<strong>Kindness &amp; Mutual Respect:</strong> Every person's biology is unique. What brings relief to one person might not work for another. We share personal data points and observations with humility and open minds.
+							</li>
+						</ul>
+					</div>
+
+					<!-- How Attendance & Notifications Work -->
+					<div class="schedule-explainer">
+						<h3 class="schedule-title">How It Works</h3>
+						<p class="schedule-text">
+							To ensure every session has a vibrant, meaningful group discussion, we confirm attendance the day before. 
+						</p>
+						<div class="schedule-steps">
+							<div class="step-item">
+								<span class="step-badge">Step 1</span>
+								<p>Join the notification list below.</p>
+							</div>
+							<div class="step-item">
+								<span class="step-badge">Step 2</span>
+								<p>Every week, I send an email 24 hours prior to confirm if we have enough participants to host that week's session.</p>
+							</div>
+							<div class="step-item">
+								<span class="step-badge">Step 3</span>
+								<p>If confirmed, you receive the private live meeting link to drop in, listen, or share at your own pace.</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Registration Box -->
+					<div class="collab-cta-box" id="join-circle">
+						<h3 class="collab-cta-title">Join the Notification List</h3>
+						<p class="collab-cta-text">
+							Enter your email below so I can notify you the day before our next BMS Troubleshooting Night.
+						</p>
+						
+						<!-- MailerLite Form Embed / Direct Submit -->
+						<form class="circle-signup-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
+							<div class="input-row">
+								<input 
+									type="email" 
+									name="fields[email]" 
+									placeholder="Enter your email address..." 
+									required 
+									aria-label="Email address"
+									class="circle-email-input"
+								/>
+								<button type="submit" class="btn btn-primary circle-submit-btn">Notify Me</button>
+							</div>
+						</form>
+						<p class="circle-privacy-note">Zero spam. You will only receive notifications about upcoming live troubleshooting sessions.</p>
+					</div>
+				</article>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.hero-centered-wrapper {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 2.5rem 1.5rem 4rem;
+	}
+
+	.hero-centered-header {
+		text-align: center;
+		max-width: 780px;
+		margin: 0 auto 2.5rem;
+	}
+
+	.hero-centered-title {
+		font-size: clamp(2.2rem, 5vw, 3.4rem);
+		font-weight: 800;
+		line-height: 1.15;
+		letter-spacing: -0.03em;
+		color: var(--text-primary);
+		margin: 1.25rem 0 0.75rem;
+		text-wrap: balance;
+	}
+
+	.hero-centered-subtitle {
+		font-size: clamp(1.05rem, 2vw, 1.25rem);
+		line-height: 1.6;
+		color: var(--text-secondary);
+		margin: 0;
+		text-wrap: balance;
+	}
+
+	.hero-video-centered {
+		width: 100%;
+		margin: 0 auto 3rem;
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+		border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+		background: #000000;
+	}
+
+	.video-placeholder-wrapper {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.video-placeholder-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0.95;
+	}
+
+	.personal-story-section {
+		background: var(--bg-card, #ffffff);
+		border: 1px solid var(--border-color, #e2e8f0);
+		border-radius: 24px;
+		padding: 3rem 2.5rem;
+		margin-bottom: 2rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+	}
+
+	.story-lead {
+		max-width: 800px;
+		margin: 0 auto 2.5rem;
+	}
+
+	.story-paragraph {
+		font-size: 1.15rem;
+		line-height: 1.75;
+		color: var(--text-secondary);
+		margin-bottom: 1.5rem;
+	}
+
+	/* Guidelines Card */
+	.guidelines-card {
+		background: #f8fafc;
+		border: 1.5px solid #e2e8f0;
+		border-radius: 20px;
+		padding: 2.25rem 2rem;
+		margin: 2.5rem 0;
+	}
+
+	.guidelines-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
+		border-bottom: 1px solid #e2e8f0;
+		padding-bottom: 0.85rem;
+	}
+
+	.guidelines-icon {
+		color: #991b1b;
+		display: flex;
+		align-items: center;
+	}
+
+	.guidelines-title {
+		font-size: 1.35rem;
+		font-weight: 800;
+		color: var(--text-primary);
+		margin: 0;
+	}
+
+	.guidelines-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.guidelines-list li {
+		font-size: 1.05rem;
+		line-height: 1.65;
+		color: var(--text-secondary);
+		position: relative;
+		padding-left: 1.5rem;
+	}
+
+	.guidelines-list li::before {
+		content: "•";
+		color: #991b1b;
+		font-size: 1.5rem;
+		position: absolute;
+		left: 0;
+		top: -2px;
+	}
+
+	.guidelines-list strong {
+		color: var(--text-primary);
+	}
+
+	/* Schedule Explainer */
+	.schedule-explainer {
+		margin: 3rem 0;
+		text-align: center;
+	}
+
+	.schedule-title {
+		font-size: 1.45rem;
+		font-weight: 800;
+		color: var(--text-primary);
+		margin-bottom: 0.75rem;
+	}
+
+	.schedule-text {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		max-width: 680px;
+		margin: 0 auto 2rem;
+		line-height: 1.6;
+	}
+
+	.schedule-steps {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+		text-align: left;
+	}
+
+	.step-item {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 14px;
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+	}
+
+	.step-badge {
+		display: inline-block;
+		font-size: 0.75rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: #991b1b;
+		background: rgba(153, 27, 27, 0.08);
+		padding: 0.25rem 0.6rem;
+		border-radius: 6px;
+		width: fit-content;
+	}
+
+	.step-item p {
+		font-size: 0.95rem;
+		line-height: 1.55;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	/* Sign Up Box */
+	.collab-cta-box {
+		background: linear-gradient(135deg, #1e1136 0%, #0d081a 100%);
+		border-radius: 20px;
+		padding: 2.75rem 2.25rem;
+		text-align: center;
+		color: #ffffff;
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+		margin: 2rem 0 0;
+	}
+
+	.collab-cta-title {
+		font-size: 1.65rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin-bottom: 0.75rem;
+		text-wrap: balance;
+	}
+
+	.collab-cta-text {
+		font-size: 1.05rem;
+		line-height: 1.6;
+		color: #e2e8f0;
+		max-width: 600px;
+		margin: 0 auto 1.75rem;
+		text-wrap: balance;
+	}
+
+	.circle-signup-form {
+		max-width: 520px;
+		margin: 0 auto 1rem;
+	}
+
+	.input-row {
+		display: flex;
+		gap: 0.65rem;
+		flex-wrap: wrap;
+	}
+
+	.circle-email-input {
+		flex: 1;
+		min-width: 240px;
+		padding: 0.95rem 1.25rem;
+		border-radius: 12px;
+		border: 1px solid rgba(168, 85, 247, 0.4);
+		background: rgba(255, 255, 255, 0.08);
+		color: #ffffff;
+		font-size: 1rem;
+		outline: none;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.circle-email-input:focus {
+		border-color: #c084fc;
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.circle-email-input::placeholder {
+		color: #94a3b8;
+	}
+
+	.circle-submit-btn {
+		padding: 0.95rem 2rem;
+		font-weight: 800;
+		font-size: 1rem;
+		border-radius: 12px;
+		border: none;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		transition: transform 0.15s ease, filter 0.15s ease;
+	}
+
+	.btn-primary {
+		background: linear-gradient(135deg, #c8382c 0%, #991b1b 100%);
+		color: #ffffff;
+		box-shadow: 0 10px 25px rgba(200, 56, 44, 0.35);
+	}
+
+	.btn-primary:hover {
+		transform: translateY(-2px);
+		filter: brightness(1.1);
+	}
+
+	.circle-privacy-note {
+		font-size: 0.82rem;
+		color: #94a3b8;
+		margin: 0;
+	}
+
+	@media (max-width: 640px) {
+		.personal-story-section {
+			padding: 2rem 1.5rem;
+		}
+
+		.input-row {
+			flex-direction: column;
+		}
+
+		.circle-submit-btn {
+			width: 100%;
+		}
+	}
+</style>
