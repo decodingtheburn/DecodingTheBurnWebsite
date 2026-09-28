@@ -210,12 +210,12 @@ const {
 					filter="url(#glow)"
 				/>
 
-				<!-- Visual Annotations & Titles (Large Numbers, Clean Title Underneath, Zero Sub-Headlines) -->
+				<!-- Visual Annotations & Titles (Large Numbers, Pure White Titles Underneath) -->
 				<g class="annotations-layer">
 					<!-- Peak 1: #1 Beer and Wine -->
 					<line x1="124" y1="92" x2="124" y2="122" class="annotation-arrow" marker-end="url(#arrowRed)" />
-					<text x="124" y="60" class="annotation-num">#1</text>
-					<text x="124" y="80" class="annotation-title">Beer & Wine</text>
+					<text x="124" y="58" class="annotation-num">#1</text>
+					<text x="124" y="80" class="annotation-title annotation-beer-wine">Beer & Wine</text>
 
 					<!-- Valley 1: 6 Months Pain-Free -->
 					<text x="195" y="380" class="annotation-text valley-text">6 Months</text>
@@ -223,7 +223,7 @@ const {
 
 					<!-- Peak 2: #2 Coffee -->
 					<line x1="282" y1="92" x2="282" y2="122" class="annotation-arrow" marker-end="url(#arrowRed)" />
-					<text x="282" y="60" class="annotation-num">#2</text>
+					<text x="282" y="58" class="annotation-num">#2</text>
 					<text x="282" y="80" class="annotation-title">Coffee</text>
 
 					<!-- Valley 2: 6 Months Pain-Free -->
@@ -232,7 +232,7 @@ const {
 
 					<!-- Peak 3: #3 Dental Cleaning -->
 					<line x1="438" y1="92" x2="438" y2="122" class="annotation-arrow" marker-end="url(#arrowAmber)" />
-					<text x="438" y="60" class="annotation-num">#3</text>
+					<text x="438" y="58" class="annotation-num">#3</text>
 					<text x="438" y="80" class="annotation-title">Dental Cleaning</text>
 
 					<!-- Valley 3: 6 Months Pain-Free -->
@@ -241,7 +241,7 @@ const {
 
 					<!-- Peak 4: #4 Most Fruits -->
 					<line x1="593" y1="92" x2="593" y2="122" class="annotation-arrow" marker-end="url(#arrowAmber)" />
-					<text x="593" y="60" class="annotation-num">#4</text>
+					<text x="593" y="58" class="annotation-num">#4</text>
 					<text x="593" y="80" class="annotation-title">Most Fruits</text>
 
 					<!-- Valley 4: 3-4 Months Pain-Free -->
@@ -250,7 +250,7 @@ const {
 
 					<!-- Peak 5: #5 4 Cervical Patches -->
 					<line x1="734" y1="58" x2="734" y2="88" class="annotation-arrow" marker-end="url(#arrowRed)" />
-					<text x="734" y="26" class="annotation-num">#5</text>
+					<text x="734" y="24" class="annotation-num">#5</text>
 					<text x="734" y="46" class="annotation-title">4 Cervical Patches</text>
 
 					<!-- Valley 5: 6 Months Pain-Free -->
@@ -259,7 +259,7 @@ const {
 
 					<!-- Peak 6: #6 All Acids -->
 					<line x1="901" y1="22" x2="901" y2="52" class="annotation-arrow" marker-end="url(#arrowRed)" />
-					<text x="901" y="-8" class="annotation-num">#6</text>
+					<text x="901" y="-10" class="annotation-num">#6</text>
 					<text x="901" y="12" class="annotation-title">All Acids</text>
 
 					<!-- Vegetables (Cheats) -->
@@ -277,13 +277,12 @@ const {
 					<circle id="cursor-point" cx="0" cy="0" r="7.5" class="cursor-pulse-point" />
 				</g>
 
-				<!-- X-Axis Clean Timeline Labels -->
+				<!-- X-Axis Clean Timeline Labels (Equally Spread: 3 Years Ago, 2 Years Ago, 1 Year Ago, Today) -->
 				<g class="x-axis-labels">
-					<text x="80" y="455" class="axis-time-label label-start">3 Years Ago</text>
-					<text x="355" y="455" class="axis-time-label">2.5 Years</text>
-					<text x="655" y="455" class="axis-time-label">1.5 Years</text>
-					<text x="901" y="455" class="axis-time-label">1 Year Ago</text>
-					<text x="1226" y="455" class="axis-time-label label-end">Today</text>
+					<text x="80" y="455" class="axis-time-label label-start">Three Years Ago</text>
+					<text x="490" y="455" class="axis-time-label">Two Years Ago</text>
+					<text x="900" y="455" class="axis-time-label">One Year Ago</text>
+					<text x="1320" y="455" class="axis-time-label label-end">Today</text>
 				</g>
 			</svg>
 
@@ -396,10 +395,17 @@ const {
 	}
 
 	.annotation-title {
-		fill: #fca5a5;
-		font-size: 11.5px;
+		fill: #ffffff;
+		font-size: 13.5px;
 		font-weight: 700;
 		text-anchor: middle;
+		letter-spacing: 0.01em;
+	}
+
+	.annotation-beer-wine {
+		fill: #ffffff;
+		font-size: 15px;
+		font-weight: 800;
 	}
 
 	.valley-text {
