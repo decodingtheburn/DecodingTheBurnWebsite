@@ -28,28 +28,20 @@ const {
 				preserveAspectRatio="xMidYMid meet"
 			>
 				<defs>
-					<!-- Gradients for Curve and Fill -->
-					<linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-						<stop offset="0%" stop-color="#10b981" />
-						<stop offset="6%" stop-color="#ef4444" />
-						<stop offset="15%" stop-color="#10b981" />
-						<stop offset="22%" stop-color="#f59e0b" />
-						<stop offset="30%" stop-color="#10b981" />
-						<stop offset="38%" stop-color="#f59e0b" />
-						<stop offset="46%" stop-color="#10b981" />
-						<stop offset="52%" stop-color="#ef4444" />
-						<stop offset="60%" stop-color="#10b981" />
-						<stop offset="66%" stop-color="#ef4444" />
-						<stop offset="72%" stop-color="#06b6d4" />
-						<stop offset="78%" stop-color="#f59e0b" />
+					<!-- Vertical Gradient: Top = Red, Middle = Amber, Bottom = Emerald Green -->
+					<linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+						<stop offset="0%" stop-color="#ef4444" />
+						<stop offset="30%" stop-color="#f87171" />
+						<stop offset="55%" stop-color="#f59e0b" />
 						<stop offset="85%" stop-color="#10b981" />
 						<stop offset="100%" stop-color="#10b981" />
 					</linearGradient>
 
 					<linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-						<stop offset="0%" stop-color="rgba(239, 68, 68, 0.20)" />
-						<stop offset="50%" stop-color="rgba(245, 158, 11, 0.10)" />
-						<stop offset="100%" stop-color="rgba(16, 185, 129, 0.02)" />
+						<stop offset="0%" stop-color="rgba(239, 68, 68, 0.18)" />
+						<stop offset="50%" stop-color="rgba(245, 158, 11, 0.08)" />
+						<stop offset="85%" stop-color="rgba(16, 185, 129, 0.04)" />
+						<stop offset="100%" stop-color="rgba(16, 185, 129, 0.01)" />
 					</linearGradient>
 
 					<!-- Glow Filter -->
@@ -73,10 +65,10 @@ const {
 					</marker>
 				</defs>
 
-				<!-- Background Severity Bands (Clean, subtle tint without text clutter) -->
-				<rect x="70" y="60" width="1270" height="108" fill="rgba(239, 68, 68, 0.04)" />
-				<rect x="70" y="168" width="1270" height="144" fill="rgba(245, 158, 11, 0.03)" />
-				<rect x="70" y="312" width="1270" height="108" fill="rgba(16, 185, 129, 0.04)" />
+				<!-- Background Severity Bands -->
+				<rect x="70" y="60" width="1270" height="108" fill="rgba(239, 68, 68, 0.03)" />
+				<rect x="70" y="168" width="1270" height="144" fill="rgba(245, 158, 11, 0.025)" />
+				<rect x="70" y="312" width="1270" height="108" fill="rgba(16, 185, 129, 0.03)" />
 
 				<!-- Horizontal Grid Lines & Y-Axis Labels (0 to 10 Scale) -->
 				<g class="grid-lines">
@@ -96,79 +88,73 @@ const {
 					<text x="55" y="425" class="axis-label y-val">0</text>
 				</g>
 
-				<!-- Dotted Graphical Micro-Spikes Inside Valleys (Zero Text, Pure Visual Detail) -->
+				<!-- Dotted Micro-Spikes Inside Valleys (Zero Text, Pure Visual Detail) -->
 				<g class="valley-dotted-spikes">
-					<!-- Valley 1 Dotted Micro-Spikes (X: 130 to 240) -->
-					<line x1="160" y1="416" x2="160" y2="385" class="micro-spike" />
-					<line x1="190" y1="416" x2="190" y2="375" class="micro-spike" />
-					<line x1="215" y1="416" x2="215" y2="390" class="micro-spike" />
+					<line x1="165" y1="416" x2="165" y2="385" class="micro-spike" />
+					<line x1="195" y1="416" x2="195" y2="375" class="micro-spike" />
+					<line x1="220" y1="416" x2="220" y2="390" class="micro-spike" />
 
-					<!-- Valley 2 Dotted Micro-Spikes (X: 280 to 395) -->
-					<line x1="315" y1="416" x2="315" y2="380" class="micro-spike" />
-					<line x1="345" y1="416" x2="345" y2="370" class="micro-spike" />
-					<line x1="370" y1="416" x2="370" y2="385" class="micro-spike" />
+					<line x1="325" y1="416" x2="325" y2="380" class="micro-spike" />
+					<line x1="355" y1="416" x2="355" y2="370" class="micro-spike" />
+					<line x1="375" y1="416" x2="375" y2="385" class="micro-spike" />
 
-					<!-- Valley 3 Dotted Micro-Spikes (X: 435 to 550) -->
-					<line x1="470" y1="416" x2="470" y2="380" class="micro-spike" />
-					<line x1="500" y1="416" x2="500" y2="375" class="micro-spike" />
-					<line x1="525" y1="416" x2="525" y2="385" class="micro-spike" />
+					<line x1="480" y1="416" x2="480" y2="380" class="micro-spike" />
+					<line x1="510" y1="416" x2="510" y2="375" class="micro-spike" />
+					<line x1="530" y1="416" x2="530" y2="385" class="micro-spike" />
 
-					<!-- Valley 4 Dotted Micro-Spikes (X: 590 to 680) -->
-					<line x1="625" y1="416" x2="625" y2="380" class="micro-spike" />
-					<line x1="655" y1="416" x2="655" y2="375" class="micro-spike" />
+					<line x1="635" y1="416" x2="635" y2="380" class="micro-spike" />
+					<line x1="660" y1="416" x2="660" y2="375" class="micro-spike" />
 
-					<!-- Valley 5 Dotted Micro-Spikes (X: 725 to 840) -->
-					<line x1="760" y1="416" x2="760" y2="385" class="micro-spike" />
-					<line x1="790" y1="416" x2="790" y2="375" class="micro-spike" />
-					<line x1="815" y1="416" x2="815" y2="390" class="micro-spike" />
+					<line x1="775" y1="416" x2="775" y2="385" class="micro-spike" />
+					<line x1="805" y1="416" x2="805" y2="375" class="micro-spike" />
+					<line x1="825" y1="416" x2="825" y2="390" class="micro-spike" />
 
-					<!-- Baseline Dotted Spikes (X: 1060 to 1320) -->
-					<line x1="1120" y1="416" x2="1120" y2="400" class="micro-spike" />
-					<line x1="1160" y1="416" x2="1160" y2="395" class="micro-spike" />
-					<line x1="1270" y1="416" x2="1270" y2="405" class="micro-spike" />
+					<line x1="1130" y1="416" x2="1130" y2="400" class="micro-spike" />
+					<line x1="1170" y1="416" x2="1170" y2="395" class="micro-spike" />
+					<line x1="1280" y1="416" x2="1280" y2="405" class="micro-spike" />
 				</g>
 
-				<!-- Filled Area Under Curve -->
+				<!-- Filled Area Under Curve (Smooth Curvy Béziers) -->
 				<path 
 					id="progression-area"
 					class="curve-area"
 					d="
 						M 70 420
 						L 80 416
-						L 90 132
-						L 115 132
-						L 125 416
-						L 240 416
-						L 250 132
-						L 275 132
-						L 285 416
-						L 395 416
-						L 405 132
-						L 430 132
-						L 440 416
-						L 550 416
-						L 560 132
-						L 585 132
-						L 595 416
-						L 680 416
-						L 695 96
-						L 720 96
-						L 730 416
+						C 88 416, 96 132, 110 132
+						C 120 132, 130 132, 138 132
+						C 148 132, 155 416, 170 416
+						L 235 416
+						C 245 416, 252 132, 268 132
+						C 278 132, 288 132, 296 132
+						C 306 132, 314 416, 330 416
+						L 390 416
+						C 400 416, 408 132, 424 132
+						C 434 132, 444 132, 452 132
+						C 462 132, 470 416, 485 416
+						L 545 416
+						C 555 416, 563 132, 579 132
+						C 589 132, 599 132, 607 132
+						C 617 132, 625 416, 640 416
+						L 685 416
+						C 695 416, 703 96, 720 96
+						C 730 96, 740 96, 748 96
+						C 758 96, 766 416, 780 416
 						L 840 416
-						L 855 60
-						L 895 60
-						L 920 416
-						L 935 240
-						L 948 416
-						L 965 240
-						L 978 416
-						L 995 240
-						L 1008 416
-						L 1025 240
-						L 1038 416
-						L 1205 416
-						L 1220 380
-						L 1235 416
+						C 850 416, 860 60, 882 60
+						C 896 60, 908 60, 920 60
+						C 932 60, 940 416, 952 416
+						C 957 416, 961 240, 968 240
+						C 974 240, 978 416, 983 416
+						C 988 416, 992 240, 999 240
+						C 1005 240, 1009 416, 1014 416
+						C 1019 416, 1023 240, 1030 240
+						C 1036 240, 1040 416, 1045 416
+						C 1050 416, 1054 240, 1061 240
+						C 1067 240, 1071 416, 1076 416
+						L 1210 416
+						C 1216 416, 1220 380, 1226 380
+						C 1232 380, 1236 416, 1242 416
 						L 1340 416
 						L 1340 420
 						Z
@@ -176,46 +162,46 @@ const {
 					fill="url(#areaGradient)"
 				/>
 
-				<!-- Main Glowing Line Path (Steep Verticals, Flat 1-Mo Tops, Clean Zero Drops) -->
+				<!-- Main Glowing Line Path (Smooth Curves, Curvy Tops & Bottoms) -->
 				<path 
 					id="progression-curve"
 					class="curve-line"
 					d="
 						M 80 416
-						L 90 132
-						L 115 132
-						L 125 416
-						L 240 416
-						L 250 132
-						L 275 132
-						L 285 416
-						L 395 416
-						L 405 132
-						L 430 132
-						L 440 416
-						L 550 416
-						L 560 132
-						L 585 132
-						L 595 416
-						L 680 416
-						L 695 96
-						L 720 96
-						L 730 416
+						C 88 416, 96 132, 110 132
+						C 120 132, 130 132, 138 132
+						C 148 132, 155 416, 170 416
+						L 235 416
+						C 245 416, 252 132, 268 132
+						C 278 132, 288 132, 296 132
+						C 306 132, 314 416, 330 416
+						L 390 416
+						C 400 416, 408 132, 424 132
+						C 434 132, 444 132, 452 132
+						C 462 132, 470 416, 485 416
+						L 545 416
+						C 555 416, 563 132, 579 132
+						C 589 132, 599 132, 607 132
+						C 617 132, 625 416, 640 416
+						L 685 416
+						C 695 416, 703 96, 720 96
+						C 730 96, 740 96, 748 96
+						C 758 96, 766 416, 780 416
 						L 840 416
-						L 855 60
-						L 895 60
-						L 920 416
-						L 935 240
-						L 948 416
-						L 965 240
-						L 978 416
-						L 995 240
-						L 1008 416
-						L 1025 240
-						L 1038 416
-						L 1205 416
-						L 1220 380
-						L 1235 416
+						C 850 416, 860 60, 882 60
+						C 896 60, 908 60, 920 60
+						C 932 60, 940 416, 952 416
+						C 957 416, 961 240, 968 240
+						C 974 240, 978 416, 983 416
+						C 988 416, 992 240, 999 240
+						C 1005 240, 1009 416, 1014 416
+						C 1019 416, 1023 240, 1030 240
+						C 1036 240, 1040 416, 1045 416
+						C 1050 416, 1054 240, 1061 240
+						C 1067 240, 1071 416, 1076 416
+						L 1210 416
+						C 1216 416, 1220 380, 1226 380
+						C 1232 380, 1236 416, 1242 416
 						L 1340 416
 					"
 					fill="none"
@@ -224,101 +210,80 @@ const {
 					filter="url(#glow)"
 				/>
 
-				<!-- Visual Annotations & Titles -->
+				<!-- Visual Annotations & Titles (Large Numbers, Clean Title Underneath, Zero Sub-Headlines) -->
 				<g class="annotations-layer">
 					<!-- Peak 1: #1 Beer and Wine -->
-					<line x1="102" y1="85" x2="102" y2="120" class="annotation-arrow" marker-end="url(#arrowRed)" />
-					<text x="102" y="58" class="annotation-text peak-text">#1 Beer and Wine</text>
-					<text x="102" y="74" class="annotation-text sub-peak-text">1 Month (8/10)</text>
+					<line x1="124" y1="92" x2="124" y2="122" class="annotation-arrow" marker-end="url(#arrowRed)" />
+					<text x="124" y="60" class="annotation-num">#1</text>
+					<text x="124" y="80" class="annotation-title">Beer & Wine</text>
 
-					<!-- Valley 1: 6 Months Pain-Free (2 lines) -->
-					<text x="180" y="380" class="annotation-text valley-text">6 Months</text>
-					<text x="180" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<!-- Valley 1: 6 Months Pain-Free -->
+					<text x="195" y="380" class="annotation-text valley-text">6 Months</text>
+					<text x="195" y="396" class="annotation-text valley-text">Pain-Free</text>
 
 					<!-- Peak 2: #2 Coffee -->
-					<line x1="262" y1="85" x2="262" y2="120" class="annotation-arrow" marker-end="url(#arrowRed)" />
-					<text x="262" y="58" class="annotation-text peak-text">#2 Coffee</text>
-					<text x="262" y="74" class="annotation-text sub-peak-text">1 Month (8/10)</text>
+					<line x1="282" y1="92" x2="282" y2="122" class="annotation-arrow" marker-end="url(#arrowRed)" />
+					<text x="282" y="60" class="annotation-num">#2</text>
+					<text x="282" y="80" class="annotation-title">Coffee</text>
 
-					<!-- Valley 2: 6 Months Pain-Free (2 lines) -->
-					<text x="340" y="380" class="annotation-text valley-text">6 Months</text>
-					<text x="340" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<!-- Valley 2: 6 Months Pain-Free -->
+					<text x="355" y="380" class="annotation-text valley-text">6 Months</text>
+					<text x="355" y="396" class="annotation-text valley-text">Pain-Free</text>
 
 					<!-- Peak 3: #3 Dental Cleaning -->
-					<line x1="417" y1="85" x2="417" y2="120" class="annotation-arrow" marker-end="url(#arrowAmber)" />
-					<text x="417" y="58" class="annotation-text peak-text">#3 Dental Cleaning</text>
-					<text x="417" y="74" class="annotation-text sub-peak-text">1 Month</text>
+					<line x1="438" y1="92" x2="438" y2="122" class="annotation-arrow" marker-end="url(#arrowAmber)" />
+					<text x="438" y="60" class="annotation-num">#3</text>
+					<text x="438" y="80" class="annotation-title">Dental Cleaning</text>
 
-					<!-- Valley 3: 6 Months Pain-Free (2 lines) -->
-					<text x="495" y="380" class="annotation-text valley-text">6 Months</text>
-					<text x="495" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<!-- Valley 3: 6 Months Pain-Free -->
+					<text x="510" y="380" class="annotation-text valley-text">6 Months</text>
+					<text x="510" y="396" class="annotation-text valley-text">Pain-Free</text>
 
 					<!-- Peak 4: #4 Most Fruits -->
-					<line x1="572" y1="85" x2="572" y2="120" class="annotation-arrow" marker-end="url(#arrowAmber)" />
-					<text x="572" y="58" class="annotation-text peak-text">#4 Most Fruits</text>
-					<text x="572" y="74" class="annotation-text sub-peak-text">1 Month</text>
+					<line x1="593" y1="92" x2="593" y2="122" class="annotation-arrow" marker-end="url(#arrowAmber)" />
+					<text x="593" y="60" class="annotation-num">#4</text>
+					<text x="593" y="80" class="annotation-title">Most Fruits</text>
 
-					<!-- Valley 4: 3-4 Months Pain-Free (2 lines) -->
-					<text x="635" y="380" class="annotation-text valley-text">3-4 Months</text>
-					<text x="635" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<!-- Valley 4: 3-4 Months Pain-Free -->
+					<text x="655" y="380" class="annotation-text valley-text">3-4 Months</text>
+					<text x="655" y="396" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 5: #5 4 Patches -->
-					<line x1="707" y1="52" x2="707" y2="85" class="annotation-arrow" marker-end="url(#arrowRed)" />
-					<text x="707" y="26" class="annotation-text peak-text">#5 4 Patches</text>
-					<text x="707" y="42" class="annotation-text sub-peak-text">1 Month (9/10)</text>
+					<!-- Peak 5: #5 4 Cervical Patches -->
+					<line x1="734" y1="58" x2="734" y2="88" class="annotation-arrow" marker-end="url(#arrowRed)" />
+					<text x="734" y="26" class="annotation-num">#5</text>
+					<text x="734" y="46" class="annotation-title">4 Cervical Patches</text>
 
-					<!-- Valley 5: 6 Months Pain-Free (2 lines) -->
-					<text x="785" y="380" class="annotation-text valley-text">6 Months</text>
-					<text x="785" y="396" class="annotation-text valley-text">Pain-Free</text>
+					<!-- Valley 5: 6 Months Pain-Free -->
+					<text x="805" y="380" class="annotation-text valley-text">6 Months</text>
+					<text x="805" y="396" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 6: #6 Two Months of Pain -->
-					<line x1="875" y1="20" x2="875" y2="50" class="annotation-arrow" marker-end="url(#arrowRed)" />
-					<text x="875" y="-3" class="annotation-text peak-text">#6 Two Months of Pain</text>
-					<text x="875" y="12" class="annotation-text sub-peak-text">All Acids (10/10 Peak)</text>
+					<!-- Peak 6: #6 All Acids -->
+					<line x1="901" y1="22" x2="901" y2="52" class="annotation-arrow" marker-end="url(#arrowRed)" />
+					<text x="901" y="-8" class="annotation-num">#6</text>
+					<text x="901" y="12" class="annotation-title">All Acids</text>
 
 					<!-- Vegetables (Cheats) -->
-					<line x1="985" y1="195" x2="985" y2="225" class="annotation-arrow" marker-end="url(#arrowAmber)" />
-					<text x="985" y="180" class="annotation-text yo-yo-text">Vegetables</text>
+					<line x1="1014" y1="195" x2="1014" y2="225" class="annotation-arrow" marker-end="url(#arrowAmber)" />
+					<text x="1014" y="180" class="annotation-text yo-yo-text">Vegetables</text>
 
 					<!-- Cheese -->
-					<line x1="1220" y1="345" x2="1220" y2="370" class="annotation-arrow" marker-end="url(#arrowGreen)" />
-					<text x="1220" y="335" class="annotation-text cheese-text">Cheese</text>
+					<line x1="1226" y1="345" x2="1226" y2="370" class="annotation-arrow" marker-end="url(#arrowGreen)" />
+					<text x="1226" y="335" class="annotation-text cheese-text">Cheese</text>
 				</g>
 
-				<!-- Interactive Milestone Nodes -->
-				<g id="milestone-pins-group">
-					<circle cx="80" cy="416" r="6" class="milestone-pin pin-success" data-pain="0" data-title="Start Baseline" data-time="3 Years Ago" data-desc="Zero pain prior to first alcohol trigger." />
-					<circle cx="102" cy="132" r="7" class="milestone-pin pin-critical" data-pain="8" data-title="#1 Beer and Wine" data-time="Month 1" data-desc="Intense aching after dark ale. Cut alcohol completely, returning to 0 pain." />
-					<circle cx="180" cy="416" r="6" class="milestone-pin pin-success" data-pain="0" data-title="6 Months Pain-Free" data-time="6 Months" data-desc="Maintained 0 pain." />
-					<circle cx="262" cy="132" r="7" class="milestone-pin pin-critical" data-pain="8" data-title="#2 Coffee" data-time="Month 7" data-desc="Fire spread across palate and cheeks. Cut coffee, returning to 0 pain." />
-					<circle cx="340" cy="416" r="6" class="milestone-pin pin-success" data-pain="0" data-title="6 Months Pain-Free" data-time="6 Months" data-desc="Maintained 0 pain." />
-					<circle cx="417" cy="132" r="7" class="milestone-pin pin-yoyo" data-pain="8" data-title="#3 Dental Cleaning" data-time="Month 13" data-desc="Subgingival tartar fueled irritation. Professional cleaning returned pain to 0." />
-					<circle cx="495" cy="416" r="6" class="milestone-pin pin-success" data-pain="0" data-title="6 Months Pain-Free" data-time="6 Months" data-desc="Maintained 0 pain." />
-					<circle cx="572" cy="132" r="7" class="milestone-pin pin-yoyo" data-pain="8" data-title="#4 Most Fruits" data-time="Month 19" data-desc="Fruit acids (pH 3.0) stung nerves. Eliminated fruits; pain returned to 0." />
-					<circle cx="635" cy="416" r="6" class="milestone-pin pin-success" data-pain="0" data-title="3-4 Months Pain-Free" data-time="3-4 Months" data-desc="Calm baseline." />
-					<circle cx="707" cy="96" r="8" class="milestone-pin pin-critical" data-pain="9" data-title="#5 4 Patches" data-time="Month 23" data-desc="1 month at 9/10 pain. Dentist placed 4 composite patches over roots; 6 months pain-free." />
-					<circle cx="785" cy="416" r="6" class="milestone-pin pin-success" data-pain="0" data-title="6 Months Pain-Free" data-time="6 Months" data-desc="Complete relief." />
-					<circle cx="875" cy="60" r="8" class="milestone-pin pin-critical" data-pain="10" data-title="#6 Two Months of Pain" data-time="2 Months Peak" data-desc="Patches wore down. Peak 10/10 living fire. Transitioned to carnivore." />
-					<circle cx="935" cy="240" r="6" class="milestone-pin pin-yoyo" data-pain="5" data-title="Vegetables Spike" data-time="Cheat 1" data-desc="Vegetables/popcorn triggered 5/10 flare." />
-					<circle cx="965" cy="240" r="6" class="milestone-pin pin-yoyo" data-pain="5" data-title="Vegetables Spike" data-time="Cheat 2" data-desc="Vegetables triggered 5/10 flare." />
-					<circle cx="995" cy="240" r="6" class="milestone-pin pin-yoyo" data-pain="5" data-title="Vegetables Spike" data-time="Cheat 3" data-desc="Vegetables triggered 5/10 flare." />
-					<circle cx="1025" cy="240" r="6" class="milestone-pin pin-yoyo" data-pain="5" data-title="Vegetables Spike" data-time="Cheat 4" data-desc="Vegetables triggered 5/10 flare." />
-					<circle cx="1220" cy="380" r="6" class="milestone-pin pin-success" data-pain="1" data-title="Cheese" data-time="Present" data-desc="2 meals with cheese causes mild 1/10 blip." />
-				</g>
-
-				<!-- Interactive Crosshair & Cursor Point -->
+				<!-- Interactive Crosshair & Cursor Point (Only shows on mouse hover!) -->
 				<g id="interactive-cursor" class="interactive-cursor-layer" style="display: none;">
 					<line id="cursor-vertical-line" x1="0" y1="50" x2="0" y2="420" class="cursor-line" />
-					<circle id="cursor-point" cx="0" cy="0" r="8" class="cursor-pulse-point" />
+					<circle id="cursor-point" cx="0" cy="0" r="7.5" class="cursor-pulse-point" />
 				</g>
 
-				<!-- X-Axis Clean Timeline Labels (No overlapping text) -->
+				<!-- X-Axis Clean Timeline Labels -->
 				<g class="x-axis-labels">
 					<text x="80" y="455" class="axis-time-label label-start">3 Years Ago</text>
-					<text x="340" y="455" class="axis-time-label">2.5 Years</text>
-					<text x="635" y="455" class="axis-time-label">1.5 Years</text>
-					<text x="875" y="455" class="axis-time-label">1 Year Ago</text>
-					<text x="1220" y="455" class="axis-time-label label-end">Today</text>
+					<text x="355" y="455" class="axis-time-label">2.5 Years</text>
+					<text x="655" y="455" class="axis-time-label">1.5 Years</text>
+					<text x="901" y="455" class="axis-time-label">1 Year Ago</text>
+					<text x="1226" y="455" class="axis-time-label label-end">Today</text>
 				</g>
 			</svg>
 
@@ -422,18 +387,21 @@ const {
 		stroke-width: 1.5;
 		opacity: 0.8;
 	}
-	.peak-text {
+	
+	.annotation-num {
 		fill: #f87171;
-		font-size: 11px;
+		font-size: 16px;
+		font-weight: 800;
+		text-anchor: middle;
+	}
+
+	.annotation-title {
+		fill: #fca5a5;
+		font-size: 11.5px;
 		font-weight: 700;
 		text-anchor: middle;
 	}
-	.sub-peak-text {
-		fill: #fca5a5;
-		font-size: 9.5px;
-		font-weight: 600;
-		text-anchor: middle;
-	}
+
 	.valley-text {
 		fill: #6ee7b7;
 		font-size: 10px;
@@ -441,15 +409,17 @@ const {
 		text-anchor: middle;
 		line-height: 1.2;
 	}
+	
 	.yo-yo-text {
 		fill: #fbbf24;
-		font-size: 11px;
+		font-size: 11.5px;
 		font-weight: 700;
 		text-anchor: middle;
 	}
+	
 	.cheese-text {
 		fill: #a7f3d0;
-		font-size: 10.5px;
+		font-size: 11px;
 		font-weight: 700;
 		text-anchor: middle;
 	}
@@ -462,43 +432,6 @@ const {
 	}
 	.label-start { text-anchor: start; fill: #34d399; font-weight: 700; }
 	.label-end { text-anchor: end; fill: #34d399; font-weight: 700; }
-
-	/* Milestone Pins */
-	.milestone-pin {
-		fill: #0f172a;
-		stroke: #38bdf8;
-		stroke-width: 2.5;
-		cursor: pointer;
-		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-	.milestone-pin:hover {
-		fill: #38bdf8;
-		stroke: #ffffff;
-		stroke-width: 3.5;
-		r: 9;
-		filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
-	}
-	.pin-critical {
-		stroke: #ef4444;
-	}
-	.pin-critical:hover {
-		fill: #ef4444;
-		filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
-	}
-	.pin-yoyo {
-		stroke: #f59e0b;
-	}
-	.pin-yoyo:hover {
-		fill: #f59e0b;
-		filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.8));
-	}
-	.pin-success {
-		stroke: #10b981;
-	}
-	.pin-success:hover {
-		fill: #10b981;
-		filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
-	}
 
 	/* Interactive Cursor */
 	.cursor-line {
@@ -580,40 +513,10 @@ const {
 		const cursorLayer = document.getElementById('interactive-cursor');
 		const cursorLine = document.getElementById('cursor-vertical-line');
 		const cursorPoint = document.getElementById('cursor-point');
-		const pins = widget.querySelectorAll('.milestone-pin');
 
 		if (!svg) return;
 
-		pins.forEach((pin) => {
-			pin.addEventListener('mouseenter', () => {
-				const cx = parseFloat(pin.getAttribute('cx') || '0');
-				const cy = parseFloat(pin.getAttribute('cy') || '0');
-				const pain = pin.getAttribute('data-pain');
-				const title = pin.getAttribute('data-title');
-				const time = pin.getAttribute('data-time');
-				const desc = pin.getAttribute('data-desc');
-
-				if (tooltip && tooltipTime && tooltipPain && tooltipTitle && tooltipDesc) {
-					tooltipTime.textContent = time || '';
-					tooltipPain.textContent = `Pain ${pain}/10`;
-					tooltipTitle.textContent = title || '';
-					tooltipDesc.textContent = desc || '';
-
-					const svgRect = svg.getBoundingClientRect();
-					const scaleX = svgRect.width / 1380;
-					const scaleY = svgRect.height / 480;
-
-					tooltip.style.left = `${cx * scaleX}px`;
-					tooltip.style.top = `${cy * scaleY - 15}px`;
-					tooltip.style.display = 'block';
-				}
-			});
-
-			pin.addEventListener('mouseleave', () => {
-				if (tooltip) tooltip.style.display = 'none';
-			});
-		});
-
+		// Dynamic hover tracking along the timeline
 		svg.addEventListener('mousemove', (e: MouseEvent) => {
 			const rect = svg.getBoundingClientRect();
 			const x = ((e.clientX - rect.left) / rect.width) * 1380;
@@ -625,11 +528,105 @@ const {
 				cursorLine.setAttribute('x2', `${x}`);
 				cursorPoint.setAttribute('cx', `${x}`);
 				cursorPoint.setAttribute('cy', `${Math.min(Math.max(y, 60), 420)}`);
+
+				// Calculate approximate pain & milestone based on X position
+				let painVal = "0";
+				let timeVal = "";
+				let titleVal = "";
+				let descVal = "";
+
+				if (x < 150) {
+					painVal = x < 95 ? "0 to 8" : "8";
+					timeVal = "3 Years Ago";
+					titleVal = "#1 Beer & Wine";
+					descVal = "Intense aching triggered by dark ale/alcohol. Elimination stopped the pain.";
+				} else if (x < 240) {
+					painVal = "0";
+					timeVal = "2.8 Years Ago";
+					titleVal = "6 Months Pain-Free";
+					descVal = "Maintained zero pain after alcohol elimination.";
+				} else if (x < 310) {
+					painVal = "8";
+					timeVal = "2.3 Years Ago";
+					titleVal = "#2 Coffee";
+					descVal = "Spreading nerve fire. Cutting coffee brought relief back to zero.";
+				} else if (x < 390) {
+					painVal = "0";
+					timeVal = "2.0 Years Ago";
+					titleVal = "6 Months Pain-Free";
+					descVal = "Maintained zero pain after coffee elimination.";
+				} else if (x < 460) {
+					painVal = "8";
+					timeVal = "1.8 Years Ago";
+					titleVal = "#3 Dental Cleaning";
+					descVal = "Deep cleaning removed subgingival tartar, returning pain to zero.";
+				} else if (x < 545) {
+					painVal = "0";
+					timeVal = "1.6 Years Ago";
+					titleVal = "6 Months Pain-Free";
+					descVal = "Post-cleaning relief window.";
+				} else if (x < 620) {
+					painVal = "8";
+					timeVal = "1.4 Years Ago";
+					titleVal = "#4 Most Fruits";
+					descVal = "Plant acids (pH 3.0) stung nerve endings. Fruit elimination restored zero pain.";
+				} else if (x < 685) {
+					painVal = "0";
+					timeVal = "1.2 Years Ago";
+					titleVal = "3-4 Months Pain-Free";
+					descVal = "Calm baseline window.";
+				} else if (x < 760) {
+					painVal = "9";
+					timeVal = "1.0 Year Ago";
+					titleVal = "#5 4 Cervical Patches";
+					descVal = "Severe root recession. 4 composite bonding patches shielded dentin.";
+				} else if (x < 840) {
+					painVal = "0";
+					timeVal = "9 Months Ago";
+					titleVal = "6 Months Pain-Free";
+					descVal = "Shielded dentin stopped the burn.";
+				} else if (x < 940) {
+					painVal = "10";
+					timeVal = "7 Months Ago";
+					titleVal = "#6 All Acids";
+					descVal = "Patches degraded. Living fire returned at 10/10. Switched to carnivore.";
+				} else if (x < 1080) {
+					painVal = "2 to 5";
+					timeVal = "6-4 Months Ago";
+					titleVal = "Vegetables Flares";
+					descVal = "Cheat meals triggered 5/10 flares with 72h latency; meat resets returned to 0-1.";
+				} else if (x < 1250) {
+					painVal = "0 to 1";
+					timeVal = "Present Day";
+					titleVal = "Cheese Nuance";
+					descVal = "2 meals with cheese creates minor 1/10 blip; otherwise 0 pain.";
+				} else {
+					painVal = "0";
+					timeVal = "Today";
+					titleVal = "Pain-Free Baseline";
+					descVal = "Strict meat, eggs, seafood baseline.";
+				}
+
+				if (tooltip && tooltipTime && tooltipPain && tooltipTitle && tooltipDesc) {
+					tooltipTime.textContent = timeVal;
+					tooltipPain.textContent = `Pain ${painVal}/10`;
+					tooltipTitle.textContent = titleVal;
+					tooltipDesc.textContent = descVal;
+
+					const svgRect = svg.getBoundingClientRect();
+					const scaleX = svgRect.width / 1380;
+					const scaleY = svgRect.height / 480;
+
+					tooltip.style.left = `${x * scaleX}px`;
+					tooltip.style.top = `${Math.min(Math.max(y, 60), 420) * scaleY - 15}px`;
+					tooltip.style.display = 'block';
+				}
 			}
 		});
 
 		svg.addEventListener('mouseleave', () => {
 			if (cursorLayer) cursorLayer.style.display = 'none';
+			if (tooltip) tooltip.style.display = 'none';
 		});
 	}
 
