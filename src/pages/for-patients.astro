@@ -1,52 +1,37 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
-import { sortPostsDescending } from '../utils/postUtils';
-
-const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
-// Show posts tagged 'patient' or 'both'
-const patientPosts = sortPostsDescending(rawPosts).filter(post => {
-	const tags = post.data.tags || [];
-	return tags.includes('patient') || tags.includes('both');
-});
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="For Patients | Decoding The Burn" 
+			title="How Patients Can Use This Site | Decoding The Burn" 
 			description="How BMS sufferers can use this site, explore my elimination methodology, and navigate daily recovery tools." 
 		/>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<!-- Hero Section Following Homepage Model -->
 			<section class="hero-centered-wrapper">
 				<div class="hero-centered-header">
 					<MedicalDisclaimer />
 					<h1 class="hero-centered-title">
 						How Patients Can Use This&nbsp;Site
 					</h1>
-					<p class="hero-centered-subtitle">
-						When you are in agonizing 10/10 pain and tests come back normal, you need practical answers.
-						Here is how to use my lived journey and elimination methodology to guide your own&nbsp;recovery.
-					</p>
 				</div>
 
-				<!-- Video on Top -->
+				<!-- Author Photo on Top -->
 				<div class="hero-video-centered">
 					<div class="video-placeholder-wrapper" style="cursor: default;">
 						<Image 
 							src={authorPhoto} 
-							alt="Denis Ethier - BMS Patient Orientation Video" 
+							alt="Denis Ethier - BMS Patient Story" 
 							class="video-placeholder-img" 
 							width={1400} 
 							height={788}
@@ -54,140 +39,182 @@ const patientPosts = sortPostsDescending(rawPosts).filter(post => {
 					</div>
 				</div>
 
-				<!-- My Story Card Under Video -->
+				<!-- My Story Section -->
 				<article class="personal-story-section">
-					<h2 class="story-heading">My Story &amp; How This Site Can Help&nbsp;You</h2>
+					<h2 class="story-heading">My Story</h2>
 					<div class="story-lead">
-						<p>
-							In early 2025, I woke up with severe Burning Mouth Syndrome that quickly escalated to a daily 10/10 agony. Eating felt like chewing hot glass, and five dentists and five medical doctors all told me my mouth looked completely&nbsp;healthy.
+						<p class="story-paragraph">
+							In April 2023, I woke up with severe Burning Mouth Syndrome that escalated over three years into a daily 10/10 agony. Eating felt like chewing hot glass, and five dentists and five medical doctors all told me my mouth looked completely healthy.
 						</p>
-						<p>
-							I refused to give up. I started systematically testing and eliminating variables: acidic foods, toothpaste abrasives, and night mouth-breathing. That method helped bring my burning down to sustained remission, and now I am sharing every step so you don't have to navigate this fire&nbsp;alone.
+						<p class="story-paragraph">
+							I refused to accept that. I started systematically testing and eliminating variables: acidic foods, coffee, fruit acids, subgingival tartar, and mechanical dentin exposure. Through rigorous tracking and an all-meat elimination baseline, I brought my burning down to a stable zero-pain baseline, and now I am sharing every step so you don't have to navigate this fire alone.
 						</p>
-						<p class="continue-reading-p">
-							<a href="/blog/how-i-reduced-my-bms-pain-from-10-to-0/" class="continue-reading-link">Read my complete recovery story &rarr;</a>
+					</div>
+
+					<!-- Call to Action -->
+					<div class="collab-cta-box">
+						<h3 class="collab-cta-title">Ready to explore the complete journey?</h3>
+						<p class="collab-cta-text">
+							Read my full recovery case study detailing every trigger, the 72-hour latency cycle, and my daily maintenance protocol.
 						</p>
+						<div class="collab-cta-actions">
+							<a href="/blog/how-i-reduced-my-bms-pain-from-10-to-0/" class="btn btn-primary">Read Complete Story</a>
+							<a href="/share-your-story" class="btn btn-secondary">Share Your Story</a>
+						</div>
 					</div>
 				</article>
 			</section>
-
-			<!-- 3 Core Ways Patients Can Use This Platform -->
-			<section class="methodology-container">
-				<h2 class="section-heading">How My Methodology Helps&nbsp;You</h2>
-				<div class="methodology-grid">
-					<div class="method-card">
-						<div class="method-num">01</div>
-						<h3 class="method-title">The Trigger Elimination&nbsp;Process</h3>
-						<p class="method-text">
-							Learn how to systematically test and remove acidic foods, abrasive foaming toothpastes (SLS), and night mouth-breathing so your oral tissues have time to rest and calm&nbsp;down.
-						</p>
-					</div>
-
-					<div class="method-card">
-						<div class="method-num">02</div>
-						<h3 class="method-title">Prepare for Your Next Dental&nbsp;Visit</h3>
-						<p class="method-text">
-							Use our appointment recording guide and data request checklist so you can bring structured notes to your dentist, understand clinical terms, and ask the right&nbsp;questions.
-						</p>
-					</div>
-
-					<div class="method-card">
-						<div class="method-num">03</div>
-						<h3 class="method-title">Learn from the Podcast&nbsp;Interviews</h3>
-						<p class="method-text">
-							Listen to in-depth, transparent conversations with leading dentists, periodontists, and fellow sufferers who share what is actually working in clinical&nbsp;practice.
-						</p>
-					</div>
-				</div>
-			</section>
-
-			<!-- Relevant Articles for Patients -->
-			<section class="section-header recent-posts-header">
-				<h2 class="recent-posts-title">Patient Guides &amp; Practical Case&nbsp;Studies</h2>
-				<p class="recent-posts-subtitle">Practical articles, elimination logs, and daily habits written specifically for&nbsp;sufferers.</p>
-			</section>
-
-			<div class="grid">
-				{
-					patientPosts.map((post, index) => {
-						const postNumber = post.data.entryNumber ?? (index + 1);
-						const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
-						return (
-							<article class="card">
-								<a href={`/blog/${post.id}/`}>
-									<div class="card-img" style={`background-image: url(${imageSrc || '/blog-placeholder-1.jpg'})`}></div>
-									<div class="card-body">
-										<div class="card-meta">
-											<span class="meta-post-info"><strong class="meta-post-number">Post #{postNumber}</strong> • <FormattedDate date={post.data.pubDate} /></span>
-										</div>
-										<h3>{post.data.title}</h3>
-										<p>{post.data.description}</p>
-										<span class="view-story">Read Guide &rarr;</span>
-									</div>
-								</a>
-							</article>
-						);
-					})
-				}
-			</div>
-
-			<div style="text-align: center; margin: 3rem 0;">
-				<a href="/blog" class="btn btn-outline" style="padding: 0.85rem 2.25rem;">View All Blog Entries +</a>
-			</div>
 		</main>
 		<Footer />
-
-		<style>
-			.methodology-container {
-				max-width: 1080px;
-				margin: 1.5rem auto 4.5rem;
-				padding: 0 1.5rem;
-			}
-
-			.section-heading {
-				font-size: clamp(1.75rem, 3.5vw, 2.25rem);
-				font-weight: 800;
-				color: #0f172a;
-				text-align: center;
-				margin: 0 0 2rem 0;
-				letter-spacing: -0.02em;
-			}
-
-			.methodology-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-				gap: 2rem;
-			}
-
-			.method-card {
-				background: #ffffff;
-				border: 1px solid var(--card-border);
-				border-radius: 20px;
-				padding: 2.25rem 2rem;
-				box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
-			}
-
-			.method-num {
-				font-size: 1.5rem;
-				font-weight: 900;
-				color: #c8382c;
-				margin-bottom: 0.75rem;
-			}
-
-			.method-title {
-				font-size: 1.25rem;
-				font-weight: 800;
-				color: #0f172a;
-				margin: 0 0 0.75rem 0;
-			}
-
-			.method-text {
-				font-size: 1rem;
-				line-height: 1.65;
-				color: #475569;
-				margin: 0;
-				text-wrap: pretty;
-			}
-		</style>
 	</body>
 </html>
+
+<style>
+	.hero-centered-wrapper {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 2.5rem 1.5rem 4rem;
+	}
+
+	.hero-centered-header {
+		text-align: center;
+		margin: 0 auto 2.5rem;
+	}
+
+	.hero-centered-title {
+		font-size: clamp(2.2rem, 5vw, 3.4rem);
+		font-weight: 800;
+		line-height: 1.15;
+		letter-spacing: -0.03em;
+		color: var(--text-primary);
+		margin: 1.25rem 0 0;
+		text-wrap: balance;
+	}
+
+	.hero-video-centered {
+		width: 100%;
+		margin: 0 auto 3rem;
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+		border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+		background: #000000;
+	}
+
+	.video-placeholder-wrapper {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.video-placeholder-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0.95;
+	}
+
+	.personal-story-section {
+		background: var(--bg-card, #ffffff);
+		border: 1px solid var(--border-color, #e2e8f0);
+		border-radius: 24px;
+		padding: 3rem 2.5rem;
+		margin-bottom: 2rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+	}
+
+	.story-heading {
+		font-size: 1.85rem;
+		font-weight: 800;
+		color: var(--text-primary);
+		margin-bottom: 1.5rem;
+		text-align: center;
+		text-wrap: balance;
+	}
+
+	.story-lead {
+		max-width: 800px;
+		margin: 0 auto 2.5rem;
+	}
+
+	.story-paragraph {
+		font-size: 1.15rem;
+		line-height: 1.75;
+		color: var(--text-secondary);
+		margin-bottom: 1.5rem;
+	}
+
+	.collab-cta-box {
+		background: linear-gradient(135deg, #1e1136 0%, #0d081a 100%);
+		border-radius: 18px;
+		padding: 2.25rem 2rem;
+		text-align: center;
+		color: #ffffff;
+		border: 1px solid rgba(168, 85, 247, 0.3);
+	}
+
+	.collab-cta-title {
+		font-size: 1.35rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin-bottom: 0.75rem;
+		text-wrap: balance;
+	}
+
+	.collab-cta-text {
+		font-size: 1.05rem;
+		line-height: 1.6;
+		color: #e2e8f0;
+		max-width: 620px;
+		margin: 0 auto 1.5rem;
+		text-wrap: balance;
+	}
+
+	.collab-cta-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.85rem 1.75rem;
+		font-weight: 700;
+		border-radius: 12px;
+		text-decoration: none;
+		transition: transform 0.15s ease, background 0.15s ease;
+	}
+
+	.btn-primary {
+		background: linear-gradient(135deg, #c8382c 0%, #991b1b 100%);
+		color: #ffffff;
+	}
+
+	.btn-primary:hover {
+		transform: translateY(-2px);
+		filter: brightness(1.1);
+	}
+
+	.btn-secondary {
+		background: rgba(255, 255, 255, 0.15);
+		color: #ffffff;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+	}
+
+	.btn-secondary:hover {
+		background: rgba(255, 255, 255, 0.25);
+		transform: translateY(-2px);
+	}
+
+	@media (max-width: 640px) {
+		.personal-story-section {
+			padding: 2rem 1.5rem;
+		}
+	}
+</style>

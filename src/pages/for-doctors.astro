@@ -1,52 +1,37 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
-import { sortPostsDescending } from '../utils/postUtils';
-
-const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
-// Show posts relevant for medical practitioners, neurologists, ENTs, and primary care
-const doctorPosts = sortPostsDescending(rawPosts).filter(post => {
-	const tags = post.data.tags || [];
-	return tags.includes('clinician') || tags.includes('both');
-});
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="For Doctors | Decoding The Burn" 
+			title="How Doctors Can Use This Site | Decoding The Burn" 
 			description="How neurologists, ENTs, and physicians can leverage longitudinal patient datasets and neuropathic phenotyping in Burning Mouth Syndrome." 
 		/>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<!-- Hero Section Following Homepage Model -->
 			<section class="hero-centered-wrapper">
 				<div class="hero-centered-header">
 					<MedicalDisclaimer />
 					<h1 class="hero-centered-title">
 						How Doctors Can Use This&nbsp;Site
 					</h1>
-					<p class="hero-centered-subtitle">
-						When patients suffer from severe neuropathic burning and blood panels return normal, medicine needs new models.
-						Here is how dense, longitudinal biometric and dietary latency tracking uncovers neuropathic&nbsp;pathways.
-					</p>
 				</div>
 
-				<!-- Video on Top -->
+				<!-- Author Photo on Top -->
 				<div class="hero-video-centered">
 					<div class="video-placeholder-wrapper" style="cursor: default;">
 						<Image 
 							src={authorPhoto} 
-							alt="Denis Ethier - BMS Medical Orientation Video" 
+							alt="Denis Ethier - Message to Doctors" 
 							class="video-placeholder-img" 
 							width={1400} 
 							height={788} 
@@ -54,75 +39,23 @@ const doctorPosts = sortPostsDescending(rawPosts).filter(post => {
 					</div>
 				</div>
 
-				<!-- Message to Doctors Card Under Video -->
+				<!-- Message to Doctors Section -->
 				<article class="personal-story-section">
-					<h2 class="story-heading">My Experience &amp; A Message to Medical Specialists</h2>
+					<h2 class="story-heading">My Message to Medical Specialists</h2>
 					<div class="story-lead">
 						<p class="story-paragraph">
-							Over three agonizing years of Burning Mouth Syndrome, I consulted five medical specialists, including ENTs, 
-							neurologists, and internal medicine physicians. I was prescribed tricyclic antidepressants, gabapentinoids, 
-							and oral rinses. While these medications are standard of care, they did not address the underlying neuro-inflammatory 
-							firing mechanisms.
+							Over three agonizing years of Burning Mouth Syndrome, I consulted five medical specialists, including ENTs, neurologists, and internal medicine physicians. I was prescribed tricyclic antidepressants, gabapentinoids, and oral rinses. While these medications are standard of care, they did not address the underlying neuro-inflammatory firing mechanisms.
 						</p>
 						<p class="story-paragraph">
-							As an engineer and researcher, I approached my diagnosis through systems biology and signal processing. 
-							What emerged was a clear understanding of <strong>small-fiber neuropathy, central sensitization, and delayed 
-							gastrointestinal-mucosal biochemical cascades (the 72-hour latency window)</strong>.
+							As an engineer and researcher, I approached my diagnosis through systems biology and signal processing. What emerged was a clear understanding of small-fiber neuropathy, central sensitization, and delayed gastrointestinal-mucosal biochemical cascades, specifically the 72-hour latency window that traditional single-day recall fails to detect.
 						</p>
-					</div>
-
-					<div class="story-body-grid">
-						<div class="story-card">
-							<div class="story-card-icon" aria-hidden="true">
-								<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-								</svg>
-							</div>
-							<h3 class="story-card-title">1. Small-Fiber Neuropathy &amp; Trigeminal Signaling</h3>
-							<p class="story-card-text">
-								BMS frequently represents peripheral small-fiber sensory neuropathy of the chorda tympani and lingual nerve. 
-								Treating it strictly as idiopathic often misses the mechanical-chemical triggers in the oral environment.
-							</p>
-						</div>
-
-						<div class="story-card">
-							<div class="story-card-icon" aria-hidden="true">
-								<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<circle cx="12" cy="12" r="10"></circle>
-									<polyline points="12 6 12 12 16 14"></polyline>
-								</svg>
-							</div>
-							<h3 class="story-card-title">2. The 72-Hour Latency Window</h3>
-							<p class="story-card-text">
-								Neuro-inflammatory cascades often have multi-day latency. Tracking dietary challenges across a 72-hour timeline 
-								reveals distinct smoldering and flare phases that traditional single-day recall fails to detect.
-							</p>
-						</div>
-
-						<div class="story-card">
-							<div class="story-card-icon" aria-hidden="true">
-								<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-									<polyline points="14 2 14 8 20 8"></polyline>
-									<line x1="16" y1="13" x2="8" y2="13"></line>
-									<line x1="16" y1="17" x2="8" y2="17"></line>
-									<polyline points="10 9 9 9 8 9"></polyline>
-								</svg>
-							</div>
-							<h3 class="story-card-title">3. Beyond Anti-Depressants</h3>
-							<p class="story-card-text">
-								When bloodwork and biopsies return normal, patients are frequently told their symptoms are psychogenic. 
-								Structured elimination diets and mechanical hardware remediation offer non-pharmacological avenues for symptom reduction.
-							</p>
-						</div>
 					</div>
 
 					<!-- Direct Collaboration CTA -->
 					<div class="collab-cta-box">
 						<h3 class="collab-cta-title">Are you a physician or medical researcher studying BMS?</h3>
 						<p class="collab-cta-text">
-							I am actively partnering with neurologists, ENTs, and oral medicine researchers to share open time-series patient 
-							datasets and discuss clinical hypotheses on the podcast.
+							I am actively partnering with neurologists, ENTs, and oral medicine researchers to share open time-series patient datasets and discuss clinical hypotheses on the podcast.
 						</p>
 						<div class="collab-cta-actions">
 							<a href="/contact" class="btn btn-primary">Contact Me</a>
@@ -130,44 +63,6 @@ const doctorPosts = sortPostsDescending(rawPosts).filter(post => {
 						</div>
 					</div>
 				</article>
-
-				<!-- Medical Articles Section -->
-				<section class="patient-articles-section">
-					<div class="section-heading-wrapper">
-						<h2 class="section-title">Medical &amp; Neurological Research Articles</h2>
-						<p class="section-subtitle">
-							In-depth analysis of neurological pathways, medical literature, systemic inflammation, and patient trial protocols.
-						</p>
-					</div>
-
-					<div class="articles-grid">
-						{doctorPosts.map((post) => (
-							<article class="article-card">
-								<a href={`/blog/${post.id}/`} class="article-card-link">
-									{post.data.heroImage && (
-										<div class="article-image-wrapper">
-											<img 
-												src={post.data.heroImage} 
-												alt={post.data.title} 
-												class="article-image" 
-												loading="lazy"
-											/>
-										</div>
-									)}
-									<div class="article-content">
-										<div class="article-meta">
-											<span class="article-category">{post.data.category || 'Medical'}</span>
-											<span class="meta-separator">•</span>
-											<span class="article-date"><FormattedDate date={post.data.pubDate} /></span>
-										</div>
-										<h3 class="article-title">{post.data.title}</h3>
-										<p class="article-desc">{post.data.description}</p>
-									</div>
-								</a>
-							</article>
-						))}
-					</div>
-				</section>
 			</section>
 		</main>
 		<Footer />
@@ -176,14 +71,13 @@ const doctorPosts = sortPostsDescending(rawPosts).filter(post => {
 
 <style>
 	.hero-centered-wrapper {
-		max-width: 1100px;
+		max-width: 900px;
 		margin: 0 auto;
 		padding: 2.5rem 1.5rem 4rem;
 	}
 
 	.hero-centered-header {
 		text-align: center;
-		max-width: 780px;
 		margin: 0 auto 2.5rem;
 	}
 
@@ -193,20 +87,12 @@ const doctorPosts = sortPostsDescending(rawPosts).filter(post => {
 		line-height: 1.15;
 		letter-spacing: -0.03em;
 		color: var(--text-primary);
-		margin: 1.25rem 0 1rem;
-		text-wrap: balance;
-	}
-
-	.hero-centered-subtitle {
-		font-size: clamp(1.05rem, 2vw, 1.25rem);
-		line-height: 1.6;
-		color: var(--text-secondary);
-		margin: 0;
+		margin: 1.25rem 0 0;
 		text-wrap: balance;
 	}
 
 	.hero-video-centered {
-		max-width: 900px;
+		width: 100%;
 		margin: 0 auto 3rem;
 		border-radius: 20px;
 		overflow: hidden;
@@ -236,7 +122,7 @@ const doctorPosts = sortPostsDescending(rawPosts).filter(post => {
 		border: 1px solid var(--border-color, #e2e8f0);
 		border-radius: 24px;
 		padding: 3rem 2.5rem;
-		margin-bottom: 4rem;
+		margin-bottom: 2rem;
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 	}
 
@@ -255,43 +141,10 @@ const doctorPosts = sortPostsDescending(rawPosts).filter(post => {
 	}
 
 	.story-paragraph {
-		font-size: 1.1rem;
-		line-height: 1.7;
-		color: var(--text-secondary);
-		margin-bottom: 1.25rem;
-	}
-
-	.story-body-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-		gap: 1.5rem;
-		margin-bottom: 3rem;
-	}
-
-	.story-card {
-		background: #f8fafc;
-		border: 1px solid #e2e8f0;
-		border-radius: 16px;
-		padding: 1.75rem 1.5rem;
-	}
-
-	.story-card-icon {
-		color: #991b1b;
-		margin-bottom: 1rem;
-	}
-
-	.story-card-title {
 		font-size: 1.15rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 0.75rem;
-	}
-
-	.story-card-text {
-		font-size: 0.95rem;
-		line-height: 1.6;
+		line-height: 1.75;
 		color: var(--text-secondary);
-		margin: 0;
+		margin-bottom: 1.5rem;
 	}
 
 	.collab-cta-box {
@@ -327,103 +180,36 @@ const doctorPosts = sortPostsDescending(rawPosts).filter(post => {
 		flex-wrap: wrap;
 	}
 
-	.patient-articles-section {
-		margin-top: 3rem;
-	}
-
-	.section-heading-wrapper {
-		text-align: center;
-		margin-bottom: 2.5rem;
-	}
-
-	.section-title {
-		font-size: 2rem;
-		font-weight: 800;
-		color: var(--text-primary);
-		margin-bottom: 0.5rem;
-	}
-
-	.section-subtitle {
-		font-size: 1.1rem;
-		color: var(--text-secondary);
-		max-width: 600px;
-		margin: 0 auto;
-	}
-
-	.articles-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 2rem;
-	}
-
-	.article-card {
-		background: #ffffff;
-		border: 1px solid #e2e8f0;
-		border-radius: 16px;
-		overflow: hidden;
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
-	}
-
-	.article-card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-	}
-
-	.article-card-link {
-		text-decoration: none;
-		color: inherit;
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-	}
-
-	.article-image-wrapper {
-		width: 100%;
-		aspect-ratio: 16 / 9;
-		overflow: hidden;
-		background: #f1f5f9;
-	}
-
-	.article-image {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-
-	.article-content {
-		padding: 1.5rem;
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-	}
-
-	.article-meta {
-		display: flex;
+	.btn {
+		display: inline-flex;
 		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.85rem;
-		color: #64748b;
-		margin-bottom: 0.75rem;
-	}
-
-	.article-category {
+		justify-content: center;
+		padding: 0.85rem 1.75rem;
 		font-weight: 700;
-		color: #991b1b;
+		border-radius: 12px;
+		text-decoration: none;
+		transition: transform 0.15s ease, background 0.15s ease;
 	}
 
-	.article-title {
-		font-size: 1.25rem;
-		font-weight: 700;
-		line-height: 1.3;
-		color: var(--text-primary);
-		margin-bottom: 0.75rem;
+	.btn-primary {
+		background: linear-gradient(135deg, #c8382c 0%, #991b1b 100%);
+		color: #ffffff;
 	}
 
-	.article-desc {
-		font-size: 0.95rem;
-		line-height: 1.5;
-		color: var(--text-secondary);
-		margin: 0;
+	.btn-primary:hover {
+		transform: translateY(-2px);
+		filter: brightness(1.1);
+	}
+
+	.btn-secondary {
+		background: rgba(255, 255, 255, 0.15);
+		color: #ffffff;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+	}
+
+	.btn-secondary:hover {
+		background: rgba(255, 255, 255, 0.25);
+		transform: translateY(-2px);
 	}
 
 	@media (max-width: 640px) {
