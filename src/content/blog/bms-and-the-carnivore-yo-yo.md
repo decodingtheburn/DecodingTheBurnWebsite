@@ -89,17 +89,7 @@ I tried every possible compromise to outsmart my own biology:
 
 The result was always the same: **any deviation from neutral, zero-acid fuel eventually pushed my pain baseline back toward a 5/10.**
 
-```
-Pain Scale (0 to 10)
-▲
-5 ┤          ▲ Full Flare           ▲ Full Flare
-4 ┤         / \                    / \
-3 ┤  Start /   \ Day 2            /   \ Day 2
-2 ┤ ───────     \ Meat Reset     /     \ Meat Reset
-1 ┤              \──────────────/       \──────────────
-0 ┴───────────────────────────────────────────────────────►
-   Day 1   Day 2  Day 3-5  Day 6-7  Day 8  Day 9-12  Time
-```
+![BMS Pain Fluctuation Cycle: Cheating vs Meat Reset](/bms-pain-fluctuation-graph.jpg)
 
 ---
 
