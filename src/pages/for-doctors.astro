@@ -5,14 +5,15 @@ import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
+import CardinalNetworkDiagram from '../components/CardinalNetworkDiagram.astro';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="How Doctors Can Use This Site | Decoding The Burn" 
-			description="How neurologists, ENTs, and physicians can leverage longitudinal patient datasets and neuropathic phenotyping in Burning Mouth Syndrome." 
+			title="My Message to Medical Doctors | Decoding The Burn" 
+			description="A direct message to medical doctors and specialists on why collaborative data, root cause investigation, and patient observations are essential to solve Burning Mouth Syndrome." 
 		/>
 	</head>
 	<body>
@@ -21,9 +22,6 @@ import authorPhoto from '../assets/denis-ethier.png';
 			<section class="hero-centered-wrapper">
 				<div class="hero-centered-header">
 					<MedicalDisclaimer />
-					<h1 class="hero-centered-title">
-						How Doctors Can Use This&nbsp;Site
-					</h1>
 				</div>
 
 				<!-- Author Photo on Top -->
@@ -31,7 +29,7 @@ import authorPhoto from '../assets/denis-ethier.png';
 					<div class="video-placeholder-wrapper" style="cursor: default;">
 						<Image 
 							src={authorPhoto} 
-							alt="Denis Ethier - Message to Doctors" 
+							alt="Denis Ethier - Message to Medical Doctors" 
 							class="video-placeholder-img" 
 							width={1400} 
 							height={788} 
@@ -41,25 +39,51 @@ import authorPhoto from '../assets/denis-ethier.png';
 
 				<!-- Message to Doctors Section -->
 				<article class="personal-story-section">
-					<h2 class="story-heading">My Message to Medical Specialists</h2>
+					<h2 class="story-heading">My Message to Medical Doctors</h2>
 					<div class="story-lead">
 						<p class="story-paragraph">
-							Over three agonizing years of Burning Mouth Syndrome, I consulted five medical specialists, including ENTs, neurologists, and internal medicine physicians. I was prescribed tricyclic antidepressants, gabapentinoids, and oral rinses. While these medications are standard of care, they did not address the underlying neuro-inflammatory firing mechanisms.
+							After consulting five or six dentists with severe oral burning and receiving no answers, I turned to the medical system. I first met an orofacial pain specialist, and then consulted my General Practitioner (GP).
 						</p>
 						<p class="story-paragraph">
-							As an engineer and researcher, I approached my diagnosis through systems biology and signal processing. What emerged was a clear understanding of small-fiber neuropathy, central sensitization, and delayed gastrointestinal-mucosal biochemical cascades, specifically the 72-hour latency window that traditional single-day recall fails to detect.
+							What I discovered through that process was disheartening: there is very little training or established knowledge about Burning Mouth Syndrome in general medicine. Aside from prescription medications that simply did not work for me, there were very few solutions or next steps to offer.
 						</p>
+						<p class="story-paragraph">
+							I get it. That is what standard clinical training covers, and I understand how frustrating it is for doctors to sit across from a patient in agonizing pain with no effective tools in the standard playbook.
+						</p>
+						<p class="story-paragraph">
+							Before this, I had never faced major health issues in my life, aside from occasional vertigo and IBS. Over the past decade, I successfully managed my IBS using the low FODMAP diet. In my search for relief from Burning Mouth Syndrome, I evolved that approach further into what is essentially a "no FODMAP" diet, cutting out all sugar from vegetables, grains, and fruits.
+						</p>
+						<p class="story-paragraph">
+							I am deeply thankful to the doctors who ran thorough blood panels and discovered that my Vitamin B12 levels were low (at 277 pg/mL). By switching to a strict carnivore diet, my B12 shot up above 400 pg/mL naturally.
+						</p>
+						<p class="story-paragraph">
+							I know that most doctors were taught that red meat is harmful, and my GP brought up cancer research regarding red meat. But when you are facing 10/10 relentless nerve pain every waking hour, quality of life and ending the agony comes first. I found medical doctors who understand carnivore physiology and supported my decision.
+						</p>
+						<p class="story-paragraph">
+							I recognize this is not something most doctors can easily prescribe within current standard-of-care guidelines. But for me, it was the breakthrough that brought my pain from 10 down to 0. Being pain-free gave me the bandwidth to troubleshoot further: I was able to return to dental specialists with a calm nervous system, have a crown removed, and uncover a hidden apical lesion beneath the tooth.
+						</p>
+						<p class="story-paragraph">
+							Every BMS patient is unique. There are different types, distinct physiological presentations, and likely multiple root causes. There is still so much to uncover. I know you care deeply about your patients, and I believe that by working together, patients, medical doctors, dentists, and researchers, we can build real answers.
+						</p>
+					</div>
+
+					<!-- Collaborative Cardinal Network Diagram -->
+					<div class="network-diagram-container">
+						<h3 class="diagram-section-title">Bridging Patients, Clinicians &amp;&nbsp;Data</h3>
+						<p class="diagram-section-subtitle">
+							Real breakthroughs happen when patient observations, dental mechanics, medical diagnostics, and laboratory research connect around open&nbsp;data.
+						</p>
+						<CardinalNetworkDiagram />
 					</div>
 
 					<!-- Direct Collaboration CTA -->
 					<div class="collab-cta-box">
-						<h3 class="collab-cta-title">Are you a physician or medical researcher studying BMS?</h3>
+						<h3 class="collab-cta-title">Are you a physician or specialist seeing BMS patients?</h3>
 						<p class="collab-cta-text">
-							I am actively partnering with neurologists, ENTs, and oral medicine researchers to share open time-series patient datasets and discuss clinical hypotheses on the podcast.
+							If you have insights to share, want to bounce clinical hypotheses, or would like to collaborate on open patient data, please reach out.
 						</p>
 						<div class="collab-cta-actions">
-							<a href="/contact" class="btn btn-primary">Contact Me</a>
-							<a href="/podcast/professional-guide" class="btn btn-secondary">Physician Guest Guide</a>
+							<a href="/contact" class="btn btn-primary">Get in Touch</a>
 						</div>
 					</div>
 				</article>
@@ -147,6 +171,30 @@ import authorPhoto from '../assets/denis-ethier.png';
 		margin-bottom: 1.5rem;
 	}
 
+	.network-diagram-container {
+		margin: 3.5rem 0;
+		text-align: center;
+	}
+
+	.diagram-section-title {
+		font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+		font-weight: 800;
+		color: var(--text-primary);
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		margin: 0 auto 0.75rem;
+		text-wrap: balance;
+	}
+
+	.diagram-section-subtitle {
+		font-size: 1.05rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		max-width: 680px;
+		margin: 0 auto 1.5rem;
+		text-wrap: balance;
+	}
+
 	.collab-cta-box {
 		background: linear-gradient(135deg, #1e1136 0%, #0d081a 100%);
 		border-radius: 18px;
@@ -157,10 +205,11 @@ import authorPhoto from '../assets/denis-ethier.png';
 	}
 
 	.collab-cta-title {
-		font-size: 1.35rem;
+		font-size: clamp(1.25rem, 3vw, 1.5rem);
 		font-weight: 800;
 		color: #ffffff;
-		margin-bottom: 0.75rem;
+		line-height: 1.35;
+		margin-bottom: 0.85rem;
 		text-wrap: balance;
 	}
 

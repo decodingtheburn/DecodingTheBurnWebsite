@@ -5,14 +5,15 @@ import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
+import CardinalNetworkDiagram from '../components/CardinalNetworkDiagram.astro';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="How Researchers Can Use This Site | Decoding The Burn" 
-			description="Open patient datasets, multi-variable phenotyping, and AI-driven time-series analysis for Burning Mouth Syndrome researchers." 
+			title="My Message to Researchers | Decoding The Burn" 
+			description="Open patient datasets, multi-variable phenotyping, and collaborative time-series data for Burning Mouth Syndrome researchers." 
 		/>
 	</head>
 	<body>
@@ -21,9 +22,6 @@ import authorPhoto from '../assets/denis-ethier.png';
 			<section class="hero-centered-wrapper">
 				<div class="hero-centered-header">
 					<MedicalDisclaimer />
-					<h1 class="hero-centered-title">
-						How Researchers Can Use This&nbsp;Site
-					</h1>
 				</div>
 
 				<!-- Author Photo on Top -->
@@ -47,19 +45,27 @@ import authorPhoto from '../assets/denis-ethier.png';
 							Burning Mouth Syndrome has remained a frustrating medical enigma largely because academic research moves slowly and relies on small, retrospective cohorts (n=20-40) without continuous environmental or dietary tracking.
 						</p>
 						<p class="story-paragraph">
-							As an engineer, I am building an open, structured patient research platform. By combining standardized symptom tracking, anatomical pain mapping, dietary chemical logs, and AI cluster analysis, we can uncover distinct phenotypic subgroups and reproducible relief mechanisms to accelerate clinical trials worldwide.
+							As an engineer, I am building an open, structured patient research platform. By combining standardized symptom tracking, anatomical pain mapping, dietary chemical logs, and collaborative pattern analysis, we can uncover distinct phenotypic subgroups and reproducible relief mechanisms to accelerate discoveries worldwide.
 						</p>
+					</div>
+
+					<!-- Collaborative Cardinal Network Diagram -->
+					<div class="network-diagram-container">
+						<h3 class="diagram-section-title">Bridging Patients, Clinicians &amp;&nbsp;Data</h3>
+						<p class="diagram-section-subtitle">
+							Real breakthroughs happen when patient observations, dental mechanics, medical diagnostics, and laboratory research connect around open&nbsp;data.
+						</p>
+						<CardinalNetworkDiagram />
 					</div>
 
 					<!-- Direct Collaboration CTA -->
 					<div class="collab-cta-box">
-						<h3 class="collab-cta-title">Interested in analyzing our datasets or co-authoring case studies?</h3>
+						<h3 class="collab-cta-title">Interested in analyzing our datasets or collaborating?</h3>
 						<p class="collab-cta-text">
-							I collaborate with university researchers, epidemiologists, and clinical trialists to provide structured patient data and bridge the gap between patient experience and academic science.
+							I collaborate with university researchers, epidemiologists, and clinical trialists to provide structured patient data and bridge the gap between lived experience and academic science.
 						</p>
 						<div class="collab-cta-actions">
-							<a href="/contact" class="btn btn-primary">Collaborate With Us</a>
-							<a href="/open-science" class="btn btn-secondary">Open Science Framework</a>
+							<a href="/contact" class="btn btn-primary">Get in Touch</a>
 						</div>
 					</div>
 				</article>
@@ -147,6 +153,30 @@ import authorPhoto from '../assets/denis-ethier.png';
 		margin-bottom: 1.5rem;
 	}
 
+	.network-diagram-container {
+		margin: 3.5rem 0;
+		text-align: center;
+	}
+
+	.diagram-section-title {
+		font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+		font-weight: 800;
+		color: var(--text-primary);
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		margin: 0 auto 0.75rem;
+		text-wrap: balance;
+	}
+
+	.diagram-section-subtitle {
+		font-size: 1.05rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		max-width: 680px;
+		margin: 0 auto 1.5rem;
+		text-wrap: balance;
+	}
+
 	.collab-cta-box {
 		background: linear-gradient(135deg, #1e1136 0%, #0d081a 100%);
 		border-radius: 18px;
@@ -157,10 +187,11 @@ import authorPhoto from '../assets/denis-ethier.png';
 	}
 
 	.collab-cta-title {
-		font-size: 1.35rem;
+		font-size: clamp(1.25rem, 3vw, 1.5rem);
 		font-weight: 800;
 		color: #ffffff;
-		margin-bottom: 0.75rem;
+		line-height: 1.35;
+		margin-bottom: 0.85rem;
 		text-wrap: balance;
 	}
 

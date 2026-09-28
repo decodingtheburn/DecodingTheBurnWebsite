@@ -5,14 +5,15 @@ import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
+import CardinalNetworkDiagram from '../components/CardinalNetworkDiagram.astro';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="How Dentists Can Use This Site | Decoding The Burn" 
-			description="How dentists and periodontists can collaborate with patient-led time-series data to discover clinical blind spots in Burning Mouth Syndrome." 
+			title="My Message to Dental Practitioners | Decoding The Burn" 
+			description="A direct message to dentists and periodontists on why open communication, exposed tubule mechanics, and collaborative data are key to solving Burning Mouth Syndrome." 
 		/>
 	</head>
 	<body>
@@ -21,9 +22,6 @@ import authorPhoto from '../assets/denis-ethier.png';
 			<section class="hero-centered-wrapper">
 				<div class="hero-centered-header">
 					<MedicalDisclaimer />
-					<h1 class="hero-centered-title">
-						How Dentists Can Use This&nbsp;Site
-					</h1>
 				</div>
 
 				<!-- Author Photo on Top -->
@@ -61,6 +59,15 @@ import authorPhoto from '../assets/denis-ethier.png';
 						<p class="story-paragraph">
 							If 1% of the population suffers from Burning Mouth Syndrome, that represents 80 million people around the world. The more we talk, collaborate, and share open data, the faster we can accelerate real discoveries and improve lives.
 						</p>
+					</div>
+
+					<!-- Collaborative Cardinal Network Diagram -->
+					<div class="network-diagram-container">
+						<h3 class="diagram-section-title">Bridging Patients, Clinicians &amp;&nbsp;Data</h3>
+						<p class="diagram-section-subtitle">
+							Real breakthroughs happen when patient observations, dental mechanics, medical diagnostics, and laboratory research connect around open&nbsp;data.
+						</p>
+						<CardinalNetworkDiagram />
 					</div>
 
 					<!-- Direct Collaboration CTA -->
@@ -156,6 +163,30 @@ import authorPhoto from '../assets/denis-ethier.png';
 		line-height: 1.75;
 		color: var(--text-secondary);
 		margin-bottom: 1.5rem;
+	}
+
+	.network-diagram-container {
+		margin: 3.5rem 0;
+		text-align: center;
+	}
+
+	.diagram-section-title {
+		font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+		font-weight: 800;
+		color: var(--text-primary);
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		margin: 0 auto 0.75rem;
+		text-wrap: balance;
+	}
+
+	.diagram-section-subtitle {
+		font-size: 1.05rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		max-width: 680px;
+		margin: 0 auto 1.5rem;
+		text-wrap: balance;
 	}
 
 	.collab-cta-box {
