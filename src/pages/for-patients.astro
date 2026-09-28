@@ -5,14 +5,15 @@ import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 import { Image } from 'astro:assets';
 import authorPhoto from '../assets/denis-ethier.png';
+import InteractiveProgressionChart from '../components/InteractiveProgressionChart.astro';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="How Patients Can Use This Site | Decoding The Burn" 
-			description="How BMS sufferers can use this site, explore my elimination methodology, and navigate daily recovery tools." 
+			title="My Message for BMS Patients | Decoding The Burn" 
+			description="If you're a BMS patient, I understand what you're going through. A direct message on why we must work together—patients, dentists, doctors, and researchers—to solve this fire." 
 		/>
 	</head>
 	<body>
@@ -22,7 +23,7 @@ import authorPhoto from '../assets/denis-ethier.png';
 				<div class="hero-centered-header">
 					<MedicalDisclaimer />
 					<h1 class="hero-centered-title">
-						How Patients Can Use This&nbsp;Site
+						My Message for BMS&nbsp;Patients
 					</h1>
 				</div>
 
@@ -31,7 +32,7 @@ import authorPhoto from '../assets/denis-ethier.png';
 					<div class="video-placeholder-wrapper" style="cursor: default;">
 						<Image 
 							src={authorPhoto} 
-							alt="Denis Ethier - BMS Patient Story" 
+							alt="Denis Ethier - My Message for BMS Patients" 
 							class="video-placeholder-img" 
 							width={1400} 
 							height={788}
@@ -39,27 +40,36 @@ import authorPhoto from '../assets/denis-ethier.png';
 					</div>
 				</div>
 
-				<!-- My Story Section -->
+				<!-- Direct Personal Message -->
 				<article class="personal-story-section">
-					<h2 class="story-heading">My Story</h2>
 					<div class="story-lead">
 						<p class="story-paragraph">
-							In April 2023, I woke up with severe Burning Mouth Syndrome that escalated over three years into a daily 10/10 agony. Eating felt like chewing hot glass, and five dentists and five medical doctors all told me my mouth looked completely healthy.
+							If you're a BMS patient, I get you. It is a horrendous, agonizing pain. And on top of the constant physical burning, the discovery that dentists and medical doctors don't seem to know much about it is deeply devastating.
 						</p>
 						<p class="story-paragraph">
-							I refused to accept that. I started systematically testing and eliminating variables: acidic foods, coffee, fruit acids, subgingival tartar, and mechanical dentin exposure. Through rigorous tracking and an all-meat elimination baseline, I brought my burning down to a stable zero-pain baseline, and now I am sharing every step so you don't have to navigate this fire alone.
+							My mission is to continue monitoring my situation, take absolutely nothing for granted, and offer every single one of my self-experiments as open data for the entire community, researchers, dentists, and doctors so we can find real solutions.
+						</p>
+						<p class="story-paragraph">
+							I cannot make promises, and I don't know how many people my discoveries will help. But I know it is worth talking about, documenting, and sharing openly. If all of us share our observations and work together—patients, dentists, doctors, and researchers—we have genuine hope of reducing symptoms, extending pain-free windows, or even eliminating the fire completely.
+						</p>
+						<p class="story-paragraph">
+							In my case, finding my specific dietary and dental triggers has allowed me to remain pain-free for the last 18 months. I don't know if my exact protocol will work for everyone, but my ultimate hope is that by pooling our collective wisdom, we can solve this together.
 						</p>
 					</div>
 
-					<!-- Call to Action -->
+					<!-- Interactive 3-Year Progression Timeline Graph -->
+					<div class="message-chart-wrapper">
+						<InteractiveProgressionChart title="My 3-Year BMS Progression &amp; Triggers" />
+					</div>
+
+					<!-- Focused Share Your Story CTA -->
 					<div class="collab-cta-box">
-						<h3 class="collab-cta-title">Ready to explore the complete journey?</h3>
+						<h3 class="collab-cta-title">Share Your BMS Story</h3>
 						<p class="collab-cta-text">
-							Read my full recovery case study detailing every trigger, the 72-hour latency cycle, and my daily maintenance protocol.
+							What worked or didn't work for you? Every pattern, symptom log, and personal observation helps us uncover real answers for the entire community.
 						</p>
 						<div class="collab-cta-actions">
-							<a href="/blog/how-i-reduced-my-bms-pain-from-10-to-0/" class="btn btn-primary">Read Complete Story</a>
-							<a href="/share-your-story" class="btn btn-secondary">Share Your Story</a>
+							<a href="/share-your-story" class="btn btn-primary">Share Your Story</a>
 						</div>
 					</div>
 				</article>
@@ -126,18 +136,9 @@ import authorPhoto from '../assets/denis-ethier.png';
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 	}
 
-	.story-heading {
-		font-size: 1.85rem;
-		font-weight: 800;
-		color: var(--text-primary);
-		margin-bottom: 1.5rem;
-		text-align: center;
-		text-wrap: balance;
-	}
-
 	.story-lead {
 		max-width: 800px;
-		margin: 0 auto 2.5rem;
+		margin: 0 auto 2rem;
 	}
 
 	.story-paragraph {
@@ -147,17 +148,23 @@ import authorPhoto from '../assets/denis-ethier.png';
 		margin-bottom: 1.5rem;
 	}
 
+	.message-chart-wrapper {
+		margin: 2.5rem 0 3.5rem;
+	}
+
 	.collab-cta-box {
 		background: linear-gradient(135deg, #1e1136 0%, #0d081a 100%);
 		border-radius: 18px;
-		padding: 2.25rem 2rem;
+		padding: 2.5rem 2rem;
 		text-align: center;
 		color: #ffffff;
 		border: 1px solid rgba(168, 85, 247, 0.3);
+		max-width: 760px;
+		margin: 0 auto;
 	}
 
 	.collab-cta-title {
-		font-size: 1.35rem;
+		font-size: 1.5rem;
 		font-weight: 800;
 		color: #ffffff;
 		margin-bottom: 0.75rem;
@@ -169,47 +176,36 @@ import authorPhoto from '../assets/denis-ethier.png';
 		line-height: 1.6;
 		color: #e2e8f0;
 		max-width: 620px;
-		margin: 0 auto 1.5rem;
+		margin: 0 auto 1.75rem;
 		text-wrap: balance;
 	}
 
 	.collab-cta-actions {
 		display: flex;
-		gap: 1rem;
 		justify-content: center;
-		flex-wrap: wrap;
 	}
 
 	.btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.85rem 1.75rem;
-		font-weight: 700;
+		padding: 0.95rem 2.5rem;
+		font-weight: 800;
+		font-size: 1.05rem;
 		border-radius: 12px;
 		text-decoration: none;
-		transition: transform 0.15s ease, background 0.15s ease;
+		transition: transform 0.15s ease, filter 0.15s ease;
 	}
 
 	.btn-primary {
 		background: linear-gradient(135deg, #c8382c 0%, #991b1b 100%);
 		color: #ffffff;
+		box-shadow: 0 10px 25px rgba(200, 56, 44, 0.35);
 	}
 
 	.btn-primary:hover {
 		transform: translateY(-2px);
 		filter: brightness(1.1);
-	}
-
-	.btn-secondary {
-		background: rgba(255, 255, 255, 0.15);
-		color: #ffffff;
-		border: 1px solid rgba(255, 255, 255, 0.3);
-	}
-
-	.btn-secondary:hover {
-		background: rgba(255, 255, 255, 0.25);
-		transform: translateY(-2px);
 	}
 
 	@media (max-width: 640px) {
