@@ -1153,7 +1153,10 @@ const slides = post
 				window.addEventListener('keydown', (e) => {
 					if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName || '')) return;
 
-					if (e.code === 'Space') {
+					if (e.code === 'Digit1' || e.code === 'Numpad1' || e.key === '1') {
+						e.preventDefault();
+						toggleLegalDrawer();
+					} else if (e.code === 'Space') {
 						e.preventDefault();
 						if (e.shiftKey) prevStep();
 						else nextStep();
