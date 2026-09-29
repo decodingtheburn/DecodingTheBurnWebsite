@@ -58,13 +58,13 @@ export function generateSlidesFromPost(slug: string, title: string, description:
 		badge: "My Story",
 		title: "My Story: Decoding My BMS Journey",
 		bullets: [
-			"Beer triggered pain 3 years ago",
+			"Beer triggered pain 4 years ago",
 			"Cleared after stopping beer; 6 months pain-free",
 			"Later flared into 10/10 flossing agony",
 			"Exhausted all supplements & medications",
 			"Now nine months completely symptom-free"
 		],
-		notes: `Deliver your personal story: the burning pain began with beer 3 years ago, disappeared when you stopped beer, leaving you 6 months pain-free. Later, coffee triggered another wave that escalated into 10/10 flossing agony. A 4-day fasting reset and carnivore diet starved the fire, completely stopping the pain for nine continuous months.\n\n🛡️ LEGAL SHIELD: Frame as personal lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others.`
+		notes: `Deliver your personal story: the burning pain began with beer 4 years ago, disappeared when you stopped beer, leaving you 6 months pain-free. Later, coffee triggered another wave that escalated into 10/10 flossing agony. A 4-day fasting reset and carnivore diet starved the fire, completely stopping the pain for nine continuous months.\n\n🛡️ LEGAL SHIELD: Frame as personal lived-experience advocacy. Emphasize that what worked for your individual biology may differ from others.`
 	});
 
 	// Slide 3: Medical Disclaimer

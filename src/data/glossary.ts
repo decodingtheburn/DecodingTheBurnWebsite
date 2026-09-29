@@ -102,7 +102,7 @@ export const GLOSSARY_TERMS: GlossaryEntry[] = [
 		category: 'Biochemistry & Diet',
 		shortDef: 'A strict ancestral elimination diet consisting entirely of animal-based foods (meat, poultry, fish, eggs, salt, and water) with zero carbohydrates, plant acids, or sugars.',
 		detailedDef: 'By eliminating all plant toxins (oxalates, phytates, lectins), dietary acids (citric, malic, ascorbic), and fermentable sugars, it provides zero biochemical fuel for oral nerve fires.',
-		patientContext: 'Halted Denis\'s 3-year burning mouth within 7 days, achieving 100% complete pain remission in 2 weeks.'
+		patientContext: 'Halted Denis\'s 4-year burning mouth within 7 days, achieving 100% complete pain remission in 2 weeks.'
 	},
 	{
 		term: 'Titratable Acidity',

@@ -25,13 +25,13 @@ export const bmsSlides: SlideItem[] = [
 		badge: "My Story",
 		title: "My Story: Decoding My BMS Journey",
 		bullets: [
-			"Beer triggered pain 3 years ago",
+			"Beer triggered pain 4 years ago",
 			"Cleared after stopping beer; 6 months pain-free",
 			"Later flared into 10/10 flossing agony",
 			"Exhausted all supplements & medications",
 			"Now 9 months completely symptom-free"
 		],
-		notes: "Deliver your story: the pain began with beer 3 years ago, cleared when you stopped beer, and you lived 6 months pain-free. Later, coffee triggered another wave that escalated into 10/10 flossing agony. You tested protocols, conducted a 4-day fasting reset, and stopped the pain for 9 continuous months.\n\n🛡️ LEGAL SHIELD: Emphasize that what worked for your individual biology may differ from others."
+		notes: "Deliver your story: the pain began with beer 4 years ago, cleared when you stopped beer, and you lived 6 months pain-free. Later, coffee triggered another wave that escalated into 10/10 flossing agony. You tested protocols, conducted a 4-day fasting reset, and stopped the pain for 9 continuous months.\n\n🛡️ LEGAL SHIELD: Emphasize that what worked for your individual biology may differ from others."
 	},
 	{
 		id: 3,
@@ -50,13 +50,13 @@ export const bmsSlides: SlideItem[] = [
 		badge: "First Trigger",
 		title: "My First Trigger: Beer, Wine & Gums",
 		bullets: [
-			"First pain started 3 years ago",
+			"First pain started 4 years ago",
 			"Beer triggered next-day gum pain",
 			"Hard to know if gums or teeth",
 			"Stopping for days cleared the ache",
 			"Wine and beer flared it immediately"
 		],
-		notes: "Describe your first trigger three years ago: waking up the day after drinking beer with intense pain throughout the gums. It was hard to know if it was the gums or the teeth, because the soreness felt everywhere. Stopping for a few days let it subside, but drinking beer or wine flared it right back. You stopped alcohol and continued normally for 6 months.\n\n🛡️ LEGAL SHIELD: Describe your personal experience without claiming alcohol causes BMS universally."
+		notes: "Describe your first trigger four years ago: waking up the day after drinking beer with intense pain throughout the gums. It was hard to know if it was the gums or the teeth, because the soreness felt everywhere. Stopping for a few days let it subside, but drinking beer or wine flared it right back. You stopped alcohol and continued normally for 6 months.\n\n🛡️ LEGAL SHIELD: Describe your personal experience without claiming alcohol causes BMS universally."
 	},
 	{
 		id: 5,
