@@ -43,14 +43,15 @@ const posts = sortPostsDescending(rawPosts);
 
 				<div class="episodes-grid">
 					{
-						posts.filter(p => p.id === 'how-i-reduced-my-bms-pain-from-10-to-0').map((post) => {
+						posts.map((post, idx) => {
 							const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
+							const episodeNum = post.data.entryNumber || (posts.length - idx);
 							return (
 								<article class="episode-card">
 									<a href={`/blog/${post.id}/`} class="episode-card-link">
 										<div class="episode-img-wrapper">
 											<img 
-												src={imageSrc || '/how-i-solved-my-bms-youtube-thumbnail.jpg'} 
+												src={imageSrc || '/my-burning-mouth-triggers-thumbnail.jpg'} 
 												alt={post.data.title} 
 												class="episode-img" 
 												loading="lazy"
@@ -58,7 +59,7 @@ const posts = sortPostsDescending(rawPosts);
 										</div>
 										<div class="episode-body">
 											<div class="episode-meta">
-												<span class="episode-number-badge">Episode 1</span>
+												<span class="episode-number-badge">Episode #{episodeNum}</span>
 												<span class="meta-dot">•</span>
 												<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
 											</div>
