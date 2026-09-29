@@ -6,10 +6,10 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { generateSlidesFromPost } from '../../utils/slideEngine';
 import { sortPostsDescending, getPostEntryNumber, sortPostsAscending } from '../../utils/postUtils';
 
-// Fetch all posts including drafts, sorted deterministically by entry number descending
+// Fetch all posts including drafts, sorted deterministically by entry number ascending (#1, #2, #3...)
 const rawPosts = await getCollection('blog');
 const allPostsAscending = sortPostsAscending(rawPosts);
-const allPosts = sortPostsDescending(rawPosts);
+const allPosts = allPostsAscending;
 
 // Calculate slide count and metadata for each post
 const postsWithSlides = allPosts.map((post) => {
@@ -1619,16 +1619,16 @@ const staticPages = [
 						<div class="filter-block">
 							<span class="filter-label">Sort Order</span>
 							<div class="filter-buttons-list sort-buttons-list">
-								<button type="button" class="sort-pill-btn active" data-sort="entry-desc">
+								<button type="button" class="sort-pill-btn active" data-sort="entry-asc">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+										Oldest First (#1...)
+									</span>
+								</button>
+								<button type="button" class="sort-pill-btn" data-sort="entry-desc">
 									<span class="filter-pill-name">
 										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
 										Newest First
-									</span>
-								</button>
-								<button type="button" class="sort-pill-btn" data-sort="entry-asc">
-									<span class="filter-pill-name">
-										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-										Oldest First
 									</span>
 								</button>
 								<button type="button" class="sort-pill-btn" data-sort="slides-desc">
@@ -2055,7 +2055,7 @@ const staticPages = [
 			let currentStatus = 'all';
 			let currentCategory = 'all';
 			let currentSearch = '';
-			let currentSort = 'entry-desc';
+			let currentSort = 'entry-asc';
 			let currentGroup = 'none';
 			let currentCols = '2';
 
