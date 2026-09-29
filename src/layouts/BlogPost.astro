@@ -1296,6 +1296,108 @@ if (!postNumber && slug) {
 				margin: 0;
 			}
 
+			/* Markdown & MDX Responsive Table Architecture */
+			.post-content :global(table) {
+				width: 100%;
+				border-collapse: separate;
+				border-spacing: 0;
+				margin: 2.5rem 0 3rem 0;
+				background: #ffffff;
+				border: 1px solid #cbd5e1;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+				font-size: 0.96rem;
+				line-height: 1.6;
+			}
+
+			@media (min-width: 860px) {
+				.post-content :global(table) {
+					width: calc(100% + 7rem);
+					margin-left: -3.5rem;
+					margin-right: -3.5rem;
+					max-width: none;
+				}
+			}
+
+			.post-content :global(thead) {
+				background: #f1f5f9;
+			}
+
+			.post-content :global(th) {
+				padding: 1.1rem 1.35rem;
+				font-size: 0.86rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: #0f172a;
+				text-align: left;
+				border-bottom: 2px solid #cbd5e1;
+				border-right: 1px solid #e2e8f0;
+				background: #f1f5f9;
+				vertical-align: middle;
+			}
+
+			.post-content :global(th:last-child) {
+				border-right: none;
+			}
+
+			.post-content :global(td) {
+				padding: 1.05rem 1.35rem;
+				color: #334155;
+				border-bottom: 1px solid #e2e8f0;
+				border-right: 1px solid #f1f5f9;
+				vertical-align: top;
+				font-size: 0.95rem;
+				line-height: 1.6;
+			}
+
+			.post-content :global(td:last-child) {
+				border-right: none;
+			}
+
+			.post-content :global(tr:last-child td) {
+				border-bottom: none;
+			}
+
+			.post-content :global(tbody tr:nth-child(even)) {
+				background: #f8fafc;
+			}
+
+			.post-content :global(tbody tr:hover) {
+				background: #edf2f7;
+				transition: background 0.15s ease;
+			}
+
+			.post-content :global(td strong) {
+				color: #0f172a;
+				font-weight: 700;
+			}
+
+			.post-content :global(th[align="center"]),
+			.post-content :global(td[align="center"]) {
+				text-align: center;
+			}
+
+			.post-content :global(th[align="right"]),
+			.post-content :global(td[align="right"]) {
+				text-align: right;
+			}
+
+			@media (max-width: 680px) {
+				.post-content :global(table) {
+					display: block;
+					overflow-x: auto;
+					-webkit-overflow-scrolling: touch;
+					font-size: 0.88rem;
+				}
+
+				.post-content :global(th),
+				.post-content :global(td) {
+					padding: 0.85rem 0.95rem;
+				}
+			}
+
 			@media (max-width: 600px) {
 				.post-content :global(.casebook-timeline) {
 					padding-left: 2rem;
