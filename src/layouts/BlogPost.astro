@@ -9,6 +9,7 @@ import AuthorBox from '../components/AuthorBox.astro';
 import AudioReader from '../components/AudioReader.astro';
 import GlossaryTooltip from '../components/GlossaryTooltip.astro';
 import ShareStoryCTA from '../components/ShareStoryCTA.astro';
+import CardinalNetworkDiagram from '../components/CardinalNetworkDiagram.astro';
 import { Image } from 'astro:assets';
 import { getPostEntryNumber, sortPostsAscending } from '../utils/postUtils';
 
@@ -134,6 +135,24 @@ if (!postNumber && slug) {
 				<p class="blog-disclaimer-text">
 					I am sharing my personal lived experiences and self-experiments. I am a patient, not a doctor. Always consult your physician before trying anything&nbsp;new.
 				</p>
+			</div>
+		</div>
+
+		<!-- Full-Screen My Mission Graphic Modal (Toggled by Key 2) -->
+		<div class="blog-mission-overlay" id="blog-mission-overlay" role="dialog" aria-modal="true" aria-labelledby="blog-mission-modal-title">
+			<div class="blog-mission-modal-container">
+				<button type="button" class="blog-disclaimer-close-btn" id="blog-mission-close-btn" title="Close Mission [2 or Esc]" aria-label="Close Mission">&times;</button>
+				
+				<div class="blog-mission-modal-header">
+					<h2 class="blog-mission-modal-title" id="blog-mission-modal-title">How to Get BMS&nbsp;Breakthroughs</h2>
+					<p class="blog-mission-modal-subtitle">
+						We can get breakthroughs by having patients, dentists, doctors, and researchers working together and sharing their&nbsp;discoveries.
+					</p>
+				</div>
+
+				<div class="blog-mission-modal-diagram">
+					<CardinalNetworkDiagram />
+				</div>
 			</div>
 		</div>
 
@@ -291,37 +310,73 @@ if (!postNumber && slug) {
 				});
 			}
 
-			function initDisclaimerModal() {
-				const overlay = document.getElementById('blog-disclaimer-overlay');
-				const closeBtn = document.getElementById('blog-disclaimer-close-btn');
-				if (!overlay) return;
+			function initKeyboardModals() {
+				const disclaimerOverlay = document.getElementById('blog-disclaimer-overlay');
+				const disclaimerCloseBtn = document.getElementById('blog-disclaimer-close-btn');
+				const missionOverlay = document.getElementById('blog-mission-overlay');
+				const missionCloseBtn = document.getElementById('blog-mission-close-btn');
 
-				function openModal() {
-					overlay?.classList.add('active');
+				function openDisclaimer() {
+					missionOverlay?.classList.remove('active');
+					disclaimerOverlay?.classList.add('active');
 					document.body.style.overflow = 'hidden';
 				}
 
-				function closeModal() {
-					overlay?.classList.remove('active');
-					document.body.style.overflow = '';
-				}
-
-				function toggleModal() {
-					if (overlay?.classList.contains('active')) {
-						closeModal();
-					} else {
-						openModal();
+				function closeDisclaimer() {
+					disclaimerOverlay?.classList.remove('active');
+					if (!missionOverlay?.classList.contains('active')) {
+						document.body.style.overflow = '';
 					}
 				}
 
-				closeBtn?.addEventListener('click', (e) => {
+				function toggleDisclaimer() {
+					if (disclaimerOverlay?.classList.contains('active')) {
+						closeDisclaimer();
+					} else {
+						openDisclaimer();
+					}
+				}
+
+				function openMission() {
+					disclaimerOverlay?.classList.remove('active');
+					missionOverlay?.classList.add('active');
+					document.body.style.overflow = 'hidden';
+				}
+
+				function closeMission() {
+					missionOverlay?.classList.remove('active');
+					if (!disclaimerOverlay?.classList.contains('active')) {
+						document.body.style.overflow = '';
+					}
+				}
+
+				function toggleMission() {
+					if (missionOverlay?.classList.contains('active')) {
+						closeMission();
+					} else {
+						openMission();
+					}
+				}
+
+				disclaimerCloseBtn?.addEventListener('click', (e) => {
 					e.stopPropagation();
-					closeModal();
+					closeDisclaimer();
 				});
 
-				overlay.addEventListener('click', (e) => {
-					if (e.target === overlay) {
-						closeModal();
+				disclaimerOverlay?.addEventListener('click', (e) => {
+					if (e.target === disclaimerOverlay) {
+						closeDisclaimer();
+					}
+				});
+
+				missionCloseBtn?.addEventListener('click', (e) => {
+					e.stopPropagation();
+					closeMission();
+				});
+
+				missionOverlay?.addEventListener('click', (e) => {
+					if (e.target === missionOverlay) {
+						closeMission();
 					}
 				});
 
@@ -333,10 +388,19 @@ if (!postNumber && slug) {
 
 					if (e.code === 'Digit1' || e.code === 'Numpad1' || e.key === '1') {
 						e.preventDefault();
-						toggleModal();
-					} else if (e.key === 'Escape' && overlay.classList.contains('active')) {
+						toggleDisclaimer();
+					} else if (e.code === 'Digit2' || e.code === 'Numpad2' || e.key === '2') {
 						e.preventDefault();
-						closeModal();
+						toggleMission();
+					} else if (e.key === 'Escape') {
+						if (disclaimerOverlay?.classList.contains('active')) {
+							e.preventDefault();
+							closeDisclaimer();
+						}
+						if (missionOverlay?.classList.contains('active')) {
+							e.preventDefault();
+							closeMission();
+						}
 					}
 				});
 			}
@@ -346,13 +410,13 @@ if (!postNumber && slug) {
 					initLightbox();
 					initSlideToast();
 					initTopicKeyboardNavigation();
-					initDisclaimerModal();
+					initKeyboardModals();
 				});
 			} else {
 				initLightbox();
 				initSlideToast();
 				initTopicKeyboardNavigation();
-				initDisclaimerModal();
+				initKeyboardModals();
 			}
 		</script>
 		<style>
@@ -451,6 +515,105 @@ if (!postNumber && slug) {
 				margin: 0;
 				max-width: 780px;
 				text-wrap: balance;
+			}
+
+			/* Full-Screen My Mission Graphic Modal (Key 2 Toggle) */
+			.blog-mission-overlay {
+				position: fixed;
+				inset: 0;
+				width: 100vw;
+				height: 100vh;
+				background: rgba(4, 6, 10, 0.94);
+				backdrop-filter: blur(14px);
+				display: none;
+				align-items: center;
+				justify-content: center;
+				z-index: 9999;
+				padding: clamp(1rem, 3vw, 2.5rem);
+				box-sizing: border-box;
+				overflow-y: auto;
+				animation: fadeInBlogMission 0.2s ease-out;
+			}
+
+			.blog-mission-overlay.active {
+				display: flex;
+			}
+
+			@keyframes fadeInBlogMission {
+				from {
+					opacity: 0;
+					transform: scale(0.98);
+				}
+				to {
+					opacity: 1;
+					transform: scale(1);
+				}
+			}
+
+			.blog-mission-modal-container {
+				background: #ffffff;
+				border: 1px solid #cbd5e1;
+				border-radius: 20px;
+				box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
+				max-width: 1060px;
+				width: 95vw;
+				max-height: 92vh;
+				overflow-y: auto;
+				padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.5rem);
+				box-sizing: border-box;
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+			}
+
+			.blog-mission-modal-container .blog-disclaimer-close-btn {
+				background: #f1f5f9;
+				border: 1px solid #cbd5e1;
+				color: #334155;
+			}
+
+			.blog-mission-modal-container .blog-disclaimer-close-btn:hover {
+				background: #fee2e2;
+				border-color: #ef4444;
+				color: #b91c1c;
+			}
+
+			.blog-mission-modal-header {
+				margin-bottom: 1.5rem;
+				max-width: 800px;
+			}
+
+			.blog-mission-modal-title {
+				font-family: var(--font-heading, system-ui, sans-serif);
+				font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+				font-weight: 900;
+				color: #0f172a;
+				margin: 0 0 0.5rem 0;
+				letter-spacing: -0.025em;
+				line-height: 1.15;
+				text-wrap: balance;
+			}
+
+			.blog-mission-modal-subtitle {
+				font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+				line-height: 1.55;
+				color: #475569;
+				margin: 0;
+				text-wrap: balance;
+			}
+
+			.blog-mission-modal-diagram {
+				width: 100%;
+			}
+
+			.blog-mission-modal-diagram :global(.cardinal-network-wrapper) {
+				border: none;
+				box-shadow: none;
+				padding: 0.5rem 0 0 0;
+				margin: 0;
+				background: transparent;
 			}
 
 			/* Slide-in Toast Notification at 50% scroll */
