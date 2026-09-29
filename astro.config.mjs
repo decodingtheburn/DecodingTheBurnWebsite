@@ -27,6 +27,11 @@ export default defineConfig({
 	devToolbar: {
 		enabled: false,
 	},
+	redirects: {
+		'/blog/my-burning-mouth-triggers': '/blog/my-burning-mouth-syndrome-triggers-bms-acid-sugar',
+		'/viewer/my-burning-mouth-triggers/private': '/viewer/my-burning-mouth-syndrome-triggers-bms-acid-sugar/private',
+		'/viewer/my-burning-mouth-triggers/public': '/viewer/my-burning-mouth-syndrome-triggers-bms-acid-sugar/public',
+	},
 	integrations: [
 		mdx(),
 		sitemap({
