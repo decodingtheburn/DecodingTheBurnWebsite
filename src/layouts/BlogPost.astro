@@ -127,48 +127,13 @@ if (!postNumber && slug) {
 		<!-- Full-Screen Medical Disclaimer Modal (Toggled by Key 1) -->
 		<div class="blog-disclaimer-overlay" id="blog-disclaimer-overlay" role="dialog" aria-modal="true" aria-labelledby="blog-disclaimer-title">
 			<div class="blog-disclaimer-container">
-				<div class="blog-disclaimer-header">
-					<div class="blog-disclaimer-header-left">
-						<div class="blog-disclaimer-tag">
-							<span class="blog-disclaimer-tag-dot"></span>
-							<span>Medical &amp; Research Disclaimer</span>
-						</div>
-						<h2 class="blog-disclaimer-title" id="blog-disclaimer-title">Medical &amp; Research Disclaimer</h2>
-					</div>
-					<button type="button" class="blog-disclaimer-close-btn" id="blog-disclaimer-close-btn" title="Close Disclaimer [1 or Esc]" aria-label="Close Disclaimer">&times;</button>
-				</div>
-
-				<div class="blog-disclaimer-body">
-					<div class="blog-disclaimer-quote">
-						"I am an independent literature researcher and a patient sharing my personal lived journey with Burning Mouth Syndrome. I am <u>not</u> a doctor or dentist, and this content is for educational and informational purposes only."
-					</div>
-
-					<div class="blog-disclaimer-grid">
-						<div class="blog-disclaimer-card">
-							<div class="blog-disclaimer-card-head">🩺 Consult Qualified Healthcare Professionals</div>
-							<p class="blog-disclaimer-card-p">
-								Never disregard professional medical advice or delay seeking it because of information shared on this website or video. Always consult your physician, dentist, or specialist before starting any dietary changes, supplements, or oral therapies.
-							</p>
-						</div>
-						<div class="blog-disclaimer-card">
-							<div class="blog-disclaimer-card-head">🔬 N=1 Personal Case Study</div>
-							<p class="blog-disclaimer-card-p">
-								Every person's biological biochemistry, nerve pathways, and dental anatomy are unique. What relieved my symptoms is shared as an observational investigative framework, not as a prescriptive medical protocol or guarantee of results.
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="blog-disclaimer-footer">
-					<span>Decoding The Burn • Patient-Led Translational Science</span>
-					<div class="blog-disclaimer-shortcut">
-						<span>Press</span>
-						<kbd>1</kbd>
-						<span>or</span>
-						<kbd>Esc</kbd>
-						<span>to dismiss</span>
-					</div>
-				</div>
+				<button type="button" class="blog-disclaimer-close-btn" id="blog-disclaimer-close-btn" title="Close Disclaimer [1 or Esc]" aria-label="Close Disclaimer">&times;</button>
+				
+				<h2 class="blog-disclaimer-title" id="blog-disclaimer-title">Medical &amp; Research Disclaimer</h2>
+				
+				<p class="blog-disclaimer-text">
+					I am sharing my personal lived experiences and self-experiments. I am a patient, not a doctor. Always consult your physician before trying anything&nbsp;new.
+				</p>
 			</div>
 		</div>
 
@@ -424,70 +389,33 @@ if (!postNumber && slug) {
 			}
 
 			.blog-disclaimer-container {
-				background: radial-gradient(circle 900px at 50% 0%, rgba(239, 68, 68, 0.14), transparent 70%),
-				            linear-gradient(180deg, #111622 0%, #090c12 100%);
-				border: 1.5px solid rgba(239, 68, 68, 0.4);
+				background: #0b0f17;
+				border: 1.5px solid rgba(239, 68, 68, 0.45);
 				border-radius: 16px;
-				box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(239, 68, 68, 0.15);
-				max-width: 1100px;
-				width: 100%;
-				padding: clamp(2rem, 4.5vw, 3.5rem);
+				box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(239, 68, 68, 0.12);
+				max-width: 900px;
+				width: 90vw;
+				padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
 				box-sizing: border-box;
 				position: relative;
 				display: flex;
 				flex-direction: column;
-				gap: 1.75rem;
-			}
-
-			.blog-disclaimer-header {
-				display: flex;
-				justify-content: space-between;
-				align-items: flex-start;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-				padding-bottom: 1.25rem;
-			}
-
-			.blog-disclaimer-header-left {
-				display: flex;
-				flex-direction: column;
-				gap: 0.35rem;
-			}
-
-			.blog-disclaimer-tag {
-				font-size: 0.8rem;
-				font-weight: 800;
-				letter-spacing: 0.08em;
-				color: #f87171;
-				text-transform: uppercase;
-				display: flex;
 				align-items: center;
-				gap: 0.5rem;
-			}
-
-			.blog-disclaimer-tag-dot {
-				width: 8px;
-				height: 8px;
-				border-radius: 50%;
-				background: #ef4444;
-				box-shadow: 0 0 10px #ef4444;
-			}
-
-			.blog-disclaimer-title {
-				font-family: var(--font-heading, system-ui, sans-serif);
-				font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-				font-weight: 900;
-				color: #ffffff;
-				margin: 0;
-				letter-spacing: -0.02em;
+				justify-content: center;
+				text-align: center;
+				gap: 2rem;
 			}
 
 			.blog-disclaimer-close-btn {
+				position: absolute;
+				top: 1.25rem;
+				right: 1.25rem;
 				background: rgba(255, 255, 255, 0.06);
 				border: 1px solid rgba(255, 255, 255, 0.15);
 				color: #cbd5e1;
 				font-size: 1.6rem;
-				width: 42px;
-				height: 42px;
+				width: 44px;
+				height: 44px;
 				border-radius: 8px;
 				cursor: pointer;
 				display: flex;
@@ -498,96 +426,31 @@ if (!postNumber && slug) {
 			}
 
 			.blog-disclaimer-close-btn:hover {
-				background: rgba(239, 68, 68, 0.2);
+				background: rgba(239, 68, 68, 0.25);
 				border-color: #ef4444;
 				color: #ffffff;
 			}
 
-			.blog-disclaimer-body {
-				display: flex;
-				flex-direction: column;
-				gap: 1.25rem;
-			}
-
-			.blog-disclaimer-quote {
-				background: rgba(239, 68, 68, 0.08);
-				border-left: 4px solid #ef4444;
-				padding: 1.25rem 1.5rem;
-				border-radius: 0 10px 10px 0;
-				font-size: clamp(1.15rem, 1.8vw, 1.45rem);
-				line-height: 1.55;
+			.blog-disclaimer-title {
+				font-family: var(--font-heading, system-ui, sans-serif);
+				font-size: clamp(2rem, 3.8vw, 3rem);
+				font-weight: 900;
 				color: #ffffff;
-				font-weight: 600;
-			}
-
-			.blog-disclaimer-grid {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 1.25rem;
-			}
-
-			@media (max-width: 768px) {
-				.blog-disclaimer-grid {
-					grid-template-columns: 1fr;
-				}
-			}
-
-			.blog-disclaimer-card {
-				background: rgba(255, 255, 255, 0.025);
-				border: 1px solid rgba(255, 255, 255, 0.08);
-				border-radius: 10px;
-				padding: 1.15rem 1.35rem;
-				display: flex;
-				flex-direction: column;
-				gap: 0.4rem;
-			}
-
-			.blog-disclaimer-card-head {
-				font-size: 0.95rem;
-				font-weight: 800;
-				color: #fca5a5;
-				display: flex;
-				align-items: center;
-				gap: 0.4rem;
-			}
-
-			.blog-disclaimer-card-p {
-				font-size: 0.92rem;
-				line-height: 1.55;
-				color: #cbd5e1;
 				margin: 0;
+				text-align: center;
+				letter-spacing: -0.02em;
+				text-wrap: balance;
 			}
 
-			.blog-disclaimer-footer {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				padding-top: 0.75rem;
-				border-top: 1px solid rgba(255, 255, 255, 0.08);
-				font-size: 0.82rem;
-				color: #94a3b8;
-			}
-
-			.blog-disclaimer-shortcut {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.4rem;
-				background: rgba(255, 255, 255, 0.08);
-				border: 1px solid rgba(255, 255, 255, 0.18);
-				padding: 0.25rem 0.6rem;
-				border-radius: 6px;
-				font-weight: 700;
-				color: #ffffff;
-			}
-
-			.blog-disclaimer-shortcut kbd {
-				background: rgba(255, 255, 255, 0.2);
-				border: 1px solid rgba(255, 255, 255, 0.3);
-				padding: 0.1rem 0.45rem;
-				border-radius: 4px;
-				font-family: monospace;
-				font-size: 0.8rem;
-				color: #ffffff;
+			.blog-disclaimer-text {
+				font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+				line-height: 1.6;
+				color: #f1f5f9;
+				font-weight: 500;
+				text-align: center;
+				margin: 0;
+				max-width: 780px;
+				text-wrap: balance;
 			}
 
 			/* Slide-in Toast Notification at 50% scroll */
