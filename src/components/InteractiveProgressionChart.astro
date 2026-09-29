@@ -1,5 +1,5 @@
 ---
-// InteractiveProgressionChart.astro - Universal Interactive BMS Pain Progression Graph (0-10 Scale over 3 Years)
+// InteractiveProgressionChart.astro - Universal Interactive BMS Pain Progression Graph (0-10 Scale over 3+ Years)
 interface Props {
 	class?: string;
 	title?: string;
@@ -12,27 +12,28 @@ const {
 ---
 
 <div class={`interactive-progression-container ${className}`} id="bms-progression-widget">
-	<!-- Header with Expand/Collapse Toggle -->
+	<!-- Header with Expand/Collapse Toggle & Subtitle Row -->
 	<div class="widget-header">
-		<div class="widget-header-left">
+		<div class="widget-header-content">
 			<h3 class="widget-title">{title}</h3>
-			<span class="widget-subtitle">Interactive 3-Year Pain & Triggers Timeline</span>
+			<div class="widget-subtitle-row">
+				<span class="widget-subtitle">Interactive 3-Year Pain & Triggers Timeline</span>
+				<button 
+					type="button" 
+					class="chart-expand-btn" 
+					id="chart-expand-toggle"
+					aria-label="Toggle full width"
+					title="Toggle full width"
+				>
+					<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+						<polyline points="15 3 21 3 21 9"></polyline>
+						<polyline points="9 21 3 21 3 15"></polyline>
+						<line x1="21" y1="3" x2="14" y2="10"></line>
+						<line x1="3" y1="21" x2="10" y2="14"></line>
+					</svg>
+				</button>
+			</div>
 		</div>
-		<button 
-			type="button" 
-			class="chart-expand-btn" 
-			id="chart-expand-toggle"
-			aria-label="Toggle wide view"
-			title="Expand to full width"
-		>
-			<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-				<polyline points="15 3 21 3 21 9"></polyline>
-				<polyline points="9 21 3 21 3 15"></polyline>
-				<line x1="21" y1="3" x2="14" y2="10"></line>
-				<line x1="3" y1="21" x2="10" y2="14"></line>
-			</svg>
-			<span class="btn-text">Expand View</span>
-		</button>
 	</div>
 
 	<!-- Chart Box -->
@@ -41,7 +42,7 @@ const {
 			<!-- SVG Data Canvas -->
 			<svg 
 				id="progression-svg" 
-				viewBox="0 0 1380 480" 
+				viewBox="0 -35 1380 525" 
 				class="progression-svg" 
 				preserveAspectRatio="xMidYMid meet"
 			>
@@ -106,95 +107,91 @@ const {
 					<text x="55" y="425" class="axis-label y-val">0</text>
 				</g>
 
-				<!-- Filled Area Under Curve (Smooth Curvy Béziers) -->
+				<!-- Filled Area Under Curve (Extended 3x Baseline on the Right) -->
 				<path 
 					id="progression-area"
 					class="curve-area"
 					d="
 						M 70 420
-						L 80 416
-						C 88 416, 96 132, 110 132
-						C 120 132, 130 132, 138 132
-						C 148 132, 155 416, 170 416
-						L 235 416
-						C 245 416, 252 132, 268 132
-						C 278 132, 288 132, 296 132
-						C 306 132, 314 416, 330 416
-						L 390 416
-						C 400 416, 408 132, 424 132
-						C 434 132, 444 132, 452 132
-						C 462 132, 470 416, 485 416
-						L 545 416
-						C 555 416, 563 132, 579 132
-						C 589 132, 599 132, 607 132
-						C 617 132, 625 416, 640 416
-						L 685 416
-						C 695 416, 703 96, 720 96
-						C 730 96, 740 96, 748 96
-						C 758 96, 766 416, 780 416
-						L 840 416
-						C 850 416, 860 60, 882 60
-						C 896 60, 908 60, 920 60
-						C 932 60, 940 416, 952 416
-						C 957 416, 961 240, 968 240
-						C 974 240, 978 416, 983 416
-						C 988 416, 992 240, 999 240
-						C 1005 240, 1009 416, 1014 416
-						C 1019 416, 1023 240, 1030 240
-						C 1036 240, 1040 416, 1045 416
-						C 1050 416, 1054 240, 1061 240
-						C 1067 240, 1071 416, 1076 416
-						L 1210 416
-						C 1216 416, 1220 380, 1226 380
-						C 1232 380, 1236 416, 1242 416
-						L 1340 416
-						L 1340 420
+						L 70 416
+						L 120 416
+						C 130 416, 142 132, 152 132
+						C 158 132, 164 132, 170 132
+						C 180 132, 188 416, 198 416
+						L 290 416
+						C 300 416, 312 132, 322 132
+						C 328 132, 334 132, 340 132
+						C 350 132, 358 416, 368 416
+						L 460 416
+						C 470 416, 482 132, 492 132
+						C 498 132, 504 132, 510 132
+						C 520 132, 528 416, 538 416
+						L 630 416
+						C 640 416, 652 132, 662 132
+						C 668 132, 674 132, 680 132
+						C 690 132, 698 416, 708 416
+						L 770 416
+						C 778 416, 788 96, 798 96
+						C 804 96, 810 96, 816 96
+						C 826 96, 832 416, 842 416
+						L 910 416
+						C 918 416, 928 60, 938 60
+						C 944 60, 950 60, 956 60
+						C 966 60, 972 416, 982 416
+						C 985 416, 988 240, 992 240
+						C 996 240, 999 416, 1002 416
+						C 1005 416, 1008 240, 1012 240
+						C 1016 240, 1019 416, 1022 416
+						C 1025 416, 1028 240, 1032 240
+						C 1036 240, 1039 416, 1042 416
+						C 1045 416, 1048 240, 1052 240
+						C 1056 240, 1059 416, 1062 416
+						L 1335 416
+						L 1335 420
 						Z
 					"
 					fill="url(#areaGradient)"
 				/>
 
-				<!-- Main Glowing Line Path (Smooth Curves, Curvy Tops & Bottoms) -->
+				<!-- Main Glowing Line Path -->
 				<path 
 					id="progression-curve"
 					class="curve-line"
 					d="
-						M 80 416
-						C 88 416, 96 132, 110 132
-						C 120 132, 130 132, 138 132
-						C 148 132, 155 416, 170 416
-						L 235 416
-						C 245 416, 252 132, 268 132
-						C 278 132, 288 132, 296 132
-						C 306 132, 314 416, 330 416
-						L 390 416
-						C 400 416, 408 132, 424 132
-						C 434 132, 444 132, 452 132
-						C 462 132, 470 416, 485 416
-						L 545 416
-						C 555 416, 563 132, 579 132
-						C 589 132, 599 132, 607 132
-						C 617 132, 625 416, 640 416
-						L 685 416
-						C 695 416, 703 96, 720 96
-						C 730 96, 740 96, 748 96
-						C 758 96, 766 416, 780 416
-						L 840 416
-						C 850 416, 860 60, 882 60
-						C 896 60, 908 60, 920 60
-						C 932 60, 940 416, 952 416
-						C 957 416, 961 240, 968 240
-						C 974 240, 978 416, 983 416
-						C 988 416, 992 240, 999 240
-						C 1005 240, 1009 416, 1014 416
-						C 1019 416, 1023 240, 1030 240
-						C 1036 240, 1040 416, 1045 416
-						C 1050 416, 1054 240, 1061 240
-						C 1067 240, 1071 416, 1076 416
-						L 1210 416
-						C 1216 416, 1220 380, 1226 380
-						C 1232 380, 1236 416, 1242 416
-						L 1340 416
+						M 70 416
+						L 120 416
+						C 130 416, 142 132, 152 132
+						C 158 132, 164 132, 170 132
+						C 180 132, 188 416, 198 416
+						L 290 416
+						C 300 416, 312 132, 322 132
+						C 328 132, 334 132, 340 132
+						C 350 132, 358 416, 368 416
+						L 460 416
+						C 470 416, 482 132, 492 132
+						C 498 132, 504 132, 510 132
+						C 520 132, 528 416, 538 416
+						L 630 416
+						C 640 416, 652 132, 662 132
+						C 668 132, 674 132, 680 132
+						C 690 132, 698 416, 708 416
+						L 770 416
+						C 778 416, 788 96, 798 96
+						C 804 96, 810 96, 816 96
+						C 826 96, 832 416, 842 416
+						L 910 416
+						C 918 416, 928 60, 938 60
+						C 944 60, 950 60, 956 60
+						C 966 60, 972 416, 982 416
+						C 985 416, 988 240, 992 240
+						C 996 240, 999 416, 1002 416
+						C 1005 416, 1008 240, 1012 240
+						C 1016 240, 1019 416, 1022 416
+						C 1025 416, 1028 240, 1032 240
+						C 1036 240, 1039 416, 1042 416
+						C 1045 416, 1048 240, 1052 240
+						C 1056 240, 1059 416, 1062 416
+						L 1335 416
 					"
 					fill="none"
 					stroke="url(#curveGradient)"
@@ -202,88 +199,90 @@ const {
 					filter="url(#glow)"
 				/>
 
-				<!-- Visual Annotations & Titles (Large Numbers, Pure White Titles Underneath) -->
+				<!-- Rightward Continuing Arrow into the Future -->
+				<g class="future-arrow-group">
+					<path d="M 1324 408 L 1338 416 L 1324 424" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+				</g>
+
+				<!-- Visual Annotations & Titles -->
 				<g class="annotations-layer">
-					<!-- Peak 1: #1 Beer and Wine with Hand-Drawn Arrow -->
-					<text x="124" y="58" class="annotation-num">#1</text>
-					<text x="124" y="80" class="annotation-title annotation-beer-wine">Beer & Wine</text>
+					<!-- Peak 1: Trigger #1 Beer & Wine (2 lines) with Hand-Drawn Arrow -->
+					<text x="160" y="38" class="annotation-num">Trigger #1</text>
+					<text x="160" y="60" class="annotation-title">Beer &</text>
+					<text x="160" y="78" class="annotation-title">Wine</text>
 					<g class="hand-drawn-arrow-group">
-						<path d="M 124 88 C 122 98, 126 108, 124 122" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
-						<path d="M 119 114 C 121 118, 123 121, 124 124 C 125 121, 127 118, 129 114" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M 160 86 C 158 98, 162 108, 160 122" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
+						<path d="M 155 114 C 157 118, 159 121, 160 124 C 161 121, 163 118, 165 114" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 					</g>
 
 					<!-- Valley 1: 6 Months Pain-Free (Centered in Valley floor) -->
-					<text x="202" y="388" class="annotation-text valley-text">6 Months</text>
-					<text x="202" y="400" class="annotation-text valley-text">Pain-Free</text>
+					<text x="245" y="388" class="annotation-text valley-text">6 Months</text>
+					<text x="245" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 2: #2 Coffee with Hand-Drawn Arrow -->
-					<text x="282" y="58" class="annotation-num">#2</text>
-					<text x="282" y="80" class="annotation-title">Coffee</text>
+					<!-- Peak 2: Trigger #2 Coffee with Hand-Drawn Arrow -->
+					<text x="330" y="46" class="annotation-num">Trigger #2</text>
+					<text x="330" y="72" class="annotation-title">Coffee</text>
 					<g class="hand-drawn-arrow-group">
-						<path d="M 282 88 C 280 98, 284 108, 282 122" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
-						<path d="M 277 114 C 279 118, 281 121, 282 124 C 283 121, 285 118, 287 114" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M 330 82 C 328 94, 332 106, 330 122" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
+						<path d="M 325 114 C 327 118, 329 121, 330 124 C 331 121, 333 118, 335 114" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 					</g>
 
 					<!-- Valley 2: 6 Months Pain-Free -->
-					<text x="360" y="388" class="annotation-text valley-text">6 Months</text>
-					<text x="360" y="400" class="annotation-text valley-text">Pain-Free</text>
+					<text x="415" y="388" class="annotation-text valley-text">6 Months</text>
+					<text x="415" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 3: #3 Dental Cleaning with Hand-Drawn Arrow -->
-					<text x="438" y="58" class="annotation-num">#3</text>
-					<text x="438" y="80" class="annotation-title">Dental Cleaning</text>
+					<!-- Peak 3: Trigger #3 Dental Cleaning (2 lines) with Hand-Drawn Arrow -->
+					<text x="500" y="38" class="annotation-num">Trigger #3</text>
+					<text x="500" y="60" class="annotation-title">Dental</text>
+					<text x="500" y="78" class="annotation-title">Cleaning</text>
 					<g class="hand-drawn-arrow-group">
-						<path d="M 438 88 C 436 98, 440 108, 438 122" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
-						<path d="M 433 114 C 435 118, 437 121, 438 124 C 439 121, 441 118, 443 114" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M 500 86 C 498 98, 502 108, 500 122" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
+						<path d="M 495 114 C 497 118, 499 121, 500 124 C 501 121, 503 118, 505 114" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 					</g>
 
 					<!-- Valley 3: 6 Months Pain-Free -->
-					<text x="515" y="388" class="annotation-text valley-text">6 Months</text>
-					<text x="515" y="400" class="annotation-text valley-text">Pain-Free</text>
+					<text x="585" y="388" class="annotation-text valley-text">6 Months</text>
+					<text x="585" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 4: #4 Most Fruits with Hand-Drawn Arrow -->
-					<text x="593" y="58" class="annotation-num">#4</text>
-					<text x="593" y="80" class="annotation-title">Most Fruits</text>
+					<!-- Peak 4: Trigger #4 Most Fruits (2 lines) with Hand-Drawn Arrow -->
+					<text x="670" y="38" class="annotation-num">Trigger #4</text>
+					<text x="670" y="60" class="annotation-title">Most</text>
+					<text x="670" y="78" class="annotation-title">Fruits</text>
 					<g class="hand-drawn-arrow-group">
-						<path d="M 593 88 C 591 98, 595 108, 593 122" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
-						<path d="M 588 114 C 590 118, 592 121, 593 124 C 594 121, 596 118, 598 114" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M 670 86 C 668 98, 672 108, 670 122" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
+						<path d="M 665 114 C 667 118, 669 121, 670 124 C 671 121, 673 118, 675 114" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 					</g>
 
 					<!-- Valley 4: 3-4 Months Pain-Free -->
-					<text x="662" y="388" class="annotation-text valley-text">3-4 Months</text>
-					<text x="662" y="400" class="annotation-text valley-text">Pain-Free</text>
+					<text x="740" y="388" class="annotation-text valley-text">3-4 Months</text>
+					<text x="740" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 5: #5 4 Cervical Patches with Hand-Drawn Arrow -->
-					<text x="734" y="24" class="annotation-num">#5</text>
-					<text x="734" y="46" class="annotation-title">4 Cervical Patches</text>
+					<!-- Peak 5: Trigger #5 Cervical Patches (2 lines) with Hand-Drawn Arrow -->
+					<text x="810" y="10" class="annotation-num">Trigger #5</text>
+					<text x="810" y="32" class="annotation-title">Cervical</text>
+					<text x="810" y="50" class="annotation-title">Patches</text>
 					<g class="hand-drawn-arrow-group">
-						<path d="M 734 54 C 732 64, 736 74, 734 88" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
-						<path d="M 729 80 C 731 84, 733 87, 734 90 C 735 87, 737 84, 739 80" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M 810 58 C 808 68, 812 76, 810 88" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
+						<path d="M 805 80 C 807 84, 809 87, 810 90 C 811 87, 813 84, 815 80" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 					</g>
 
 					<!-- Valley 5: 6 Months Pain-Free -->
-					<text x="810" y="388" class="annotation-text valley-text">6 Months</text>
-					<text x="810" y="400" class="annotation-text valley-text">Pain-Free</text>
+					<text x="880" y="388" class="annotation-text valley-text">6 Months</text>
+					<text x="880" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 6: #6 All Acids with Hand-Drawn Arrow -->
-					<text x="901" y="-10" class="annotation-num">#6</text>
-					<text x="901" y="12" class="annotation-title">All Acids</text>
+					<!-- Peak 6: Trigger #6 All Acids with Hand-Drawn Arrow -->
+					<text x="950" y="-12" class="annotation-num">Trigger #6</text>
+					<text x="950" y="10" class="annotation-title">All Acids</text>
 					<g class="hand-drawn-arrow-group">
-						<path d="M 901 20 C 899 30, 903 40, 901 52" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
-						<path d="M 896 44 C 898 48, 900 51, 901 54 C 902 51, 904 48, 906 44" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M 950 18 C 948 28, 952 38, 950 52" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
+						<path d="M 945 44 C 947 48, 949 51, 950 54 C 951 51, 953 48, 955 44" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 					</g>
 
 					<!-- Vegetables (Cheats) with Hand-Drawn Arrow -->
-					<text x="1014" y="180" class="annotation-text yo-yo-text">Vegetables</text>
+					<text x="1022" y="180" class="annotation-text yo-yo-text">Vegetables</text>
 					<g class="hand-drawn-arrow-group">
-						<path d="M 1014 190 C 1012 200, 1016 210, 1014 225" fill="none" stroke="#f59e0b" stroke-width="2.0" stroke-linecap="round" />
-						<path d="M 1009 217 C 1011 221, 1013 224, 1014 227 C 1015 224, 1017 221, 1019 217" fill="none" stroke="#f59e0b" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" />
-					</g>
-
-					<!-- Cheese with Hand-Drawn Arrow -->
-					<text x="1226" y="335" class="annotation-text cheese-text">Cheese</text>
-					<g class="hand-drawn-arrow-group">
-						<path d="M 1226 342 C 1225 350, 1227 358, 1226 368" fill="none" stroke="#10b981" stroke-width="2.0" stroke-linecap="round" />
-						<path d="M 1222 360 C 1224 364, 1225 367, 1226 370 C 1227 367, 1228 364, 1230 360" fill="none" stroke="#10b981" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M 1022 190 C 1020 200, 1024 210, 1022 225" fill="none" stroke="#f59e0b" stroke-width="2.0" stroke-linecap="round" />
+						<path d="M 1017 217 C 1019 221, 1021 224, 1022 227 C 1023 224, 1025 221, 1027 217" fill="none" stroke="#f59e0b" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" />
 					</g>
 				</g>
 
@@ -293,11 +292,12 @@ const {
 					<circle id="cursor-point" cx="0" cy="0" r="7.5" class="cursor-pulse-point" />
 				</g>
 
-				<!-- X-Axis Clean Timeline Labels (April 2023 ... April 2025 ... Today) -->
+				<!-- X-Axis Clean Timeline Labels -->
 				<g class="x-axis-labels">
-					<text x="80" y="455" class="axis-time-label label-start">April 2023</text>
-					<text x="900" y="455" class="axis-time-label">April 2025</text>
-					<text x="1320" y="455" class="axis-time-label label-end">Today</text>
+					<text x="160" y="455" class="axis-time-label label-start">Approx. 3 Years Ago</text>
+					<text x="950" y="455" class="axis-time-label">18 Months Ago</text>
+					<text x="1062" y="455" class="axis-time-label">12 Months Ago</text>
+					<text x="1335" y="455" class="axis-time-label label-end">Today</text>
 				</g>
 			</svg>
 		</div>
@@ -308,10 +308,10 @@ const {
 	/* Breakout Container: Naturally wider than the text column on desktop for high-impact clarity */
 	.interactive-progression-container {
 		background: radial-gradient(120% 120% at 50% 0%, #1e1136 0%, #0d081a 60%, #080410 100%);
-		border: 1px solid rgba(168, 85, 247, 0.3);
-		border-radius: 1.25rem;
-		padding: 1.5rem 1.75rem;
-		margin: 3rem 0;
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.5rem;
+		padding: 1.75rem 2rem;
+		margin: 3.5rem 0;
 		color: #e2e8f0;
 		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 		position: relative;
@@ -339,94 +339,127 @@ const {
 		}
 	}
 
-	/* Fullscreen / Full-Width Expand Mode */
+	/* Full-Width In-Place Breakout Mode with 50px Padding and Rounded Corners */
 	.interactive-progression-container.is-expanded {
-		position: fixed !important;
-		top: 2.5vh;
-		left: 2.5vw;
-		width: 95vw !important;
-		max-width: 1500px !important;
-		height: 95vh;
-		margin: 0 !important;
-		z-index: 99999 !important;
-		display: flex;
-		flex-direction: column;
-		box-shadow: 0 30px 100px rgba(0, 0, 0, 0.9), 0 0 0 100vmax rgba(0, 0, 0, 0.85);
-		padding: 2rem 2.5rem;
-		backdrop-filter: blur(12px);
+		position: relative !important;
+		width: calc(100vw - 100px) !important;
+		max-width: 1600px !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+		margin-top: 3.5rem !important;
+		margin-bottom: 3.5rem !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		border-radius: 1.5rem !important;
+		border: 1px solid rgba(168, 85, 247, 0.5) !important;
+		padding: 50px !important;
+		box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(168, 85, 247, 0.2) !important;
+		z-index: 25 !important;
+	}
+
+	@media (max-width: 768px) {
+		.interactive-progression-container.is-expanded {
+			width: calc(100vw - 24px) !important;
+			padding: 24px 16px !important;
+			border-radius: 1.15rem !important;
+		}
+	}
+
+	.interactive-progression-container.is-expanded .widget-header {
+		max-width: 1540px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
 	}
 
 	.interactive-progression-container.is-expanded .chart-wrapper {
-		flex: 1;
-		display: flex;
-		align-items: center;
+		max-width: 1540px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
 	}
 
 	.interactive-progression-container.is-expanded .chart-canvas-inner {
 		width: 100%;
-		min-width: 1000px;
+		min-width: 1100px;
 	}
 
 	/* Header */
 	.widget-header {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 1.25rem;
+		align-items: flex-start;
+		margin-bottom: 1.5rem;
 		border-bottom: 1px solid rgba(168, 85, 247, 0.18);
-		padding-bottom: 0.85rem;
-		gap: 1rem;
-		flex-wrap: wrap;
+		padding-bottom: 1.1rem;
+		gap: 1.25rem;
 	}
 
-	.widget-header-left {
+	.widget-header-content {
 		display: flex;
 		flex-direction: column;
-		gap: 0.2rem;
+		gap: 0.55rem;
+		width: 100%;
 	}
 
 	.widget-title {
-		font-size: 1.4rem;
-		font-weight: 800;
+		font-size: clamp(2.05rem, 4.2vw, 2.65rem);
+		font-weight: 900;
 		color: #ffffff;
 		margin: 0;
-		line-height: 1.2;
-		letter-spacing: -0.01em;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		text-wrap: balance;
+	}
+
+	.widget-subtitle-row {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.65rem;
+		flex-wrap: wrap;
 	}
 
 	.widget-subtitle {
-		font-size: 0.82rem;
+		font-size: 0.95rem;
 		color: #c084fc;
-		font-weight: 500;
+		font-weight: 600;
 		letter-spacing: 0.01em;
 	}
 
-	/* Expand Button */
+	/* Expand Button (Icon-Only, right next to subtitle) */
 	.chart-expand-btn {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5rem;
-		background: rgba(168, 85, 247, 0.15);
-		border: 1px solid rgba(168, 85, 247, 0.35);
-		color: #e9d5ff;
-		padding: 0.45rem 0.85rem;
+		justify-content: center;
+		background: rgba(168, 85, 247, 0.18);
+		border: 1px solid rgba(168, 85, 247, 0.45);
+		color: #f3e8ff;
+		width: 30px;
+		height: 30px;
+		padding: 0;
 		border-radius: 0.5rem;
-		font-size: 0.82rem;
-		font-weight: 600;
 		cursor: pointer;
 		transition: all 0.2s ease;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+		flex-shrink: 0;
 	}
 
 	.chart-expand-btn:hover {
-		background: rgba(168, 85, 247, 0.3);
-		border-color: rgba(168, 85, 247, 0.6);
+		background: rgba(168, 85, 247, 0.38);
+		border-color: rgba(168, 85, 247, 0.75);
 		color: #ffffff;
-		transform: translateY(-1px);
+		transform: translateY(-1px) scale(1.06);
+		box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
 	}
 
 	.expand-icon {
-		width: 15px;
-		height: 15px;
+		width: 16px;
+		height: 16px;
+		transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.interactive-progression-container.is-expanded .expand-icon {
+		transform: rotate(180deg);
 	}
 
 	/* Chart Canvas */
@@ -436,9 +469,9 @@ const {
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
 		background: rgba(10, 6, 20, 0.6);
-		border-radius: 0.75rem;
-		border: 1px solid rgba(255, 255, 255, 0.05);
-		padding: 0.5rem 0;
+		border-radius: 0.85rem;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		padding: 0.75rem 0;
 	}
 
 	.chart-canvas-inner {
@@ -479,36 +512,27 @@ const {
 	}
 	.val-5 { fill: #fbbf24; font-weight: 700; }
 
-	.annotation-arrow {
-		stroke-width: 1.5;
-		opacity: 0.8;
-	}
-	
 	.annotation-num {
 		fill: #f87171;
-		font-size: 16px;
+		font-size: 15.5px;
 		font-weight: 800;
 		text-anchor: middle;
+		letter-spacing: 0.02em;
+		filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.45));
 	}
 
 	.annotation-title {
 		fill: #ffffff;
-		font-size: 13.5px;
-		font-weight: 700;
+		font-size: 14px;
+		font-weight: 800;
 		text-anchor: middle;
 		letter-spacing: 0.01em;
 	}
 
-	.annotation-beer-wine {
-		fill: #ffffff;
-		font-size: 15px;
-		font-weight: 800;
-	}
-
 	.valley-text {
 		fill: #6ee7b7;
-		font-size: 10.5px;
-		font-weight: 600;
+		font-size: 11px;
+		font-weight: 700;
 		text-anchor: middle;
 		dominant-baseline: middle;
 	}
@@ -519,21 +543,14 @@ const {
 	
 	.yo-yo-text {
 		fill: #fbbf24;
-		font-size: 11.5px;
-		font-weight: 700;
-		text-anchor: middle;
-	}
-	
-	.cheese-text {
-		fill: #a7f3d0;
-		font-size: 11px;
-		font-weight: 700;
+		font-size: 12px;
+		font-weight: 800;
 		text-anchor: middle;
 	}
 
 	.axis-time-label {
 		fill: #cbd5e1;
-		font-size: 11px;
+		font-size: 11.5px;
 		font-weight: 600;
 		text-anchor: middle;
 	}
@@ -565,28 +582,20 @@ const {
 		const cursorLine = document.getElementById('cursor-vertical-line');
 		const cursorPoint = document.getElementById('cursor-point');
 
-		// Toggle Expand / Breakout mode
+		// Toggle In-Place Full-Width mode
 		if (expandBtn) {
 			expandBtn.addEventListener('click', () => {
 				const isExpanded = widget.classList.toggle('is-expanded');
-				const btnText = expandBtn.querySelector('.btn-text');
-				if (btnText) {
-					btnText.textContent = isExpanded ? 'Exit Fullscreen' : 'Expand View';
-				}
-				if (isExpanded) {
-					document.body.style.overflow = 'hidden';
-				} else {
-					document.body.style.overflow = '';
-				}
+				expandBtn.setAttribute('title', isExpanded ? 'Collapse to standard width' : 'Expand to full width');
+				expandBtn.setAttribute('aria-label', isExpanded ? 'Collapse to standard width' : 'Expand to full width');
 			});
 
 			// Close on Escape key
 			document.addEventListener('keydown', (e) => {
 				if (e.key === 'Escape' && widget.classList.contains('is-expanded')) {
 					widget.classList.remove('is-expanded');
-					document.body.style.overflow = '';
-					const btnText = expandBtn.querySelector('.btn-text');
-					if (btnText) btnText.textContent = 'Expand View';
+					expandBtn.setAttribute('title', 'Expand to full width');
+					expandBtn.setAttribute('aria-label', 'Expand to full width');
 				}
 			});
 		}
@@ -597,7 +606,7 @@ const {
 		svg.addEventListener('mousemove', (e: MouseEvent) => {
 			const rect = svg.getBoundingClientRect();
 			const x = ((e.clientX - rect.left) / rect.width) * 1380;
-			const y = ((e.clientY - rect.top) / rect.height) * 480;
+			const y = ((e.clientY - rect.top) / rect.height) * 525 - 35;
 
 			if (cursorLayer && cursorLine && cursorPoint && x >= 70 && x <= 1340) {
 				cursorLayer.style.display = 'block';
