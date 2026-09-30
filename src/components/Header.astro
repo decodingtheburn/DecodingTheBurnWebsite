@@ -13,6 +13,14 @@ import TongueLogo from './TongueLogo.astro';
   </a>
   
   <div class="nav-links" id="nav-links">
+    <div class="mobile-menu-header">
+      <div class="mobile-logo-group">
+        <TongueLogo />
+        <span class="mobile-brand-title">Decoding The Burn</span>
+      </div>
+      <button type="button" class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Menu">&times;</button>
+    </div>
+
     <a href="/blog/how-i-reduced-my-bms-pain-from-10-to-0/">My Story</a>
     <a href="/troubleshooting-night">Weekly Group</a>
     <a href="/podcast">Podcast</a>
@@ -68,14 +76,51 @@ import TongueLogo from './TongueLogo.astro';
   </button>
 </nav>
 
+<!-- Backdrop Overlay for Mobile Drawer -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
 <script>
   const initMenu = () => {
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
+    const navOverlay = document.getElementById('nav-overlay');
+    const mobileCloseBtn = document.getElementById('mobile-close-btn');
+
+    const openMenu = () => {
+      navLinks?.classList.add('active');
+      menuToggle?.classList.add('active');
+      navOverlay?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+      navLinks?.classList.remove('active');
+      menuToggle?.classList.remove('active');
+      navOverlay?.classList.remove('active');
+      document.body.style.overflow = '';
+    };
 
     menuToggle?.addEventListener('click', () => {
-      navLinks?.classList.toggle('active');
-      menuToggle.classList.toggle('active');
+      if (navLinks?.classList.contains('active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mobileCloseBtn?.addEventListener('click', closeMenu);
+    navOverlay?.addEventListener('click', closeMenu);
+
+    // Close when clicking any nav link on mobile
+    const allLinks = navLinks?.querySelectorAll('a');
+    allLinks?.forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks?.classList.contains('active')) {
+        closeMenu();
+      }
     });
   };
 
@@ -87,7 +132,7 @@ import TongueLogo from './TongueLogo.astro';
 </script>
 
 <style>
-  /* Dropdown Menu */
+  /* Dropdown Menu Desktop */
   .nav-dropdown {
     position: relative;
     display: inline-flex;
@@ -161,17 +206,130 @@ import TongueLogo from './TongueLogo.astro';
     color: var(--accent) !important;
   }
 
+  .mobile-menu-header {
+    display: none;
+  }
+
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease;
+    z-index: 999;
+  }
+
+  .nav-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   @media (max-width: 768px) {
+    .mobile-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0 1rem 0;
+      margin-bottom: 0.5rem;
+      border-bottom: 1.5px solid #f1f5f9;
+      width: 100%;
+    }
+
+    .mobile-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .mobile-logo-group :global(svg) {
+      width: 28px;
+      height: 28px;
+    }
+
+    .mobile-brand-title {
+      font-family: var(--font-heading, system-ui, sans-serif);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .mobile-close-btn {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      font-size: 1.5rem;
+      line-height: 1;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .mobile-close-btn:hover {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #b91c1c;
+    }
+
+    /* Single Column Mobile Dropdown Architecture */
+    .nav-dropdown {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 0.35rem;
+    }
+
+    .dropdown-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #0f172a;
+      padding: 0.65rem 0 0.35rem 0;
+    }
+
     .dropdown-menu {
       position: static;
       transform: none;
       box-shadow: none;
       border: none;
-      padding-left: 1rem;
+      border-left: 2.5px solid #fecdd3;
+      margin: 0.25rem 0 0.4rem 0.5rem;
+      padding: 0.2rem 0 0.2rem 0.85rem;
+      gap: 0.15rem;
       opacity: 1;
       pointer-events: auto;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+      min-width: 0;
+      width: 100%;
     }
+
+    .dropdown-menu a {
+      font-size: 0.92rem !important;
+      font-weight: 600 !important;
+      color: #475569 !important;
+      padding: 0.35rem 0.6rem !important;
+      border-radius: 6px;
+      border-bottom: none !important;
+    }
+
+    .dropdown-menu a:hover {
+      background: #fff1f2;
+      color: var(--accent) !important;
+    }
+
     .chevron-icon {
       display: none;
     }

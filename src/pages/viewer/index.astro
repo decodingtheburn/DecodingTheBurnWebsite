@@ -969,6 +969,55 @@ const staticPages = [
 				transform: scale(1.03);
 			}
 
+			/* Default Coming Soon Thumbnail Fallback */
+			.card-thumb-coming-soon {
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 50%, #1e1025 100%);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.6rem;
+				padding: 1.25rem;
+				box-sizing: border-box;
+				position: relative;
+				overflow: hidden;
+				text-align: center;
+			}
+
+			.card-thumb-coming-soon::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: radial-gradient(circle at 50% 45%, rgba(225, 29, 72, 0.3), transparent 70%);
+				pointer-events: none;
+			}
+
+			.coming-soon-badge {
+				font-family: var(--font-heading, system-ui, sans-serif);
+				font-size: 1.2rem;
+				font-weight: 900;
+				color: #ffffff;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+				padding: 0.45rem 1.25rem;
+				background: #be123c;
+				border: 1px solid rgba(254, 205, 211, 0.4);
+				border-radius: 8px;
+				box-shadow: 0 4px 16px rgba(225, 29, 72, 0.45);
+				z-index: 1;
+			}
+
+			.coming-soon-brand {
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: #cbd5e1;
+				z-index: 1;
+			}
+
 			/* Card Content Box */
 			.card-content-box {
 				padding: 1.5rem;
@@ -1769,12 +1818,19 @@ const staticPages = [
 										title={`Read "${cleanTitle}" in a new tab`}
 									>
 										<div class="card-thumb-box">
-											<img 
-												src={post.data.heroImage || '/how_i_solved_my_bms_thumbnail.jpg'} 
-												alt={cleanTitle} 
-												class="card-thumb-img"
-												loading="lazy"
-											/>
+											{post.data.heroImage ? (
+												<img 
+													src={post.data.heroImage} 
+													alt={cleanTitle} 
+													class="card-thumb-img"
+													loading="lazy"
+												/>
+											) : (
+												<div class="card-thumb-coming-soon">
+													<div class="coming-soon-badge">Coming Soon</div>
+													<div class="coming-soon-brand">Decoding The Burn</div>
+												</div>
+											)}
 										</div>
 									</a>
 
