@@ -130,11 +130,13 @@ if (!postNumber && slug) {
 			<div class="blog-disclaimer-container">
 				<button type="button" class="blog-disclaimer-close-btn" id="blog-disclaimer-close-btn" title="Close Disclaimer [1 or Esc]" aria-label="Close Disclaimer">&times;</button>
 				
-				<h2 class="blog-disclaimer-title" id="blog-disclaimer-title">Medical &amp; Research Disclaimer</h2>
+				<h2 class="blog-disclaimer-title" id="blog-disclaimer-title">Medical Disclaimer</h2>
 				
-				<p class="blog-disclaimer-text">
-					I am sharing my personal lived experiences and self-experiments. I am a patient, not a doctor. Always consult your physician before trying anything&nbsp;new.
-				</p>
+				<ul class="blog-disclaimer-bullets">
+					<li>I am sharing my own personal lived experience and self-experiments.</li>
+					<li>I am a patient, I am not a doctor or a dentist.</li>
+					<li>Always consult your physician before trying anything new.</li>
+				</ul>
 			</div>
 		</div>
 
@@ -144,9 +146,9 @@ if (!postNumber && slug) {
 				<button type="button" class="blog-disclaimer-close-btn" id="blog-mission-close-btn" title="Close Mission [2 or Esc]" aria-label="Close Mission">&times;</button>
 				
 				<div class="blog-mission-modal-header">
-					<h2 class="blog-mission-modal-title" id="blog-mission-modal-title">How to Get BMS&nbsp;Breakthroughs</h2>
+					<h2 class="blog-mission-modal-title" id="blog-mission-modal-title">My Mission</h2>
 					<p class="blog-mission-modal-subtitle">
-						We can get breakthroughs by having patients, dentists, doctors, and researchers working together and sharing their&nbsp;discoveries.
+						Find breakthroughs by having patients, dentists, doctors, and researchers working together and sharing their discoveries.
 					</p>
 				</div>
 
@@ -540,10 +542,10 @@ if (!postNumber && slug) {
 			.blog-disclaimer-container {
 				background: #0b0f17;
 				border: 1.5px solid rgba(239, 68, 68, 0.45);
-				border-radius: 16px;
+				border-radius: 20px;
 				box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(239, 68, 68, 0.12);
-				max-width: 900px;
-				width: 90vw;
+				max-width: 1300px;
+				width: 95vw;
 				padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
 				box-sizing: border-box;
 				position: relative;
@@ -552,7 +554,7 @@ if (!postNumber && slug) {
 				align-items: center;
 				justify-content: center;
 				text-align: center;
-				gap: 2rem;
+				gap: 2.25rem;
 			}
 
 			.blog-disclaimer-close-btn {
@@ -582,13 +584,50 @@ if (!postNumber && slug) {
 
 			.blog-disclaimer-title {
 				font-family: var(--font-heading, system-ui, sans-serif);
-				font-size: clamp(2rem, 3.8vw, 3rem);
+				font-size: clamp(2.2rem, 4vw, 3.25rem);
 				font-weight: 900;
 				color: #ffffff;
 				margin: 0;
 				text-align: center;
 				letter-spacing: -0.02em;
 				text-wrap: balance;
+			}
+
+			.blog-disclaimer-bullets {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+				width: 100%;
+				max-width: 1150px;
+				text-align: left;
+			}
+
+			.blog-disclaimer-bullets li {
+				position: relative;
+				padding-left: 2.25rem;
+				font-size: clamp(1.2rem, 2vw, 1.7rem);
+				line-height: 1.45;
+				color: #f1f5f9;
+				font-weight: 600;
+				text-wrap: nowrap; /* Keep on a single line on desktop/tablets */
+			}
+
+			@media (max-width: 1024px) {
+				.blog-disclaimer-bullets li {
+					text-wrap: pretty;
+				}
+			}
+
+			.blog-disclaimer-bullets li::before {
+				content: "◆";
+				position: absolute;
+				left: 0.25rem;
+				top: 0.05rem;
+				font-size: 1.05rem;
+				color: #ef4444;
 			}
 
 			.blog-disclaimer-text {
