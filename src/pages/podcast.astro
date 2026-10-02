@@ -198,6 +198,7 @@ const posts = sortPostsDescending(rawPosts);
 					<input type="hidden" name="_subject" value="[BMS Podcast Guest Application] Decoding The Burn" />
 					<input type="hidden" name="_captcha" value="false" />
 					<input type="hidden" name="_template" value="table" />
+					<input type="hidden" name="_next" value="https://decodingtheburn-website.web.app/thank-you-podcast-guest/" />
 
 					<!-- Guest Role Selection -->
 					<div class="form-group">
@@ -338,18 +339,12 @@ const posts = sortPostsDescending(rawPosts);
 						});
 
 						if (response.ok) {
-							form.classList.add('hidden');
-							successBox?.classList.remove('hidden');
-							successBox?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+							window.location.href = '/thank-you-podcast-guest/';
 						} else {
-							form.submit();
+							window.location.href = '/thank-you-podcast-guest/';
 						}
 					} catch (err) {
-						form.submit();
-					} finally {
-						submitBtn.disabled = false;
-						btnText?.classList.remove('hidden');
-						btnSpinner?.classList.add('hidden');
+						window.location.href = '/thank-you-podcast-guest/';
 					}
 				});
 
@@ -386,17 +381,12 @@ const posts = sortPostsDescending(rawPosts);
 							});
 
 							if (response.ok) {
-								notifyForm.classList.add('hidden');
-								notifySuccessBox?.classList.remove('hidden');
+								window.location.href = '/thank-you-newsletter/';
 							} else {
-								notifyForm.submit();
+								window.location.href = '/thank-you-newsletter/';
 							}
 						} catch (err) {
-							notifyForm.submit();
-						} finally {
-							notifySubmitBtn.disabled = false;
-							notifyBtnText?.classList.remove('hidden');
-							notifyBtnSpinner?.classList.add('hidden');
+							window.location.href = '/thank-you-newsletter/';
 						}
 					});
 				}

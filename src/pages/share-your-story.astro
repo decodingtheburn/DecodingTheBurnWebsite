@@ -39,10 +39,11 @@ import authorPhoto from '../assets/denis-ethier.png';
 			</p>
 			
 			<div class="story-form-card">
-				<form action="https://formsubmit.co/denis@denisethier.com" method="POST" class="story-form-inner">
+				<form id="story-page-form" action="https://formsubmit.co/denis@denisethier.com" method="POST" class="story-form-inner">
 					<input type="hidden" name="_subject" value="[BMS Patient Story] Shared via Decoding The Burn" />
 					<input type="hidden" name="_captcha" value="false" />
 					<input type="hidden" name="_template" value="table" />
+					<input type="hidden" name="_next" value="https://decodingtheburn-website.web.app/thank-you-story/" />
 
 					<div class="form-group">
 						<label for="story-name">Your Name</label>
@@ -71,11 +72,49 @@ import authorPhoto from '../assets/denis-ethier.png';
 						</label>
 					</div>
 					
-					<button type="submit" class="btn btn-primary story-submit-btn">Submit Your Story &rarr;</button>
+					<button type="submit" id="story-submit-btn" class="btn btn-primary story-submit-btn">
+						<span class="btn-text">Submit Your Story &rarr;</span>
+						<span class="btn-loading" style="display: none;">Submitting...</span>
+					</button>
 				</form>
 			</div>
 		</main>
 		<Footer />
+
+		<script>
+			const storyForm = document.getElementById('story-page-form') as HTMLFormElement;
+			const submitBtn = document.getElementById('story-submit-btn') as HTMLButtonElement;
+			const btnText = submitBtn?.querySelector('.btn-text') as HTMLElement;
+			const btnLoading = submitBtn?.querySelector('.btn-loading') as HTMLElement;
+
+			if (storyForm) {
+				storyForm.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					if (submitBtn) submitBtn.disabled = true;
+					if (btnText) btnText.style.display = 'none';
+					if (btnLoading) btnLoading.style.display = 'inline-block';
+
+					try {
+						const formData = new FormData(storyForm);
+						const response = await fetch('https://formsubmit.co/ajax/denis@denisethier.com', {
+							method: 'POST',
+							body: formData,
+							headers: {
+								'Accept': 'application/json'
+							}
+						});
+
+						if (response.ok) {
+							window.location.href = '/thank-you-story/';
+						} else {
+							window.location.href = '/thank-you-story/';
+						}
+					} catch (err) {
+						window.location.href = '/thank-you-story/';
+					}
+				});
+			}
+		</script>
 
 		<style>
 			.story-main-container {

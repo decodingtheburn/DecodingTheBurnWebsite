@@ -188,14 +188,12 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 						});
 
 						if (response.ok) {
-							form.reset();
-							form.classList.add('hidden');
-							successBox?.classList.remove('hidden');
+							window.location.href = '/thank-you-newsletter/';
 						} else {
-							form.submit(); // fallback
+							window.location.href = '/thank-you-newsletter/';
 						}
 					} catch (err) {
-						form.submit(); // fallback
+						window.location.href = '/thank-you-newsletter/';
 					}
 				});
 			}
