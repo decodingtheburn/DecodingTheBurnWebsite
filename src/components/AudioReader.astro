@@ -4,9 +4,35 @@
 
 interface Props {
 	title?: string;
+	headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title = 'this article' } = Astro.props;
+const { title = 'this article', headings = [] } = Astro.props;
+
+// Curated sections or mapped headings
+const defaultNavItems = [
+	{ number: "1", title: "Introduction", href: "#introduction" },
+	{ number: "2", title: "Disclaimers", href: "#disclaimers" },
+	{ number: "3", title: "My Carnivore Experiment", href: "#my-carnivore-experiment" },
+	{ number: "4", title: "What Didn't Work for Me", href: "#what-didnt-work-for-me-testing-50-supplements--water-filtration" },
+	{ number: "5", title: "What I Eat Now", href: "#what-i-eat-now" },
+	{ number: "6", title: "My Theory on Why Carnivore Works", href: "#my-theory-on-why-the-carnivore-diet-works" },
+	{ number: "7", title: "The Acidity of 30 Common Foods & Drinks", href: "#the-acidity-of-30-common-foods--drinks" },
+	{ number: "8", title: "Who I Learned the Carnivore Diet From", href: "#who-i-learned-the-carnivore-diet-from" },
+	{ number: "9", title: "My Next Dentist Visits", href: "#my-next-dentist-visits" },
+	{ number: "10", title: "Summary of What I've Done", href: "#summary-of-what-ive-done" }
+];
+
+let tocItems = defaultNavItems;
+if (headings && headings.length > 0) {
+	const h2s = headings.filter(h => h.depth === 2);
+	if (h2s.length > 0 && h2s[0].slug !== 'disclaimers' && h2s[0].slug !== 'my-carnivore-experiment') {
+		tocItems = [
+			{ number: "1", title: "Introduction", href: "#introduction" },
+			...h2s.map((h, i) => ({ number: String(i + 2), title: h.text, href: `#${h.slug}` }))
+		];
+	}
+}
 ---
 
 <div class="tts-reader-wrapper" id="tts-reader-root" data-article-title={title}>
@@ -20,6 +46,14 @@ const { title = 'this article' } = Astro.props;
 			</div>
 
 			<div class="tts-compact-right">
+				<!-- Table of Contents Toggle Button -->
+				<button type="button" class="tts-expand-toggle" id="tts-toc-btn" aria-expanded="false" title="Table of Contents">
+					<span class="tts-expand-text">Table of Contents</span>
+					<svg class="tts-expand-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.3" fill="none">
+						<polyline points="6 9 12 15 18 9"></polyline>
+					</svg>
+				</button>
+
 				<!-- Expand / Collapse Drawer Toggle (Options on the left of Listen) -->
 				<button type="button" class="tts-expand-toggle" id="tts-expand-btn" aria-expanded="false" title="Expand reading options and audio controls">
 					<span class="tts-expand-text">Options</span>
@@ -39,6 +73,23 @@ const { title = 'this article' } = Astro.props;
 					</svg>
 					<span class="tts-compact-play-label" id="tts-compact-play-label">Listen</span>
 				</button>
+			</div>
+		</div>
+
+		<!-- 2. Table of Contents Drawer (Hidden by default) -->
+		<div class="tts-toc-drawer" id="tts-toc-drawer" style="display: none;">
+			<div class="tts-drawer-divider"></div>
+			<div class="tts-toc-content">
+				<ol class="tts-toc-list" id="tts-toc-list">
+					{tocItems.map((item) => (
+						<li class="tts-toc-item">
+							<a href={item.href} class="tts-toc-link">
+								<span class="tts-toc-num">{item.number}.</span>
+								<span class="tts-toc-text">{item.title}</span>
+							</a>
+						</li>
+					))}
+				</ol>
 			</div>
 		</div>
 
@@ -402,6 +453,72 @@ const { title = 'this article' } = Astro.props;
 
 	.tts-expand-chevron {
 		transition: transform 0.2s ease;
+	}
+
+	/* Table of Contents Drawer */
+	.tts-toc-drawer {
+		background: #fafaf9;
+		border-top: 1px solid #f1f5f9;
+		animation: drawerSlide 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.tts-toc-content {
+		padding: 0.85rem 1.15rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	.tts-toc-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.tts-toc-item {
+		margin: 0;
+		padding: 0;
+	}
+
+	.tts-toc-link {
+		display: flex;
+		align-items: baseline;
+		gap: 0.6rem;
+		padding: 0.4rem 0.6rem;
+		border-radius: 8px;
+		color: #334155;
+		text-decoration: none;
+		font-size: 0.88rem;
+		font-weight: 500;
+		line-height: 1.35;
+		transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+	}
+
+	.tts-toc-link:hover {
+		background: #ffffff;
+		color: #0f172a;
+		transform: translateX(3px);
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+	}
+
+	.tts-toc-num {
+		font-weight: 700;
+		color: #94a3b8;
+		font-size: 0.82rem;
+		min-width: 1.3rem;
+		flex-shrink: 0;
+	}
+
+	.tts-toc-text {
+		color: #1e293b;
+		font-weight: 600;
+	}
+
+	.tts-toc-link:hover .tts-toc-text {
+		color: #0f172a;
 	}
 
 	/* 2. Expandable Options Drawer */
@@ -1665,6 +1782,39 @@ const { title = 'this article' } = Astro.props;
 		stopBtn?.addEventListener('click', stopPlayback);
 		stickyCloseBtn?.addEventListener('click', stopPlayback);
 
+		// Expand / Collapse Table of Contents Drawer
+		const tocBtn = document.getElementById('tts-toc-btn');
+		const tocDrawer = document.getElementById('tts-toc-drawer');
+		let isTocExpanded = false;
+
+		function setTocExpanded(expanded: boolean) {
+			isTocExpanded = expanded;
+			if (tocDrawer) {
+				tocDrawer.style.display = expanded ? 'block' : 'none';
+			}
+			if (tocBtn) {
+				tocBtn.setAttribute('aria-expanded', String(expanded));
+				tocBtn.classList.toggle('is-expanded', expanded);
+			}
+			// When opening TOC, close Options drawer to stay clean
+			if (expanded && isOptionsExpanded) {
+				setOptionsExpanded(false);
+			}
+		}
+
+		tocBtn?.addEventListener('click', (e) => {
+			e.stopPropagation();
+			setTocExpanded(!isTocExpanded);
+		});
+
+		// Close TOC drawer when clicking a section link
+		const tocLinks = tocDrawer?.querySelectorAll('.tts-toc-link');
+		tocLinks?.forEach((link) => {
+			link.addEventListener('click', () => {
+				setTocExpanded(false);
+			});
+		});
+
 		// Expand / Collapse Options Drawer
 		const expandBtn = document.getElementById('tts-expand-btn');
 		const expandedDrawer = document.getElementById('tts-expanded-drawer');
@@ -1680,6 +1830,10 @@ const { title = 'this article' } = Astro.props;
 				expandBtn.classList.toggle('is-expanded', expanded);
 				const textEl = expandBtn.querySelector('.tts-expand-text');
 				if (textEl) textEl.textContent = expanded ? 'Hide' : 'Options';
+			}
+			// When opening Options, close TOC drawer to stay clean
+			if (expanded && isTocExpanded) {
+				setTocExpanded(false);
 			}
 		}
 
