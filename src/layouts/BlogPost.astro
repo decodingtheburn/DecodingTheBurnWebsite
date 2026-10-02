@@ -1051,11 +1051,29 @@ if (!postNumber && slug) {
 				text-wrap: balance;
 			}
 
+			.post-content :global(h3) {
+				margin: 2.5rem 0 1rem 0;
+				padding: 0;
+				border: none;
+				background: transparent;
+				font-size: 1.75rem; /* ~1.2x larger for prominent section subheadings */
+				line-height: 1.28;
+				letter-spacing: -0.02em;
+				color: var(--text-primary);
+				font-weight: 800;
+				text-wrap: balance;
+			}
+
 			@media (max-width: 580px) {
 				.post-content :global(h2) {
 					font-size: 1.95rem;
 					line-height: 1.24;
 					margin: 2.75rem 0 1.25rem 0;
+				}
+				.post-content :global(h3) {
+					font-size: 1.45rem;
+					line-height: 1.28;
+					margin: 2rem 0 0.85rem 0;
 				}
 			}
 
