@@ -11,13 +11,29 @@ const rawPosts = await getCollection('blog');
 const allPostsAscending = sortPostsAscending(rawPosts);
 const allPosts = allPostsAscending;
 
-// Calculate slide count and metadata for each post
+// Calculate slide count and metadata for each post, numbering drafts as D1, D2, D3...
+let liveCounter = 0;
+let draftCounter = 0;
+
 const postsWithSlides = allPosts.map((post) => {
 	const slides = generateSlidesFromPost(post.id, post.data.title, post.data.description, post.body || '');
 	const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
-	const postNumber = getPostEntryNumber(post, allPostsAscending);
 	const isDraft = post.data.draft === true;
 	const isReadyDraft = post.data.readyDraft === true;
+	
+	let displayEntryNumber = '';
+	let sortOrderNumber = 0;
+
+	if (isDraft) {
+		draftCounter += 1;
+		displayEntryNumber = `D${draftCounter}`;
+		sortOrderNumber = 1000 + draftCounter;
+	} else {
+		liveCounter += 1;
+		displayEntryNumber = `${post.data.entryNumber || liveCounter}`;
+		sortOrderNumber = parseInt(displayEntryNumber, 10) || liveCounter;
+	}
+
 	const category = post.data.category || 'My Experience';
 	const compactDate = post.data.pubDate.toLocaleDateString('en-US', {
 		month: 'short',
@@ -27,7 +43,8 @@ const postsWithSlides = allPosts.map((post) => {
 	return {
 		post,
 		cleanTitle,
-		postNumber,
+		postNumber: displayEntryNumber,
+		sortOrderNumber,
 		isDraft,
 		isReadyDraft,
 		category,
@@ -1068,6 +1085,13 @@ const staticPages = [
 				letter-spacing: 0.02em;
 			}
 
+			.entry-pill.entry-pill-draft {
+				color: #92400e;
+				background: #fef3c7;
+				border-color: #fde68a;
+				font-weight: 800;
+			}
+
 			.slide-pill {
 				display: inline-flex;
 				align-items: center;
@@ -1828,10 +1852,11 @@ const staticPages = [
 
 						<!-- All Blog Posts as Presentation Decks & Articles -->
 						<div class="posts-slides-grid cols-2" id="postsGrid">
-							{postsWithSlides.map(({ post, cleanTitle, postNumber, isDraft, isReadyDraft, category, compactDate, slideCount }) => (
+							{postsWithSlides.map(({ post, cleanTitle, postNumber, sortOrderNumber, isDraft, isReadyDraft, category, compactDate, slideCount }) => (
 								<div 
 									class={`post-slide-card ${isReadyDraft ? 'ready-draft-card' : isDraft ? 'draft-card' : ''}`}
 									data-entry={postNumber}
+									data-sort-order={sortOrderNumber}
 									data-status={isReadyDraft ? 'ready-draft' : isDraft ? 'draft' : 'live'}
 									data-category={category}
 									data-slides={slideCount}
@@ -1853,7 +1878,7 @@ const staticPages = [
 												<img 
 													src={post.data.heroImage} 
 													alt={cleanTitle} 
-													class="card-thumb-img"
+													class="card-thumb-img" 
 													loading="lazy"
 												/>
 											) : (
@@ -1871,7 +1896,9 @@ const staticPages = [
 											<!-- Metadata Header: Entry #, Slides, Status -->
 											<div class="card-meta-header">
 												<div class="meta-badges-group">
-													<span class="entry-pill">Entry #{postNumber}</span>
+													<span class={`entry-pill ${isDraft ? 'entry-pill-draft' : ''}`}>
+														{isDraft ? `Draft #${postNumber}` : `Entry #${postNumber}`}
+													</span>
 													<span class="slide-pill">
 														<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
 														{slideCount} Slides
@@ -2376,12 +2403,13 @@ const staticPages = [
 					const cardCategory = card.getAttribute('data-category') || '';
 					const cardTitle = card.getAttribute('data-title') || '';
 					const cardDesc = card.getAttribute('data-desc') || '';
+					const cardEntry = (card.getAttribute('data-entry') || '').toLowerCase();
 
 					const statusMatch = currentStatus === 'all' 
 						|| cardStatus === currentStatus 
 						|| (currentStatus === 'draft' && (cardStatus === 'draft' || cardStatus === 'ready-draft'));
 					const categoryMatch = currentCategory === 'all' || cardCategory === currentCategory;
-					const searchMatch = !currentSearch || cardTitle.includes(currentSearch) || cardDesc.includes(currentSearch);
+					const searchMatch = !currentSearch || cardTitle.includes(currentSearch) || cardDesc.includes(currentSearch) || cardEntry.includes(currentSearch.replace('#', ''));
 
 					if (statusMatch && categoryMatch && searchMatch) {
 						card.style.display = 'flex';
@@ -2394,8 +2422,8 @@ const staticPages = [
 				// Sort visible cards
 				const visibleCards = allCards.filter(c => c.style.display !== 'none');
 				visibleCards.sort((a, b) => {
-					const entryA = parseInt(a.getAttribute('data-entry') || '0', 10);
-					const entryB = parseInt(b.getAttribute('data-entry') || '0', 10);
+					const entryA = parseInt(a.getAttribute('data-sort-order') || a.getAttribute('data-entry') || '0', 10);
+					const entryB = parseInt(b.getAttribute('data-sort-order') || b.getAttribute('data-entry') || '0', 10);
 					const slidesA = parseInt(a.getAttribute('data-slides') || '0', 10);
 					const slidesB = parseInt(b.getAttribute('data-slides') || '0', 10);
 					const titleA = a.getAttribute('data-title') || '';
