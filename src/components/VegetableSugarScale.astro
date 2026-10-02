@@ -1,108 +1,133 @@
 ---
-// VegetableSugarScale.astro - Ranked chart of the Top 12 North American vegetables by sugar and carbohydrate content
+// VegetableSugarScale.astro - Ranked chart of the Top 12 North American vegetables strictly sorted by Total Carbohydrates (highest to lowest)
 interface Props {
 	class?: string;
 }
 
 const { class: className = '' } = Astro.props;
 
-// Top 12 Vegetables consumed in North America, strictly sorted from highest sugar content (sweetest) to lowest (per 100g serving)
-const vegetableSugarData = [
-	{
-		name: "Sweet Corn",
-		emoji: "🌽",
-		sugarPer100g: "6.3g",
-		carbTotal: "19.0g",
-		sugarTypes: "Sucrose, Glucose, Fructose",
-		desc: "The sweetest common vegetable. High simple sugar concentration with sticky soluble starches that adhere to teeth and interdental spaces, creating rapid acid spikes."
-	},
-	{
-		name: "Green Peas",
-		emoji: "🫛",
-		sugarPer100g: "5.7g",
-		carbTotal: "14.5g",
-		sugarTypes: "Sucrose, Glucose, Starch",
-		desc: "High combination of simple sucrose and fermentable starches that rapidly metabolize into oral acid."
-	},
-	{
-		name: "Carrots",
-		emoji: "🥕",
-		sugarPer100g: "4.7g",
-		carbTotal: "9.6g",
-		sugarTypes: "Sucrose, Glucose, Fructose",
-		desc: "Contains substantial free sucrose and simple sugars that provide fast fuel for oral lactobacilli to convert directly into lactic acid."
-	},
+// Top 12 Vegetables consumed in North America, strictly sorted from highest TOTAL CARBS to lowest (per 100g serving)
+// Includes exact breakdown of sugar types, starches/fibers, and % Dry-Weight Carbs (carbohydrate percentage once water is removed)
+const vegetableCarbData = [
 	{
 		name: "Sweet Potatoes",
 		emoji: "🍠",
-		sugarPer100g: "4.2g",
 		carbTotal: "20.1g",
-		sugarTypes: "Maltose, Sucrose, Glucose, Fructose",
-		desc: "Rich in fermentable maltose produced during cooking plus high digestible starches that sustain low oral pH."
-	},
-	{
-		name: "Yellow & Red Onions",
-		emoji: "🧅",
 		sugarPer100g: "4.2g",
-		carbTotal: "9.3g",
-		sugarTypes: "Fructans (FODMAP), Fructose, Glucose, Sucrose",
-		desc: "Dense in fermentable fructan oligosaccharides that easily break down and acidify oral crevices."
+		waterContent: "77%",
+		dryCarbPct: "87%", // (20.1 / 23) * 100
+		sugarBreakdown: "Sucrose 2.5g, Glucose 0.9g, Fructose 0.7g, Maltose 0.1g + Starch & Fiber 15.9g",
+		desc: "When dehydrated of its 77% water, an astounding 87% of a sweet potato is pure fermentable carbohydrate and starch that turns into rapid oral acid."
 	},
 	{
-		name: "Red & Green Bell Peppers",
-		emoji: "🫑",
-		sugarPer100g: "4.2g",
-		carbTotal: "6.0g",
-		sugarTypes: "Fructose, Glucose",
-		desc: "Sweet varieties carry significant free fructose and glucose that wash across exposed root margins during chewing."
-	},
-	{
-		name: "Green Cabbage",
-		emoji: "🥬",
-		sugarPer100g: "3.2g",
-		carbTotal: "5.8g",
-		sugarTypes: "Glucose, Fructose",
-		desc: "Fibrous cellular walls release simple sugars during prolonged chewing, feeding acid-producing biofilms."
-	},
-	{
-		name: "Tomatoes",
-		emoji: "🍅",
-		sugarPer100g: "2.6g",
-		carbTotal: "3.9g",
-		sugarTypes: "Glucose, Fructose + Citric & Malic Acid",
-		desc: "Double-trigger vegetable: provides free fermentable sugars while already possessing inherent organic plant acidity (~pH 4.3)."
-	},
-	{
-		name: "Zucchini & Summer Squash",
-		emoji: "🥒",
-		sugarPer100g: "2.2g",
-		carbTotal: "3.1g",
-		sugarTypes: "Glucose, Fructose, Sucrose",
-		desc: "Soft water-rich tissue releases soluble sugars directly into saliva, creating mild localized fermentation."
-	},
-	{
-		name: "Broccoli",
-		emoji: "🥦",
-		sugarPer100g: "1.7g",
-		carbTotal: "6.6g",
-		sugarTypes: "Fructose, Glucose, Sucrose",
-		desc: "Contains modest free sugars and complex oligosaccharides that oral bacteria ferment into low-grade acid over several hours."
-	},
-	{
-		name: "Iceberg & Romaine Lettuce",
-		emoji: "🥗",
-		sugarPer100g: "1.2g",
-		carbTotal: "2.9g",
-		sugarTypes: "Glucose, Fructose",
-		desc: "Light salad greens still contain fermentable carbohydrate traces compared to the absolute zero sugar of animal protein."
+		name: "Sweet Corn",
+		emoji: "🌽",
+		carbTotal: "19.0g",
+		sugarPer100g: "6.3g",
+		waterContent: "76%",
+		dryCarbPct: "79%", // (19.0 / 24) * 100
+		sugarBreakdown: "Sucrose 4.5g, Glucose 1.0g, Fructose 0.8g + Starch & Fiber 12.7g",
+		desc: "Carries both the highest free simple sugars (6.3g) and heavy starch. Dried corn solids are 79% pure carbohydrate."
 	},
 	{
 		name: "Russet & White Potatoes",
 		emoji: "🥔",
-		sugarPer100g: "0.8g",
 		carbTotal: "17.5g",
-		sugarTypes: "Starch Amylose & Amylopectin, Sucrose, Glucose",
-		desc: "Lowest in simple free sugars, but packed with 17.5g of starch that salivary amylase turns into rapid-fire maltose and acid."
+		sugarPer100g: "0.8g",
+		waterContent: "79%",
+		dryCarbPct: "83%", // (17.5 / 21) * 100
+		sugarBreakdown: "Sucrose 0.4g, Glucose 0.2g, Fructose 0.2g + Dense Amylose/Amylopectin Starch 16.7g",
+		desc: "Appears low in sugar on labels (0.8g), but 83% of its dry solid matter is dense starch that salivary amylase turns into sugar within seconds."
+	},
+	{
+		name: "Green Peas",
+		emoji: "🫛",
+		carbTotal: "14.5g",
+		sugarPer100g: "5.7g",
+		waterContent: "79%",
+		dryCarbPct: "69%", // (14.5 / 21) * 100
+		sugarBreakdown: "Sucrose 4.8g, Glucose 0.5g, Fructose 0.4g + Starch & Fiber 8.8g",
+		desc: "Packed with simple sweet sucrose and soluble starches that break down and stick into periodontal crevices."
+	},
+	{
+		name: "Carrots",
+		emoji: "🥕",
+		carbTotal: "9.6g",
+		sugarPer100g: "4.7g",
+		waterContent: "88%",
+		dryCarbPct: "80%", // (9.6 / 12) * 100
+		sugarBreakdown: "Sucrose 3.6g, Glucose 0.6g, Fructose 0.5g + Pectin & Fiber 4.9g",
+		desc: "Remove the 88% water and carrots are 80% sugar and carbohydrate solids, flooding plaque with instant lactic acid fuel."
+	},
+	{
+		name: "Yellow & Red Onions",
+		emoji: "🧅",
+		carbTotal: "9.3g",
+		sugarPer100g: "4.2g",
+		waterContent: "89%",
+		dryCarbPct: "85%", // (9.3 / 11) * 100
+		sugarBreakdown: "Fructose 2.0g, Glucose 1.3g, Sucrose 0.9g + Fermentable Fructans (FODMAP) 5.1g",
+		desc: "Dense in fast-fermenting fructan oligosaccharides that easily break down and acidify oral tissues."
+	},
+	{
+		name: "Broccoli",
+		emoji: "🥦",
+		carbTotal: "6.6g",
+		sugarPer100g: "1.7g",
+		waterContent: "89%",
+		dryCarbPct: "60%", // (6.6 / 11) * 100
+		sugarBreakdown: "Glucose 0.7g, Fructose 0.7g, Sucrose 0.3g + Cellulose & Fiber 4.9g",
+		desc: "60% of dry broccoli solids are carbohydrates that feed oral microflora over several hours."
+	},
+	{
+		name: "Red & Green Bell Peppers",
+		emoji: "🫑",
+		carbTotal: "6.0g",
+		sugarPer100g: "4.2g",
+		waterContent: "92%",
+		dryCarbPct: "75%", // (6.0 / 8) * 100
+		sugarBreakdown: "Fructose 2.3g, Glucose 1.9g + Pectin & Fiber 1.8g",
+		desc: "Almost all its carbohydrates are free fructose and glucose that wash across exposed root margins during chewing."
+	},
+	{
+		name: "Green Cabbage",
+		emoji: "🥬",
+		carbTotal: "5.8g",
+		sugarPer100g: "3.2g",
+		waterContent: "92%",
+		dryCarbPct: "73%", // (5.8 / 8) * 100
+		sugarBreakdown: "Glucose 1.8g, Fructose 1.4g + Fiber 2.6g",
+		desc: "Fibrous cellular walls release simple sugars during prolonged chewing, sustaining acid-producing biofilm."
+	},
+	{
+		name: "Tomatoes",
+		emoji: "🍅",
+		carbTotal: "3.9g",
+		sugarPer100g: "2.6g",
+		waterContent: "94%",
+		dryCarbPct: "65%", // (3.9 / 6) * 100
+		sugarBreakdown: "Glucose 1.4g, Fructose 1.2g + Citric & Malic Acid Matrix",
+		desc: "Double threat: 65% dry carbohydrates plus inherent organic plant acidity (~pH 4.3)."
+	},
+	{
+		name: "Zucchini & Summer Squash",
+		emoji: "🥒",
+		carbTotal: "3.1g",
+		sugarPer100g: "2.2g",
+		waterContent: "95%",
+		dryCarbPct: "62%", // (3.1 / 5) * 100
+		sugarBreakdown: "Glucose 1.1g, Fructose 1.0g, Sucrose 0.1g + Fiber 0.9g",
+		desc: "High 95% water content masks the fact that 62% of its actual dry food matter is fermentable sugar."
+	},
+	{
+		name: "Iceberg & Romaine Lettuce",
+		emoji: "🥗",
+		carbTotal: "2.9g",
+		sugarPer100g: "1.2g",
+		waterContent: "95%",
+		dryCarbPct: "58%", // (2.9 / 5) * 100
+		sugarBreakdown: "Glucose 0.7g, Fructose 0.5g + Cellulose Fiber 1.7g",
+		desc: "Even crisp water-rich salad greens contain 58% dry-weight carbohydrate residues compared to the absolute 0% of animal protein."
 	}
 ];
 ---
@@ -111,15 +136,15 @@ const vegetableSugarData = [
 	<div class="veg-sugar-scale-card">
 		<!-- Header -->
 		<div class="veg-sugar-header">
-			<h4 class="veg-sugar-title">Sugar &amp; Fermentable Carbohydrates in Top 12&nbsp;Vegetables</h4>
+			<h4 class="veg-sugar-title">Sugar in the Top 12&nbsp;Vegetables</h4>
 			<p class="veg-sugar-desc">
-				Strictly sorted from sweetest (most sugar) to least sugar per 100g portion. Even savory vegetables contain measurable sugars and starch matrices that oral bacteria ferment into corrosive lactic acid within&nbsp;minutes.
+				Strictly sorted from highest <strong>Total Carbohydrates</strong> to lowest per 100g portion. Includes detailed sugar breakdowns and the hidden <strong>% Dry-Weight Carb Load</strong> (what remains once natural plant water is removed).
 			</p>
 		</div>
 
 		<!-- Continuous 12-Item List -->
 		<div class="veg-sugar-list">
-			{vegetableSugarData.map((item, index) => (
+			{vegetableCarbData.map((item, index) => (
 				<div class="veg-row">
 					<div class="veg-rank-col">
 						<span class="veg-rank-num">#{index + 1}</span>
@@ -131,24 +156,81 @@ const vegetableSugarData = [
 							<h5 class="veg-title">{item.name}</h5>
 						</div>
 						<div class="veg-sugar-types">
-							<span class="type-label">Sugar Types:</span> {item.sugarTypes}
+							<span class="type-label">Sugar Breakdown:</span> {item.sugarBreakdown}
 						</div>
 						<p class="veg-description">{item.desc}</p>
 					</div>
 
 					<div class="veg-metrics-box">
 						<div class="metric-item">
+							<span class="metric-label">Total Carbs</span>
+							<span class="metric-value text-purple-300">{item.carbTotal}</span>
+						</div>
+						<div class="metric-divider"></div>
+						<div class="metric-item">
 							<span class="metric-label">Sugars</span>
 							<span class="metric-value text-amber-300">{item.sugarPer100g}</span>
 						</div>
 						<div class="metric-divider"></div>
 						<div class="metric-item">
-							<span class="metric-label">Total Carbs</span>
-							<span class="metric-value text-purple-300">{item.carbTotal}</span>
+							<span class="metric-label">Dry Carb %</span>
+							<span class="metric-value text-rose-300">{item.dryCarbPct}</span>
 						</div>
 					</div>
 				</div>
 			))}
+		</div>
+
+		<!-- Deep Science Explainer: Is a Carb Just a Carb? -->
+		<div class="carb-explainer-box">
+			<div class="carb-explainer-header">
+				<div class="carb-icon">🧬</div>
+				<div>
+					<h4 class="carb-explainer-title">Is a "Carb" Just a Carb? Or Are They Different in Every&nbsp;Plant?</h4>
+					<span class="carb-badge">Biochemistry &amp; Fermentation</span>
+				</div>
+			</div>
+			<div class="carb-explainer-body">
+				<p>
+					We hear the word <em>"carbohydrate"</em> constantly, but what actually is it? Chemically, all carbohydrates are built from simple single-sugar rings called <strong>monosaccharides</strong> (chiefly glucose and fructose). The difference between a potato, an apple, and table sugar is simply <strong>how those rings are linked together:</strong>
+				</p>
+				<ul class="carb-types-list">
+					<li>
+						<strong>Simple Sugars (Monosaccharides &amp; Disaccharides):</strong> <em>Glucose, Fructose, and Sucrose</em> (found in apples, carrots, corn, and peppers). They are tiny 1- or 2-ring molecules that dissolve instantly in saliva and taste sweet immediately.
+					</li>
+					<li>
+						<strong>Complex Starches (Polysaccharides):</strong> <em>Amylose and Amylopectin</em> (found heavily in potatoes, sweet potatoes, and corn). Starch is literally a long chain of hundreds or thousands of <strong>glucose molecules bonded together</strong>. It does not taste sweet on your first bite, but...
+					</li>
+					<li>
+						<strong>Do Starches &amp; Sugars Both Ferment into Acid? YES.</strong> The moment starch enters your mouth, an enzyme in your saliva called <strong>salivary amylase</strong> immediately begins snipping the long starch chains into <em>maltose and free glucose</em>. To the bacteria in your mouth (*Streptococcus mutans* and *Lactobacilli*), <strong>potato starch is identical to spooning sugar onto your teeth</strong>. Both ferment into corrosive lactic acid within 5 to 10 minutes.
+					</li>
+					<li>
+						<strong>Fructans &amp; Oligosaccharides (FODMAPs):</strong> Found in onions and garlic. These are short fructose chains that human enzymes cannot fully break down, but oral and gut bacteria ferment violently into metabolic acids and gas.
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- The Dry-Weight Reality Box -->
+		<div class="dry-weight-box">
+			<div class="dry-weight-header">
+				<div class="dry-weight-icon">💧</div>
+				<div>
+					<h4 class="dry-weight-title">The Hidden Water Illusion: What Happens When You Remove the&nbsp;Water?</h4>
+					<span class="dry-weight-badge">Dry-Weight Concentration</span>
+				</div>
+			</div>
+			<div class="dry-weight-body">
+				<p>
+					Most people believe vegetables are "mostly fiber and water with very little sugar." While raw vegetables are <strong>75% to 95% water</strong>, look at what remains when that water is removed:
+				</p>
+				<p>
+					In a sweet potato, <strong>87% of its dry solid matter is pure carbohydrate</strong>. In a regular potato, it is <strong>83%</strong>. In carrots, it is <strong>80%</strong>. Even in watery green cabbage or bell peppers, over <strong>70% of the actual dry matter is sugar and fermentable starch</strong>.
+				</p>
+				<p>
+					In contrast, <strong>meat, poultry, and seafood have 0% carbohydrate both wet and dry</strong>. That is why an all-meat carnivore baseline completely starves oral bacterial acid production, while eating "healthy" vegetables continues feeding low-grade acid right into exposed tooth tubules.
+				</p>
+			</div>
 		</div>
 
 		<!-- Potato Sugar & Salivary Amylase Spotlight Box: Sugars vs. Total Carbs -->
@@ -165,7 +247,7 @@ const vegetableSugarData = [
 					<strong>Sugars vs. Total Carbohydrates:</strong> On nutrition labels, <strong>"Sugars"</strong> refers only to simple, single- or double-ring molecules like glucose, fructose, and sucrose that taste sweet immediately. <strong>"Total Carbohydrates"</strong> includes those simple sugars <em>plus</em> complex starches and dietary fiber.
 				</p>
 				<p>
-					A medium baked potato (~170g) lists only <strong>~1.5g to 2g of simple sugars</strong> on a nutrition label, which makes it appear low in sugar. However, it packs a massive <strong>35g+ of total complex starches</strong>. 
+					A medium baked potato (~170g) lists only <strong>~1.5g of simple sugars</strong> on a nutrition label, which makes it appear low in sugar. However, it packs a massive <strong>35g+ of total complex starches</strong>. 
 				</p>
 				<p>
 					<strong>Why This Matters for Burning Mouth Syndrome:</strong> Starch is simply thousands of glucose molecules chained together. The moment potato or bread enters your mouth, an active enzyme in your saliva called <em>salivary amylase</em> instantly breaks those complex starch chains down into <strong>maltose and free glucose</strong>.
@@ -341,7 +423,7 @@ const vegetableSugarData = [
 		border: 1px solid rgba(168, 85, 247, 0.25);
 		border-radius: 0.75rem;
 		padding: 0.75rem 1rem;
-		min-width: 7.5rem;
+		min-width: 8rem;
 		text-align: center;
 	}
 
@@ -352,7 +434,7 @@ const vegetableSugarData = [
 	}
 
 	.metric-label {
-		font-size: 0.7rem;
+		font-size: 0.68rem;
 		text-transform: uppercase;
 		font-weight: 700;
 		color: #94a3b8;
@@ -369,12 +451,129 @@ const vegetableSugarData = [
 		width: 100%;
 		height: 1px;
 		background: rgba(168, 85, 247, 0.15);
-		margin: 0.4rem 0;
+		margin: 0.35rem 0;
+	}
+
+	/* Carb Explainer & Biochemistry Box */
+	.carb-explainer-box {
+		margin-top: 2.5rem;
+		background: rgba(168, 85, 247, 0.08);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.25rem;
+		padding: 1.75rem 2rem;
+	}
+
+	.carb-explainer-header {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.carb-icon {
+		font-size: 2.5rem;
+		line-height: 1;
+	}
+
+	.carb-explainer-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: #f3e8ff;
+		margin: 0 0 0.25rem 0;
+		line-height: 1.2;
+		text-wrap: balance;
+	}
+
+	.carb-badge {
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: #c084fc;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.carb-explainer-body p {
+		font-size: 0.95rem;
+		line-height: 1.65;
+		color: #e9d5ff;
+		margin: 0 0 0.85rem 0;
+		text-wrap: pretty;
+	}
+
+	.carb-types-list {
+		margin: 0.75rem 0 0 1.25rem;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.carb-types-list li {
+		font-size: 0.93rem;
+		line-height: 1.55;
+		color: #e9d5ff;
+		text-wrap: pretty;
+	}
+
+	.carb-types-list li strong {
+		color: #ffffff;
+	}
+
+	/* Dry-Weight Reality Box */
+	.dry-weight-box {
+		margin-top: 1.75rem;
+		background: rgba(59, 130, 246, 0.08);
+		border: 1px solid rgba(59, 130, 246, 0.35);
+		border-radius: 1.25rem;
+		padding: 1.75rem 2rem;
+	}
+
+	.dry-weight-header {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.dry-weight-icon {
+		font-size: 2.5rem;
+		line-height: 1;
+	}
+
+	.dry-weight-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: #bfdbfe;
+		margin: 0 0 0.25rem 0;
+		line-height: 1.2;
+		text-wrap: balance;
+	}
+
+	.dry-weight-badge {
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: #60a5fa;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.dry-weight-body p {
+		font-size: 0.95rem;
+		line-height: 1.65;
+		color: #dbeafe;
+		margin: 0 0 0.85rem 0;
+		text-wrap: pretty;
+	}
+
+	.dry-weight-body p:last-child {
+		margin-bottom: 0;
 	}
 
 	/* Potato Spotlight Box */
 	.potato-spotlight-box {
-		margin-top: 2.5rem;
+		margin-top: 1.75rem;
 		background: rgba(245, 158, 11, 0.07);
 		border: 1px solid rgba(245, 158, 11, 0.35);
 		border-radius: 1.25rem;
@@ -394,6 +593,7 @@ const vegetableSugarData = [
 	}
 
 	.potato-spotlight-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
 		font-size: 1.25rem;
 		font-weight: 800;
 		color: #fef08a;
