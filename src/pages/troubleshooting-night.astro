@@ -175,10 +175,10 @@ import authorPhoto from '../assets/denis-ethier.png';
 					</p>
 					
 					<!-- FormSubmit.co Form with guaranteed instant redirect -->
-					<form class="circle-signup-form" id="weekly-circle-form" action="https://formsubmit.co/ajax/denis@denisethier.com" method="POST">
+					<form class="circle-signup-form" id="weekly-circle-form" action="https://formsubmit.co/denis@denisethier.com" method="POST">
 						<input type="hidden" name="_subject" value="[Weekly Group Call RSVP] Decoding The Burn" />
-						<input type="hidden" name="_captcha" value="false" />
 						<input type="hidden" name="_template" value="table" />
+						<input type="hidden" name="_next" value="https://www.decodingtheburn.com/thank-you-weekly-call/" />
 						<input type="hidden" name="Submission_Page" value="Weekly Group Call Circle (/troubleshooting-night/)" />
 						<input type="hidden" name="Page_URL" value="https://www.decodingtheburn.com/troubleshooting-night/" />
 						<input type="hidden" name="Thank_You_Page_Shown" value="https://www.decodingtheburn.com/thank-you-weekly-call/" />
@@ -202,37 +202,6 @@ import authorPhoto from '../assets/denis-ethier.png';
 			</section>
 		</main>
 		<Footer />
-
-		<script>
-			const form = document.getElementById('weekly-circle-form') as HTMLFormElement | null;
-			const submitBtn = document.getElementById('weekly-submit-btn') as HTMLButtonElement | null;
-
-			if (form) {
-				form.addEventListener('submit', async (e) => {
-					e.preventDefault();
-					if (submitBtn) {
-						submitBtn.disabled = true;
-						submitBtn.textContent = 'Submitting...';
-					}
-
-					try {
-						const formData = new FormData(form);
-						await fetch('https://formsubmit.co/ajax/denis@denisethier.com', {
-							method: 'POST',
-							body: formData,
-							headers: {
-								'Accept': 'application/json'
-							}
-						});
-					} catch (err) {
-						console.error('Submission error:', err);
-					} finally {
-						// Always redirect immediately to our custom Thank You page
-						window.location.href = '/thank-you-weekly-call/';
-					}
-				});
-			}
-		</script>
 	</body>
 </html>
 

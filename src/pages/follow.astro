@@ -51,8 +51,8 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 							class="follow-form"
 						>
 							<input type="hidden" name="_subject" value="[Decoding The Burn] New Newsletter Subscriber" />
-							<input type="hidden" name="_captcha" value="false" />
 							<input type="hidden" name="_template" value="table" />
+							<input type="hidden" name="_next" value="https://www.decodingtheburn.com/thank-you-newsletter/" />
 							<input type="hidden" name="form_type" value="Main Newsletter Subscription" />
 							<input type="hidden" name="Submission_Page" value="Follow the Discoveries (/follow/)" />
 							<input type="hidden" name="Page_URL" value="https://www.decodingtheburn.com/follow/" />
@@ -70,15 +70,9 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 								/>
 								<button type="submit" id="follow-submit-btn" class="big-action-btn email-submit-btn">
 									<span class="btn-label">Join Mailing List &rarr;</span>
-									<span class="btn-spinner hidden" aria-hidden="true">Joining...</span>
 								</button>
 							</div>
 						</form>
-
-						<div id="follow-success-box" class="follow-success-msg hidden" role="alert">
-							<span class="check-icon">✓</span>
-							<span>You are on the list! Thank you for joining our community.</span>
-						</div>
 					</div>
 				</div>
 
@@ -166,42 +160,6 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
 			</div>
 		</main>
 		<Footer />
-
-		<script>
-			const form = document.getElementById('follow-newsletter-form') as HTMLFormElement;
-			const submitBtn = document.getElementById('follow-submit-btn') as HTMLButtonElement;
-			const btnLabel = submitBtn?.querySelector('.btn-label');
-			const btnSpinner = submitBtn?.querySelector('.btn-spinner');
-			const successBox = document.getElementById('follow-success-box');
-
-			if (form) {
-				form.addEventListener('submit', async (e) => {
-					e.preventDefault();
-					if (btnLabel && btnSpinner && submitBtn) {
-						btnLabel.classList.add('hidden');
-						btnSpinner.classList.remove('hidden');
-						submitBtn.disabled = true;
-					}
-
-					try {
-						const formData = new FormData(form);
-						const response = await fetch(form.action, {
-							method: 'POST',
-							body: formData,
-							headers: { 'Accept': 'application/json' }
-						});
-
-						if (response.ok) {
-							window.location.href = '/thank-you-newsletter/';
-						} else {
-							window.location.href = '/thank-you-newsletter/';
-						}
-					} catch (err) {
-						window.location.href = '/thank-you-newsletter/';
-					}
-				});
-			}
-		</script>
 
 		<style>
 			.follow-page-container {

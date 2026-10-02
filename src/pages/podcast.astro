@@ -93,8 +93,8 @@ const posts = sortPostsDescending(rawPosts);
 						class="notify-form"
 					>
 						<input type="hidden" name="_subject" value="[BMS Podcast] New Episode Subscriber" />
-						<input type="hidden" name="_captcha" value="false" />
 						<input type="hidden" name="_template" value="table" />
+						<input type="hidden" name="_next" value="https://www.decodingtheburn.com/thank-you-newsletter/" />
 						<input type="hidden" name="form_type" value="Podcast Episode Notification" />
 						<input type="hidden" name="Submission_Page" value="Podcast Episode Notifications (/podcast/#notify)" />
 						<input type="hidden" name="Page_URL" value="https://www.decodingtheburn.com/podcast/#notify" />
@@ -200,9 +200,8 @@ const posts = sortPostsDescending(rawPosts);
 					class="guest-form"
 				>
 					<input type="hidden" name="_subject" value="[BMS Podcast Guest Application] Decoding The Burn" />
-					<input type="hidden" name="_captcha" value="false" />
 					<input type="hidden" name="_template" value="table" />
-					<input type="hidden" name="_next" value="https://decodingtheburn-website.web.app/thank-you-podcast-guest/" />
+					<input type="hidden" name="_next" value="https://www.decodingtheburn.com/thank-you-podcast-guest/" />
 					<input type="hidden" name="Submission_Page" value="Podcast Guest Application (/podcast/#apply)" />
 					<input type="hidden" name="Page_URL" value="https://www.decodingtheburn.com/podcast/#apply" />
 					<input type="hidden" name="Thank_You_Page_Shown" value="https://www.decodingtheburn.com/thank-you-podcast-guest/" />
@@ -314,98 +313,6 @@ const posts = sortPostsDescending(rawPosts);
 			</section>
 		</main>
 		<Footer />
-
-		<script>
-			const setupGuestForm = () => {
-				const form = document.getElementById('podcast-guest-form') as HTMLFormElement | null;
-				const submitBtn = document.getElementById('guest-submit-btn') as HTMLButtonElement | null;
-				const btnText = submitBtn?.querySelector('.btn-text');
-				const btnSpinner = submitBtn?.querySelector('.btn-spinner');
-				const successBox = document.getElementById('form-success-box');
-				const errorBanner = document.getElementById('form-error-banner');
-				const resetBtn = document.getElementById('reset-form-btn');
-
-				if (!form || !submitBtn) return;
-
-				form.addEventListener('submit', async (e) => {
-					e.preventDefault();
-					errorBanner?.classList.add('hidden');
-
-					submitBtn.disabled = true;
-					btnText?.classList.add('hidden');
-					btnSpinner?.classList.remove('hidden');
-
-					const formData = new FormData(form);
-
-					try {
-						const response = await fetch(form.action, {
-							method: 'POST',
-							body: formData,
-							headers: {
-								'Accept': 'application/json'
-							}
-						});
-
-						if (response.ok) {
-							window.location.href = '/thank-you-podcast-guest/';
-						} else {
-							window.location.href = '/thank-you-podcast-guest/';
-						}
-					} catch (err) {
-						window.location.href = '/thank-you-podcast-guest/';
-					}
-				});
-
-				resetBtn?.addEventListener('click', () => {
-					form.reset();
-					successBox?.classList.add('hidden');
-					form.classList.remove('hidden');
-				});
-
-				// Top Notify Form Handler
-				const notifyForm = document.getElementById('podcast-notify-form') as HTMLFormElement | null;
-				const notifySubmitBtn = document.getElementById('notify-submit-btn') as HTMLButtonElement | null;
-				const notifyBtnText = notifySubmitBtn?.querySelector('.notify-btn-text');
-				const notifyBtnSpinner = notifySubmitBtn?.querySelector('.notify-btn-spinner');
-				const notifySuccessBox = document.getElementById('notify-success-box');
-
-				if (notifyForm && notifySubmitBtn) {
-					notifyForm.addEventListener('submit', async (e) => {
-						e.preventDefault();
-
-						notifySubmitBtn.disabled = true;
-						notifyBtnText?.classList.add('hidden');
-						notifyBtnSpinner?.classList.remove('hidden');
-
-						const formData = new FormData(notifyForm);
-
-						try {
-							const response = await fetch(notifyForm.action, {
-								method: 'POST',
-								body: formData,
-								headers: {
-									'Accept': 'application/json'
-								}
-							});
-
-							if (response.ok) {
-								window.location.href = '/thank-you-newsletter/';
-							} else {
-								window.location.href = '/thank-you-newsletter/';
-							}
-						} catch (err) {
-							window.location.href = '/thank-you-newsletter/';
-						}
-					});
-				}
-			};
-
-			if (document.readyState === 'loading') {
-				document.addEventListener('DOMContentLoaded', setupGuestForm);
-			} else {
-				setupGuestForm();
-			}
-		</script>
 
 		<style>
 			.podcast-page-container {
