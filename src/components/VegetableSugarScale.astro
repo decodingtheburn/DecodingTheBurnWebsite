@@ -1,0 +1,412 @@
+---
+// VegetableSugarScale.astro - Ranked chart of the Top 12 North American vegetables by sugar and carbohydrate content
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+// Top 12 Vegetables consumed in North America, ranked by total sugar / fermentable carbohydrate load per typical 100g serving
+const vegetableSugarData = [
+	{
+		name: "Russet & White Potatoes",
+		emoji: "🥔",
+		sugarPer100g: "0.8g - 1.2g",
+		carbTotal: "17.5g",
+		sugarTypes: "Starch Amylose & Amylopectin, Sucrose, Glucose",
+		desc: "Massive starch reserves break down almost instantly in oral saliva into fermentable maltose and glucose, fueling prolonged bacterial acid production."
+	},
+	{
+		name: "Sweet Corn",
+		emoji: "🌽",
+		sugarPer100g: "6.3g",
+		carbTotal: "19.0g",
+		sugarTypes: "Sucrose, Glucose, Fructose",
+		desc: "High simple sugar concentration with sticky soluble starches that adhere to teeth and interdental spaces, creating rapid acid spikes."
+	},
+	{
+		name: "Carrots",
+		emoji: "🥕",
+		sugarPer100g: "4.7g",
+		carbTotal: "9.6g",
+		sugarTypes: "Sucrose, Glucose, Fructose",
+		desc: "Contains substantial free sucrose and simple sugars that provide fast fuel for oral lactobacilli to convert directly into lactic acid."
+	},
+	{
+		name: "Sweet Potatoes",
+		emoji: "🍠",
+		sugarPer100g: "4.2g",
+		carbTotal: "20.1g",
+		sugarTypes: "Maltose, Sucrose, Glucose, Fructose",
+		desc: "Rich in fermentable maltose produced during cooking plus high digestible starches that sustain low oral pH."
+	},
+	{
+		name: "Yellow & Red Onions",
+		emoji: "🧅",
+		sugarPer100g: "4.2g",
+		carbTotal: "9.3g",
+		sugarTypes: "Fructans (FODMAP), Fructose, Glucose, Sucrose",
+		desc: "Dense in fermentable fructan oligosaccharides that easily break down and acidify oral crevices."
+	},
+	{
+		name: "Red & Green Bell Peppers",
+		emoji: "🫑",
+		sugarPer100g: "4.2g",
+		carbTotal: "6.0g",
+		sugarTypes: "Fructose, Glucose",
+		desc: "Sweet varieties carry significant free fructose and glucose that wash across exposed root margins during chewing."
+	},
+	{
+		name: "Green Peas",
+		emoji: "🫛",
+		sugarPer100g: "5.7g",
+		carbTotal: "14.5g",
+		sugarTypes: "Sucrose, Glucose, Starch",
+		desc: "High combination of simple sucrose and fermentable starches that rapidly metabolize into oral acid."
+	},
+	{
+		name: "Tomatoes",
+		emoji: "🍅",
+		sugarPer100g: "2.6g",
+		carbTotal: "3.9g",
+		sugarTypes: "Glucose, Fructose + Citric & Malic Acid",
+		desc: "Double-trigger vegetable: provides free fermentable sugars while already possessing inherent organic plant acidity (~pH 4.3)."
+	},
+	{
+		name: "Broccoli",
+		emoji: "🥦",
+		sugarPer100g: "1.7g",
+		carbTotal: "6.6g",
+		sugarTypes: "Fructose, Glucose, Sucrose",
+		desc: "Contains modest free sugars and complex oligosaccharides that oral bacteria ferment into low-grade acid over several hours."
+	},
+	{
+		name: "Green Cabbage",
+		emoji: "🥬",
+		sugarPer100g: "3.2g",
+		carbTotal: "5.8g",
+		sugarTypes: "Glucose, Fructose",
+		desc: "Fibrous cellular walls release simple sugars during prolonged chewing, feeding acid-producing biofilms."
+	},
+	{
+		name: "Zucchini & Summer Squash",
+		emoji: "🥒",
+		sugarPer100g: "2.2g",
+		carbTotal: "3.1g",
+		sugarTypes: "Glucose, Fructose, Sucrose",
+		desc: "Soft water-rich tissue releases soluble sugars directly into saliva, creating mild localized fermentation."
+	},
+	{
+		name: "Iceberg & Romaine Lettuce",
+		emoji: "🥗",
+		sugarPer100g: "1.2g",
+		carbTotal: "2.9g",
+		sugarTypes: "Glucose, Fructose",
+		desc: "Lowest among common vegetables, yet still contains fermentable carbohydrate traces compared to the absolute zero sugar of animal protein."
+	}
+];
+---
+
+<div class={`veg-sugar-scale-wrapper ${className}`}>
+	<div class="veg-sugar-scale-card">
+		<!-- Header -->
+		<div class="veg-sugar-header">
+			<h4 class="veg-sugar-title">Sugar &amp; Fermentable Carbohydrates in Top 12&nbsp;Vegetables</h4>
+			<p class="veg-sugar-desc">
+				Per 100g edible portion. Even savory vegetables contain measurable sugars and starch matrices that oral bacteria ferment into corrosive lactic acid within&nbsp;minutes.
+			</p>
+		</div>
+
+		<!-- Continuous 12-Item List -->
+		<div class="veg-sugar-list">
+			{vegetableSugarData.map((item, index) => (
+				<div class="veg-row">
+					<div class="veg-rank-col">
+						<span class="veg-rank-num">#{index + 1}</span>
+						<span class="veg-emoji">{item.emoji}</span>
+					</div>
+					
+					<div class="veg-text-col">
+						<div class="veg-title-row">
+							<h5 class="veg-title">{item.name}</h5>
+						</div>
+						<div class="veg-sugar-types">
+							<span class="type-label">Sugar Types:</span> {item.sugarTypes}
+						</div>
+						<p class="veg-description">{item.desc}</p>
+					</div>
+
+					<div class="veg-metrics-box">
+						<div class="metric-item">
+							<span class="metric-label">Sugars</span>
+							<span class="metric-value text-amber-300">{item.sugarPer100g}</span>
+						</div>
+						<div class="metric-divider"></div>
+						<div class="metric-item">
+							<span class="metric-label">Total Carbs</span>
+							<span class="metric-value text-purple-300">{item.carbTotal}</span>
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+
+		<!-- Potato Sugar & Salivary Amylase Spotlight Box -->
+		<div class="potato-spotlight-box">
+			<div class="potato-spotlight-header">
+				<div class="potato-icon">🥔</div>
+				<div>
+					<h4 class="potato-spotlight-title">The Potato Reality: Why Starch Is Just Bound&nbsp;Sugar</h4>
+					<span class="potato-badge">Amylase Chemistry</span>
+				</div>
+			</div>
+			<div class="potato-spotlight-body">
+				<p>
+					A medium baked potato (~170g) contains roughly <strong>2g of pure free sugars</strong>, but it also carries over <strong>35g of dense starches</strong>. The moment potato touches your mouth, the enzyme <em>salivary amylase</em> cleaves those starch polymers into rapid-fire <strong>maltose and glucose</strong>.
+				</p>
+				<p>
+					To the bacteria living in your gum pockets and exposed tooth margins, <strong>starch is identical to sugar</strong>. They immediately metabolize it into lactic acid, dropping oral pH below the critical threshold within 5 to 10 minutes of&nbsp;eating.
+				</p>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<style>
+	.veg-sugar-scale-wrapper {
+		margin: 3.5rem 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.veg-sugar-scale-card {
+		background: radial-gradient(120% 120% at 50% 0%, #1c1032 0%, #0c0818 60%, #06040d 100%);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.5rem;
+		padding: clamp(1.5rem, 3.5vw, 2.75rem);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+		color: #e2e8f0;
+	}
+
+	.veg-sugar-header {
+		text-align: center;
+		margin-bottom: 2.5rem;
+		max-width: 820px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.veg-sugar-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0 0 0.85rem 0;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
+		text-wrap: balance;
+	}
+
+	.veg-sugar-desc {
+		font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+		line-height: 1.6;
+		color: rgba(216, 180, 254, 0.85);
+		margin: 0 auto;
+		text-wrap: pretty;
+	}
+
+	.veg-sugar-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.veg-row {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 1.25rem;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(168, 85, 247, 0.2);
+		border-radius: 1rem;
+		padding: 1.25rem 1.5rem;
+		transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.veg-row:hover {
+		transform: translateY(-2px);
+		border-color: rgba(192, 132, 252, 0.45);
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.veg-rank-col {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-width: 3.5rem;
+	}
+
+	.veg-rank-num {
+		font-size: 0.8rem;
+		font-weight: 800;
+		color: rgba(168, 85, 247, 0.8);
+		letter-spacing: 0.05em;
+		margin-bottom: 0.25rem;
+	}
+
+	.veg-emoji {
+		font-size: 2.25rem;
+		line-height: 1;
+	}
+
+	.veg-text-col {
+		min-width: 0;
+	}
+
+	.veg-title {
+		font-size: 1.15rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0 0 0.35rem 0;
+		letter-spacing: -0.01em;
+	}
+
+	.veg-sugar-types {
+		font-size: 0.85rem;
+		color: #e9d5ff;
+		margin-bottom: 0.45rem;
+		line-height: 1.4;
+	}
+
+	.type-label {
+		font-weight: 700;
+		color: #c084fc;
+	}
+
+	.veg-description {
+		font-size: 0.88rem;
+		line-height: 1.5;
+		color: #94a3b8;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.veg-metrics-box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background: rgba(10, 5, 20, 0.8);
+		border: 1px solid rgba(168, 85, 247, 0.25);
+		border-radius: 0.75rem;
+		padding: 0.75rem 1rem;
+		min-width: 7.5rem;
+		text-align: center;
+	}
+
+	.metric-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.metric-label {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		font-weight: 700;
+		color: #94a3b8;
+		letter-spacing: 0.05em;
+	}
+
+	.metric-value {
+		font-size: 0.95rem;
+		font-weight: 800;
+		margin-top: 0.1rem;
+	}
+
+	.metric-divider {
+		width: 100%;
+		height: 1px;
+		background: rgba(168, 85, 247, 0.15);
+		margin: 0.4rem 0;
+	}
+
+	/* Potato Spotlight Box */
+	.potato-spotlight-box {
+		margin-top: 2.5rem;
+		background: rgba(245, 158, 11, 0.07);
+		border: 1px solid rgba(245, 158, 11, 0.35);
+		border-radius: 1.25rem;
+		padding: 1.75rem 2rem;
+	}
+
+	.potato-spotlight-header {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.potato-icon {
+		font-size: 2.5rem;
+		line-height: 1;
+	}
+
+	.potato-spotlight-title {
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: #fef08a;
+		margin: 0 0 0.25rem 0;
+		line-height: 1.2;
+		text-wrap: balance;
+	}
+
+	.potato-badge {
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: #f59e0b;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.potato-spotlight-body p {
+		font-size: 0.95rem;
+		line-height: 1.65;
+		color: #fde68a;
+		margin: 0 0 0.75rem 0;
+		text-wrap: pretty;
+	}
+
+	.potato-spotlight-body p:last-child {
+		margin-bottom: 0;
+	}
+
+	@media (max-width: 768px) {
+		.veg-row {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+			text-align: left;
+		}
+
+		.veg-rank-col {
+			flex-direction: row;
+			justify-content: flex-start;
+			gap: 0.75rem;
+		}
+
+		.veg-metrics-box {
+			flex-direction: row;
+			justify-content: space-around;
+			width: 100%;
+			min-width: unset;
+		}
+
+		.metric-divider {
+			width: 1px;
+			height: 2rem;
+			margin: 0 0.5rem;
+		}
+	}
+</style>
