@@ -10,8 +10,8 @@ const { class: className = '' } = Astro.props;
 const navItems = [
 	{
 		number: "1",
-		title: "My Mission",
-		href: "#my-mission"
+		title: "Introduction",
+		href: "#introduction"
 	},
 	{
 		number: "2",
@@ -30,23 +30,29 @@ const navItems = [
 	},
 	{
 		number: "5",
-		title: "My Theory on Why a No-Acid Diet Reduces My Pain",
-		href: "#my-theory-on-why-a-no-acid-diet-reduces-my-pain"
+		title: "My Theory",
+		href: "#my-theory"
 	},
 	{
 		number: "6",
 		title: "The Acidity of 30 Common Foods & Drinks",
-		href: "#the-acidity-of-30-common-foods"
+		href: "#the-acidity-of-30-common-foods",
+		subItems: [
+			{
+				title: "The 72-Hour Latency Trap & Amnesia",
+				href: "#the-72-hour-latency-trap--amnesia"
+			}
+		]
 	},
 	{
 		number: "7",
-		title: "The 72-Hour Latency Trap & Amnesia",
-		href: "#the-amnesia-of-getting-better"
+		title: "Dentist Visits",
+		href: "#dentist-visits"
 	},
 	{
 		number: "8",
-		title: "Dentist Visits",
-		href: "#dentist-visits"
+		title: "Conclusion & Takeaways",
+		href: "#conclusion--takeaways"
 	}
 ];
 ---
@@ -56,11 +62,25 @@ const navItems = [
 
 	<ol class="toc-list">
 		{navItems.map((item) => (
-			<li class="toc-item">
-				<a href={item.href} class="toc-link">
-					<span class="toc-num">{item.number}.</span>
-					<span class="toc-text">{item.title}</span>
-				</a>
+			<li class="toc-item-group">
+				<div class="toc-item">
+					<a href={item.href} class="toc-link">
+						<span class="toc-num">{item.number}.</span>
+						<span class="toc-text">{item.title}</span>
+					</a>
+				</div>
+				{item.subItems && (
+					<ul class="toc-sublist">
+						{item.subItems.map((sub) => (
+							<li class="toc-subitem">
+								<a href={sub.href} class="toc-sublink">
+									<span class="toc-sub-bullet">•</span>
+									<span class="toc-subtext">{sub.title}</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				)}
 			</li>
 		))}
 	</ol>
@@ -104,8 +124,52 @@ const navItems = [
 		gap: 0.35rem;
 	}
 
+	.toc-item-group {
+		display: flex;
+		flex-direction: column;
+	}
+
 	.toc-item {
 		display: flex;
+	}
+
+	.toc-sublist {
+		list-style: none;
+		padding: 0 0 0 1.85rem;
+		margin: 0.1rem 0 0.25rem 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.toc-subitem {
+		display: flex;
+	}
+
+	.toc-sublink {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.45rem;
+		color: #64748b;
+		text-decoration: none;
+		font-size: 0.88rem;
+		line-height: 1.35;
+		padding: 0.2rem 0.5rem;
+		border-radius: 5px;
+		transition: all 0.15s ease;
+		width: 100%;
+	}
+
+	.toc-sublink:hover {
+		color: #7c3aed;
+		background: #f8fafc;
+		transform: translateX(3px);
+		text-decoration: none;
+	}
+
+	.toc-sub-bullet {
+		color: #94a3b8;
+		font-weight: 700;
 	}
 
 	.toc-link {
