@@ -1001,14 +1001,14 @@ if (!postNumber && slug) {
 				font-size: 0.88rem;
 			}
 
-			/* Custom Subtle Designer Section Divider */
+			/* "Pain Disappearing" Section Divider: Left-Aligned Diamond fading smoothly to zero */
 			.post-content :global(hr) {
 				border: none;
 				height: 1px;
-				background: linear-gradient(90deg, transparent 0%, rgba(148, 163, 184, 0.3) 20%, rgba(168, 85, 247, 0.45) 50%, rgba(148, 163, 184, 0.3) 80%, transparent 100%);
-				margin: 3.75rem auto 1rem auto;
+				background: linear-gradient(90deg, rgba(168, 85, 247, 0.7) 0%, rgba(192, 132, 252, 0.35) 25%, rgba(148, 163, 184, 0.15) 55%, transparent 100%);
+				margin: 3.75rem 0 1rem 0;
 				width: 100%;
-				max-width: 620px;
+				max-width: 100%;
 				position: relative;
 				overflow: visible;
 				display: block;
@@ -1016,15 +1016,15 @@ if (!postNumber && slug) {
 			.post-content :global(hr)::after {
 				content: '';
 				position: absolute;
-				left: 50%;
+				left: 0;
 				top: 50%;
-				transform: translate(-50%, -50%) rotate(45deg);
+				transform: translateY(-50%) rotate(45deg);
 				width: 7px;
 				height: 7px;
 				background: #ffffff;
 				border: 1.5px solid #a855f7;
 				border-radius: 1px;
-				box-shadow: 0 0 6px rgba(168, 85, 247, 0.25);
+				box-shadow: 0 0 6px rgba(168, 85, 247, 0.35);
 			}
 			.blog-layout-grid {
 				display: block;
