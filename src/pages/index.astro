@@ -1,116 +1,21 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../components/FormattedDate.astro';
-import { Image } from 'astro:assets';
-import authorPhoto from '../assets/denis-ethier.png';
-import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
-import { sortPostsDescending } from '../utils/postUtils';
+import { getEntry, render } from 'astro:content';
+import BlogPost from '../layouts/BlogPost.astro';
 
-const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
-const posts = sortPostsDescending(rawPosts);
+// Flagship article rendered directly as the homepage
+const post = await getEntry('blog', '1-my-bms-18-months-carnivore-experiment');
+if (!post) {
+	throw new Error('Flagship post 1-my-bms-18-months-carnivore-experiment not found');
+}
 
-// Dynamic calculation of symptom-free duration based on June 2025 (last severe burning)
-const symptomFreeStartYear = 2025;
-const symptomFreeStartMonth = 5; // June (0-indexed)
-const currentDate = new Date();
-const monthsSymptomFree = (currentDate.getFullYear() - symptomFreeStartYear) * 12 + (currentDate.getMonth() - symptomFreeStartMonth) + 1;
+const { Content, headings } = await render(post);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<!-- Hero Section (Centered) -->
-			<section class="hero-centered-wrapper">
-				<div class="hero-centered-header">
-					<MedicalDisclaimer />
-					<h1 class="hero-centered-title">
-						Accelerating the Research on Burning Mouth Syndrome
-					</h1>
-					<p class="hero-centered-subtitle">Connecting lived patient data, dental hardware mechanics, and clinical science to uncover real&nbsp;solutions.</p>
-				</div>
-
-				<div class="hero-video-centered">
-					<div class="video-placeholder-wrapper" style="cursor: default;">
-						<Image 
-							src={authorPhoto} 
-							alt={`Denis Ethier - Burning Mouth Syndrome Recovery and Research`} 
-							class="video-placeholder-img" 
-							width={1400} 
-							height={788}
-						/>
-					</div>
-				</div>
-
-				<!-- My Story Section Under Video -->
-				<article class="personal-story-section">
-					<h2 class="story-heading">My BMS Story</h2>
-					<div class="story-lead">
-						<p>
-							In early 2025, I woke up with a searing sensation like a boiling spoon pressed against my tongue. Within weeks, the daily burning escalated to an agonizing 10/10 that made speaking and eating feel like dragging raw tissue across&nbsp;sandpaper.
-						</p>
-						<p>
-							After consulting five dentists and five medical doctors who ran extensive tests only to tell me everything looked completely normal, I realized traditional medicine had no clear solution for my&nbsp;condition.
-						</p>
-						<p>
-							I decided to test all sorts of possible solutions. I found an elimination diet that reduced my symptoms by a lot, but I've decided to start a podcast to really find out what's going on and find a permanent solution, or at least learn about it and help others as well, in the hope of helping&nbsp;others.
-						</p>
-						<p class="continue-reading-p">
-							<a href="/blog/how-i-reduced-my-bms-pain-from-10-to-0/" class="continue-reading-link">Continue reading my story &rarr;</a>
-						</p>
-					</div>
-				</article>
-
-
-			</section>
-
-			<!-- Recent Insights -->
-			<section class="section-header recent-posts-header">
-				<h2 class="recent-posts-title">Recent Posts</h2>
-				<p class="recent-posts-subtitle">Here is what I've written about, the experiments I've conducted, and what I've discovered along the&nbsp;way.</p>
-			</section>
-
-			<div class="grid">
-				{
-					posts.slice(0, 3).map((post, index) => {
-						const postNumber = post.data.entryNumber ?? (index + 1);
-						return (
-						<article class="card">
-							<a href={`/blog/${post.id}/`}>
-								<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}></div>
-								<div class="card-body">
-									<div class="card-meta">
-										<span class="meta-post-info"><strong class="meta-post-number">Post #{postNumber}</strong> • <FormattedDate date={post.data.pubDate} /></span>
-									</div>
-									<h3>{post.data.title}</h3>
-									<p>{post.data.description}</p>
-									<span class="view-story">Read More →</span>
-								</div>
-							</a>
-						</article>
-					)})
-				}
-			</div>
-
-			<div style="text-align: center; margin: 2.5rem 0;">
-				<a href="/blog" class="btn btn-outline" style="padding: 0.85rem 2.25rem;">View All Entries +</a>
-			</div>
-
-			<!-- Bottom Newsletter Callout: Dark High Contrast with 'Stay Updated on My Progress' -->
-			<section class="newsletter-section newsletter-dark">
-				<h2>Stay Updated on my progress</h2>
-				<p>Let's use the collective wisdom to solve BMS for more&nbsp;people.</p>
-				<a href="/join" class="btn btn-primary" style="padding: 1rem 2.75rem; font-size: 1.05rem; color: #ffffff !important;">Stay updated &rarr;</a>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BlogPost 
+	{...post.data} 
+	headings={headings} 
+	slug={post.id} 
+	isHomepage={true}
+>
+	<Content />
+</BlogPost>

@@ -19,6 +19,7 @@ interface Props extends CollectionEntry<'blog'>['data'] {
 	slug?: string;
 	showAudioReader?: boolean;
 	showTOC?: boolean;
+	isHomepage?: boolean;
 }
 
 const {
@@ -35,6 +36,7 @@ const {
 	category,
 	tags = [],
 	draft = false,
+	isHomepage = false,
 } = Astro.props;
 
 // Filter headings to only show h2 and h3
@@ -70,22 +72,24 @@ if (!postNumber && slug) {
 
 				<h1 set:html={title} />
 
-				<div class="post-meta">
-					<div class="post-meta-stack">
-						{postNumber && (
-							<div class="post-meta-entry">Post #{postNumber}</div>
-						)}
-						<p class="post-meta-date">
-							<span>Published on <FormattedDate date={pubDate} /></span>
-							{updatedDate && (
-								<>
-									<span class="post-meta-dot" aria-hidden="true">•</span>
-									<span class="post-meta-updated">Updated on <FormattedDate date={updatedDate} /></span>
-								</>
+				{!isHomepage && (
+					<div class="post-meta">
+						<div class="post-meta-stack">
+							{postNumber && (
+								<div class="post-meta-entry">Post #{postNumber}</div>
 							)}
-						</p>
+							<p class="post-meta-date">
+								<span>Published on <FormattedDate date={pubDate} /></span>
+								{updatedDate && (
+									<>
+										<span class="post-meta-dot" aria-hidden="true">•</span>
+										<span class="post-meta-updated">Updated on <FormattedDate date={updatedDate} /></span>
+									</>
+								)}
+							</p>
+						</div>
 					</div>
-				</div>
+				)}
 				<MedicalDisclaimer />
 
 				{showAudioReader && <AudioReader title={title} />}

@@ -8,21 +8,37 @@ const { class: className = '' } = Astro.props;
 
 // Curated sections in exact chronological narrative order (matching compiled MDX heading IDs)
 const navItems = [
-	{ number: "1", title: "Who Am I?", href: "#who-am-i" },
+	{ number: "1", title: "Welcome to Decoding The Burn", href: "#welcome-to-decoding-the-burn" },
 	{ number: "2", title: "Disclaimers", href: "#disclaimers" },
-	{ number: "3", title: "My BMS Experiments", href: "#my-bms-experiments" },
-	{ number: "4", title: "What I Eat Now", href: "#what-i-eat-now" },
-	{ number: "5", title: "My Theory", href: "#my-theory" },
-	{ number: "6", title: "The Acidity of 30 Common Foods & Drinks", href: "#the-acidity-of-30-common-foods--drinks" },
-	{ number: "7", title: "Dentist Visits", href: "#dentist-visits" },
-	{ number: "8", title: "Conclusion & Takeaways", href: "#conclusion--takeaways" }
+	{ number: "3", title: "My Carnivore Experiment", href: "#my-carnivore-experiment" },
+	{ number: "4", title: "What Didn't Work for Me", href: "#what-didnt-work-for-me-testing-50-supplements--water-filtration" },
+	{ number: "5", title: "What I Eat Now", href: "#what-i-eat-now" },
+	{ number: "6", title: "My Theory on Why Carnivore Works", href: "#my-theory-on-why-the-carnivore-diet-works" },
+	{ number: "7", title: "The Acidity of 30 Common Foods & Drinks", href: "#the-acidity-of-30-common-foods--drinks" },
+	{ number: "8", title: "Who I Learned the Carnivore Diet From", href: "#who-i-learned-the-carnivore-diet-from" },
+	{ number: "9", title: "My Next Dentist Visits", href: "#my-next-dentist-visits" },
+	{ number: "10", title: "Summary of What I've Done", href: "#summary-of-what-ive-done" }
 ];
 ---
 
-<!-- 1. Top Static Centered Card (Always present above post content) -->
+<!-- 1. Top Static Centered Card (Expandable and Collapsible) -->
 <nav class={`toc-card-single ${className}`} id="top-toc-card" aria-label="Table of Contents">
 	<div class="toc-header-bar">
-		<h4 class="toc-title">Table of Contents</h4>
+		<button 
+			type="button" 
+			class="toc-toggle-btn" 
+			id="toc-collapse-toggle" 
+			aria-expanded="true" 
+			aria-controls="top-toc-list"
+			title="Click to collapse/expand Table of Contents"
+		>
+			<svg class="toc-chevron-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+				<polyline points="6 9 12 15 18 9"></polyline>
+			</svg>
+			<span class="toc-title">Table of Contents</span>
+			<span class="toc-count-badge">10 sections</span>
+		</button>
+
 		<!-- Plain monochrome pin icon on upper right with [T] shortcut hint in title -->
 		<button 
 			type="button" 
@@ -38,7 +54,7 @@ const navItems = [
 		</button>
 	</div>
 
-	<ol class="toc-list">
+	<ol class="toc-list" id="top-toc-list">
 		{navItems.map((item) => (
 			<li class="toc-item">
 				<a href={item.href} class="toc-link">
@@ -80,6 +96,25 @@ const navItems = [
 			const floatingBox = document.getElementById('floating-toc-box');
 			const closeBtn = document.getElementById('floating-box-close');
 			const topCard = document.getElementById('top-toc-card');
+			const collapseToggle = document.getElementById('toc-collapse-toggle');
+			const topList = document.getElementById('top-toc-list');
+
+			if (collapseToggle && topList && topCard) {
+				collapseToggle.onclick = function() {
+					const isCollapsed = topCard.classList.toggle('is-collapsed');
+					collapseToggle.setAttribute('aria-expanded', (!isCollapsed).toString());
+					try {
+						localStorage.setItem('toc_top_collapsed', isCollapsed ? 'true' : 'false');
+					} catch(e){}
+				};
+
+				try {
+					if (localStorage.getItem('toc_top_collapsed') === 'true') {
+						topCard.classList.add('is-collapsed');
+						collapseToggle.setAttribute('aria-expanded', 'false');
+					}
+				} catch(e){}
+			}
 
 			if (!pinBtn || !floatingBox) return;
 
@@ -197,6 +232,12 @@ const navItems = [
 		display: flex;
 		flex-direction: column;
 		gap: 0.85rem;
+		transition: padding 0.2s ease, gap 0.2s ease;
+	}
+
+	.toc-card-single.is-collapsed {
+		padding: 0.85rem 1rem;
+		gap: 0;
 	}
 
 	.toc-header-bar {
@@ -206,6 +247,46 @@ const navItems = [
 		gap: 0.75rem;
 		padding-bottom: 0.65rem;
 		border-bottom: 1px solid #f1f5f9;
+		transition: border-bottom 0.2s ease, padding-bottom 0.2s ease;
+	}
+
+	.toc-card-single.is-collapsed .toc-header-bar {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.toc-toggle-btn {
+		background: transparent;
+		border: none;
+		padding: 0;
+		margin: 0;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-align: left;
+		font-family: inherit;
+		flex: 1;
+	}
+
+	.toc-chevron-icon {
+		color: #64748b;
+		transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+		flex-shrink: 0;
+	}
+
+	.toc-card-single.is-collapsed .toc-chevron-icon {
+		transform: rotate(-90deg);
+	}
+
+	.toc-count-badge {
+		font-size: 0.72rem;
+		font-weight: 600;
+		color: #64748b;
+		background: #f1f5f9;
+		padding: 0.15rem 0.55rem;
+		border-radius: 999px;
+		letter-spacing: 0.01em;
 	}
 
 	.toc-title {
@@ -215,6 +296,10 @@ const navItems = [
 		color: #0f172a;
 		margin: 0;
 		letter-spacing: -0.01em;
+	}
+
+	.toc-card-single.is-collapsed .toc-list {
+		display: none;
 	}
 
 	/* Plain monochrome pin icon on upper right, no border, no background */
