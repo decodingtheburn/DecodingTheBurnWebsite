@@ -18,10 +18,10 @@ import Footer from '../components/Footer.astro';
 		<main class="logo-lab-container">
 			<!-- Header / Coaching Intro Banner -->
 			<section class="lab-hero">
-				<div class="lab-badge">Brand Identity Lab • 10 Concepts</div>
+				<div class="lab-badge">Cheeky Tongue &amp; Flame Lab • 10 Concepts</div>
 				<h1 class="lab-title">Decoding The&nbsp;Burn</h1>
 				<p class="lab-subtitle">
-					Clean, modern, and simplified brand marks. Explore mouth geometry, flame metaphors, and deep purple palettes across light, dark, and header&nbsp;contexts.
+					Memorable, visual, and cheeky brand marks: exploring stylized tongues sticking out with flame crests and pure iconic tongue silhouettes across light, dark, and header&nbsp;contexts.
 				</p>
 
 				<!-- Global Background Mode Switcher -->
@@ -37,42 +37,45 @@ import Footer from '../components/Footer.astro';
 			<section class="concepts-grid" id="concepts-grid">
 
 				<!-- CONCEPT 1 -->
-				<article class="concept-card">
+				<article class="concept-card highlight-card">
 					<div class="card-header">
 						<span class="concept-num">Option 1</span>
-						<span class="concept-tag tag-red">Mouth Focus</span>
+						<span class="concept-tag tag-red">Classic Cheeky</span>
 					</div>
-					<h3 class="concept-title">Minimal Open Mouth (Neon Flame Ember)</h3>
+					<h3 class="concept-title">Classic Cheeky Tongue &amp; Flame Crest</h3>
 					<p class="concept-desc">
-						A drastically simplified, modern open mouth. Outer lips in sleek charcoal, inner cavity radiating glowing crimson and warm tongue heat. No clutter, instant recognition.
+						Open smiling mouth with a bold, rounded tongue sticking out downward, topped with an energetic 3-pronged burning flame resting on the tongue. Instantly recognizable and fun.
 					</p>
 
 					<div class="logo-preview-box">
 						<!-- SVG 1 -->
 						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
 							<defs>
-								<linearGradient id="c1-lip" x1="0" y1="0" x2="0" y2="1">
-									<stop offset="0%" stop-color="#1e293b"/>
-									<stop offset="100%" stop-color="#0f172a"/>
+								<linearGradient id="t1-tongue" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="0%" stop-color="#fb7185"/>
+									<stop offset="60%" stop-color="#e11d48"/>
+									<stop offset="100%" stop-color="#9f1239"/>
 								</linearGradient>
-								<radialGradient id="c1-glow" cx="50%" cy="55%" r="45%">
-									<stop offset="0%" stop-color="#ff4d4d"/>
-									<stop offset="60%" stop-color="#dc2626"/>
-									<stop offset="100%" stop-color="#7f1d1d"/>
-								</radialGradient>
-								<linearGradient id="c1-tongue" x1="0" y1="0" x2="0" y2="1">
-									<stop offset="0%" stop-color="#f87171"/>
-									<stop offset="100%" stop-color="#ef4444"/>
+								<linearGradient id="t1-flame" x1="0" y1="1" x2="0" y2="0">
+									<stop offset="0%" stop-color="#dc2626"/>
+									<stop offset="60%" stop-color="#f97316"/>
+									<stop offset="100%" stop-color="#fbbf24"/>
 								</linearGradient>
 							</defs>
-							<!-- Outer Lip Silhouette -->
-							<path d="M 12,50 C 22,34 38,32 47,36 C 50,37 50,37 53,36 C 62,32 78,34 88,50 C 78,74 62,80 50,80 C 38,80 22,74 12,50 Z" fill="url(#c1-lip)"/>
-							<!-- Inner Oral Cavity Glow -->
-							<ellipse cx="50" cy="53" rx="30" ry="18" fill="url(#c1-glow)"/>
-							<!-- Clean Stylized Tongue -->
-							<path d="M 32,56 C 36,50 44,48 50,48 C 56,48 64,50 68,56 C 66,66 58,70 50,70 C 42,70 34,66 32,56 Z" fill="url(#c1-tongue)"/>
-							<!-- Subtle Upper Tooth Arc -->
-							<path d="M 40,38 C 45,37 55,37 60,38 C 58,41 42,41 40,38 Z" fill="#ffffff" opacity="0.9"/>
+							<!-- Dark Oral Cavity -->
+							<path d="M 18,46 C 18,34 32,32 50,32 C 68,32 82,34 82,46 C 82,60 68,64 50,64 C 32,64 18,60 18,46 Z" fill="#0f172a"/>
+							<!-- Upper Teeth Row -->
+							<path d="M 32,38 C 40,36 60,36 68,38 L 66,44 C 58,43 42,43 34,44 Z" fill="#ffffff"/>
+							<!-- Tongue Sticking Out Downward -->
+							<path d="M 28,48 C 28,72 34,88 50,88 C 66,88 72,72 72,48 Z" fill="url(#t1-tongue)"/>
+							<!-- Center Groove Line on Tongue -->
+							<line x1="50" y1="52" x2="50" y2="76" stroke="#fda4af" stroke-width="2" stroke-linecap="round"/>
+							<!-- Upper Lips Contour -->
+							<path d="M 14,46 C 26,34 40,32 50,36 C 60,32 74,34 86,46 C 76,52 64,52 50,52 C 36,52 24,52 14,46 Z" fill="#334155"/>
+							<!-- Flame on Top of Tongue -->
+							<path d="M 50,8 C 55,20 62,26 62,36 C 62,44 56,48 50,48 C 44,48 38,44 38,36 C 38,26 45,20 50,8 Z" fill="url(#t1-flame)"/>
+							<!-- Inner Flame Core -->
+							<path d="M 50,22 C 53,28 56,32 56,38 C 56,42 53,44 50,44 C 47,44 44,42 44,38 C 44,32 47,28 50,22 Z" fill="#ffffff" opacity="0.9"/>
 						</svg>
 					</div>
 
@@ -80,11 +83,11 @@ import Footer from '../components/Footer.astro';
 						<div class="lockup-label">Header Lockup Preview</div>
 						<div class="lockup-demo">
 							<svg viewBox="0 0 100 100" width="40" height="40">
-								<use href="#c1-thumb"/>
-								<ellipse cx="50" cy="53" rx="30" ry="18" fill="#dc2626"/>
-								<path d="M 12,50 C 22,34 38,32 47,36 C 50,37 50,37 53,36 C 62,32 78,34 88,50 C 78,74 62,80 50,80 C 38,80 22,74 12,50 Z" fill="#0f172a"/>
-								<ellipse cx="50" cy="53" rx="28" ry="16" fill="#ef4444"/>
-								<path d="M 33,56 C 37,50 44,48 50,48 C 56,48 63,50 67,56 C 65,65 58,69 50,69 C 42,69 35,65 33,56 Z" fill="#fca5a5"/>
+								<path d="M 18,46 C 18,34 32,32 50,32 C 68,32 82,34 82,46 C 82,60 68,64 50,64 C 32,64 18,60 18,46 Z" fill="#0f172a"/>
+								<path d="M 28,48 C 28,72 34,88 50,88 C 66,88 72,72 72,48 Z" fill="#e11d48"/>
+								<line x1="50" y1="52" x2="50" y2="76" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+								<path d="M 14,46 C 26,34 40,32 50,36 C 60,32 74,34 86,46 C 76,52 64,52 50,52 C 36,52 24,52 14,46 Z" fill="#334155"/>
+								<path d="M 50,10 C 55,20 62,26 62,36 C 62,44 56,48 50,48 C 44,48 38,44 38,36 C 38,26 45,20 50,10 Z" fill="#f97316"/>
 							</svg>
 							<div class="lockup-text">
 								<span class="lockup-decoding">Decoding</span>
@@ -95,42 +98,27 @@ import Footer from '../components/Footer.astro';
 				</article>
 
 				<!-- CONCEPT 2 -->
-				<article class="concept-card highlight-card">
+				<article class="concept-card">
 					<div class="card-header">
 						<span class="concept-num">Option 2</span>
-						<span class="concept-tag tag-purple">Purple Mandate</span>
+						<span class="concept-tag tag-blue">Minimal Line Art</span>
 					</div>
-					<h3 class="concept-title">Royal Purple Open Mouth</h3>
+					<h3 class="concept-title">Minimalist Outline Tongue &amp; Flame</h3>
 					<p class="concept-desc">
-						You requested purple: this translates the open mouth into an imperial violet and royal purple aesthetic. Medical authority meets modern premium design.
+						Apple-grade continuous line art: a sleek curved mouth contour where a clean stylized tongue extends outward, carrying a delicate single flame dancing on top.
 					</p>
 
 					<div class="logo-preview-box">
 						<!-- SVG 2 -->
 						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
-							<defs>
-								<linearGradient id="c2-lip" x1="0" y1="0" x2="1" y2="1">
-									<stop offset="0%" stop-color="#4c1d95"/>
-									<stop offset="100%" stop-color="#2e1065"/>
-								</linearGradient>
-								<radialGradient id="c2-glow" cx="50%" cy="55%" r="48%">
-									<stop offset="0%" stop-color="#d8b4fe"/>
-									<stop offset="50%" stop-color="#9333ea"/>
-									<stop offset="100%" stop-color="#581c87"/>
-								</radialGradient>
-								<linearGradient id="c2-tongue" x1="0" y1="0" x2="0" y2="1">
-									<stop offset="0%" stop-color="#c084fc"/>
-									<stop offset="100%" stop-color="#7c3aed"/>
-								</linearGradient>
-							</defs>
-							<!-- Lip Contour -->
-							<path d="M 12,50 C 22,34 38,32 47,36 C 50,37 50,37 53,36 C 62,32 78,34 88,50 C 78,74 62,80 50,80 C 38,80 22,74 12,50 Z" fill="url(#c2-lip)"/>
-							<!-- Violet Oral Cavity -->
-							<ellipse cx="50" cy="53" rx="30" ry="18" fill="url(#c2-glow)"/>
-							<!-- Tongue -->
-							<path d="M 32,56 C 36,50 44,48 50,48 C 56,48 64,50 68,56 C 66,66 58,70 50,70 C 42,70 34,66 32,56 Z" fill="url(#c2-tongue)"/>
-							<!-- Accent Arc -->
-							<path d="M 40,38 C 45,37 55,37 60,38 C 58,41 42,41 40,38 Z" fill="#ffffff" opacity="0.95"/>
+							<!-- Clean Line Mouth -->
+							<path d="M 16,48 C 28,40 40,38 50,40 C 60,38 72,40 84,48" fill="none" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round"/>
+							<!-- Sticking Out Tongue Outline -->
+							<path d="M 32,46 C 32,68 36,84 50,84 C 64,84 68,68 68,46" fill="#fee2e2" stroke="#e11d48" stroke-width="4" stroke-linejoin="round"/>
+							<line x1="50" y1="52" x2="50" y2="72" stroke="#e11d48" stroke-width="3" stroke-linecap="round"/>
+							<!-- Floating Flame on Top -->
+							<path d="M 50,12 C 54,22 62,28 62,36 C 62,42 56,46 50,46 C 44,46 38,42 38,36 C 38,28 46,22 50,12 Z" fill="#ef4444"/>
+							<circle cx="50" cy="36" r="4" fill="#fbbf24"/>
 						</svg>
 					</div>
 
@@ -138,62 +126,9 @@ import Footer from '../components/Footer.astro';
 						<div class="lockup-label">Header Lockup Preview</div>
 						<div class="lockup-demo">
 							<svg viewBox="0 0 100 100" width="40" height="40">
-								<path d="M 12,50 C 22,34 38,32 47,36 C 50,37 50,37 53,36 C 62,32 78,34 88,50 C 78,74 62,80 50,80 C 38,80 22,74 12,50 Z" fill="#3b0764"/>
-								<ellipse cx="50" cy="53" rx="28" ry="16" fill="#9333ea"/>
-								<path d="M 33,56 C 37,50 44,48 50,48 C 56,48 63,50 67,56 C 65,65 58,69 50,69 C 42,69 35,65 33,56 Z" fill="#c084fc"/>
-							</svg>
-							<div class="lockup-text">
-								<span class="lockup-decoding">Decoding</span>
-								<span class="lockup-burn lockup-burn-purple">The Burn</span>
-							</div>
-						</div>
-					</div>
-				</article>
-
-				<!-- CONCEPT 3 -->
-				<article class="concept-card highlight-card">
-					<div class="card-header">
-						<span class="concept-num">Option 3</span>
-						<span class="concept-tag tag-blend">Purple + Fire Synergy</span>
-					</div>
-					<h3 class="concept-title">Dual-Tone Purple & Flame Ember</h3>
-					<p class="concept-desc">
-						The ultimate fusion: Deep royal purple lips representing scientific "Decoding", holding a living red-orange fire ember representing "The Burn".
-					</p>
-
-					<div class="logo-preview-box">
-						<!-- SVG 3 -->
-						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
-							<defs>
-								<linearGradient id="c3-lip" x1="0" y1="0" x2="1" y2="1">
-									<stop offset="0%" stop-color="#581c87"/>
-									<stop offset="100%" stop-color="#1e1b4b"/>
-								</linearGradient>
-								<linearGradient id="c3-fire" x1="0" y1="1" x2="0" y2="0">
-									<stop offset="0%" stop-color="#b91c1c"/>
-									<stop offset="50%" stop-color="#ef4444"/>
-									<stop offset="100%" stop-color="#fbbf24"/>
-								</linearGradient>
-							</defs>
-							<!-- Purple Lip Outer -->
-							<path d="M 12,50 C 22,34 38,32 47,36 C 50,37 50,37 53,36 C 62,32 78,34 88,50 C 78,74 62,80 50,80 C 38,80 22,74 12,50 Z" fill="url(#c3-lip)"/>
-							<!-- Deep Dark Cavity -->
-							<ellipse cx="50" cy="53" rx="28" ry="17" fill="#090514"/>
-							<!-- Rising Fire Tongue inside mouth -->
-							<path d="M 34,60 C 36,46 46,38 48,28 C 50,36 54,42 66,60 C 60,68 40,68 34,60 Z" fill="url(#c3-fire)"/>
-							<!-- Flame Heart Accent -->
-							<path d="M 44,58 C 46,50 50,44 50,38 C 52,44 55,48 56,58 C 52,62 48,62 44,58 Z" fill="#ffffff" opacity="0.7"/>
-						</svg>
-					</div>
-
-					<div class="lockup-preview">
-						<div class="lockup-label">Header Lockup Preview</div>
-						<div class="lockup-demo">
-							<svg viewBox="0 0 100 100" width="40" height="40">
-								<path d="M 12,50 C 22,34 38,32 47,36 C 50,37 50,37 53,36 C 62,32 78,34 88,50 C 78,74 62,80 50,80 C 38,80 22,74 12,50 Z" fill="#4c1d95"/>
-								<ellipse cx="50" cy="53" rx="26" ry="15" fill="#0f172a"/>
-								<path d="M 35,59 C 38,48 47,40 49,32 C 51,39 55,44 65,59 C 59,66 41,66 35,59 Z" fill="#ef4444"/>
-								<path d="M 45,58 C 47,50 50,44 50,40 C 51,45 53,48 55,58 Z" fill="#fbbf24"/>
+								<path d="M 16,48 C 28,40 40,38 50,40 C 60,38 72,40 84,48" fill="none" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+								<path d="M 32,46 C 32,68 36,84 50,84 C 64,84 68,68 68,46" fill="#fecdd3" stroke="#e11d48" stroke-width="4"/>
+								<path d="M 50,14 C 54,22 60,28 60,36 C 60,42 55,46 50,46 C 45,46 40,42 40,36 C 40,28 46,22 50,14 Z" fill="#ef4444"/>
 							</svg>
 							<div class="lockup-text">
 								<span class="lockup-decoding">Decoding</span>
@@ -203,36 +138,45 @@ import Footer from '../components/Footer.astro';
 					</div>
 				</article>
 
-				<!-- CONCEPT 4 -->
-				<article class="concept-card">
+				<!-- CONCEPT 3 -->
+				<article class="concept-card highlight-card">
 					<div class="card-header">
-						<span class="concept-num">Option 4</span>
-						<span class="concept-tag tag-amber">Flame Only</span>
+						<span class="concept-num">Option 3</span>
+						<span class="concept-tag tag-purple">Purple + Fire Synergy</span>
 					</div>
-					<h3 class="concept-title">Pure Minimalist Flame</h3>
+					<h3 class="concept-title">Royal Purple Lips &amp; Burning Tongue</h3>
 					<p class="concept-desc">
-						"I was thinking about flames as well, maybe just having a flame." Here is an ultra-clean, Apple/Nike-grade single continuous geometric flame glyph.
+						Deep imperial purple lips parted in a cheeky expression, sticking out a vibrant fire-red tongue with a burning golden ember resting on top. Perfect brand match.
 					</p>
 
 					<div class="logo-preview-box">
-						<!-- SVG 4 -->
+						<!-- SVG 3 -->
 						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
 							<defs>
-								<linearGradient id="c4-flame" x1="0" y1="1" x2="0" y2="0">
-									<stop offset="0%" stop-color="#b91c1c"/>
-									<stop offset="45%" stop-color="#ef4444"/>
-									<stop offset="85%" stop-color="#f97316"/>
-									<stop offset="100%" stop-color="#fbbf24"/>
+								<linearGradient id="t3-purple" x1="0" y1="0" x2="1" y2="1">
+									<stop offset="0%" stop-color="#7c3aed"/>
+									<stop offset="100%" stop-color="#3b0764"/>
 								</linearGradient>
-								<linearGradient id="c4-inner" x1="0" y1="1" x2="0" y2="0">
-									<stop offset="0%" stop-color="#f97316"/>
-									<stop offset="100%" stop-color="#ffffff"/>
+								<linearGradient id="t3-tongue" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="0%" stop-color="#f43f5e"/>
+									<stop offset="100%" stop-color="#be123c"/>
+								</linearGradient>
+								<linearGradient id="t3-flame" x1="0" y1="1" x2="0" y2="0">
+									<stop offset="0%" stop-color="#e11d48"/>
+									<stop offset="50%" stop-color="#f97316"/>
+									<stop offset="100%" stop-color="#fde047"/>
 								</linearGradient>
 							</defs>
-							<!-- Main Fluid Flame Silhouette -->
-							<path d="M 50,12 C 54,26 62,34 72,46 C 82,58 80,74 68,84 C 58,92 42,92 32,84 C 20,74 18,58 28,46 C 36,36 34,26 36,18 C 42,26 44,36 50,12 Z" fill="url(#c4-flame)"/>
-							<!-- Inner Bright Core -->
-							<path d="M 50,42 C 54,52 62,58 62,68 C 62,76 56,82 50,82 C 44,82 38,76 38,68 C 38,58 46,52 50,42 Z" fill="url(#c4-inner)" opacity="0.95"/>
+							<!-- Dark Cavity -->
+							<ellipse cx="50" cy="46" rx="30" ry="14" fill="#1e1b4b"/>
+							<!-- Red Tongue Dropping Down -->
+							<path d="M 30,46 C 30,70 36,86 50,86 C 64,86 70,70 70,46 Z" fill="url(#t3-tongue)"/>
+							<line x1="50" y1="50" x2="50" y2="74" stroke="#fda4af" stroke-width="2" stroke-linecap="round"/>
+							<!-- Purple Upper Lip -->
+							<path d="M 14,46 C 26,32 40,30 50,34 C 60,30 74,32 86,46 C 74,52 62,52 50,52 C 38,52 26,52 14,46 Z" fill="url(#t3-purple)"/>
+							<!-- Flame on Top of Tongue -->
+							<path d="M 50,10 C 56,22 64,28 64,38 C 64,46 58,50 50,50 C 42,50 36,46 36,38 C 36,28 44,22 50,10 Z" fill="url(#t3-flame)"/>
+							<circle cx="50" cy="38" r="4.5" fill="#ffffff" opacity="0.9"/>
 						</svg>
 					</div>
 
@@ -240,8 +184,59 @@ import Footer from '../components/Footer.astro';
 						<div class="lockup-label">Header Lockup Preview</div>
 						<div class="lockup-demo">
 							<svg viewBox="0 0 100 100" width="40" height="40">
-								<path d="M 50,12 C 54,26 62,34 72,46 C 82,58 80,74 68,84 C 58,92 42,92 32,84 C 20,74 18,58 28,46 C 36,36 34,26 36,18 C 42,26 44,36 50,12 Z" fill="#ef4444"/>
-								<path d="M 50,42 C 54,52 62,58 62,68 C 62,76 56,82 50,82 C 44,82 38,76 38,68 C 38,58 46,52 50,42 Z" fill="#fbbf24"/>
+								<ellipse cx="50" cy="46" rx="30" ry="14" fill="#1e1b4b"/>
+								<path d="M 30,46 C 30,70 36,86 50,86 C 64,86 70,70 70,46 Z" fill="#e11d48"/>
+								<path d="M 14,46 C 26,32 40,30 50,34 C 60,30 74,32 86,46 C 74,52 62,52 50,52 C 38,52 26,52 14,46 Z" fill="#6d28d9"/>
+								<path d="M 50,12 C 55,22 62,28 62,38 C 62,46 56,50 50,50 C 44,50 38,46 38,38 C 38,28 45,22 50,12 Z" fill="#fbbf24"/>
+							</svg>
+							<div class="lockup-text">
+								<span class="lockup-decoding">Decoding</span>
+								<span class="lockup-burn lockup-burn-purple">The Burn</span>
+							</div>
+						</div>
+					</div>
+				</article>
+
+				<!-- CONCEPT 4 -->
+				<article class="concept-card">
+					<div class="card-header">
+						<span class="concept-num">Option 4</span>
+						<span class="concept-tag tag-amber">Flame-Tongue Hybrid</span>
+					</div>
+					<h3 class="concept-title">The Flame-Shaped Tongue</h3>
+					<p class="concept-desc">
+						Visual pun: the tongue sticking out between the lips organically tapers into a licking flame! The tongue literally IS the fire. Minimalist, clever, and witty.
+					</p>
+
+					<div class="logo-preview-box">
+						<!-- SVG 4 -->
+						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
+							<defs>
+								<linearGradient id="t4-firetongue" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="0%" stop-color="#fbbf24"/>
+									<stop offset="40%" stop-color="#f97316"/>
+									<stop offset="80%" stop-color="#dc2626"/>
+									<stop offset="100%" stop-color="#991b1b"/>
+								</linearGradient>
+							</defs>
+							<!-- Dark Mouth Opening -->
+							<path d="M 18,44 C 28,32 72,32 82,44 C 74,54 26,54 18,44 Z" fill="#0f172a"/>
+							<!-- Upper Lip -->
+							<path d="M 14,44 C 26,32 40,30 50,34 C 60,30 74,32 86,44 C 76,48 24,48 14,44 Z" fill="#1e293b"/>
+							<!-- Tongue Morphs into Dropping Flame -->
+							<path d="M 32,44 C 30,62 38,72 44,80 C 48,86 50,90 50,90 C 50,90 52,86 56,80 C 62,72 70,62 68,44 Z" fill="url(#t4-firetongue)"/>
+							<!-- Center Flame Core in Tongue -->
+							<path d="M 44,48 C 42,60 46,68 50,74 C 54,68 58,60 56,48 Z" fill="#fef08a"/>
+						</svg>
+					</div>
+
+					<div class="lockup-preview">
+						<div class="lockup-label">Header Lockup Preview</div>
+						<div class="lockup-demo">
+							<svg viewBox="0 0 100 100" width="40" height="40">
+								<path d="M 14,44 C 26,32 40,30 50,34 C 60,30 74,32 86,44 C 76,48 24,48 14,44 Z" fill="#1e293b"/>
+								<path d="M 32,44 C 30,62 38,72 44,80 C 48,86 50,90 50,90 C 50,90 52,86 56,80 C 62,72 70,62 68,44 Z" fill="#ea580c"/>
+								<path d="M 44,48 C 42,60 46,68 50,74 C 54,68 58,60 56,48 Z" fill="#fde047"/>
 							</svg>
 							<div class="lockup-text">
 								<span class="lockup-decoding">Decoding</span>
@@ -255,28 +250,34 @@ import Footer from '../components/Footer.astro';
 				<article class="concept-card">
 					<div class="card-header">
 						<span class="concept-num">Option 5</span>
-						<span class="concept-tag tag-purple">Negative Space</span>
+						<span class="concept-tag tag-red">Rock &amp; Roll Vibe</span>
 					</div>
-					<h3 class="concept-title">The Negative-Space Flame Mouth</h3>
+					<h3 class="concept-title">The "Rolling Fire" Bold Tongue</h3>
 					<p class="concept-desc">
-						A sleek circular badge where the open mouth cavity naturally sculpts a rising flame in negative space. Smart, memorable, and minimalist.
+						A nod to the classic iconic pop-culture tongue logo: bold red tongue protruding downward with glossy highlights and fiery licking curls above the lips.
 					</p>
 
 					<div class="logo-preview-box">
 						<!-- SVG 5 -->
 						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
 							<defs>
-								<linearGradient id="c5-badge" x1="0" y1="0" x2="1" y2="1">
-									<stop offset="0%" stop-color="#7c3aed"/>
-									<stop offset="100%" stop-color="#4c1d95"/>
+								<linearGradient id="t5-tongue" x1="0" y1="0" x2="1" y2="1">
+									<stop offset="0%" stop-color="#ff2a55"/>
+									<stop offset="100%" stop-color="#b91c1c"/>
 								</linearGradient>
 							</defs>
-							<!-- Circular Badge Background -->
-							<rect x="8" y="8" width="84" height="84" rx="24" fill="url(#c5-badge)"/>
-							<!-- Stylized Mouth Open Cutout -->
-							<path d="M 22,50 C 30,36 44,34 50,37 C 56,34 70,36 78,50 C 70,68 58,74 50,74 C 42,74 30,68 22,50 Z" fill="#ffffff"/>
-							<!-- Negative Flame Tongue inside cutout -->
-							<path d="M 40,66 C 42,56 48,50 50,42 C 52,50 58,56 60,66 C 56,71 44,71 40,66 Z" fill="#ef4444"/>
+							<!-- Bold Charcoal Mouth Hull -->
+							<path d="M 12,48 C 24,30 76,30 88,48 C 80,64 20,64 12,48 Z" fill="#09090b"/>
+							<!-- Upper White Tooth Band -->
+							<path d="M 28,42 C 40,38 60,38 72,42 L 70,48 C 58,45 42,45 30,48 Z" fill="#ffffff"/>
+							<!-- Large Pop Tongue -->
+							<path d="M 24,50 C 24,76 32,92 50,92 C 68,92 76,76 76,50 Z" fill="url(#t5-tongue)" stroke="#000000" stroke-width="2"/>
+							<!-- Center Sulcus Line -->
+							<path d="M 50,54 C 50,68 50,78 50,82" stroke="#4c0519" stroke-width="2.5" stroke-linecap="round"/>
+							<!-- White Specular Highlight on Tongue Side -->
+							<path d="M 32,56 C 30,66 34,76 40,82" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+							<!-- Rising Flame Above -->
+							<path d="M 50,10 C 54,20 62,26 62,34 C 56,36 50,30 46,38 C 42,28 46,20 50,10 Z" fill="#f59e0b"/>
 						</svg>
 					</div>
 
@@ -284,13 +285,13 @@ import Footer from '../components/Footer.astro';
 						<div class="lockup-label">Header Lockup Preview</div>
 						<div class="lockup-demo">
 							<svg viewBox="0 0 100 100" width="40" height="40">
-								<rect x="8" y="8" width="84" height="84" rx="22" fill="#6d28d9"/>
-								<path d="M 22,50 C 30,36 44,34 50,37 C 56,34 70,36 78,50 C 70,68 58,74 50,74 C 42,74 30,68 22,50 Z" fill="#ffffff"/>
-								<path d="M 40,66 C 42,56 48,50 50,42 C 52,50 58,56 60,66 Z" fill="#ef4444"/>
+								<path d="M 12,48 C 24,30 76,30 88,48 C 80,64 20,64 12,48 Z" fill="#09090b"/>
+								<path d="M 24,50 C 24,76 32,92 50,92 C 68,92 76,76 76,50 Z" fill="#e11d48"/>
+								<path d="M 32,56 C 30,66 34,76 40,82" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none"/>
 							</svg>
 							<div class="lockup-text">
 								<span class="lockup-decoding">Decoding</span>
-								<span class="lockup-burn lockup-burn-purple">The Burn</span>
+								<span class="lockup-burn lockup-burn-red">The Burn</span>
 							</div>
 						</div>
 					</div>
@@ -300,30 +301,32 @@ import Footer from '../components/Footer.astro';
 				<article class="concept-card highlight-card">
 					<div class="card-header">
 						<span class="concept-num">Option 6</span>
-						<span class="concept-tag tag-blue">Simplified Face</span>
+						<span class="concept-tag tag-blend">Pure Tongue (No Flame)</span>
 					</div>
-					<h3 class="concept-title">The Simplified Face Profile & Glowing Cavity</h3>
+					<h3 class="concept-title">Pure Cheeky Tongue Out (Zero Flame)</h3>
 					<p class="concept-desc">
-						"Or you can try a full face but very simplified and no writing." A continuous architectural contour of the face profile with ONLY the burning mouth illuminated in crimson heat.
+						"Or just a tongue coming out. It's a bit cheeky, but it's maybe more memorable and simple." Ultra-clean, iconic, and friendly. Zero flame clutter.
 					</p>
 
 					<div class="logo-preview-box">
 						<!-- SVG 6 -->
 						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
 							<defs>
-								<linearGradient id="c6-glow" x1="0" y1="0" x2="1" y2="1">
-									<stop offset="0%" stop-color="#ff4d4d"/>
-									<stop offset="60%" stop-color="#dc2626"/>
-									<stop offset="100%" stop-color="#991b1b"/>
+								<linearGradient id="t6-tongue" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="0%" stop-color="#fb7185"/>
+									<stop offset="100%" stop-color="#e11d48"/>
 								</linearGradient>
 							</defs>
-							<!-- Clean Face Contour Lines -->
-							<path d="M 38,15 C 48,15 54,18 56,26 C 57,32 54,36 56,42 C 57,45 62,47 62,50 C 58,52 55,52 54,54 C 56,58 60,60 56,66 C 54,69 50,71 52,78 C 50,82 45,85 40,86" 
-								fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-							<!-- Burning Oral Cavity Focal Point -->
-							<ellipse cx="44" cy="56" rx="14" ry="10" fill="url(#c6-glow)"/>
-							<!-- Tongue Flare -->
-							<path d="M 36,58 C 40,54 46,54 48,58 C 46,63 38,63 36,58 Z" fill="#fca5a5"/>
+							<!-- Friendly Smiling Dark Mouth Base -->
+							<path d="M 16,42 C 24,28 76,28 84,42 C 84,62 68,68 50,68 C 32,68 16,62 16,42 Z" fill="#0f172a"/>
+							<!-- Upper Teeth Smile Arc -->
+							<path d="M 28,38 C 38,34 62,34 72,38 L 70,44 C 60,41 40,41 30,44 Z" fill="#ffffff"/>
+							<!-- Big Friendly Sticking Tongue -->
+							<path d="M 28,46 C 28,74 34,88 50,88 C 66,88 72,74 72,46 Z" fill="url(#t6-tongue)"/>
+							<!-- Clean Groove -->
+							<line x1="50" y1="50" x2="50" y2="76" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+							<!-- Upper Lip Accent -->
+							<path d="M 14,42 C 26,30 40,28 50,32 C 60,28 74,30 86,42 C 76,46 64,46 50,46 C 36,46 24,46 14,42 Z" fill="#334155"/>
 						</svg>
 					</div>
 
@@ -331,9 +334,10 @@ import Footer from '../components/Footer.astro';
 						<div class="lockup-label">Header Lockup Preview</div>
 						<div class="lockup-demo">
 							<svg viewBox="0 0 100 100" width="40" height="40">
-								<path d="M 38,15 C 48,15 54,18 56,26 C 57,32 54,36 56,42 C 57,45 62,47 62,50 C 58,52 55,52 54,54 C 56,58 60,60 56,66 C 54,69 50,71 52,78 C 50,82 45,85 40,86" 
-									fill="none" stroke="#64748b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-								<ellipse cx="44" cy="56" rx="13" ry="9" fill="#dc2626"/>
+								<path d="M 16,42 C 24,28 76,28 84,42 C 84,62 68,68 50,68 C 32,68 16,62 16,42 Z" fill="#0f172a"/>
+								<path d="M 28,46 C 28,74 34,88 50,88 C 66,88 72,74 72,46 Z" fill="#e11d48"/>
+								<line x1="50" y1="50" x2="50" y2="76" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+								<path d="M 14,42 C 26,30 40,28 50,32 C 60,28 74,30 86,42 C 76,46 64,46 50,46 C 36,46 24,46 14,42 Z" fill="#334155"/>
 							</svg>
 							<div class="lockup-text">
 								<span class="lockup-decoding">Decoding</span>
@@ -347,30 +351,31 @@ import Footer from '../components/Footer.astro';
 				<article class="concept-card">
 					<div class="card-header">
 						<span class="concept-num">Option 7</span>
-						<span class="concept-tag tag-red">Tongue Focus</span>
+						<span class="concept-tag tag-purple">Badge App Icon</span>
 					</div>
-					<h3 class="concept-title">Stylized Tongue & Thermal Waves</h3>
+					<h3 class="concept-title">Purple App Badge (Tongue &amp; Flame)</h3>
 					<p class="concept-desc">
-						Directly targets BMS at its core: a clean modern tongue mark with 3 radiating thermal arcs above it, signaling sensory heat and burning mouth syndrome.
+						A modern rounded squircle app badge in royal purple containing a clean white and coral silhouette of the cheeky tongue and flame. Perfect for favicons and apps.
 					</p>
 
 					<div class="logo-preview-box">
 						<!-- SVG 7 -->
 						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
 							<defs>
-								<linearGradient id="c7-tongue" x1="0" y1="0" x2="0" y2="1">
-									<stop offset="0%" stop-color="#ef4444"/>
-									<stop offset="100%" stop-color="#991b1b"/>
+								<linearGradient id="t7-bg" x1="0" y1="0" x2="1" y2="1">
+									<stop offset="0%" stop-color="#7c3aed"/>
+									<stop offset="100%" stop-color="#4c1d95"/>
 								</linearGradient>
 							</defs>
-							<!-- 3 Thermal Energy Waves Above -->
-							<path d="M 34,26 C 42,22 58,22 66,26" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/>
-							<path d="M 38,34 C 44,30 56,30 62,34" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
-							<path d="M 42,42 C 46,38 54,38 58,42" fill="none" stroke="#dc2626" stroke-width="3.5" stroke-linecap="round"/>
-							<!-- Tongue Silhouette -->
-							<path d="M 32,54 C 32,54 34,78 50,78 C 66,78 68,54 68,54 C 68,54 58,58 50,58 C 42,58 32,54 32,54 Z" fill="url(#c7-tongue)"/>
-							<!-- Central Tongue Sulcus Median Groove -->
-							<line x1="50" y1="58" x2="50" y2="70" stroke="#fca5a5" stroke-width="2" stroke-linecap="round"/>
+							<!-- Squircle Badge -->
+							<rect x="8" y="8" width="84" height="84" rx="24" fill="url(#t7-bg)"/>
+							<!-- White Mouth Cutout -->
+							<path d="M 26,44 C 34,36 66,36 74,44 C 70,54 30,54 26,44 Z" fill="#ffffff"/>
+							<!-- Red Sticking Tongue -->
+							<path d="M 34,46 C 34,68 38,80 50,80 C 62,80 66,68 66,46 Z" fill="#fb7185"/>
+							<line x1="50" y1="50" x2="50" y2="70" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+							<!-- Yellow Flame Above Tongue -->
+							<path d="M 50,18 C 54,26 60,30 60,36 C 60,42 55,44 50,44 C 45,44 40,42 40,36 C 40,30 46,26 50,18 Z" fill="#fbbf24"/>
 						</svg>
 					</div>
 
@@ -378,13 +383,14 @@ import Footer from '../components/Footer.astro';
 						<div class="lockup-label">Header Lockup Preview</div>
 						<div class="lockup-demo">
 							<svg viewBox="0 0 100 100" width="40" height="40">
-								<path d="M 36,32 C 44,28 56,28 64,32" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
-								<path d="M 32,54 C 32,54 34,78 50,78 C 66,78 68,54 68,54 C 68,54 58,58 50,58 C 42,58 32,54 32,54 Z" fill="#dc2626"/>
-								<line x1="50" y1="58" x2="50" y2="70" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+								<rect x="8" y="8" width="84" height="84" rx="22" fill="#6d28d9"/>
+								<path d="M 26,44 C 34,36 66,36 74,44 C 70,54 30,54 26,44 Z" fill="#ffffff"/>
+								<path d="M 34,46 C 34,68 38,80 50,80 C 62,80 66,68 66,46 Z" fill="#fb7185"/>
+								<path d="M 50,18 C 54,26 60,30 60,36 C 60,42 55,44 50,44 C 45,44 40,42 40,36 C 40,30 46,26 50,18 Z" fill="#fbbf24"/>
 							</svg>
 							<div class="lockup-text">
 								<span class="lockup-decoding">Decoding</span>
-								<span class="lockup-burn lockup-burn-red">The Burn</span>
+								<span class="lockup-burn lockup-burn-purple">The Burn</span>
 							</div>
 						</div>
 					</div>
@@ -394,27 +400,31 @@ import Footer from '../components/Footer.astro';
 				<article class="concept-card">
 					<div class="card-header">
 						<span class="concept-num">Option 8</span>
-						<span class="concept-tag tag-purple">Monogram Tech</span>
+						<span class="concept-tag tag-blue">Thermal Spectrum</span>
 					</div>
-					<h3 class="concept-title">Monogram 'D' + Flame Aperture</h3>
+					<h3 class="concept-title">Cyber-Thermal Gradient Tongue</h3>
 					<p class="concept-desc">
-						A sleek, geometric letter 'D' for "Decoding" where the inner negative space is shaped as a rising flame in vibrant purple and red. Ultra-modern tech feel.
+						The sticking-out tongue is rendered as a vibrant heat spectrum: deep indigo at the base, violet in the middle, and hot flame-white licking upward from the tip.
 					</p>
 
 					<div class="logo-preview-box">
 						<!-- SVG 8 -->
 						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
 							<defs>
-								<linearGradient id="c8-d" x1="0" y1="0" x2="1" y2="1">
-									<stop offset="0%" stop-color="#7c3aed"/>
-									<stop offset="100%" stop-color="#4338ca"/>
+								<linearGradient id="t8-thermal" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="0%" stop-color="#4338ca"/>
+									<stop offset="40%" stop-color="#9333ea"/>
+									<stop offset="70%" stop-color="#ef4444"/>
+									<stop offset="100%" stop-color="#fbbf24"/>
 								</linearGradient>
 							</defs>
-							<!-- Bold Geometric D Outer -->
-							<path d="M 24,18 L 48,18 C 68,18 82,32 82,50 C 82,68 68,82 48,82 L 24,82 Z" fill="url(#c8-d)"/>
-							<!-- Negative Flame Inner Core -->
-							<path d="M 44,30 C 50,42 60,48 60,58 C 60,66 54,72 46,72 C 38,72 38,64 42,56 C 44,52 44,42 44,30 Z" fill="#fcfcfd"/>
-							<circle cx="50" cy="62" r="3.5" fill="#ef4444"/>
+							<!-- Dark Hull -->
+							<ellipse cx="50" cy="46" rx="30" ry="14" fill="#0a0c10"/>
+							<!-- Heat Spectrum Tongue -->
+							<path d="M 30,46 C 30,72 36,88 50,88 C 64,88 70,72 70,46 Z" fill="url(#t8-thermal)"/>
+							<line x1="50" y1="50" x2="50" y2="76" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+							<!-- Thermal Flame Crest -->
+							<path d="M 50,12 C 55,22 62,28 62,36 C 62,42 56,46 50,46 C 44,46 38,42 38,36 C 38,28 45,22 50,12 Z" fill="#fde047"/>
 						</svg>
 					</div>
 
@@ -422,8 +432,9 @@ import Footer from '../components/Footer.astro';
 						<div class="lockup-label">Header Lockup Preview</div>
 						<div class="lockup-demo">
 							<svg viewBox="0 0 100 100" width="40" height="40">
-								<path d="M 24,18 L 48,18 C 68,18 82,32 82,50 C 82,68 68,82 48,82 L 24,82 Z" fill="#6d28d9"/>
-								<path d="M 44,30 C 50,42 60,48 60,58 C 60,66 54,72 46,72 C 38,72 38,64 42,56 C 44,52 44,42 44,30 Z" fill="#fcfcfd"/>
+								<ellipse cx="50" cy="46" rx="30" ry="14" fill="#0a0c10"/>
+								<path d="M 30,46 C 30,72 36,88 50,88 C 64,88 70,72 70,46 Z" fill="#9333ea"/>
+								<circle cx="50" cy="74" r="8" fill="#fbbf24"/>
 							</svg>
 							<div class="lockup-text">
 								<span class="lockup-decoding">Decoding</span>
@@ -434,28 +445,29 @@ import Footer from '../components/Footer.astro';
 				</article>
 
 				<!-- CONCEPT 9 -->
-				<article class="concept-card">
+				<article class="concept-card highlight-card">
 					<div class="card-header">
 						<span class="concept-num">Option 9</span>
-						<span class="concept-tag tag-red">Polygonal Crystal</span>
+						<span class="concept-tag tag-amber">Friendly &amp; Cheeky</span>
 					</div>
-					<h3 class="concept-title">Prismatic Geometric Mouth (Simplified)</h3>
+					<h3 class="concept-title">The Playful Wink &amp; Flame Tongue</h3>
 					<p class="concept-desc">
-						A streamlined, low-poly jewel mouth. Drastically stripped down to just 6 crisp geometric facet planes with crimson shading and no visual clutter.
+						A friendly smiling face: happy winking eyes, joyful smile, and a cheeky pink tongue sticking out with a dancing yellow flame. Turns chronic suffering into approachable warmth.
 					</p>
 
 					<div class="logo-preview-box">
 						<!-- SVG 9 -->
 						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
-							<polygon points="16,50 36,36 50,42 32,50" fill="#dc2626"/>
-							<polygon points="50,42 64,36 84,50 68,50" fill="#b91c1c"/>
-							<polygon points="32,50 50,42 68,50 50,56" fill="#991b1b"/>
-							<!-- Lower Lip Facets -->
-							<polygon points="16,50 32,50 44,66 28,68" fill="#ef4444"/>
-							<polygon points="84,50 68,50 56,66 72,68" fill="#dc2626"/>
-							<polygon points="32,50 50,56 68,50 56,66 50,74 44,66" fill="#7f1d1d"/>
-							<!-- Center Shimmer -->
-							<polygon points="46,58 50,56 54,58 50,62" fill="#ffffff" opacity="0.8"/>
+							<!-- Left Winking Eye -->
+							<path d="M 28,30 Q 36,24 44,30" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+							<!-- Right Open Friendly Eye -->
+							<circle cx="68" cy="28" r="4.5" fill="#0f172a"/>
+							<!-- Open Smile Arc -->
+							<path d="M 26,44 C 34,60 66,60 74,44" fill="#0f172a"/>
+							<!-- Sticking Out Tongue -->
+							<path d="M 36,50 C 36,72 40,84 50,84 C 60,84 64,72 64,50 Z" fill="#f43f5e"/>
+							<!-- Flame on Tongue -->
+							<path d="M 50,22 C 54,30 58,34 58,40 C 58,45 54,48 50,48 C 46,48 42,45 42,40 C 42,34 46,30 50,22 Z" fill="#fbbf24"/>
 						</svg>
 					</div>
 
@@ -463,11 +475,11 @@ import Footer from '../components/Footer.astro';
 						<div class="lockup-label">Header Lockup Preview</div>
 						<div class="lockup-demo">
 							<svg viewBox="0 0 100 100" width="40" height="40">
-								<polygon points="16,50 36,36 50,42 32,50" fill="#dc2626"/>
-								<polygon points="50,42 64,36 84,50 68,50" fill="#b91c1c"/>
-								<polygon points="16,50 32,50 44,66 28,68" fill="#ef4444"/>
-								<polygon points="84,50 68,50 56,66 72,68" fill="#dc2626"/>
-								<polygon points="32,50 50,56 68,50 56,66 50,74 44,66" fill="#7f1d1d"/>
+								<path d="M 28,30 Q 36,24 44,30" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+								<circle cx="68" cy="28" r="4" fill="#0f172a"/>
+								<path d="M 26,44 C 34,60 66,60 74,44" fill="#0f172a"/>
+								<path d="M 36,50 C 36,72 40,84 50,84 C 60,84 64,72 64,50 Z" fill="#f43f5e"/>
+								<circle cx="50" cy="40" r="4" fill="#fbbf24"/>
 							</svg>
 							<div class="lockup-text">
 								<span class="lockup-decoding">Decoding</span>
@@ -481,29 +493,23 @@ import Footer from '../components/Footer.astro';
 				<article class="concept-card">
 					<div class="card-header">
 						<span class="concept-num">Option 10</span>
-						<span class="concept-tag tag-blue">Dental & Science</span>
+						<span class="concept-tag tag-purple">Monoline Modern</span>
 					</div>
-					<h3 class="concept-title">Thermal Diagnostic Arc (Dental Arch)</h3>
+					<h3 class="concept-title">Scandinavian Monoline Tongue &amp; Flame</h3>
 					<p class="concept-desc">
-						Representing forensic dentistry and dental data: upper and lower parabolic dental arch curves framing a luminous central thermal heat sensor.
+						Uniform 4px architectural stroke: rounded capsule mouth with a geometric U-tongue dropping down, holding a single geometric teardrop flame. Modern Bauhaus look.
 					</p>
 
 					<div class="logo-preview-box">
 						<!-- SVG 10 -->
 						<svg class="preview-svg" viewBox="0 0 100 100" width="88" height="88">
-							<defs>
-								<linearGradient id="c10-arch" x1="0" y1="0" x2="1" y2="1">
-									<stop offset="0%" stop-color="#475569"/>
-									<stop offset="100%" stop-color="#0f172a"/>
-								</linearGradient>
-							</defs>
-							<!-- Upper Arch Curve -->
-							<path d="M 22,46 C 30,28 70,28 78,46" fill="none" stroke="url(#c10-arch)" stroke-width="5" stroke-linecap="round"/>
-							<!-- Lower Arch Curve -->
-							<path d="M 26,62 C 34,78 66,78 74,62" fill="none" stroke="url(#c10-arch)" stroke-width="5" stroke-linecap="round"/>
-							<!-- Central Thermal Core Pulse -->
-							<circle cx="50" cy="54" r="10" fill="#ef4444"/>
-							<circle cx="50" cy="54" r="5" fill="#fde047"/>
+							<!-- Rounded Capsule Mouth -->
+							<rect x="18" y="38" width="64" height="20" rx="10" fill="#0f172a"/>
+							<!-- U-Shaped Dropping Tongue -->
+							<path d="M 34,48 L 34,70 C 34,79 41,86 50,86 C 59,86 66,79 66,70 L 66,48 Z" fill="#ef4444"/>
+							<line x1="50" y1="52" x2="50" y2="74" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+							<!-- Geometric Teardrop Flame Above -->
+							<path d="M 50,14 C 55,24 60,28 60,34 C 60,40 55,44 50,44 C 45,44 40,40 40,34 C 40,28 45,24 50,14 Z" fill="#fbbf24"/>
 						</svg>
 					</div>
 
@@ -511,9 +517,9 @@ import Footer from '../components/Footer.astro';
 						<div class="lockup-label">Header Lockup Preview</div>
 						<div class="lockup-demo">
 							<svg viewBox="0 0 100 100" width="40" height="40">
-								<path d="M 22,46 C 30,28 70,28 78,46" fill="none" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
-								<path d="M 26,62 C 34,78 66,78 74,62" fill="none" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
-								<circle cx="50" cy="54" r="8" fill="#ef4444"/>
+								<rect x="18" y="38" width="64" height="20" rx="10" fill="#0f172a"/>
+								<path d="M 34,48 L 34,70 C 34,79 41,86 50,86 C 59,86 66,79 66,70 L 66,48 Z" fill="#ef4444"/>
+								<path d="M 50,16 C 54,24 58,28 58,34 C 58,40 54,44 50,44 C 46,44 42,40 42,34 C 42,28 46,24 50,16 Z" fill="#fbbf24"/>
 							</svg>
 							<div class="lockup-text">
 								<span class="lockup-decoding">Decoding</span>
@@ -685,15 +691,15 @@ import Footer from '../components/Footer.astro';
 				<div class="coaching-box">
 					<h3 class="coaching-title">Denis's Launch Day Coaching Note</h3>
 					<p class="coaching-text">
-						Going live today is a huge milestone. Here is the design recommendation:
+						The cheeky tongue sticking out is a memorable, human branding pivot. It transforms a painful chronic condition into an approachable patient movement:
 					</p>
 					<ul class="coaching-list">
-						<li><strong>Recommended Winner: Option 3 (Dual-Tone Purple & Flame Ember)</strong>. It perfectly honors your request: deep royal purple for authority and the website theme, paired with the burning mouth red ember inside. It instantly communicates <em>"Decoding"</em> (clinical purple) and <em>"The Burn"</em> (fire).</li>
-						<li><strong>Runner Up: Option 2 (Royal Purple Mouth)</strong> if you want 100% monochrome purple simplicity.</li>
-						<li><strong>Runner Up: Option 1 (Minimal Open Mouth)</strong> if you prefer the classic red flame accent from your 3D anatomical diagram.</li>
+						<li><strong>Recommended Winner: Option 1 (Classic Cheeky Tongue &amp; Flame Crest)</strong>. Super iconic, clean white teeth smile, protruding glossy red tongue, and an energetic 3-pronged flame resting right on top.</li>
+						<li><strong>Runner Up: Option 3 (Royal Purple Lips &amp; Burning Tongue)</strong> if you want the royal purple authority in the lips while keeping the fiery red tongue.</li>
+						<li><strong>Runner Up: Option 6 (Pure Cheeky Tongue Out)</strong> if you want maximum simplicity with zero flame clutter (just the unmistakable cheeky tongue).</li>
 					</ul>
 					<p class="coaching-text">
-						Whichever option you choose, we can immediately swap it into <code class="code-badge">TongueLogo.astro</code> so your entire site (Header, Footer, Mobile Menu, Favicon) updates simultaneously in one click.
+						Tell me your favorite number (1 through 10) and I will immediately inject it into <code class="code-badge">TongueLogo.astro</code> to update the entire site (Header, Mobile Menu, Footer, and Favicons) across all pages simultaneously.
 					</p>
 				</div>
 			</section>
