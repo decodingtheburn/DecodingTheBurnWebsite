@@ -18,6 +18,7 @@ interface Props extends CollectionEntry<'blog'>['data'] {
 	headings?: { depth: number; slug: string; text: string }[];
 	slug?: string;
 	showAudioReader?: boolean;
+	showTOC?: boolean;
 }
 
 const {
@@ -29,6 +30,7 @@ const {
 	headings = [],
 	slug,
 	showAudioReader = Boolean(slug),
+	showTOC = true,
 	entryNumber,
 	category,
 	tags = [],
@@ -88,7 +90,7 @@ if (!postNumber && slug) {
 
 				{showAudioReader && <AudioReader title={title} />}
 
-				<TableOfContents />
+				{showTOC && <TableOfContents />}
 
 				<div class="blog-layout-grid">
 					<div class="post-content" id="blog-post-content">
