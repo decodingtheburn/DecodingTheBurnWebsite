@@ -70,6 +70,10 @@ if (!postNumber && slug) {
 					)}
 				</div>
 
+				{showAudioReader && <AudioReader title={title} />}
+
+				{showTOC && <TableOfContents />}
+
 				<h1 set:html={title} />
 
 				{!isHomepage && (
@@ -91,10 +95,6 @@ if (!postNumber && slug) {
 					</div>
 				)}
 				{!isHomepage && <MedicalDisclaimer />}
-
-				{showAudioReader && <AudioReader title={title} />}
-
-				{showTOC && <TableOfContents />}
 
 				<div class="blog-layout-grid">
 					<div class="post-content" id="blog-post-content">
@@ -1057,6 +1057,15 @@ if (!postNumber && slug) {
 				text-wrap: balance;
 			}
 
+			/* Welcome to Decoding The Burn H2 exception (~30% smaller) */
+			.post-content :global(h2#welcome-to-decoding-the-burn),
+			.post-content :global(#welcome-to-decoding-the-burn) {
+				font-size: 1.75rem;
+				line-height: 1.28;
+				margin-top: 1.75rem;
+				margin-bottom: 1.25rem;
+			}
+
 			.post-content :global(h3) {
 				margin: 2.5rem 0 1rem 0;
 				padding: 0;
@@ -1075,6 +1084,13 @@ if (!postNumber && slug) {
 					font-size: 1.95rem;
 					line-height: 1.24;
 					margin: 2.75rem 0 1.25rem 0;
+				}
+				.post-content :global(h2#welcome-to-decoding-the-burn),
+				.post-content :global(#welcome-to-decoding-the-burn) {
+					font-size: 1.365rem;
+					line-height: 1.28;
+					margin-top: 1.25rem;
+					margin-bottom: 1rem;
 				}
 				.post-content :global(h3) {
 					font-size: 1.45rem;
