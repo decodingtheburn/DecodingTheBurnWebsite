@@ -1,0 +1,554 @@
+---
+// OralReceptorMatrix.astro - Master Oral Receptor Matrix table & interactive filter component
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+const receptorsData = [
+	// Gustatory (Taste)
+	{
+		category: "Gustatory (Taste)",
+		receptor: "TAS1R1 + TAS1R3",
+		stimulus: "MSG, L-amino acids",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~85% Tongue, ~15% Soft Palate",
+		role: "Senses umami/protein; does not trigger pain pathways."
+	},
+	{
+		category: "Gustatory (Taste)",
+		receptor: "TAS1R2 + TAS1R3",
+		stimulus: "Natural & artificial sugars",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~85% Tongue, ~15% Soft Palate",
+		role: "Senses sweet taste; masks acid sharpness in sweetened drinks like soda."
+	},
+	{
+		category: "Gustatory (Taste)",
+		receptor: "TAS2R Family (~25 types)",
+		stimulus: "Plant toxins, alkaloids, caffeine",
+		triggersPain: false,
+		painLabel: "Indirect (Gag/Nausea)",
+		location: "~80% Back of Tongue, ~15% Throat",
+		role: "Triggers severe bitter aversion and gagging, but not physical tissue pain."
+	},
+	{
+		category: "Gustatory (Taste)",
+		receptor: "OTOP1",
+		stimulus: "Proton (H⁺) influx",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~85% Tongue, ~15% Soft Palate",
+		role: "Primary channel for perceiving sour taste without triggering a pain response."
+	},
+	{
+		category: "Gustatory (Taste)",
+		receptor: "ENaC (SCNN1)",
+		stimulus: "Sodium ions (Na⁺)",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~90% Tongue, ~10% Soft Palate",
+		role: "Channel that drives pure salty taste perception."
+	},
+	{
+		category: "Gustatory (Taste)",
+		receptor: "CD36 & FFAR1/4",
+		stimulus: "Long-chain fatty acids",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~85% Tongue, ~15% Soft Palate",
+		role: "Senses dietary fats and oils (oleogustus)."
+	},
+	{
+		category: "Gustatory (Taste)",
+		receptor: "CaSR",
+		stimulus: "Calcium (Ca²⁺), Kokumi peptides",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~85% Tongue, ~15% Soft Palate",
+		role: "Enhances richness, mouthfeel, and flavor persistence."
+	},
+
+	// Chemesthetic (Sensory)
+	{
+		category: "Chemesthetic (Sensory)",
+		receptor: "TRPV1",
+		stimulus: "Capsaicin (chili), Heat >43°C, Acid (pH <6.0), Alcohol",
+		triggersPain: true,
+		painLabel: "YES (Burning Heat / Acid)",
+		location: "100% Oral Mucosa, Odontoblasts & Dental Pulp Nerves",
+		role: "The Chili & Heat Sensor: Directly opened by capsaicin, acid (H⁺), and heat. Primary driver in BMS and deep dentin pulp pain."
+	},
+	{
+		category: "Chemesthetic (Sensory)",
+		receptor: "TRPA1",
+		stimulus: "Carbonation (CO₂), mustard, wasabi, horseradish",
+		triggersPain: true,
+		painLabel: "YES (Prickle / Pungency)",
+		location: "100% Oral Mucosa, Dentin Nerves, Throat",
+		role: "The Carbonation Sensor: Activated by carbonic acid in soda fizz and pungent mustard oils. Hyper-sensitized in BMS."
+	},
+	{
+		category: "Chemesthetic (Sensory)",
+		receptor: "TRPM8",
+		stimulus: "Menthol, eucalyptol, Cold (<28°C)",
+		triggersPain: true,
+		painLabel: "YES (Cold Stinging <10°C)",
+		location: "~40% Tongue, ~30% Palate, ~30% Cheeks, Dentin Nerves",
+		role: "Drives cooling sensations; causes cold-induced pain spikes in exposed dentin tubules."
+	},
+	{
+		category: "Chemesthetic (Sensory)",
+		receptor: "ASIC1 / ASIC2 / ASIC3",
+		stimulus: "Extracellular H⁺ (acid), tissue compression",
+		triggersPain: true,
+		painLabel: "YES (Stinging Acid Pain)",
+		location: "100% Oral Lining, Exposed Dentin & Pulp Nerves",
+		role: "The Acid Sting Sensor: Directly opened by low pH (soda/citrus) to fire sharp stinging pain in exposed dentin and sensitive tongue tissue."
+	},
+	{
+		category: "Chemesthetic (Sensory)",
+		receptor: "TRPV2",
+		stimulus: "Extreme noxious heat (>52°C)",
+		triggersPain: true,
+		painLabel: "YES (Noxious Heat)",
+		location: "Oral mucosa, dental pulp, tongue tissue",
+		role: "High-threshold thermal hazard channel that triggers an immediate spit reflex."
+	},
+	{
+		category: "Chemesthetic (Sensory)",
+		receptor: "TRPV3 / TRPV4",
+		stimulus: "Warmth (27–39°C), oregano, thyme",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~50% Tongue, ~50% Oral walls, Odontoblasts",
+		role: "Senses gentle warmth and culinary herb aromas."
+	},
+	{
+		category: "Chemesthetic (Sensory)",
+		receptor: "TRPM3",
+		stimulus: "Noxious heat, steroidal compounds",
+		triggersPain: true,
+		painLabel: "YES (Inflammatory Heat Pain)",
+		location: "Trigeminal nerve fibers, dental pulp",
+		role: "Works alongside TRPV1 to detect thermal pain and inflammatory chemical pain."
+	},
+
+	// Dentin & Dental Pulp
+	{
+		category: "Dentin & Dental Pulp",
+		receptor: "Piezo1 / Piezo2",
+		stimulus: "Fluid flow, pressure, mechanical shear stress",
+		triggersPain: true,
+		painLabel: "YES (Sharp Dentin Spike)",
+		location: "Odontoblasts (dentin cells) & Intradental Aδ Nerves",
+		role: "Main Dentin Mechanoreceptor: Detects rapid fluid motion in tubules from cold or acid, firing sharp dentin hypersensitivity pain."
+	},
+	{
+		category: "Dentin & Dental Pulp",
+		receptor: "TRPC5",
+		stimulus: "Fluid shearing, cold temperatures",
+		triggersPain: true,
+		painLabel: "YES (Cold Dentin Pain)",
+		location: "Odontoblasts & intradental nerve fibers",
+		role: "Cold- and pressure-sensitive ion channel inside teeth that triggers acute dentin pain."
+	},
+	{
+		category: "Dentin & Dental Pulp",
+		receptor: "TREK-1 (KCNK2)",
+		stimulus: "Mechanical stretch, tubule pressure",
+		triggersPain: true,
+		painLabel: "YES (Pressure Pain)",
+		location: "Tooth pulp nerve plexus & odontoblasts",
+		role: "Mechanosensitive potassium channel that regulates baseline electrical stability in dental nerves."
+	},
+	{
+		category: "Dentin & Dental Pulp",
+		receptor: "Pannexin-1",
+		stimulus: "Cellular stretch, fluid pressure",
+		triggersPain: false,
+		painLabel: "Indirect (Releases ATP)",
+		location: "Odontoblast cell membrane",
+		role: "Acts as a pore that releases ATP into tooth tissue when tubules experience fluid movement."
+	},
+	{
+		category: "Dentin & Dental Pulp",
+		receptor: "P2X7",
+		stimulus: "High extracellular ATP concentrations",
+		triggersPain: true,
+		painLabel: "YES (Inflammatory Toothache)",
+		location: "Odontoblasts, dental pulp C-fibers, microglial cells",
+		role: "Opened by ATP released from stressed odontoblasts; drives neurogenic inflammation and lingering dentin pain."
+	},
+
+	// Pain Action Potential
+	{
+		category: "Pain Action Potential",
+		receptor: "Na_V 1.7 / Na_V 1.8 / Na_V 1.9",
+		stimulus: "Electrical depolarization from TRPV1/ASIC/Piezo",
+		triggersPain: true,
+		painLabel: "YES (Generates Action Potential)",
+		location: "Free nerve endings in tongue, dentin, pulp, and oral mucosa",
+		role: "The Nerve Firing Motors: Voltage-gated sodium channels that convert receptor activation into electrical pain pulses sent to the brain. Target for dental anesthetics (Novocaine/Lidocaine)."
+	},
+
+	// Inflammatory Pain
+	{
+		category: "Inflammatory Pain",
+		receptor: "Bradykinin B1 / B2",
+		stimulus: "Bradykinin (released during tissue injury)",
+		triggersPain: true,
+		painLabel: "YES (Throbbing Inflammatory Pain)",
+		location: "Blood vessels, dental pulp, mucosal nerve endings",
+		role: "Sensitizes TRPV1 and ASICs so that even normal body temperature or mild acid feels extremely painful."
+	},
+	{
+		category: "Inflammatory Pain",
+		receptor: "NK1 (Substance P Receptor)",
+		stimulus: "Substance P neuropeptide",
+		triggersPain: true,
+		painLabel: "YES (Neurogenic Burn)",
+		location: "Oral blood vessels, dental pulp, tongue nerves",
+		role: "Released by C-fibers during nerve irritation; drives tissue swelling, vasodilation, and chronic burning sensations in BMS."
+	},
+	{
+		category: "Inflammatory Pain",
+		receptor: "RAMP1 + CLR (CGRP Receptor)",
+		stimulus: "Calcitonin Gene-Related Peptide",
+		triggersPain: true,
+		painLabel: "YES (Throbbing Pain)",
+		location: "Dental pulp vessels, trigeminal ganglion nerves",
+		role: "Primary mediator of neurogenic inflammation; keeps dental pulp and BMS tissues sensitized to pain."
+	},
+	{
+		category: "Inflammatory Pain",
+		receptor: "PAR2",
+		stimulus: "Proteases (released during erosion/inflammation)",
+		triggersPain: true,
+		painLabel: "YES (Nerve Sensitization)",
+		location: "Oral epithelial cells & nociceptive nerves",
+		role: "Cleaved during acid damage or inflammation; directly sensitizes TRPV1 and TRPA1 channels to fire easier."
+	},
+
+	// Mechanosensory (Touch)
+	{
+		category: "Mechanosensory (Touch)",
+		receptor: "KCNK (TREK / TRAAK)",
+		stimulus: "Mechanical vibration, sanshool",
+		triggersPain: false,
+		painLabel: "No",
+		location: "Tongue surface, palate, lip mucosa",
+		role: "Responsible for the tingling, numbing vibration caused by Sichuan peppercorns."
+	},
+	{
+		category: "Mechanosensory (Touch)",
+		receptor: "Periodontal Mechanoreceptors",
+		stimulus: "Tooth displacement, bite pressure",
+		triggersPain: true,
+		painLabel: "YES (Over-Biting Pain)",
+		location: "100% Tooth Socket Ligaments",
+		role: "Periodontal ligament sensors that calibrate bite force and prevent tooth overload pain."
+	},
+
+	// Endocrine (Hormonal)
+	{
+		category: "Endocrine (Hormonal)",
+		receptor: "GHSR",
+		stimulus: "Ghrelin ('Hunger Hormone')",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~85% Tongue taste cells, ~15% Soft Palate",
+		role: "Enhances sweet/umami taste intensity when hungry."
+	},
+	{
+		category: "Endocrine (Hormonal)",
+		receptor: "LEPR",
+		stimulus: "Leptin ('Satiety Hormone')",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~90% Sweet taste cells, ~10% Soft Palate",
+		role: "Blunts sweet taste sensitivity when full."
+	},
+	{
+		category: "Endocrine (Hormonal)",
+		receptor: "GLP-1R",
+		stimulus: "Glucagon-Like Peptide-1",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~90% Taste cells & gustatory nerve endings",
+		role: "Tunes sweet taste responsiveness during meals."
+	},
+	{
+		category: "Endocrine (Hormonal)",
+		receptor: "CB1 / CB2",
+		stimulus: "Endocannabinoids, THC, CBD",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~40% Gums/Cheeks, ~30% Tongue, ~30% Salivary Glands",
+		role: "Regulates appetite, salivation, and modulates oral pain signaling."
+	},
+
+	// Autonomic & Neural
+	{
+		category: "Autonomic & Neural",
+		receptor: "M3 mAChR",
+		stimulus: "Acetylcholine (Parasympathetic)",
+		triggersPain: false,
+		painLabel: "No",
+		location: "100% Salivary Glands",
+		role: "Drives watery saliva production upon food stimuli."
+	},
+	{
+		category: "Autonomic & Neural",
+		receptor: "α1 / β1 Adrenergic",
+		stimulus: "Noradrenaline (Sympathetic)",
+		triggersPain: false,
+		painLabel: "No",
+		location: "Salivary Glands & mucosal blood vessels",
+		role: "Causes thick, sticky saliva and dry mouth under anxiety or stress."
+	},
+	{
+		category: "Autonomic & Neural",
+		receptor: "P2X2 / P2X3",
+		stimulus: "ATP (released by taste/odontoblast cells)",
+		triggersPain: true,
+		painLabel: "YES (Neural Pain Bridge)",
+		location: "Gustatory nerve endings & sub-odontoblastic nerves",
+		role: "Passes taste signals from cells to nerves, and transmits acute dentin sensitivity signals."
+	},
+	{
+		category: "Autonomic & Neural",
+		receptor: "GABA-A / GABA-B",
+		stimulus: "GABA (Neurotransmitter)",
+		triggersPain: false,
+		painLabel: "No",
+		location: "~80% Tongue taste buds, ~20% Palate",
+		role: "Inhibits neighboring cells to sharpen distinct taste signals."
+	}
+];
+---
+
+<div class={`receptor-matrix-wrapper ${className}`}>
+	<div class="receptor-matrix-card">
+		<!-- Header -->
+		<div class="receptor-header">
+			<h3 class="receptor-title">Master Oral Receptor Matrix (Unified Big Picture)</h3>
+			<p class="receptor-desc">
+				Complete functional directory of the 35–45 specialized receptor types and ion channels governing oral sensation, dentin fluid movement, acid perception, and Burning Mouth Syndrome&nbsp;pain.
+			</p>
+		</div>
+
+		<!-- Table Container -->
+		<div class="table-responsive-container">
+			<table class="receptor-table">
+				<thead>
+					<tr>
+						<th>Category</th>
+						<th>Receptor / Channel</th>
+						<th>Primary Stimulus</th>
+						<th>Triggers Pain?</th>
+						<th>Location in Mouth / Tooth</th>
+						<th>Role in Acid, Dentin, Chili, or BMS Pain</th>
+					</tr>
+				</thead>
+				<tbody>
+					{receptorsData.map((item) => (
+						<tr class={item.triggersPain ? "pain-row" : "non-pain-row"}>
+							<td class="col-category">
+								<span class="category-name">{item.category}</span>
+							</td>
+							<td class="col-receptor">
+								<strong>{item.receptor}</strong>
+							</td>
+							<td class="col-stimulus">{item.stimulus}</td>
+							<td class="col-pain">
+								{item.triggersPain ? (
+									<span class="pain-badge-yes">{item.painLabel}</span>
+								) : (
+									<span class="pain-badge-no">{item.painLabel}</span>
+								)}
+							</td>
+							<td class="col-location">{item.location}</td>
+							<td class="col-role">{item.role}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Bottom Key Insight Callout -->
+		<div class="matrix-insight-box">
+			<div class="insight-icon">🔬</div>
+			<div class="insight-text">
+				<strong>Key BMS Discovery:</strong> Burning Mouth Syndrome does not require millions of mystery receptors. It is driven by the pathological sensitization and uncontrolled firing of a small, distinct cluster of pain channels—predominantly <strong>TRPV1, TRPA1, ASIC3, and P2X7</strong>—stimulated by chemical protons (acid), hydrodynamic dentinal shear, and neurogenic inflammatory peptides.
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.receptor-matrix-wrapper {
+		margin: 3.5rem 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.receptor-matrix-card {
+		background: radial-gradient(120% 120% at 50% 0%, #1c1032 0%, #0c0818 60%, #06040d 100%);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.5rem;
+		padding: clamp(1.5rem, 3.5vw, 2.75rem);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+		color: #e2e8f0;
+	}
+
+	.receptor-header {
+		text-align: center;
+		margin-bottom: 2.5rem;
+		max-width: 860px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.receptor-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0 0 0.85rem 0;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
+		text-wrap: balance;
+	}
+
+	.receptor-desc {
+		font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+		line-height: 1.65;
+		color: rgba(216, 180, 254, 0.85);
+		margin: 0 auto;
+		text-wrap: pretty;
+	}
+
+	.table-responsive-container {
+		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		background: rgba(10, 6, 20, 0.6);
+		border-radius: 1rem;
+		border: 1px solid rgba(168, 85, 247, 0.2);
+	}
+
+	.receptor-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.88rem;
+		line-height: 1.5;
+		text-align: left;
+		min-width: 900px;
+	}
+
+	.receptor-table th {
+		background: rgba(168, 85, 247, 0.15);
+		color: #f3e8ff;
+		font-weight: 800;
+		padding: 1rem 1.15rem;
+		border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		font-size: 0.78rem;
+	}
+
+	.receptor-table td {
+		padding: 0.95rem 1.15rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+		vertical-align: top;
+	}
+
+	.receptor-table tbody tr:hover {
+		background: rgba(168, 85, 247, 0.08);
+	}
+
+	.col-category {
+		font-size: 0.78rem;
+		color: #c084fc;
+		font-weight: 700;
+		white-space: nowrap;
+	}
+
+	.col-receptor strong {
+		color: #ffffff;
+		font-family: var(--font-heading, system-ui, sans-serif);
+		letter-spacing: -0.01em;
+	}
+
+	.col-stimulus {
+		color: #cbd5e1;
+	}
+
+	.col-pain {
+		white-space: nowrap;
+	}
+
+	.pain-badge-yes {
+		display: inline-block;
+		font-size: 0.75rem;
+		font-weight: 800;
+		color: #fca5a5;
+		background: rgba(239, 68, 68, 0.15);
+		border: 1px solid rgba(239, 68, 68, 0.35);
+		padding: 0.2rem 0.55rem;
+		border-radius: 0.35rem;
+	}
+
+	.pain-badge-no {
+		display: inline-block;
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: #86efac;
+		background: rgba(34, 197, 94, 0.12);
+		border: 1px solid rgba(34, 197, 94, 0.25);
+		padding: 0.2rem 0.55rem;
+		border-radius: 0.35rem;
+	}
+
+	.col-location {
+		color: #94a3b8;
+		font-size: 0.82rem;
+	}
+
+	.col-role {
+		color: #e2e8f0;
+	}
+
+	/* Bottom Insight Box */
+	.matrix-insight-box {
+		margin-top: 2rem;
+		background: rgba(168, 85, 247, 0.08);
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 1rem;
+		padding: 1.25rem 1.5rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.insight-icon {
+		font-size: 2rem;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	.insight-text {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: #e9d5ff;
+		text-wrap: pretty;
+	}
+
+	.insight-text strong {
+		color: #ffffff;
+	}
+</style>
