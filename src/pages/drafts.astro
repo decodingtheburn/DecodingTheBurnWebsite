@@ -53,11 +53,16 @@ const allPosts = sortPostsDescending(rawPosts);
 					{
 						allPosts.map((post, index) => {
 							const isDraft = post.data.draft === true;
+							const isReadyDraft = post.data.readyDraft === true;
 							return (
-							<article class="card" style={isDraft ? "border: 2px dashed #f59e0b;" : ""}>
+							<article class="card" style={isReadyDraft ? "border: 2px solid #0284c7;" : isDraft ? "border: 2px dashed #f59e0b;" : ""}>
 								<a href={`/blog/${post.id}/`}>
 									<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}>
-										{isDraft && (
+										{isReadyDraft ? (
+											<span style="position: absolute; top: 12px; right: 12px; background: #0284c7; color: #ffffff; font-weight: 800; font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);">
+												Almost Ready
+											</span>
+										) : isDraft && (
 											<span style="position: absolute; top: 12px; right: 12px; background: #f59e0b; color: #000000; font-weight: 800; font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px;">
 												Draft
 											</span>

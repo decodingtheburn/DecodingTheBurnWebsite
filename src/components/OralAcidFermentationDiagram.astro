@@ -1,0 +1,249 @@
+---
+// OralAcidFermentationDiagram.astro - High-contrast 3D medical visual explaining bacteria sugar-to-acid fermentation and hydrodynamic tubule fluid shock
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`fermentation-diagram-wrapper ${className}`}>
+	<div class="fermentation-diagram-card">
+		<!-- Header -->
+		<div class="fermentation-diagram-header">
+			<span class="fermentation-kicker">Biochemical Chain Reaction</span>
+			<h4 class="fermentation-diagram-title">How Oral Bacteria Convert Sugar Into Nerve&nbsp;Fire</h4>
+			<p class="fermentation-diagram-desc">
+				Even healthy complex starches and vegetable sugars act as raw fuel for oral bacteria. Within minutes, bacteria metabolize these sugars into corrosive lactic acid, triggering hydrodynamic fluid shock directly into the dental&nbsp;pulp.
+			</p>
+		</div>
+
+		<!-- 3D Medical Fermentation Image -->
+		<div class="fermentation-image-container">
+			<img 
+				src="/oral-bacteria-sugar-lactic-acid-fermentation.jpg" 
+				alt="Step-by-step 3D medical diagram of an oral bacterium consuming a sugar molecule, excreting lactic acid, and triggering hydrodynamic fluid shock in exposed dentinal tubules" 
+				class="fermentation-image"
+				loading="lazy"
+			/>
+		</div>
+
+		<!-- Clean Linear 4-Step Chain Reaction -->
+		<div class="fermentation-steps-container">
+			<div class="fermentation-step-row">
+				<div class="step-badge">Step 1</div>
+				<div class="step-body">
+					<strong>Dietary Sugar Ingestion:</strong>
+					<p>Carbohydrates and natural starches (from grains, vegetables, and snacks) enter the oral cavity and coat the teeth and gingival&nbsp;crevices.</p>
+				</div>
+			</div>
+
+			<div class="fermentation-step-row">
+				<div class="step-badge">Step 2</div>
+				<div class="step-body">
+					<strong>Bacterial Fermentation (<em>Streptococcus mutans</em>):</strong>
+					<p>Oral biofilm bacteria consume these sugar molecules as metabolic fuel, converting them directly into <strong>lactic acid (H⁺ ions)</strong>.</p>
+				</div>
+			</div>
+
+			<div class="fermentation-step-row">
+				<div class="step-badge">Step 3</div>
+				<div class="step-body">
+					<strong>Smear Layer Dissolution &amp; Hydrodynamic Fluid Shock:</strong>
+					<p>The acidic drop (pH 4.5) dissolves the microscopic mineral plugs sealing exposed root tubules. This causes rapid, turbulent <strong>hydrodynamic fluid movement</strong> inside the open micro-tubule channels.</p>
+				</div>
+			</div>
+
+			<div class="fermentation-step-row">
+				<div class="step-badge">Step 4</div>
+				<div class="step-body">
+					<strong>Pulp Nerve Depolarization &amp; Trigeminal Burning:</strong>
+					<p>Rapid fluid shifts mechanically shear and excite nerve endings at the pulp border, firing continuous electrical burning signals down the <strong>Trigeminal Nerve (CN V)</strong>.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Takeaway Box -->
+		<div class="fermentation-takeaway-card">
+			<p>
+				<strong>Why a Zero-Carb Baseline Works:</strong> On a strict carnivore diet, there are zero fermentable sugars. With zero fuel, <em>S. mutans</em> cannot produce lactic acid. The oral pH stays alkaline (7.0 to 7.4), allowing tubule fluids to remain stable and calming peripheral nerve firing to&nbsp;0/10.
+			</p>
+		</div>
+	</div>
+</div>
+
+<style>
+	.fermentation-diagram-wrapper {
+		margin: 3.5rem 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.fermentation-diagram-card {
+		background: radial-gradient(120% 120% at 50% 0%, #1c1032 0%, #0d081a 60%, #080410 100%);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.5rem;
+		padding: clamp(1.5rem, 3.5vw, 2.75rem);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+		color: #e2e8f0;
+	}
+
+	.fermentation-diagram-header {
+		text-align: center;
+		margin-bottom: 2rem;
+		max-width: 780px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.fermentation-kicker {
+		font-size: 0.82rem;
+		font-weight: 700;
+		color: #c084fc;
+		letter-spacing: 0.04em;
+		display: block;
+		margin-bottom: 0.35rem;
+	}
+
+	.fermentation-diagram-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.45rem, 2.8vw, 2rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0 0 0.85rem 0;
+		line-height: 1.25;
+		text-wrap: balance;
+		letter-spacing: -0.02em;
+	}
+
+	.fermentation-diagram-desc {
+		font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+		line-height: 1.65;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.fermentation-image-container {
+		width: 100%;
+		max-width: 780px;
+		margin: 0 auto 2rem auto;
+		background: rgba(10, 6, 20, 0.6);
+		border-radius: 1.25rem;
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		padding: 0.65rem;
+		box-sizing: border-box;
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+		overflow: hidden;
+	}
+
+	.fermentation-image {
+		width: 100%;
+		height: auto;
+		max-height: 480px;
+		object-fit: contain;
+		display: block;
+		margin: 0 auto;
+		border-radius: 0.85rem;
+	}
+
+	/* Clean Linear Step Cards */
+	.fermentation-steps-container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+		max-width: 780px;
+		margin: 0 auto 1.5rem auto;
+	}
+
+	.fermentation-step-row {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.15rem;
+		background: rgba(15, 23, 42, 0.7);
+		border: 1px solid rgba(168, 85, 247, 0.22);
+		border-radius: 1rem;
+		padding: 1.15rem 1.35rem;
+		transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.fermentation-step-row:hover {
+		transform: translateX(3px);
+		background: rgba(15, 23, 42, 0.85);
+		border-color: rgba(168, 85, 247, 0.45);
+	}
+
+	.step-badge {
+		font-size: 0.82rem;
+		font-weight: 900;
+		color: #c084fc;
+		background: rgba(168, 85, 247, 0.15);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		padding: 0.3rem 0.65rem;
+		border-radius: 0.45rem;
+		letter-spacing: 0.04em;
+		flex-shrink: 0;
+		white-space: nowrap;
+	}
+
+	.step-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		min-width: 0;
+	}
+
+	.step-body strong {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.02rem;
+		color: #ffffff;
+		line-height: 1.3;
+	}
+
+	.step-body strong em {
+		color: #fde047;
+		font-style: normal;
+	}
+
+	.step-body p {
+		font-size: 0.91rem;
+		line-height: 1.6;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.step-body p strong {
+		color: #fde047;
+	}
+
+	/* Takeaway Box */
+	.fermentation-takeaway-card {
+		background: rgba(168, 85, 247, 0.12);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1rem;
+		padding: 1.25rem 1.5rem;
+		max-width: 780px;
+		margin: 0 auto;
+	}
+
+	.fermentation-takeaway-card p {
+		font-size: 0.93rem;
+		line-height: 1.65;
+		color: #e2e8f0;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.fermentation-takeaway-card strong {
+		color: #fde047;
+	}
+
+	@media (max-width: 640px) {
+		.fermentation-step-row {
+			flex-direction: column;
+			gap: 0.65rem;
+			padding: 1rem 1.15rem;
+		}
+	}
+</style>

@@ -1,10 +1,11 @@
 ---
-title: "How Many People Have Burning Mouth Syndrome? (20M to 200M+ Global Estimates)"
+title: "How Many People Have Burning Mouth Syndrome?"
 description: "Epidemiological data, prevalence ranges from 1.73% to 7.9%, and global demographic estimates: why Burning Mouth Syndrome affects tens of millions of people worldwide."
-pubDate: "Sep 19 2026"
+pubDate: "Oct 09 2026"
 category: "Research"
 heroImage: "/tooth_erosion_50yr_breach.jpg"
-draft: false
+draft: true
+readyDraft: true
 entryNumber: 5
 tags: ['patient', 'clinician', 'both']
 ---

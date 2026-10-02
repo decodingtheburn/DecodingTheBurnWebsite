@@ -9,6 +9,7 @@ import AuthorBox from '../components/AuthorBox.astro';
 import AudioReader from '../components/AudioReader.astro';
 import GlossaryTooltip from '../components/GlossaryTooltip.astro';
 import ShareStoryCTA from '../components/ShareStoryCTA.astro';
+import TableOfContents from '../components/TableOfContents.astro';
 import CardinalNetworkDiagram from '../components/CardinalNetworkDiagram.astro';
 import { Image } from 'astro:assets';
 import { getPostEntryNumber, sortPostsAscending } from '../utils/postUtils';
@@ -88,6 +89,8 @@ if (!postNumber && slug) {
 
 				{showAudioReader && <AudioReader title={title} />}
 
+				<TableOfContents />
+
 				<div class="blog-layout-grid">
 					<div class="post-content" id="blog-post-content">
 						<slot />
@@ -99,26 +102,6 @@ if (!postNumber && slug) {
 			</article>
 		</main>
 		<Footer />
-
-		<!-- Slide-in Toast at 50% scroll -->
-		<div id="story-slide-toast" class="story-slide-toast" role="complementary" aria-label="Share Your Story Prompt">
-			<button class="slide-toast-close" id="slide-toast-close" aria-label="Dismiss">&times;</button>
-			<div class="slide-toast-content">
-				<div class="slide-toast-icon">
-					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<rect width="20" height="16" x="2" y="4" rx="2"></rect>
-						<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-					</svg>
-				</div>
-				<div class="slide-toast-text">
-					<strong class="slide-toast-title">Share Your BMS&nbsp;Story</strong>
-					<p class="slide-toast-desc">What worked or didn't work for you? Every pattern helps the community.</p>
-				</div>
-			</div>
-			<a href="/share-your-story" class="slide-toast-btn">
-				<span>Send Your Story</span>
-			</a>
-		</div>
 
 		<div id="image-lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Expanded Image">
 			<button class="lightbox-close-btn" id="lightbox-close" aria-label="Close image">✕</button>
@@ -133,9 +116,9 @@ if (!postNumber && slug) {
 				<h2 class="blog-disclaimer-title" id="blog-disclaimer-title">Medical Disclaimer</h2>
 				
 				<ul class="blog-disclaimer-bullets">
-					<li>I am sharing my own personal lived experience and self-experiments.</li>
-					<li>I am a patient, I am not a doctor or a dentist.</li>
-					<li>Always consult your physician before trying anything new.</li>
+					<li>It's my personal health journey, self-experiments, and&nbsp;research.</li>
+					<li>It is educational and informational only, and not intended as medical&nbsp;advice.</li>
+					<li>Always seek the advice of your physician or qualified medical provider with any questions regarding a health&nbsp;condition.</li>
 				</ul>
 			</div>
 		</div>
@@ -241,32 +224,6 @@ if (!postNumber && slug) {
 				});
 			}
 
-			function initSlideToast() {
-				const toast = document.getElementById('story-slide-toast');
-				const closeBtn = document.getElementById('slide-toast-close');
-				if (!toast) return;
-
-				let dismissed = false;
-				let shown = false;
-
-				closeBtn?.addEventListener('click', () => {
-					toast.classList.remove('visible');
-					dismissed = true;
-				});
-
-				window.addEventListener('scroll', () => {
-					if (dismissed || shown) return;
-
-					const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-					if (docHeight <= 0) return;
-
-					const scrollPercent = (window.scrollY / docHeight) * 100;
-					if (scrollPercent >= 50) {
-						toast.classList.add('visible');
-						shown = true;
-					}
-				}, { passive: true });
-			}
 
 			function initTopicKeyboardNavigation() {
 				// Gather all topic heading anchors in order
@@ -495,13 +452,11 @@ if (!postNumber && slug) {
 			if (document.readyState === 'loading') {
 				document.addEventListener('DOMContentLoaded', () => {
 					initLightbox();
-					initSlideToast();
 					initTopicKeyboardNavigation();
 					initKeyboardModals();
 				});
 			} else {
 				initLightbox();
-				initSlideToast();
 				initTopicKeyboardNavigation();
 				initKeyboardModals();
 			}
@@ -993,16 +948,17 @@ if (!postNumber && slug) {
 				transform: translateY(-1px);
 			}
 			.blog-post h1 {
-				font-size: clamp(2.4rem, 5.2vw, 4.0rem);
-				line-height: 1.14;
-				letter-spacing: -0.035em;
+				font-size: clamp(2.35rem, 4.6vw, 3.6rem);
+				line-height: 1.15;
+				letter-spacing: -0.03em;
 				color: var(--text-primary);
 				font-weight: 800;
 				margin: 2rem auto 1.25rem auto;
-				max-width: 920px;
+				max-width: 100%;
 				width: 100%;
 				text-wrap: balance;
 				text-align: center;
+				display: block;
 			}
 			.post-meta {
 				max-width: var(--reading-max-width, 58ch);

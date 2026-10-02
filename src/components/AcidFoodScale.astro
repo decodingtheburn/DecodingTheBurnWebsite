@@ -1,0 +1,896 @@
+---
+// AcidFoodScale.astro - Continuous 30-item vertical scale categorized into Red (Aggressive Acid), Yellow (Moderate/Fermentable), and Green (Zero Acid)
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+// 30 Total Foods & Drinks Strictly Sorted by pH (Ascending: Worst 2.2 to Best 7.4)
+const redZoneFoods = [
+	{ 
+		name: "Lemon & Lime Juice", 
+		emoji: "🍋", 
+		ph: "2.2", 
+		acidType: "Concentrated Citric Acid", 
+		desc: "High titratable organic acid that directly attacks exposed root cementum and dentin." 
+	},
+	{ 
+		name: "Sour Candies & Vitamin C Drops", 
+		emoji: "🍬", 
+		ph: "2.3", 
+		acidType: "Crystallized Citric & Malic Acid", 
+		desc: "Pure concentrated acid coatings dissolve enamel matrices and ignite direct trigeminal shock." 
+	},
+	{ 
+		name: "Soda & Energy Drinks", 
+		emoji: "🥤", 
+		ph: "2.5", 
+		acidType: "Phosphoric & Citric Acid", 
+		desc: "Extremely corrosive chemical wash that strips protective tubule smear plugs in seconds." 
+	},
+	{ 
+		name: "Apple Cider & White Vinegar", 
+		emoji: "🥒", 
+		ph: "2.6", 
+		acidType: "Acetic Acid", 
+		desc: "Highly volatile acetic acid penetrates open micro-tubules and causes intense nerve firing." 
+	},
+	{ 
+		name: "Kombucha & Fermented Teas", 
+		emoji: "🫙", 
+		ph: "2.9", 
+		acidType: "Acetic & Gluconic Acid", 
+		desc: "Fermentation produces strong organic acids that lower oral pH far below critical enamel safety." 
+	},
+	{ 
+		name: "Pickles & Pickled Brine", 
+		emoji: "🫒", 
+		ph: "3.2", 
+		acidType: "Acetic Acid Brine", 
+		desc: "High sodium combined with low pH dissolves micro-resin bonding and exposes porous root surfaces." 
+	},
+	{ 
+		name: "Red & White Wine", 
+		emoji: "🍷", 
+		ph: "3.4", 
+		acidType: "Tartaric & Malic Acid + Sulfites", 
+		desc: "Ethanol opens mucosal permeability while sharp plant acids irritate underlying nerve endings." 
+	},
+	{ 
+		name: "Grapefruit & Orange Juice", 
+		emoji: "🍊", 
+		ph: "3.5", 
+		acidType: "Citric & Ascorbic Acid", 
+		desc: "Sweetness masks aggressive organic acidity that bathes gingival margins in corrosive fluid." 
+	},
+	{ 
+		name: "Flavored Sparkling Waters", 
+		emoji: "🫧", 
+		ph: "3.6", 
+		acidType: "Carbonic & Added Fruit Acid", 
+		desc: "Carbonation creates carbonic acid that prolongs oral acidity between regular meals." 
+	},
+	{ 
+		name: "Hot Sauces & Acidic Salsas", 
+		emoji: "🌶️", 
+		ph: "3.7", 
+		acidType: "Vinegar Base + Capsaicin", 
+		desc: "Double-action trigger combining chemical acid erosion with TRPV1 pain receptor activation." 
+	}
+];
+
+const yellowZoneFoods = [
+	{ 
+		name: "Fresh Apples & Berry Smoothies", 
+		emoji: "🍎", 
+		ph: "4.0", 
+		acidType: "Fructose & Malic Acid", 
+		desc: "Fruit sugars stick to cervical tooth margins, providing continuous fuel for bacterial acid." 
+	},
+	{ 
+		name: "Beer & Hard Ciders", 
+		emoji: "🍺", 
+		ph: "4.2", 
+		acidType: "Fermented Barley, Hops & Malic Acid", 
+		desc: "Moderate acidity paired with fast-fermenting maltose sugars feeds oral bacterial acid production." 
+	},
+	{ 
+		name: "Tomatoes & Tomato Pasta Sauces", 
+		emoji: "🍅", 
+		ph: "4.4", 
+		acidType: "Citric & Malic Fruit Acids", 
+		desc: "Natural nightshade acids and high cooking concentration cause delayed 48-hour inflammatory flares." 
+	},
+	{ 
+		name: "Plain Greek Yogurt & Kefir", 
+		emoji: "🥣", 
+		ph: "4.5", 
+		acidType: "Lactic Acid Bacterial Residues", 
+		desc: "Healthy dairy cultures produce continuous lactic acid that can irritate unsealed tubules." 
+	},
+	{ 
+		name: "Sourdough & White Breads", 
+		emoji: "🍞", 
+		ph: "4.8", 
+		acidType: "Starch to Lactic Acid Fermentation", 
+		desc: "Salivary amylase breaks starches into simple sugars that oral bacteria ferment into lactic acid." 
+	},
+	{ 
+		name: "Black Drip Coffee & Espresso", 
+		emoji: "☕", 
+		ph: "5.0", 
+		acidType: "Chlorogenic & Quinic Acid", 
+		desc: "Moderate acidity combined with drying tannins reduces protective saliva output." 
+	},
+	{ 
+		name: "Green & Black Teas", 
+		emoji: "🍵", 
+		ph: "5.2", 
+		acidType: "Tannic & Gallic Acids", 
+		desc: "Astringent polyphenols dry the oral mucosa and cause mild friction on sensitive tongue tissues." 
+	},
+	{ 
+		name: "Hard Cheeses (Cheddar / Gouda)", 
+		emoji: "🧀", 
+		ph: "5.5", 
+		acidType: "Traces of Lactic Acid & Casein", 
+		desc: "Safe in single meals, but multi-meal volume can build slight background sensitivity (0 to 1/10)." 
+	},
+	{ 
+		name: "Potato Chips & Salted Crackers", 
+		emoji: "🥔", 
+		ph: "5.6", 
+		acidType: "Sticky Amylose Starches", 
+		desc: "Highly retentive starches lodge between teeth and degrade into localized acid pools." 
+	},
+	{ 
+		name: "Popcorn & Roasted Corn Snacks", 
+		emoji: "🍿", 
+		ph: "5.8", 
+		acidType: "High Fermentable Starches", 
+		desc: "Hulls trap in periodontal pockets while starches ferment over 72 hours into lactic acid." 
+	},
+	{ 
+		name: "General Vegetables & Green Salads", 
+		emoji: "🥗", 
+		ph: "6.0", 
+		acidType: "High pH Matrix / Fermentable Sugars", 
+		desc: "While raw vegetable tissue has a neutral or high baseline pH, oral bacteria ferment residual vegetable starches and natural sugars directly into corrosive lactic acid." 
+	}
+];
+
+const greenZoneFoods = [
+	{ 
+		name: "Fresh Whole Mushrooms", 
+		emoji: "🍄", 
+		ph: "6.8", 
+		acidType: "Zero Sugar & Non-Fermentable Matrix", 
+		desc: "Rich in beneficial beta-glucans with zero fermentable sugars to generate bacterial acid." 
+	},
+	{ 
+		name: "Herbal Teas (Chamomile, Peppermint)", 
+		emoji: "🫖", 
+		ph: "6.9", 
+		acidType: "Zero-Caffeine & Non-Acidic Infusion", 
+		desc: "Gentle plant botanicals with virtually zero tannins or organic acids, soothing sensitive oral mucous membranes." 
+	},
+	{ 
+		name: "Fresh Beef Steaks & Ribeye", 
+		emoji: "🥩", 
+		ph: "7.0", 
+		acidType: "Zero Sugar & Zero Plant Acid", 
+		desc: "Completely neutral pH with zero carbohydrates. Stimulates mineral-rich, alkaline saliva." 
+	},
+	{ 
+		name: "Ground Veal & Ground Beef", 
+		emoji: "🍖", 
+		ph: "7.0", 
+		acidType: "Pure Protein & Healthy Animal Lipids", 
+		desc: "Zero bacterial fermentation in the mouth. Starves acid-producing biofilm completely." 
+	},
+	{ 
+		name: "Whole Roast Chicken & Thighs", 
+		emoji: "🍗", 
+		ph: "7.0", 
+		acidType: "Neutral Amino Acids & Collagen", 
+		desc: "Provides essential tissue building blocks without introducing any oral chemical irritation." 
+	},
+	{ 
+		name: "Pork Loins & Sugar-Free Bacon", 
+		emoji: "🥓", 
+		ph: "7.0", 
+		acidType: "Zero Carbohydrate & Zero Fermentables", 
+		desc: "High protein metabolism increases salivary urea, naturally raising oral pH to safe baseline." 
+	},
+	{ 
+		name: "Wild Shrimp & Fresh Oysters", 
+		emoji: "🦐", 
+		ph: "7.0", 
+		acidType: "Zinc & Copper Rich Trace Minerals", 
+		desc: "Supplies essential zinc and trace minerals for mucosal repair without any acid triggers." 
+	},
+	{ 
+		name: "Wild Salmon & Red Fish", 
+		emoji: "🐟", 
+		ph: "7.1", 
+		acidType: "Neutral Lipids & Omega-3 Fatty Acids", 
+		desc: "Anti-inflammatory marine fats soothe irritated mucosal linings with zero acid burden." 
+	},
+	{ 
+		name: "White Fish (Cod & Haddock)", 
+		emoji: "🎣", 
+		ph: "7.1", 
+		acidType: "Clean Lean Neutral Protein", 
+		desc: "Ultra-digestible protein that leaves zero fermentable sugar residues in the oral cavity." 
+	},
+	{ 
+		name: "Pasture-Raised Eggs (Omelets / Boiled)", 
+		emoji: "🥚", 
+		ph: "7.2", 
+		acidType: "Naturally Alkaline Albumin & Lecithin", 
+		desc: "Mildly alkaline whole-food matrix that coats and shields sensitive oral tissues." 
+	}
+];
+---
+
+<div class={`acid-scale-wrapper ${className}`}>
+	<div class="acid-scale-card">
+		<!-- Header -->
+		<div class="acid-scale-header">
+			<h3 class="acid-scale-title" id="the-acidity-of-30-common-foods">The Acidity of 30 Common Foods &amp; Drinks</h3>
+			<p class="acid-scale-desc">
+				Strictly ranked by pH from the most aggressive acid triggers down to neutral zero-acid foods. If you are not ready for a strict carnivore baseline, start by eliminating the red and yellow items first to observe your pain&nbsp;levels.
+			</p>
+		</div>
+
+		<!-- Continuous 30-Item Vertical List (Strictly Sorted by pH) -->
+		<div class="acid-scale-list">
+			
+			<!-- ================= RED ZONE ================= -->
+			<div class="zone-section">
+				<div class="zone-header red-header">
+					<div class="zone-title-wrap">
+						<span class="zone-name-badge red-badge-text">RED ZONE</span>
+						<h4 class="zone-heading">AGGRESSIVE ACID: Direct Chemical&nbsp;Ignition</h4>
+					</div>
+					<p class="zone-subtitle">
+						Extreme acidity (pH 2.2 to 3.7). Instantly dissolves tubule smear plugs and triggers acute peripheral trigeminal nerve&nbsp;pain.
+					</p>
+				</div>
+
+				<div class="items-stack">
+					{redZoneFoods.map((item) => (
+						<div class="food-row red-item-row">
+							<div class="food-emoji-col">{item.emoji}</div>
+							
+							<div class="food-text-col">
+								<h5 class="food-title">{item.name}</h5>
+								<div class="food-acid-type red-acid-type">{item.acidType}</div>
+								<p class="food-description">{item.desc}</p>
+							</div>
+
+							<div class="food-ph-box red-ph-box">
+								<span class="ph-category-label red-label-text">High Acid</span>
+								<div class="ph-number-value">
+									<span class="ph-prefix">pH</span>
+									<span class="ph-digits">{item.ph}</span>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<!-- ================= YELLOW ZONE ================= -->
+			<div class="zone-section">
+				<div class="zone-header yellow-header">
+					<div class="zone-title-wrap">
+						<span class="zone-name-badge yellow-badge-text">YELLOW ZONE</span>
+						<h4 class="zone-heading">MODERATE &amp; FERMENTABLE: The 72-Hour&nbsp;Latency</h4>
+					</div>
+					<p class="zone-subtitle">
+						Moderate acid &amp; starches (pH 4.0 to 5.8). Ferments into oral lactic acid, triggering delayed burning flares on Days 2&nbsp;and&nbsp;3.
+					</p>
+				</div>
+
+				<div class="items-stack">
+					{yellowZoneFoods.map((item) => (
+						<div class="food-row yellow-item-row">
+							<div class="food-emoji-col">{item.emoji}</div>
+							
+							<div class="food-text-col">
+								<h5 class="food-title">{item.name}</h5>
+								<div class="food-acid-type yellow-acid-type">{item.acidType}</div>
+								<p class="food-description">{item.desc}</p>
+							</div>
+
+							<div class="food-ph-box yellow-ph-box">
+								<span class="ph-category-label yellow-label-text">Fermentable</span>
+								<div class="ph-number-value">
+									<span class="ph-prefix">pH</span>
+									<span class="ph-digits">{item.ph}</span>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<!-- ================= GREEN ZONE ================= -->
+			<div class="zone-section">
+				<div class="zone-header green-header">
+					<div class="zone-title-wrap">
+						<span class="zone-name-badge green-badge-text">GREEN ZONE</span>
+						<h4 class="zone-heading">ZERO ACID &amp; ZERO SUGAR: Complete Nerve&nbsp;Remission</h4>
+					</div>
+					<p class="zone-subtitle">
+						Neutral physiological baseline (pH 6.8 to 7.4). Starves oral acid bacteria, leaving tubule seals intact and calming pain to&nbsp;0/10.
+					</p>
+				</div>
+
+				<div class="items-stack">
+					{greenZoneFoods.map((item) => (
+						<div class="food-row green-item-row">
+							<div class="food-emoji-col">{item.emoji}</div>
+							
+							<div class="food-text-col">
+								<h5 class="food-title">{item.name}</h5>
+								<div class="food-acid-type green-acid-type">{item.acidType}</div>
+								<p class="food-description">{item.desc}</p>
+							</div>
+
+							<div class="food-ph-box green-ph-box">
+								<span class="ph-category-label green-label-text">Zero Acid</span>
+								<div class="ph-number-value">
+									<span class="ph-prefix">pH</span>
+									<span class="ph-digits">{item.ph}</span>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+		</div>
+
+		<!-- ================= DEDICATED WATER PH TESTING CALLOUT ================= -->
+		<div class="water-ph-callout-box">
+			<div class="water-callout-header">
+				<div class="water-callout-icon">💧</div>
+				<div>
+					<h4 class="water-callout-title">Important: Test the Acidity of Your Drinking&nbsp;Water</h4>
+					<span class="water-callout-badge">Hydration Check</span>
+				</div>
+			</div>
+			<div class="water-callout-body">
+				<p>
+					Drinking water is not universally neutral. Depending on your source (municipal tap, reverse osmosis filtration, or bottled spring water), water pH can range significantly from <strong>pH 5.0 (acidic) to pH 8.5 (alkaline)</strong>.
+				</p>
+				<p>
+					Reverse osmosis or un-mineralized distilled water often absorbs ambient CO₂ to become mildly acidic (~pH 5.5–6.0). If you have exposed tooth tubules or raw oral mucosal tissue, repeatedly sipping acidic water throughout the day will prevent tubule remineralization and sustain low-grade nerve firing.
+				</p>
+				<div class="water-action-tip">
+					<strong>Action Step:</strong> Use digital pH test drops or strips to test your home tap and filtered water. Ensure your daily drinking water is at or above a neutral <strong>pH 7.0 to 7.4</strong>.
+				</div>
+			</div>
+		</div>
+
+		<!-- ================= STEVIA & SUGAR ALTERNATIVES CALLOUT ================= -->
+		<div class="special-item-callout-box stevia-box">
+			<div class="special-callout-header">
+				<div class="special-callout-icon">🍃</div>
+				<div>
+					<h4 class="special-callout-title">Stevia &amp; Sugar Alternatives (pH ~6.8–7.0)</h4>
+					<span class="special-callout-badge stevia-badge">Tolerable Baseline</span>
+				</div>
+			</div>
+			<div class="special-callout-body">
+				<p>
+					Pure stevia glycosides (Stevia rebaudiana) contain near-zero digestible carbohydrates. Unlike table sugar (sucrose), honey, or fruit sugars, stevia cannot be metabolized by *Streptococcus mutans* or oral lactobacilli into corrosive lactic acid. 
+				</p>
+				<div class="special-personal-note">
+					<strong>Personal Observation:</strong> In my own recovery, pure stevia caused zero pain flares and remained completely tolerable. Just be sure to check ingredients for added maltodextrin or dextrose fillers.
+				</div>
+			</div>
+		</div>
+
+		<!-- ================= SPICES & SEASONINGS CALLOUT ================= -->
+		<div class="special-item-callout-box spices-box">
+			<div class="special-callout-header">
+				<div class="special-callout-icon">🧂</div>
+				<div>
+					<h4 class="special-callout-title">Dry Spices &amp; Seasonings (Salt, Pepper, Herbs)</h4>
+					<span class="special-callout-badge spices-badge">Safe in Moderation</span>
+				</div>
+			</div>
+			<div class="special-callout-body">
+				<p>
+					Pure sea salt, black pepper, garlic powder, onion powder, and dried culinary herbs contain minute, fractional carbohydrate quantities per serving. Because the absolute volume of fermentable starch left in the mouth is minuscule, it rarely generates enough localized lactic acid to breach tubule seals.
+				</p>
+				<div class="special-personal-note">
+					<strong>Personal Observation:</strong> I use culinary spices regularly on steaks, veal, and chicken with zero nerve activation. As long as the seasoning blend is free of added sugars, citric acid, or vinegar powders, it has been completely safe for my baseline.
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<style>
+	.acid-scale-wrapper {
+		margin: 3.5rem 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.acid-scale-card {
+		background: radial-gradient(120% 120% at 50% 0%, #1c1032 0%, #0c0818 60%, #06040d 100%);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.5rem;
+		padding: clamp(1.5rem, 3.5vw, 2.75rem);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+		color: #e2e8f0;
+	}
+
+	.acid-scale-header {
+		text-align: center;
+		margin-bottom: 2.75rem;
+		max-width: 820px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.acid-scale-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.5rem, 3vw, 2.3rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0 0 0.85rem 0;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
+		text-wrap: balance;
+	}
+
+	.acid-scale-desc {
+		font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+		line-height: 1.65;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	/* Continuous Vertical List */
+	.acid-scale-list {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	.zone-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	/* Zone Headers */
+	.zone-header {
+		padding: 1.15rem 1.35rem;
+		border-radius: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.red-header {
+		background: rgba(239, 68, 68, 0.12);
+		border: 1px solid rgba(239, 68, 68, 0.35);
+	}
+
+	.yellow-header {
+		background: rgba(245, 158, 11, 0.12);
+		border: 1px solid rgba(245, 158, 11, 0.35);
+	}
+
+	.green-header {
+		background: rgba(16, 185, 129, 0.12);
+		border: 1px solid rgba(16, 185, 129, 0.35);
+	}
+
+	.zone-title-wrap {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.zone-name-badge {
+		font-size: 0.82rem;
+		font-weight: 900;
+		letter-spacing: 0.06em;
+	}
+
+	.red-badge-text { color: #f87171; }
+	.yellow-badge-text { color: #fbbf24; }
+	.green-badge-text { color: #34d399; }
+
+	.zone-heading {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0;
+		line-height: 1.25;
+		letter-spacing: -0.01em;
+	}
+
+	.zone-subtitle {
+		font-size: 0.92rem;
+		line-height: 1.55;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	/* Stack of 10 items in each zone */
+	.items-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	/* Food Row Card */
+	.food-row {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 1.5rem;
+		background: rgba(15, 23, 42, 0.65);
+		border: 1px solid rgba(255, 255, 255, 0.09);
+		border-radius: 1.15rem;
+		padding: 1.15rem 1.45rem;
+		transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.food-row:hover {
+		transform: translateX(4px);
+		background: rgba(15, 23, 42, 0.85);
+	}
+
+	.red-item-row:hover { border-color: rgba(239, 68, 68, 0.45); }
+	.yellow-item-row:hover { border-color: rgba(245, 158, 11, 0.45); }
+	.green-item-row:hover { border-color: rgba(16, 185, 129, 0.45); }
+
+	/* Emoji Col (Massive 3.6rem / 2x Bigger Icon) */
+	.food-emoji-col {
+		font-size: 3.6rem;
+		line-height: 1;
+		filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 4.5rem;
+		flex-shrink: 0;
+	}
+
+	/* Text Col (3 distinct typographic hierarchies) */
+	.food-text-col {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		min-width: 0;
+	}
+
+	/* Tier 1: Bold White Item Name */
+	.food-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.18rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0;
+		line-height: 1.25;
+	}
+
+	/* Tier 2: Specific Acid Component */
+	.food-acid-type {
+		font-size: 0.9rem;
+		font-weight: 700;
+		line-height: 1.35;
+	}
+
+	.red-acid-type { color: #fca5a5; }
+	.yellow-acid-type { color: #fde047; }
+	.green-acid-type { color: #6ee7b7; }
+
+	/* Tier 3: Mechanism / Clinical Explanation */
+	.food-description {
+		font-size: 0.86rem;
+		line-height: 1.55;
+		color: #94a3b8;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	/* Right-Side pH Stat Box */
+	.food-ph-box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 0.65rem 1.15rem;
+		border-radius: 0.85rem;
+		min-width: 95px;
+		flex-shrink: 0;
+		text-align: center;
+	}
+
+	.red-ph-box {
+		background: rgba(239, 68, 68, 0.18);
+		border: 1px solid rgba(239, 68, 68, 0.4);
+	}
+
+	.yellow-ph-box {
+		background: rgba(245, 158, 11, 0.18);
+		border: 1px solid rgba(245, 158, 11, 0.4);
+	}
+
+	.green-ph-box {
+		background: rgba(16, 185, 129, 0.18);
+		border: 1px solid rgba(16, 185, 129, 0.4);
+	}
+
+	.ph-category-label {
+		font-size: 0.74rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: 0.15rem;
+	}
+
+	.red-label-text { color: #f87171; }
+	.yellow-label-text { color: #fbbf24; }
+	.green-label-text { color: #34d399; }
+
+	/* Large bold white pH number */
+	.ph-number-value {
+		display: flex;
+		align-items: baseline;
+		gap: 0.25rem;
+	}
+
+	.ph-prefix {
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: #cbd5e1;
+	}
+
+	.ph-digits {
+		font-size: 1.7rem;
+		font-weight: 900;
+		color: #ffffff;
+		line-height: 1;
+		letter-spacing: -0.02em;
+	}
+
+	@media (max-width: 640px) {
+		.food-row {
+			grid-template-columns: auto 1fr;
+			gap: 1rem;
+			padding: 1rem 1.1rem;
+		}
+
+		.food-emoji-col {
+			font-size: 2.6rem;
+			width: 3.2rem;
+		}
+
+		.food-ph-box {
+			grid-column: 1 / -1;
+			flex-direction: row;
+			justify-content: space-between;
+			padding: 0.5rem 1rem;
+			min-width: unset;
+		}
+
+		.ph-category-label {
+			margin-bottom: 0;
+		}
+
+		.ph-digits {
+			font-size: 1.45rem;
+		}
+	}
+
+	/* Dedicated Water pH Callout Box */
+	.water-ph-callout-box {
+		margin-top: 3.5rem;
+		background: rgba(14, 165, 233, 0.08);
+		border: 1.5px solid rgba(56, 189, 248, 0.35);
+		border-radius: 1.25rem;
+		padding: 1.65rem 1.85rem;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	}
+
+	.water-callout-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.15rem;
+		border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+		padding-bottom: 0.85rem;
+	}
+
+	.water-callout-icon {
+		font-size: 2.2rem;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	.water-callout-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.15rem, 2vw, 1.4rem);
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0 0 0.25rem 0;
+		line-height: 1.25;
+		letter-spacing: -0.01em;
+	}
+
+	.water-callout-badge {
+		font-size: 0.72rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		background: rgba(56, 189, 248, 0.2);
+		color: #38bdf8;
+		padding: 0.15rem 0.5rem;
+		border-radius: 0.35rem;
+		border: 1px solid rgba(56, 189, 248, 0.35);
+	}
+
+	.water-callout-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	.water-callout-body p {
+		font-size: 0.92rem;
+		line-height: 1.6;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.water-callout-body p strong {
+		color: #ffffff;
+	}
+
+	.water-action-tip {
+		background: rgba(10, 6, 20, 0.6);
+		border-left: 3px solid #38bdf8;
+		padding: 0.85rem 1.15rem;
+		border-radius: 0.5rem;
+		font-size: 0.88rem;
+		color: #e2e8f0;
+		line-height: 1.5;
+	}
+
+	.water-action-tip strong {
+		color: #38bdf8;
+	}
+
+	/* Stevia & Spices Callout Boxes */
+	.special-item-callout-box {
+		margin-top: 1.75rem;
+		border-radius: 1.25rem;
+		padding: 1.65rem 1.85rem;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	}
+
+	.stevia-box {
+		background: rgba(52, 211, 153, 0.07);
+		border: 1.5px solid rgba(52, 211, 153, 0.35);
+	}
+
+	.spices-box {
+		background: rgba(251, 191, 36, 0.07);
+		border: 1.5px solid rgba(251, 191, 36, 0.35);
+	}
+
+	.special-callout-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.15rem;
+		padding-bottom: 0.85rem;
+	}
+
+	.stevia-box .special-callout-header {
+		border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+	}
+
+	.spices-box .special-callout-header {
+		border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+	}
+
+	.special-callout-icon {
+		font-size: 2.2rem;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	.special-callout-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.15rem, 2vw, 1.4rem);
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0 0 0.25rem 0;
+		line-height: 1.25;
+		letter-spacing: -0.01em;
+	}
+
+	.special-callout-badge {
+		font-size: 0.72rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		padding: 0.15rem 0.5rem;
+		border-radius: 0.35rem;
+	}
+
+	.stevia-badge {
+		background: rgba(52, 211, 153, 0.2);
+		color: #34d399;
+		border: 1px solid rgba(52, 211, 153, 0.35);
+	}
+
+	.spices-badge {
+		background: rgba(251, 191, 36, 0.2);
+		color: #fbbf24;
+		border: 1px solid rgba(251, 191, 36, 0.35);
+	}
+
+	.special-callout-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	.special-callout-body p {
+		font-size: 0.92rem;
+		line-height: 1.6;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.special-callout-body p strong {
+		color: #ffffff;
+	}
+
+	.special-personal-note {
+		background: rgba(10, 6, 20, 0.6);
+		padding: 0.85rem 1.15rem;
+		border-radius: 0.5rem;
+		font-size: 0.88rem;
+		color: #e2e8f0;
+		line-height: 1.5;
+	}
+
+	.stevia-box .special-personal-note {
+		border-left: 3px solid #34d399;
+	}
+
+	.stevia-box .special-personal-note strong {
+		color: #34d399;
+	}
+
+	.spices-box .special-personal-note {
+		border-left: 3px solid #fbbf24;
+	}
+
+	.spices-box .special-personal-note strong {
+		color: #fbbf24;
+	}
+</style>

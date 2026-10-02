@@ -83,7 +83,13 @@ const glossaryJson = JSON.stringify(GLOSSARY_TERMS);
 						
 						let parent = node.parentElement;
 						while (parent && parent !== container) {
-							if (forbiddenTags.has(parent.tagName) || parent.classList.contains('glossary-term') || parent.classList.contains('tts-ignore')) {
+							if (
+								forbiddenTags.has(parent.tagName) || 
+								parent.classList.contains('glossary-term') || 
+								parent.classList.contains('tts-ignore') ||
+								parent.classList.contains('interactive-progression-container') ||
+								parent.closest('.interactive-progression-container')
+							) {
 								return NodeFilter.FILTER_REJECT;
 							}
 							parent = parent.parentElement;

@@ -28,9 +28,15 @@ export default defineConfig({
 		enabled: false,
 	},
 	redirects: {
-		'/blog/my-burning-mouth-triggers': '/blog/my-burning-mouth-syndrome-triggers-bms-acid-sugar',
-		'/viewer/my-burning-mouth-triggers/private': '/viewer/my-burning-mouth-syndrome-triggers-bms-acid-sugar/private',
-		'/viewer/my-burning-mouth-triggers/public': '/viewer/my-burning-mouth-syndrome-triggers-bms-acid-sugar/public',
+		'/blog/my-burning-mouth-triggers': '/blog/1-my-bms-18-months-carnivore-experiment',
+		'/blog/my-burning-mouth-syndrome-triggers-bms-acid-sugar': '/blog/1-my-bms-18-months-carnivore-experiment',
+		'/blog/1-my-burning-mouth-syndrome-triggers-bms-acid-sugar': '/blog/1-my-bms-18-months-carnivore-experiment',
+		'/viewer/my-burning-mouth-triggers/private': '/viewer/1-my-bms-18-months-carnivore-experiment/private',
+		'/viewer/my-burning-mouth-triggers/public': '/viewer/1-my-bms-18-months-carnivore-experiment/public',
+		'/viewer/my-burning-mouth-syndrome-triggers-bms-acid-sugar/private': '/viewer/1-my-bms-18-months-carnivore-experiment/private',
+		'/viewer/my-burning-mouth-syndrome-triggers-bms-acid-sugar/public': '/viewer/1-my-bms-18-months-carnivore-experiment/public',
+		'/viewer/1-my-burning-mouth-syndrome-triggers-bms-acid-sugar/private': '/viewer/1-my-bms-18-months-carnivore-experiment/private',
+		'/viewer/1-my-burning-mouth-syndrome-triggers-bms-acid-sugar/public': '/viewer/1-my-bms-18-months-carnivore-experiment/public',
 	},
 	integrations: [
 		mdx(),

@@ -17,6 +17,7 @@ const postsWithSlides = allPosts.map((post) => {
 	const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
 	const postNumber = getPostEntryNumber(post, allPostsAscending);
 	const isDraft = post.data.draft === true;
+	const isReadyDraft = post.data.readyDraft === true;
 	const category = post.data.category || 'My Experience';
 	const compactDate = post.data.pubDate.toLocaleDateString('en-US', {
 		month: 'short',
@@ -28,6 +29,7 @@ const postsWithSlides = allPosts.map((post) => {
 		cleanTitle,
 		postNumber,
 		isDraft,
+		isReadyDraft,
 		category,
 		compactDate,
 		slideCount: slides.length
@@ -37,6 +39,7 @@ const postsWithSlides = allPosts.map((post) => {
 const totalSlides = postsWithSlides.reduce((acc, p) => acc + p.slideCount, 0);
 const liveCount = postsWithSlides.filter(p => !p.isDraft).length;
 const draftCount = postsWithSlides.filter(p => p.isDraft).length;
+const readyDraftCount = postsWithSlides.filter(p => p.isReadyDraft).length;
 
 // Dynamic category counts
 const categoryMap = new Map<string, number>();
@@ -60,7 +63,7 @@ const staticPages = [
 	},
 	{
 		title: "My BMS Triggers: Acid & Sugar",
-		href: "/blog/my-burning-mouth-syndrome-triggers-bms-acid-sugar/",
+		href: "/blog/1-my-bms-18-months-carnivore-experiment/",
 		category: "Main Navigation",
 		menuOrder: 2,
 		badge: "Post #1",
@@ -942,6 +945,16 @@ const staticPages = [
 				box-shadow: 0 24px 48px -10px rgba(245, 158, 11, 0.25);
 			}
 
+			.post-slide-card.ready-draft-card {
+				border-color: #38bdf8;
+				background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 35%);
+			}
+
+			.post-slide-card.ready-draft-card:hover {
+				border-color: #0284c7;
+				box-shadow: 0 24px 48px -10px rgba(2, 132, 199, 0.25);
+			}
+
 			.post-slide-card:hover {
 				border-color: #be123c;
 				transform: translateY(-5px);
@@ -1098,6 +1111,13 @@ const staticPages = [
 				border: 1px solid #fde68a;
 			}
 
+			.status-ready-draft {
+				background: #e0f2fe;
+				color: #0369a1;
+				border: 1px solid #bae6fd;
+				font-weight: 800;
+			}
+
 			.status-dot {
 				width: 6px;
 				height: 6px;
@@ -1111,6 +1131,10 @@ const staticPages = [
 
 			.dot-draft {
 				background: #f59e0b;
+			}
+
+			.dot-ready-draft {
+				background: #0284c7;
 			}
 
 			/* Meta Header: Row 2 Date */
@@ -1654,6 +1678,13 @@ const staticPages = [
 									</span>
 									<span class="filter-count-badge">{liveCount}</span>
 								</button>
+								<button type="button" class="filter-pill-btn" data-status="ready-draft">
+									<span class="filter-pill-name">
+										<span class="status-dot dot-ready-draft"></span>
+										Almost Ready
+									</span>
+									<span class="filter-count-badge">{readyDraftCount}</span>
+								</button>
 								<button type="button" class="filter-pill-btn" data-status="draft">
 									<span class="filter-pill-name">
 										<span class="status-dot dot-draft"></span>
@@ -1797,11 +1828,11 @@ const staticPages = [
 
 						<!-- All Blog Posts as Presentation Decks & Articles -->
 						<div class="posts-slides-grid cols-2" id="postsGrid">
-							{postsWithSlides.map(({ post, cleanTitle, postNumber, isDraft, category, compactDate, slideCount }) => (
+							{postsWithSlides.map(({ post, cleanTitle, postNumber, isDraft, isReadyDraft, category, compactDate, slideCount }) => (
 								<div 
-									class={`post-slide-card ${isDraft ? 'draft-card' : ''}`}
+									class={`post-slide-card ${isReadyDraft ? 'ready-draft-card' : isDraft ? 'draft-card' : ''}`}
 									data-entry={postNumber}
-									data-status={isDraft ? 'draft' : 'live'}
+									data-status={isReadyDraft ? 'ready-draft' : isDraft ? 'draft' : 'live'}
 									data-category={category}
 									data-slides={slideCount}
 									data-title={cleanTitle.toLowerCase()}
@@ -1847,7 +1878,12 @@ const staticPages = [
 													</span>
 												</div>
 												<div class="meta-status-group">
-													{isDraft ? (
+													{isReadyDraft ? (
+														<span class="status-pill status-ready-draft" title="Ready Draft: Scheduled to be published next">
+															<span class="status-dot dot-ready-draft"></span>
+															Almost Ready
+														</span>
+													) : isDraft ? (
 														<span class="status-pill status-draft">
 															<span class="status-dot dot-draft"></span>
 															Draft
@@ -2131,7 +2167,9 @@ const staticPages = [
 					const cardTitle = card.getAttribute('data-title') || '';
 					const cardDesc = card.getAttribute('data-desc') || '';
 
-					const statusMatch = currentStatus === 'all' || cardStatus === currentStatus;
+					const statusMatch = currentStatus === 'all' 
+						|| cardStatus === currentStatus 
+						|| (currentStatus === 'draft' && (cardStatus === 'draft' || cardStatus === 'ready-draft'));
 					const categoryMatch = currentCategory === 'all' || cardCategory === currentCategory;
 					const searchMatch = !currentSearch || cardTitle.includes(currentSearch) || cardDesc.includes(currentSearch);
 

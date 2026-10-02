@@ -16,6 +16,7 @@ const blog = defineCollection({
 			category: z.string().default('My Experience'),
 			tags: z.array(z.string()).optional(),
 			draft: z.boolean().default(false),
+			readyDraft: z.boolean().default(false),
 			entryNumber: z.number().optional(),
 		}),
 });

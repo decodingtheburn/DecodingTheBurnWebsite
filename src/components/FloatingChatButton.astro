@@ -1,0 +1,161 @@
+---
+// FloatingChatButton.astro - Floating quick-contact / chat action button
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<a 
+	href="/contact" 
+	class={`floating-chat-btn ${className}`} 
+	id="floating-chat-btn" 
+	aria-label="Chat with Denis / Ask a Question" 
+	title="Chat with Denis / Ask a Question"
+>
+	<div class="chat-btn-pulse"></div>
+	<div class="chat-btn-inner">
+		<!-- Modern Chat/Message Icon -->
+		<svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+			<circle cx="8" cy="12" r="1" fill="currentColor"></circle>
+			<circle cx="12" cy="12" r="1" fill="currentColor"></circle>
+			<circle cx="16" cy="12" r="1" fill="currentColor"></circle>
+		</svg>
+		<span class="chat-tooltip">Chat with me</span>
+	</div>
+</a>
+
+<style>
+	.floating-chat-btn {
+		position: fixed;
+		bottom: 24px;
+		right: 24px;
+		z-index: 990;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		outline: none;
+		transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.floating-chat-btn:hover {
+		transform: translateY(-3px) scale(1.05);
+	}
+
+	.floating-chat-btn:active {
+		transform: translateY(0) scale(0.96);
+	}
+
+	.chat-btn-inner {
+		position: relative;
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+		border: 1.5px solid rgba(255, 255, 255, 0.25);
+		box-shadow: 0 10px 25px rgba(109, 40, 217, 0.45), 0 4px 10px rgba(0, 0, 0, 0.3);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #ffffff;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.floating-chat-btn:hover .chat-btn-inner {
+		background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+		box-shadow: 0 14px 30px rgba(147, 51, 234, 0.55), 0 4px 12px rgba(0, 0, 0, 0.4);
+		border-color: rgba(255, 255, 255, 0.4);
+	}
+
+	.chat-icon {
+		width: 24px;
+		height: 24px;
+		color: #ffffff;
+		transition: transform 0.2s ease;
+	}
+
+	.floating-chat-btn:hover .chat-icon {
+		transform: scale(1.1);
+	}
+
+	/* Pulsing subtle aura */
+	.chat-btn-pulse {
+		position: absolute;
+		inset: -3px;
+		border-radius: 50%;
+		background: rgba(139, 92, 246, 0.35);
+		z-index: -1;
+		animation: pulseRing 2.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+		pointer-events: none;
+	}
+
+	@keyframes pulseRing {
+		0% {
+			transform: scale(0.95);
+			opacity: 0.7;
+		}
+		50% {
+			transform: scale(1.22);
+			opacity: 0;
+		}
+		100% {
+			transform: scale(1.22);
+			opacity: 0;
+		}
+	}
+
+	/* Tooltip that slides in on hover */
+	.chat-tooltip {
+		position: absolute;
+		right: 62px;
+		background: #0f172a;
+		color: #f1f5f9;
+		font-size: 0.82rem;
+		font-weight: 600;
+		padding: 0.45rem 0.85rem;
+		border-radius: 9999px;
+		border: 1px solid rgba(139, 92, 246, 0.4);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+		white-space: nowrap;
+		pointer-events: none;
+		opacity: 0;
+		transform: translateX(10px);
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	.floating-chat-btn:hover .chat-tooltip {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	@media (max-width: 640px) {
+		.floating-chat-btn {
+			bottom: 18px;
+			right: 18px;
+		}
+
+		.chat-btn-inner {
+			width: 46px;
+			height: 46px;
+		}
+
+		.chat-icon {
+			width: 21px;
+			height: 21px;
+		}
+
+		.chat-tooltip {
+			display: none;
+		}
+	}
+
+	@media print {
+		.floating-chat-btn {
+			display: none !important;
+		}
+	}
+</style>

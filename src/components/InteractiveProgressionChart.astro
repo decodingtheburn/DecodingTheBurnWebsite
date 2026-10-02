@@ -7,31 +7,35 @@ interface Props {
 
 const {
 	class: className = '',
-	title = "My BMS Pain Levels"
+	title = ""
 } = Astro.props;
 ---
 
-<div class={`interactive-progression-container ${className}`} id="bms-progression-widget">
-	<!-- Header with Expand/Collapse Toggle & Subtitle Row -->
+<div class={`interactive-progression-container tts-ignore ${className}`} id="bms-progression-widget">
+	<!-- Discreet Grayscale Maximize Toggle in the Upper Right -->
+	<button 
+		type="button" 
+		class="chart-expand-btn" 
+		id="chart-expand-toggle"
+		aria-label="Toggle full width"
+		title="Toggle full width"
+	>
+		<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+			<polyline points="15 3 21 3 21 9"></polyline>
+			<polyline points="9 21 3 21 3 15"></polyline>
+			<line x1="21" y1="3" x2="14" y2="10"></line>
+			<line x1="3" y1="21" x2="10" y2="14"></line>
+		</svg>
+	</button>
+
+	<!-- Header with Title & Non-Wrapping Subheadline -->
 	<div class="widget-header">
 		<div class="widget-header-content">
-			<h3 class="widget-title">{title}</h3>
+			<h3 class="widget-title">
+				<span class="widget-title-main">My BMS Experiments</span>
+			</h3>
 			<div class="widget-subtitle-row">
-				<span class="widget-subtitle">4-Year Timeline: Discovering the 6 Solutions to My BMS&nbsp;Pain</span>
-				<button 
-					type="button" 
-					class="chart-expand-btn" 
-					id="chart-expand-toggle"
-					aria-label="Toggle full width"
-					title="Toggle full width"
-				>
-					<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-						<polyline points="15 3 21 3 21 9"></polyline>
-						<polyline points="9 21 3 21 3 15"></polyline>
-						<line x1="21" y1="3" x2="14" y2="10"></line>
-						<line x1="3" y1="21" x2="10" y2="14"></line>
-					</svg>
-				</button>
+				<span class="widget-subtitle">Experiment List and Pain Levels</span>
 			</div>
 		</div>
 	</div>
@@ -109,33 +113,42 @@ const {
 					<line x1="1400" y1="60" x2="1400" y2="468" class="milestone-divider-line line-today-divider" />
 				</g>
 
-				<!-- Sideways PAIN LEVEL Title (Matches 4-Year Timeline font size & weight) -->
+				<!-- Sideways Pain Level Title (Title Case) -->
 				<g class="y-axis-sideways-group">
-					<text transform="rotate(-90)" x="-240" y="-18" class="y-axis-sideways-title">PAIN LEVEL</text>
+					<text transform="rotate(-90)" x="-240" y="-18" class="y-axis-sideways-title">Pain Level</text>
 				</g>
 
 				<!-- Horizontal Grid Lines & Y-Axis Labels (10/10, High Pain, 5/10, Medium Pain, 2/10, Low Pain, 0/10) -->
 				<g class="grid-lines">
 					<line x1="70" y1="60" x2="1410" y2="60" class="grid-line line-10" />
-					<text x="58" y="65" class="axis-label y-val val-10">10/10</text>
+					<text x="38" y="65" class="axis-label y-val val-10">10/10</text>
 
-					<!-- High Pain horizontal label in red zone -->
-					<text x="58" y="150" class="zone-label-horizontal label-high">High Pain</text>
+					<!-- High Pain stacked label in red zone (Title Case) -->
+					<text x="38" y="142" class="zone-label-horizontal label-high">
+						<tspan x="38" dy="0">High</tspan>
+						<tspan x="38" dy="14">Pain</tspan>
+					</text>
 
 					<line x1="70" y1="240" x2="1410" y2="240" class="grid-line line-highlight" />
-					<text x="58" y="245" class="axis-label y-val val-5">5/10</text>
+					<text x="38" y="245" class="axis-label y-val val-5">5/10</text>
 
-					<!-- Medium Pain horizontal label in amber zone -->
-					<text x="58" y="295" class="zone-label-horizontal label-medium">Medium Pain</text>
+					<!-- Medium Pain stacked label in amber zone (Title Case) -->
+					<text x="38" y="288" class="zone-label-horizontal label-medium">
+						<tspan x="38" dy="0">Medium</tspan>
+						<tspan x="38" dy="14">Pain</tspan>
+					</text>
 
 					<line x1="70" y1="348" x2="1410" y2="348" class="grid-line line-green" />
-					<text x="58" y="353" class="axis-label y-val val-2">2/10</text>
+					<text x="38" y="353" class="axis-label y-val val-2">2/10</text>
 
-					<!-- Low Pain horizontal label in green zone -->
-					<text x="58" y="385" class="zone-label-horizontal label-low">Low Pain</text>
+					<!-- Low Pain stacked label in green zone (Title Case) -->
+					<text x="38" y="378" class="zone-label-horizontal label-low">
+						<tspan x="38" dy="0">Low</tspan>
+						<tspan x="38" dy="14">Pain</tspan>
+					</text>
 
 					<line x1="70" y1="420" x2="1410" y2="420" class="grid-line axis-x-base" />
-					<text x="58" y="425" class="axis-label y-val val-0">0/10</text>
+					<text x="38" y="425" class="axis-label y-val val-0">0/10</text>
 				</g>
 
 				<!-- Filled Area Under Curve (Descending Yo-Yo Valleys & 0/10 Baseline on the Right) -->
@@ -253,8 +266,8 @@ const {
 
 				<!-- Visual Annotations & Titles -->
 				<g class="annotations-layer">
-					<!-- Peak 1: Solution #1 with Hand-Drawn Arrow -->
-					<text x="160" y="24" class="annotation-num">Solution #1</text>
+					<!-- Peak 1: Experiment #1 with Hand-Drawn Arrow -->
+					<text x="160" y="24" class="annotation-num">Experiment #1</text>
 					<text x="160" y="44" class="annotation-title">Eliminate</text>
 					<text x="160" y="62" class="annotation-title">Beer & Wine</text>
 					<g class="hand-drawn-arrow-group">
@@ -266,8 +279,8 @@ const {
 					<text x="245" y="388" class="annotation-text valley-text">~6 Months</text>
 					<text x="245" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 2: Solution #2 with Hand-Drawn Arrow -->
-					<text x="330" y="24" class="annotation-num">Solution #2</text>
+					<!-- Peak 2: Experiment #2 with Hand-Drawn Arrow -->
+					<text x="330" y="24" class="annotation-num">Experiment #2</text>
 					<text x="330" y="44" class="annotation-title">Eliminate</text>
 					<text x="330" y="62" class="annotation-title">Coffee</text>
 					<g class="hand-drawn-arrow-group">
@@ -279,8 +292,8 @@ const {
 					<text x="415" y="388" class="annotation-text valley-text">~6 Months</text>
 					<text x="415" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 3: Solution #3 Dental Cleaning with Hand-Drawn Arrow -->
-					<text x="500" y="38" class="annotation-num">Solution #3</text>
+					<!-- Peak 3: Experiment #3 Dental Cleaning with Hand-Drawn Arrow -->
+					<text x="500" y="38" class="annotation-num">Experiment #3</text>
 					<text x="500" y="60" class="annotation-title">Dental</text>
 					<text x="500" y="78" class="annotation-title">Cleaning</text>
 					<g class="hand-drawn-arrow-group">
@@ -292,8 +305,8 @@ const {
 					<text x="585" y="388" class="annotation-text valley-text">~6 Months</text>
 					<text x="585" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 4: Solution #4 with Hand-Drawn Arrow -->
-					<text x="670" y="24" class="annotation-num">Solution #4</text>
+					<!-- Peak 4: Experiment #4 with Hand-Drawn Arrow -->
+					<text x="670" y="24" class="annotation-num">Experiment #4</text>
 					<text x="670" y="44" class="annotation-title">Eliminate</text>
 					<text x="670" y="62" class="annotation-title">Most Fruit</text>
 					<g class="hand-drawn-arrow-group">
@@ -305,8 +318,8 @@ const {
 					<text x="740" y="388" class="annotation-text valley-text">~6 Months</text>
 					<text x="740" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 5: Solution #5 Cervical Patches with Hand-Drawn Arrow -->
-					<text x="810" y="10" class="annotation-num">Solution #5</text>
+					<!-- Peak 5: Experiment #5 Cervical Patches with Hand-Drawn Arrow -->
+					<text x="810" y="10" class="annotation-num">Experiment #5</text>
 					<text x="810" y="32" class="annotation-title">Cervical</text>
 					<text x="810" y="50" class="annotation-title">Patches</text>
 					<g class="hand-drawn-arrow-group">
@@ -318,8 +331,8 @@ const {
 					<text x="880" y="388" class="annotation-text valley-text">~6 Months</text>
 					<text x="880" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 6: Solution #6 with Hand-Drawn Arrow -->
-					<text x="948" y="-30" class="annotation-num">Solution #6</text>
+					<!-- Peak 6: Experiment #6 with Hand-Drawn Arrow -->
+					<text x="948" y="-30" class="annotation-num">Experiment #6</text>
 					<text x="948" y="-12" class="annotation-title">Eliminate All Fruits,</text>
 					<text x="948" y="6" class="annotation-title">Grains & Vegetables</text>
 					<g class="hand-drawn-arrow-group">
@@ -341,10 +354,9 @@ const {
 					<text x="1290" y="388" class="annotation-text valley-text">Carnivore (0/10)</text>
 				</g>
 
-				<!-- Interactive Crosshair & Cursor Point (Only shows on mouse hover for presentations!) -->
+				<!-- Interactive Cursor Point (Only shows on mouse hover for presentations!) -->
 				<g id="interactive-cursor" class="interactive-cursor-layer" style="display: none;">
-					<line id="cursor-vertical-line" x1="0" y1="50" x2="0" y2="420" class="cursor-line" />
-					<circle id="cursor-point" cx="0" cy="0" r="7.5" class="cursor-pulse-point" />
+					<circle id="cursor-point" cx="0" cy="0" r="8" class="cursor-pulse-point" />
 				</g>
 
 				<!-- X-Axis 4-Year Timeline Track & Milestone Labels (Zero overlap, generous spacing) -->
@@ -352,8 +364,8 @@ const {
 					<!-- Horizontal 4-Year Timeline Line with Arrow Pointing Right -->
 					<line x1="70" y1="468" x2="1415" y2="468" class="timeline-axis-line" marker-end="url(#arrowTimeline)" />
 
-					<!-- Big Prominent 4-Year Timeline Heading -->
-					<text x="740" y="508" class="timeline-main-title">4-YEAR TIMELINE</text>
+					<!-- Big Prominent 4-Year Timeline Heading (Title Case) -->
+					<text x="740" y="508" class="timeline-main-title">4-Year Timeline</text>
 
 					<!-- Milestone Ticks & Timestamps (Centered above vertical divider line) -->
 					<line x1="160" y1="462" x2="160" y2="474" class="timeline-tick" />
@@ -379,7 +391,7 @@ const {
 		background: radial-gradient(120% 120% at 50% 0%, #1e1136 0%, #0d081a 60%, #080410 100%);
 		border: 1px solid rgba(168, 85, 247, 0.35);
 		border-radius: 1.5rem;
-		padding: 1.75rem 2rem;
+		padding: 1.6rem 2rem 1.75rem 2rem;
 		margin: 3.5rem auto;
 		color: #e2e8f0;
 		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
@@ -400,7 +412,7 @@ const {
 			transform: translateX(-50%);
 			margin-left: 0;
 			margin-right: 0;
-			padding: 2rem 2.25rem;
+			padding: 1.85rem 2.25rem 2rem 2.25rem;
 		}
 
 		.chart-canvas-inner {
@@ -429,7 +441,7 @@ const {
 		margin-right: 0 !important;
 		border-radius: 1.5rem !important;
 		border: 1px solid rgba(168, 85, 247, 0.5) !important;
-		padding: 50px !important;
+		padding: 2.25rem !important;
 		box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(168, 85, 247, 0.2) !important;
 		z-index: 25 !important;
 	}
@@ -465,74 +477,84 @@ const {
 	.widget-header {
 		display: flex;
 		justify-content: space-between;
-		align-items: flex-start;
-		margin-bottom: 1.5rem;
+		align-items: center;
+		margin-bottom: 1.25rem;
 		border-bottom: 1px solid rgba(168, 85, 247, 0.18);
-		padding-bottom: 1.1rem;
+		padding-bottom: 0.95rem;
+		padding-right: 2.5rem; /* Room for expand button */
 		gap: 1.25rem;
 	}
 
 	.widget-header-content {
 		display: flex;
 		flex-direction: column;
-		gap: 0.55rem;
 		width: 100%;
 	}
 
 	.widget-title {
-		font-size: clamp(2.05rem, 4.2vw, 2.75rem);
+		display: flex;
+		align-items: baseline;
+		flex-wrap: wrap;
+		margin: 0;
+		line-height: 1.15;
+		letter-spacing: -0.03em;
+	}
+
+	.widget-title-main {
+		font-size: clamp(2.4rem, 5.2vw, 3.85rem);
 		font-weight: 900;
 		color: #ffffff;
-		margin: 0;
-		line-height: 1.1;
-		letter-spacing: -0.03em;
-		white-space: nowrap;
+		letter-spacing: -0.035em;
 	}
 
 	.widget-subtitle-row {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.65rem;
-		flex-wrap: wrap;
+		display: block;
+		margin-top: 0.35rem;
 	}
 
 	.widget-subtitle {
-		font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+		font-size: clamp(0.95rem, 1.8vw, 1.2rem);
 		color: #c084fc;
-		font-weight: 600;
+		font-weight: 700;
 		letter-spacing: 0.01em;
 		white-space: nowrap;
+		line-height: 1.25;
 	}
 
-	/* Expand Button (Icon-Only, right next to subtitle) */
+	/* Discreet Grayscale Ghost Maximize Icon in the Upper Right */
 	.chart-expand-btn {
+		position: absolute;
+		top: 18px;
+		right: 18px;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		background: rgba(168, 85, 247, 0.18);
-		border: 1px solid rgba(168, 85, 247, 0.45);
-		color: #f3e8ff;
-		width: 30px;
-		height: 30px;
+		background: transparent;
+		border: none;
+		color: #64748b; /* Discreet slate gray */
+		opacity: 0.45; /* Very faded */
+		width: 28px;
+		height: 28px;
 		padding: 0;
-		border-radius: 0.5rem;
+		border-radius: 4px;
 		cursor: pointer;
-		transition: all 0.2s ease;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-		flex-shrink: 0;
+		transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
+		box-shadow: none;
+		z-index: 20;
 	}
 
 	.chart-expand-btn:hover {
-		background: rgba(168, 85, 247, 0.38);
-		border-color: rgba(168, 85, 247, 0.75);
-		color: #ffffff;
-		transform: translateY(-1px) scale(1.06);
-		box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+		background: transparent;
+		border: none;
+		color: #cbd5e1; /* Lights up slightly on hover */
+		opacity: 0.9;
+		transform: scale(1.1);
+		box-shadow: none;
 	}
 
 	.expand-icon {
-		width: 16px;
-		height: 16px;
+		width: 17px;
+		height: 17px;
 		transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
@@ -550,11 +572,13 @@ const {
 		border-radius: 0.85rem;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		padding: 0.75rem 0;
+		cursor: none; /* Hides system arrow/cursor so ONLY the glowing purple dot is shown */
 	}
 
 	.chart-canvas-inner {
 		width: 100%;
 		position: relative;
+		cursor: none;
 	}
 
 	@media (max-width: 959px) {
@@ -568,6 +592,7 @@ const {
 		height: auto;
 		display: block;
 		user-select: none;
+		cursor: none;
 	}
 
 	.grid-line {
@@ -596,7 +621,7 @@ const {
 		fill: #94a3b8;
 		font-size: 12px;
 		font-weight: 600;
-		text-anchor: end;
+		text-anchor: middle;
 	}
 	.val-10 { fill: #f87171; font-weight: 700; }
 	.val-5 { fill: #fbbf24; font-weight: 700; }
@@ -656,7 +681,7 @@ const {
 	.label-start { fill: #34d399; font-weight: 700; }
 	.label-end { fill: #34d399; font-weight: 700; }
 	.label-milestone { text-anchor: middle; }
-	.label-today { fill: #34d399; font-weight: 800; }
+	.label-today { fill: #c084fc; font-weight: 800; }
 
 	.milestone-divider-line {
 		stroke: rgba(168, 85, 247, 0.16);
@@ -667,7 +692,7 @@ const {
 		stroke: rgba(168, 85, 247, 0.38);
 	}
 	.line-today-divider {
-		stroke: rgba(16, 185, 129, 0.35);
+		stroke: rgba(168, 85, 247, 0.45);
 	}
 
 	/* Y-Axis Sideways Title (Matches 4-Year Timeline font size & weight) */
@@ -682,9 +707,9 @@ const {
 
 	/* Horizontal Zone Labels aligned with Y-Axis numbers */
 	.zone-label-horizontal {
-		font-size: 11.5px;
+		font-size: 11px;
 		font-weight: 800;
-		text-anchor: end;
+		text-anchor: middle;
 		letter-spacing: 0.02em;
 	}
 
@@ -715,7 +740,7 @@ const {
 	}
 
 	.tick-today {
-		stroke: #34d399;
+		stroke: #a855f7;
 		stroke-width: 2.5;
 	}
 
@@ -779,10 +804,8 @@ const {
 			const x = ((e.clientX - rect.left) / rect.width) * 1485 - 55;
 			const y = ((e.clientY - rect.top) / rect.height) * 610 - 70;
 
-			if (cursorLayer && cursorLine && cursorPoint && x >= 70 && x <= 1400) {
+			if (cursorLayer && cursorPoint && x >= 70 && x <= 1400) {
 				cursorLayer.style.display = 'block';
-				cursorLine.setAttribute('x1', `${x}`);
-				cursorLine.setAttribute('x2', `${x}`);
 				cursorPoint.setAttribute('cx', `${x}`);
 				cursorPoint.setAttribute('cy', `${Math.min(Math.max(y, 60), 420)}`);
 			}

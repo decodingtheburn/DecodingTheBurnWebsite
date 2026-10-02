@@ -1,0 +1,290 @@
+---
+// DietFoodCards.astro - High-contrast, clean white/gray cards showcasing Denis's BMS Carnivore Diet
+---
+
+<div class="diet-cards-container">
+	<!-- Category: MEATS (Clean 2x2 Grid) -->
+	<div class="diet-category-group">
+		<h4 class="diet-category-title">MEATS</h4>
+		<div class="diet-cards-grid">
+			<!-- Meats (Veal, Beef Steaks & Organs) -->
+			<div class="diet-food-card">
+				<div class="diet-emoji-hero">🥩</div>
+				<h5 class="diet-food-name">Meats</h5>
+				<div class="diet-bullet-wrapper">
+					<ul class="diet-bullet-list">
+						<li>Ground Veal</li>
+						<li>Beef Steaks</li>
+						<li>Organs (Liver &amp; Heart)</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Pork -->
+			<div class="diet-food-card">
+				<div class="diet-emoji-hero">🥓</div>
+				<h5 class="diet-food-name">Pork</h5>
+				<div class="diet-bullet-wrapper">
+					<ul class="diet-bullet-list">
+						<li>Ground Pork</li>
+						<li>Pork Loins</li>
+						<li>Sugar-Free Bacon</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Chicken -->
+			<div class="diet-food-card">
+				<div class="diet-emoji-hero">🍗</div>
+				<h5 class="diet-food-name">Chicken</h5>
+				<div class="diet-bullet-wrapper">
+					<ul class="diet-bullet-list">
+						<li>Whole Roast Chicken</li>
+						<li>Chicken Thighs</li>
+						<li>Chicken Wings</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Fats -->
+			<div class="diet-food-card">
+				<div class="diet-emoji-hero">🧈</div>
+				<h5 class="diet-food-name">Fats</h5>
+				<div class="diet-bullet-wrapper">
+					<ul class="diet-bullet-list">
+						<li>Raw Beef Suet</li>
+						<li>Beef Tallow</li>
+						<li>Cooking Drippings</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Category: FISH & SEAFOOD -->
+	<div class="diet-category-group">
+		<h4 class="diet-category-title">FISH &amp; SEAFOOD</h4>
+		<div class="diet-cards-grid">
+			<!-- Fish (3 items) -->
+			<div class="diet-food-card">
+				<div class="diet-emoji-hero">🐟</div>
+				<h5 class="diet-food-name">Fish</h5>
+				<div class="diet-bullet-wrapper">
+					<ul class="diet-bullet-list">
+						<li>White Fish (Cod &amp; Haddock)</li>
+						<li>Red Fish (Wild Salmon)</li>
+						<li>Mackerel</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Seafood (3 items) -->
+			<div class="diet-food-card">
+				<div class="diet-emoji-hero">🦐</div>
+				<h5 class="diet-food-name">Seafood</h5>
+				<div class="diet-bullet-wrapper">
+					<ul class="diet-bullet-list">
+						<li>Wild Shrimp</li>
+						<li>Fresh Oysters</li>
+						<li>Wild Scallops</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Category: EGGS & MUSHROOMS (50/50 Side by Side) -->
+	<div class="diet-category-group">
+		<h4 class="diet-category-title">EGGS &amp; MUSHROOMS</h4>
+		<div class="diet-cards-grid">
+			<!-- Eggs -->
+			<div class="diet-food-card">
+				<div class="diet-emoji-hero">🥚</div>
+				<h5 class="diet-food-name">Eggs</h5>
+				<div class="diet-bullet-wrapper">
+					<ul class="diet-bullet-list">
+						<li>Omelets</li>
+						<li>Stir-Fry</li>
+						<li>Soft-Boiled</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Mushrooms -->
+			<div class="diet-food-card">
+				<div class="diet-emoji-hero">🍄</div>
+				<h5 class="diet-food-name">Mushrooms</h5>
+				<div class="diet-bullet-wrapper">
+					<ul class="diet-bullet-list">
+						<li>White Button</li>
+						<li>Cremini &amp; Portobello</li>
+						<li>Zero Sugar / Zero Acid</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Category: DESENSITIZING TOOTHPASTE (Full Width 2-Column Span) -->
+	<div class="diet-category-group">
+		<h4 class="diet-category-title">DESENSITIZING TOOTHPASTE</h4>
+		<div class="diet-cards-grid full-width-grid">
+			<!-- Toothpaste Card -->
+			<div class="diet-food-card full-width-card">
+				<div class="diet-emoji-hero">🪥</div>
+				<h5 class="diet-food-name">Sensodyne Rapid Relief</h5>
+				<div class="diet-bullet-wrapper">
+					<ul class="diet-bullet-list">
+						<li>Stannous Fluoride active ingredient</li>
+						<li>Plugs open tubules for rapid relief</li>
+						<li>Apply when needed, zero-acid only</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.diet-cards-container {
+		display: flex;
+		flex-direction: column;
+		gap: 2.75rem;
+		margin: 2.5rem 0 3.5rem 0;
+		width: 100%;
+	}
+
+	.diet-category-group {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	/* Large Black / High-Contrast Category Header */
+	.diet-category-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.45rem, 2.5vw, 1.85rem);
+		font-weight: 900;
+		color: #000000 !important; /* Pure Black */
+		margin: 0;
+		letter-spacing: -0.02em;
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		border-left: 4px solid #7c3aed;
+		padding-left: 0.75rem;
+	}
+
+	/* 2-Column Side-by-Side 50/50 Grid */
+	.diet-cards-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+	}
+
+	.full-width-grid {
+		grid-template-columns: 1fr;
+		width: 100%;
+	}
+
+	.full-width-card {
+		width: 100%;
+		grid-column: 1 / -1;
+	}
+
+	/* Clean, High-Contrast White Card (Matches Mushroom Box) */
+	.diet-food-card {
+		background: #ffffff;
+		border: 1.5px solid #e2e8f0;
+		border-radius: 1.25rem;
+		padding: 2.25rem 1.75rem 1.75rem 1.75rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.04);
+		transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+		position: relative;
+		box-sizing: border-box;
+	}
+
+	.diet-food-card:hover {
+		transform: translateY(-4px);
+		border-color: #cbd5e1;
+		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(124, 58, 237, 0.08);
+	}
+
+	/* 2x Larger Centered Emoji with Soft Drop Shadow & Zero Surrounding Border */
+	.diet-emoji-hero {
+		font-size: 3.5rem;
+		line-height: 1;
+		margin-bottom: 0.75rem;
+		filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+		display: inline-block;
+		transition: transform 0.25s ease;
+	}
+
+	.diet-food-card:hover .diet-emoji-hero {
+		transform: scale(1.12) rotate(-2deg);
+	}
+
+	/* Card Title (1.5x Larger, Title Case, Bold Black) */
+	.diet-food-name {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.6rem, 2.5vw, 1.95rem);
+		font-weight: 900;
+		color: #000000;
+		margin: 0 0 0.85rem 0;
+		letter-spacing: -0.02em;
+		text-transform: none; /* First letter capitalized */
+		line-height: 1.15;
+	}
+
+	/* Center the bullet section within the card */
+	.diet-bullet-wrapper {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	/* Pure Black Bullets and Text, 20% Reduced Space Between Bullets */
+	.diet-bullet-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: inline-flex;
+		flex-direction: column;
+		gap: 0.12rem; /* Reduced space between bullets by 20%+ */
+		text-align: left;
+		border-top: none;
+	}
+
+	.diet-bullet-list li {
+		position: relative;
+		padding-left: 1.25rem;
+		font-size: 1rem;
+		font-weight: 700;
+		color: #000000; /* Pure Black text */
+		line-height: 1.24; /* Tighter line height */
+	}
+
+	.diet-bullet-list li::before {
+		content: "•";
+		position: absolute;
+		left: 0.25rem;
+		top: -0.05rem;
+		color: #000000; /* Pure Black Bullet Dot */
+		font-size: 1.25rem;
+		line-height: 1;
+	}
+
+	@media (max-width: 768px) {
+		.diet-cards-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.single-card-grid {
+			max-width: 100%;
+		}
+	}
+</style>

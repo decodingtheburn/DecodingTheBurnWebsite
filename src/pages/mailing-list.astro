@@ -1,0 +1,203 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Join the Mailing List | Decoding The Burn" 
+			description="Join my personal mailing list to receive real-time updates on dental hardware verification, clinical research, and BMS self-experiments." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="mailinglist-main-wrapper">
+			<div class="mailinglist-disclaimer-container">
+				<MedicalDisclaimer />
+			</div>
+
+			<div class="mailinglist-clean-container">
+				<div class="mailinglist-form-card">
+					<h1 class="mailinglist-title">Join the Mailing List</h1>
+					<p class="mailinglist-subtitle">
+						Receive real-time updates on my upcoming dental visits, composite patch checks, specialist interviews, and new biophysical research papers on Burning&nbsp;Mouth&nbsp;Syndrome.
+					</p>
+
+					<!-- MailerLite Direct Form Embed -->
+					<div class="ml-embedded" data-form="0R4iAA"></div>
+
+					<!-- Direct Email Form -->
+					<form class="mailinglist-direct-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
+						<div class="input-group">
+							<input 
+								type="email" 
+								name="fields[email]" 
+								placeholder="Enter your email address..." 
+								required 
+								aria-label="Email address"
+								class="mailinglist-email-input"
+							/>
+							<button type="submit" class="btn btn-primary mailinglist-submit-btn">Join Now</button>
+						</div>
+					</form>
+
+					<div class="mailinglist-trust-footer">
+						<p class="mailinglist-privacy-text">
+							Zero spam. Unsubscribe anytime with one click. Read our <a href="/privacy" class="privacy-link">Privacy Policy</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+		</main>
+		<Footer />
+
+		<style>
+			.mailinglist-main-wrapper {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 2rem 1.25rem 5rem 1.25rem;
+				min-height: calc(100vh - 250px);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.mailinglist-disclaimer-container {
+				width: 100%;
+				margin-bottom: 2rem;
+			}
+
+			.mailinglist-clean-container {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+			}
+
+			.mailinglist-form-card {
+				background: #ffffff;
+				border: 1px solid var(--card-border, #e2e8f0);
+				border-radius: 24px;
+				padding: 3.5rem 2.5rem;
+				box-shadow: var(--shadow-lg, 0 20px 45px -10px rgba(15, 23, 42, 0.12));
+				width: 100%;
+				max-width: 680px;
+				text-align: center;
+				box-sizing: border-box;
+				position: relative;
+			}
+
+			.mailinglist-title {
+				font-size: clamp(2rem, 4vw, 2.75rem);
+				font-weight: 800;
+				color: var(--text-primary, #0f172a);
+				margin-bottom: 1rem;
+				line-height: 1.15;
+				letter-spacing: -0.02em;
+				text-wrap: balance;
+			}
+
+			.mailinglist-subtitle {
+				font-size: 1.15rem;
+				color: var(--text-secondary, #475569);
+				line-height: 1.6;
+				margin-bottom: 2.5rem;
+				max-width: 540px;
+				margin-left: auto;
+				margin-right: auto;
+				text-wrap: pretty;
+			}
+
+			.input-group {
+				display: flex;
+				gap: 0.75rem;
+				max-width: 480px;
+				margin: 0 auto;
+			}
+
+			.mailinglist-email-input {
+				flex: 1;
+				padding: 1rem 1.25rem;
+				border-radius: 12px;
+				border: 1.5px solid #cbd5e1;
+				font-size: 1.05rem;
+				color: var(--text-primary, #0f172a);
+				background: #f8fafc;
+				outline: none;
+				transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+			}
+
+			.mailinglist-email-input:focus {
+				border-color: var(--accent, #c8382c);
+				background: #ffffff;
+				box-shadow: 0 0 0 4px var(--accent-glow, rgba(200, 56, 44, 0.15));
+			}
+
+			.mailinglist-submit-btn {
+				padding: 1rem 2rem;
+				border-radius: 12px;
+				font-size: 1.05rem;
+				font-weight: 700;
+				white-space: nowrap;
+				background: var(--accent, #c8382c);
+				color: #ffffff;
+				border: none;
+				cursor: pointer;
+				transition: background-color 0.2s, transform 0.15s;
+			}
+
+			.mailinglist-submit-btn:hover {
+				background: var(--accent-hover, #a82b20);
+				transform: translateY(-1px);
+			}
+
+			.mailinglist-submit-btn:active {
+				transform: translateY(0);
+			}
+
+			.mailinglist-trust-footer {
+				margin-top: 2rem;
+				border-top: 1px solid #f1f5f9;
+				padding-top: 1.5rem;
+			}
+
+			.mailinglist-privacy-text {
+				font-size: 0.88rem;
+				color: #94a3b8;
+				margin: 0;
+			}
+
+			.privacy-link {
+				color: var(--text-secondary, #475569);
+				text-decoration: underline;
+				transition: color 0.2s;
+			}
+
+			.privacy-link:hover {
+				color: var(--accent, #c8382c);
+			}
+
+			.ml-embedded:not(:empty) + .mailinglist-direct-form {
+				display: none;
+			}
+
+			@media (max-width: 640px) {
+				.mailinglist-form-card {
+					padding: 2.25rem 1.5rem;
+				}
+
+				.input-group {
+					flex-direction: column;
+				}
+
+				.mailinglist-submit-btn {
+					width: 100%;
+				}
+			}
+		</style>
+	</body>
+</html>

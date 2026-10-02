@@ -1,0 +1,154 @@
+---
+// TableOfContents.astro - Single-level centered white card Table of Contents
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+// Curated sections in exact chronological narrative order
+const navItems = [
+	{
+		number: "1",
+		title: "My Mission",
+		href: "#my-mission"
+	},
+	{
+		number: "2",
+		title: "Disclaimers",
+		href: "#disclaimers"
+	},
+	{
+		number: "3",
+		title: "My BMS Experiments",
+		href: "#my-bms-experiments"
+	},
+	{
+		number: "4",
+		title: "What I Eat Now",
+		href: "#what-i-eat-now"
+	},
+	{
+		number: "5",
+		title: "My Theory on Why a No-Acid Diet Reduces My Pain",
+		href: "#my-theory-on-why-a-no-acid-diet-reduces-my-pain"
+	},
+	{
+		number: "6",
+		title: "The Acidity of 30 Common Foods & Drinks",
+		href: "#the-acidity-of-30-common-foods"
+	},
+	{
+		number: "7",
+		title: "The 72-Hour Latency Trap & Amnesia",
+		href: "#the-amnesia-of-getting-better"
+	},
+	{
+		number: "8",
+		title: "Dentist Visits",
+		href: "#dentist-visits"
+	}
+];
+---
+
+<nav class={`toc-card-single ${className}`} aria-label="Table of Contents">
+	<h4 class="toc-title">Table of Contents</h4>
+
+	<ol class="toc-list">
+		{navItems.map((item) => (
+			<li class="toc-item">
+				<a href={item.href} class="toc-link">
+					<span class="toc-num">{item.number}.</span>
+					<span class="toc-text">{item.title}</span>
+				</a>
+			</li>
+		))}
+	</ol>
+</nav>
+
+<style>
+	/* Single Level Centered White Card */
+	.toc-card-single {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 14px;
+		padding: 1.35rem 1.6rem;
+		box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.05);
+		width: 100%;
+		max-width: 540px; /* Centered & elegant */
+		margin: 2rem auto 2.75rem auto;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	.toc-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.08rem;
+		font-weight: 800;
+		color: #0f172a;
+		margin: 0;
+		text-align: center;
+		letter-spacing: -0.01em;
+		padding-bottom: 0.65rem;
+		border-bottom: 1px solid #f1f5f9;
+	}
+
+	.toc-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.toc-item {
+		display: flex;
+	}
+
+	.toc-link {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.55rem;
+		color: #334155;
+		text-decoration: none;
+		font-size: 0.92rem;
+		line-height: 1.4;
+		padding: 0.35rem 0.55rem;
+		border-radius: 6px;
+		transition: all 0.15s ease;
+		width: 100%;
+	}
+
+	.toc-link:hover {
+		color: #7c3aed;
+		background: #f8fafc;
+		transform: translateX(3px);
+		text-decoration: none;
+	}
+
+	.toc-num {
+		font-size: 0.86rem;
+		font-weight: 800;
+		color: #7c3aed;
+		flex-shrink: 0;
+	}
+
+	.toc-text {
+		color: inherit;
+		font-weight: 600;
+	}
+
+	@media (max-width: 640px) {
+		.toc-card-single {
+			max-width: 100%;
+			padding: 1.15rem 1.25rem;
+		}
+
+		.toc-link {
+			font-size: 0.86rem;
+		}
+	}
+</style>
