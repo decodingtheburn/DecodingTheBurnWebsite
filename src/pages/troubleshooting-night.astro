@@ -174,23 +174,23 @@ import authorPhoto from '../assets/denis-ethier.png';
 						Enter your email below. We require a minimum of 3 participants to host each call, and I will email you 24 hours prior to confirm and send the live meeting&nbsp;link.
 					</p>
 					
-					<!-- FormSubmit.co Form with custom Thank You page redirect -->
-					<form class="circle-signup-form" action="https://formsubmit.co/denis@denisethier.com" method="POST">
+					<!-- FormSubmit.co Form with guaranteed instant redirect -->
+					<form class="circle-signup-form" id="weekly-circle-form" action="https://formsubmit.co/ajax/denis@denisethier.com" method="POST">
 						<input type="hidden" name="_subject" value="[Weekly Group Call RSVP] Decoding The Burn" />
 						<input type="hidden" name="_captcha" value="false" />
 						<input type="hidden" name="_template" value="table" />
-						<input type="hidden" name="_next" value="https://decodingtheburn-website.web.app/thank-you-weekly-call/" />
 						<input type="hidden" name="_autoresponse" value="Thank you for signing up for our Wednesday Night BMS Group Call notifications! We require a minimum of 3 participants to run each live call. You will receive an email 24 hours prior (Tuesday evening) confirming if the call is on with the private video link. - Denis" />
 						<div class="input-row">
 							<input 
 								type="email" 
 								name="email" 
+								id="weekly-email-input"
 								placeholder="Enter your email address..." 
 								required 
 								aria-label="Email address"
 								class="circle-email-input"
 							/>
-							<button type="submit" class="btn btn-primary circle-submit-btn">Notify Me</button>
+							<button type="submit" id="weekly-submit-btn" class="btn btn-primary circle-submit-btn">Notify Me</button>
 						</div>
 					</form>
 					<p class="circle-privacy-note">Zero spam. You will only receive confirmation and links for our Wednesday night group calls.</p>
@@ -199,6 +199,37 @@ import authorPhoto from '../assets/denis-ethier.png';
 			</section>
 		</main>
 		<Footer />
+
+		<script>
+			const form = document.getElementById('weekly-circle-form') as HTMLFormElement | null;
+			const submitBtn = document.getElementById('weekly-submit-btn') as HTMLButtonElement | null;
+
+			if (form) {
+				form.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					if (submitBtn) {
+						submitBtn.disabled = true;
+						submitBtn.textContent = 'Submitting...';
+					}
+
+					try {
+						const formData = new FormData(form);
+						await fetch('https://formsubmit.co/ajax/denis@denisethier.com', {
+							method: 'POST',
+							body: formData,
+							headers: {
+								'Accept': 'application/json'
+							}
+						});
+					} catch (err) {
+						console.error('Submission error:', err);
+					} finally {
+						// Always redirect immediately to our custom Thank You page
+						window.location.href = '/thank-you-weekly-call/';
+					}
+				});
+			}
+		</script>
 	</body>
 </html>
 
