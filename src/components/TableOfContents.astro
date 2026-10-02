@@ -6,14 +6,14 @@ interface Props {
 
 const { class: className = '' } = Astro.props;
 
-// Curated sections in exact chronological narrative order (no sub-bullets)
+// Curated sections in exact chronological narrative order (matching compiled MDX heading IDs)
 const navItems = [
 	{ number: "1", title: "Who Am I?", href: "#who-am-i" },
 	{ number: "2", title: "Disclaimers", href: "#disclaimers" },
 	{ number: "3", title: "My BMS Experiments", href: "#my-bms-experiments" },
 	{ number: "4", title: "What I Eat Now", href: "#what-i-eat-now" },
 	{ number: "5", title: "My Theory", href: "#my-theory" },
-	{ number: "6", title: "The Acidity of 30 Common Foods & Drinks", href: "#the-acidity-of-30-common-foods" },
+	{ number: "6", title: "The Acidity of 30 Common Foods & Drinks", href: "#the-acidity-of-30-common-foods--drinks" },
 	{ number: "7", title: "Dentist Visits", href: "#dentist-visits" },
 	{ number: "8", title: "Conclusion & Takeaways", href: "#conclusion--takeaways" }
 ];
@@ -23,13 +23,13 @@ const navItems = [
 <nav class={`toc-card-single ${className}`} id="top-toc-card" aria-label="Table of Contents">
 	<div class="toc-header-bar">
 		<h4 class="toc-title">Table of Contents</h4>
-		<!-- Plain monochrome pin icon on upper right, no border, no text -->
+		<!-- Plain monochrome pin icon on upper right with [T] shortcut hint in title -->
 		<button 
 			type="button" 
 			class="toc-plain-pin-btn" 
 			id="toc-pin-trigger" 
-			title="Float table of contents in margin"
-			aria-label="Float table of contents in margin"
+			title="Float in margin [T]"
+			aria-label="Float in margin [T]"
 		>
 			<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<line x1="12" y1="17" x2="12" y2="22"></line>
@@ -50,7 +50,7 @@ const navItems = [
 	</ol>
 </nav>
 
-<!-- 2. Compact Floating Margin Box (~1 inch width container, 2x smaller font, clean wrapping, only X in header) -->
+<!-- 2. Compact Floating Margin Box (~1 inch width container, 2x smaller font, clean wrapping, [T] hint + X) -->
 <div 
 	id="floating-toc-box" 
 	class="floating-margin-box" 
@@ -58,7 +58,8 @@ const navItems = [
 	aria-label="Floating Table of Contents"
 >
 	<div class="floating-box-header">
-		<button type="button" id="floating-box-close" class="floating-close-btn" title="Close" aria-label="Close">✕</button>
+		<span class="floating-key-hint" title="Keyboard Shortcut: Press T to toggle">[T]</span>
+		<button type="button" id="floating-box-close" class="floating-close-btn" title="Close [T or Esc]" aria-label="Close">✕</button>
 	</div>
 	<ul class="floating-box-list">
 		{navItems.map((item) => (
@@ -122,6 +123,20 @@ const navItems = [
 					setFloating(false, false);
 				};
 			}
+
+			// Keyboard shortcut: Press T / t to toggle; Esc to close
+			window.addEventListener('keydown', function(e) {
+				const activeEl = document.activeElement;
+				if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
+					return;
+				}
+				if (e.key === 't' || e.key === 'T') {
+					e.preventDefault();
+					setFloating(!isVisible, false);
+				} else if (e.key === 'Escape' && isVisible) {
+					setFloating(false, false);
+				}
+			});
 
 			// Close on small mobile screens
 			window.addEventListener('resize', function() {
@@ -294,10 +309,20 @@ const navItems = [
 
 	:global(.floating-box-header) {
 		display: flex !important;
-		justify-content: flex-end !important;
+		justify-content: space-between !important;
+		align-items: center !important;
 		margin-bottom: 0.2rem !important;
 		padding-bottom: 0.15rem !important;
 		border-bottom: 1px solid #f1f5f9 !important;
+	}
+
+	:global(.floating-key-hint) {
+		font-size: 0.52rem !important;
+		font-weight: 700 !important;
+		color: #94a3b8 !important;
+		letter-spacing: 0.02em !important;
+		user-select: none !important;
+		line-height: 1 !important;
 	}
 
 	:global(.floating-close-btn) {
