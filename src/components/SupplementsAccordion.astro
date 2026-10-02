@@ -1,0 +1,291 @@
+---
+// SupplementsAccordion.astro - Clean, expandable content box for the 50+ tested supplements
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`supplements-accordion-wrapper ${className}`}>
+	<details class="supplements-accordion-card group" id="supplements-details">
+		<summary class="supplements-accordion-header">
+			<span class="supplements-header-title">
+				See the 50+ supplements and minerals that didn't work
+			</span>
+			<span class="supplements-toggle-icon" aria-hidden="true">
+				<svg class="chevron-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+					<polyline points="6 9 12 15 18 9"></polyline>
+				</svg>
+			</span>
+		</summary>
+
+		<div class="supplements-accordion-content">
+			<!-- Outcome Banner -->
+			<div class="supplements-outcome-banner">
+				<p class="banner-primary-text">
+					Not a single supplement, mineral, or water filter moved the needle by even 1%.
+				</p>
+				<p class="banner-secondary-text">
+					BMS in my case was driven by localized electrochemical acid contact across exposed root channels, not a systemic nutritional deficiency.
+				</p>
+			</div>
+
+			<!-- 6-Category Grid -->
+			<div class="supplements-grid">
+				<!-- Category 1 -->
+				<div class="supplements-category-card">
+					<h4 class="category-title">1. Vitamins &amp; Co-Factors</h4>
+					<ul class="supplements-list">
+						<li>Active Vitamin B-Complex</li>
+						<li>Vitamin B6</li>
+						<li>L-Methylfolate</li>
+						<li>Biotin</li>
+						<li>Vitamin D3</li>
+						<li>Vitamin C Timed-Release</li>
+						<li>Complete Men's Multivitamin</li>
+					</ul>
+				</div>
+
+				<!-- Category 2 -->
+				<div class="supplements-category-card">
+					<h4 class="category-title">2. Minerals &amp; Electrolytes</h4>
+					<ul class="supplements-list">
+						<li>Elemental Iron</li>
+						<li>Timed-Release Iron Capsules</li>
+						<li>Liquid Iron Drops</li>
+						<li>Zinc</li>
+						<li>Magnesium Bis-Glycinate</li>
+						<li>Potassium Citrate</li>
+						<li>Potassium Bicarbonate Powder</li>
+						<li>Liquid Iodine</li>
+					</ul>
+				</div>
+
+				<!-- Category 3 -->
+				<div class="supplements-category-card">
+					<h4 class="category-title">3. Water Purification</h4>
+					<ul class="supplements-list">
+						<li>ZeroWater 5-Stage TDS Filtration</li>
+						<li>ConcenTrace Full-Spectrum Trace Minerals</li>
+						<li>Distilled Water Re-Mineralization</li>
+					</ul>
+				</div>
+
+				<!-- Category 4 -->
+				<div class="supplements-category-card">
+					<h4 class="category-title">4. Digestion, Gut &amp; Reflux</h4>
+					<ul class="supplements-list">
+						<li>Critical Care Multi-Strain Probiotics</li>
+						<li>Ox Bile Salts &amp; Digestive Enzymes</li>
+						<li>DGL Licorice Root</li>
+						<li>Gaviscon Extra Strength Alginate Barrier</li>
+						<li>Activated Charcoal Powder</li>
+					</ul>
+				</div>
+
+				<!-- Category 5 -->
+				<div class="supplements-category-card">
+					<h4 class="category-title">5. Proteins &amp; Amino Acids</h4>
+					<ul class="supplements-list">
+						<li>Pure Hydrolyzed Bone Broth Protein</li>
+						<li>Collagen Peptides &amp; HMB</li>
+						<li>Pure Micronized Creatine</li>
+						<li>L-Methionine</li>
+						<li>Taurine Pure Powder</li>
+						<li>Omega-3 Fish Oil EPA / DHA</li>
+					</ul>
+				</div>
+
+				<!-- Category 6 -->
+				<div class="supplements-category-card">
+					<h4 class="category-title">6. Botanicals &amp; Sleep</h4>
+					<ul class="supplements-list">
+						<li>Ginkgo Biloba</li>
+						<li>Quick-Dissolve Melatonin</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</details>
+</div>
+
+<style>
+	.supplements-accordion-wrapper {
+		margin: 2rem auto 2.5rem auto;
+		width: 100%;
+		max-width: 820px;
+		box-sizing: border-box;
+	}
+
+	.supplements-accordion-card {
+		background: #ffffff;
+		border: 1.5px solid #e2e8f0;
+		border-radius: 16px;
+		box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+		overflow: hidden;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.supplements-accordion-card:hover {
+		border-color: #cbd5e1;
+		box-shadow: 0 6px 24px -2px rgba(0, 0, 0, 0.09);
+	}
+
+	.supplements-accordion-card[open] {
+		border-color: #a855f7;
+		box-shadow: 0 8px 30px -4px rgba(168, 85, 247, 0.15);
+	}
+
+	.supplements-accordion-header {
+		list-style: none;
+		cursor: pointer;
+		user-select: none;
+		padding: 1.15rem 1.4rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		background: #f8fafc;
+		border-radius: 14px;
+		transition: background 0.15s ease, color 0.15s ease;
+	}
+
+	.supplements-accordion-header::-webkit-details-marker {
+		display: none;
+	}
+
+	.supplements-accordion-card[open] .supplements-accordion-header {
+		border-bottom: 1px solid #e2e8f0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		background: #f1f5f9;
+	}
+
+	.supplements-header-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.05rem;
+		font-weight: 700;
+		color: #0f172a;
+		line-height: 1.35;
+		text-align: left;
+		text-wrap: balance;
+	}
+
+	.supplements-accordion-header:hover .supplements-header-title {
+		color: #7c3aed;
+	}
+
+	.supplements-toggle-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		border-radius: 8px;
+		background: #ffffff;
+		border: 1px solid #cbd5e1;
+		color: #64748b;
+		flex-shrink: 0;
+		transition: transform 0.25s ease, background 0.15s ease, color 0.15s ease;
+	}
+
+	.supplements-accordion-card[open] .supplements-toggle-icon {
+		transform: rotate(180deg);
+		background: #7c3aed;
+		color: #ffffff;
+		border-color: #7c3aed;
+	}
+
+	.supplements-accordion-content {
+		padding: 1.75rem 1.5rem;
+		background: #ffffff;
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+	}
+
+	/* Outcome Banner */
+	.supplements-outcome-banner {
+		background: #fef2f2;
+		border: 1px solid #fecaca;
+		border-radius: 12px;
+		padding: 1.15rem 1.35rem;
+		text-align: center;
+	}
+
+	.banner-primary-text {
+		font-size: 1.02rem;
+		font-weight: 800;
+		color: #b91c1c;
+		margin: 0 0 0.4rem 0;
+		line-height: 1.4;
+	}
+
+	.banner-secondary-text {
+		font-size: 0.92rem;
+		color: #7f1d1d;
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	/* 6-Category Grid */
+	.supplements-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem 1.75rem;
+	}
+
+	@media (max-width: 680px) {
+		.supplements-grid {
+			grid-template-columns: 1fr;
+			gap: 1.25rem;
+		}
+	}
+
+	.supplements-category-card {
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 12px;
+		padding: 1.15rem 1.25rem;
+	}
+
+	.category-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 0.96rem;
+		font-weight: 800;
+		color: #0f172a;
+		margin: 0 0 0.75rem 0;
+		padding-bottom: 0.4rem;
+		border-bottom: 1.5px solid #e2e8f0;
+		letter-spacing: -0.01em;
+	}
+
+	.supplements-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.supplements-list li {
+		position: relative;
+		padding-left: 1.15rem;
+		font-size: 0.92rem;
+		color: #334155;
+		line-height: 1.35;
+		font-weight: 500;
+	}
+
+	.supplements-list li::before {
+		content: '•';
+		position: absolute;
+		left: 0.15rem;
+		top: -0.05rem;
+		color: #7c3aed;
+		font-size: 1.1rem;
+		font-weight: 900;
+	}
+</style>

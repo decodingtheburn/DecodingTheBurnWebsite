@@ -1,12 +1,12 @@
 ---
-// TableOfContents.astro - Single-level centered white card Table of Contents
+// TableOfContents.astro - Centered top card Table of Contents with an optional floating margin dock
 interface Props {
 	class?: string;
 }
 
 const { class: className = '' } = Astro.props;
 
-// Curated sections in exact chronological narrative order
+// Curated sections in exact chronological narrative order (no sub-bullets)
 const navItems = [
 	{
 		number: "1",
@@ -36,13 +36,7 @@ const navItems = [
 	{
 		number: "6",
 		title: "The Acidity of 30 Common Foods & Drinks",
-		href: "#the-acidity-of-30-common-foods",
-		subItems: [
-			{
-				title: "The 72-Hour Latency Trap & Amnesia",
-				href: "#the-72-hour-latency-trap--amnesia"
-			}
-		]
+		href: "#the-acidity-of-30-common-foods"
 	},
 	{
 		number: "7",
@@ -57,50 +51,172 @@ const navItems = [
 ];
 ---
 
-<nav class={`toc-card-single ${className}`} aria-label="Table of Contents">
-	<h4 class="toc-title">Table of Contents</h4>
+<!-- 1. Top Static Card (Always present above post content) -->
+<nav class={`toc-card-single ${className}`} id="top-toc-card" aria-label="Table of Contents">
+	<div class="toc-header-bar">
+		<h4 class="toc-title">Table of Contents</h4>
+		<button 
+			type="button" 
+			class="toc-action-btn" 
+			id="toc-float-trigger" 
+			title="Float table of contents in the margin"
+		>
+			<span class="btn-icon">📌</span>
+			<span class="btn-label" id="float-btn-label">Float in margin</span>
+		</button>
+	</div>
 
 	<ol class="toc-list">
 		{navItems.map((item) => (
-			<li class="toc-item-group">
-				<div class="toc-item">
-					<a href={item.href} class="toc-link">
-						<span class="toc-num">{item.number}.</span>
-						<span class="toc-text">{item.title}</span>
-					</a>
-				</div>
-				{item.subItems && (
-					<ul class="toc-sublist">
-						{item.subItems.map((sub) => (
-							<li class="toc-subitem">
-								<a href={sub.href} class="toc-sublink">
-									<span class="toc-sub-bullet">•</span>
-									<span class="toc-subtext">{sub.title}</span>
-								</a>
-							</li>
-						))}
-					</ul>
-				)}
+			<li class="toc-item">
+				<a href={item.href} class="toc-link">
+					<span class="toc-num">{item.number}.</span>
+					<span class="toc-text">{item.title}</span>
+				</a>
 			</li>
 		))}
 	</ol>
 </nav>
 
+<!-- 2. Floating Margin Widget (Appears in right margin when toggled) -->
+<aside class="toc-floating-sidebar" id="toc-floating-widget" aria-label="Floating Table of Contents" style="display: none;">
+	<div class="floating-toc-card">
+		<div class="floating-header">
+			<div class="floating-title-group">
+				<span class="floating-icon">📑</span>
+				<span class="floating-title">Contents</span>
+			</div>
+			<button 
+				type="button" 
+				class="toc-dock-action-btn" 
+				id="toc-dock-trigger" 
+				title="Put table of contents back to top"
+			>
+				<span class="dock-text">Put back to top</span>
+				<span class="dock-cross">✕</span>
+			</button>
+		</div>
+
+		<ol class="floating-list">
+			{navItems.map((item) => (
+				<li class="floating-item">
+					<a href={item.href} class="floating-link" data-target={item.href.replace('#', '')}>
+						<span class="floating-num">{item.number}.</span>
+						<span class="floating-text">{item.title}</span>
+					</a>
+				</li>
+			))}
+		</ol>
+	</div>
+</aside>
+
+<script is:inline>
+	(function() {
+		const floatTrigger = document.getElementById('toc-float-trigger');
+		const dockTrigger = document.getElementById('toc-dock-trigger');
+		const floatingWidget = document.getElementById('toc-floating-widget');
+		const floatBtnLabel = document.getElementById('float-btn-label');
+		const topTocCard = document.getElementById('top-toc-card');
+
+		if (!floatTrigger || !floatingWidget) return;
+
+		let isFloating = false;
+
+		function setFloatingState(show, smoothScrollToTop = false) {
+			isFloating = show;
+			if (show) {
+				floatingWidget.style.display = 'block';
+				floatTrigger.classList.add('is-active');
+				if (floatBtnLabel) floatBtnLabel.textContent = 'Floating active (Dock)';
+				try { localStorage.setItem('toc_floating_preference', 'true'); } catch(e){}
+			} else {
+				floatingWidget.style.display = 'none';
+				floatTrigger.classList.remove('is-active');
+				if (floatBtnLabel) floatBtnLabel.textContent = 'Float in margin';
+				try { localStorage.setItem('toc_floating_preference', 'false'); } catch(e){}
+				if (smoothScrollToTop && topTocCard) {
+					topTocCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				}
+			}
+		}
+
+		// Check saved preference on load
+		try {
+			if (localStorage.getItem('toc_floating_preference') === 'true' && window.innerWidth >= 1100) {
+				setFloatingState(true, false);
+			}
+		} catch(e) {}
+
+		floatTrigger.addEventListener('click', function() {
+			setFloatingState(!isFloating, false);
+		});
+
+		if (dockTrigger) {
+			dockTrigger.addEventListener('click', function() {
+				setFloatingState(false, true);
+			});
+		}
+
+		// Close floating on small screens if resized down
+		window.addEventListener('resize', function() {
+			if (window.innerWidth < 1000 && isFloating) {
+				setFloatingState(false, false);
+			}
+		});
+
+		// Active section highlight on scroll in floating widget
+		const links = document.querySelectorAll('.floating-link');
+		const sectionIds = Array.from(links).map(function(l) { return l.getAttribute('data-target'); });
+		
+		function updateActiveSection() {
+			if (!isFloating) return;
+			const scrollPos = window.scrollY + 160;
+			let currentId = '';
+
+			for (let i = 0; i < sectionIds.length; i++) {
+				const el = document.getElementById(sectionIds[i]);
+				if (el && el.offsetTop <= scrollPos) {
+					currentId = sectionIds[i];
+				}
+			}
+
+			links.forEach(function(link) {
+				if (link.getAttribute('data-target') === currentId) {
+					link.classList.add('active-section');
+				} else {
+					link.classList.remove('active-section');
+				}
+			});
+		}
+
+		window.addEventListener('scroll', updateActiveSection, { passive: true });
+	})();
+</script>
+
 <style>
-	/* Single Level Centered White Card */
+	/* 1. Top Static Centered Card */
 	.toc-card-single {
 		background: #ffffff;
 		border: 1px solid #e2e8f0;
-		border-radius: 14px;
-		padding: 1.35rem 1.6rem;
+		border-radius: 16px;
+		padding: 1.25rem 1.6rem;
 		box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.05);
 		width: 100%;
-		max-width: 540px; /* Centered & elegant */
-		margin: 2rem auto 2.75rem auto;
+		max-width: 540px;
+		margin: 2rem auto 2.5rem auto;
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
 		gap: 0.85rem;
+	}
+
+	.toc-header-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding-bottom: 0.65rem;
+		border-bottom: 1px solid #f1f5f9;
 	}
 
 	.toc-title {
@@ -109,10 +225,36 @@ const navItems = [
 		font-weight: 800;
 		color: #0f172a;
 		margin: 0;
-		text-align: center;
 		letter-spacing: -0.01em;
-		padding-bottom: 0.65rem;
-		border-bottom: 1px solid #f1f5f9;
+	}
+
+	.toc-action-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		background: #f8fafc;
+		border: 1px solid #cbd5e1;
+		border-radius: 8px;
+		padding: 0.3rem 0.65rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: #475569;
+		cursor: pointer;
+		transition: all 0.15s ease;
+		user-select: none;
+	}
+
+	.toc-action-btn:hover {
+		background: #f1f5f9;
+		border-color: #94a3b8;
+		color: #1e293b;
+		transform: translateY(-1px);
+	}
+
+	.toc-action-btn.is-active {
+		background: #f3e8ff;
+		border-color: #c084fc;
+		color: #7e22ce;
 	}
 
 	.toc-list {
@@ -124,52 +266,8 @@ const navItems = [
 		gap: 0.35rem;
 	}
 
-	.toc-item-group {
-		display: flex;
-		flex-direction: column;
-	}
-
 	.toc-item {
 		display: flex;
-	}
-
-	.toc-sublist {
-		list-style: none;
-		padding: 0 0 0 1.85rem;
-		margin: 0.1rem 0 0.25rem 0;
-		display: flex;
-		flex-direction: column;
-		gap: 0.2rem;
-	}
-
-	.toc-subitem {
-		display: flex;
-	}
-
-	.toc-sublink {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.45rem;
-		color: #64748b;
-		text-decoration: none;
-		font-size: 0.88rem;
-		line-height: 1.35;
-		padding: 0.2rem 0.5rem;
-		border-radius: 5px;
-		transition: all 0.15s ease;
-		width: 100%;
-	}
-
-	.toc-sublink:hover {
-		color: #7c3aed;
-		background: #f8fafc;
-		transform: translateX(3px);
-		text-decoration: none;
-	}
-
-	.toc-sub-bullet {
-		color: #94a3b8;
-		font-weight: 700;
 	}
 
 	.toc-link {
@@ -194,25 +292,169 @@ const navItems = [
 	}
 
 	.toc-num {
-		font-size: 0.86rem;
-		font-weight: 800;
-		color: #7c3aed;
+		font-weight: 700;
+		color: #94a3b8;
+		font-size: 0.85rem;
+		width: 1.25rem;
 		flex-shrink: 0;
 	}
 
+	.toc-link:hover .toc-num {
+		color: #7c3aed;
+	}
+
 	.toc-text {
-		color: inherit;
 		font-weight: 600;
 	}
 
-	@media (max-width: 640px) {
-		.toc-card-single {
-			max-width: 100%;
-			padding: 1.15rem 1.25rem;
-		}
+	/* 2. Floating Margin Widget */
+	.toc-floating-sidebar {
+		position: fixed;
+		top: 110px;
+		right: clamp(12px, 2.5vw, 40px);
+		width: 275px;
+		max-height: calc(100vh - 140px);
+		z-index: 85;
+		animation: fadeInRight 0.22s ease-out;
+	}
 
-		.toc-link {
-			font-size: 0.86rem;
+	@keyframes fadeInRight {
+		from {
+			opacity: 0;
+			transform: translateX(12px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	.floating-toc-card {
+		background: rgba(255, 255, 255, 0.94);
+		backdrop-filter: blur(14px);
+		-webkit-backdrop-filter: blur(14px);
+		border: 1.5px solid #e2e8f0;
+		border-radius: 14px;
+		box-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04);
+		padding: 1rem 1.15rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		max-height: calc(100vh - 150px);
+		overflow-y: auto;
+	}
+
+	.floating-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid #f1f5f9;
+		gap: 0.5rem;
+	}
+
+	.floating-title-group {
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
+	.floating-icon {
+		font-size: 0.9rem;
+	}
+
+	.floating-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 0.9rem;
+		font-weight: 800;
+		color: #0f172a;
+	}
+
+	.toc-dock-action-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		background: #f1f5f9;
+		border: 1px solid #cbd5e1;
+		border-radius: 6px;
+		padding: 0.25rem 0.5rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: #475569;
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+
+	.toc-dock-action-btn:hover {
+		background: #fee2e2;
+		border-color: #fca5a5;
+		color: #b91c1c;
+	}
+
+	.dock-cross {
+		font-weight: 800;
+		font-size: 0.7rem;
+	}
+
+	.floating-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.floating-link {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.45rem;
+		color: #475569;
+		text-decoration: none;
+		font-size: 0.82rem;
+		line-height: 1.35;
+		padding: 0.3rem 0.45rem;
+		border-radius: 6px;
+		transition: all 0.15s ease;
+		width: 100%;
+	}
+
+	.floating-link:hover {
+		color: #7c3aed;
+		background: #f8fafc;
+		text-decoration: none;
+	}
+
+	.floating-link.active-section {
+		color: #7c3aed;
+		background: #f3e8ff;
+		font-weight: 700;
+	}
+
+	.floating-num {
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: #94a3b8;
+		flex-shrink: 0;
+		width: 1.1rem;
+	}
+
+	.floating-link.active-section .floating-num {
+		color: #7c3aed;
+	}
+
+	.floating-text {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	@media (max-width: 1024px) {
+		.toc-action-btn {
+			display: none; /* Only float on wider desktop viewports with generous margins */
+		}
+		.toc-floating-sidebar {
+			display: none !important;
 		}
 	}
 </style>

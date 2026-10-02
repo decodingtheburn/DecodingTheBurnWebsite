@@ -69,21 +69,20 @@ if (!postNumber && slug) {
 				<h1 set:html={title} />
 
 				<div class="post-meta">
-					<p class="post-meta-text">
-						<span>Published on <FormattedDate date={pubDate} /></span>
+					<div class="post-meta-stack">
 						{postNumber && (
-							<>
-								<span class="post-meta-dot" aria-hidden="true">•</span>
-								<span class="post-meta-entry">Post #{postNumber}</span>
-							</>
+							<div class="post-meta-entry">Post #{postNumber}</div>
 						)}
-						{updatedDate && (
-							<>
-								<span class="post-meta-dot" aria-hidden="true">•</span>
-								<span class="post-meta-updated">Updated on <FormattedDate date={updatedDate} /></span>
-							</>
-						)}
-					</p>
+						<p class="post-meta-date">
+							<span>Published on <FormattedDate date={pubDate} /></span>
+							{updatedDate && (
+								<>
+									<span class="post-meta-dot" aria-hidden="true">•</span>
+									<span class="post-meta-updated">Updated on <FormattedDate date={updatedDate} /></span>
+								</>
+							)}
+						</p>
+					</div>
 				</div>
 				<MedicalDisclaimer />
 
@@ -962,36 +961,70 @@ if (!postNumber && slug) {
 			}
 			.post-meta {
 				max-width: var(--reading-max-width, 58ch);
-				margin: 0 auto 1.25rem auto;
+				margin: 0 auto 1.5rem auto;
 				display: flex;
 				justify-content: center;
 			}
-			.post-meta-text {
-				font-size: 0.88rem;
-				color: #000000;
-				font-weight: 600;
-				margin: 0;
-				line-height: 1.5;
+			.post-meta-stack {
 				display: flex;
+				flex-direction: column;
 				align-items: center;
-				justify-content: center;
-				flex-wrap: wrap;
-				gap: 0.45rem;
+				gap: 0.35rem;
 				text-align: center;
 			}
 			.post-meta-entry {
-				font-weight: 700;
-				color: #000000;
+				font-size: 1.85rem;
+				font-weight: 800;
+				color: #0f172a;
+				letter-spacing: -0.025em;
+				line-height: 1.15;
+			}
+			.post-meta-date {
+				font-size: 0.92rem;
+				color: #64748b;
+				font-weight: 600;
+				margin: 0;
+				line-height: 1.4;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.45rem;
 			}
 			.post-meta-dot {
-				color: #000000;
+				color: #94a3b8;
 				font-weight: 800;
 				user-select: none;
 			}
 			.post-meta-updated {
-				color: #000000;
+				color: #64748b;
 				font-weight: 500;
-				font-size: 0.85rem;
+				font-size: 0.88rem;
+			}
+
+			/* Custom Subtle Designer Section Divider */
+			.post-content :global(hr) {
+				border: none;
+				height: 1px;
+				background: linear-gradient(90deg, transparent 0%, rgba(148, 163, 184, 0.3) 20%, rgba(168, 85, 247, 0.45) 50%, rgba(148, 163, 184, 0.3) 80%, transparent 100%);
+				margin: 3.75rem auto 1rem auto;
+				width: 100%;
+				max-width: 620px;
+				position: relative;
+				overflow: visible;
+				display: block;
+			}
+			.post-content :global(hr)::after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%) rotate(45deg);
+				width: 7px;
+				height: 7px;
+				background: #ffffff;
+				border: 1.5px solid #a855f7;
+				border-radius: 1px;
+				box-shadow: 0 0 6px rgba(168, 85, 247, 0.25);
 			}
 			.blog-layout-grid {
 				display: block;
