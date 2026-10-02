@@ -1,14 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import { sortPostsDescending } from '../utils/postUtils';
-
-const rawPosts = await getCollection('blog', ({ data }) => !data.draft);
-const posts = sortPostsDescending(rawPosts);
 ---
 
 <!doctype html>
@@ -30,54 +24,11 @@ const posts = sortPostsDescending(rawPosts);
 			<header class="podcast-hero">
 				<h1 class="podcast-title">The Decoding the Burning Mouth Syndrome Podcast</h1>
 				<p class="podcast-lead-subhead">
-					Advancing scientific research on Burning Mouth Syndrome through radical data transparency, patient-clinician conversations, and forensic root-cause&nbsp;investigation.
+					I'm working on a podcast. If you want to be notified of the next episode, please put your email below. If you want to participate, apply to be a&nbsp;guest.
 				</p>
 			</header>
 
-			<!-- Episodes & Casebook Archive Section (Now at Top) -->
-			<section class="episodes-section" id="episodes">
-				<div class="episodes-center-head">
-					<h2 class="episodes-heading">Podcast Episodes &amp; Research Notes</h2>
-					<p class="episodes-subheading">Listen, read, and explore our full series of deep dives, self-experiments, and clinical case studies.</p>
-				</div>
-
-				<div class="episodes-grid">
-					{
-						posts.map((post, idx) => {
-							const imageSrc = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
-							const episodeNum = post.data.entryNumber || (posts.length - idx);
-							return (
-								<article class="episode-card">
-									<a href={`/blog/${post.id}/`} class="episode-card-link">
-										<div class="episode-img-wrapper">
-											<img 
-												src={imageSrc || '/my-burning-mouth-triggers-thumbnail.jpg'} 
-												alt={post.data.title} 
-												class="episode-img" 
-												loading="lazy"
-											/>
-										</div>
-										<div class="episode-body">
-											<div class="episode-meta">
-												<span class="episode-number-badge">Episode #{episodeNum}</span>
-												<span class="meta-dot">•</span>
-												<span class="meta-date"><FormattedDate date={post.data.pubDate} /></span>
-											</div>
-											<h3 class="episode-title" set:html={post.data.title} />
-											<p class="episode-desc">{post.data.description}</p>
-											<div class="episode-footer">
-												<span class="listen-link">Listen &amp; Read Episode &rarr;</span>
-											</div>
-										</div>
-									</a>
-								</article>
-							);
-						})
-					}
-				</div>
-			</section>
-
-			<!-- Notify of New Episode Box (Positioned Below Episode List) -->
+			<!-- Notify of New Episode Box -->
 			<section class="notify-wrap-section">
 				<div class="podcast-notify-box" id="notify">
 					<div class="notify-icon-badge" aria-hidden="true">🎙️</div>
@@ -207,7 +158,6 @@ const posts = sortPostsDescending(rawPosts);
 					<input type="hidden" name="Submission_Page" value="Podcast Guest Application (/podcast/#apply)" />
 					<input type="hidden" name="Page_URL" value="https://www.decodingtheburn.com/podcast/#apply" />
 					<input type="hidden" name="Thank_You_Page_Shown" value="https://www.decodingtheburn.com/thank-you-podcast-guest/" />
-					<input type="hidden" name="_autoresponse" value="Thank you for applying to be a guest on the Decoding The Burn podcast! I review every patient, clinician, and researcher application personally. If your topic aligns with an upcoming recording block, I will send you a calendar link to schedule our session. - Denis Ethier" />
 
 					<!-- Guest Role Selection -->
 					<div class="form-group">
