@@ -47,8 +47,8 @@ import authorPhoto from '../assets/denis-ethier.png';
 					<p class="story-paragraph">
 						That is why we host our <strong>Weekly Group Call every Wednesday night at 7:00 PM Eastern Time</strong>. This is an open, constructive, and forward-looking live video gathering where we compare notes, share what makes our symptoms better or worse, discuss newly identified dietary or dental triggers, and learn from each other's lived observations.
 					</p>
-					<p class="story-paragraph">
-						We require a minimum of 3 participants to run each session. Please <a href="#join-circle" class="inline-story-link">join our notification list below</a> to receive the confirmation email and private meeting link the day before.
+					<p class="story-paragraph story-callout-bold">
+						<strong>Please <a href="#join-circle" class="inline-story-link">join our notification list below</a> to receive the confirmation email and private meeting link the day before.</strong>
 					</p>
 				</div>
 
@@ -339,13 +339,40 @@ import authorPhoto from '../assets/denis-ethier.png';
 		margin-bottom: 1.5rem;
 	}
 
-	/* Guidelines Card */
+	.story-callout-bold {
+		font-size: 1.2rem;
+		line-height: 1.7;
+		color: #0f172a;
+		background: rgba(254, 226, 226, 0.4);
+		border-left: 4px solid #ef4444;
+		padding: 1rem 1.25rem;
+		border-radius: 0 12px 12px 0;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.story-callout-bold strong {
+		color: #0f172a;
+		font-weight: 800;
+	}
+
+	/* Guidelines Card - Left aligned and 3/4 width (~75%) */
 	.guidelines-card {
 		background: #f8fafc;
 		border: 1.5px solid #e2e8f0;
 		border-radius: 20px;
 		padding: 2.25rem 2rem;
-		margin: 2.5rem 0;
+		margin: 2.75rem 0 3rem 0;
+		max-width: 75%;
+		width: 100%;
+		text-align: left;
+		box-sizing: border-box;
+	}
+
+	@media (max-width: 768px) {
+		.guidelines-card {
+			max-width: 100%;
+		}
 	}
 
 	.guidelines-header {
