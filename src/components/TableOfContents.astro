@@ -1,5 +1,5 @@
 ---
-// TableOfContents.astro - Centered top card Table of Contents with an optional floating margin dock
+// TableOfContents.astro - Centered top card Table of Contents with a compact floating margin box
 interface Props {
 	class?: string;
 }
@@ -8,61 +8,33 @@ const { class: className = '' } = Astro.props;
 
 // Curated sections in exact chronological narrative order (no sub-bullets)
 const navItems = [
-	{
-		number: "1",
-		title: "Introduction",
-		href: "#introduction"
-	},
-	{
-		number: "2",
-		title: "Disclaimers",
-		href: "#disclaimers"
-	},
-	{
-		number: "3",
-		title: "My BMS Experiments",
-		href: "#my-bms-experiments"
-	},
-	{
-		number: "4",
-		title: "What I Eat Now",
-		href: "#what-i-eat-now"
-	},
-	{
-		number: "5",
-		title: "My Theory",
-		href: "#my-theory"
-	},
-	{
-		number: "6",
-		title: "The Acidity of 30 Common Foods & Drinks",
-		href: "#the-acidity-of-30-common-foods"
-	},
-	{
-		number: "7",
-		title: "Dentist Visits",
-		href: "#dentist-visits"
-	},
-	{
-		number: "8",
-		title: "Conclusion & Takeaways",
-		href: "#conclusion--takeaways"
-	}
+	{ number: "1", title: "Introduction", href: "#introduction" },
+	{ number: "2", title: "Disclaimers", href: "#disclaimers" },
+	{ number: "3", title: "My BMS Experiments", href: "#my-bms-experiments" },
+	{ number: "4", title: "What I Eat Now", href: "#what-i-eat-now" },
+	{ number: "5", title: "My Theory", href: "#my-theory" },
+	{ number: "6", title: "The Acidity of 30 Common Foods & Drinks", href: "#the-acidity-of-30-common-foods" },
+	{ number: "7", title: "Dentist Visits", href: "#dentist-visits" },
+	{ number: "8", title: "Conclusion & Takeaways", href: "#conclusion--takeaways" }
 ];
 ---
 
-<!-- 1. Top Static Card (Always present above post content) -->
+<!-- 1. Top Static Centered Card (Always present above post content) -->
 <nav class={`toc-card-single ${className}`} id="top-toc-card" aria-label="Table of Contents">
 	<div class="toc-header-bar">
 		<h4 class="toc-title">Table of Contents</h4>
+		<!-- Plain monochrome pin icon on upper right, no border, no text -->
 		<button 
 			type="button" 
-			class="toc-action-btn" 
-			id="toc-float-trigger" 
-			title="Float table of contents in the margin"
+			class="toc-plain-pin-btn" 
+			id="toc-pin-trigger" 
+			title="Float table of contents in margin"
+			aria-label="Float table of contents in margin"
 		>
-			<span class="btn-icon">📌</span>
-			<span class="btn-label" id="float-btn-label">Float in margin</span>
+			<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<line x1="12" y1="17" x2="12" y2="22"></line>
+				<path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.89A2 2 0 0 1 15 10.76V6h1a1 1 0 0 0 0-2H8a1 1 0 0 0 0 2h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.89A2 2 0 0 0 5 15.24Z"></path>
+			</svg>
 		</button>
 	</div>
 
@@ -78,118 +50,120 @@ const navItems = [
 	</ol>
 </nav>
 
-<!-- 2. Floating Margin Widget (Appears in right margin when toggled) -->
-<aside class="toc-floating-sidebar" id="toc-floating-widget" aria-label="Floating Table of Contents" style="display: none;">
-	<div class="floating-toc-card">
-		<div class="floating-header">
-			<div class="floating-title-group">
-				<span class="floating-icon">📑</span>
-				<span class="floating-title">Contents</span>
-			</div>
-			<button 
-				type="button" 
-				class="toc-dock-action-btn" 
-				id="toc-dock-trigger" 
-				title="Put table of contents back to top"
-			>
-				<span class="dock-text">Put back to top</span>
-				<span class="dock-cross">✕</span>
-			</button>
-		</div>
-
-		<ol class="floating-list">
-			{navItems.map((item) => (
-				<li class="floating-item">
-					<a href={item.href} class="floating-link" data-target={item.href.replace('#', '')}>
-						<span class="floating-num">{item.number}.</span>
-						<span class="floating-text">{item.title}</span>
-					</a>
-				</li>
-			))}
-		</ol>
+<!-- 2. Compact Floating Margin Box (~1 inch width container, 2x smaller font, clean wrapping, only X in header) -->
+<div 
+	id="floating-toc-box" 
+	class="floating-margin-box" 
+	style="display: none;"
+	aria-label="Floating Table of Contents"
+>
+	<div class="floating-box-header">
+		<button type="button" id="floating-box-close" class="floating-close-btn" title="Close" aria-label="Close">✕</button>
 	</div>
-</aside>
+	<ul class="floating-box-list">
+		{navItems.map((item) => (
+			<li class="floating-box-item">
+				<a href={item.href} class="floating-box-link" data-target={item.href.replace('#', '')}>
+					<span class="floating-box-num">{item.number}.</span>
+					<span class="floating-box-text">{item.title}</span>
+				</a>
+			</li>
+		))}
+	</ul>
+</div>
 
 <script is:inline>
 	(function() {
-		const floatTrigger = document.getElementById('toc-float-trigger');
-		const dockTrigger = document.getElementById('toc-dock-trigger');
-		const floatingWidget = document.getElementById('toc-floating-widget');
-		const floatBtnLabel = document.getElementById('float-btn-label');
-		const topTocCard = document.getElementById('top-toc-card');
+		function setupTOC() {
+			const pinBtn = document.getElementById('toc-pin-trigger');
+			const floatingBox = document.getElementById('floating-toc-box');
+			const closeBtn = document.getElementById('floating-box-close');
+			const topCard = document.getElementById('top-toc-card');
 
-		if (!floatTrigger || !floatingWidget) return;
+			if (!pinBtn || !floatingBox) return;
 
-		let isFloating = false;
-
-		function setFloatingState(show, smoothScrollToTop = false) {
-			isFloating = show;
-			if (show) {
-				floatingWidget.style.display = 'block';
-				floatTrigger.classList.add('is-active');
-				if (floatBtnLabel) floatBtnLabel.textContent = 'Floating active (Dock)';
-				try { localStorage.setItem('toc_floating_preference', 'true'); } catch(e){}
-			} else {
-				floatingWidget.style.display = 'none';
-				floatTrigger.classList.remove('is-active');
-				if (floatBtnLabel) floatBtnLabel.textContent = 'Float in margin';
-				try { localStorage.setItem('toc_floating_preference', 'false'); } catch(e){}
-				if (smoothScrollToTop && topTocCard) {
-					topTocCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				}
-			}
-		}
-
-		// Check saved preference on load
-		try {
-			if (localStorage.getItem('toc_floating_preference') === 'true' && window.innerWidth >= 1100) {
-				setFloatingState(true, false);
-			}
-		} catch(e) {}
-
-		floatTrigger.addEventListener('click', function() {
-			setFloatingState(!isFloating, false);
-		});
-
-		if (dockTrigger) {
-			dockTrigger.addEventListener('click', function() {
-				setFloatingState(false, true);
-			});
-		}
-
-		// Close floating on small screens if resized down
-		window.addEventListener('resize', function() {
-			if (window.innerWidth < 1000 && isFloating) {
-				setFloatingState(false, false);
-			}
-		});
-
-		// Active section highlight on scroll in floating widget
-		const links = document.querySelectorAll('.floating-link');
-		const sectionIds = Array.from(links).map(function(l) { return l.getAttribute('data-target'); });
-		
-		function updateActiveSection() {
-			if (!isFloating) return;
-			const scrollPos = window.scrollY + 160;
-			let currentId = '';
-
-			for (let i = 0; i < sectionIds.length; i++) {
-				const el = document.getElementById(sectionIds[i]);
-				if (el && el.offsetTop <= scrollPos) {
-					currentId = sectionIds[i];
-				}
+			// Teleport floating box directly to body so position: fixed is NEVER trapped by parents
+			if (floatingBox.parentElement !== document.body) {
+				document.body.appendChild(floatingBox);
 			}
 
-			links.forEach(function(link) {
-				if (link.getAttribute('data-target') === currentId) {
-					link.classList.add('active-section');
+			let isVisible = false;
+
+			function setFloating(show, scrollToTop) {
+				isVisible = show;
+				if (show) {
+					floatingBox.style.display = 'block';
+					pinBtn.classList.add('is-active');
+					try { localStorage.setItem('toc_floating_active', 'true'); } catch(e){}
 				} else {
-					link.classList.remove('active-section');
+					floatingBox.style.display = 'none';
+					pinBtn.classList.remove('is-active');
+					try { localStorage.setItem('toc_floating_active', 'false'); } catch(e){}
+					if (scrollToTop && topCard) {
+						topCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}
+				}
+			}
+
+			// Restore state on wide screens
+			try {
+				if (localStorage.getItem('toc_floating_active') === 'true' && window.innerWidth >= 1024) {
+					setFloating(true, false);
+				}
+			} catch(e) {}
+
+			// Avoid attaching multiple event listeners on page transitions
+			pinBtn.onclick = function() {
+				setFloating(!isVisible, false);
+			};
+
+			if (closeBtn) {
+				closeBtn.onclick = function() {
+					setFloating(false, false);
+				};
+			}
+
+			// Close on small mobile screens
+			window.addEventListener('resize', function() {
+				if (window.innerWidth < 900 && isVisible) {
+					setFloating(false, false);
 				}
 			});
+
+			// Highlight active section on scroll
+			const floatLinks = floatingBox.querySelectorAll('.floating-box-link');
+			const sectionIds = Array.from(floatLinks).map(function(l) { return l.getAttribute('data-target'); });
+
+			function onScroll() {
+				if (!isVisible) return;
+				const scrollPos = window.scrollY + 160;
+				let currentId = '';
+
+				for (let i = 0; i < sectionIds.length; i++) {
+					const el = document.getElementById(sectionIds[i]);
+					if (el && el.offsetTop <= scrollPos) {
+						currentId = sectionIds[i];
+					}
+				}
+
+				floatLinks.forEach(function(link) {
+					if (link.getAttribute('data-target') === currentId) {
+						link.classList.add('active');
+					} else {
+						link.classList.remove('active');
+					}
+				});
+			}
+
+			window.addEventListener('scroll', onScroll, { passive: true });
 		}
 
-		window.addEventListener('scroll', updateActiveSection, { passive: true });
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', setupTOC);
+		} else {
+			setupTOC();
+		}
+		document.addEventListener('astro:page-load', setupTOC);
 	})();
 </script>
 
@@ -228,33 +202,27 @@ const navItems = [
 		letter-spacing: -0.01em;
 	}
 
-	.toc-action-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		background: #f8fafc;
-		border: 1px solid #cbd5e1;
-		border-radius: 8px;
-		padding: 0.3rem 0.65rem;
-		font-size: 0.8rem;
-		font-weight: 600;
-		color: #475569;
+	/* Plain monochrome pin icon on upper right, no border, no background */
+	.toc-plain-pin-btn {
+		background: transparent;
+		border: none;
+		padding: 4px;
+		color: #64748b;
 		cursor: pointer;
-		transition: all 0.15s ease;
-		user-select: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		transition: color 0.15s ease, transform 0.15s ease;
 	}
 
-	.toc-action-btn:hover {
-		background: #f1f5f9;
-		border-color: #94a3b8;
-		color: #1e293b;
-		transform: translateY(-1px);
+	.toc-plain-pin-btn:hover {
+		color: #7c3aed;
+		transform: scale(1.1);
 	}
 
-	.toc-action-btn.is-active {
-		background: #f3e8ff;
-		border-color: #c084fc;
-		color: #7e22ce;
+	.toc-plain-pin-btn.is-active {
+		color: #7c3aed;
 	}
 
 	.toc-list {
@@ -307,153 +275,116 @@ const navItems = [
 		font-weight: 600;
 	}
 
-	/* 2. Floating Margin Widget */
-	.toc-floating-sidebar {
-		position: fixed;
-		top: 110px;
-		right: clamp(12px, 2.5vw, 40px);
-		width: 275px;
-		max-height: calc(100vh - 140px);
-		z-index: 85;
-		animation: fadeInRight 0.22s ease-out;
+	/* 2. Floating Margin Box - guaranteed fixed viewport position in right margin */
+	:global(.floating-margin-box) {
+		position: fixed !important;
+		top: 130px !important;
+		right: max(16px, calc(50vw - 390px - 106px)) !important;
+		width: 98px !important; /* ~1 inch box */
+		max-width: 98px !important;
+		background: #ffffff !important;
+		border: 1px solid #cbd5e1 !important;
+		border-radius: 8px !important;
+		box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+		padding: 0.3rem 0.35rem 0.45rem 0.35rem !important;
+		z-index: 99999 !important;
+		box-sizing: border-box !important;
+		font-family: system-ui, -apple-system, sans-serif !important;
 	}
 
-	@keyframes fadeInRight {
-		from {
-			opacity: 0;
-			transform: translateX(12px);
+	:global(.floating-box-header) {
+		display: flex !important;
+		justify-content: flex-end !important;
+		margin-bottom: 0.2rem !important;
+		padding-bottom: 0.15rem !important;
+		border-bottom: 1px solid #f1f5f9 !important;
+	}
+
+	:global(.floating-close-btn) {
+		background: transparent !important;
+		border: none !important;
+		color: #94a3b8 !important;
+		font-size: 0.72rem !important;
+		font-weight: 800 !important;
+		cursor: pointer !important;
+		padding: 1px 3px !important;
+		line-height: 1 !important;
+		border-radius: 3px !important;
+		transition: color 0.15s ease, background 0.15s ease !important;
+	}
+
+	:global(.floating-close-btn:hover) {
+		color: #dc2626 !important;
+		background: #fee2e2 !important;
+	}
+
+	:global(.floating-box-list) {
+		list-style: none !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 0.22rem !important;
+	}
+
+	:global(.floating-box-item) {
+		display: block !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	:global(.floating-box-link) {
+		display: flex !important;
+		align-items: flex-start !important;
+		gap: 0.2rem !important;
+		color: #475569 !important;
+		text-decoration: none !important;
+		font-size: 0.58rem !important; /* 2x smaller than body/TOC font */
+		line-height: 1.25 !important;
+		padding: 0.15rem 0.2rem !important;
+		border-radius: 3px !important;
+		transition: all 0.12s ease !important;
+		white-space: normal !important;
+		word-break: break-word !important;
+		overflow-wrap: break-word !important;
+	}
+
+	:global(.floating-box-link:hover) {
+		color: #7c3aed !important;
+		background: #f8fafc !important;
+		text-decoration: none !important;
+	}
+
+	:global(.floating-box-link.active) {
+		color: #7c3aed !important;
+		background: #f3e8ff !important;
+		font-weight: 700 !important;
+	}
+
+	:global(.floating-box-num) {
+		font-weight: 700 !important;
+		color: #94a3b8 !important;
+		font-size: 0.55rem !important;
+		flex-shrink: 0 !important;
+		width: 0.7rem !important;
+	}
+
+	:global(.floating-box-link.active .floating-box-num) {
+		color: #7c3aed !important;
+	}
+
+	:global(.floating-box-text) {
+		flex: 1 !important;
+		white-space: normal !important;
+		word-break: break-word !important;
+		overflow-wrap: break-word !important;
+	}
+
+	@media (max-width: 900px) {
+		.toc-plain-pin-btn {
+			display: none !important;
 		}
-		to {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	.floating-toc-card {
-		background: rgba(255, 255, 255, 0.94);
-		backdrop-filter: blur(14px);
-		-webkit-backdrop-filter: blur(14px);
-		border: 1.5px solid #e2e8f0;
-		border-radius: 14px;
-		box-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04);
-		padding: 1rem 1.15rem;
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-		max-height: calc(100vh - 150px);
-		overflow-y: auto;
-	}
-
-	.floating-header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid #f1f5f9;
-		gap: 0.5rem;
-	}
-
-	.floating-title-group {
-		display: flex;
-		align-items: center;
-		gap: 0.35rem;
-	}
-
-	.floating-icon {
-		font-size: 0.9rem;
-	}
-
-	.floating-title {
-		font-family: var(--font-heading, system-ui, sans-serif);
-		font-size: 0.9rem;
-		font-weight: 800;
-		color: #0f172a;
-	}
-
-	.toc-dock-action-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.3rem;
-		background: #f1f5f9;
-		border: 1px solid #cbd5e1;
-		border-radius: 6px;
-		padding: 0.25rem 0.5rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-		color: #475569;
-		cursor: pointer;
-		transition: all 0.15s ease;
-	}
-
-	.toc-dock-action-btn:hover {
-		background: #fee2e2;
-		border-color: #fca5a5;
-		color: #b91c1c;
-	}
-
-	.dock-cross {
-		font-weight: 800;
-		font-size: 0.7rem;
-	}
-
-	.floating-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-	}
-
-	.floating-link {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.45rem;
-		color: #475569;
-		text-decoration: none;
-		font-size: 0.82rem;
-		line-height: 1.35;
-		padding: 0.3rem 0.45rem;
-		border-radius: 6px;
-		transition: all 0.15s ease;
-		width: 100%;
-	}
-
-	.floating-link:hover {
-		color: #7c3aed;
-		background: #f8fafc;
-		text-decoration: none;
-	}
-
-	.floating-link.active-section {
-		color: #7c3aed;
-		background: #f3e8ff;
-		font-weight: 700;
-	}
-
-	.floating-num {
-		font-size: 0.75rem;
-		font-weight: 700;
-		color: #94a3b8;
-		flex-shrink: 0;
-		width: 1.1rem;
-	}
-
-	.floating-link.active-section .floating-num {
-		color: #7c3aed;
-	}
-
-	.floating-text {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	@media (max-width: 1024px) {
-		.toc-action-btn {
-			display: none; /* Only float on wider desktop viewports with generous margins */
-		}
-		.toc-floating-sidebar {
+		:global(.floating-margin-box) {
 			display: none !important;
 		}
 	}
