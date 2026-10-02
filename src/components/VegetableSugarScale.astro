@@ -6,23 +6,23 @@ interface Props {
 
 const { class: className = '' } = Astro.props;
 
-// Top 12 Vegetables consumed in North America, ranked by total sugar / fermentable carbohydrate load per typical 100g serving
+// Top 12 Vegetables consumed in North America, strictly sorted from highest sugar content (sweetest) to lowest (per 100g serving)
 const vegetableSugarData = [
-	{
-		name: "Russet & White Potatoes",
-		emoji: "🥔",
-		sugarPer100g: "0.8g - 1.2g",
-		carbTotal: "17.5g",
-		sugarTypes: "Starch Amylose & Amylopectin, Sucrose, Glucose",
-		desc: "Massive starch reserves break down almost instantly in oral saliva into fermentable maltose and glucose, fueling prolonged bacterial acid production."
-	},
 	{
 		name: "Sweet Corn",
 		emoji: "🌽",
 		sugarPer100g: "6.3g",
 		carbTotal: "19.0g",
 		sugarTypes: "Sucrose, Glucose, Fructose",
-		desc: "High simple sugar concentration with sticky soluble starches that adhere to teeth and interdental spaces, creating rapid acid spikes."
+		desc: "The sweetest common vegetable. High simple sugar concentration with sticky soluble starches that adhere to teeth and interdental spaces, creating rapid acid spikes."
+	},
+	{
+		name: "Green Peas",
+		emoji: "🫛",
+		sugarPer100g: "5.7g",
+		carbTotal: "14.5g",
+		sugarTypes: "Sucrose, Glucose, Starch",
+		desc: "High combination of simple sucrose and fermentable starches that rapidly metabolize into oral acid."
 	},
 	{
 		name: "Carrots",
@@ -57,12 +57,12 @@ const vegetableSugarData = [
 		desc: "Sweet varieties carry significant free fructose and glucose that wash across exposed root margins during chewing."
 	},
 	{
-		name: "Green Peas",
-		emoji: "🫛",
-		sugarPer100g: "5.7g",
-		carbTotal: "14.5g",
-		sugarTypes: "Sucrose, Glucose, Starch",
-		desc: "High combination of simple sucrose and fermentable starches that rapidly metabolize into oral acid."
+		name: "Green Cabbage",
+		emoji: "🥬",
+		sugarPer100g: "3.2g",
+		carbTotal: "5.8g",
+		sugarTypes: "Glucose, Fructose",
+		desc: "Fibrous cellular walls release simple sugars during prolonged chewing, feeding acid-producing biofilms."
 	},
 	{
 		name: "Tomatoes",
@@ -73,22 +73,6 @@ const vegetableSugarData = [
 		desc: "Double-trigger vegetable: provides free fermentable sugars while already possessing inherent organic plant acidity (~pH 4.3)."
 	},
 	{
-		name: "Broccoli",
-		emoji: "🥦",
-		sugarPer100g: "1.7g",
-		carbTotal: "6.6g",
-		sugarTypes: "Fructose, Glucose, Sucrose",
-		desc: "Contains modest free sugars and complex oligosaccharides that oral bacteria ferment into low-grade acid over several hours."
-	},
-	{
-		name: "Green Cabbage",
-		emoji: "🥬",
-		sugarPer100g: "3.2g",
-		carbTotal: "5.8g",
-		sugarTypes: "Glucose, Fructose",
-		desc: "Fibrous cellular walls release simple sugars during prolonged chewing, feeding acid-producing biofilms."
-	},
-	{
 		name: "Zucchini & Summer Squash",
 		emoji: "🥒",
 		sugarPer100g: "2.2g",
@@ -97,12 +81,28 @@ const vegetableSugarData = [
 		desc: "Soft water-rich tissue releases soluble sugars directly into saliva, creating mild localized fermentation."
 	},
 	{
+		name: "Broccoli",
+		emoji: "🥦",
+		sugarPer100g: "1.7g",
+		carbTotal: "6.6g",
+		sugarTypes: "Fructose, Glucose, Sucrose",
+		desc: "Contains modest free sugars and complex oligosaccharides that oral bacteria ferment into low-grade acid over several hours."
+	},
+	{
 		name: "Iceberg & Romaine Lettuce",
 		emoji: "🥗",
 		sugarPer100g: "1.2g",
 		carbTotal: "2.9g",
 		sugarTypes: "Glucose, Fructose",
-		desc: "Lowest among common vegetables, yet still contains fermentable carbohydrate traces compared to the absolute zero sugar of animal protein."
+		desc: "Light salad greens still contain fermentable carbohydrate traces compared to the absolute zero sugar of animal protein."
+	},
+	{
+		name: "Russet & White Potatoes",
+		emoji: "🥔",
+		sugarPer100g: "0.8g",
+		carbTotal: "17.5g",
+		sugarTypes: "Starch Amylose & Amylopectin, Sucrose, Glucose",
+		desc: "Lowest in simple free sugars, but packed with 17.5g of starch that salivary amylase turns into rapid-fire maltose and acid."
 	}
 ];
 ---
@@ -113,7 +113,7 @@ const vegetableSugarData = [
 		<div class="veg-sugar-header">
 			<h4 class="veg-sugar-title">Sugar &amp; Fermentable Carbohydrates in Top 12&nbsp;Vegetables</h4>
 			<p class="veg-sugar-desc">
-				Per 100g edible portion. Even savory vegetables contain measurable sugars and starch matrices that oral bacteria ferment into corrosive lactic acid within&nbsp;minutes.
+				Strictly sorted from sweetest (most sugar) to least sugar per 100g portion. Even savory vegetables contain measurable sugars and starch matrices that oral bacteria ferment into corrosive lactic acid within&nbsp;minutes.
 			</p>
 		</div>
 
