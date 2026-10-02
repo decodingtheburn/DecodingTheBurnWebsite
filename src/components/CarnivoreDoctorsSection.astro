@@ -8,10 +8,11 @@ const { class: className = '' } = Astro.props;
 
 const videos = [
 	{
-		title: "Carnivore Diet for Beginners: How to Start Step-by-Step",
+		title: "Carnivore Diet for Beginners: Complete Beginners Checklist",
 		doctor: "Dr. Ken Berry, MD",
 		channel: "KenDBerryMD",
-		videoId: "is9c3g_Z9w4", // Classic Dr. Ken Berry Carnivore for beginners
+		videoId: "kU787QZk7Wc",
+		directUrl: "https://www.youtube.com/watch?v=kU787QZk7Wc",
 		badge: "Beginner Guide",
 		desc: "A straightforward clinical breakdown of what to eat, what to drink, common rookie mistakes, and how to safely transition during your first 30 days without panic."
 	},
@@ -19,31 +20,26 @@ const videos = [
 		title: "Plants Are Trying to Kill You: The Science of Plant Toxins & Acids",
 		doctor: "Dr. Anthony Chaffee, MD",
 		channel: "Anthony Chaffee MD",
-		videoId: "kOmsZ37Xj0A", // Dr. Chaffee Plants trying to kill you
+		videoId: "j1cqNDDG4aA",
+		directUrl: "https://www.youtube.com/watch?v=j1cqNDDG4aA",
 		badge: "Plant Chemicals & Acids",
 		desc: "Neurosurgical resident and nutritional researcher Dr. Chaffee explains evolutionary biology, defense chemicals, antinutrients, and why human biology thrives on an all-meat baseline."
 	},
 	{
-		title: "Will You Get Scurvy or Deficiencies on Carnivore? Common Fears Answered",
+		title: "Does the Carnivore Diet Cause Scurvy? Dietitian vs Doctor Debunked",
 		doctor: "Dr. Ken Berry, MD",
 		channel: "KenDBerryMD",
-		videoId: "Z-1E0g0M5x8", // Common carnivore fears / scurvy
-		badge: "Common Concerns",
+		videoId: "mPTsS2oC68c",
+		directUrl: "https://www.youtube.com/watch?v=mPTsS2oC68c",
+		badge: "Common Concerns (Scurvy)",
 		desc: "Addressing the biggest concerns newcomers face: Vitamin C, scurvy myths, fiber requirements, kidney health, and why meat provides complete bioavailable human nutrition."
 	},
 	{
-		title: "Carnivore Diet 101: Answering the Most Common Questions",
-		doctor: "Dr. Anthony Chaffee, MD",
-		channel: "Anthony Chaffee MD",
-		videoId: "s8bV9qZqM78", // Carnivore Q&A
-		badge: "Comprehensive Q&A",
-		desc: "Deep dive into energy levels, bowel adaptation, electrolyte balancing, organ meats vs. muscle meat, and how long it takes for chronic inflammatory conditions to calm down."
-	},
-	{
-		title: "The Ultimate Guide to Getting Started on Carnivore Safely",
+		title: "The Ultimate Carnivore Beginner Guide & Daily Routine",
 		doctor: "Dr. Shawn Baker, MD",
 		channel: "Shawn Baker MD",
-		videoId: "NqQn0U10jT8", // Dr. Shawn Baker guide
+		videoId: "jwEpnioTQLA",
+		directUrl: "https://www.youtube.com/watch?v=jwEpnioTQLA",
 		badge: "Protocol Fundamentals",
 		desc: "Orthopedic surgeon and author of The Carnivore Diet reviews practical daily routines, dealing with social situations, and tracking inflammatory symptom resolution."
 	}
@@ -56,7 +52,7 @@ const videos = [
 		<div class="carnivore-doctors-header">
 			<h3 class="carnivore-doctors-title">How I Learned About Carnivore: Top Doctors &amp; Beginner Guides</h3>
 			<p class="carnivore-doctors-desc">
-				When I first considered cutting out all plant foods, I was skeptical and concerned about safety. I spent hundreds of hours studying medical doctors and clinicians who specialize in nutritional science. Here are 5 essential videos that helped me understand the biological mechanisms, answer fears like scurvy or deficiency, and start&nbsp;safely:
+				When I first considered cutting out all plant foods, I was skeptical and concerned about safety. I spent hundreds of hours studying medical doctors and clinicians who specialize in nutritional science. Here are essential videos that helped me understand the biological mechanisms, answer fears like scurvy or deficiency, and start&nbsp;safely:
 			</p>
 		</div>
 
@@ -80,6 +76,11 @@ const videos = [
 						</div>
 						<h4 class="video-card-title">{vid.title}</h4>
 						<p class="video-card-desc">{vid.desc}</p>
+						<div class="video-footer-link">
+							<a href={vid.directUrl} target="_blank" rel="noopener noreferrer" class="watch-on-yt-link">
+								Watch on YouTube &rarr;
+							</a>
+						</div>
 					</div>
 				</div>
 			))}
@@ -124,7 +125,7 @@ const videos = [
 		font-family: var(--font-heading, system-ui, sans-serif);
 		font-size: clamp(1.4rem, 2.8vw, 2.1rem);
 		font-weight: 900;
-		color: #ffffff;
+		color: #ffffff !important;
 		margin: 0 0 0.85rem 0;
 		line-height: 1.2;
 		letter-spacing: -0.03em;
@@ -199,32 +200,59 @@ const videos = [
 	}
 
 	.video-badge {
-		font-size: 0.75rem;
+		font-size: 0.72rem;
 		font-weight: 700;
-		color: #cbd5e1;
-		background: rgba(168, 85, 247, 0.15);
-		padding: 0.2rem 0.6rem;
-		border-radius: 0.4rem;
-		border: 1px solid rgba(168, 85, 247, 0.25);
+		color: #fca5a5;
+		background: rgba(239, 68, 68, 0.15);
+		border: 1px solid rgba(239, 68, 68, 0.35);
+		padding: 0.2rem 0.55rem;
+		border-radius: 0.35rem;
+		white-space: nowrap;
 	}
 
 	.video-card-title {
-		font-size: 1.05rem;
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.12rem;
 		font-weight: 800;
 		color: #ffffff;
 		margin: 0 0 0.5rem 0;
 		line-height: 1.35;
+		letter-spacing: -0.015em;
 		text-wrap: balance;
 	}
 
 	.video-card-desc {
-		font-size: 0.88rem;
+		font-size: 0.86rem;
 		line-height: 1.55;
 		color: #94a3b8;
-		margin: 0;
+		margin: 0 0 1rem 0;
+		flex-grow: 1;
 		text-wrap: pretty;
 	}
 
+	.video-footer-link {
+		margin-top: auto;
+		padding-top: 0.5rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.watch-on-yt-link {
+		color: #f43f5e;
+		font-size: 0.84rem;
+		font-weight: 700;
+		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
+		transition: color 0.15s ease, transform 0.15s ease;
+	}
+
+	.watch-on-yt-link:hover {
+		color: #fb7185;
+		text-decoration: underline;
+		transform: translateX(2px);
+	}
+
+	/* Learning Takeaway Callout */
 	.carnivore-learning-note {
 		margin-top: 2.25rem;
 		background: rgba(168, 85, 247, 0.08);
@@ -233,7 +261,7 @@ const videos = [
 		padding: 1.25rem 1.5rem;
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 1.15rem;
 	}
 
 	.learning-note-icon {
@@ -253,15 +281,12 @@ const videos = [
 		color: #ffffff;
 	}
 
-	@media (max-width: 640px) {
-		.carnivore-videos-grid {
-			grid-template-columns: 1fr;
-		}
-
-		.video-meta-row {
+	@media (max-width: 600px) {
+		.carnivore-learning-note {
 			flex-direction: column;
 			align-items: flex-start;
-			gap: 0.35rem;
+			gap: 0.65rem;
+			padding: 1.15rem;
 		}
 	}
 </style>
