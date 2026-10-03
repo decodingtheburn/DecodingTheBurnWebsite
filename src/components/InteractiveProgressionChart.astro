@@ -43,10 +43,10 @@ const {
 	<!-- Chart Box -->
 	<div class="chart-wrapper" id="chart-scroll-container">
 		<div class="chart-canvas-inner">
-			<!-- SVG Data Canvas (Generous padding ensuring sideways Pain Level, Solution #6, and 4-Year timeline are never clipped) -->
+			<!-- SVG Data Canvas (Tight viewBox eliminating top void while preserving all annotations) -->
 			<svg 
 				id="progression-svg" 
-				viewBox="-55 -70 1485 610" 
+				viewBox="-55 -45 1485 580" 
 				class="progression-svg" 
 				preserveAspectRatio="xMidYMid meet"
 			>
@@ -318,9 +318,9 @@ const {
 					<text x="740" y="388" class="annotation-text valley-text">~6 Months</text>
 					<text x="740" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 5: Experiment #5 Cervical Patches with Hand-Drawn Arrow -->
+					<!-- Peak 5: Experiment #5 Gumline Bonding Patches with Hand-Drawn Arrow -->
 					<text x="810" y="10" class="annotation-num">Experiment #5</text>
-					<text x="810" y="32" class="annotation-title">Cervical</text>
+					<text x="810" y="32" class="annotation-title">Gumline Bonding</text>
 					<text x="810" y="50" class="annotation-title">Patches</text>
 					<g class="hand-drawn-arrow-group">
 						<path d="M 810 58 C 808 68, 812 76, 810 88" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
@@ -399,8 +399,8 @@ const {
 		background: radial-gradient(120% 120% at 50% 0%, #1e1136 0%, #0d081a 60%, #080410 100%);
 		border: 1px solid rgba(168, 85, 247, 0.35);
 		border-radius: 1.5rem;
-		padding: 0.35rem 2rem 1.75rem 2rem;
-		margin: 3.5rem auto;
+		padding: 0.75rem 1.5rem 1.25rem 1.5rem;
+		margin: 3rem auto;
 		color: #e2e8f0;
 		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 		position: relative;
@@ -420,7 +420,7 @@ const {
 			transform: translateX(-50%);
 			margin-left: 0;
 			margin-right: 0;
-			padding: 0.45rem 2.25rem 2rem 2.25rem;
+			padding: 0.75rem 1.75rem 1.25rem 1.75rem;
 		}
 
 		.chart-canvas-inner {
@@ -449,7 +449,7 @@ const {
 		margin-right: 0 !important;
 		border-radius: 1.5rem !important;
 		border: 1px solid rgba(168, 85, 247, 0.5) !important;
-		padding: 0.75rem 2.25rem 2.25rem 2.25rem !important;
+		padding: 1rem 2rem 1.75rem 2rem !important;
 		box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(168, 85, 247, 0.2) !important;
 		z-index: 25 !important;
 	}
@@ -457,7 +457,7 @@ const {
 	@media (max-width: 768px) {
 		.interactive-progression-container.is-expanded {
 			width: calc(100vw - 24px) !important;
-			padding: 16px 16px !important;
+			padding: 14px 14px !important;
 			border-radius: 1.15rem !important;
 		}
 	}
@@ -485,56 +485,64 @@ const {
 	.widget-header {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 0.35rem;
-		border-bottom: 1px solid rgba(168, 85, 247, 0.15);
-		padding-bottom: 0.35rem;
-		padding-right: 2.5rem; /* Room for expand button */
-		gap: 1.25rem;
+		align-items: flex-start;
+		margin: 0 0 0.4rem 0;
+		border-bottom: none;
+		padding: 0 2.5rem 0 0; /* Room for expand button */
+		gap: 0;
 	}
 
 	.widget-header-content {
 		display: flex;
 		flex-direction: column;
+		gap: 0.1rem;
 		width: 100%;
 	}
 
 	.widget-title {
 		display: block;
 		margin: 0;
-		line-height: 1.12;
+		padding: 0;
+		line-height: 1.05;
 		letter-spacing: -0.025em;
 	}
 
 	.widget-title-main {
-		font-size: clamp(1.6rem, 3.4vw, 2.75rem);
+		font-size: clamp(1.6rem, 3.2vw, 2.65rem);
 		font-weight: 800;
 		color: #ffffff;
 		letter-spacing: -0.03em;
-		line-height: 1.15;
+		line-height: 1.05;
+		margin: 0;
+		padding: 0;
 		white-space: nowrap;
-		display: inline-block;
+		display: block;
 	}
 
 	@media (max-width: 640px) {
 		.widget-title-main {
 			white-space: normal;
 			font-size: 1.45rem;
-			line-height: 1.2;
+			line-height: 1.15;
 		}
 	}
 
 	.widget-subtitle-row {
 		display: block;
-		margin-top: 0.2rem;
+		margin: 0;
+		padding: 0;
+		line-height: 1.1;
 	}
 
 	.widget-subtitle {
-		font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+		font-size: clamp(1.15rem, 2.1vw, 1.6rem);
 		color: #d8b4fe;
 		font-weight: 700;
 		letter-spacing: -0.01em;
-		line-height: 1.2;
+		line-height: 1.1;
+		margin: 0;
+		padding: 0;
+		display: block;
 	}
 
 	/* Discreet Grayscale Ghost Maximize Icon in the Upper Right */
