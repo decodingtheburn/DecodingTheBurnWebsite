@@ -1,10 +1,10 @@
 ---
-// KeyDiscoveriesCards.astro - 5 Core BMS Discoveries (Vertical Stacked Cards, 75% Width, Spacious Layout)
+// KeyDiscoveriesCards.astro - 5 Core BMS Discoveries (3 Icons per Card with Red X / Green Check Overlays)
 ---
 
 <div class="discoveries-container">
 	<div class="discoveries-stack">
-		<!-- Discovery #1 -->
+		<!-- Discovery #1: Acidic Drinks -->
 		<div class="discovery-card">
 			<div class="discovery-number">Discovery #1</div>
 			<div class="discovery-emoji-group">
@@ -22,40 +22,74 @@
 			</p>
 		</div>
 
-		<!-- Discovery #2 -->
+		<!-- Discovery #2: Sugary Food & Fruits -->
 		<div class="discovery-card">
 			<div class="discovery-number">Discovery #2</div>
-			<div class="discovery-emoji">🍌</div>
+			<div class="discovery-emoji-group">
+				<span class="discovery-emoji-item">🍌</span>
+				<span class="discovery-emoji-item">🍇</span>
+				<span class="discovery-emoji-item">🍎</span>
+				<svg class="discovery-thin-x" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+					<line x1="6" y1="8" x2="94" y2="92" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" />
+					<line x1="94" y1="8" x2="6" y2="92" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" />
+				</svg>
+			</div>
 			<h4 class="discovery-title">Sugary food and drinks are a trigger</h4>
 			<p class="discovery-desc">
 				<strong>My discovery:</strong> Sugar converts into acid within minutes. Naturally occurring oral bacteria ferment sugar into lactic acid, bathing the teeth and gums in an invisible acid&nbsp;wash.
 			</p>
 		</div>
 
-		<!-- Discovery #3 -->
+		<!-- Discovery #3: Vegetables with Hidden Sugars -->
 		<div class="discovery-card">
 			<div class="discovery-number">Discovery #3</div>
-			<div class="discovery-emoji">🥦</div>
+			<div class="discovery-emoji-group">
+				<span class="discovery-emoji-item">🥦</span>
+				<span class="discovery-emoji-item">🥕</span>
+				<span class="discovery-emoji-item">🫑</span>
+				<svg class="discovery-thin-x" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+					<line x1="6" y1="8" x2="94" y2="92" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" />
+					<line x1="94" y1="8" x2="6" y2="92" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" />
+				</svg>
+			</div>
 			<h4 class="discovery-title">Every vegetable has sugar</h4>
 			<p class="discovery-desc">
 				<strong>My discovery:</strong> Just like fruits, all vegetables contain fermentable carbohydrates. At the stage I was at, even vegetable sugars were enough to trigger my nervous system and reignite the&nbsp;burn.
 			</p>
 		</div>
 
-		<!-- Discovery #4 -->
+		<!-- Discovery #4: Carnivore Diet (Meat, Seafood, Eggs) -->
 		<div class="discovery-card">
 			<div class="discovery-number">Discovery #4</div>
-			<div class="discovery-emoji">🥩</div>
+			<div class="discovery-emoji-group discovery-success-group">
+				<span class="discovery-emoji-item">🥩</span>
+				<span class="discovery-emoji-item">🦐</span>
+				<span class="discovery-emoji-item">🥚</span>
+				<div class="discovery-check-badge" aria-hidden="true">
+					<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+						<polyline points="20 6 9 17 4 12"></polyline>
+					</svg>
+				</div>
+			</div>
 			<h4 class="discovery-title">Meat has zero acid and zero sugar</h4>
 			<p class="discovery-desc">
 				<strong>My discovery:</strong> The carnivore diet, an ancestral way of eating humans have thrived on for millions of years, contains zero acid and zero sugar, completely starving the acid-producing bacteria in the&nbsp;mouth.
 			</p>
 		</div>
 
-		<!-- Discovery #5 -->
+		<!-- Discovery #5: Dental Repair (Tooth, Crown, Patch) -->
 		<div class="discovery-card">
 			<div class="discovery-number">Discovery #5</div>
-			<div class="discovery-emoji">🦷</div>
+			<div class="discovery-emoji-group discovery-success-group">
+				<span class="discovery-emoji-item">🦷</span>
+				<span class="discovery-emoji-item">👑</span>
+				<span class="discovery-emoji-item">🩹</span>
+				<div class="discovery-check-badge" aria-hidden="true">
+					<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+						<polyline points="20 6 9 17 4 12"></polyline>
+					</svg>
+				</div>
+			</div>
 			<h4 class="discovery-title">Dental repair has reduced pain as well</h4>
 			<p class="discovery-desc">
 				<strong>My discovery:</strong> Physical dental leaks allow acid to reach internal nerves. When I had a defective crown repaired, it completely removed all the pain from the lower half of my&nbsp;jaw.
@@ -115,20 +149,7 @@
 		text-transform: uppercase;
 	}
 
-	/* 3D Emoji Hero & Group */
-	.discovery-emoji {
-		font-size: 3.85rem;
-		line-height: 1;
-		margin-bottom: 1.25rem;
-		filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.14));
-		display: inline-block;
-		transition: transform 0.25s ease;
-	}
-
-	.discovery-card:hover .discovery-emoji {
-		transform: scale(1.12) rotate(-3deg);
-	}
-
+	/* 3D Emoji Group */
 	.discovery-emoji-group {
 		display: inline-flex;
 		align-items: center;
@@ -157,7 +178,7 @@
 		transform: scale(1.08) rotate(4deg);
 	}
 
-	/* Large Thin Red X Covering the 3 Icons */
+	/* Large Thin Red X Covering the 3 Trigger Icons */
 	.discovery-thin-x {
 		position: absolute;
 		inset: 0;
@@ -165,6 +186,22 @@
 		height: 100%;
 		pointer-events: none;
 		filter: drop-shadow(0 2px 6px rgba(239, 68, 68, 0.4));
+	}
+
+	/* Emerald Green Check Badge for Healing / Solutions */
+	.discovery-check-badge {
+		position: absolute;
+		top: -4px;
+		right: -10px;
+		background: #10b981;
+		border: 2px solid #ffffff;
+		border-radius: 50%;
+		width: 32px;
+		height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 4px 12px rgba(16, 185, 129, 0.45);
 	}
 
 	/* Card Title */
@@ -200,12 +237,8 @@
 			padding: 2.25rem 1.35rem 2rem 1.35rem;
 		}
 
-		.discovery-emoji {
-			font-size: 3.25rem;
-		}
-
 		.discovery-emoji-item {
-			font-size: 3rem;
+			font-size: 2.85rem;
 		}
 	}
 </style>
