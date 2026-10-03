@@ -7,10 +7,20 @@
 		<!-- Discovery #1 -->
 		<div class="discovery-card">
 			<div class="discovery-number">Discovery #1</div>
-			<div class="discovery-emoji">🥤</div>
-			<h4 class="discovery-title">Acidic foods and drinks are a direct trigger</h4>
+			<div class="discovery-emoji-group">
+				<span class="discovery-emoji-item">🍺</span>
+				<span class="discovery-emoji-item">🥤</span>
+				<span class="discovery-emoji-item">☕</span>
+				<div class="discovery-red-x" aria-hidden="true">
+					<svg viewBox="0 0 24 24" width="28" height="28" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round" fill="none">
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+				</div>
+			</div>
+			<h4 class="discovery-title">Beer, sodas, and coffee were a trigger for me</h4>
 			<p class="discovery-desc">
-				<strong>My discovery:</strong> Direct acids (pH &lt; 4.0) instantly burn exposed oral nerves and irritate raw mucosal tissue immediately upon&nbsp;contact.
+				<strong>My discovery:</strong> Direct acidic drinks immediately burned my exposed oral nerves and triggered intense mouth pain upon&nbsp;contact.
 			</p>
 		</div>
 
@@ -107,7 +117,7 @@
 		text-transform: uppercase;
 	}
 
-	/* 3D Emoji Hero */
+	/* 3D Emoji Hero & Group */
 	.discovery-emoji {
 		font-size: 3.75rem;
 		line-height: 1;
@@ -119,6 +129,49 @@
 
 	.discovery-card:hover .discovery-emoji {
 		transform: scale(1.12) rotate(-3deg);
+	}
+
+	.discovery-emoji-group {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.65rem;
+		margin-bottom: 1.15rem;
+		position: relative;
+		padding: 0.25rem 0.5rem;
+	}
+
+	.discovery-emoji-item {
+		font-size: 3.25rem;
+		line-height: 1;
+		filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.14));
+		display: inline-block;
+		transition: transform 0.25s ease;
+	}
+
+	.discovery-card:hover .discovery-emoji-item:nth-child(1) {
+		transform: scale(1.08) rotate(-4deg);
+	}
+	.discovery-card:hover .discovery-emoji-item:nth-child(2) {
+		transform: scale(1.12);
+	}
+	.discovery-card:hover .discovery-emoji-item:nth-child(3) {
+		transform: scale(1.08) rotate(4deg);
+	}
+
+	.discovery-red-x {
+		position: absolute;
+		top: -4px;
+		right: -6px;
+		background: #ffffff;
+		border: 2px solid #fee2e2;
+		border-radius: 50%;
+		width: 32px;
+		height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 4px 10px rgba(239, 68, 68, 0.35);
 	}
 
 	/* Card Title */
