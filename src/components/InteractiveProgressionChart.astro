@@ -32,10 +32,10 @@ const {
 	<div class="widget-header">
 		<div class="widget-header-content">
 			<h3 class="widget-title">
-				<span class="widget-title-main">My Carnivore Experiment</span>
+				<span class="widget-title-main">Seven Things That Lowered My&nbsp;Pain</span>
 			</h3>
 			<div class="widget-subtitle-row">
-				<span class="widget-subtitle">Experiment List and Pain Levels</span>
+				<span class="widget-subtitle">Over The Last Four&nbsp;Years</span>
 			</div>
 		</div>
 	</div>
@@ -331,10 +331,10 @@ const {
 					<text x="880" y="388" class="annotation-text valley-text">~6 Months</text>
 					<text x="880" y="401" class="annotation-text valley-text">Pain-Free</text>
 
-					<!-- Peak 6: Experiment #6 (Yo-Yo Carnivore Diet) with Hand-Drawn Arrow -->
+					<!-- Peak 6: Experiment #6 (Two-Week Carnivore Trial) with Hand-Drawn Arrow -->
 					<text x="948" y="-30" class="annotation-num">Experiment #6</text>
-					<text x="948" y="-12" class="annotation-title">Yo-Yo Carnivore</text>
-					<text x="948" y="6" class="annotation-title">Diet (Testing)</text>
+					<text x="948" y="-12" class="annotation-title">Two-Week Carnivore</text>
+					<text x="948" y="6" class="annotation-title">Trial</text>
 					<g class="hand-drawn-arrow-group">
 						<path d="M 948 14 C 946 26, 950 38, 948 52" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
 						<path d="M 943 44 C 945 48, 947 51, 948 54 C 949 51, 951 48, 953 44" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -500,32 +500,40 @@ const {
 	}
 
 	.widget-title {
-		display: flex;
-		align-items: baseline;
-		flex-wrap: wrap;
+		display: block;
 		margin: 0;
-		line-height: 1.15;
-		letter-spacing: -0.03em;
+		line-height: 1.12;
+		letter-spacing: -0.025em;
 	}
 
 	.widget-title-main {
-		font-size: clamp(2.4rem, 5.2vw, 3.85rem);
-		font-weight: 900;
+		font-size: clamp(1.6rem, 3.4vw, 2.75rem);
+		font-weight: 800;
 		color: #ffffff;
-		letter-spacing: -0.035em;
+		letter-spacing: -0.03em;
+		line-height: 1.15;
+		white-space: nowrap;
+		display: inline-block;
+	}
+
+	@media (max-width: 640px) {
+		.widget-title-main {
+			white-space: normal;
+			font-size: 1.45rem;
+			line-height: 1.2;
+		}
 	}
 
 	.widget-subtitle-row {
 		display: block;
-		margin-top: 0.35rem;
+		margin-top: 0.25rem;
 	}
 
 	.widget-subtitle {
-		font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+		font-size: clamp(0.95rem, 1.6vw, 1.15rem);
 		color: #c084fc;
-		font-weight: 700;
+		font-weight: 600;
 		letter-spacing: 0.01em;
-		white-space: nowrap;
 		line-height: 1.25;
 	}
 
