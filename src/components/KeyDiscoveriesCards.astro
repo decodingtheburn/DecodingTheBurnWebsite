@@ -1,0 +1,185 @@
+---
+// KeyDiscoveriesCards.astro - 5 Core BMS Discoveries Cards (Matching What I Eat Now Aesthetic)
+---
+
+<div class="discoveries-container">
+	<div class="discoveries-grid">
+		<!-- Discovery 1: Soda / Direct Acid -->
+		<div class="discovery-card">
+			<div class="discovery-emoji">🥤</div>
+			<div class="discovery-number">Discovery #1</div>
+			<h4 class="discovery-title">Acid is a direct trigger</h4>
+			<p class="discovery-desc">
+				Direct acids (pH &lt; 4.0) chemically sting exposed oral nerve endings immediately upon&nbsp;contact.
+			</p>
+		</div>
+
+		<!-- Discovery 2: Acidic Foods & Drinks -->
+		<div class="discovery-card">
+			<div class="discovery-emoji">🍋</div>
+			<div class="discovery-number">Discovery #2</div>
+			<h4 class="discovery-title">Acidic foods &amp; drinks are a direct trigger</h4>
+			<p class="discovery-desc">
+				Fruits, coffee, vinegar, and citrus deliver an instant acid bath to sensitive oral&nbsp;tissues.
+			</p>
+		</div>
+
+		<!-- Discovery 3: Sugar Converts to Acid (Vegetable / Sugar) -->
+		<div class="discovery-card">
+			<div class="discovery-emoji">🥦</div>
+			<div class="discovery-number">Discovery #3</div>
+			<h4 class="discovery-title">Any sugar is a direct trigger</h4>
+			<p class="discovery-desc">
+				It converts into acid within minutes as mouth bacteria ferment sugars into corrosive lactic&nbsp;acid.
+			</p>
+		</div>
+
+		<!-- Discovery 4: Meat (No Acid, No Sugar) -->
+		<div class="discovery-card">
+			<div class="discovery-emoji">🥩</div>
+			<div class="discovery-number">Discovery #4</div>
+			<h4 class="discovery-title">Meat has zero acid and zero sugar</h4>
+			<p class="discovery-desc">
+				Meat starves acid-producing oral bacteria completely, allowing irritated nerves to calm to a 0/10&nbsp;baseline.
+			</p>
+		</div>
+
+		<!-- Discovery 5: Full-Width Dental Root Cause Card -->
+		<div class="discovery-card discovery-card-highlight full-width-card">
+			<div class="discovery-highlight-layout">
+				<div class="discovery-emoji highlight-emoji">🦷</div>
+				<div class="discovery-highlight-body">
+					<div class="discovery-number">Discovery #5</div>
+					<h4 class="discovery-title">Dental repair targets the root cause</h4>
+					<p class="discovery-desc">
+						Diet eliminates the daily acid triggers, but repairing gum recession, abfractions, and leaky dental margins physically seals the microscopic tubules leading straight to internal&nbsp;nerves.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.discoveries-container {
+		width: 100%;
+		margin: 2rem 0 2.25rem 0;
+	}
+
+	.discoveries-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		width: 100%;
+	}
+
+	.full-width-card {
+		grid-column: 1 / -1;
+	}
+
+	.discovery-card {
+		background: #ffffff;
+		border: 1.5px solid #e2e8f0;
+		border-radius: 1.25rem;
+		padding: 1.85rem 1.5rem 1.6rem 1.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+		transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+		box-sizing: border-box;
+	}
+
+	.discovery-card:hover {
+		transform: translateY(-3px);
+		border-color: #cbd5e1;
+		box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(124, 58, 237, 0.06);
+	}
+
+	.discovery-card-highlight {
+		background: #faf5ff;
+		border-color: #e9d5ff;
+	}
+
+	.discovery-card-highlight:hover {
+		border-color: #c084fc;
+		box-shadow: 0 16px 36px rgba(124, 58, 237, 0.09), 0 4px 12px rgba(124, 58, 237, 0.08);
+	}
+
+	.discovery-emoji {
+		font-size: 3.25rem;
+		line-height: 1;
+		margin-bottom: 0.65rem;
+		filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+		display: inline-block;
+		transition: transform 0.25s ease;
+	}
+
+	.discovery-card:hover .discovery-emoji {
+		transform: scale(1.12) rotate(-3deg);
+	}
+
+	.discovery-number {
+		font-size: 0.85rem;
+		font-weight: 800;
+		color: #7c3aed;
+		letter-spacing: 0.02em;
+		margin-bottom: 0.35rem;
+		text-transform: uppercase;
+	}
+
+	.discovery-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+		font-weight: 800;
+		color: #0f172a;
+		margin: 0 0 0.55rem 0;
+		letter-spacing: -0.015em;
+		line-height: 1.25;
+		text-wrap: balance;
+	}
+
+	.discovery-desc {
+		font-size: 0.94rem;
+		color: #475569;
+		line-height: 1.48;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	/* Highlight Full Width Card Horizontal Layout on Desktop */
+	.discovery-highlight-layout {
+		display: flex;
+		align-items: center;
+		gap: 1.75rem;
+		width: 100%;
+		text-align: left;
+	}
+
+	.discovery-highlight-layout .highlight-emoji {
+		font-size: 3.75rem;
+		margin-bottom: 0;
+		flex-shrink: 0;
+	}
+
+	.discovery-highlight-body {
+		flex: 1 1 auto;
+	}
+
+	@media (max-width: 640px) {
+		.discoveries-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.discovery-highlight-layout {
+			flex-direction: column;
+			text-align: center;
+			gap: 0.75rem;
+		}
+
+		.discovery-highlight-layout .highlight-emoji {
+			margin-bottom: 0.35rem;
+		}
+	}
+</style>
