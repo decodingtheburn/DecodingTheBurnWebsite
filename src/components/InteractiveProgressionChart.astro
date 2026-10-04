@@ -394,7 +394,7 @@ const {
 </div>
 
 <style>
-	/* Breakout Container: Naturally wider than the text column on desktop for high-impact clarity */
+	/* Breakout Container: Naturally framed inside reading column by default */
 	.interactive-progression-container {
 		background: radial-gradient(120% 120% at 50% 0%, #1e1136 0%, #0d081a 60%, #080410 100%);
 		border: 1px solid rgba(168, 85, 247, 0.35);
@@ -405,72 +405,43 @@ const {
 		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 		position: relative;
 		width: 100%;
+		max-width: 100%;
 		box-sizing: border-box;
 		transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 		z-index: 10;
 	}
 
-	/* Wide Breakout on Desktops: Expands across viewport with comfortable side margins, eliminating scrollbars */
-	@media (min-width: 960px) {
-		.interactive-progression-container {
-			width: min(calc(100vw - 64px), 1380px);
-			max-width: 1380px;
-			position: relative;
-			left: 50%;
-			transform: translateX(-50%);
-			margin-left: 0;
-			margin-right: 0;
-			padding: 0.75rem 1.75rem 1.25rem 1.75rem;
-		}
-
-		.chart-canvas-inner {
-			min-width: 0 !important;
-			width: 100%;
-		}
-	}
-
-	@media (min-width: 1440px) {
-		.interactive-progression-container {
-			width: min(calc(100vw - 96px), 1420px);
-			max-width: 1420px;
-		}
-	}
-
-	/* Full-Width In-Place Breakout Mode with 50px Padding and Rounded Corners */
+	/* Full-Width Expanded Breakout Mode: Expands to full screen width */
 	.interactive-progression-container.is-expanded {
 		position: relative !important;
-		width: calc(100vw - 64px) !important;
-		max-width: 1600px !important;
+		width: 100vw !important;
+		max-width: 100vw !important;
 		left: 50% !important;
-		transform: translateX(-50%) !important;
+		right: 50% !important;
+		margin-left: -50vw !important;
+		margin-right: -50vw !important;
+		transform: none !important;
 		margin-top: 3.5rem !important;
 		margin-bottom: 3.5rem !important;
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		border-radius: 1.5rem !important;
-		border: 1px solid rgba(168, 85, 247, 0.5) !important;
-		padding: 1rem 2rem 1.75rem 2rem !important;
-		box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(168, 85, 247, 0.2) !important;
-		z-index: 25 !important;
-	}
-
-	@media (max-width: 768px) {
-		.interactive-progression-container.is-expanded {
-			width: calc(100vw - 24px) !important;
-			padding: 14px 14px !important;
-			border-radius: 1.15rem !important;
-		}
+		border-radius: 0 !important;
+		border-left: none !important;
+		border-right: none !important;
+		border-top: 1px solid rgba(168, 85, 247, 0.5) !important;
+		border-bottom: 1px solid rgba(168, 85, 247, 0.5) !important;
+		padding: 1.5rem clamp(1rem, 4vw, 3.5rem) 2rem clamp(1rem, 4vw, 3.5rem) !important;
+		box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(168, 85, 247, 0.25) !important;
+		z-index: 50 !important;
 	}
 
 	.interactive-progression-container.is-expanded .widget-header {
-		max-width: 1540px;
+		max-width: 1600px;
 		margin-left: auto;
 		margin-right: auto;
 		width: 100%;
 	}
 
 	.interactive-progression-container.is-expanded .chart-wrapper {
-		max-width: 1540px;
+		max-width: 1600px;
 		margin-left: auto;
 		margin-right: auto;
 		width: 100%;
@@ -549,37 +520,35 @@ const {
 	/* Discreet Grayscale Ghost Maximize Icon in the Upper Right */
 	.chart-expand-btn {
 		position: absolute;
-		top: 10px;
-		right: 14px;
+		top: 14px;
+		right: 16px;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		background: transparent;
-		border: none;
-		color: #64748b; /* Discreet slate gray */
-		opacity: 0.45; /* Very faded */
-		width: 28px;
-		height: 28px;
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		color: #cbd5e1;
+		width: 32px;
+		height: 32px;
 		padding: 0;
-		border-radius: 4px;
-		cursor: pointer;
-		transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
-		box-shadow: none;
-		z-index: 20;
+		border-radius: 8px;
+		cursor: pointer !important;
+		transition: all 0.2s ease;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+		z-index: 30;
 	}
 
 	.chart-expand-btn:hover {
-		background: transparent;
-		border: none;
-		color: #cbd5e1; /* Lights up slightly on hover */
-		opacity: 0.9;
-		transform: scale(1.1);
-		box-shadow: none;
+		background: rgba(168, 85, 247, 0.25);
+		border-color: #c084fc;
+		color: #ffffff;
+		transform: scale(1.08);
 	}
 
 	.expand-icon {
-		width: 17px;
-		height: 17px;
+		width: 18px;
+		height: 18px;
+		pointer-events: none;
 		transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
@@ -597,13 +566,13 @@ const {
 		border-radius: 0.85rem;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		padding: 0.75rem 0;
-		cursor: none; /* Hides system arrow/cursor so ONLY the glowing purple dot is shown */
+		cursor: default;
 	}
 
 	.chart-canvas-inner {
 		width: 100%;
 		position: relative;
-		cursor: none;
+		cursor: default;
 	}
 
 	@media (max-width: 959px) {
@@ -617,7 +586,7 @@ const {
 		height: auto;
 		display: block;
 		user-select: none;
-		cursor: none;
+		cursor: default;
 	}
 
 	.grid-line {
@@ -792,59 +761,62 @@ const {
 	}
 </style>
 
-<script>
-	function initProgressionChart() {
-		const widget = document.getElementById('bms-progression-widget');
-		if (!widget) return;
+<script is:inline>
+	(function() {
+		function initProgressionChart() {
+			const widget = document.getElementById('bms-progression-widget');
+			if (!widget) return;
 
-		const expandBtn = document.getElementById('chart-expand-toggle');
-		const svg = document.getElementById('progression-svg') as unknown as SVGSVGElement;
-		const cursorLayer = document.getElementById('interactive-cursor');
-		const cursorLine = document.getElementById('cursor-vertical-line');
-		const cursorPoint = document.getElementById('cursor-point');
+			const expandBtn = document.getElementById('chart-expand-toggle');
+			const svg = document.getElementById('progression-svg');
+			const cursorLayer = document.getElementById('interactive-cursor');
+			const cursorPoint = document.getElementById('cursor-point');
 
-		// Toggle In-Place Full-Width mode
-		if (expandBtn) {
-			expandBtn.addEventListener('click', () => {
-				const isExpanded = widget.classList.toggle('is-expanded');
-				expandBtn.setAttribute('title', isExpanded ? 'Collapse to standard width' : 'Expand to full width');
-				expandBtn.setAttribute('aria-label', isExpanded ? 'Collapse to standard width' : 'Expand to full width');
+			// Toggle In-Place Full-Width mode
+			if (expandBtn) {
+				expandBtn.onclick = function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					const isExpanded = widget.classList.toggle('is-expanded');
+					expandBtn.setAttribute('title', isExpanded ? 'Collapse to standard width' : 'Expand to full width');
+					expandBtn.setAttribute('aria-label', isExpanded ? 'Collapse to standard width' : 'Expand to full width');
+				};
+
+				// Close on Escape key
+				document.addEventListener('keydown', function(e) {
+					if (e.key === 'Escape' && widget.classList.contains('is-expanded')) {
+						widget.classList.remove('is-expanded');
+						expandBtn.setAttribute('title', 'Expand to full width');
+						expandBtn.setAttribute('aria-label', 'Expand to full width');
+					}
+				});
+			}
+
+			if (!svg) return;
+
+			// Interactive presentation pointer following mouse / touch across the timeline
+			svg.addEventListener('mousemove', function(e) {
+				const rect = svg.getBoundingClientRect();
+				const x = ((e.clientX - rect.left) / rect.width) * 1485 - 55;
+				const y = ((e.clientY - rect.top) / rect.height) * 610 - 70;
+
+				if (cursorLayer && cursorPoint && x >= 70 && x <= 1400) {
+					cursorLayer.style.display = 'block';
+					cursorPoint.setAttribute('cx', String(x));
+					cursorPoint.setAttribute('cy', String(Math.min(Math.max(y, 60), 420)));
+				}
 			});
 
-			// Close on Escape key
-			document.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape' && widget.classList.contains('is-expanded')) {
-					widget.classList.remove('is-expanded');
-					expandBtn.setAttribute('title', 'Expand to full width');
-					expandBtn.setAttribute('aria-label', 'Expand to full width');
-				}
+			svg.addEventListener('mouseleave', function() {
+				if (cursorLayer) cursorLayer.style.display = 'none';
 			});
 		}
 
-		if (!svg) return;
-
-		// Interactive presentation pointer following mouse / touch across the timeline
-		svg.addEventListener('mousemove', (e: MouseEvent) => {
-			const rect = svg.getBoundingClientRect();
-			const x = ((e.clientX - rect.left) / rect.width) * 1485 - 55;
-			const y = ((e.clientY - rect.top) / rect.height) * 610 - 70;
-
-			if (cursorLayer && cursorPoint && x >= 70 && x <= 1400) {
-				cursorLayer.style.display = 'block';
-				cursorPoint.setAttribute('cx', `${x}`);
-				cursorPoint.setAttribute('cy', `${Math.min(Math.max(y, 60), 420)}`);
-			}
-		});
-
-		svg.addEventListener('mouseleave', () => {
-			if (cursorLayer) cursorLayer.style.display = 'none';
-		});
-	}
-
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initProgressionChart);
-	} else {
-		initProgressionChart();
-	}
-	document.addEventListener('astro:page-load', initProgressionChart);
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initProgressionChart);
+		} else {
+			initProgressionChart();
+		}
+		document.addEventListener('astro:page-load', initProgressionChart);
+	})();
 </script>
