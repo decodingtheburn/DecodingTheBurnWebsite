@@ -135,7 +135,7 @@ nav {
 	text-align: left;
 }
 
-.logo-text span:first-child {
+.logo-text span:nth-child(1) {
 	font-size: 0.74rem;
 	color: #0f172a;
 	font-weight: 800;
@@ -143,10 +143,10 @@ nav {
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
 	font-family: var(--font-heading);
-	margin-bottom: 2px; /* ~2mm optical breathing room */
+	margin-bottom: 2px;
 }
 
-.logo-text span:last-child {
+.logo-text span:nth-child(2) {
 	color: #e11d48; /* H-03 Ruby Red Accent matching tongue */
 	font-size: 1.32rem;
 	font-weight: 900;
@@ -154,6 +154,18 @@ nav {
 	letter-spacing: -0.04em;
 	text-transform: uppercase;
 	font-family: var(--font-heading);
+}
+
+.logo-text .logo-subtitle {
+	font-size: 0.62rem;
+	color: #64748b;
+	font-weight: 600;
+	line-height: 1.1;
+	letter-spacing: 0.01em;
+	text-transform: none;
+	font-family: var(--font-body);
+	margin-top: 3px;
+	white-space: nowrap;
 }
 
 .nav-links {
@@ -229,15 +241,20 @@ nav {
 		height: 32px;
 	}
 
-	.logo-text span:first-child {
-		font-size: 0.72rem;
+	.logo-text span:nth-child(1) {
+		font-size: 0.70rem;
 		line-height: 1;
 	}
 
-	.logo-text span:last-child {
+	.logo-text span:nth-child(2) {
 		font-size: 0.98rem;
 		line-height: 1;
 		margin-top: -1px;
+	}
+
+	.logo-text .logo-subtitle {
+		font-size: 0.56rem;
+		margin-top: 2px;
 	}
 }
 
