@@ -96,31 +96,7 @@ const navSections = [
 ];
 ---
 
-<!-- 1. Floating Trigger Button (Vertically centered in viewport on the right edge) -->
-<button 
-	type="button" 
-	id="floating-toc-trigger" 
-	class="floating-toc-btn" 
-	title="Table of Contents [T]" 
-	aria-label="Table of Contents [T]"
-	aria-controls="floating-toc-drawer"
-	aria-expanded="false"
->
-	<span class="floating-toc-btn-inner">
-		<!-- Minimalist Table of Contents / Index SVG Icon -->
-		<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-			<line x1="8" y1="6" x2="21" y2="6"></line>
-			<line x1="8" y1="12" x2="21" y2="12"></line>
-			<line x1="8" y1="18" x2="21" y2="18"></line>
-			<circle cx="3.5" cy="6" r="1.5" fill="currentColor"></circle>
-			<circle cx="3.5" cy="12" r="1.5" fill="currentColor"></circle>
-			<circle cx="3.5" cy="18" r="1.5" fill="currentColor"></circle>
-		</svg>
-	</span>
-	<span class="floating-toc-shortcut-badge">T</span>
-</button>
-
-<!-- 2. Sliding Drawer / Slide-Out Table of Contents Panel -->
+<!-- Slide-Out Table of Contents Panel (Toggled by pressing 'T' on keyboard) -->
 <div 
 	id="floating-toc-drawer" 
 	class="floating-toc-drawer" 
@@ -228,17 +204,13 @@ const navSections = [
 <script is:inline>
 	(function() {
 		function setupFloatingTOC() {
-			const triggerBtn = document.getElementById('floating-toc-trigger');
 			const drawer = document.getElementById('floating-toc-drawer');
 			const closeBtn = document.getElementById('floating-drawer-close');
 			const backdrop = document.getElementById('floating-toc-backdrop');
 
-			if (!triggerBtn || !drawer) return;
+			if (!drawer) return;
 
-			// Teleport drawer and trigger to document.body so fixed layout is never broken
-			if (triggerBtn.parentElement !== document.body) {
-				document.body.appendChild(triggerBtn);
-			}
+			// Teleport drawer to document.body so fixed layout is never broken
 			if (drawer.parentElement !== document.body) {
 				document.body.appendChild(drawer);
 			}
@@ -251,15 +223,11 @@ const navSections = [
 				// Force reflow
 				void drawer.offsetWidth;
 				drawer.classList.add('is-open');
-				triggerBtn.classList.add('is-active');
-				triggerBtn.setAttribute('aria-expanded', 'true');
 			}
 
 			function closeDrawer() {
 				isOpen = false;
 				drawer.classList.remove('is-open');
-				triggerBtn.classList.remove('is-active');
-				triggerBtn.setAttribute('aria-expanded', 'false');
 				setTimeout(function() {
 					if (!isOpen) drawer.style.display = 'none';
 				}, 220);
@@ -272,12 +240,6 @@ const navSections = [
 					openDrawer();
 				}
 			}
-
-			triggerBtn.onclick = function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				toggleDrawer();
-			};
 
 			if (closeBtn) {
 				closeBtn.onclick = function(e) {
@@ -375,78 +337,7 @@ const navSections = [
 </script>
 
 <style>
-	/* 1. Floating Trigger Button (Vertically Centered on Right Screen Edge) */
-	:global(#floating-toc-trigger) {
-		position: fixed !important;
-		top: 50% !important;
-		right: 0 !important;
-		transform: translateY(-50%) !important;
-		z-index: 99998 !important;
-		display: flex !important;
-		flex-direction: column !important;
-		align-items: center !important;
-		justify-content: center !important;
-		gap: 3px !important;
-		padding: 0.65rem 0.5rem 0.6rem 0.65rem !important;
-		background: #ffffff !important;
-		color: #1e293b !important;
-		border: 1px solid #cbd5e1 !important;
-		border-right: none !important;
-		border-top-left-radius: 12px !important;
-		border-bottom-left-radius: 12px !important;
-		box-shadow: -3px 4px 18px rgba(15, 23, 42, 0.12), -1px 2px 6px rgba(15, 23, 42, 0.06) !important;
-		cursor: pointer !important;
-		transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-		user-select: none !important;
-	}
-
-	:global(#floating-toc-trigger:hover) {
-		background: #f8fafc !important;
-		color: #c8382c !important;
-		border-color: #94a3b8 !important;
-		transform: translateY(-50%) translateX(-2px) !important;
-		box-shadow: -4px 6px 22px rgba(200, 56, 44, 0.18) !important;
-	}
-
-	:global(#floating-toc-trigger.is-active) {
-		background: #0f172a !important;
-		color: #ffffff !important;
-		border-color: #0f172a !important;
-		transform: translateY(-50%) translateX(-4px) !important;
-	}
-
-	:global(.floating-toc-btn-inner) {
-		display: flex !important;
-		align-items: center !important;
-		justify-content: center !important;
-	}
-
-	:global(.floating-toc-shortcut-badge) {
-		font-size: 0.65rem !important;
-		font-weight: 800 !important;
-		line-height: 1 !important;
-		color: #64748b !important;
-		background: #f1f5f9 !important;
-		border: 1px solid #e2e8f0 !important;
-		padding: 1px 4px !important;
-		border-radius: 4px !important;
-		margin-top: 2px !important;
-		transition: all 0.15s ease !important;
-	}
-
-	:global(#floating-toc-trigger:hover .floating-toc-shortcut-badge) {
-		color: #c8382c !important;
-		border-color: #fca5a5 !important;
-		background: #fef2f2 !important;
-	}
-
-	:global(#floating-toc-trigger.is-active .floating-toc-shortcut-badge) {
-		color: #ffffff !important;
-		background: #334155 !important;
-		border-color: #475569 !important;
-	}
-
-	/* 2. Slide-out Drawer Structure */
+	/* Slide-out Drawer Structure (Triggered via [T] shortcut) */
 	:global(#floating-toc-drawer) {
 		position: fixed !important;
 		inset: 0 !important;
