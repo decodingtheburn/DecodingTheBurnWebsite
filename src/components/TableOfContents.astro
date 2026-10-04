@@ -1,188 +1,327 @@
 ---
-// TableOfContents.astro - Centered compact card matching AudioReader dimensions and styling
+// TableOfContents.astro - Floating Side Drawer with Media Jump Links and [T] Keyboard Shortcut
 interface Props {
 	class?: string;
 }
 
 const { class: className = '' } = Astro.props;
 
-// Curated sections in exact chronological narrative order (matching compiled MDX heading IDs)
-const navItems = [
-	{ number: "1", title: "Introduction", href: "#introduction" },
-	{ number: "2", title: "Disclaimers", href: "#disclaimers" },
-	{ number: "3", title: "7 Experiments That Lowered My Pain", href: "#7-experiments-that-lowered-my-pain-over-the-last-four-years" },
-	{ number: "4", title: "What Didn't Work for Me", href: "#what-didnt-work-for-me-testing-50-supplements--water-filtration" },
-	{ number: "5", title: "What I Eat Now", href: "#what-i-eat-now" },
-	{ number: "6", title: "My Theory on Why Carnivore Works", href: "#my-theory-on-why-the-carnivore-diet-works" },
-	{ number: "7", title: "The Acidity of 30 Common Foods & Drinks", href: "#the-acidity-of-30-common-foods--drinks" },
-	{ number: "8", title: "Who I Learned the Carnivore Diet From", href: "#who-i-learned-the-carnivore-diet-from" },
-	{ number: "9", title: "My Next Dentist Visits", href: "#my-next-dentist-visits" },
-	{ number: "10", title: "Summary of What I've Done", href: "#summary-of-what-ive-done" }
+// Curated sections with direct media / illustration anchor targets
+const navSections = [
+	{ 
+		number: "1", 
+		title: "Introduction", 
+		href: "#introduction",
+		media: [
+			{ type: "chart", label: "18M Carnivore Timeline", target: "#carnivore-timeline-intro-box", icon: "chart", title: "Jump to 18-Month Carnivore Timeline" },
+			{ type: "box", label: "5 Discoveries", target: "#key-discoveries-box", icon: "box", title: "Jump to 5 Key Discoveries" }
+		]
+	},
+	{ 
+		number: "2", 
+		title: "Disclaimers", 
+		href: "#disclaimers",
+		media: []
+	},
+	{ 
+		number: "3", 
+		title: "7 Experiments That Lowered My Pain", 
+		href: "#7-experiments-that-lowered-my-pain-over-the-last-four-years",
+		media: [
+			{ type: "chart", label: "Timeline Chart", target: "#progression-chart-box", icon: "chart", title: "Jump to Progression Chart" },
+			{ type: "image", label: "3D Crown Render", target: "#crown-decay-photo-box", icon: "image", title: "Jump to 3D Crown Cavities Render" }
+		]
+	},
+	{ 
+		number: "4", 
+		title: "What Didn't Work for Me", 
+		href: "#what-didnt-work-for-me-testing-50-supplements--water-filtration",
+		media: [
+			{ type: "image", label: "50+ Supplements Photo", target: "#supplements-photo-box", icon: "image", title: "Jump to Supplements Inventory Photo" },
+			{ type: "table", label: "Supplements Table", target: "#supplements-accordion-box", icon: "table", title: "Jump to Supplements Accordion" }
+		]
+	},
+	{ 
+		number: "5", 
+		title: "What I Eat Now", 
+		href: "#what-i-eat-now",
+		media: [
+			{ type: "box", label: "Diet Foods Cards", target: "#diet-cards-box", icon: "box", title: "Jump to Zero-Acid Diet Cards" }
+		]
+	},
+	{ 
+		number: "6", 
+		title: "My Theory on Why Carnivore Works", 
+		href: "#my-theory-on-why-the-carnivore-diet-works",
+		media: [
+			{ type: "table", label: "Vegetable Sugar Scale", target: "#veg-sugar-scale-box", icon: "chart", title: "Jump to Vegetable Sugar Scale" },
+			{ type: "box", label: "Fermentation Diagram", target: "#oral-fermentation-diagram-box", icon: "box", title: "Jump to Acid Fermentation Diagram" },
+			{ type: "box", label: "Tubule Recession Diagram", target: "#tubule-recession-diagram-box", icon: "box", title: "Jump to Tubule Recession Diagram" },
+			{ type: "box", label: "ASIC Channel Diagram", target: "#asic-ion-diagram-box", icon: "box", title: "Jump to ASIC Ion Channel Diagram" },
+			{ type: "box", label: "Trigeminal Diagram", target: "#trigeminal-radiating-diagram-box", icon: "box", title: "Jump to Trigeminal Radiating Pain Diagram" }
+		]
+	},
+	{ 
+		number: "7", 
+		title: "The Acidity of 30 Common Foods & Drinks", 
+		href: "#the-acidity-of-30-common-foods--drinks",
+		media: [
+			{ type: "table", label: "30 Foods Acidity Table", target: "#acid-food-scale-box", icon: "table", title: "Jump to 30 Foods Acidity Table" }
+		]
+	},
+	{ 
+		number: "8", 
+		title: "Who I Learned the Carnivore Diet From", 
+		href: "#who-i-learned-the-carnivore-diet-from",
+		media: [
+			{ type: "video", label: "Doctors Video Guides", target: "#carnivore-doctors-box", icon: "video", title: "Jump to Carnivore Doctors Video Guides" }
+		]
+	},
+	{ 
+		number: "9", 
+		title: "My Next Dentist Visits", 
+		href: "#my-next-dentist-visits",
+		media: [
+			{ type: "image", label: "Dental Hardware Photo", target: "#dentist-visits-photo-box", icon: "image", title: "Jump to Dental Hardware Photo" }
+		]
+	},
+	{ 
+		number: "10", 
+		title: "Summary of What I've Done", 
+		href: "#summary-of-what-ive-done",
+		media: [
+			{ type: "box", label: "Summary Recap", target: "#summary-of-what-ive-done", icon: "box", title: "Jump to Summary Recap" }
+		]
+	}
 ];
 ---
 
-<div class={`toc-reader-wrapper ${className}`} id="top-toc-card">
-	<!-- 1. Top Compact Bar (Auto-collapsed by default, matches AudioReader) -->
-	<div class="toc-card">
-		<div class="toc-compact-bar" id="toc-compact-bar">
-			<div class="toc-compact-left">
-				<span class="toc-compact-title">Table of Contents</span>
-				<span class="toc-compact-time">10 sections</span>
-			</div>
-
-			<div class="toc-compact-right">
-				<!-- Plain monochrome pin icon on right with [T] shortcut hint -->
-				<button 
-					type="button" 
-					class="toc-plain-pin-btn" 
-					id="toc-pin-trigger" 
-					title="Float in margin [T]"
-					aria-label="Float in margin [T]"
-				>
-					<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<line x1="12" y1="17" x2="12" y2="22"></line>
-						<path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.89A2 2 0 0 1 15 10.76V6h1a1 1 0 0 0 0-2H8a1 1 0 0 0 0 2h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.89A2 2 0 0 0 5 15.24Z"></path>
-					</svg>
-				</button>
-
-				<!-- Expand / Collapse Drawer Toggle Button (Same position as AudioReader) -->
-				<button 
-					type="button" 
-					class="toc-expand-toggle" 
-					id="toc-collapse-toggle" 
-					aria-expanded="false" 
-					aria-controls="toc-expanded-drawer"
-					title="Expand or collapse table of contents"
-				>
-					<span class="toc-expand-text">Sections</span>
-					<svg class="toc-expand-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.3" fill="none">
-						<polyline points="6 9 12 15 18 9"></polyline>
-					</svg>
-				</button>
-			</div>
-		</div>
-
-		<!-- 2. Expandable Options Drawer (Hidden by default / auto-collapsed) -->
-		<div class="toc-expanded-drawer" id="toc-expanded-drawer" style="display: none;">
-			<div class="toc-drawer-content">
-				<ol class="toc-list" id="top-toc-list">
-					{navItems.map((item) => (
-						<li class="toc-item">
-							<a href={item.href} class="toc-link">
-								<span class="toc-num">{item.number}.</span>
-								<span class="toc-text">{item.title}</span>
-							</a>
-						</li>
-					))}
-				</ol>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- 3. Compact Floating Margin Box (~1 inch width container, 2x smaller font, [T] shortcut hint + X) -->
-<div 
-	id="floating-toc-box" 
-	class="floating-margin-box" 
-	style="display: none;"
-	aria-label="Floating Table of Contents"
+<!-- 1. Floating Trigger Button (Vertically centered in viewport on the right edge) -->
+<button 
+	type="button" 
+	id="floating-toc-trigger" 
+	class="floating-toc-btn" 
+	title="Table of Contents [T]" 
+	aria-label="Table of Contents [T]"
+	aria-controls="floating-toc-drawer"
+	aria-expanded="false"
 >
-	<div class="floating-box-header">
-		<span class="floating-key-hint" title="Keyboard Shortcut: Press T to toggle">[T]</span>
-		<button type="button" id="floating-box-close" class="floating-close-btn" title="Close [T or Esc]" aria-label="Close">✕</button>
+	<span class="floating-toc-btn-inner">
+		<!-- Minimalist Table of Contents / Index SVG Icon -->
+		<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+			<line x1="8" y1="6" x2="21" y2="6"></line>
+			<line x1="8" y1="12" x2="21" y2="12"></line>
+			<line x1="8" y1="18" x2="21" y2="18"></line>
+			<circle cx="3.5" cy="6" r="1.5" fill="currentColor"></circle>
+			<circle cx="3.5" cy="12" r="1.5" fill="currentColor"></circle>
+			<circle cx="3.5" cy="18" r="1.5" fill="currentColor"></circle>
+		</svg>
+	</span>
+	<span class="floating-toc-shortcut-badge">T</span>
+</button>
+
+<!-- 2. Sliding Drawer / Slide-Out Table of Contents Panel -->
+<div 
+	id="floating-toc-drawer" 
+	class="floating-toc-drawer" 
+	role="dialog" 
+	aria-modal="false" 
+	aria-label="Table of Contents"
+	style="display: none;"
+>
+	<div class="floating-drawer-backdrop" id="floating-toc-backdrop"></div>
+	
+	<div class="floating-drawer-panel">
+		<!-- Drawer Header -->
+		<div class="floating-drawer-header">
+			<div class="floating-drawer-title-wrap">
+				<h3 class="floating-drawer-title">Table of Contents</h3>
+				<span class="floating-drawer-shortcut-hint" title="Press T on keyboard to toggle">[T]</span>
+			</div>
+			<button 
+				type="button" 
+				id="floating-drawer-close" 
+				class="floating-drawer-close-btn" 
+				title="Close Table of Contents [T or Esc]" 
+				aria-label="Close"
+			>
+				<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.2" fill="none">
+					<line x1="18" y1="6" x2="6" y2="18"></line>
+					<line x1="6" y1="6" x2="18" y2="18"></line>
+				</svg>
+			</button>
+		</div>
+
+		<!-- Drawer Navigation List -->
+		<div class="floating-drawer-body">
+			<ol class="floating-drawer-list">
+				{navSections.map((section) => (
+					<li class="floating-drawer-item">
+						<div class="floating-item-main-row">
+							<a href={section.href} class="floating-section-link" data-target={section.href.replace('#', '')}>
+								<span class="floating-section-num">{section.number}.</span>
+								<span class="floating-section-title">{section.title}</span>
+							</a>
+
+							<!-- Quick Media / Box / Table Jumper Badges -->
+							{section.media && section.media.length > 0 && (
+								<div class="floating-media-badges">
+									{section.media.map((m) => (
+										<a 
+											href={m.target} 
+											class={`floating-media-pill media-pill-${m.type}`} 
+											title={m.title}
+											aria-label={m.title}
+											data-target-element={m.target.replace('#', '')}
+										>
+											{m.icon === 'image' && (
+												<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+													<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+													<circle cx="8.5" cy="8.5" r="1.5"></circle>
+													<polyline points="21 15 16 10 5 21"></polyline>
+												</svg>
+											)}
+											{m.icon === 'table' && (
+												<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+													<rect x="3" y="3" width="18" height="18" rx="2"></rect>
+													<line x1="3" y1="9" x2="21" y2="9"></line>
+													<line x1="3" y1="15" x2="21" y2="15"></line>
+													<line x1="12" y1="3" x2="12" y2="21"></line>
+												</svg>
+											)}
+											{m.icon === 'chart' && (
+												<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+													<line x1="18" y1="20" x2="18" y2="10"></line>
+													<line x1="12" y1="20" x2="12" y2="4"></line>
+													<line x1="6" y1="20" x2="6" y2="14"></line>
+												</svg>
+											)}
+											{m.icon === 'box' && (
+												<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+													<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+													<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+													<line x1="12" y1="22.08" x2="12" y2="12"></line>
+												</svg>
+											)}
+											{m.icon === 'video' && (
+												<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+													<polygon points="5 3 19 12 5 21 5 3"></polygon>
+												</svg>
+											)}
+										</a>
+									))}
+								</div>
+							)}
+						</div>
+					</li>
+				))}
+			</ol>
+		</div>
+
+		<!-- Footer Note -->
+		<div class="floating-drawer-footer">
+			<span class="floating-footer-text">Click icons to jump directly to photos, charts &amp; tables</span>
+		</div>
 	</div>
-	<ul class="floating-box-list">
-		{navItems.map((item) => (
-			<li class="floating-box-item">
-				<a href={item.href} class="floating-box-link" data-target={item.href.replace('#', '')}>
-					<span class="floating-box-num">{item.number}.</span>
-					<span class="floating-box-text">{item.title}</span>
-				</a>
-			</li>
-		))}
-	</ul>
 </div>
 
 <script is:inline>
 	(function() {
-		function setupTOC() {
-			const toggleBtn = document.getElementById('toc-collapse-toggle');
-			const drawer = document.getElementById('toc-expanded-drawer');
-			const pinBtn = document.getElementById('toc-pin-trigger');
-			const floatingBox = document.getElementById('floating-toc-box');
-			const closeBtn = document.getElementById('floating-box-close');
-			const topCard = document.getElementById('top-toc-card');
+		function setupFloatingTOC() {
+			const triggerBtn = document.getElementById('floating-toc-trigger');
+			const drawer = document.getElementById('floating-toc-drawer');
+			const closeBtn = document.getElementById('floating-drawer-close');
+			const backdrop = document.getElementById('floating-toc-backdrop');
 
-			if (toggleBtn && drawer) {
-				// Expand / Collapse Drawer Toggle
-				toggleBtn.onclick = function(e) {
-					e.preventDefault();
-					e.stopPropagation();
-					const isCurrentlyExpanded = drawer.style.display !== 'none';
-					if (isCurrentlyExpanded) {
-						drawer.style.display = 'none';
-						toggleBtn.classList.remove('is-expanded');
-						toggleBtn.setAttribute('aria-expanded', 'false');
-					} else {
-						drawer.style.display = 'block';
-						toggleBtn.classList.add('is-expanded');
-						toggleBtn.setAttribute('aria-expanded', 'true');
-					}
-				};
+			if (!triggerBtn || !drawer) return;
 
-				// Collapse drawer when clicking a link
-				const links = drawer.querySelectorAll('.toc-link');
-				links.forEach(function(l) {
-					l.onclick = function() {
-						drawer.style.display = 'none';
-						toggleBtn.classList.remove('is-expanded');
-						toggleBtn.setAttribute('aria-expanded', 'false');
-					};
-				});
+			// Teleport drawer and trigger to document.body so fixed layout is never broken
+			if (triggerBtn.parentElement !== document.body) {
+				document.body.appendChild(triggerBtn);
+			}
+			if (drawer.parentElement !== document.body) {
+				document.body.appendChild(drawer);
 			}
 
-			if (!pinBtn || !floatingBox) return;
+			let isOpen = false;
 
-			// Teleport floating box directly to body so position: fixed is NEVER trapped by parents
-			if (floatingBox.parentElement !== document.body) {
-				document.body.appendChild(floatingBox);
+			function openDrawer() {
+				isOpen = true;
+				drawer.style.display = 'block';
+				// Force reflow
+				void drawer.offsetWidth;
+				drawer.classList.add('is-open');
+				triggerBtn.classList.add('is-active');
+				triggerBtn.setAttribute('aria-expanded', 'true');
 			}
 
-			let isVisible = false;
+			function closeDrawer() {
+				isOpen = false;
+				drawer.classList.remove('is-open');
+				triggerBtn.classList.remove('is-active');
+				triggerBtn.setAttribute('aria-expanded', 'false');
+				setTimeout(function() {
+					if (!isOpen) drawer.style.display = 'none';
+				}, 220);
+			}
 
-			function setFloating(show, scrollToTop) {
-				isVisible = show;
-				if (show) {
-					floatingBox.style.display = 'block';
-					pinBtn.classList.add('is-active');
-					try { localStorage.setItem('toc_floating_active', 'true'); } catch(e){}
+			function toggleDrawer() {
+				if (isOpen) {
+					closeDrawer();
 				} else {
-					floatingBox.style.display = 'none';
-					pinBtn.classList.remove('is-active');
-					try { localStorage.setItem('toc_floating_active', 'false'); } catch(e){}
-					if (scrollToTop && topCard) {
-						topCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-					}
+					openDrawer();
 				}
 			}
 
-			// Restore state on wide screens
-			try {
-				if (localStorage.getItem('toc_floating_active') === 'true' && window.innerWidth >= 1024) {
-					setFloating(true, false);
-				}
-			} catch(e) {}
-
-			// Avoid attaching multiple event listeners on page transitions
-			pinBtn.onclick = function() {
-				setFloating(!isVisible, false);
+			triggerBtn.onclick = function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				toggleDrawer();
 			};
 
 			if (closeBtn) {
-				closeBtn.onclick = function() {
-					setFloating(false, false);
+				closeBtn.onclick = function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					closeDrawer();
 				};
 			}
+
+			if (backdrop) {
+				backdrop.onclick = function(e) {
+					e.preventDefault();
+					closeDrawer();
+				};
+			}
+
+			// Close drawer when clicking section links
+			const sectionLinks = drawer.querySelectorAll('.floating-section-link');
+			sectionLinks.forEach(function(link) {
+				link.onclick = function(e) {
+					closeDrawer();
+				};
+			});
+
+			// Media pill click handler: smooth scroll & brief highlight pulse
+			const mediaPills = drawer.querySelectorAll('.floating-media-pill');
+			mediaPills.forEach(function(pill) {
+				pill.onclick = function(e) {
+					const targetId = pill.getAttribute('data-target-element');
+					if (!targetId) return;
+					const targetEl = document.getElementById(targetId);
+					if (targetEl) {
+						e.preventDefault();
+						closeDrawer();
+						targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						targetEl.classList.remove('toc-target-highlight');
+						void targetEl.offsetWidth;
+						targetEl.classList.add('toc-target-highlight');
+						setTimeout(function() {
+							targetEl.classList.remove('toc-target-highlight');
+						}, 2500);
+					}
+				};
+			});
 
 			// Keyboard shortcut: Press T / t to toggle; Esc to close
 			window.addEventListener('keydown', function(e) {
@@ -192,26 +331,19 @@ const navItems = [
 				}
 				if (e.key === 't' || e.key === 'T') {
 					e.preventDefault();
-					setFloating(!isVisible, false);
-				} else if (e.key === 'Escape' && isVisible) {
-					setFloating(false, false);
-				}
-			});
-
-			// Close on small mobile screens
-			window.addEventListener('resize', function() {
-				if (window.innerWidth < 900 && isVisible) {
-					setFloating(false, false);
+					toggleDrawer();
+				} else if (e.key === 'Escape' && isOpen) {
+					e.preventDefault();
+					closeDrawer();
 				}
 			});
 
 			// Highlight active section on scroll
-			const floatLinks = floatingBox.querySelectorAll('.floating-box-link');
-			const sectionIds = Array.from(floatLinks).map(function(l) { return l.getAttribute('data-target'); });
+			const sectionIds = Array.from(sectionLinks).map(function(l) { return l.getAttribute('data-target'); });
 
 			function onScroll() {
-				if (!isVisible) return;
-				const scrollPos = window.scrollY + 160;
+				if (!isOpen) return;
+				const scrollPos = window.scrollY + 180;
 				let currentId = '';
 
 				for (let i = 0; i < sectionIds.length; i++) {
@@ -221,7 +353,7 @@ const navItems = [
 					}
 				}
 
-				floatLinks.forEach(function(link) {
+				sectionLinks.forEach(function(link) {
 					if (link.getAttribute('data-target') === currentId) {
 						link.classList.add('active');
 					} else {
@@ -234,328 +366,366 @@ const navItems = [
 		}
 
 		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', setupTOC);
+			document.addEventListener('DOMContentLoaded', setupFloatingTOC);
 		} else {
-			setupTOC();
+			setupFloatingTOC();
 		}
-		document.addEventListener('astro:page-load', setupTOC);
+		document.addEventListener('astro:page-load', setupFloatingTOC);
 	})();
 </script>
 
 <style>
-	/* 1. Top Card Wrapper (Matches AudioReader width, margins, font) */
-	.toc-reader-wrapper {
-		margin: 1.5rem auto 1.75rem auto;
-		max-width: var(--reading-max-width, 58ch);
-		position: relative;
-		font-family: var(--font-body, system-ui, sans-serif);
-		transition: max-width 0.2s ease;
-	}
-
-	.toc-card {
-		background: #ffffff;
-		border: 1px solid #e2e8f0;
-		border-radius: 14px;
-		box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.05);
-		overflow: hidden;
-		transition: border-color 0.2s ease, box-shadow 0.2s ease;
-	}
-
-	.toc-card:hover {
-		border-color: #cbd5e1;
-		box-shadow: 0 6px 22px -4px rgba(15, 23, 42, 0.08);
-	}
-
-	/* Compact Top Bar */
-	.toc-compact-bar {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0.65rem 1rem;
-		gap: 0.75rem;
-		background: #ffffff;
-	}
-
-	.toc-compact-left {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		flex: 1 1 auto;
-		min-width: 0;
-	}
-
-	.toc-compact-title {
-		font-size: 0.9rem;
-		font-weight: 700;
-		color: #0f172a;
-		letter-spacing: -0.01em;
-	}
-
-	.toc-compact-time {
-		font-size: 0.72rem;
-		font-weight: 600;
-		color: #64748b;
-		background: #f1f5f9;
-		padding: 0.15rem 0.5rem;
-		border-radius: 6px;
-	}
-
-	.toc-compact-right {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		flex-shrink: 0;
-	}
-
-	.toc-expand-toggle {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		padding: 0.4rem 0.72rem;
-		font-size: 0.78rem;
-		font-weight: 600;
-		background: #f8fafc;
-		border: 1px solid #e2e8f0;
-		border-radius: 8px;
-		color: #475569;
-		cursor: pointer;
-		transition: all 0.16s ease;
-	}
-
-	.toc-expand-toggle:hover {
-		background: #f1f5f9;
-		color: #0f172a;
-		border-color: #cbd5e1;
-	}
-
-	.toc-expand-toggle.is-expanded {
-		background: #0f172a;
-		color: #ffffff;
-		border-color: #0f172a;
-	}
-
-	.toc-expand-toggle.is-expanded .toc-expand-chevron {
-		transform: rotate(180deg);
-	}
-
-	.toc-expand-chevron {
-		transition: transform 0.2s ease;
-	}
-
-	/* Plain monochrome pin icon on upper right */
-	.toc-plain-pin-btn {
-		background: #f8fafc;
-		border: 1px solid #e2e8f0;
-		padding: 0.4rem 0.5rem;
-		color: #64748b;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 8px;
-		transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
-	}
-
-	.toc-plain-pin-btn:hover {
-		background: #f1f5f9;
-		color: #0f172a;
-		border-color: #cbd5e1;
-	}
-
-	.toc-plain-pin-btn.is-active {
-		background: #0f172a;
-		color: #ffffff;
-		border-color: #0f172a;
-	}
-
-	/* 2. Expandable Drawer */
-	.toc-expanded-drawer {
-		background: #fafaf9;
-		border-top: 1px solid #f1f5f9;
-		animation: drawerSlide 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-	}
-
-	@keyframes drawerSlide {
-		from { opacity: 0; transform: translateY(-6px); }
-		to { opacity: 1; transform: translateY(0); }
-	}
-
-	.toc-drawer-content {
-		padding: 0.85rem 1.15rem;
-	}
-
-	.toc-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 0.35rem;
-	}
-
-	.toc-item {
-		display: flex;
-	}
-
-	.toc-link {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.55rem;
-		color: #334155;
-		text-decoration: none;
-		font-size: 0.88rem;
-		line-height: 1.4;
-		padding: 0.35rem 0.55rem;
-		border-radius: 6px;
-		transition: all 0.15s ease;
-		width: 100%;
-	}
-
-	.toc-link:hover {
-		color: #c8382c;
-		background: #ffffff;
-		box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-		transform: translateX(3px);
-		text-decoration: none;
-	}
-
-	.toc-num {
-		font-weight: 700;
-		color: #94a3b8;
-		font-size: 0.82rem;
-		width: 1.4rem;
-		flex-shrink: 0;
-	}
-
-	.toc-link:hover .toc-num {
-		color: #c8382c;
-	}
-
-	.toc-text {
-		font-weight: 600;
-	}
-
-	/* 3. Floating Margin Box */
-	:global(.floating-margin-box) {
+	/* 1. Floating Trigger Button (Vertically Centered on Right Screen Edge) */
+	:global(#floating-toc-trigger) {
 		position: fixed !important;
-		top: 130px !important;
-		right: max(16px, calc(50vw - 390px - 106px)) !important;
-		width: 98px !important; /* ~1 inch box */
-		max-width: 98px !important;
+		top: 50% !important;
+		right: 0 !important;
+		transform: translateY(-50%) !important;
+		z-index: 99998 !important;
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 3px !important;
+		padding: 0.65rem 0.5rem 0.6rem 0.65rem !important;
 		background: #ffffff !important;
+		color: #1e293b !important;
 		border: 1px solid #cbd5e1 !important;
-		border-radius: 8px !important;
-		box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
-		padding: 0.3rem 0.35rem 0.45rem 0.35rem !important;
+		border-right: none !important;
+		border-top-left-radius: 12px !important;
+		border-bottom-left-radius: 12px !important;
+		box-shadow: -3px 4px 18px rgba(15, 23, 42, 0.12), -1px 2px 6px rgba(15, 23, 42, 0.06) !important;
+		cursor: pointer !important;
+		transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+		user-select: none !important;
+	}
+
+	:global(#floating-toc-trigger:hover) {
+		background: #f8fafc !important;
+		color: #c8382c !important;
+		border-color: #94a3b8 !important;
+		transform: translateY(-50%) translateX(-2px) !important;
+		box-shadow: -4px 6px 22px rgba(200, 56, 44, 0.18) !important;
+	}
+
+	:global(#floating-toc-trigger.is-active) {
+		background: #0f172a !important;
+		color: #ffffff !important;
+		border-color: #0f172a !important;
+		transform: translateY(-50%) translateX(-4px) !important;
+	}
+
+	:global(.floating-toc-btn-inner) {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+
+	:global(.floating-toc-shortcut-badge) {
+		font-size: 0.65rem !important;
+		font-weight: 800 !important;
+		line-height: 1 !important;
+		color: #64748b !important;
+		background: #f1f5f9 !important;
+		border: 1px solid #e2e8f0 !important;
+		padding: 1px 4px !important;
+		border-radius: 4px !important;
+		margin-top: 2px !important;
+		transition: all 0.15s ease !important;
+	}
+
+	:global(#floating-toc-trigger:hover .floating-toc-shortcut-badge) {
+		color: #c8382c !important;
+		border-color: #fca5a5 !important;
+		background: #fef2f2 !important;
+	}
+
+	:global(#floating-toc-trigger.is-active .floating-toc-shortcut-badge) {
+		color: #ffffff !important;
+		background: #334155 !important;
+		border-color: #475569 !important;
+	}
+
+	/* 2. Slide-out Drawer Structure */
+	:global(#floating-toc-drawer) {
+		position: fixed !important;
+		inset: 0 !important;
 		z-index: 99999 !important;
+		pointer-events: none !important;
+	}
+
+	:global(#floating-toc-drawer.is-open) {
+		pointer-events: auto !important;
+	}
+
+	:global(.floating-drawer-backdrop) {
+		position: absolute !important;
+		inset: 0 !important;
+		background: rgba(15, 23, 42, 0.35) !important;
+		backdrop-filter: blur(2px) !important;
+		opacity: 0 !important;
+		transition: opacity 0.22s ease !important;
+	}
+
+	:global(#floating-toc-drawer.is-open .floating-drawer-backdrop) {
+		opacity: 1 !important;
+	}
+
+	:global(.floating-drawer-panel) {
+		position: absolute !important;
+		top: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		width: 100% !important;
+		max-width: 380px !important;
+		background: #ffffff !important;
+		box-shadow: -6px 0 28px rgba(15, 23, 42, 0.22) !important;
+		display: flex !important;
+		flex-direction: column !important;
+		transform: translateX(100%) !important;
+		transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
 		box-sizing: border-box !important;
 		font-family: system-ui, -apple-system, sans-serif !important;
 	}
 
-	:global(.floating-box-header) {
+	:global(#floating-toc-drawer.is-open .floating-drawer-panel) {
+		transform: translateX(0) !important;
+	}
+
+	/* Header */
+	:global(.floating-drawer-header) {
 		display: flex !important;
-		justify-content: space-between !important;
 		align-items: center !important;
-		margin-bottom: 0.2rem !important;
-		padding-bottom: 0.15rem !important;
-		border-bottom: 1px solid #f1f5f9 !important;
+		justify-content: space-between !important;
+		padding: 1.1rem 1.25rem 0.9rem 1.25rem !important;
+		border-bottom: 1px solid #e2e8f0 !important;
+		background: #fafaf9 !important;
+		flex-shrink: 0 !important;
 	}
 
-	:global(.floating-key-hint) {
-		font-size: 0.52rem !important;
+	:global(.floating-drawer-title-wrap) {
+		display: flex !important;
+		align-items: center !important;
+		gap: 0.6rem !important;
+	}
+
+	:global(.floating-drawer-title) {
+		font-size: 1.05rem !important;
 		font-weight: 700 !important;
-		color: #94a3b8 !important;
-		letter-spacing: 0.02em !important;
-		user-select: none !important;
-		line-height: 1 !important;
+		color: #0f172a !important;
+		margin: 0 !important;
+		line-height: 1.2 !important;
+		letter-spacing: -0.01em !important;
 	}
 
-	:global(.floating-close-btn) {
-		background: transparent !important;
-		border: none !important;
-		color: #94a3b8 !important;
+	:global(.floating-drawer-shortcut-hint) {
 		font-size: 0.72rem !important;
-		font-weight: 800 !important;
+		font-weight: 700 !important;
+		color: #64748b !important;
+		background: #f1f5f9 !important;
+		border: 1px solid #e2e8f0 !important;
+		padding: 0.15rem 0.45rem !important;
+		border-radius: 5px !important;
+		user-select: none !important;
+	}
+
+	:global(.floating-drawer-close-btn) {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		background: #f1f5f9 !important;
+		border: 1px solid #e2e8f0 !important;
+		color: #64748b !important;
+		width: 32px !important;
+		height: 32px !important;
+		border-radius: 8px !important;
 		cursor: pointer !important;
-		padding: 1px 3px !important;
-		line-height: 1 !important;
-		border-radius: 3px !important;
-		transition: color 0.15s ease, background 0.15s ease !important;
+		transition: all 0.15s ease !important;
 	}
 
-	:global(.floating-close-btn:hover) {
-		color: #dc2626 !important;
+	:global(.floating-drawer-close-btn:hover) {
 		background: #fee2e2 !important;
+		border-color: #fca5a5 !important;
+		color: #dc2626 !important;
 	}
 
-	:global(.floating-box-list) {
+	/* Body & List */
+	:global(.floating-drawer-body) {
+		flex: 1 1 auto !important;
+		overflow-y: auto !important;
+		padding: 0.85rem 0.85rem 1rem 0.85rem !important;
+	}
+
+	:global(.floating-drawer-list) {
 		list-style: none !important;
 		padding: 0 !important;
 		margin: 0 !important;
 		display: flex !important;
 		flex-direction: column !important;
-		gap: 0.22rem !important;
+		gap: 0.35rem !important;
 	}
 
-	:global(.floating-box-item) {
+	:global(.floating-drawer-item) {
 		display: block !important;
 		margin: 0 !important;
 		padding: 0 !important;
 	}
 
-	:global(.floating-box-link) {
+	:global(.floating-item-main-row) {
 		display: flex !important;
-		align-items: flex-start !important;
-		gap: 0.2rem !important;
-		color: #475569 !important;
-		text-decoration: none !important;
-		font-size: 0.58rem !important;
-		line-height: 1.25 !important;
-		padding: 0.15rem 0.2rem !important;
-		border-radius: 3px !important;
-		transition: all 0.12s ease !important;
-		white-space: normal !important;
-		word-break: break-word !important;
-		overflow-wrap: break-word !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		gap: 0.4rem !important;
+		padding: 0.35rem 0.5rem !important;
+		border-radius: 8px !important;
+		transition: background 0.15s ease !important;
 	}
 
-	:global(.floating-box-link:hover) {
-		color: #c8382c !important;
+	:global(.floating-item-main-row:hover) {
 		background: #f8fafc !important;
+	}
+
+	:global(.floating-section-link) {
+		display: flex !important;
+		align-items: baseline !important;
+		gap: 0.5rem !important;
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+		color: #334155 !important;
+		text-decoration: none !important;
+		font-size: 0.86rem !important;
+		font-weight: 600 !important;
+		line-height: 1.35 !important;
+		transition: color 0.15s ease !important;
+	}
+
+	:global(.floating-section-link:hover) {
+		color: #c8382c !important;
 		text-decoration: none !important;
 	}
 
-	:global(.floating-box-link.active) {
+	:global(.floating-section-link.active) {
 		color: #c8382c !important;
-		background: #fef2f2 !important;
 		font-weight: 700 !important;
 	}
 
-	:global(.floating-box-num) {
+	:global(.floating-section-num) {
+		font-size: 0.78rem !important;
 		font-weight: 700 !important;
 		color: #94a3b8 !important;
-		font-size: 0.55rem !important;
 		flex-shrink: 0 !important;
-		width: 0.7rem !important;
+		width: 1.3rem !important;
 	}
 
-	:global(.floating-box-link.active .floating-box-num) {
+	:global(.floating-section-link.active .floating-section-num) {
 		color: #c8382c !important;
 	}
 
-	:global(.floating-box-text) {
-		flex: 1 !important;
-		white-space: normal !important;
-		word-break: break-word !important;
-		overflow-wrap: break-word !important;
+	:global(.floating-section-title) {
+		flex: 1 1 auto !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
 	}
 
-	@media (max-width: 900px) {
-		.toc-plain-pin-btn {
-			display: none !important;
+	/* Media Badges */
+	:global(.floating-media-badges) {
+		display: flex !important;
+		align-items: center !important;
+		gap: 0.3rem !important;
+		flex-shrink: 0 !important;
+	}
+
+	:global(.floating-media-pill) {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 26px !important;
+		height: 26px !important;
+		border-radius: 6px !important;
+		background: #f1f5f9 !important;
+		border: 1px solid #e2e8f0 !important;
+		color: #64748b !important;
+		text-decoration: none !important;
+		cursor: pointer !important;
+		transition: all 0.15s ease !important;
+	}
+
+	:global(.floating-media-pill:hover) {
+		background: #0f172a !important;
+		color: #ffffff !important;
+		border-color: #0f172a !important;
+		transform: scale(1.1) !important;
+	}
+
+	:global(.media-pill-image:hover) {
+		background: #2563eb !important;
+		border-color: #2563eb !important;
+		color: #ffffff !important;
+	}
+
+	:global(.media-pill-table:hover) {
+		background: #059669 !important;
+		border-color: #059669 !important;
+		color: #ffffff !important;
+	}
+
+	:global(.media-pill-chart:hover) {
+		background: #7c3aed !important;
+		border-color: #7c3aed !important;
+		color: #ffffff !important;
+	}
+
+	:global(.media-pill-box:hover) {
+		background: #d97706 !important;
+		border-color: #d97706 !important;
+		color: #ffffff !important;
+	}
+
+	:global(.media-pill-video:hover) {
+		background: #dc2626 !important;
+		border-color: #dc2626 !important;
+		color: #ffffff !important;
+	}
+
+	/* Drawer Footer */
+	:global(.floating-drawer-footer) {
+		padding: 0.75rem 1rem !important;
+		background: #fafaf9 !important;
+		border-top: 1px solid #e2e8f0 !important;
+		text-align: center !important;
+		flex-shrink: 0 !important;
+	}
+
+	:global(.floating-footer-text) {
+		font-size: 0.72rem !important;
+		color: #64748b !important;
+		font-weight: 500 !important;
+	}
+
+	/* Target highlight animation when jumping via media badge */
+	:global(.toc-target-highlight) {
+		animation: targetGlow 2.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+		outline: 3px solid #f87171 !important;
+		outline-offset: 4px !important;
+		border-radius: 16px !important;
+	}
+
+	@keyframes targetGlow {
+		0% {
+			box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.4);
 		}
-		:global(.floating-margin-box) {
-			display: none !important;
+		70% {
+			box-shadow: 0 0 0 16px rgba(239, 68, 68, 0);
+		}
+		100% {
+			outline-color: transparent;
+			box-shadow: none;
+		}
+	}
+
+	@media (max-width: 640px) {
+		:global(.floating-drawer-panel) {
+			max-width: 90vw !important;
 		}
 	}
 </style>

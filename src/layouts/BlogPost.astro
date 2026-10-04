@@ -71,6 +71,7 @@ if (!postNumber && slug) {
 				</div>
 
 				{showAudioReader && <AudioReader title={title} headings={headings} />}
+				{showTOC && <TableOfContents />}
 
 				<h1 set:html={title} />
 
@@ -92,7 +93,7 @@ if (!postNumber && slug) {
 						</div>
 					</div>
 				)}
-				{!isHomepage && <MedicalDisclaimer />}
+				<MedicalDisclaimer />
 
 				<div class="blog-layout-grid">
 					<div class="post-content" id="blog-post-content">
@@ -119,9 +120,10 @@ if (!postNumber && slug) {
 				<h2 class="blog-disclaimer-title" id="blog-disclaimer-title">Medical Disclaimer</h2>
 				
 				<ul class="blog-disclaimer-bullets">
-					<li>It's my personal health journey, self-experiments, and&nbsp;research.</li>
-					<li>It is educational and informational only, and not intended as medical&nbsp;advice.</li>
-					<li>Always seek the advice of your physician or qualified medical provider with any questions regarding a health&nbsp;condition.</li>
+					<li>This is educational and informational only, not medical&nbsp;advice.</li>
+					<li>Consult a medical professional before trying anything&nbsp;new.</li>
+					<li>This is my own personal health&nbsp;journey.</li>
+					<li>I use AI for my&nbsp;research.</li>
 				</ul>
 			</div>
 		</div>

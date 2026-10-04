@@ -1,5 +1,5 @@
 ---
-// Subtle, compact Medical Disclaimer & Affiliate Notice
+// Subtle, compact Medical & AI Research Disclaimer calibrated for clean 4-line flow
 interface Props {
 	class?: string;
 }
@@ -9,33 +9,40 @@ const { class: className = '' } = Astro.props;
 
 <div class={`disclaimer-compact ${className}`}>
 	<p class="disclaimer-text">
-		<strong>Medical &amp; AI Research Disclaimer:</strong> It's my personal health journey, self-experiments, and research. Much of the literature synthesis and research was conducted using AI tools, and data may not be 100% accurate. It is educational and informational only, and not intended as medical advice. Always seek the advice of your physician or qualified medical provider with any questions regarding a health&nbsp;condition.
+		<strong>Medical &amp; AI Research Disclaimer:</strong> It's my personal health journey, self-experiments, and research. Much of the literature synthesis and research was conducted using AI tools, and data may not be 100% accurate. It is educational and informational only, and not intended as medical advice. Please consult a qualified medical provider before making any changes to your&nbsp;health.
 	</p>
 </div>
 
 <style>
 	.disclaimer-compact {
-		max-width: var(--reading-max-width, 58ch);
+		max-width: 580px;
 		width: 100%;
-		margin: 0 auto;
-		padding-bottom: 1.5rem;
+		margin: 0.35rem auto 1.25rem auto;
+		padding-bottom: 0.5rem;
 		text-align: center;
 		background: transparent;
 		border: none;
 	}
 
 	.disclaimer-text {
-		font-size: 0.68rem;
-		line-height: 1.5;
+		font-size: 0.64rem;
+		line-height: 1.55;
 		color: #64748b;
 		margin: 0 auto;
 		text-align: center;
 		text-wrap: balance;
+		opacity: 0.95;
 	}
 
 	.disclaimer-text strong {
 		color: #334155;
 		font-weight: 700;
 		margin-right: 0.2rem;
+	}
+
+	@media (max-width: 640px) {
+		.disclaimer-compact {
+			max-width: 92%;
+		}
 	}
 </style>
