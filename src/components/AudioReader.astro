@@ -47,7 +47,8 @@ if (headings && headings.length > 0) {
 			<div class="tts-compact-right">
 				<!-- Table of Contents Toggle Button -->
 				<button type="button" class="tts-expand-toggle" id="tts-toc-btn" aria-expanded="false" title="Table of Contents">
-					<span class="tts-expand-text">Table of Contents</span>
+					<span class="tts-expand-text tts-toc-text-desktop">Table of Contents</span>
+					<span class="tts-expand-text tts-toc-text-mobile">TOC</span>
 					<svg class="tts-expand-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.3" fill="none">
 						<polyline points="6 9 12 15 18 9"></polyline>
 					</svg>
@@ -423,6 +424,14 @@ if (headings && headings.length > 0) {
 		font-weight: 700;
 	}
 
+	.tts-toc-text-mobile {
+		display: none;
+	}
+
+	.tts-toc-text-desktop {
+		display: inline;
+	}
+
 	.tts-expand-toggle {
 		display: inline-flex;
 		align-items: center;
@@ -436,6 +445,7 @@ if (headings && headings.length > 0) {
 		color: #475569;
 		cursor: pointer;
 		transition: all 0.16s ease;
+		white-space: nowrap;
 	}
 
 	.tts-expand-toggle:hover {
@@ -1072,6 +1082,33 @@ if (headings && headings.length > 0) {
 	}
 
 	@media (max-width: 640px) {
+		.tts-compact-bar {
+			padding: 0.5rem 0.65rem;
+			gap: 0.35rem;
+			justify-content: space-between;
+		}
+		.tts-compact-left {
+			display: none; /* Hide 'Listen to this article' on mobile */
+		}
+		.tts-compact-right {
+			width: 100%;
+			justify-content: space-between;
+			gap: 0.35rem;
+		}
+		.tts-toc-text-desktop {
+			display: none;
+		}
+		.tts-toc-text-mobile {
+			display: inline;
+		}
+		.tts-expand-toggle {
+			padding: 0.38rem 0.55rem;
+			font-size: 0.76rem;
+		}
+		.tts-compact-play-btn {
+			padding: 0.38rem 0.75rem;
+			font-size: 0.78rem;
+		}
 		.tts-card-inner {
 			padding: 1rem;
 		}
