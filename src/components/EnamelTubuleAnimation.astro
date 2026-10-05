@@ -1,5 +1,5 @@
 ---
-// EnamelTubuleAnimation.astro - Interactive Biophysical Simulator for Enamel Thinning, Tubule Quantity & Depth Exposure
+// EnamelTubuleAnimation.astro - Interactive 3D Tooth & Conical Tubule Biophysical Simulator
 interface Props {
 	class?: string;
 }
@@ -11,140 +11,235 @@ const { class: className = '' } = Astro.props;
 	<div class="enamel-anim-card">
 		<!-- Header -->
 		<div class="enamel-anim-header">
-			<h3 class="enamel-anim-title">Interactive Biophysical Simulator: Enamel Thinning &amp; Tubule&nbsp;Exposure</h3>
+			<h3 class="enamel-anim-title">Interactive Biophysical Simulator: 50-Year Enamel &amp; Tubule&nbsp;Progression</h3>
 			<p class="enamel-anim-subtitle">
-				Drag the slider or step through each stage to observe how progressive enamel erosion and gum recession expose thousands of microscopic fluid channels, stripping smear plugs and triggering trigeminal nerve&nbsp;pathways.
+				Observe how 50 years of mechanical abfraction, acid erosion, and gum recession strip the enamel shield, eat away the dentin wall, and expose up to 45,000 conical tubules directly into the trigeminal mandibular nerve&nbsp;canal.
 			</p>
 		</div>
 
-		<!-- Stage Selector Controls -->
-		<div class="stage-button-grid" role="tablist" aria-label="Erosion Stages">
-			<button class="stage-btn active" data-stage="0" type="button">
-				<span class="stage-num">Stage 1</span>
-				<span class="stage-name">Intact Enamel (2.5mm)</span>
+		<!-- View Switcher (Dual View / Anatomical Tooth / Microscopic Cones) -->
+		<div class="view-mode-toggle" role="tablist" aria-label="Simulation Views">
+			<button class="view-btn active" data-view="anatomical" type="button">
+				<span class="view-icon">🦷</span>
+				<span class="view-label">3D Tooth Anatomical View</span>
 			</button>
-			<button class="stage-btn" data-stage="1" type="button">
-				<span class="stage-num">Stage 2</span>
-				<span class="stage-name">Early Acid Softening</span>
+			<button class="view-btn" data-view="conical" type="button">
+				<span class="view-icon">🔬</span>
+				<span class="view-label">Microscopic Conic Zoom (Dentin Thinning)</span>
 			</button>
-			<button class="stage-btn" data-stage="2" type="button">
-				<span class="stage-num">Stage 3</span>
-				<span class="stage-name">Moderate Loss &amp; Recession</span>
-			</button>
-			<button class="stage-btn" data-stage="3" type="button">
-				<span class="stage-num">Stage 4</span>
-				<span class="stage-name">Full Tubule Breach</span>
+			<button class="view-btn" data-view="split" type="button">
+				<span class="view-icon">⚡</span>
+				<span class="view-label">Side-by-Side Dual View</span>
 			</button>
 		</div>
 
-		<!-- Main Interactive Canvas & Stage Display -->
-		<div class="simulation-stage-box">
-			<div class="canvas-container">
-				<canvas id="enamelCanvas" width="900" height="420"></canvas>
-				
-				<!-- Overlay Live Status -->
-				<div class="canvas-overlay-status" id="statusOverlay">
-					<div class="status-indicator-dot" id="statusDot"></div>
-					<span id="statusText">Pulp Environment: Fully Sealed &amp; Protected</span>
-				</div>
-			</div>
+		<!-- Age Step Controls -->
+		<div class="age-button-grid" role="tablist" aria-label="Age Milestones">
+			<button class="age-btn active" data-age="15" type="button">
+				<span class="age-badge-text">Age 15 - Youth</span>
+				<span class="age-state">Intact Shield (0mm Recession)</span>
+			</button>
+			<button class="age-btn" data-age="30" type="button">
+				<span class="age-badge-text">Age 30 - Early Wear</span>
+				<span class="age-state">Micro-Fissures (0.8mm Recession)</span>
+			</button>
+			<button class="age-btn" data-age="45" type="button">
+				<span class="age-badge-text">Age 45 - Abfraction</span>
+				<span class="age-state">Active Notch (1.8mm Recession)</span>
+			</button>
+			<button class="age-btn" data-age="60" type="button">
+				<span class="age-badge-text">Age 60+ - Severe Breach</span>
+				<span class="age-state">Dentin Thinning (2.5mm+ Recession)</span>
+			</button>
+		</div>
 
-			<!-- Interactive Slider & Controls -->
-			<div class="slider-control-bar">
-				<div class="slider-left">
-					<label for="erosionSlider" class="slider-label">
-						<span>Erosion &amp; Wear Progression:</span>
-						<strong id="sliderPercentText">0% (Intact)</strong>
-					</label>
-					<input 
-						type="range" 
-						id="erosionSlider" 
-						min="0" 
-						max="100" 
-						value="0" 
-						step="1"
-						class="erosion-range-input"
-						aria-label="Enamel erosion percentage"
+		<!-- Interactive Simulation Stage (Dynamic Viewport) -->
+		<div class="simulation-viewport-container" id="simContainer" data-mode="anatomical">
+			
+			<!-- VIEW A: 3D Anatomical Tooth Cross-Section (Using Real Medical Image + Dynamic Canvas Overlays) -->
+			<div class="sim-pane anatomical-pane" id="anatomicalPane">
+				<div class="tooth-render-stage">
+					<img 
+						src="/exposed-dentinal-tubules-cross-section.jpg" 
+						alt="3D Anatomical cross section of tooth with 2mm gum recession, exposed dentinal tubules, pulp and trigeminal nerve"
+						class="tooth-base-image"
+						id="toothBaseImg"
 					/>
+					
+					<!-- Canvas Overlay for Dynamic Abfraction Erosion, Tubule Sprouting & Trigeminal Action Potentials -->
+					<canvas id="toothOverlayCanvas" width="1200" height="896"></canvas>
+
+					<!-- Dynamic Floating Callouts Tied to Age -->
+					<div class="hotspot-badge abfraction-badge" id="abfractionBadge">
+						<div class="hotspot-dot"></div>
+						<div class="hotspot-info">
+							<strong id="badgeWearTitle">Enamel Intact</strong>
+							<span id="badgeWearDesc">CEJ fully protected by gingival margin</span>
+						</div>
+					</div>
+
+					<div class="hotspot-badge nerve-badge" id="nerveBadge">
+						<div class="hotspot-dot nerve"></div>
+						<div class="hotspot-info">
+							<strong>Mandibular Canal (CN V3)</strong>
+							<span id="badgeNerveDesc">Action potential frequency: Quiet</span>
+						</div>
+					</div>
 				</div>
-				<div class="slider-actions">
-					<button id="playPauseBtn" class="anim-action-btn" type="button">
-						<span id="playIcon">▶</span>
-						<span id="playText">Auto Play</span>
-					</button>
-					<button id="resetBtn" class="anim-action-btn secondary" type="button">
-						Reset
-					</button>
+			</div>
+
+			<!-- VIEW B: Microscopic Zoom showing Conical Tubule Geometry & Dentin Wall Thinning -->
+			<div class="sim-pane conical-pane" id="conicalPane">
+				<div class="conical-header-bar">
+					<div class="conical-title-wrap">
+						<h4 class="conical-title">Microscopic Conic Geometry: Dentin Wall&nbsp;Thinning</h4>
+						<p class="conical-subtitle">
+							Dentinal tubules are funnel cones ($0.8\mu m \to 2.8\mu m$). As cervical erosion eats inward, the dentin thins and fluid flow surges by $95\times$ via Poiseuille's&nbsp;Law.
+						</p>
+					</div>
+					<div class="conical-rdt-pill" id="rdtPill">
+						Remaining Dentin: <strong>3.00 mm</strong>
+					</div>
 				</div>
+
+				<div class="conical-canvas-box">
+					<canvas id="conicalCanvas" width="900" height="460"></canvas>
+					
+					<div class="conical-legend-row">
+						<div class="legend-chip"><span class="chip-color outer"></span> Outer Surface (Acid / Saliva)</div>
+						<div class="legend-chip"><span class="chip-color dentin"></span> Dentin Wall (Thinning with Age)</div>
+						<div class="legend-chip"><span class="chip-color tubule"></span> Funnel Tubules (Expanding Cones)</div>
+						<div class="legend-chip"><span class="chip-color pulp"></span> Pulp / Odontoblast Plexus (Pain Trigger)</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Interactive Timeline Slider & Playback Controls -->
+		<div class="slider-control-bar">
+			<div class="slider-left">
+				<div class="slider-header-flex">
+					<label for="ageSlider" class="slider-label">
+						<span>Patient Age Timeline:</span>
+						<strong id="ageDisplay">Age 15 (Pristine Shield)</strong>
+					</label>
+					<span class="recession-readout" id="recessionReadout">0.0 mm Recession</span>
+				</div>
+				<input 
+					type="range" 
+					id="ageSlider" 
+					min="15" 
+					max="65" 
+					value="15" 
+					step="1"
+					class="age-range-input"
+					aria-label="Patient age timeline slider"
+				/>
+				<div class="slider-ticks">
+					<span>15y</span>
+					<span>25y</span>
+					<span>35y</span>
+					<span>45y</span>
+					<span>55y</span>
+					<span>65y+</span>
+				</div>
+			</div>
+			
+			<div class="slider-actions">
+				<button id="playPauseBtn" class="anim-action-btn" type="button">
+					<span id="playIcon">▶</span>
+					<span id="playText">Play 50-Year Arc</span>
+				</button>
+				<button id="resetBtn" class="anim-action-btn secondary" type="button">
+					Reset to 15y
+				</button>
 			</div>
 		</div>
 
-		<!-- Real-time Biophysical Metrics Grid -->
+		<!-- Real-Time Biophysical Telemetry Dashboard -->
 		<div class="metrics-dashboard">
 			<div class="metric-card">
-				<div class="metric-label">Enamel Thickness</div>
+				<div class="metric-label">Gum Line Recession</div>
 				<div class="metric-value-box">
-					<span class="metric-val" id="valThickness">2.50</span>
+					<span class="metric-val" id="metricRecession">0.0</span>
 					<span class="metric-unit">mm</span>
 				</div>
-				<div class="metric-sub" id="subThickness">100% barrier intact</div>
+				<div class="metric-sub" id="subRecession">Gums seal root cementum</div>
 			</div>
 
 			<div class="metric-card">
-				<div class="metric-label">Exposed Tubules Quantity</div>
+				<div class="metric-label">Remaining Dentin (RDT)</div>
 				<div class="metric-value-box">
-					<span class="metric-val" id="valTubules">0</span>
+					<span class="metric-val" id="metricRdt">3.00</span>
+					<span class="metric-unit">mm</span>
+				</div>
+				<div class="metric-sub" id="subRdt">Full insulation over pulp</div>
+			</div>
+
+			<div class="metric-card">
+				<div class="metric-label">Exposed Tubule Density</div>
+				<div class="metric-value-box">
+					<span class="metric-val" id="metricDensity">0</span>
 					<span class="metric-unit">/ mm²</span>
 				</div>
-				<div class="metric-sub" id="subTubules">Zero exposure to oral cavity</div>
+				<div class="metric-sub" id="subDensity">Zero open micro-channels</div>
 			</div>
 
 			<div class="metric-card">
-				<div class="metric-label">Tubule Lumen Diameter</div>
+				<div class="metric-label">Conical Aperture Width</div>
 				<div class="metric-value-box">
-					<span class="metric-val" id="valDiameter">0.00</span>
+					<span class="metric-val" id="metricDiameter">0.00</span>
 					<span class="metric-unit">µm</span>
 				</div>
-				<div class="metric-sub" id="subDiameter">Sealed under hydroxyapatite</div>
-			</div>
-
-			<div class="metric-card">
-				<div class="metric-label">Hydrodynamic Flow Velocity</div>
-				<div class="metric-value-box">
-					<span class="metric-val" id="valFlow">0.00</span>
-					<span class="metric-unit">mm/s</span>
-				</div>
-				<div class="metric-sub" id="subFlow">Fluid static, no shear strain</div>
+				<div class="metric-sub" id="subDiameter">Sealed by enamel prisms</div>
 			</div>
 
 			<div class="metric-card highlight">
-				<div class="metric-label">Nerve Signal (Trigeminal V3)</div>
+				<div class="metric-label">Fluid Conductance ($r^4$)</div>
 				<div class="metric-value-box">
-					<span class="metric-val nerve" id="valNerve">0</span>
+					<span class="metric-val" id="metricFlow">1.0</span>
+					<span class="metric-unit">× Base</span>
+				</div>
+				<div class="metric-sub" id="subFlow">Zero hydrodynamic shear</div>
+			</div>
+
+			<div class="metric-card critical">
+				<div class="metric-label">Trigeminal CN V3 Output</div>
+				<div class="metric-value-box">
+					<span class="metric-val nerve" id="metricNerve">0</span>
 					<span class="metric-unit">/ 10 Pain</span>
 				</div>
 				<div class="metric-sub" id="subNerve">Nociceptors quiet</div>
 			</div>
 		</div>
 
-		<!-- Stage Explanation Callout Card -->
+		<!-- Deep Scientific Analysis & Clinical Explanations -->
 		<div class="stage-explanation-card" id="explanationCard">
 			<div class="exp-header-row">
-				<span class="exp-badge" id="expPhaseNumber">Phase 1 Analysis</span>
-				<h4 class="exp-title" id="expTitle">Healthy Tooth: Enamel Shield &amp; Intact Smear Layer</h4>
+				<span class="exp-phase-badge" id="expPhaseBadge">Age 15 - Baseline</span>
+				<h4 class="exp-title" id="expTitle">The Pristine Crown: Full Crystalline Enamel Insulation</h4>
 			</div>
 			<p class="exp-body" id="expBody">
-				In a healthy crown, a 2.0 to 2.5 mm layer of highly mineralized hydroxyapatite enamel crystals acts as an impenetrable physical and chemical insulator. Below the enamel-dentin junction (DEJ), microscopic dentinal tubules remain completely sealed. Neither dietary acids nor thermal shifts can reach the internal odontoblast processes or trigeminal pain&nbsp;fibers.
+				In youth, the cementoenamel junction (CEJ) is completely buried beneath tight gingival tissue. The crown features a 2.0 to 2.5 mm cap of impenetrable hydroxyapatite enamel crystals. Because dentinal tubules are sealed under this dense cap, thermal shifts and oral fluids exert zero hydrodynamic pull on the underlying odontoblasts, keeping the Trigeminal Mandibular Canal (CN V3) completely&nbsp;silent.
 			</p>
-			<div class="exp-takeaways" id="expTakeaways">
-				<div class="takeaway-item">
-					<strong>Barrier Integrity:</strong> Zero acidic protons can penetrate the dense hydroxyapatite crystalline lattice.
+			
+			<div class="exp-scientific-grid" id="expScienceGrid">
+				<div class="science-box">
+					<div class="science-box-title">Why Tubules Are Conical (Funnel-Shaped)</div>
+					<p class="science-box-desc">
+						Tubules originate at the small surface of the pulp chamber (up to 65,000/mm², 2.8µm diameter) and radiate outward to a much larger enamel surface area (15,000/mm², 0.8µm diameter). They are natural tapered cones!
+					</p>
 				</div>
-				<div class="takeaway-item">
-					<strong>Fluid Dynamic:</strong> Dentinal fluid remains stable, exerting no mechanical pull on Piezo1 or TRPC5 channels.
+				<div class="science-box">
+					<div class="science-box-title">The Danger of Dentin Thinning</div>
+					<p class="science-box-desc">
+						As wear slices into dentin, it does not just remove surface matter; it cuts into wider portions of the cone. By Poiseuille's Law, doubling tubule radius increases fluid flow by 16-fold ($r^4$), turning mild wear into explosive pain.
+					</p>
 				</div>
 			</div>
 		</div>
+
 	</div>
 </div>
 
@@ -159,7 +254,7 @@ const { class: className = '' } = Astro.props;
 		background: radial-gradient(120% 120% at 50% 0%, #1e1136 0%, #0d081a 60%, #080410 100%);
 		border: 1px solid rgba(168, 85, 247, 0.35);
 		border-radius: 1.5rem;
-		padding: clamp(1.5rem, 3.5vw, 2.5rem);
+		padding: clamp(1.25rem, 3vw, 2.5rem);
 		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 		color: #e2e8f0;
 	}
@@ -167,14 +262,14 @@ const { class: className = '' } = Astro.props;
 	.enamel-anim-header {
 		text-align: center;
 		margin-bottom: 2rem;
-		max-width: 820px;
+		max-width: 860px;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
 	.enamel-anim-title {
 		font-family: var(--font-heading, system-ui, sans-serif);
-		font-size: clamp(1.4rem, 2.8vw, 2rem);
+		font-size: clamp(1.4rem, 2.8vw, 2.1rem);
 		font-weight: 900;
 		color: #ffffff;
 		margin: 0 0 0.85rem 0;
@@ -191,8 +286,49 @@ const { class: className = '' } = Astro.props;
 		text-wrap: pretty;
 	}
 
-	/* Stage Selection Grid */
-	.stage-button-grid {
+	/* View Mode Toggle */
+	.view-mode-toggle {
+		display: flex;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-bottom: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.view-btn {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(168, 85, 247, 0.28);
+		border-radius: 0.85rem;
+		padding: 0.65rem 1.25rem;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: #cbd5e1;
+		transition: all 0.2s ease;
+	}
+
+	.view-btn:hover {
+		background: rgba(168, 85, 247, 0.15);
+		color: #ffffff;
+		border-color: rgba(168, 85, 247, 0.5);
+	}
+
+	.view-btn.active {
+		background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(126, 34, 206, 0.5) 100%);
+		border-color: #c084fc;
+		color: #ffffff;
+		box-shadow: 0 0 16px rgba(168, 85, 247, 0.4);
+	}
+
+	.view-icon {
+		font-size: 1.1rem;
+	}
+
+	/* Age Button Grid */
+	.age-button-grid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 0.75rem;
@@ -200,14 +336,14 @@ const { class: className = '' } = Astro.props;
 	}
 
 	@media (max-width: 768px) {
-		.stage-button-grid {
+		.age-button-grid {
 			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
-	.stage-btn {
-		background: rgba(255, 255, 255, 0.04);
-		border: 1px solid rgba(168, 85, 247, 0.25);
+	.age-btn {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(168, 85, 247, 0.22);
 		border-radius: 0.85rem;
 		padding: 0.85rem 0.75rem;
 		cursor: pointer;
@@ -220,139 +356,311 @@ const { class: className = '' } = Astro.props;
 		text-align: left;
 	}
 
-	.stage-btn:hover {
+	.age-btn:hover {
 		background: rgba(168, 85, 247, 0.12);
-		border-color: rgba(168, 85, 247, 0.5);
-		transform: translateY(-1px);
+		border-color: rgba(168, 85, 247, 0.45);
 	}
 
-	.stage-btn.active {
-		background: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(126, 34, 206, 0.4) 100%);
+	.age-btn.active {
+		background: linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(147, 51, 234, 0.38) 100%);
 		border-color: #c084fc;
-		box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
+		box-shadow: 0 0 14px rgba(168, 85, 247, 0.3);
 	}
 
-	.stage-num {
-		font-size: 0.75rem;
+	.age-badge-text {
+		font-size: 0.82rem;
 		font-weight: 800;
 		color: #c084fc;
-		letter-spacing: 0.04em;
 	}
 
-	.stage-btn.active .stage-num {
+	.age-btn.active .age-badge-text {
 		color: #fde047;
 	}
 
-	.stage-name {
-		font-size: 0.88rem;
-		font-weight: 700;
+	.age-state {
+		font-size: 0.84rem;
+		font-weight: 600;
 		color: #ffffff;
-		line-height: 1.3;
+		line-height: 1.25;
 	}
 
-	/* Simulation Canvas Container */
-	.simulation-stage-box {
-		background: rgba(8, 4, 18, 0.8);
+	/* Simulation Viewport & Modes */
+	.simulation-viewport-container {
+		background: #06020d;
 		border: 1px solid rgba(168, 85, 247, 0.3);
 		border-radius: 1.25rem;
-		padding: 1rem;
+		padding: 0.85rem;
 		margin-bottom: 1.5rem;
-		box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+		position: relative;
+		overflow: hidden;
 	}
 
-	.canvas-container {
+	.simulation-viewport-container[data-mode="anatomical"] .conical-pane {
+		display: none;
+	}
+
+	.simulation-viewport-container[data-mode="conical"] .anatomical-pane {
+		display: none;
+	}
+
+	.simulation-viewport-container[data-mode="split"] {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+
+	@media (max-width: 900px) {
+		.simulation-viewport-container[data-mode="split"] {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* 3D Anatomical Stage */
+	.tooth-render-stage {
 		position: relative;
 		width: 100%;
 		border-radius: 0.85rem;
 		overflow: hidden;
-		background: #06020c;
-		border: 1px solid rgba(168, 85, 247, 0.2);
+		background: #020106;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	#enamelCanvas {
-		display: block;
+	.tooth-base-image {
 		width: 100%;
 		height: auto;
-		aspect-ratio: 900 / 420;
+		display: block;
+		object-fit: contain;
+		max-height: 580px;
 	}
 
-	.canvas-overlay-status {
+	#toothOverlayCanvas {
 		position: absolute;
-		top: 12px;
-		left: 14px;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
+	/* Hotspot Callouts */
+	.hotspot-badge {
+		position: absolute;
 		display: flex;
 		align-items: center;
 		gap: 0.6rem;
-		background: rgba(10, 5, 20, 0.85);
+		background: rgba(12, 6, 24, 0.9);
 		backdrop-filter: blur(8px);
-		border: 1px solid rgba(168, 85, 247, 0.4);
-		padding: 0.45rem 0.9rem;
-		border-radius: 0.6rem;
-		font-size: 0.82rem;
-		font-weight: 700;
-		color: #f1f5f9;
-		z-index: 10;
-		box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+		border: 1px solid rgba(168, 85, 247, 0.45);
+		padding: 0.45rem 0.85rem;
+		border-radius: 0.75rem;
+		box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+		pointer-events: none;
+		transition: all 0.3s ease;
 	}
 
-	.status-indicator-dot {
+	.abfraction-badge {
+		top: 28%;
+		left: 3%;
+		max-width: 260px;
+	}
+
+	.nerve-badge {
+		bottom: 5%;
+		right: 3%;
+		max-width: 280px;
+	}
+
+	@media (max-width: 600px) {
+		.hotspot-badge {
+			display: none;
+		}
+	}
+
+	.hotspot-dot {
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
 		background: #22c55e;
 		box-shadow: 0 0 8px #22c55e;
-		transition: background 0.3s ease, box-shadow 0.3s ease;
+		flex-shrink: 0;
 	}
 
-	.status-indicator-dot.warning {
-		background: #f59e0b;
-		box-shadow: 0 0 8px #f59e0b;
+	.hotspot-dot.warning {
+		background: #eab308;
+		box-shadow: 0 0 10px #eab308;
 	}
 
-	.status-indicator-dot.danger {
+	.hotspot-dot.danger {
 		background: #ef4444;
-		box-shadow: 0 0 10px #ef4444;
+		box-shadow: 0 0 12px #ef4444;
 		animation: pulseRed 1s infinite alternate;
 	}
 
-	@keyframes pulseRed {
-		0% { transform: scale(0.9); opacity: 0.7; }
-		100% { transform: scale(1.2); opacity: 1; }
+	.hotspot-dot.nerve {
+		background: #38bdf8;
+		box-shadow: 0 0 8px #38bdf8;
 	}
 
-	/* Slider Controls */
+	.hotspot-dot.nerve.firing {
+		background: #ef4444;
+		box-shadow: 0 0 14px #ef4444;
+	}
+
+	.hotspot-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.hotspot-info strong {
+		font-size: 0.82rem;
+		color: #ffffff;
+		line-height: 1.2;
+	}
+
+	.hotspot-info span {
+		font-size: 0.72rem;
+		color: #cbd5e1;
+		line-height: 1.25;
+	}
+
+	/* Conical View Stage */
+	.conical-pane {
+		background: #070311;
+		border-radius: 0.85rem;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		border: 1px solid rgba(168, 85, 247, 0.25);
+	}
+
+	.conical-header-bar {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.85rem;
+		flex-wrap: wrap;
+	}
+
+	.conical-title-wrap {
+		flex: 1;
+		min-width: 240px;
+	}
+
+	.conical-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.08rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0 0 0.35rem 0;
+		line-height: 1.3;
+	}
+
+	.conical-subtitle {
+		font-size: 0.82rem;
+		line-height: 1.5;
+		color: #cbd5e1;
+		margin: 0;
+	}
+
+	.conical-rdt-pill {
+		background: rgba(253, 224, 71, 0.12);
+		border: 1px solid rgba(253, 224, 71, 0.35);
+		border-radius: 0.6rem;
+		padding: 0.4rem 0.8rem;
+		font-size: 0.82rem;
+		color: #fde047;
+		white-space: nowrap;
+	}
+
+	.conical-canvas-box {
+		width: 100%;
+		border-radius: 0.75rem;
+		overflow: hidden;
+		background: #030107;
+		border: 1px solid rgba(168, 85, 247, 0.2);
+	}
+
+	#conicalCanvas {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 900 / 460;
+	}
+
+	.conical-legend-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem 1.25rem;
+		margin-top: 0.75rem;
+		padding: 0.4rem 0.2rem;
+	}
+
+	.legend-chip {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.76rem;
+		color: #cbd5e1;
+	}
+
+	.chip-color {
+		width: 12px;
+		height: 12px;
+		border-radius: 3px;
+	}
+
+	.chip-color.outer { background: #e2e8f0; }
+	.chip-color.dentin { background: #92632b; }
+	.chip-color.tubule { background: #fde047; }
+	.chip-color.pulp { background: #dc2626; }
+
+	/* Slider Bar Controls */
 	.slider-control-bar {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 1.5rem;
-		margin-top: 1rem;
-		padding: 0.75rem 0.5rem 0.25rem;
+		padding: 0.85rem 0.5rem 0.4rem;
 		flex-wrap: wrap;
+		margin-bottom: 1.25rem;
 	}
 
 	.slider-left {
 		flex: 1;
-		min-width: 260px;
+		min-width: 280px;
 		display: flex;
 		flex-direction: column;
 		gap: 0.45rem;
 	}
 
-	.slider-label {
+	.slider-header-flex {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		font-size: 0.88rem;
+		font-size: 0.9rem;
+	}
+
+	.slider-label {
 		color: #cbd5e1;
 		font-weight: 600;
 	}
 
 	.slider-label strong {
 		color: #fde047;
+		margin-left: 0.25rem;
 	}
 
-	.erosion-range-input {
+	.recession-readout {
+		font-size: 0.85rem;
+		font-weight: 800;
+		color: #c084fc;
+	}
+
+	.age-range-input {
 		-webkit-appearance: none;
 		appearance: none;
 		width: 100%;
@@ -363,21 +671,29 @@ const { class: className = '' } = Astro.props;
 		cursor: pointer;
 	}
 
-	.erosion-range-input::-webkit-slider-thumb {
+	.age-range-input::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		appearance: none;
-		width: 22px;
-		height: 22px;
+		width: 24px;
+		height: 24px;
 		border-radius: 50%;
 		background: #ffffff;
-		border: 2px solid #9333ea;
-		box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+		border: 3px solid #9333ea;
+		box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
 		cursor: pointer;
 		transition: transform 0.15s ease;
 	}
 
-	.erosion-range-input::-webkit-slider-thumb:hover {
+	.age-range-input::-webkit-slider-thumb:hover {
 		transform: scale(1.15);
+	}
+
+	.slider-ticks {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.72rem;
+		color: #94a3b8;
+		padding: 0 4px;
 	}
 
 	.slider-actions {
@@ -391,8 +707,8 @@ const { class: className = '' } = Astro.props;
 		color: #ffffff;
 		border: none;
 		border-radius: 0.65rem;
-		padding: 0.55rem 1rem;
-		font-size: 0.85rem;
+		padding: 0.6rem 1.15rem;
+		font-size: 0.86rem;
 		font-weight: 700;
 		cursor: pointer;
 		display: inline-flex;
@@ -415,19 +731,19 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.anim-action-btn.secondary:hover {
-		background: rgba(255, 255, 255, 0.14);
+		background: rgba(255, 255, 255, 0.15);
 		color: #ffffff;
 	}
 
-	/* Metrics Dashboard Grid */
+	/* Telemetry Metrics */
 	.metrics-dashboard {
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		gap: 0.75rem;
+		grid-template-columns: repeat(6, 1fr);
+		gap: 0.65rem;
 		margin-bottom: 1.5rem;
 	}
 
-	@media (max-width: 992px) {
+	@media (max-width: 1024px) {
 		.metrics-dashboard {
 			grid-template-columns: repeat(3, 1fr);
 		}
@@ -442,20 +758,25 @@ const { class: className = '' } = Astro.props;
 	.metric-card {
 		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid rgba(168, 85, 247, 0.2);
-		border-radius: 0.95rem;
-		padding: 0.9rem 0.8rem;
+		border-radius: 0.85rem;
+		padding: 0.85rem 0.75rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 	}
 
 	.metric-card.highlight {
-		background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(147, 51, 234, 0.15) 100%);
-		border-color: rgba(239, 68, 68, 0.4);
+		background: rgba(234, 179, 8, 0.08);
+		border-color: rgba(234, 179, 8, 0.35);
+	}
+
+	.metric-card.critical {
+		background: rgba(239, 68, 68, 0.12);
+		border-color: rgba(239, 68, 68, 0.45);
 	}
 
 	.metric-label {
-		font-size: 0.74rem;
+		font-size: 0.73rem;
 		font-weight: 700;
 		color: #94a3b8;
 		margin-bottom: 0.35rem;
@@ -481,20 +802,20 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.metric-unit {
-		font-size: 0.75rem;
+		font-size: 0.74rem;
 		font-weight: 600;
 		color: #a855f7;
 	}
 
 	.metric-sub {
-		font-size: 0.72rem;
+		font-size: 0.71rem;
 		color: #cbd5e1;
 		line-height: 1.3;
 	}
 
-	/* Explanation Card */
+	/* Explanation Section */
 	.stage-explanation-card {
-		background: rgba(13, 8, 26, 0.75);
+		background: rgba(13, 8, 26, 0.8);
 		border: 1px solid rgba(168, 85, 247, 0.3);
 		border-radius: 1.15rem;
 		padding: 1.4rem 1.6rem;
@@ -509,7 +830,7 @@ const { class: className = '' } = Astro.props;
 		flex-wrap: wrap;
 	}
 
-	.exp-badge {
+	.exp-phase-badge {
 		font-size: 0.78rem;
 		font-weight: 800;
 		color: #fde047;
@@ -533,534 +854,599 @@ const { class: className = '' } = Astro.props;
 		font-size: 0.94rem;
 		line-height: 1.65;
 		color: #cbd5e1;
-		margin: 0 0 1rem 0;
+		margin: 0 0 1.25rem 0;
 		text-wrap: pretty;
 	}
 
-	.exp-takeaways {
+	.exp-scientific-grid {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 0.75rem;
-		padding-top: 0.75rem;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		padding-top: 1rem;
 		border-top: 1px solid rgba(168, 85, 247, 0.2);
 	}
 
-	@media (max-width: 680px) {
-		.exp-takeaways {
+	@media (max-width: 768px) {
+		.exp-scientific-grid {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	.takeaway-item {
-		font-size: 0.85rem;
-		color: #e2e8f0;
-		line-height: 1.5;
+	.science-box {
 		background: rgba(255, 255, 255, 0.02);
-		padding: 0.6rem 0.8rem;
-		border-radius: 0.6rem;
 		border-left: 3px solid #c084fc;
+		border-radius: 0.6rem;
+		padding: 0.85rem 1rem;
 	}
 
-	.takeaway-item strong {
+	.science-box-title {
+		font-size: 0.86rem;
+		font-weight: 800;
 		color: #ffffff;
+		margin-bottom: 0.35rem;
+	}
+
+	.science-box-desc {
+		font-size: 0.82rem;
+		line-height: 1.55;
+		color: #cbd5e1;
+		margin: 0;
 	}
 </style>
 
 <script is:inline>
 (() => {
-	const canvas = document.getElementById('enamelCanvas');
-	if (!canvas) return;
-	const ctx = canvas.getContext('2d');
-	if (!ctx) return;
-
-	const slider = document.getElementById('erosionSlider');
-	const sliderPercentText = document.getElementById('sliderPercentText');
+	// Containers & Controls
+	const simContainer = document.getElementById('simContainer');
+	const viewButtons = document.querySelectorAll('.view-btn');
+	const ageButtons = document.querySelectorAll('.age-btn');
+	const ageSlider = document.getElementById('ageSlider');
+	const ageDisplay = document.getElementById('ageDisplay');
+	const recessionReadout = document.getElementById('recessionReadout');
 	const playPauseBtn = document.getElementById('playPauseBtn');
 	const playIcon = document.getElementById('playIcon');
 	const playText = document.getElementById('playText');
 	const resetBtn = document.getElementById('resetBtn');
-	const stageButtons = document.querySelectorAll('.stage-btn');
 
-	// Metrics elements
-	const valThickness = document.getElementById('valThickness');
-	const subThickness = document.getElementById('subThickness');
-	const valTubules = document.getElementById('valTubules');
-	const subTubules = document.getElementById('subTubules');
-	const valDiameter = document.getElementById('valDiameter');
+	// Canvases
+	const toothCanvas = document.getElementById('toothOverlayCanvas');
+	const toothCtx = toothCanvas ? toothCanvas.getContext('2d') : null;
+	const conicalCanvas = document.getElementById('conicalCanvas');
+	const conicalCtx = conicalCanvas ? conicalCanvas.getContext('2d') : null;
+
+	// Floating Badges on 3D Tooth
+	const badgeWearTitle = document.getElementById('badgeWearTitle');
+	const badgeWearDesc = document.getElementById('badgeWearDesc');
+	const badgeNerveDesc = document.getElementById('badgeNerveDesc');
+	const rdtPill = document.getElementById('rdtPill');
+
+	// Telemetry Metrics
+	const metricRecession = document.getElementById('metricRecession');
+	const subRecession = document.getElementById('subRecession');
+	const metricRdt = document.getElementById('metricRdt');
+	const subRdt = document.getElementById('subRdt');
+	const metricDensity = document.getElementById('metricDensity');
+	const subDensity = document.getElementById('subDensity');
+	const metricDiameter = document.getElementById('metricDiameter');
 	const subDiameter = document.getElementById('subDiameter');
-	const valFlow = document.getElementById('valFlow');
+	const metricFlow = document.getElementById('metricFlow');
 	const subFlow = document.getElementById('subFlow');
-	const valNerve = document.getElementById('valNerve');
+	const metricNerve = document.getElementById('metricNerve');
 	const subNerve = document.getElementById('subNerve');
 
-	// Status and Explanation elements
-	const statusDot = document.getElementById('statusDot');
-	const statusText = document.getElementById('statusText');
-	const expPhaseNumber = document.getElementById('expPhaseNumber');
+	// Explanations
+	const expPhaseBadge = document.getElementById('expPhaseBadge');
 	const expTitle = document.getElementById('expTitle');
 	const expBody = document.getElementById('expBody');
-	const expTakeaways = document.getElementById('expTakeaways');
 
+	let currentAge = 15;
 	let isPlaying = false;
-	let animId = null;
+	let animReqId = null;
 	let playDirection = 1;
-	let currentPercent = 0;
 	let frameCount = 0;
 
-	// Particle systems
-	const acidIons = [];
-	const fluidParticles = [];
-	const nervePulses = [];
-
-	// Initialize particles
-	for (let i = 0; i < 40; i++) {
-		acidIons.push({
-			x: 50 + Math.random() * 800,
-			y: 20 + Math.random() * 50,
-			vx: (Math.random() - 0.5) * 0.8,
-			vy: 0.4 + Math.random() * 0.8,
-			radius: 2 + Math.random() * 2,
-			active: true
+	// View Switcher logic
+	viewButtons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			viewButtons.forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
+			const mode = btn.getAttribute('data-view');
+			if (simContainer) simContainer.setAttribute('data-mode', mode);
 		});
-	}
+	});
 
-	for (let i = 0; i < 50; i++) {
-		fluidParticles.push({
-			tubuleIndex: Math.floor(Math.random() * 12),
-			t: Math.random(), // 0 to 1 along tubule
-			speed: 0.003 + Math.random() * 0.005
-		});
-	}
-
-	const stageData = [
+	// Age Milestones Data
+	const ageMilestones = [
 		{
-			stage: 0,
-			min: 0,
-			max: 15,
-			name: "Stage 1: Intact Enamel (2.5mm)",
-			thickness: (p) => (2.50 - (p / 100) * 0.3).toFixed(2),
-			thicknessSub: "100% barrier intact",
-			tubules: () => "0",
-			tubulesSub: "Zero exposure to oral cavity",
-			diameter: () => "0.00",
-			diameterSub: "Sealed under hydroxyapatite",
-			flow: () => "0.00",
-			flowSub: "Fluid static, no shear strain",
-			nerve: () => "0",
-			nerveSub: "Nociceptors quiet",
-			statusText: "Pulp Environment: Fully Sealed & Protected",
-			statusClass: "",
-			expPhase: "Phase 1 Analysis",
-			expTitle: "Healthy Tooth: Enamel Shield & Intact Smear Layer",
-			expBody: "In a healthy crown, a 2.0 to 2.5 mm layer of highly mineralized hydroxyapatite enamel crystals acts as an impenetrable physical and chemical insulator. Below the enamel-dentin junction (DEJ), microscopic dentinal tubules remain completely sealed. Neither dietary acids nor thermal shifts can reach the internal odontoblast processes or trigeminal pain fibers.",
-			takeaways: [
-				{ label: "Barrier Integrity", desc: "Zero acidic protons can penetrate the dense hydroxyapatite crystalline lattice." },
-				{ label: "Fluid Dynamic", desc: "Dentinal fluid remains stable, exerting no mechanical pull on Piezo1 or TRPC5 channels." }
-			]
+			age: 15,
+			label: "Age 15 (Pristine Shield)",
+			recession: 0.0,
+			rdt: 3.00,
+			density: 0,
+			diameter: 0.00,
+			flowMultiplier: 1.0,
+			nerveScore: 0,
+			wearTitle: "Enamel Intact (2.5mm)",
+			wearDesc: "Gingival collar tightly wraps CEJ",
+			nerveDesc: "Trigeminal CN V3 quiet, zero stimulus",
+			phase: "Age 15 - Baseline Youth",
+			title: "The Pristine Crown: Full Crystalline Enamel Insulation",
+			body: "In youth, the cementoenamel junction (CEJ) is completely buried beneath tight gingival tissue. The crown features a 2.0 to 2.5 mm cap of impenetrable hydroxyapatite enamel crystals. Because dentinal tubules are sealed under this dense cap, thermal shifts and oral fluids exert zero hydrodynamic pull on the underlying odontoblasts, keeping the Trigeminal Mandibular Canal (CN V3) completely silent.",
+			subRecession: "Gums seal root cementum",
+			subRdt: "Full insulation over pulp",
+			subDensity: "Zero open micro-channels",
+			subDiameter: "Sealed by enamel prisms",
+			subFlow: "Zero hydrodynamic shear",
+			subNerve: "Nociceptors quiet"
 		},
 		{
-			stage: 1,
-			min: 16,
-			max: 45,
-			name: "Stage 2: Early Acid Softening",
-			thickness: (p) => (2.20 - ((p - 15) / 30) * 0.8).toFixed(2),
-			thicknessSub: "Surface demineralization",
-			tubules: (p) => Math.round(((p - 15) / 30) * 8000).toLocaleString(),
-			tubulesSub: "Incipient microscopic fissures",
-			diameter: (p) => (((p - 15) / 30) * 0.6).toFixed(2),
-			diameterSub: "Smear layer intact but thinning",
-			flow: (p) => (((p - 15) / 30) * 0.65).toFixed(2),
-			flowSub: "Mild fluid oscillation",
-			nerve: (p) => Math.round(1 + ((p - 15) / 30) * 2),
-			nerveSub: "Mild cold / sweetness twinge",
-			statusText: "Warning: Enamel Crystalline Grid Softening",
-			statusClass: "warning",
-			expPhase: "Phase 2 Analysis",
-			expTitle: "Acid Softening & Sub-Surface Demineralization",
-			expBody: "Repeated dietary acid assaults (sodas, fermented foods, citric fruits) and night grinding lower the oral pH below the critical threshold of 5.5. Hydroxyapatite crystals begin dissolving at the outer prism boundaries, creating porous micro-fissures and thinning the outer protective shell.",
-			takeaways: [
-				{ label: "Chemical Weakening", desc: "Enamel hardness drops by up to 60%, allowing mechanical wear to accelerate rapidly." },
-				{ label: "Early Warning", desc: "Transient sensitivity to cold or sugary drinks signals early dentinal hydrodynamic agitation." }
-			]
+			age: 30,
+			label: "Age 30 (Early Cervical Wear)",
+			recession: 0.8,
+			rdt: 2.45,
+			density: 8500,
+			diameter: 0.85,
+			flowMultiplier: 4.5,
+			nerveScore: 2,
+			wearTitle: "Early Wear & Micro-Fissures",
+			wearDesc: "0.8mm recession exposes cervical margin",
+			nerveDesc: "Transient twinges on cold liquids",
+			phase: "Age 30 - Early Demineralization",
+			title: "Early Acid Softening & Incipient Cervical Recession",
+			body: "After 15 years of dietary acids (carbonated beverages, coffee, citrus) and nocturnal grinding, the enamel at the cervical fulcrum begins micro-fracturing. Gums recede by 0.8 mm. Approximately 8,500 narrow tubule tips (0.85 µm diameter) become exposed. While smear plugs partially seal the openings, rapid temperature drops cause minor fluid contractions, firing occasional sharp spikes in A-delta fibers.",
+			subRecession: "Early apical migration",
+			subRdt: "Minor superficial dentin loss",
+			subDensity: "Narrow peripheral tubule tips",
+			subDiameter: "Outer cone aperture opening",
+			subFlow: "Mild fluid oscillation",
+			subNerve: "Transient twinges (2/10)"
 		},
 		{
-			stage: 2,
-			min: 46,
-			max: 75,
-			name: "Stage 3: Moderate Loss & Recession",
-			thickness: (p) => (1.40 - ((p - 45) / 30) * 0.9).toFixed(2),
-			thicknessSub: "Substantial enamel deficit",
-			tubules: (p) => Math.round(8000 + ((p - 45) / 30) * 20000).toLocaleString(),
-			tubulesSub: "Direct oral communication",
-			diameter: (p) => (0.6 + ((p - 45) / 30) * 1.0).toFixed(2),
-			diameterSub: "Smear plugs dissolving",
-			flow: (p) => (0.65 + ((p - 45) / 30) * 1.8).toFixed(2),
-			flowSub: "Active hydrodynamic displacement",
-			nerve: (p) => Math.round(3 + ((p - 45) / 30) * 4),
-			nerveSub: "A-delta sharp pain firing",
-			statusText: "High Alert: Open Fluid Channels Active",
-			statusClass: "warning",
-			expPhase: "Phase 3 Analysis",
-			expTitle: "Moderate Enamel Loss & Cervical Gum Recession",
-			expBody: "As enamel erodes past 50% thickness and cervical gums recede, protective barriers at the tooth neck disappear entirely. Between 15,000 and 28,000 open dentinal tubules per mm² become directly exposed to saliva, acids, and temperature swings. The smear layer is repeatedly stripped, triggering hydrodynamic fluid surges that deform odontoblasts.",
-			takeaways: [
-				{ label: "Tubule Exposure", desc: "Tens of thousands of micro-pipes act as direct fluid conduits to the nerve plexus." },
-				{ label: "Ion Channel Activation", desc: "Piezo1, TRPC5, and ASIC3 fire rapid action potentials into the mandibular nerve canal." }
-			]
+			age: 45,
+			label: "Age 45 (Abfraction Notch)",
+			recession: 1.8,
+			rdt: 1.60,
+			density: 24000,
+			diameter: 1.65,
+			flowMultiplier: 28.0,
+			nerveScore: 6,
+			wearTitle: "Active Abfraction Notch",
+			wearDesc: "1.8mm recession with smear plug dissolution",
+			nerveDesc: "A-delta & C-fibers actively firing",
+			phase: "Age 45 - Biomechanical Abfraction",
+			title: "The Abfraction Fulcrum: Deep Cervical Wedge & Smear Loss",
+			body: "Tensile stresses from clenching flex the tooth at the cervical fulcrum like bending an iron rod. Enamel rods pop off, creating a wedge-shaped abfraction notch. 1.8 mm of gum recession exposes porous root dentin. Over 24,000 tubules communicate with saliva. Acidic foods dissolve the smear plugs, widening tubule apertures to 1.65 µm and driving a 28-fold surge in fluid conductance via Poiseuille's law.",
+			subRecession: "Root dentin exposed",
+			subRdt: "Significant wall thinning",
+			subDensity: "Thousands of active micro-pipes",
+			subDiameter: "Expanding deeper down the cone",
+			subFlow: "28x fluid flow surge (r⁴ law)",
+			subNerve: "Sharp localized pain (6/10)"
 		},
 		{
-			stage: 3,
-			min: 76,
-			max: 100,
-			name: "Stage 4: Full Tubule Breach",
-			thickness: (p) => Math.max(0, 0.50 - ((p - 75) / 25) * 0.50).toFixed(2),
-			thicknessSub: "Zero barrier remaining",
-			tubules: (p) => Math.round(28000 + ((p - 75) / 25) * 17000).toLocaleString(),
-			tubulesSub: "Max density: 45,000 tubules/mm²",
-			diameter: (p) => (1.6 + ((p - 75) / 25) * 1.2).toFixed(2),
-			diameterSub: "Wide open lumen (2.8µm)",
-			flow: (p) => (2.45 + ((p - 75) / 25) * 1.75).toFixed(2),
-			flowSub: "Violent hydrodynamic flux",
-			nerve: (p) => Math.min(10, Math.round(7 + ((p - 75) / 25) * 3)),
-			nerveSub: "Continuous 10/10 radiating burn",
-			statusText: "CRITICAL: Chronic Trigeminal Neurogenic Firing",
-			statusClass: "danger",
-			expPhase: "Phase 4 Analysis",
-			expTitle: "Total Enamel Breach & Chronic Burning Mouth Ignition",
-			expBody: "Enamel is completely worn away, exposing the deep dentin layer where tubules widen to 2.8 µm near the pulp. Up to 45,000 open tubules per mm² flood the trigeminal nerve root with acidic hydrogen ions (H⁺) and mechanical fluid shear stress. Odontoblasts release ATP, igniting P2X3/P2X7 receptors and triggering Substance P and CGRP release. This creates continuous, non-stop radiating oral burning pain.",
-			takeaways: [
-				{ label: "Neurogenic Cascade", desc: "Unprotected nerve endings enter chronic neurogenic inflammation and central sensitization." },
-				{ label: "Clinical Implication", desc: "Restoring physical barriers (bonding, sealing) and eliminating oral acids stops the trigger source." }
-			]
+			age: 60,
+			label: "Age 60+ (Severe Breach & Thinning)",
+			recession: 2.6,
+			rdt: 0.55,
+			density: 45000,
+			diameter: 2.75,
+			flowMultiplier: 95.0,
+			nerveScore: 10,
+			wearTitle: "Severe Dentin Thinning (0.55mm RDT)",
+			wearDesc: "45,000 wide conical tubules firing into CN V3",
+			nerveDesc: "Non-stop 10/10 radiating burning mouth cascade",
+			phase: "Age 60+ - Full Neuropathic Cascade",
+			title: "Dentin Wall Thinning & Chronic Trigeminal Ignition",
+			body: "The remaining dentin barrier over the pulp horn is shaved down to a paper-thin 0.55 mm. Because dentinal tubules are cones that funnel inward towards the pulp, deep wear cuts into their widest diameters (2.75 µm) and densest packing (45,000 tubules/mm²). Fluid conductance explodes by 95-fold. Odontoblasts dump ATP onto P2X3/P2X7 receptors, unleashing Substance P and CGRP in a non-stop radiating oral burning firestorm.",
+			subRecession: "Severe cervical exposure",
+			subRdt: "Critically compromised (<0.6mm)",
+			subDensity: "Massive open tubule field",
+			subDiameter: "Maximal cone lumen width",
+			subFlow: "95x maximum hydraulic rush",
+			subNerve: "Continuous radiating burn (10/10)"
 		}
 	];
 
-	function getStageIndex(percent) {
-		if (percent <= 15) return 0;
-		if (percent <= 45) return 1;
-		if (percent <= 75) return 2;
-		return 3;
-	}
-
-	function updateUI(percent) {
-		currentPercent = percent;
-		const stageIdx = getStageIndex(percent);
-		const data = stageData[stageIdx];
-
-		sliderPercentText.innerText = `${percent}% (${data.name.split(':')[0]})`;
-
-		// Update metrics
-		valThickness.innerText = data.thickness(percent);
-		subThickness.innerText = data.thicknessSub;
-
-		valTubules.innerText = data.tubules(percent);
-		subTubules.innerText = data.tubulesSub;
-
-		valDiameter.innerText = data.diameter(percent);
-		subDiameter.innerText = data.diameterSub;
-
-		valFlow.innerText = data.flow(percent);
-		subFlow.innerText = data.flowSub;
-
-		valNerve.innerText = data.nerve(percent);
-		subNerve.innerText = data.nerveSub;
-
-		// Update status
-		statusDot.className = 'status-indicator-dot ' + (data.statusClass || '');
-		statusText.innerText = data.statusText;
-
-		// Update stage buttons
-		stageButtons.forEach((btn, idx) => {
-			btn.classList.toggle('active', idx === stageIdx);
-		});
-
-		// Update explanation card
-		expPhaseNumber.innerText = data.expPhase;
-		expTitle.innerText = data.expTitle;
-		expBody.innerHTML = data.expBody.replace(/([a-zA-Z0-9]+)\s+([a-zA-Z0-9.,]+)$/, '$1&nbsp;$2');
-
-		expTakeaways.innerHTML = data.takeaways.map(t => `
-			<div class="takeaway-item">
-				<strong>${t.label}:</strong> ${t.desc}
-			</div>
-		`).join('');
-	}
-
-	function drawSimulation() {
-		frameCount++;
-		const width = canvas.width;
-		const height = canvas.height;
-		const p = currentPercent / 100; // 0 to 1
-
-		ctx.clearRect(0, 0, width, height);
-
-		// Background gradient (Oral Cavity / Saliva on top, Tooth Body below)
-		const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
-		bgGrad.addColorStop(0, '#090414');
-		bgGrad.addColorStop(0.3, '#100726');
-		bgGrad.addColorStop(1, '#05020c');
-		ctx.fillStyle = bgGrad;
-		ctx.fillRect(0, 0, width, height);
-
-		// Layer Y-coordinates
-		const oralTop = 0;
-		const oralBottom = 110;
+	function interpolate(age) {
+		const t = Math.max(0, Math.min(1, (age - 15) / 50)); // 0 at 15, 1 at 65
 		
-		// Enamel thickness shrinks with progression:
-		const maxEnamelH = 90;
-		const currentEnamelH = Math.max(0, maxEnamelH * (1 - p));
-		const enamelTopY = oralBottom - (currentEnamelH > 0 ? 0 : 0);
-		const dejY = oralBottom + maxEnamelH; // Dentin-Enamel Junction fixed reference
-		const pulpY = height - 60; // Pulp chamber at bottom
+		const recession = (t * 2.6).toFixed(1);
+		const rdt = (3.00 - t * 2.45).toFixed(2);
+		const density = Math.round(t * 45000);
+		const diameter = (t * 2.75).toFixed(2);
+		const flowMultiplier = (1.0 + Math.pow(t, 2.5) * 94.0).toFixed(1);
+		const nerveScore = Math.min(10, Math.round(t * 10));
 
-		// 1. DENTIN BODY (From DEJ to Pulp)
-		const dentinGrad = ctx.createLinearGradient(0, dejY, 0, pulpY);
-		dentinGrad.addColorStop(0, '#785422');
-		dentinGrad.addColorStop(0.3, '#94662d');
-		dentinGrad.addColorStop(1, '#614018');
-		ctx.fillStyle = dentinGrad;
-		ctx.fillRect(40, dejY - (maxEnamelH - currentEnamelH), width - 80, pulpY - (dejY - (maxEnamelH - currentEnamelH)));
+		let milestoneIdx = 0;
+		if (age < 25) milestoneIdx = 0;
+		else if (age < 40) milestoneIdx = 1;
+		else if (age < 55) milestoneIdx = 2;
+		else milestoneIdx = 3;
 
-		// 2. PULP CHAMBER & TRIGEMINAL NERVES (At bottom)
-		const pulpGrad = ctx.createLinearGradient(0, pulpY, 0, height);
-		pulpGrad.addColorStop(0, '#6b1111');
-		pulpGrad.addColorStop(0.5, '#991b1b');
-		pulpGrad.addColorStop(1, '#450a0a');
-		ctx.fillStyle = pulpGrad;
-		ctx.fillRect(40, pulpY, width - 80, height - pulpY - 15);
+		const m = ageMilestones[milestoneIdx];
 
-		// Draw Nerve Trunk and Odontoblast Layer
-		ctx.strokeStyle = '#f87171';
-		ctx.lineWidth = 3;
-		ctx.beginPath();
-		ctx.moveTo(50, pulpY + 25);
-		ctx.bezierCurveTo(250, pulpY + 15, 650, pulpY + 35, width - 50, pulpY + 25);
-		ctx.stroke();
-
-		// Nerve Action Potential Sparks when high pain
-		if (p > 0.3) {
-			const sparkCount = Math.floor(p * 8);
-			for (let s = 0; s < sparkCount; s++) {
-				const sx = 60 + ((frameCount * 6 + s * 110) % (width - 120));
-				const sy = pulpY + 25 + Math.sin(sx * 0.05) * 8;
-				ctx.fillStyle = (frameCount % 6 < 3) ? '#fef08a' : '#ef4444';
-				ctx.beginPath();
-				ctx.arc(sx, sy, 4 + Math.random() * 3, 0, Math.PI * 2);
-				ctx.fill();
-			}
-		}
-
-		// Pulp & Nerve Labels
-		ctx.fillStyle = '#fca5a5';
-		ctx.font = 'bold 12px system-ui, sans-serif';
-		ctx.fillText('DENTAL PULP & MANDIBULAR NERVE PLEXUS (CN V3)', 60, pulpY + 38);
-
-		// 3. DENTINAL TUBULES (Channels through Dentin)
-		const tubuleCount = 14;
-		const tubuleSpacing = (width - 160) / (tubuleCount - 1);
-		const currentTubuleTopY = oralBottom + currentEnamelH;
-
-		// Calculate tubule width based on depth and exposure
-		const tubuleWidthTop = 2 + p * 6;
-		const tubuleWidthBottom = 6 + p * 8;
-
-		for (let i = 0; i < tubuleCount; i++) {
-			const tx = 80 + i * tubuleSpacing;
-			const tyTop = currentTubuleTopY;
-			const tyBottom = pulpY;
-
-			// Draw Tubule Wall Shadow/Border
-			ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-			ctx.lineWidth = 1;
-
-			// Tubule lumen path (slight natural S-curve)
-			ctx.beginPath();
-			ctx.moveTo(tx - tubuleWidthTop / 2, tyTop);
-			ctx.bezierCurveTo(tx - tubuleWidthTop / 2 - 10, (tyTop + tyBottom) / 2, tx - tubuleWidthBottom / 2 + 10, (tyTop + tyBottom) / 2, tx - tubuleWidthBottom / 2, tyBottom);
-			ctx.lineTo(tx + tubuleWidthBottom / 2, tyBottom);
-			ctx.bezierCurveTo(tx + tubuleWidthBottom / 2 + 10, (tyTop + tyBottom) / 2, tx + tubuleWidthTop / 2 - 10, (tyTop + tyBottom) / 2, tx + tubuleWidthTop / 2, tyTop);
-			ctx.closePath();
-
-			// Tubule interior fill (fluid filled)
-			const tubuleFill = ctx.createLinearGradient(tx, tyTop, tx, tyBottom);
-			if (p > 0.4) {
-				// Acid penetration colors tubule yellow/orange
-				tubuleFill.addColorStop(0, 'rgba(234, 179, 8, 0.7)');
-				tubuleFill.addColorStop(0.6, 'rgba(239, 68, 68, 0.6)');
-				tubuleFill.addColorStop(1, 'rgba(185, 28, 28, 0.8)');
-			} else {
-				tubuleFill.addColorStop(0, 'rgba(56, 189, 248, 0.3)');
-				tubuleFill.addColorStop(1, 'rgba(30, 58, 138, 0.5)');
-			}
-			ctx.fillStyle = tubuleFill;
-			ctx.fill();
-			ctx.stroke();
-
-			// Odontoblast process inside tubule
-			ctx.strokeStyle = '#f87171';
-			ctx.lineWidth = 1.5;
-			ctx.beginPath();
-			ctx.moveTo(tx, tyBottom);
-			ctx.lineTo(tx + Math.sin(i + frameCount * 0.05) * 2, tyTop + (maxEnamelH * 0.4));
-			ctx.stroke();
-
-			// Smear Plug on top of tubule if enamel worn but smear layer exists
-			if (p > 0.2 && p < 0.65) {
-				const smearOpacity = 1 - ((p - 0.2) / 0.45);
-				ctx.fillStyle = `rgba(203, 213, 225, ${smearOpacity * 0.9})`;
-				ctx.fillRect(tx - tubuleWidthTop / 2 - 2, tyTop - 3, tubuleWidthTop + 4, 6);
-			}
-		}
-
-		// Fluid Dynamic Particle Flow inside exposed tubules
-		if (p > 0.2) {
-			const flowSpeed = (p - 0.2) * 0.02;
-			ctx.fillStyle = p > 0.5 ? '#fde047' : '#38bdf8';
-
-			fluidParticles.forEach((fp) => {
-				fp.t = (fp.t + flowSpeed) % 1;
-				const i = fp.tubuleIndex % tubuleCount;
-				const tx = 80 + i * tubuleSpacing;
-				const py = currentTubuleTopY + fp.t * (pulpY - currentTubuleTopY);
-				const px = tx + Math.sin(fp.t * Math.PI) * 4;
-
-				ctx.beginPath();
-				ctx.arc(px, py, 2 + p * 1.5, 0, Math.PI * 2);
-				ctx.fill();
-			});
-		}
-
-		// 4. ENAMEL LAYER (Above Dentin, shrivels as erosion increases)
-		if (currentEnamelH > 2) {
-			const enamelGrad = ctx.createLinearGradient(0, oralBottom, 0, oralBottom + currentEnamelH);
-			enamelGrad.addColorStop(0, '#f8fafc');
-			enamelGrad.addColorStop(0.4, '#e2e8f0');
-			enamelGrad.addColorStop(1, '#cbd5e1');
-
-			ctx.fillStyle = enamelGrad;
-			ctx.beginPath();
-			ctx.rect(40, oralBottom, width - 80, currentEnamelH);
-			ctx.fill();
-
-			// Enamel prism crystalline hatch lines
-			ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
-			ctx.lineWidth = 1;
-			for (let x = 45; x < width - 45; x += 16) {
-				ctx.beginPath();
-				ctx.moveTo(x, oralBottom);
-				ctx.lineTo(x + 4, oralBottom + currentEnamelH);
-				ctx.stroke();
-			}
-
-			// Enamel Label
-			ctx.fillStyle = '#1e293b';
-			ctx.font = 'bold 13px system-ui, sans-serif';
-			const thicknessText = `${(2.5 * (1 - p)).toFixed(1)}mm ENAMEL BARRIER`;
-			ctx.fillText(thicknessText, width / 2 - 80, oralBottom + Math.min(currentEnamelH / 2 + 5, 24));
-		}
-
-		// 5. ORAL ENVIRONMENT & ACID PARTICLES (Top Area)
-		ctx.fillStyle = 'rgba(168, 85, 247, 0.08)';
-		ctx.fillRect(40, 10, width - 80, oralBottom - 10);
-
-		// Oral Cavity Title
-		ctx.fillStyle = '#c084fc';
-		ctx.font = 'bold 12px system-ui, sans-serif';
-		ctx.fillText('ORAL CAVITY: SALIVA, ACID PROTONS (H⁺) & BACTERIAL BYPRODUCTS', 55, 30);
-
-		// Acid Ions floating down toward the tooth
-		acidIons.forEach((ion) => {
-			ion.x += ion.vx;
-			ion.y += ion.vy * (1 + p * 1.5);
-
-			// Wrap around
-			if (ion.y > oralBottom + (currentEnamelH === 0 ? 30 : 0)) {
-				ion.y = 35;
-				ion.x = 60 + Math.random() * (width - 120);
-			}
-			if (ion.x < 50 || ion.x > width - 50) {
-				ion.vx *= -1;
-			}
-
-			// Render H+ Acid Ion
-			ctx.fillStyle = '#ef4444';
-			ctx.beginPath();
-			ctx.arc(ion.x, ion.y, ion.radius, 0, Math.PI * 2);
-			ctx.fill();
-
-			// Ion glow
-			ctx.fillStyle = 'rgba(239, 68, 68, 0.3)';
-			ctx.beginPath();
-			ctx.arc(ion.x, ion.y, ion.radius * 2, 0, Math.PI * 2);
-			ctx.fill();
-		});
-
-		// Dynamic Annotation Lines & Callouts
-		if (currentEnamelH <= 5) {
-			// Breach alert text
-			ctx.fillStyle = '#fde047';
-			ctx.font = 'bold 14px system-ui, sans-serif';
-			ctx.fillText('⚠ COMPLETE ENAMEL BREACH: 45,000 TUBULES/mm² FULLY EXPOSED', width / 2 - 240, oralBottom + 28);
-		}
-
-		// DEJ label
-		ctx.fillStyle = '#fbbf24';
-		ctx.font = '10px system-ui, sans-serif';
-		ctx.fillText('DENTIN-ENAMEL JUNCTION (DEJ)', width - 210, dejY - (maxEnamelH - currentEnamelH) - 4);
-
-		animId = requestAnimationFrame(drawSimulation);
+		return {
+			t,
+			age,
+			recession,
+			rdt,
+			density,
+			diameter,
+			flowMultiplier,
+			nerveScore,
+			wearTitle: age > 50 ? "Severe Dentin Thinning (<0.6mm RDT)" : age > 35 ? "Active Abfraction Notch" : age > 22 ? "Early Cervical Wear" : "Enamel Intact (2.5mm)",
+			wearDesc: age > 50 ? `${density.toLocaleString()} tubules firing into CN V3` : age > 35 ? `${recession}mm recession with smear dissolution` : age > 22 ? `${recession}mm recession exposes cervical neck` : "Gingival collar tightly wraps CEJ",
+			nerveDesc: nerveScore >= 8 ? "Continuous 10/10 radiating burning mouth cascade" : nerveScore >= 5 ? "A-delta & C-fibers actively firing" : nerveScore >= 2 ? "Transient twinges on cold / sweetness" : "Trigeminal CN V3 quiet, zero stimulus",
+			milestone: m
+		};
 	}
 
-	// Slider Event
-	slider?.addEventListener('input', (e) => {
+	function updateTelemetry(age) {
+		currentAge = age;
+		const d = interpolate(age);
+
+		// Labels & Sliders
+		ageDisplay.innerText = `Age ${age} (${age <= 20 ? 'Youth' : age <= 35 ? 'Early Wear' : age <= 50 ? 'Abfraction Notch' : 'Severe Breach'})`;
+		recessionReadout.innerText = `${d.recession} mm Gum Recession`;
+		if (rdtPill) rdtPill.innerHTML = `Remaining Dentin: <strong>${d.rdt} mm</strong>`;
+
+		// Floating Badges on 3D Tooth
+		if (badgeWearTitle) badgeWearTitle.innerText = d.wearTitle;
+		if (badgeWearDesc) badgeWearDesc.innerText = d.wearDesc;
+		if (badgeNerveDesc) badgeNerveDesc.innerText = d.nerveDesc;
+
+		const abDot = document.querySelector('.abfraction-badge .hotspot-dot');
+		if (abDot) {
+			abDot.className = 'hotspot-dot ' + (d.nerveScore > 7 ? 'danger' : d.nerveScore > 3 ? 'warning' : '');
+		}
+		const nvDot = document.querySelector('.nerve-badge .hotspot-dot');
+		if (nvDot) {
+			nvDot.className = 'hotspot-dot nerve ' + (d.nerveScore > 4 ? 'firing' : '');
+		}
+
+		// Metrics Dashboard
+		metricRecession.innerText = d.recession;
+		subRecession.innerText = d.milestone.subRecession;
+
+		metricRdt.innerText = d.rdt;
+		subRdt.innerText = d.milestone.subRdt;
+
+		metricDensity.innerText = d.density.toLocaleString();
+		subDensity.innerText = d.milestone.subDensity;
+
+		metricDiameter.innerText = d.diameter;
+		subDiameter.innerText = d.milestone.subDiameter;
+
+		metricFlow.innerText = d.flowMultiplier;
+		subFlow.innerText = d.milestone.subFlow;
+
+		metricNerve.innerText = d.nerveScore;
+		subNerve.innerText = d.milestone.subNerve;
+
+		// Explanation Card
+		expPhaseBadge.innerText = d.milestone.phase;
+		expTitle.innerText = d.milestone.title;
+		expBody.innerHTML = d.milestone.body.replace(/([a-zA-Z0-9]+)\s+([a-zA-Z0-9.,]+)$/, '$1&nbsp;$2');
+
+		// Age Step Buttons sync
+		ageButtons.forEach((btn) => {
+			const bAge = parseInt(btn.getAttribute('data-age'), 10);
+			btn.classList.toggle('active', Math.abs(bAge - age) <= 7);
+		});
+	}
+
+	// 1. Draw 3D Tooth Overlay Canvas (Abfraction Erosion Notch, Exposed Tubules Glow & Trigeminal Nerves)
+	function drawToothOverlay() {
+		if (!toothCtx) return;
+		const w = toothCanvas.width;
+		const h = toothCanvas.height;
+		toothCtx.clearRect(0, 0, w, h);
+
+		const t = Math.max(0, Math.min(1, (currentAge - 15) / 50)); // 0 to 1
+
+		// The cervical region on the left is roughly centered around X=420, Y=330 in this 1200x896 graphic
+		const cx = 415;
+		const cy = 345;
+
+		if (t > 0.05) {
+			// A. Cervical Abfraction Erosion Wedge Overlay
+			const notchDepth = t * 38; // px into dentin
+			const notchHeight = t * 65; // px along cervical height
+
+			toothCtx.save();
+			// Draw red/orange glowing aura where erosion is carving the wedge
+			const wedgeGlow = toothCtx.createRadialGradient(cx, cy, 5, cx, cy, 60);
+			wedgeGlow.addColorStop(0, `rgba(239, 68, 68, ${0.4 + t * 0.4})`);
+			wedgeGlow.addColorStop(0.5, `rgba(245, 158, 11, ${0.3 + t * 0.3})`);
+			wedgeGlow.addColorStop(1, 'rgba(239, 68, 68, 0)');
+			toothCtx.fillStyle = wedgeGlow;
+			toothCtx.beginPath();
+			toothCtx.arc(cx, cy, 45 + t * 25, 0, Math.PI * 2);
+			toothCtx.fill();
+
+			// Draw pulsing open tubule pores on the exposed root face
+			const tubuleCount = Math.floor(t * 36);
+			for (let i = 0; i < tubuleCount; i++) {
+				const px = cx - 18 + Math.sin(i * 1.7 + frameCount * 0.03) * (14 + t * 12);
+				const py = cy - notchHeight / 2 + (i / tubuleCount) * notchHeight;
+				const rad = 1.5 + t * 2.2;
+
+				toothCtx.fillStyle = (frameCount % 10 < 5) ? '#fef08a' : '#ef4444';
+				toothCtx.beginPath();
+				toothCtx.arc(px, py, rad, 0, Math.PI * 2);
+				toothCtx.fill();
+			}
+
+			// Draw acid penetration arrows entering the cervical wedge
+			if (t > 0.25) {
+				const arrowCount = Math.floor(t * 4);
+				for (let a = 0; a < arrowCount; a++) {
+					const ax = cx - 60 - a * 15;
+					const ay = cy - 20 + a * 18;
+					toothCtx.strokeStyle = '#fde047';
+					toothCtx.lineWidth = 2.5;
+					toothCtx.beginPath();
+					toothCtx.moveTo(ax, ay);
+					toothCtx.lineTo(ax + 20, ay);
+					toothCtx.stroke();
+					// Arrow head
+					toothCtx.beginPath();
+					toothCtx.moveTo(ax + 14, ay - 4);
+					toothCtx.lineTo(ax + 20, ay);
+					toothCtx.lineTo(ax + 14, ay + 4);
+					toothCtx.stroke();
+				}
+			}
+			toothCtx.restore();
+		}
+
+		// B. Trigeminal Nerve Action Potential Cascades (Traveling from Pulp down to Mandibular Canal)
+		if (t > 0.15) {
+			toothCtx.save();
+			// Root canal paths (Left root apex ~ X=435, Y=740; Right root apex ~ X=590, Y=740)
+			// Mandibular horizontal canal ~ Y=750 to 765
+			const sparkCount = Math.floor(t * 12);
+			toothCtx.fillStyle = (t > 0.6) ? '#ef4444' : '#eab308';
+			toothCtx.shadowColor = toothCtx.fillStyle;
+			toothCtx.shadowBlur = 10;
+
+			// Left Root Canal Nerve Pulses
+			for (let s = 0; s < sparkCount; s++) {
+				const progress = ((frameCount * 0.03 + s * 0.15) % 1);
+				const nx = 480 - progress * 45;
+				const ny = 350 + progress * 390;
+				toothCtx.beginPath();
+				toothCtx.arc(nx, ny, 3 + t * 3, 0, Math.PI * 2);
+				toothCtx.fill();
+			}
+
+			// Horizontal Mandibular Canal Surge (Trigeminal CN V3 at bottom)
+			for (let m = 0; m < sparkCount * 1.5; m++) {
+				const mProgress = ((frameCount * 0.05 + m * 0.12) % 1);
+				const mx = 340 + mProgress * 580;
+				const my = 753 + Math.sin(mx * 0.08) * 3;
+				toothCtx.beginPath();
+				toothCtx.arc(mx, my, 2.5 + t * 3.5, 0, Math.PI * 2);
+				toothCtx.fill();
+			}
+
+			toothCtx.restore();
+		}
+	}
+
+	// 2. Draw Microscopic Conical Tubule Canvas (Proves Conical Shape + Dentin Wall Thinning)
+	function drawConicalZoom() {
+		if (!conicalCtx) return;
+		const w = conicalCanvas.width;
+		const h = conicalCanvas.height;
+		conicalCtx.clearRect(0, 0, w, h);
+
+		const t = Math.max(0, Math.min(1, (currentAge - 15) / 50)); // 0 to 1
+
+		// Layers from Left (Outer Tooth Surface / Oral Acid) to Right (Pulp Chamber / Trigeminal Nerves)
+		// Total dentin zone width: ~600px
+		// As age progresses, the outer surface is eaten away inward (erosion moving left to right)
+		const maxDentinWidth = 560;
+		const erosionDepth = t * (maxDentinWidth * 0.82); // Dentin thins down by up to 82%!
+		
+		const outerSurfaceX = 90 + erosionDepth; // Eroding boundary
+		const pulpBorderX = 90 + maxDentinWidth; // Inner pulp boundary
+
+		// A. Background (Dark deep microscopic field)
+		conicalCtx.fillStyle = '#06020c';
+		conicalCtx.fillRect(0, 0, w, h);
+
+		// B. Oral Cavity / Acid Zone (Left of outerSurfaceX)
+		const oralGrad = conicalCtx.createLinearGradient(0, 0, outerSurfaceX, 0);
+		oralGrad.addColorStop(0, 'rgba(168, 85, 247, 0.1)');
+		oralGrad.addColorStop(1, 'rgba(239, 68, 68, 0.25)');
+		conicalCtx.fillStyle = oralGrad;
+		conicalCtx.fillRect(0, 0, outerSurfaceX, h);
+
+		// Oral Cavity Label
+		conicalCtx.fillStyle = '#c084fc';
+		conicalCtx.font = 'bold 12px system-ui, sans-serif';
+		conicalCtx.fillText('ORAL CAVITY: SALIVA & ACID PROTONS (H⁺)', 20, 30);
+
+		// C. Dentin Matrix (From outerSurfaceX to pulpBorderX)
+		const dentinGrad = conicalCtx.createLinearGradient(outerSurfaceX, 0, pulpBorderX, 0);
+		dentinGrad.addColorStop(0, '#593a15');
+		dentinGrad.addColorStop(0.6, '#7e531e');
+		dentinGrad.addColorStop(1, '#9b6727');
+		conicalCtx.fillStyle = dentinGrad;
+		conicalCtx.fillRect(outerSurfaceX, 40, pulpBorderX - outerSurfaceX, h - 80);
+
+		// D. Dental Pulp Chamber (Right of pulpBorderX)
+		const pulpGrad = conicalCtx.createLinearGradient(pulpBorderX, 0, w, 0);
+		pulpGrad.addColorStop(0, '#7f1d1d');
+		pulpGrad.addColorStop(0.4, '#b91c1c');
+		pulpGrad.addColorStop(1, '#450a0a');
+		conicalCtx.fillStyle = pulpGrad;
+		conicalCtx.fillRect(pulpBorderX, 40, w - pulpBorderX, h - 80);
+
+		// Pulp Label & Odontoblast Layer
+		conicalCtx.fillStyle = '#fca5a5';
+		conicalCtx.font = 'bold 11px system-ui, sans-serif';
+		conicalCtx.fillText('PULP TISSUE & A-DELTA / C-FIBER NERVES', pulpBorderX + 15, 30);
+
+		// E. The Conical Dentinal Tubules (Funnel Cones widening toward Pulp!)
+		const tubuleRows = 7;
+		const tubuleSpacing = (h - 120) / (tubuleRows - 1);
+
+		for (let r = 0; r < tubuleRows; r++) {
+			const yCenter = 60 + r * tubuleSpacing;
+
+			// Ideal un-eroded cone:
+			// At original surface (X=90): diameter = 8px (0.8 µm)
+			// At pulp wall (X=pulpBorderX): diameter = 32px (2.8 µm)
+			// As outerSurfaceX moves right, the starting diameter is calculated at outerSurfaceX!
+			const currentSurfaceDiameter = 8 + (erosionDepth / maxDentinWidth) * 24;
+			const pulpDiameter = 32;
+
+			// Draw Conical Tubule Boundary
+			conicalCtx.beginPath();
+			conicalCtx.moveTo(outerSurfaceX, yCenter - currentSurfaceDiameter / 2);
+			conicalCtx.lineTo(pulpBorderX, yCenter - pulpDiameter / 2);
+			conicalCtx.lineTo(pulpBorderX, yCenter + pulpDiameter / 2);
+			conicalCtx.lineTo(outerSurfaceX, yCenter + currentSurfaceDiameter / 2);
+			conicalCtx.closePath();
+
+			// Tubule Interior Fill
+			const tubuleGrad = conicalCtx.createLinearGradient(outerSurfaceX, 0, pulpBorderX, 0);
+			if (t > 0.4) {
+				tubuleGrad.addColorStop(0, 'rgba(234, 179, 8, 0.85)'); // Acid flooded
+				tubuleGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.7)');
+				tubuleGrad.addColorStop(1, 'rgba(220, 38, 38, 0.9)');
+			} else {
+				tubuleGrad.addColorStop(0, 'rgba(56, 189, 248, 0.4)'); // Normal fluid
+				tubuleGrad.addColorStop(1, 'rgba(30, 58, 138, 0.6)');
+			}
+			conicalCtx.fillStyle = tubuleGrad;
+			conicalCtx.fill();
+			conicalCtx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+			conicalCtx.lineWidth = 1;
+			conicalCtx.stroke();
+
+			// Odontoblast Cellular Process Extension inside tubule
+			conicalCtx.strokeStyle = '#f87171';
+			conicalCtx.lineWidth = 2.5;
+			conicalCtx.beginPath();
+			conicalCtx.moveTo(pulpBorderX + 25, yCenter);
+			conicalCtx.lineTo(outerSurfaceX + 30, yCenter);
+			conicalCtx.stroke();
+
+			// Animated Hydrodynamic Fluid Motion Particles (Flowing according to r⁴ velocity!)
+			if (t > 0.15) {
+				const flowVelocity = (0.01 + Math.pow(t, 2) * 0.08);
+				const pCount = Math.floor(3 + t * 6);
+				conicalCtx.fillStyle = t > 0.5 ? '#fde047' : '#7dd3fc';
+
+				for (let p = 0; p < pCount; p++) {
+					const pt = ((frameCount * flowVelocity + (p / pCount) + r * 0.15) % 1);
+					const px = outerSurfaceX + pt * (pulpBorderX - outerSurfaceX);
+					// Interpolate cone width at px
+					const localWidth = currentSurfaceDiameter + pt * (pulpDiameter - currentSurfaceDiameter);
+					const py = yCenter + Math.sin(pt * Math.PI * 2) * (localWidth * 0.25);
+
+					conicalCtx.beginPath();
+					conicalCtx.arc(px, py, 2 + t * 1.5, 0, Math.PI * 2);
+					conicalCtx.fill();
+				}
+			}
+
+			// Smear Plug at outer mouth (dissolves as t increases)
+			if (t > 0.05 && t < 0.6) {
+				const plugOpacity = 1 - (t / 0.6);
+				conicalCtx.fillStyle = `rgba(226, 232, 240, ${plugOpacity * 0.95})`;
+				conicalCtx.fillRect(outerSurfaceX - 4, yCenter - currentSurfaceDiameter / 2 - 1, 8, currentSurfaceDiameter + 2);
+			}
+		}
+
+		// F. Measurement Callout Lines (Showing Remaining Dentin Thickness)
+		conicalCtx.strokeStyle = '#fde047';
+		conicalCtx.lineWidth = 2;
+		conicalCtx.setLineDash([4, 4]);
+
+		// Horizontal dimension bracket
+		const dimY = h - 25;
+		conicalCtx.beginPath();
+		conicalCtx.moveTo(outerSurfaceX, dimY);
+		conicalCtx.lineTo(pulpBorderX, dimY);
+		conicalCtx.stroke();
+		conicalCtx.setLineDash([]);
+
+		// Dimension ticks
+		conicalCtx.beginPath();
+		conicalCtx.moveTo(outerSurfaceX, dimY - 6);
+		conicalCtx.lineTo(outerSurfaceX, dimY + 6);
+		conicalCtx.moveTo(pulpBorderX, dimY - 6);
+		conicalCtx.lineTo(pulpBorderX, dimY + 6);
+		conicalCtx.stroke();
+
+		// RDT Text in bracket
+		conicalCtx.fillStyle = '#fde047';
+		conicalCtx.font = 'bold 12px system-ui, sans-serif';
+		const rdtVal = (3.00 - t * 2.45).toFixed(2);
+		conicalCtx.fillText(`Remaining Dentin Thickness (RDT): ${rdtVal} mm`, outerSurfaceX + 15, dimY - 8);
+
+		// Conical funnel annotation
+		conicalCtx.fillStyle = '#ffffff';
+		conicalCtx.font = 'bold 11px system-ui, sans-serif';
+		conicalCtx.fillText(`Aperture: ${(t * 2.75).toFixed(2)} µm`, outerSurfaceX - 90, 85);
+		conicalCtx.fillText(`Pulp Base: 2.80 µm`, pulpBorderX + 15, 85);
+	}
+
+	function renderLoop() {
+		frameCount++;
+		drawToothOverlay();
+		drawConicalZoom();
+		animReqId = requestAnimationFrame(renderLoop);
+	}
+
+	// Slider Listener
+	ageSlider?.addEventListener('input', (e) => {
 		const val = parseInt(e.target.value, 10);
-		updateUI(val);
+		updateTelemetry(val);
 	});
 
-	// Stage Buttons
-	stageButtons.forEach((btn) => {
+	// Age Buttons Listener
+	ageButtons.forEach((btn) => {
 		btn.addEventListener('click', () => {
-			const stageIdx = parseInt(btn.getAttribute('data-stage'), 10);
-			let targetVal = 0;
-			if (stageIdx === 0) targetVal = 0;
-			else if (stageIdx === 1) targetVal = 30;
-			else if (stageIdx === 2) targetVal = 60;
-			else if (stageIdx === 3) targetVal = 95;
-
-			slider.value = targetVal;
-			updateUI(targetVal);
+			const targetAge = parseInt(btn.getAttribute('data-age'), 10);
+			ageSlider.value = targetAge;
+			updateTelemetry(targetAge);
 		});
 	});
 
-	// Play/Pause Auto-Animation
+	// Auto Play Arc
 	function togglePlay() {
 		isPlaying = !isPlaying;
 		if (isPlaying) {
 			playIcon.innerText = '⏸';
 			playText.innerText = 'Pause';
-			autoAnimateLoop();
+			autoStep();
 		} else {
 			playIcon.innerText = '▶';
-			playText.innerText = 'Auto Play';
+			playText.innerText = 'Play 50-Year Arc';
 		}
 	}
 
-	function autoAnimateLoop() {
+	function autoStep() {
 		if (!isPlaying) return;
-		let val = parseInt(slider.value, 10);
+		let val = parseInt(ageSlider.value, 10);
 		val += playDirection * 1;
 
-		if (val >= 100) {
-			val = 100;
+		if (val >= 65) {
+			val = 65;
 			playDirection = -1;
-		} else if (val <= 0) {
-			val = 0;
+		} else if (val <= 15) {
+			val = 15;
 			playDirection = 1;
 		}
 
-		slider.value = val;
-		updateUI(val);
-		setTimeout(autoAnimateLoop, 60);
+		ageSlider.value = val;
+		updateTelemetry(val);
+		setTimeout(autoStep, 80);
 	}
 
 	playPauseBtn?.addEventListener('click', togglePlay);
@@ -1069,13 +1455,13 @@ const { class: className = '' } = Astro.props;
 	resetBtn?.addEventListener('click', () => {
 		isPlaying = false;
 		playIcon.innerText = '▶';
-		playText.innerText = 'Auto Play';
-		slider.value = 0;
-		updateUI(0);
+		playText.innerText = 'Play 50-Year Arc';
+		ageSlider.value = 15;
+		updateTelemetry(15);
 	});
 
-	// Initial Trigger
-	updateUI(0);
-	drawSimulation();
+	// Init
+	updateTelemetry(15);
+	renderLoop();
 })();
 </script>
