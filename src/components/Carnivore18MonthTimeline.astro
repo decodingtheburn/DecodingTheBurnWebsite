@@ -8,11 +8,10 @@ const { class: className = '' } = Astro.props;
 ---
 
 <div class={`carnivore-timeline-widget tts-ignore ${className}`} id="carnivore-18m-timeline-box">
-	<!-- Centered White & Purple Title Header -->
+	<!-- Centered Title Header -->
 	<div class="carnivore-widget-header">
 		<h3 class="carnivore-widget-title">
-			<span class="carnivore-title-main">How Pain Fluctuated</span>
-			<span class="carnivore-title-sub">Since Trying The Carnivore&nbsp;Diet</span>
+			<span class="carnivore-title-main">Pain Levels During the Three Carnivore&nbsp;Phases</span>
 		</h3>
 	</div>
 
@@ -22,7 +21,7 @@ const { class: className = '' } = Astro.props;
 			viewBox="870 -50 635 565" 
 			class="carnivore-timeline-svg" 
 			preserveAspectRatio="xMidYMid meet"
-			aria-label="18-Month BMS Carnivore Experiment Progression Chart showing How pain fluctuated since trying the carnivore diet"
+			aria-label="18-Month BMS Carnivore Experiment Progression Chart showing Pain Levels During the Three Carnivore Phases"
 		>
 			<defs>
 				<!-- Discrete Stepped Gradient: 5-10 = Red, 2-5 = Amber, 0-2 = Emerald Green -->
@@ -160,16 +159,18 @@ const { class: className = '' } = Astro.props;
 
 			<!-- Annotations -->
 			<g class="c18-annotations">
-				<!-- Phase 1: 2-Week Trial (Spanning from 10/10 peak down to 2/10) -->
-				<text x="965" y="-22" class="c18-phase-tag phase-1">Phase 1</text>
+				<!-- Phase 1: White Square Pill + 2-Week Trial -->
+				<rect x="932" y="-37" width="66" height="20" rx="4" fill="#ffffff" stroke="none" />
+				<text x="965" y="-23" class="c18-phase-badge">PHASE 1</text>
 				<text x="965" y="4" class="c18-peak-title">2-Week Trial</text>
 				<g class="c18-arrow-group">
 					<path d="M 965 14 C 965 42, 975 110, 977 220" fill="none" stroke="#ef4444" stroke-width="2.4" stroke-linecap="round" />
 					<path d="M 972 212 C 975 216, 976.5 218, 977 221 C 977.5 218, 979 216, 982 212" fill="none" stroke="#ef4444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
 				</g>
 
-				<!-- Phase 2: 1-Year Yo-Yo with Description Underneath -->
-				<text x="1083" y="126" class="c18-phase-tag phase-2">Phase 2</text>
+				<!-- Phase 2: White Square Pill + 1-Year Yo-Yo -->
+				<rect x="1050" y="108" width="66" height="20" rx="4" fill="#ffffff" stroke="none" />
+				<text x="1083" y="122" class="c18-phase-badge">PHASE 2</text>
 				<text x="1083" y="152" class="c18-yoyo-title">1-Year Yo-Yo</text>
 				<text x="1083" y="172" class="c18-yoyo-subtitle">Alternating between carnivore</text>
 				<text x="1083" y="188" class="c18-yoyo-subtitle">&amp; plant-based diet</text>
@@ -178,8 +179,9 @@ const { class: className = '' } = Astro.props;
 					<path d="M 1078 218 C 1080 222, 1082 225, 1083 228 C 1084 225, 1086 222, 1088 218" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 				</g>
 
-				<!-- Phase 3: Strict Carnivore, 6 Months Pain-Free 0/10 with Thinner Description Font -->
-				<text x="1294" y="214" class="c18-phase-tag phase-3">Phase 3</text>
+				<!-- Phase 3: White Square Pill + Strict Carnivore -->
+				<rect x="1261" y="198" width="66" height="20" rx="4" fill="#ffffff" stroke="none" />
+				<text x="1294" y="212" class="c18-phase-badge">PHASE 3</text>
 				<text x="1294" y="242" class="c18-exp7-title">Strict Carnivore</text>
 				<text x="1294" y="264" class="c18-phase3-desc">6 Months Pain-Free 0/10</text>
 				<g class="c18-arrow-group">
@@ -351,25 +353,14 @@ const { class: className = '' } = Astro.props;
 	}
 
 	/* Annotations */
-	.c18-phase-tag {
+	.c18-phase-badge {
 		font-family: system-ui, -apple-system, sans-serif;
-		font-size: 13.5px;
-		font-weight: 800;
+		font-size: 11.5px;
+		font-weight: 900;
+		fill: #09090b;
 		text-anchor: middle;
-		letter-spacing: 0.04em;
+		letter-spacing: 0.05em;
 		text-transform: uppercase;
-	}
-
-	.phase-1 {
-		fill: #f87171;
-	}
-
-	.phase-2 {
-		fill: #fbbf24;
-	}
-
-	.phase-3 {
-		fill: #34d399;
 	}
 
 	.c18-peak-num {
