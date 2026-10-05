@@ -1,0 +1,1081 @@
+---
+// EnamelTubuleAnimation.astro - Interactive Biophysical Simulator for Enamel Thinning, Tubule Quantity & Depth Exposure
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`enamel-anim-wrapper ${className}`}>
+	<div class="enamel-anim-card">
+		<!-- Header -->
+		<div class="enamel-anim-header">
+			<h3 class="enamel-anim-title">Interactive Biophysical Simulator: Enamel Thinning &amp; Tubule&nbsp;Exposure</h3>
+			<p class="enamel-anim-subtitle">
+				Drag the slider or step through each stage to observe how progressive enamel erosion and gum recession expose thousands of microscopic fluid channels, stripping smear plugs and triggering trigeminal nerve&nbsp;pathways.
+			</p>
+		</div>
+
+		<!-- Stage Selector Controls -->
+		<div class="stage-button-grid" role="tablist" aria-label="Erosion Stages">
+			<button class="stage-btn active" data-stage="0" type="button">
+				<span class="stage-num">Stage 1</span>
+				<span class="stage-name">Intact Enamel (2.5mm)</span>
+			</button>
+			<button class="stage-btn" data-stage="1" type="button">
+				<span class="stage-num">Stage 2</span>
+				<span class="stage-name">Early Acid Softening</span>
+			</button>
+			<button class="stage-btn" data-stage="2" type="button">
+				<span class="stage-num">Stage 3</span>
+				<span class="stage-name">Moderate Loss &amp; Recession</span>
+			</button>
+			<button class="stage-btn" data-stage="3" type="button">
+				<span class="stage-num">Stage 4</span>
+				<span class="stage-name">Full Tubule Breach</span>
+			</button>
+		</div>
+
+		<!-- Main Interactive Canvas & Stage Display -->
+		<div class="simulation-stage-box">
+			<div class="canvas-container">
+				<canvas id="enamelCanvas" width="900" height="420"></canvas>
+				
+				<!-- Overlay Live Status -->
+				<div class="canvas-overlay-status" id="statusOverlay">
+					<div class="status-indicator-dot" id="statusDot"></div>
+					<span id="statusText">Pulp Environment: Fully Sealed &amp; Protected</span>
+				</div>
+			</div>
+
+			<!-- Interactive Slider & Controls -->
+			<div class="slider-control-bar">
+				<div class="slider-left">
+					<label for="erosionSlider" class="slider-label">
+						<span>Erosion &amp; Wear Progression:</span>
+						<strong id="sliderPercentText">0% (Intact)</strong>
+					</label>
+					<input 
+						type="range" 
+						id="erosionSlider" 
+						min="0" 
+						max="100" 
+						value="0" 
+						step="1"
+						class="erosion-range-input"
+						aria-label="Enamel erosion percentage"
+					/>
+				</div>
+				<div class="slider-actions">
+					<button id="playPauseBtn" class="anim-action-btn" type="button">
+						<span id="playIcon">▶</span>
+						<span id="playText">Auto Play</span>
+					</button>
+					<button id="resetBtn" class="anim-action-btn secondary" type="button">
+						Reset
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Real-time Biophysical Metrics Grid -->
+		<div class="metrics-dashboard">
+			<div class="metric-card">
+				<div class="metric-label">Enamel Thickness</div>
+				<div class="metric-value-box">
+					<span class="metric-val" id="valThickness">2.50</span>
+					<span class="metric-unit">mm</span>
+				</div>
+				<div class="metric-sub" id="subThickness">100% barrier intact</div>
+			</div>
+
+			<div class="metric-card">
+				<div class="metric-label">Exposed Tubules Quantity</div>
+				<div class="metric-value-box">
+					<span class="metric-val" id="valTubules">0</span>
+					<span class="metric-unit">/ mm²</span>
+				</div>
+				<div class="metric-sub" id="subTubules">Zero exposure to oral cavity</div>
+			</div>
+
+			<div class="metric-card">
+				<div class="metric-label">Tubule Lumen Diameter</div>
+				<div class="metric-value-box">
+					<span class="metric-val" id="valDiameter">0.00</span>
+					<span class="metric-unit">µm</span>
+				</div>
+				<div class="metric-sub" id="subDiameter">Sealed under hydroxyapatite</div>
+			</div>
+
+			<div class="metric-card">
+				<div class="metric-label">Hydrodynamic Flow Velocity</div>
+				<div class="metric-value-box">
+					<span class="metric-val" id="valFlow">0.00</span>
+					<span class="metric-unit">mm/s</span>
+				</div>
+				<div class="metric-sub" id="subFlow">Fluid static, no shear strain</div>
+			</div>
+
+			<div class="metric-card highlight">
+				<div class="metric-label">Nerve Signal (Trigeminal V3)</div>
+				<div class="metric-value-box">
+					<span class="metric-val nerve" id="valNerve">0</span>
+					<span class="metric-unit">/ 10 Pain</span>
+				</div>
+				<div class="metric-sub" id="subNerve">Nociceptors quiet</div>
+			</div>
+		</div>
+
+		<!-- Stage Explanation Callout Card -->
+		<div class="stage-explanation-card" id="explanationCard">
+			<div class="exp-header-row">
+				<span class="exp-badge" id="expPhaseNumber">Phase 1 Analysis</span>
+				<h4 class="exp-title" id="expTitle">Healthy Tooth: Enamel Shield &amp; Intact Smear Layer</h4>
+			</div>
+			<p class="exp-body" id="expBody">
+				In a healthy crown, a 2.0 to 2.5 mm layer of highly mineralized hydroxyapatite enamel crystals acts as an impenetrable physical and chemical insulator. Below the enamel-dentin junction (DEJ), microscopic dentinal tubules remain completely sealed. Neither dietary acids nor thermal shifts can reach the internal odontoblast processes or trigeminal pain&nbsp;fibers.
+			</p>
+			<div class="exp-takeaways" id="expTakeaways">
+				<div class="takeaway-item">
+					<strong>Barrier Integrity:</strong> Zero acidic protons can penetrate the dense hydroxyapatite crystalline lattice.
+				</div>
+				<div class="takeaway-item">
+					<strong>Fluid Dynamic:</strong> Dentinal fluid remains stable, exerting no mechanical pull on Piezo1 or TRPC5 channels.
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.enamel-anim-wrapper {
+		margin: 3.5rem 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.enamel-anim-card {
+		background: radial-gradient(120% 120% at 50% 0%, #1e1136 0%, #0d081a 60%, #080410 100%);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.5rem;
+		padding: clamp(1.5rem, 3.5vw, 2.5rem);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+		color: #e2e8f0;
+	}
+
+	.enamel-anim-header {
+		text-align: center;
+		margin-bottom: 2rem;
+		max-width: 820px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.enamel-anim-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.4rem, 2.8vw, 2rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0 0 0.85rem 0;
+		line-height: 1.25;
+		text-wrap: balance;
+		letter-spacing: -0.02em;
+	}
+
+	.enamel-anim-subtitle {
+		font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+		line-height: 1.65;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	/* Stage Selection Grid */
+	.stage-button-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	@media (max-width: 768px) {
+		.stage-button-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.stage-btn {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(168, 85, 247, 0.25);
+		border-radius: 0.85rem;
+		padding: 0.85rem 0.75rem;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.25rem;
+		transition: all 0.2s ease;
+		color: #e2e8f0;
+		text-align: left;
+	}
+
+	.stage-btn:hover {
+		background: rgba(168, 85, 247, 0.12);
+		border-color: rgba(168, 85, 247, 0.5);
+		transform: translateY(-1px);
+	}
+
+	.stage-btn.active {
+		background: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(126, 34, 206, 0.4) 100%);
+		border-color: #c084fc;
+		box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
+	}
+
+	.stage-num {
+		font-size: 0.75rem;
+		font-weight: 800;
+		color: #c084fc;
+		letter-spacing: 0.04em;
+	}
+
+	.stage-btn.active .stage-num {
+		color: #fde047;
+	}
+
+	.stage-name {
+		font-size: 0.88rem;
+		font-weight: 700;
+		color: #ffffff;
+		line-height: 1.3;
+	}
+
+	/* Simulation Canvas Container */
+	.simulation-stage-box {
+		background: rgba(8, 4, 18, 0.8);
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 1.25rem;
+		padding: 1rem;
+		margin-bottom: 1.5rem;
+		box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+	}
+
+	.canvas-container {
+		position: relative;
+		width: 100%;
+		border-radius: 0.85rem;
+		overflow: hidden;
+		background: #06020c;
+		border: 1px solid rgba(168, 85, 247, 0.2);
+	}
+
+	#enamelCanvas {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 900 / 420;
+	}
+
+	.canvas-overlay-status {
+		position: absolute;
+		top: 12px;
+		left: 14px;
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		background: rgba(10, 5, 20, 0.85);
+		backdrop-filter: blur(8px);
+		border: 1px solid rgba(168, 85, 247, 0.4);
+		padding: 0.45rem 0.9rem;
+		border-radius: 0.6rem;
+		font-size: 0.82rem;
+		font-weight: 700;
+		color: #f1f5f9;
+		z-index: 10;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+	}
+
+	.status-indicator-dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: #22c55e;
+		box-shadow: 0 0 8px #22c55e;
+		transition: background 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.status-indicator-dot.warning {
+		background: #f59e0b;
+		box-shadow: 0 0 8px #f59e0b;
+	}
+
+	.status-indicator-dot.danger {
+		background: #ef4444;
+		box-shadow: 0 0 10px #ef4444;
+		animation: pulseRed 1s infinite alternate;
+	}
+
+	@keyframes pulseRed {
+		0% { transform: scale(0.9); opacity: 0.7; }
+		100% { transform: scale(1.2); opacity: 1; }
+	}
+
+	/* Slider Controls */
+	.slider-control-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		margin-top: 1rem;
+		padding: 0.75rem 0.5rem 0.25rem;
+		flex-wrap: wrap;
+	}
+
+	.slider-left {
+		flex: 1;
+		min-width: 260px;
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+	}
+
+	.slider-label {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 0.88rem;
+		color: #cbd5e1;
+		font-weight: 600;
+	}
+
+	.slider-label strong {
+		color: #fde047;
+	}
+
+	.erosion-range-input {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 8px;
+		border-radius: 4px;
+		background: linear-gradient(90deg, #22c55e 0%, #eab308 50%, #ef4444 100%);
+		outline: none;
+		cursor: pointer;
+	}
+
+	.erosion-range-input::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 22px;
+		height: 22px;
+		border-radius: 50%;
+		background: #ffffff;
+		border: 2px solid #9333ea;
+		box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+		cursor: pointer;
+		transition: transform 0.15s ease;
+	}
+
+	.erosion-range-input::-webkit-slider-thumb:hover {
+		transform: scale(1.15);
+	}
+
+	.slider-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.anim-action-btn {
+		background: #9333ea;
+		color: #ffffff;
+		border: none;
+		border-radius: 0.65rem;
+		padding: 0.55rem 1rem;
+		font-size: 0.85rem;
+		font-weight: 700;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		transition: all 0.2s ease;
+		box-shadow: 0 4px 12px rgba(147, 51, 234, 0.4);
+	}
+
+	.anim-action-btn:hover {
+		background: #a855f7;
+		transform: translateY(-1px);
+	}
+
+	.anim-action-btn.secondary {
+		background: rgba(255, 255, 255, 0.08);
+		color: #cbd5e1;
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		box-shadow: none;
+	}
+
+	.anim-action-btn.secondary:hover {
+		background: rgba(255, 255, 255, 0.14);
+		color: #ffffff;
+	}
+
+	/* Metrics Dashboard Grid */
+	.metrics-dashboard {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 0.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	@media (max-width: 992px) {
+		.metrics-dashboard {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.metrics-dashboard {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.metric-card {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(168, 85, 247, 0.2);
+		border-radius: 0.95rem;
+		padding: 0.9rem 0.8rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.metric-card.highlight {
+		background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(147, 51, 234, 0.15) 100%);
+		border-color: rgba(239, 68, 68, 0.4);
+	}
+
+	.metric-label {
+		font-size: 0.74rem;
+		font-weight: 700;
+		color: #94a3b8;
+		margin-bottom: 0.35rem;
+		line-height: 1.25;
+	}
+
+	.metric-value-box {
+		display: flex;
+		align-items: baseline;
+		gap: 0.25rem;
+		margin-bottom: 0.2rem;
+	}
+
+	.metric-val {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.35rem;
+		font-weight: 900;
+		color: #ffffff;
+	}
+
+	.metric-val.nerve {
+		color: #f87171;
+	}
+
+	.metric-unit {
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: #a855f7;
+	}
+
+	.metric-sub {
+		font-size: 0.72rem;
+		color: #cbd5e1;
+		line-height: 1.3;
+	}
+
+	/* Explanation Card */
+	.stage-explanation-card {
+		background: rgba(13, 8, 26, 0.75);
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 1.15rem;
+		padding: 1.4rem 1.6rem;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+	}
+
+	.exp-header-row {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 0.65rem;
+		flex-wrap: wrap;
+	}
+
+	.exp-badge {
+		font-size: 0.78rem;
+		font-weight: 800;
+		color: #fde047;
+		background: rgba(253, 224, 71, 0.12);
+		border: 1px solid rgba(253, 224, 71, 0.3);
+		padding: 0.25rem 0.65rem;
+		border-radius: 0.5rem;
+	}
+
+	.exp-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.15rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0;
+		line-height: 1.35;
+		text-wrap: balance;
+	}
+
+	.exp-body {
+		font-size: 0.94rem;
+		line-height: 1.65;
+		color: #cbd5e1;
+		margin: 0 0 1rem 0;
+		text-wrap: pretty;
+	}
+
+	.exp-takeaways {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.75rem;
+		padding-top: 0.75rem;
+		border-top: 1px solid rgba(168, 85, 247, 0.2);
+	}
+
+	@media (max-width: 680px) {
+		.exp-takeaways {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.takeaway-item {
+		font-size: 0.85rem;
+		color: #e2e8f0;
+		line-height: 1.5;
+		background: rgba(255, 255, 255, 0.02);
+		padding: 0.6rem 0.8rem;
+		border-radius: 0.6rem;
+		border-left: 3px solid #c084fc;
+	}
+
+	.takeaway-item strong {
+		color: #ffffff;
+	}
+</style>
+
+<script is:inline>
+(() => {
+	const canvas = document.getElementById('enamelCanvas');
+	if (!canvas) return;
+	const ctx = canvas.getContext('2d');
+	if (!ctx) return;
+
+	const slider = document.getElementById('erosionSlider');
+	const sliderPercentText = document.getElementById('sliderPercentText');
+	const playPauseBtn = document.getElementById('playPauseBtn');
+	const playIcon = document.getElementById('playIcon');
+	const playText = document.getElementById('playText');
+	const resetBtn = document.getElementById('resetBtn');
+	const stageButtons = document.querySelectorAll('.stage-btn');
+
+	// Metrics elements
+	const valThickness = document.getElementById('valThickness');
+	const subThickness = document.getElementById('subThickness');
+	const valTubules = document.getElementById('valTubules');
+	const subTubules = document.getElementById('subTubules');
+	const valDiameter = document.getElementById('valDiameter');
+	const subDiameter = document.getElementById('subDiameter');
+	const valFlow = document.getElementById('valFlow');
+	const subFlow = document.getElementById('subFlow');
+	const valNerve = document.getElementById('valNerve');
+	const subNerve = document.getElementById('subNerve');
+
+	// Status and Explanation elements
+	const statusDot = document.getElementById('statusDot');
+	const statusText = document.getElementById('statusText');
+	const expPhaseNumber = document.getElementById('expPhaseNumber');
+	const expTitle = document.getElementById('expTitle');
+	const expBody = document.getElementById('expBody');
+	const expTakeaways = document.getElementById('expTakeaways');
+
+	let isPlaying = false;
+	let animId = null;
+	let playDirection = 1;
+	let currentPercent = 0;
+	let frameCount = 0;
+
+	// Particle systems
+	const acidIons = [];
+	const fluidParticles = [];
+	const nervePulses = [];
+
+	// Initialize particles
+	for (let i = 0; i < 40; i++) {
+		acidIons.push({
+			x: 50 + Math.random() * 800,
+			y: 20 + Math.random() * 50,
+			vx: (Math.random() - 0.5) * 0.8,
+			vy: 0.4 + Math.random() * 0.8,
+			radius: 2 + Math.random() * 2,
+			active: true
+		});
+	}
+
+	for (let i = 0; i < 50; i++) {
+		fluidParticles.push({
+			tubuleIndex: Math.floor(Math.random() * 12),
+			t: Math.random(), // 0 to 1 along tubule
+			speed: 0.003 + Math.random() * 0.005
+		});
+	}
+
+	const stageData = [
+		{
+			stage: 0,
+			min: 0,
+			max: 15,
+			name: "Stage 1: Intact Enamel (2.5mm)",
+			thickness: (p) => (2.50 - (p / 100) * 0.3).toFixed(2),
+			thicknessSub: "100% barrier intact",
+			tubules: () => "0",
+			tubulesSub: "Zero exposure to oral cavity",
+			diameter: () => "0.00",
+			diameterSub: "Sealed under hydroxyapatite",
+			flow: () => "0.00",
+			flowSub: "Fluid static, no shear strain",
+			nerve: () => "0",
+			nerveSub: "Nociceptors quiet",
+			statusText: "Pulp Environment: Fully Sealed & Protected",
+			statusClass: "",
+			expPhase: "Phase 1 Analysis",
+			expTitle: "Healthy Tooth: Enamel Shield & Intact Smear Layer",
+			expBody: "In a healthy crown, a 2.0 to 2.5 mm layer of highly mineralized hydroxyapatite enamel crystals acts as an impenetrable physical and chemical insulator. Below the enamel-dentin junction (DEJ), microscopic dentinal tubules remain completely sealed. Neither dietary acids nor thermal shifts can reach the internal odontoblast processes or trigeminal pain fibers.",
+			takeaways: [
+				{ label: "Barrier Integrity", desc: "Zero acidic protons can penetrate the dense hydroxyapatite crystalline lattice." },
+				{ label: "Fluid Dynamic", desc: "Dentinal fluid remains stable, exerting no mechanical pull on Piezo1 or TRPC5 channels." }
+			]
+		},
+		{
+			stage: 1,
+			min: 16,
+			max: 45,
+			name: "Stage 2: Early Acid Softening",
+			thickness: (p) => (2.20 - ((p - 15) / 30) * 0.8).toFixed(2),
+			thicknessSub: "Surface demineralization",
+			tubules: (p) => Math.round(((p - 15) / 30) * 8000).toLocaleString(),
+			tubulesSub: "Incipient microscopic fissures",
+			diameter: (p) => (((p - 15) / 30) * 0.6).toFixed(2),
+			diameterSub: "Smear layer intact but thinning",
+			flow: (p) => (((p - 15) / 30) * 0.65).toFixed(2),
+			flowSub: "Mild fluid oscillation",
+			nerve: (p) => Math.round(1 + ((p - 15) / 30) * 2),
+			nerveSub: "Mild cold / sweetness twinge",
+			statusText: "Warning: Enamel Crystalline Grid Softening",
+			statusClass: "warning",
+			expPhase: "Phase 2 Analysis",
+			expTitle: "Acid Softening & Sub-Surface Demineralization",
+			expBody: "Repeated dietary acid assaults (sodas, fermented foods, citric fruits) and night grinding lower the oral pH below the critical threshold of 5.5. Hydroxyapatite crystals begin dissolving at the outer prism boundaries, creating porous micro-fissures and thinning the outer protective shell.",
+			takeaways: [
+				{ label: "Chemical Weakening", desc: "Enamel hardness drops by up to 60%, allowing mechanical wear to accelerate rapidly." },
+				{ label: "Early Warning", desc: "Transient sensitivity to cold or sugary drinks signals early dentinal hydrodynamic agitation." }
+			]
+		},
+		{
+			stage: 2,
+			min: 46,
+			max: 75,
+			name: "Stage 3: Moderate Loss & Recession",
+			thickness: (p) => (1.40 - ((p - 45) / 30) * 0.9).toFixed(2),
+			thicknessSub: "Substantial enamel deficit",
+			tubules: (p) => Math.round(8000 + ((p - 45) / 30) * 20000).toLocaleString(),
+			tubulesSub: "Direct oral communication",
+			diameter: (p) => (0.6 + ((p - 45) / 30) * 1.0).toFixed(2),
+			diameterSub: "Smear plugs dissolving",
+			flow: (p) => (0.65 + ((p - 45) / 30) * 1.8).toFixed(2),
+			flowSub: "Active hydrodynamic displacement",
+			nerve: (p) => Math.round(3 + ((p - 45) / 30) * 4),
+			nerveSub: "A-delta sharp pain firing",
+			statusText: "High Alert: Open Fluid Channels Active",
+			statusClass: "warning",
+			expPhase: "Phase 3 Analysis",
+			expTitle: "Moderate Enamel Loss & Cervical Gum Recession",
+			expBody: "As enamel erodes past 50% thickness and cervical gums recede, protective barriers at the tooth neck disappear entirely. Between 15,000 and 28,000 open dentinal tubules per mm² become directly exposed to saliva, acids, and temperature swings. The smear layer is repeatedly stripped, triggering hydrodynamic fluid surges that deform odontoblasts.",
+			takeaways: [
+				{ label: "Tubule Exposure", desc: "Tens of thousands of micro-pipes act as direct fluid conduits to the nerve plexus." },
+				{ label: "Ion Channel Activation", desc: "Piezo1, TRPC5, and ASIC3 fire rapid action potentials into the mandibular nerve canal." }
+			]
+		},
+		{
+			stage: 3,
+			min: 76,
+			max: 100,
+			name: "Stage 4: Full Tubule Breach",
+			thickness: (p) => Math.max(0, 0.50 - ((p - 75) / 25) * 0.50).toFixed(2),
+			thicknessSub: "Zero barrier remaining",
+			tubules: (p) => Math.round(28000 + ((p - 75) / 25) * 17000).toLocaleString(),
+			tubulesSub: "Max density: 45,000 tubules/mm²",
+			diameter: (p) => (1.6 + ((p - 75) / 25) * 1.2).toFixed(2),
+			diameterSub: "Wide open lumen (2.8µm)",
+			flow: (p) => (2.45 + ((p - 75) / 25) * 1.75).toFixed(2),
+			flowSub: "Violent hydrodynamic flux",
+			nerve: (p) => Math.min(10, Math.round(7 + ((p - 75) / 25) * 3)),
+			nerveSub: "Continuous 10/10 radiating burn",
+			statusText: "CRITICAL: Chronic Trigeminal Neurogenic Firing",
+			statusClass: "danger",
+			expPhase: "Phase 4 Analysis",
+			expTitle: "Total Enamel Breach & Chronic Burning Mouth Ignition",
+			expBody: "Enamel is completely worn away, exposing the deep dentin layer where tubules widen to 2.8 µm near the pulp. Up to 45,000 open tubules per mm² flood the trigeminal nerve root with acidic hydrogen ions (H⁺) and mechanical fluid shear stress. Odontoblasts release ATP, igniting P2X3/P2X7 receptors and triggering Substance P and CGRP release. This creates continuous, non-stop radiating oral burning pain.",
+			takeaways: [
+				{ label: "Neurogenic Cascade", desc: "Unprotected nerve endings enter chronic neurogenic inflammation and central sensitization." },
+				{ label: "Clinical Implication", desc: "Restoring physical barriers (bonding, sealing) and eliminating oral acids stops the trigger source." }
+			]
+		}
+	];
+
+	function getStageIndex(percent) {
+		if (percent <= 15) return 0;
+		if (percent <= 45) return 1;
+		if (percent <= 75) return 2;
+		return 3;
+	}
+
+	function updateUI(percent) {
+		currentPercent = percent;
+		const stageIdx = getStageIndex(percent);
+		const data = stageData[stageIdx];
+
+		sliderPercentText.innerText = `${percent}% (${data.name.split(':')[0]})`;
+
+		// Update metrics
+		valThickness.innerText = data.thickness(percent);
+		subThickness.innerText = data.thicknessSub;
+
+		valTubules.innerText = data.tubules(percent);
+		subTubules.innerText = data.tubulesSub;
+
+		valDiameter.innerText = data.diameter(percent);
+		subDiameter.innerText = data.diameterSub;
+
+		valFlow.innerText = data.flow(percent);
+		subFlow.innerText = data.flowSub;
+
+		valNerve.innerText = data.nerve(percent);
+		subNerve.innerText = data.nerveSub;
+
+		// Update status
+		statusDot.className = 'status-indicator-dot ' + (data.statusClass || '');
+		statusText.innerText = data.statusText;
+
+		// Update stage buttons
+		stageButtons.forEach((btn, idx) => {
+			btn.classList.toggle('active', idx === stageIdx);
+		});
+
+		// Update explanation card
+		expPhaseNumber.innerText = data.expPhase;
+		expTitle.innerText = data.expTitle;
+		expBody.innerHTML = data.expBody.replace(/([a-zA-Z0-9]+)\s+([a-zA-Z0-9.,]+)$/, '$1&nbsp;$2');
+
+		expTakeaways.innerHTML = data.takeaways.map(t => `
+			<div class="takeaway-item">
+				<strong>${t.label}:</strong> ${t.desc}
+			</div>
+		`).join('');
+	}
+
+	function drawSimulation() {
+		frameCount++;
+		const width = canvas.width;
+		const height = canvas.height;
+		const p = currentPercent / 100; // 0 to 1
+
+		ctx.clearRect(0, 0, width, height);
+
+		// Background gradient (Oral Cavity / Saliva on top, Tooth Body below)
+		const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
+		bgGrad.addColorStop(0, '#090414');
+		bgGrad.addColorStop(0.3, '#100726');
+		bgGrad.addColorStop(1, '#05020c');
+		ctx.fillStyle = bgGrad;
+		ctx.fillRect(0, 0, width, height);
+
+		// Layer Y-coordinates
+		const oralTop = 0;
+		const oralBottom = 110;
+		
+		// Enamel thickness shrinks with progression:
+		const maxEnamelH = 90;
+		const currentEnamelH = Math.max(0, maxEnamelH * (1 - p));
+		const enamelTopY = oralBottom - (currentEnamelH > 0 ? 0 : 0);
+		const dejY = oralBottom + maxEnamelH; // Dentin-Enamel Junction fixed reference
+		const pulpY = height - 60; // Pulp chamber at bottom
+
+		// 1. DENTIN BODY (From DEJ to Pulp)
+		const dentinGrad = ctx.createLinearGradient(0, dejY, 0, pulpY);
+		dentinGrad.addColorStop(0, '#785422');
+		dentinGrad.addColorStop(0.3, '#94662d');
+		dentinGrad.addColorStop(1, '#614018');
+		ctx.fillStyle = dentinGrad;
+		ctx.fillRect(40, dejY - (maxEnamelH - currentEnamelH), width - 80, pulpY - (dejY - (maxEnamelH - currentEnamelH)));
+
+		// 2. PULP CHAMBER & TRIGEMINAL NERVES (At bottom)
+		const pulpGrad = ctx.createLinearGradient(0, pulpY, 0, height);
+		pulpGrad.addColorStop(0, '#6b1111');
+		pulpGrad.addColorStop(0.5, '#991b1b');
+		pulpGrad.addColorStop(1, '#450a0a');
+		ctx.fillStyle = pulpGrad;
+		ctx.fillRect(40, pulpY, width - 80, height - pulpY - 15);
+
+		// Draw Nerve Trunk and Odontoblast Layer
+		ctx.strokeStyle = '#f87171';
+		ctx.lineWidth = 3;
+		ctx.beginPath();
+		ctx.moveTo(50, pulpY + 25);
+		ctx.bezierCurveTo(250, pulpY + 15, 650, pulpY + 35, width - 50, pulpY + 25);
+		ctx.stroke();
+
+		// Nerve Action Potential Sparks when high pain
+		if (p > 0.3) {
+			const sparkCount = Math.floor(p * 8);
+			for (let s = 0; s < sparkCount; s++) {
+				const sx = 60 + ((frameCount * 6 + s * 110) % (width - 120));
+				const sy = pulpY + 25 + Math.sin(sx * 0.05) * 8;
+				ctx.fillStyle = (frameCount % 6 < 3) ? '#fef08a' : '#ef4444';
+				ctx.beginPath();
+				ctx.arc(sx, sy, 4 + Math.random() * 3, 0, Math.PI * 2);
+				ctx.fill();
+			}
+		}
+
+		// Pulp & Nerve Labels
+		ctx.fillStyle = '#fca5a5';
+		ctx.font = 'bold 12px system-ui, sans-serif';
+		ctx.fillText('DENTAL PULP & MANDIBULAR NERVE PLEXUS (CN V3)', 60, pulpY + 38);
+
+		// 3. DENTINAL TUBULES (Channels through Dentin)
+		const tubuleCount = 14;
+		const tubuleSpacing = (width - 160) / (tubuleCount - 1);
+		const currentTubuleTopY = oralBottom + currentEnamelH;
+
+		// Calculate tubule width based on depth and exposure
+		const tubuleWidthTop = 2 + p * 6;
+		const tubuleWidthBottom = 6 + p * 8;
+
+		for (let i = 0; i < tubuleCount; i++) {
+			const tx = 80 + i * tubuleSpacing;
+			const tyTop = currentTubuleTopY;
+			const tyBottom = pulpY;
+
+			// Draw Tubule Wall Shadow/Border
+			ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+			ctx.lineWidth = 1;
+
+			// Tubule lumen path (slight natural S-curve)
+			ctx.beginPath();
+			ctx.moveTo(tx - tubuleWidthTop / 2, tyTop);
+			ctx.bezierCurveTo(tx - tubuleWidthTop / 2 - 10, (tyTop + tyBottom) / 2, tx - tubuleWidthBottom / 2 + 10, (tyTop + tyBottom) / 2, tx - tubuleWidthBottom / 2, tyBottom);
+			ctx.lineTo(tx + tubuleWidthBottom / 2, tyBottom);
+			ctx.bezierCurveTo(tx + tubuleWidthBottom / 2 + 10, (tyTop + tyBottom) / 2, tx + tubuleWidthTop / 2 - 10, (tyTop + tyBottom) / 2, tx + tubuleWidthTop / 2, tyTop);
+			ctx.closePath();
+
+			// Tubule interior fill (fluid filled)
+			const tubuleFill = ctx.createLinearGradient(tx, tyTop, tx, tyBottom);
+			if (p > 0.4) {
+				// Acid penetration colors tubule yellow/orange
+				tubuleFill.addColorStop(0, 'rgba(234, 179, 8, 0.7)');
+				tubuleFill.addColorStop(0.6, 'rgba(239, 68, 68, 0.6)');
+				tubuleFill.addColorStop(1, 'rgba(185, 28, 28, 0.8)');
+			} else {
+				tubuleFill.addColorStop(0, 'rgba(56, 189, 248, 0.3)');
+				tubuleFill.addColorStop(1, 'rgba(30, 58, 138, 0.5)');
+			}
+			ctx.fillStyle = tubuleFill;
+			ctx.fill();
+			ctx.stroke();
+
+			// Odontoblast process inside tubule
+			ctx.strokeStyle = '#f87171';
+			ctx.lineWidth = 1.5;
+			ctx.beginPath();
+			ctx.moveTo(tx, tyBottom);
+			ctx.lineTo(tx + Math.sin(i + frameCount * 0.05) * 2, tyTop + (maxEnamelH * 0.4));
+			ctx.stroke();
+
+			// Smear Plug on top of tubule if enamel worn but smear layer exists
+			if (p > 0.2 && p < 0.65) {
+				const smearOpacity = 1 - ((p - 0.2) / 0.45);
+				ctx.fillStyle = `rgba(203, 213, 225, ${smearOpacity * 0.9})`;
+				ctx.fillRect(tx - tubuleWidthTop / 2 - 2, tyTop - 3, tubuleWidthTop + 4, 6);
+			}
+		}
+
+		// Fluid Dynamic Particle Flow inside exposed tubules
+		if (p > 0.2) {
+			const flowSpeed = (p - 0.2) * 0.02;
+			ctx.fillStyle = p > 0.5 ? '#fde047' : '#38bdf8';
+
+			fluidParticles.forEach((fp) => {
+				fp.t = (fp.t + flowSpeed) % 1;
+				const i = fp.tubuleIndex % tubuleCount;
+				const tx = 80 + i * tubuleSpacing;
+				const py = currentTubuleTopY + fp.t * (pulpY - currentTubuleTopY);
+				const px = tx + Math.sin(fp.t * Math.PI) * 4;
+
+				ctx.beginPath();
+				ctx.arc(px, py, 2 + p * 1.5, 0, Math.PI * 2);
+				ctx.fill();
+			});
+		}
+
+		// 4. ENAMEL LAYER (Above Dentin, shrivels as erosion increases)
+		if (currentEnamelH > 2) {
+			const enamelGrad = ctx.createLinearGradient(0, oralBottom, 0, oralBottom + currentEnamelH);
+			enamelGrad.addColorStop(0, '#f8fafc');
+			enamelGrad.addColorStop(0.4, '#e2e8f0');
+			enamelGrad.addColorStop(1, '#cbd5e1');
+
+			ctx.fillStyle = enamelGrad;
+			ctx.beginPath();
+			ctx.rect(40, oralBottom, width - 80, currentEnamelH);
+			ctx.fill();
+
+			// Enamel prism crystalline hatch lines
+			ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+			ctx.lineWidth = 1;
+			for (let x = 45; x < width - 45; x += 16) {
+				ctx.beginPath();
+				ctx.moveTo(x, oralBottom);
+				ctx.lineTo(x + 4, oralBottom + currentEnamelH);
+				ctx.stroke();
+			}
+
+			// Enamel Label
+			ctx.fillStyle = '#1e293b';
+			ctx.font = 'bold 13px system-ui, sans-serif';
+			const thicknessText = `${(2.5 * (1 - p)).toFixed(1)}mm ENAMEL BARRIER`;
+			ctx.fillText(thicknessText, width / 2 - 80, oralBottom + Math.min(currentEnamelH / 2 + 5, 24));
+		}
+
+		// 5. ORAL ENVIRONMENT & ACID PARTICLES (Top Area)
+		ctx.fillStyle = 'rgba(168, 85, 247, 0.08)';
+		ctx.fillRect(40, 10, width - 80, oralBottom - 10);
+
+		// Oral Cavity Title
+		ctx.fillStyle = '#c084fc';
+		ctx.font = 'bold 12px system-ui, sans-serif';
+		ctx.fillText('ORAL CAVITY: SALIVA, ACID PROTONS (H⁺) & BACTERIAL BYPRODUCTS', 55, 30);
+
+		// Acid Ions floating down toward the tooth
+		acidIons.forEach((ion) => {
+			ion.x += ion.vx;
+			ion.y += ion.vy * (1 + p * 1.5);
+
+			// Wrap around
+			if (ion.y > oralBottom + (currentEnamelH === 0 ? 30 : 0)) {
+				ion.y = 35;
+				ion.x = 60 + Math.random() * (width - 120);
+			}
+			if (ion.x < 50 || ion.x > width - 50) {
+				ion.vx *= -1;
+			}
+
+			// Render H+ Acid Ion
+			ctx.fillStyle = '#ef4444';
+			ctx.beginPath();
+			ctx.arc(ion.x, ion.y, ion.radius, 0, Math.PI * 2);
+			ctx.fill();
+
+			// Ion glow
+			ctx.fillStyle = 'rgba(239, 68, 68, 0.3)';
+			ctx.beginPath();
+			ctx.arc(ion.x, ion.y, ion.radius * 2, 0, Math.PI * 2);
+			ctx.fill();
+		});
+
+		// Dynamic Annotation Lines & Callouts
+		if (currentEnamelH <= 5) {
+			// Breach alert text
+			ctx.fillStyle = '#fde047';
+			ctx.font = 'bold 14px system-ui, sans-serif';
+			ctx.fillText('⚠ COMPLETE ENAMEL BREACH: 45,000 TUBULES/mm² FULLY EXPOSED', width / 2 - 240, oralBottom + 28);
+		}
+
+		// DEJ label
+		ctx.fillStyle = '#fbbf24';
+		ctx.font = '10px system-ui, sans-serif';
+		ctx.fillText('DENTIN-ENAMEL JUNCTION (DEJ)', width - 210, dejY - (maxEnamelH - currentEnamelH) - 4);
+
+		animId = requestAnimationFrame(drawSimulation);
+	}
+
+	// Slider Event
+	slider?.addEventListener('input', (e) => {
+		const val = parseInt(e.target.value, 10);
+		updateUI(val);
+	});
+
+	// Stage Buttons
+	stageButtons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const stageIdx = parseInt(btn.getAttribute('data-stage'), 10);
+			let targetVal = 0;
+			if (stageIdx === 0) targetVal = 0;
+			else if (stageIdx === 1) targetVal = 30;
+			else if (stageIdx === 2) targetVal = 60;
+			else if (stageIdx === 3) targetVal = 95;
+
+			slider.value = targetVal;
+			updateUI(targetVal);
+		});
+	});
+
+	// Play/Pause Auto-Animation
+	function togglePlay() {
+		isPlaying = !isPlaying;
+		if (isPlaying) {
+			playIcon.innerText = '⏸';
+			playText.innerText = 'Pause';
+			autoAnimateLoop();
+		} else {
+			playIcon.innerText = '▶';
+			playText.innerText = 'Auto Play';
+		}
+	}
+
+	function autoAnimateLoop() {
+		if (!isPlaying) return;
+		let val = parseInt(slider.value, 10);
+		val += playDirection * 1;
+
+		if (val >= 100) {
+			val = 100;
+			playDirection = -1;
+		} else if (val <= 0) {
+			val = 0;
+			playDirection = 1;
+		}
+
+		slider.value = val;
+		updateUI(val);
+		setTimeout(autoAnimateLoop, 60);
+	}
+
+	playPauseBtn?.addEventListener('click', togglePlay);
+
+	// Reset
+	resetBtn?.addEventListener('click', () => {
+		isPlaying = false;
+		playIcon.innerText = '▶';
+		playText.innerText = 'Auto Play';
+		slider.value = 0;
+		updateUI(0);
+	});
+
+	// Initial Trigger
+	updateUI(0);
+	drawSimulation();
+})();
+</script>
