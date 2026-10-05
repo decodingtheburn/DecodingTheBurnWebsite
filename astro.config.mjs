@@ -28,6 +28,7 @@ export default defineConfig({
 		enabled: false,
 	},
 	redirects: {
+		'/1': '/blog/1-my-bms-18-months-carnivore-experiment',
 		'/blog/my-burning-mouth-triggers': '/blog/1-my-bms-18-months-carnivore-experiment',
 		'/blog/my-burning-mouth-syndrome-triggers-bms-acid-sugar': '/blog/1-my-bms-18-months-carnivore-experiment',
 		'/blog/1-my-burning-mouth-syndrome-triggers-bms-acid-sugar': '/blog/1-my-bms-18-months-carnivore-experiment',
