@@ -237,6 +237,13 @@ const { class: className = '' } = Astro.props;
 						As wear slices into dentin, it does not just remove surface matter; it cuts into wider portions of the cone. By Poiseuille's Law, doubling tubule radius increases fluid flow by 16-fold ($r^4$), turning mild wear into explosive pain.
 					</p>
 				</div>
+				<div class="science-box highlight-box">
+					<div class="science-box-title">Are There 2 Distinct Paths? (Yes!)</div>
+					<p class="science-box-desc">
+						<strong>Path 1 (Horizontal Fluid/Acid):</strong> Tubules are micro-channels inside crown/neck dentin. They convey fluid and acid directly into the <em>Dental Pulp</em>. Fluid never leaks into the bone.<br />
+						<strong>Path 2 (Vertical Electrical Signals):</strong> Root canals house sensory nerve cables. When pulp nerves get excited, they shoot <em>electrical action potentials</em> down the root canal to the Mandibular Canal (CN V3).
+					</p>
+				</div>
 			</div>
 		</div>
 
@@ -461,15 +468,19 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.abfraction-badge {
-		top: 28%;
-		left: 3%;
-		max-width: 260px;
+		top: 14px;
+		right: 14px;
+		left: auto;
+		max-width: 290px;
+		z-index: 10;
 	}
 
 	.nerve-badge {
-		bottom: 5%;
-		right: 3%;
-		max-width: 280px;
+		bottom: 14px;
+		right: 14px;
+		left: auto;
+		max-width: 300px;
+		z-index: 10;
 	}
 
 	@media (max-width: 600px) {
@@ -860,13 +871,13 @@ const { class: className = '' } = Astro.props;
 
 	.exp-scientific-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(3, 1fr);
 		gap: 1rem;
 		padding-top: 1rem;
 		border-top: 1px solid rgba(168, 85, 247, 0.2);
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 900px) {
 		.exp-scientific-grid {
 			grid-template-columns: 1fr;
 		}
@@ -877,6 +888,11 @@ const { class: className = '' } = Astro.props;
 		border-left: 3px solid #c084fc;
 		border-radius: 0.6rem;
 		padding: 0.85rem 1rem;
+	}
+
+	.science-box.highlight-box {
+		border-left-color: #fde047;
+		background: rgba(253, 224, 71, 0.04);
 	}
 
 	.science-box-title {
@@ -1177,6 +1193,40 @@ const { class: className = '' } = Astro.props;
 				toothCtx.fill();
 			}
 
+			// A2. Horizontal Dentinal Tubules into Dental Pulp (Path 1: Fluid & Acid Infiltration)
+			const tubuleHorizontalCount = 5;
+			for (let hIndex = 0; hIndex < tubuleHorizontalCount; hIndex++) {
+				const hy = cy - 25 + hIndex * 12;
+				const startX = cx - 10;
+				const endX = 515; // Left border of dental pulp chamber
+
+				// Draw tubule channel line
+				toothCtx.strokeStyle = 'rgba(253, 224, 71, 0.35)';
+				toothCtx.lineWidth = 1.5;
+				toothCtx.beginPath();
+				toothCtx.moveTo(startX, hy);
+				toothCtx.lineTo(endX, hy);
+				toothCtx.stroke();
+
+				// Animate fluid & acid particles moving horizontally from root surface into pulp
+				const particleProgress = ((frameCount * 0.035 + hIndex * 0.22) % 1);
+				const px = startX + particleProgress * (endX - startX);
+				toothCtx.fillStyle = (t > 0.5) ? '#ef4444' : '#fde047';
+				toothCtx.beginPath();
+				toothCtx.arc(px, hy, 2 + t * 1.4, 0, Math.PI * 2);
+				toothCtx.fill();
+			}
+
+			// Pulp Chamber Excitation Glow when stimulated by horizontal tubules
+			const pulpGlow = toothCtx.createRadialGradient(525, 345, 5, 525, 345, 50);
+			const glowPulse = 0.25 + Math.sin(frameCount * 0.12) * 0.18;
+			pulpGlow.addColorStop(0, `rgba(239, 68, 68, ${glowPulse * (0.5 + t * 0.5)})`);
+			pulpGlow.addColorStop(1, 'rgba(239, 68, 68, 0)');
+			toothCtx.fillStyle = pulpGlow;
+			toothCtx.beginPath();
+			toothCtx.arc(525, 345, 45, 0, Math.PI * 2);
+			toothCtx.fill();
+
 			// Draw acid penetration arrows entering the cervical wedge
 			if (t > 0.25) {
 				const arrowCount = Math.floor(t * 4);
@@ -1197,22 +1247,34 @@ const { class: className = '' } = Astro.props;
 					toothCtx.stroke();
 				}
 			}
+
+			// Path 1 Annotation Callout
+			toothCtx.fillStyle = '#fde047';
+			toothCtx.font = 'bold 12px system-ui, sans-serif';
+			toothCtx.fillText('PATH 1: Tubules Excite Pulp (Horizontal Fluid/Acid Flow)', 45, 230);
+			toothCtx.strokeStyle = 'rgba(253, 224, 71, 0.6)';
+			toothCtx.lineWidth = 1.2;
+			toothCtx.beginPath();
+			toothCtx.moveTo(260, 236);
+			toothCtx.lineTo(cx - 20, cy - 10);
+			toothCtx.stroke();
+
 			toothCtx.restore();
 		}
 
-		// B. Trigeminal Nerve Action Potential Cascades (Traveling from Pulp down to Mandibular Canal)
+		// B. Trigeminal Nerve Action Potential Cascades (Path 2: Vertical Electrical Signals to Mandibular Canal)
 		if (t > 0.15) {
 			toothCtx.save();
 			// Root canal paths (Left root apex ~ X=435, Y=740; Right root apex ~ X=590, Y=740)
 			// Mandibular horizontal canal ~ Y=750 to 765
 			const sparkCount = Math.floor(t * 12);
-			toothCtx.fillStyle = (t > 0.6) ? '#ef4444' : '#eab308';
-			toothCtx.shadowColor = toothCtx.fillStyle;
+			toothCtx.fillStyle = (t > 0.6) ? '#ef4444' : '#38bdf8';
+			toothCtx.shadowColor = (t > 0.6) ? '#ef4444' : '#38bdf8';
 			toothCtx.shadowBlur = 10;
 
-			// Left Root Canal Nerve Pulses
+			// Left Root Canal Electrical Pulses (Down the nerve trunk)
 			for (let s = 0; s < sparkCount; s++) {
-				const progress = ((frameCount * 0.03 + s * 0.15) % 1);
+				const progress = ((frameCount * 0.035 + s * 0.15) % 1);
 				const nx = 480 - progress * 45;
 				const ny = 350 + progress * 390;
 				toothCtx.beginPath();
@@ -1229,6 +1291,17 @@ const { class: className = '' } = Astro.props;
 				toothCtx.arc(mx, my, 2.5 + t * 3.5, 0, Math.PI * 2);
 				toothCtx.fill();
 			}
+
+			// Path 2 Annotation Callout (Explaining Electrical Transmission)
+			toothCtx.fillStyle = '#38bdf8';
+			toothCtx.font = 'bold 12px system-ui, sans-serif';
+			toothCtx.fillText('PATH 2: Trigeminal Action Potentials (Electrical Nerve Pulses to CN V3)', 470, 710);
+			toothCtx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+			toothCtx.lineWidth = 1.2;
+			toothCtx.beginPath();
+			toothCtx.moveTo(560, 705);
+			toothCtx.lineTo(465, 680);
+			toothCtx.stroke();
 
 			toothCtx.restore();
 		}
