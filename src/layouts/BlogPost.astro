@@ -55,7 +55,12 @@ if (!postNumber && slug) {
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} noindex={draft} />
+		<BaseHead 
+			title={title} 
+			description={description} 
+			image={typeof heroImage === 'string' ? heroImage : heroImage?.src} 
+			noindex={draft} 
+		/>
 	</head>
 
 	<body>
