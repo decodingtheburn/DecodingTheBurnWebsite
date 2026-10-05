@@ -1,0 +1,1468 @@
+---
+// ScleroticDentinAnimation.astro - Interactive Biophysical Simulator for Dentinal Sclerosis & Tubule Obliteration
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`sclerotic-anim-wrapper ${className}`}>
+	<div class="sclerotic-anim-card">
+		<!-- Header -->
+		<div class="sclerotic-anim-header">
+			<h3 class="sclerotic-anim-title">Interactive Biophysical Timeline: Sclerotic Dentin&nbsp;Obstruction</h3>
+			<p class="sclerotic-anim-subtitle">
+				Drag the timeline slider or step through each healing phase to observe how the tooth pulp naturally fights erosion, depositing intratubular mineral crystals to choke off open tubules into solid, glassy sclerotic&nbsp;dentin.
+			</p>
+		</div>
+
+		<!-- View Switcher Tabs -->
+		<div class="sclerotic-view-toggle" role="tablist" aria-label="Sclerosis Simulation Views">
+			<button class="sclerotic-view-btn active" data-scl-view="microscopic" type="button">
+				<span class="view-icon">🔬</span>
+				<span class="view-label">Microscopic Tubule Lumen Occlusion</span>
+			</button>
+			<button class="sclerotic-view-btn" data-scl-view="tooth" type="button">
+				<span class="view-icon">🦷</span>
+				<span class="view-label">3D Tooth Sclerotic Shield</span>
+			</button>
+			<button class="sclerotic-view-btn" data-scl-view="split" type="button">
+				<span class="view-icon">⚡</span>
+				<span class="view-label">Side-by-Side Dual View</span>
+			</button>
+		</div>
+
+		<!-- Timeline Milestone Buttons -->
+		<div class="timeline-step-grid" role="tablist" aria-label="Sclerosis Timeline Milestones">
+			<button class="timeline-step-btn active" data-step="0" type="button">
+				<span class="step-num">Day 0 - Acute Breach</span>
+				<span class="step-desc">Open Tubules (10/10 Pain)</span>
+			</button>
+			<button class="timeline-step-btn" data-step="1" type="button">
+				<span class="step-num">Month 3 - Crystal Seeding</span>
+				<span class="step-desc">Mineral Precipitation (50% Flow)</span>
+			</button>
+			<button class="timeline-step-btn" data-step="2" type="button">
+				<span class="step-num">Month 9 - Wall Constriction</span>
+				<span class="step-desc">Peritubular Dentin Choke (10% Flow)</span>
+			</button>
+			<button class="timeline-step-btn" data-step="3" type="button">
+				<span class="step-num">Year 2+ - Full Obliteration</span>
+				<span class="step-desc">Solid Sclerotic Glass (0/10 Pain)</span>
+			</button>
+		</div>
+
+		<!-- Simulation Viewport -->
+		<div class="sclerotic-viewport-container" id="sclContainer" data-mode="microscopic">
+			
+			<!-- VIEW A: Microscopic Tubule Conical Occlusion Canvas -->
+			<div class="scl-pane microscopic-pane" id="microscopicPane">
+				<div class="micro-header-bar">
+					<div class="micro-title-wrap">
+						<h4 class="micro-title">Intratubular Calcification &amp; Lumen&nbsp;Choke</h4>
+						<p class="micro-subtitle">
+							Watch peritubular hydroxyapatite and whitlockite crystals grow inward, strangling fluid flow ($Q \propto r^4$) down to absolute&nbsp;zero.
+						</p>
+					</div>
+					<div class="micro-lumen-pill" id="lumenPill">
+						Lumen Diameter: <strong>2.50 µm (100% Open)</strong>
+					</div>
+				</div>
+
+				<div class="micro-canvas-box">
+					<canvas id="scleroticMicroCanvas" width="900" height="440"></canvas>
+					
+					<div class="micro-legend-row">
+						<div class="scl-legend-chip"><span class="chip-dot open-fluid"></span> Open Fluid Lumen (Hydrodynamic Shear)</div>
+						<div class="scl-legend-chip"><span class="chip-dot mineral-crystals"></span> Intratubular Mineral Crystals (Whitlockite)</div>
+						<div class="scl-legend-chip"><span class="chip-dot peritubular"></span> Hypermineralized Peritubular Dentin</div>
+						<div class="scl-legend-chip"><span class="chip-dot odontoblast"></span> Odontoblast Process (Retracting / Calming)</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- VIEW B: 3D Tooth Sclerotic Shield View -->
+			<div class="scl-pane tooth-pane" id="toothPane">
+				<div class="tooth-header-bar">
+					<div class="tooth-title-wrap">
+						<h4 class="micro-title">3D Tooth Cervical Notch: Natural Glassy&nbsp;Seal</h4>
+						<p class="micro-subtitle">
+							The exposed, porous cervical wedge transforms into dense, translucent sclerotic dentin, halting nerve firing into the mandibular&nbsp;canal.
+						</p>
+					</div>
+				</div>
+
+				<div class="scl-tooth-stage">
+					<img 
+						src="/exposed-dentinal-tubules-cross-section.jpg" 
+						alt="3D cross section of tooth showing sclerotic dentin obstruction sealing tubules and calming trigeminal nerve"
+						class="scl-tooth-img"
+						id="sclToothImg"
+					/>
+					<canvas id="sclToothOverlayCanvas" width="1200" height="896"></canvas>
+
+					<!-- Floating Status Callout -->
+					<div class="scl-hotspot-badge" id="sclHotspotBadge">
+						<div class="scl-dot danger" id="sclStatusDot"></div>
+						<div class="scl-badge-info">
+							<strong id="sclBadgeTitle">Acute Tubule Exposure</strong>
+							<span id="sclBadgeDesc">Fluid rush firing 10/10 burning pain</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Interactive Timeline Slider & Controls -->
+		<div class="scl-slider-bar">
+			<div class="slider-left">
+				<div class="slider-header-flex">
+					<label for="sclSlider" class="scl-slider-label">
+						<span>Sclerosis Healing Timeline:</span>
+						<strong id="sclTimelineDisplay">Day 0 (Acute Exposure)</strong>
+					</label>
+					<span class="occlusion-readout" id="occlusionReadout">0% Lumen Occlusion</span>
+				</div>
+				<input 
+					type="range" 
+					id="sclSlider" 
+					min="0" 
+					max="100" 
+					value="0" 
+					step="1"
+					class="scl-range-input"
+					aria-label="Sclerosis healing timeline slider"
+				/>
+				<div class="scl-ticks">
+					<span>Day 0</span>
+					<span>Month 1</span>
+					<span>Month 3</span>
+					<span>Month 6</span>
+					<span>Month 12</span>
+					<span>Year 2+</span>
+				</div>
+			</div>
+
+			<div class="scl-actions">
+				<button id="sclPlayBtn" class="scl-action-btn" type="button">
+					<span id="sclPlayIcon">▶</span>
+					<span id="sclPlayText">Play Healing Arc</span>
+				</button>
+				<button id="sclResetBtn" class="scl-action-btn secondary" type="button">
+					Reset to Day 0
+				</button>
+			</div>
+		</div>
+
+		<!-- Real-Time Biophysical Telemetry Dashboard -->
+		<div class="scl-metrics-dashboard">
+			<div class="scl-metric-card">
+				<div class="scl-metric-label">Lumen Aperture</div>
+				<div class="scl-metric-value-box">
+					<span class="scl-metric-val" id="metricLumen">2.50</span>
+					<span class="scl-metric-unit">µm</span>
+				</div>
+				<div class="scl-metric-sub" id="subLumen">Wide open cone aperture</div>
+			</div>
+
+			<div class="scl-metric-card">
+				<div class="scl-metric-label">Intratubular Mineralization</div>
+				<div class="scl-metric-value-box">
+					<span class="scl-metric-val" id="metricMineral">0</span>
+					<span class="scl-metric-unit">% Solid</span>
+				</div>
+				<div class="scl-metric-sub" id="subMineral">No crystal occlusion</div>
+			</div>
+
+			<div class="scl-metric-card">
+				<div class="scl-metric-label">Hydraulic Conductance ($r^4$)</div>
+				<div class="scl-metric-value-box">
+					<span class="scl-metric-val" id="metricPermeability">100</span>
+					<span class="scl-metric-unit">% Max</span>
+				</div>
+				<div class="scl-metric-sub" id="subPermeability">Violent fluid shear stress</div>
+			</div>
+
+			<div class="scl-metric-card">
+				<div class="scl-metric-label">Fluid Velocity (Brännström)</div>
+				<div class="scl-metric-value-box">
+					<span class="scl-metric-val" id="metricVelocity">3.80</span>
+					<span class="scl-metric-unit">mm/s</span>
+				</div>
+				<div class="scl-metric-sub" id="subVelocity">Maximum odontoblast pull</div>
+			</div>
+
+			<div class="scl-metric-card">
+				<div class="scl-metric-label">Dentin Translucency</div>
+				<div class="scl-metric-value-box">
+					<span class="scl-metric-val" id="metricGlassy">0</span>
+					<span class="scl-metric-unit">% Glassy</span>
+				</div>
+				<div class="scl-metric-sub" id="subGlassy">Opaque, porous root face</div>
+			</div>
+
+			<div class="scl-metric-card critical">
+				<div class="scl-metric-label">Trigeminal Nerve Alarm (CN V3)</div>
+				<div class="scl-metric-value-box">
+					<span class="scl-metric-val nerve" id="metricNerveAlarm">10</span>
+					<span class="scl-metric-unit">/ 10 Pain</span>
+				</div>
+				<div class="scl-metric-sub" id="subNerveAlarm">Furious action potential firing</div>
+			</div>
+		</div>
+
+		<!-- Deep Scientific Analysis & Clinical Explanations -->
+		<div class="scl-explanation-card" id="sclExpCard">
+			<div class="scl-exp-header">
+				<span class="scl-phase-badge" id="sclPhaseBadge">Timeline Milestone: Day 0</span>
+				<h4 class="scl-exp-title" id="sclExpTitle">Acute Tubule Exposure: The Unobstructed Fluid Gateway</h4>
+			</div>
+			<p class="scl-exp-body" id="sclExpBody">
+				Immediately after enamel is breached or an abfraction notch develops, tubule lumens stand completely patent at a wide 2.5 µm diameter. With no smear layer or mineral plugs, saliva and dietary acids rush across the dentin wall at 3.8 mm/s. The underlying odontoblasts release large quantities of ATP, firing non-stop 10/10 electrical alarms into the Trigeminal Mandibular Canal (CN V3).
+			</p>
+
+			<div class="scl-science-grid">
+				<div class="scl-science-box">
+					<div class="scl-science-title">The Natural Defense: Peritubular Hypertrophy</div>
+					<p class="scl-science-desc">
+						When protected from rapid acid erosion, odontoblasts actively synthesize and deposit mineral rings of peritubular dentin. Whitlockite (calcium magnesium phosphate) crystals precipitate inside the lumen, choking the channel from within.
+					</p>
+				</div>
+				<div class="scl-science-box">
+					<div class="scl-science-title">The Power of Poiseuille's Fourth Power ($r^4$)</div>
+					<p class="scl-science-desc">
+						Because fluid conductance shrinks with the fourth power of the radius, halving the lumen diameter from 2.5 µm to 1.25 µm slashes fluid movement by a massive 93.75%! Even partial sclerosis provides dramatic pain relief.
+					</p>
+				</div>
+				<div class="scl-science-box highlight-box">
+					<div class="scl-science-title">Why Acidic Diets Prevent Natural Sclerosis</div>
+					<p class="scl-science-desc">
+						If a patient drinks acidic coffee, soda, or citrus daily (pH &lt; 5.5), dietary acids dissolve the delicate whitlockite crystals faster than the tooth can deposit them. Sclerosis halts, trapping the tooth in permanent chronic burning pain.
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<style>
+	.sclerotic-anim-wrapper {
+		margin: 3.5rem 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.sclerotic-anim-card {
+		background: radial-gradient(120% 120% at 50% 0%, #17102e 0%, #0d081a 60%, #070311 100%);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.5rem;
+		padding: clamp(1.25rem, 3vw, 2.5rem);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+		color: #e2e8f0;
+	}
+
+	.sclerotic-anim-header {
+		text-align: center;
+		margin-bottom: 2rem;
+		max-width: 860px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.sclerotic-anim-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0 0 0.85rem 0;
+		line-height: 1.25;
+		text-wrap: balance;
+		letter-spacing: -0.02em;
+	}
+
+	.sclerotic-anim-subtitle {
+		font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+		line-height: 1.65;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	/* View Toggle */
+	.sclerotic-view-toggle {
+		display: flex;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-bottom: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.sclerotic-view-btn {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(168, 85, 247, 0.28);
+		border-radius: 0.85rem;
+		padding: 0.65rem 1.25rem;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: #cbd5e1;
+		transition: all 0.2s ease;
+	}
+
+	.sclerotic-view-btn:hover {
+		background: rgba(168, 85, 247, 0.15);
+		color: #ffffff;
+		border-color: rgba(168, 85, 247, 0.5);
+	}
+
+	.sclerotic-view-btn.active {
+		background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(126, 34, 206, 0.5) 100%);
+		border-color: #c084fc;
+		color: #ffffff;
+		box-shadow: 0 0 16px rgba(168, 85, 247, 0.4);
+	}
+
+	/* Timeline Step Buttons */
+	.timeline-step-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	@media (max-width: 768px) {
+		.timeline-step-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.timeline-step-btn {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(168, 85, 247, 0.22);
+		border-radius: 0.85rem;
+		padding: 0.85rem 0.75rem;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.25rem;
+		transition: all 0.2s ease;
+		color: #e2e8f0;
+		text-align: left;
+	}
+
+	.timeline-step-btn:hover {
+		background: rgba(168, 85, 247, 0.12);
+		border-color: rgba(168, 85, 247, 0.45);
+	}
+
+	.timeline-step-btn.active {
+		background: linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(147, 51, 234, 0.38) 100%);
+		border-color: #c084fc;
+		box-shadow: 0 0 14px rgba(168, 85, 247, 0.3);
+	}
+
+	.step-num {
+		font-size: 0.82rem;
+		font-weight: 800;
+		color: #c084fc;
+	}
+
+	.timeline-step-btn.active .step-num {
+		color: #fde047;
+	}
+
+	.step-desc {
+		font-size: 0.84rem;
+		font-weight: 600;
+		color: #ffffff;
+		line-height: 1.25;
+	}
+
+	/* Viewport Container & Modes */
+	.sclerotic-viewport-container {
+		background: #06020d;
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 1.25rem;
+		padding: 0.85rem;
+		margin-bottom: 1.5rem;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.sclerotic-viewport-container[data-mode="microscopic"] .tooth-pane {
+		display: none;
+	}
+
+	.sclerotic-viewport-container[data-mode="tooth"] .microscopic-pane {
+		display: none;
+	}
+
+	.sclerotic-viewport-container[data-mode="split"] {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+
+	@media (max-width: 900px) {
+		.sclerotic-viewport-container[data-mode="split"] {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Microscopic Pane */
+	.microscopic-pane {
+		background: #070311;
+		border-radius: 0.85rem;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		border: 1px solid rgba(168, 85, 247, 0.25);
+	}
+
+	.micro-header-bar {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.85rem;
+		flex-wrap: wrap;
+	}
+
+	.micro-title-wrap {
+		flex: 1;
+		min-width: 240px;
+	}
+
+	.micro-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.08rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0 0 0.35rem 0;
+		line-height: 1.3;
+	}
+
+	.micro-subtitle {
+		font-size: 0.82rem;
+		line-height: 1.5;
+		color: #cbd5e1;
+		margin: 0;
+	}
+
+	.micro-lumen-pill {
+		background: rgba(253, 224, 71, 0.12);
+		border: 1px solid rgba(253, 224, 71, 0.35);
+		border-radius: 0.6rem;
+		padding: 0.4rem 0.8rem;
+		font-size: 0.82rem;
+		color: #fde047;
+		white-space: nowrap;
+	}
+
+	.micro-canvas-box {
+		width: 100%;
+		border-radius: 0.75rem;
+		overflow: hidden;
+		background: #030107;
+		border: 1px solid rgba(168, 85, 247, 0.2);
+	}
+
+	#scleroticMicroCanvas {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 900 / 440;
+	}
+
+	.micro-legend-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem 1.25rem;
+		margin-top: 0.75rem;
+		padding: 0.4rem 0.2rem;
+	}
+
+	.scl-legend-chip {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.76rem;
+		color: #cbd5e1;
+	}
+
+	.chip-dot {
+		width: 12px;
+		height: 12px;
+		border-radius: 3px;
+	}
+
+	.chip-dot.open-fluid { background: #38bdf8; }
+	.chip-dot.mineral-crystals { background: #fde047; }
+	.chip-dot.peritubular { background: #e2e8f0; }
+	.chip-dot.odontoblast { background: #f87171; }
+
+	/* Tooth Pane */
+	.tooth-pane {
+		background: #070311;
+		border-radius: 0.85rem;
+		padding: 1rem;
+		border: 1px solid rgba(168, 85, 247, 0.25);
+	}
+
+	.tooth-header-bar {
+		margin-bottom: 0.85rem;
+	}
+
+	.scl-tooth-stage {
+		position: relative;
+		width: 100%;
+		border-radius: 0.85rem;
+		overflow: hidden;
+		background: #020106;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.scl-tooth-img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+		max-height: 520px;
+	}
+
+	#sclToothOverlayCanvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
+	/* Hotspot Badges */
+	.scl-hotspot-badge {
+		position: absolute;
+		top: 14px;
+		right: 14px;
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		background: rgba(12, 6, 24, 0.92);
+		backdrop-filter: blur(8px);
+		border: 1px solid rgba(168, 85, 247, 0.45);
+		padding: 0.45rem 0.85rem;
+		border-radius: 0.75rem;
+		box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+		pointer-events: none;
+		max-width: 290px;
+		z-index: 10;
+		transition: all 0.3s ease;
+	}
+
+	@media (max-width: 600px) {
+		.scl-hotspot-badge {
+			display: none;
+		}
+	}
+
+	.scl-dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: #22c55e;
+		box-shadow: 0 0 8px #22c55e;
+		flex-shrink: 0;
+	}
+
+	.scl-dot.warning {
+		background: #eab308;
+		box-shadow: 0 0 10px #eab308;
+	}
+
+	.scl-dot.danger {
+		background: #ef4444;
+		box-shadow: 0 0 12px #ef4444;
+		animation: pulseRed 1s infinite alternate;
+	}
+
+	.scl-badge-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.scl-badge-info strong {
+		font-size: 0.82rem;
+		color: #ffffff;
+		line-height: 1.2;
+	}
+
+	.scl-badge-info span {
+		font-size: 0.72rem;
+		color: #cbd5e1;
+		line-height: 1.25;
+	}
+
+	/* Slider Controls */
+	.scl-slider-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: 0.85rem 0.5rem 0.4rem;
+		flex-wrap: wrap;
+		margin-bottom: 1.25rem;
+	}
+
+	.slider-left {
+		flex: 1;
+		min-width: 280px;
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+	}
+
+	.slider-header-flex {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 0.9rem;
+	}
+
+	.scl-slider-label {
+		color: #cbd5e1;
+		font-weight: 600;
+	}
+
+	.scl-slider-label strong {
+		color: #fde047;
+		margin-left: 0.25rem;
+	}
+
+	.occlusion-readout {
+		font-size: 0.85rem;
+		font-weight: 800;
+		color: #c084fc;
+	}
+
+	.scl-range-input {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 8px;
+		border-radius: 4px;
+		background: linear-gradient(90deg, #ef4444 0%, #eab308 50%, #22c55e 100%);
+		outline: none;
+		cursor: pointer;
+	}
+
+	.scl-range-input::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		background: #ffffff;
+		border: 3px solid #9333ea;
+		box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+		cursor: pointer;
+		transition: transform 0.15s ease;
+	}
+
+	.scl-range-input::-webkit-slider-thumb:hover {
+		transform: scale(1.15);
+	}
+
+	.scl-ticks {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.72rem;
+		color: #94a3b8;
+		padding: 0 4px;
+	}
+
+	.scl-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.scl-action-btn {
+		background: #9333ea;
+		color: #ffffff;
+		border: none;
+		border-radius: 0.65rem;
+		padding: 0.6rem 1.15rem;
+		font-size: 0.86rem;
+		font-weight: 700;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		transition: all 0.2s ease;
+		box-shadow: 0 4px 12px rgba(147, 51, 234, 0.4);
+	}
+
+	.scl-action-btn:hover {
+		background: #a855f7;
+		transform: translateY(-1px);
+	}
+
+	.scl-action-btn.secondary {
+		background: rgba(255, 255, 255, 0.08);
+		color: #cbd5e1;
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		box-shadow: none;
+	}
+
+	.scl-action-btn.secondary:hover {
+		background: rgba(255, 255, 255, 0.15);
+		color: #ffffff;
+	}
+
+	/* Telemetry Metrics */
+	.scl-metrics-dashboard {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		gap: 0.65rem;
+		margin-bottom: 1.5rem;
+	}
+
+	@media (max-width: 1024px) {
+		.scl-metrics-dashboard {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.scl-metrics-dashboard {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.scl-metric-card {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(168, 85, 247, 0.2);
+		border-radius: 0.85rem;
+		padding: 0.85rem 0.75rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.scl-metric-card.critical {
+		background: rgba(239, 68, 68, 0.12);
+		border-color: rgba(239, 68, 68, 0.45);
+	}
+
+	.scl-metric-label {
+		font-size: 0.73rem;
+		font-weight: 700;
+		color: #94a3b8;
+		margin-bottom: 0.35rem;
+		line-height: 1.25;
+	}
+
+	.scl-metric-value-box {
+		display: flex;
+		align-items: baseline;
+		gap: 0.25rem;
+		margin-bottom: 0.2rem;
+	}
+
+	.scl-metric-val {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.35rem;
+		font-weight: 900;
+		color: #ffffff;
+	}
+
+	.scl-metric-val.nerve {
+		color: #f87171;
+	}
+
+	.scl-metric-unit {
+		font-size: 0.74rem;
+		font-weight: 600;
+		color: #a855f7;
+	}
+
+	.scl-metric-sub {
+		font-size: 0.71rem;
+		color: #cbd5e1;
+		line-height: 1.3;
+	}
+
+	/* Explanation Section */
+	.scl-explanation-card {
+		background: rgba(13, 8, 26, 0.8);
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 1.15rem;
+		padding: 1.4rem 1.6rem;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+	}
+
+	.scl-exp-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 0.65rem;
+		flex-wrap: wrap;
+	}
+
+	.scl-phase-badge {
+		font-size: 0.78rem;
+		font-weight: 800;
+		color: #fde047;
+		background: rgba(253, 224, 71, 0.12);
+		border: 1px solid rgba(253, 224, 71, 0.3);
+		padding: 0.25rem 0.65rem;
+		border-radius: 0.5rem;
+	}
+
+	.scl-exp-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.15rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0;
+		line-height: 1.35;
+		text-wrap: balance;
+	}
+
+	.scl-exp-body {
+		font-size: 0.94rem;
+		line-height: 1.65;
+		color: #cbd5e1;
+		margin: 0 0 1.25rem 0;
+		text-wrap: pretty;
+	}
+
+	.scl-science-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid rgba(168, 85, 247, 0.2);
+	}
+
+	@media (max-width: 900px) {
+		.scl-science-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.scl-science-box {
+		background: rgba(255, 255, 255, 0.02);
+		border-left: 3px solid #c084fc;
+		border-radius: 0.6rem;
+		padding: 0.85rem 1rem;
+	}
+
+	.scl-science-box.highlight-box {
+		border-left-color: #fde047;
+		background: rgba(253, 224, 71, 0.04);
+	}
+
+	.scl-science-title {
+		font-size: 0.86rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin-bottom: 0.35rem;
+	}
+
+	.scl-science-desc {
+		font-size: 0.82rem;
+		line-height: 1.55;
+		color: #cbd5e1;
+		margin: 0;
+	}
+</style>
+
+<script is:inline>
+(() => {
+	// Containers & Controls
+	const sclContainer = document.getElementById('sclContainer');
+	const sclViewButtons = document.querySelectorAll('.sclerotic-view-btn');
+	const sclStepButtons = document.querySelectorAll('.timeline-step-btn');
+	const sclSlider = document.getElementById('sclSlider');
+	const sclTimelineDisplay = document.getElementById('sclTimelineDisplay');
+	const occlusionReadout = document.getElementById('occlusionReadout');
+	const sclPlayBtn = document.getElementById('sclPlayBtn');
+	const sclPlayIcon = document.getElementById('sclPlayIcon');
+	const sclPlayText = document.getElementById('sclPlayText');
+	const sclResetBtn = document.getElementById('sclResetBtn');
+
+	// Canvases
+	const microCanvas = document.getElementById('scleroticMicroCanvas');
+	const microCtx = microCanvas ? microCanvas.getContext('2d') : null;
+	const toothCanvas = document.getElementById('sclToothOverlayCanvas');
+	const toothCtx = toothCanvas ? toothCanvas.getContext('2d') : null;
+
+	// Elements
+	const lumenPill = document.getElementById('lumenPill');
+	const sclStatusDot = document.getElementById('sclStatusDot');
+	const sclBadgeTitle = document.getElementById('sclBadgeTitle');
+	const sclBadgeDesc = document.getElementById('sclBadgeDesc');
+
+	// Telemetry Metrics
+	const metricLumen = document.getElementById('metricLumen');
+	const subLumen = document.getElementById('subLumen');
+	const metricMineral = document.getElementById('metricMineral');
+	const subMineral = document.getElementById('subMineral');
+	const metricPermeability = document.getElementById('metricPermeability');
+	const subPermeability = document.getElementById('subPermeability');
+	const metricVelocity = document.getElementById('metricVelocity');
+	const subVelocity = document.getElementById('subVelocity');
+	const metricGlassy = document.getElementById('metricGlassy');
+	const subGlassy = document.getElementById('subGlassy');
+	const metricNerveAlarm = document.getElementById('metricNerveAlarm');
+	const subNerveAlarm = document.getElementById('subNerveAlarm');
+
+	// Explanations
+	const sclPhaseBadge = document.getElementById('sclPhaseBadge');
+	const sclExpTitle = document.getElementById('sclExpTitle');
+	const sclExpBody = document.getElementById('sclExpBody');
+
+	let currentProgression = 0; // 0 to 100
+	let isPlaying = false;
+	let animReqId = null;
+	let playDirection = 1;
+	let frameCount = 0;
+
+	// View Toggle Logic
+	sclViewButtons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			sclViewButtons.forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
+			const mode = btn.getAttribute('data-scl-view');
+			if (sclContainer) sclContainer.setAttribute('data-mode', mode);
+		});
+	});
+
+	// Milestones
+	const milestones = [
+		{
+			step: 0,
+			min: 0,
+			max: 20,
+			label: "Day 0 (Acute Exposure)",
+			lumen: 2.50,
+			mineral: 0,
+			permeability: 100,
+			velocity: 3.80,
+			glassy: 0,
+			nerve: 10,
+			badgeTitle: "Acute Tubule Exposure",
+			badgeDesc: "Fluid rush firing 10/10 burning pain",
+			phase: "Timeline Milestone: Day 0",
+			title: "Acute Tubule Exposure: The Unobstructed Fluid Gateway",
+			body: "Immediately after enamel is breached or an abfraction notch develops, tubule lumens stand completely patent at a wide 2.5 µm diameter. With no smear layer or mineral plugs, saliva and dietary acids rush across the dentin wall at 3.8 mm/s. The underlying odontoblasts release large quantities of ATP, firing non-stop 10/10 electrical alarms into the Trigeminal Mandibular Canal (CN V3).",
+			subLumen: "Wide open cone aperture",
+			subMineral: "No crystal occlusion",
+			subPermeability: "Violent fluid shear stress",
+			subVelocity: "Maximum odontoblast pull",
+			subGlassy: "Opaque, porous root face",
+			subNerve: "Furious action potential firing"
+		},
+		{
+			step: 1,
+			min: 21,
+			max: 50,
+			label: "Month 3 (Crystal Seeding)",
+			lumen: 1.80,
+			mineral: 35,
+			permeability: 50,
+			velocity: 1.90,
+			glassy: 25,
+			nerve: 6,
+			badgeTitle: "Intratubular Mineral Seeding",
+			badgeDesc: "Whitlockite crystals choking flow (6/10 Pain)",
+			phase: "Timeline Milestone: Month 3",
+			title: "Intratubular Nucleation: Salivary Minerals & Crystal Growth",
+			body: "Under neutral oral pH conditions, calcium and phosphate from saliva and odontoblastic fluid precipitate microscopic whitlockite crystals within the tubule lumens. Lumen diameter constricts to 1.8 µm. Hydraulic conductance drops by 50%, significantly decreasing the pull on Piezo1 mechanoreceptors and dialing back trigeminal firing to a 6/10 dull ache.",
+			subLumen: "Narrowed by crystal seeds",
+			subMineral: "Whitlockite matrix forming",
+			subPermeability: "Flow reduced by 50%",
+			subVelocity: "Moderated shear pull",
+			subGlassy: "Early mineralized sheen",
+			subNerve: "Dull ache, twinges on cold"
+		},
+		{
+			step: 2,
+			min: 51,
+			max: 80,
+			label: "Month 9 (Peritubular Dentin Choke)",
+			lumen: 0.75,
+			mineral: 75,
+			permeability: 10,
+			velocity: 0.40,
+			glassy: 70,
+			nerve: 2,
+			badgeTitle: "Peritubular Dentin Hypertrophy",
+			badgeDesc: "Lumen choked by 90% (2/10 Mild Sensitivity)",
+			phase: "Timeline Milestone: Month 9",
+			title: "Peritubular Hypertrophy: Concentric Calcified Rings",
+			body: "Living odontoblasts actively secrete hypermineralized collagenous and non-collagenous matrices that calcify into concentric peritubular rings. The tubule aperture is choked down to a tiny 0.75 µm. Because conductance drops with r⁴, fluid flow plunges by 90%. Pain is reduced to an occasional minor 2/10 twinge.",
+			subLumen: "Heavy annular constriction",
+			subMineral: "Dense peritubular deposition",
+			subPermeability: "Down 90% via r⁴ law",
+			subVelocity: "Near-static fluid column",
+			subGlassy: "Prominent glassy translucency",
+			subNerve: "Infrequent minor twinges"
+		},
+		{
+			step: 3,
+			min: 81,
+			max: 100,
+			label: "Year 2+ (Complete Sclerotic Obliteration)",
+			lumen: 0.00,
+			mineral: 100,
+			permeability: 0,
+			velocity: 0.00,
+			glassy: 100,
+			nerve: 0,
+			badgeTitle: "Solid Sclerotic Glassy Seal",
+			badgeDesc: "Complete tubule obliteration (0/10 Pain Free)",
+			phase: "Timeline Milestone: Year 2+",
+			title: "Complete Tubular Obliteration: Permanent Sclerotic Remission",
+			body: "The tubule lumens are 100% calcified and obliterated solid from the outer root margin all the way down to the pulp border. The dentin becomes glassy, homogeneous transparent dentin. Zero fluid movement or acid protons can penetrate. Odontoblasts return to resting homeostasis, and the Trigeminal Mandibular Canal (CN V3) is completely silenced.",
+			subLumen: "100% calcified solid",
+			subMineral: "Complete tubular obliteration",
+			subPermeability: "Absolute zero conductance",
+			subVelocity: "Static mineralized barrier",
+			subGlassy: "Homogeneous transparent glass",
+			subNerve: "Completely quiet (0/10 Pain)"
+		}
+	];
+
+	function interpolateSclerosis(val) {
+		const t = val / 100; // 0 (Day 0) to 1 (Year 2+)
+		
+		const lumen = Math.max(0, 2.50 * (1 - t)).toFixed(2);
+		const mineral = Math.round(t * 100);
+		// Poiseuille conductance drops rapidly
+		const permeability = Math.round(Math.pow(1 - t, 3.5) * 100);
+		const velocity = (3.80 * Math.pow(1 - t, 2)).toFixed(2);
+		const glassy = Math.round(t * 100);
+		const nerve = Math.max(0, Math.round(10 * Math.pow(1 - t, 1.8)));
+
+		let mIdx = 0;
+		if (val <= 20) mIdx = 0;
+		else if (val <= 50) mIdx = 1;
+		else if (val <= 80) mIdx = 2;
+		else mIdx = 3;
+
+		const m = milestones[mIdx];
+
+		return {
+			t,
+			val,
+			lumen,
+			mineral,
+			permeability,
+			velocity,
+			glassy,
+			nerve,
+			milestone: m
+		};
+	}
+
+	function updateSclTelemetry(val) {
+		currentProgression = val;
+		const d = interpolateSclerosis(val);
+
+		// Header Readouts
+		sclTimelineDisplay.innerText = d.milestone.label;
+		occlusionReadout.innerText = `${d.mineral}% Sclerotic Occlusion`;
+		if (lumenPill) {
+			lumenPill.innerHTML = `Lumen Diameter: <strong>${d.lumen} µm (${d.mineral}% Occluded)</strong>`;
+		}
+
+		// Floating Tooth Badge
+		if (sclBadgeTitle) sclBadgeTitle.innerText = d.milestone.badgeTitle;
+		if (sclBadgeDesc) sclBadgeDesc.innerText = d.milestone.badgeDesc;
+		if (sclStatusDot) {
+			sclStatusDot.className = 'scl-dot ' + (d.nerve > 6 ? 'danger' : d.nerve > 2 ? 'warning' : '');
+		}
+
+		// Telemetry Dashboard
+		metricLumen.innerText = d.lumen;
+		subLumen.innerText = d.milestone.subLumen;
+
+		metricMineral.innerText = d.mineral;
+		subMineral.innerText = d.milestone.subMineral;
+
+		metricPermeability.innerText = d.permeability;
+		subPermeability.innerText = d.milestone.subPermeability;
+
+		metricVelocity.innerText = d.velocity;
+		subVelocity.innerText = d.milestone.subVelocity;
+
+		metricGlassy.innerText = d.glassy;
+		subGlassy.innerText = d.milestone.subGlassy;
+
+		metricNerveAlarm.innerText = d.nerve;
+		subNerveAlarm.innerText = d.milestone.subNerve;
+
+		// Explanation Card
+		sclPhaseBadge.innerText = d.milestone.phase;
+		sclExpTitle.innerText = d.milestone.title;
+		sclExpBody.innerHTML = d.milestone.body.replace(/([a-zA-Z0-9]+)\s+([a-zA-Z0-9.,]+)$/, '$1&nbsp;$2');
+
+		// Step Buttons Sync
+		sclStepButtons.forEach((btn, idx) => {
+			btn.classList.toggle('active', idx === d.milestone.step);
+		});
+	}
+
+	// 1. Draw Microscopic Tubule Occlusion Canvas
+	function drawMicroscopicCanvas() {
+		if (!microCtx) return;
+		const w = microCanvas.width;
+		const h = microCanvas.height;
+		microCtx.clearRect(0, 0, w, h);
+
+		const t = currentProgression / 100; // 0 to 1
+
+		// Background: Deep microscopic field
+		microCtx.fillStyle = '#05020b';
+		microCtx.fillRect(0, 0, w, h);
+
+		// Layout: 4 Conical Tubules in longitudinal cross-section
+		// Left: Exposed Tooth Surface (Saliva/Acid), Right: Dental Pulp & Odontoblasts
+		const leftX = 80;
+		const rightX = w - 80;
+		const tubuleRows = 4;
+		const rowH = (h - 90) / tubuleRows;
+
+		// Oral Cavity Title Left
+		microCtx.fillStyle = '#c084fc';
+		microCtx.font = 'bold 11px system-ui, sans-serif';
+		microCtx.fillText('OUTER ROOT SURFACE (SALIVA & ACIDS)', leftX - 60, 24);
+
+		// Pulp Chamber Title Right
+		microCtx.fillStyle = '#fca5a5';
+		microCtx.fillText('DENTAL PULP CHAMBER (ODONTOBLAST LAYER)', rightX - 160, 24);
+
+		for (let i = 0; i < tubuleRows; i++) {
+			const yCenter = 55 + i * rowH + rowH / 2;
+			
+			// Total outer anatomical tubule channel boundary (Fixed peritubular jacket)
+			const maxOuterRadius = 26; // px
+			const minOuterRadius = 16; // near surface
+
+			// Calcified Ingrowth: As t increases, peritubular dentin grows inward!
+			const inwardGrowth = t * (maxOuterRadius - 2);
+			const currentLumenR = Math.max(1, maxOuterRadius - inwardGrowth);
+
+			// 1. Surrounding Intertubular Dentin Matrix (Brown/Gold)
+			microCtx.fillStyle = '#6e451b';
+			microCtx.fillRect(leftX, yCenter - rowH / 2, rightX - leftX, rowH);
+
+			// 2. Hypermineralized Peritubular Dentin Ring (Paler off-white dense collar)
+			microCtx.fillStyle = '#d1d5db';
+			microCtx.beginPath();
+			microCtx.moveTo(leftX, yCenter - maxOuterRadius);
+			microCtx.lineTo(rightX, yCenter - maxOuterRadius);
+			microCtx.lineTo(rightX, yCenter + maxOuterRadius);
+			microCtx.lineTo(leftX, yCenter + maxOuterRadius);
+			microCtx.closePath();
+			microCtx.fill();
+
+			// 3. Newly Ingrowing Peritubular Mineral Wall (Glassy Amber / Sclerotic Dentin)
+			if (t > 0.05) {
+				const sclGrad = microCtx.createLinearGradient(leftX, 0, rightX, 0);
+				sclGrad.addColorStop(0, '#fde047');
+				sclGrad.addColorStop(0.5, '#f59e0b');
+				sclGrad.addColorStop(1, '#d97706');
+				microCtx.fillStyle = sclGrad;
+
+				// Top wall growth
+				microCtx.fillRect(leftX, yCenter - maxOuterRadius, rightX - leftX, inwardGrowth);
+				// Bottom wall growth
+				microCtx.fillRect(leftX, yCenter + maxOuterRadius - inwardGrowth, rightX - leftX, inwardGrowth);
+			}
+
+			// 4. Remaining Open Lumen (Center channel where fluid flows)
+			if (currentLumenR > 1.5) {
+				const lumenGrad = microCtx.createLinearGradient(0, yCenter - currentLumenR, 0, yCenter + currentLumenR);
+				lumenGrad.addColorStop(0, '#0284c7');
+				lumenGrad.addColorStop(0.5, '#38bdf8');
+				lumenGrad.addColorStop(1, '#0369a1');
+				microCtx.fillStyle = lumenGrad;
+				microCtx.fillRect(leftX, yCenter - currentLumenR, rightX - leftX, currentLumenR * 2);
+
+				// Fluid Flow Particles inside open lumen (Hydrodynamic shear)
+				const flowSpeed = (1 - t) * 0.04;
+				if (flowSpeed > 0.002) {
+					const pCount = Math.floor((1 - t) * 6);
+					microCtx.fillStyle = '#ffffff';
+					for (let p = 0; p < pCount; p++) {
+						const pt = ((frameCount * flowSpeed + p * 0.2 + i * 0.15) % 1);
+						const px = leftX + pt * (rightX - leftX);
+						const py = yCenter + Math.sin(pt * Math.PI * 4) * (currentLumenR * 0.4);
+						microCtx.beginPath();
+						microCtx.arc(px, py, 1.8 * (1 - t), 0, Math.PI * 2);
+						microCtx.fill();
+					}
+				}
+
+				// Intratubular Whitlockite Mineral Crystals precipitating inside lumen
+				if (t > 0.15 && t < 0.95) {
+					const crystalCount = Math.floor(t * 12);
+					for (let c = 0; c < crystalCount; c++) {
+						const cx = leftX + 40 + (c * 48) % (rightX - leftX - 80);
+						const cy = yCenter + Math.sin(c * 2.3) * (currentLumenR * 0.6);
+						microCtx.fillStyle = '#fef08a';
+						microCtx.beginPath();
+						// Rhomboid crystal shape
+						microCtx.moveTo(cx, cy - 4);
+						microCtx.lineTo(cx + 4, cy);
+						microCtx.lineTo(cx, cy + 4);
+						microCtx.lineTo(cx - 4, cy);
+						microCtx.closePath();
+						microCtx.fill();
+					}
+				}
+			} else {
+				// 100% Sclerotic Obliteration: Solid calcification line in center!
+				microCtx.strokeStyle = '#ffffff';
+				microCtx.lineWidth = 1.5;
+				microCtx.beginPath();
+				microCtx.moveTo(leftX, yCenter);
+				microCtx.lineTo(rightX, yCenter);
+				microCtx.stroke();
+			}
+
+			// Odontoblast Cellular Process Extension (Red living cell projection from pulp)
+			microCtx.strokeStyle = '#f87171';
+			microCtx.lineWidth = Math.max(1, 3 * (1 - t * 0.7));
+			microCtx.beginPath();
+			microCtx.moveTo(rightX + 30, yCenter);
+			// Retracts as sclerosis solidifies
+			const retractX = rightX - (1 - t * 0.8) * (rightX - leftX - 40);
+			microCtx.lineTo(retractX, yCenter);
+			microCtx.stroke();
+
+			// Odontoblast cell body in pulp
+			microCtx.fillStyle = (t > 0.8) ? '#22c55e' : (t > 0.4) ? '#f59e0b' : '#ef4444';
+			microCtx.beginPath();
+			microCtx.arc(rightX + 35, yCenter, 7, 0, Math.PI * 2);
+			microCtx.fill();
+		}
+
+		// Annotations & Dimension lines
+		if (t < 0.9) {
+			microCtx.fillStyle = '#38bdf8';
+			microCtx.font = 'bold 11px system-ui, sans-serif';
+			microCtx.fillText(`Active Lumen: ${(2.5 * (1 - t)).toFixed(2)} µm`, leftX + 10, h - 14);
+		} else {
+			microCtx.fillStyle = '#22c55e';
+			microCtx.font = 'bold 12px system-ui, sans-serif';
+			microCtx.fillText('✔ 100% SCLEROTIC DENTIN: COMPLETE OBLITERATION & FLUID SHIELD', leftX + 100, h - 14);
+		}
+	}
+
+	// 2. Draw 3D Tooth Sclerotic Overlay Canvas
+	function drawToothCanvas() {
+		if (!toothCtx) return;
+		const w = toothCanvas.width;
+		const h = toothCanvas.height;
+		toothCtx.clearRect(0, 0, w, h);
+
+		const t = currentProgression / 100; // 0 to 1
+
+		// Left cervical abfraction notch coords: X=415, Y=345
+		const cx = 415;
+		const cy = 345;
+
+		toothCtx.save();
+
+		// A. Cervical Notch Sclerotic Shield Transformation
+		// At t=0: bright porous red/orange permeable breach.
+		// At t=1: glassy, transparent amber/pearl solid barrier.
+		const notchGlow = toothCtx.createRadialGradient(cx, cy, 5, cx, cy, 65);
+		if (t < 0.6) {
+			// Porous inflamed open state
+			notchGlow.addColorStop(0, `rgba(239, 68, 68, ${0.45 * (1 - t)})`);
+			notchGlow.addColorStop(0.6, `rgba(245, 158, 11, ${0.3 * (1 - t)})`);
+			notchGlow.addColorStop(1, 'rgba(239, 68, 68, 0)');
+			toothCtx.fillStyle = notchGlow;
+			toothCtx.beginPath();
+			toothCtx.arc(cx, cy, 55, 0, Math.PI * 2);
+			toothCtx.fill();
+
+			// Open permeable tubule pores (fading out as t increases)
+			const poreCount = Math.floor(28 * (1 - t));
+			for (let p = 0; p < poreCount; p++) {
+				const px = cx - 18 + Math.sin(p * 1.6 + frameCount * 0.03) * 16;
+				const py = cy - 25 + (p / poreCount) * 50;
+				toothCtx.fillStyle = (frameCount % 10 < 5) ? '#fef08a' : '#ef4444';
+				toothCtx.beginPath();
+				toothCtx.arc(px, py, 2.5 * (1 - t), 0, Math.PI * 2);
+				toothCtx.fill();
+			}
+		} else {
+			// Sclerotic Glassy Seal (Golden pearl shield over the notch)
+			notchGlow.addColorStop(0, `rgba(253, 224, 71, ${0.4 * t})`);
+			notchGlow.addColorStop(0.5, `rgba(34, 197, 94, ${0.3 * t})`);
+			notchGlow.addColorStop(1, 'rgba(34, 197, 94, 0)');
+			toothCtx.fillStyle = notchGlow;
+			toothCtx.beginPath();
+			toothCtx.arc(cx, cy, 55, 0, Math.PI * 2);
+			toothCtx.fill();
+
+			// Glassy Sclerotic Shield Badge
+			toothCtx.strokeStyle = '#22c55e';
+			toothCtx.lineWidth = 2.5;
+			toothCtx.beginPath();
+			toothCtx.arc(cx - 5, cy, 28, 0, Math.PI * 2);
+			toothCtx.stroke();
+
+			toothCtx.fillStyle = '#22c55e';
+			toothCtx.font = 'bold 13px system-ui, sans-serif';
+			toothCtx.fillText('GLASSY SCLEROTIC SEAL', cx - 80, cy - 35);
+		}
+
+		// B. Horizontal Conduits to Pulp (Choking off)
+		const tubuleHorizontalCount = 5;
+		for (let hIndex = 0; hIndex < tubuleHorizontalCount; hIndex++) {
+			const hy = cy - 25 + hIndex * 12;
+			const startX = cx - 10;
+			const endX = 515;
+
+			toothCtx.strokeStyle = (t > 0.8) ? 'rgba(34, 197, 94, 0.4)' : 'rgba(253, 224, 71, 0.35)';
+			toothCtx.lineWidth = Math.max(1, 2 * (1 - t));
+			toothCtx.beginPath();
+			toothCtx.moveTo(startX, hy);
+			toothCtx.lineTo(endX, hy);
+			toothCtx.stroke();
+
+			// Fluid flow particles stop at high t
+			if (t < 0.8) {
+				const pProg = ((frameCount * (0.04 * (1 - t)) + hIndex * 0.22) % 1);
+				const px = startX + pProg * (endX - startX);
+				toothCtx.fillStyle = (t > 0.4) ? '#fde047' : '#ef4444';
+				toothCtx.beginPath();
+				toothCtx.arc(px, hy, 2 * (1 - t), 0, Math.PI * 2);
+				toothCtx.fill();
+			}
+		}
+
+		// C. Trigeminal Action Potentials down Root Canal to Mandibular Canal (Dying down to zero)
+		const nerveIntensity = 1 - t; // 1 at Day 0, 0 at Year 2+
+		if (nerveIntensity > 0.05) {
+			const sparkCount = Math.floor(nerveIntensity * 14);
+			toothCtx.fillStyle = (nerveIntensity > 0.5) ? '#ef4444' : '#38bdf8';
+			toothCtx.shadowColor = toothCtx.fillStyle;
+			toothCtx.shadowBlur = 10 * nerveIntensity;
+
+			// Left Root Canal Pulses
+			for (let s = 0; s < sparkCount; s++) {
+				const progress = ((frameCount * 0.035 + s * 0.15) % 1);
+				const nx = 480 - progress * 45;
+				const ny = 350 + progress * 390;
+				toothCtx.beginPath();
+				toothCtx.arc(nx, ny, 3 * nerveIntensity, 0, Math.PI * 2);
+				toothCtx.fill();
+			}
+
+			// Mandibular Canal Surge
+			for (let m = 0; m < sparkCount * 1.5; m++) {
+				const mProgress = ((frameCount * 0.05 + m * 0.12) % 1);
+				const mx = 340 + mProgress * 580;
+				const my = 753 + Math.sin(mx * 0.08) * 3;
+				toothCtx.beginPath();
+				toothCtx.arc(mx, my, 2.5 * nerveIntensity, 0, Math.PI * 2);
+				toothCtx.fill();
+			}
+		}
+
+		toothCtx.restore();
+	}
+
+	function sclRenderLoop() {
+		frameCount++;
+		drawMicroscopicCanvas();
+		drawToothCanvas();
+		animReqId = requestAnimationFrame(sclRenderLoop);
+	}
+
+	// Slider Listener
+	sclSlider?.addEventListener('input', (e) => {
+		const val = parseInt(e.target.value, 10);
+		updateSclTelemetry(val);
+	});
+
+	// Timeline Step Buttons
+	sclStepButtons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const step = parseInt(btn.getAttribute('data-step'), 10);
+			let targetVal = 0;
+			if (step === 0) targetVal = 0;
+			else if (step === 1) targetVal = 35;
+			else if (step === 2) targetVal = 70;
+			else if (step === 3) targetVal = 100;
+
+			sclSlider.value = targetVal;
+			updateSclTelemetry(targetVal);
+		});
+	});
+
+	// Auto Play Sclerosis Loop
+	function togglePlay() {
+		isPlaying = !isPlaying;
+		if (isPlaying) {
+			sclPlayIcon.innerText = '⏸';
+			sclPlayText.innerText = 'Pause';
+			autoStepScl();
+		} else {
+			sclPlayIcon.innerText = '▶';
+			sclPlayText.innerText = 'Play Healing Arc';
+		}
+	}
+
+	function autoStepScl() {
+		if (!isPlaying) return;
+		let val = parseInt(sclSlider.value, 10);
+		val += playDirection * 1;
+
+		if (val >= 100) {
+			val = 100;
+			playDirection = -1;
+		} else if (val <= 0) {
+			val = 0;
+			playDirection = 1;
+		}
+
+		sclSlider.value = val;
+		updateSclTelemetry(val);
+		setTimeout(autoStepScl, 80);
+	}
+
+	sclPlayBtn?.addEventListener('click', togglePlay);
+
+	// Reset
+	sclResetBtn?.addEventListener('click', () => {
+		isPlaying = false;
+		sclPlayIcon.innerText = '▶';
+		sclPlayText.innerText = 'Play Healing Arc';
+		sclSlider.value = 0;
+		updateSclTelemetry(0);
+	});
+
+	// Init
+	updateSclTelemetry(0);
+	sclRenderLoop();
+})();
+</script>
