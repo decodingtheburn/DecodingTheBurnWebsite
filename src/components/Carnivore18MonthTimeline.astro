@@ -160,26 +160,28 @@ const { class: className = '' } = Astro.props;
 
 			<!-- Annotations -->
 			<g class="c18-annotations">
-				<!-- Peak: Two-Week Carnivore Experiment pointing to the right crest/tip of the 10/10 wave -->
-				<text x="968" y="-22" class="c18-peak-num">Two-Week Carnivore</text>
-				<text x="968" y="-4" class="c18-peak-title">Experiment</text>
+				<!-- Phase 1: 2-Week Trial -->
+				<text x="968" y="-22" class="c18-phase-tag phase-1">Phase 1</text>
+				<text x="968" y="-4" class="c18-peak-title">2-Week Trial</text>
 				<g class="c18-arrow-group">
 					<path d="M 968 4 C 966 18, 969 34, 968 52" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
 					<path d="M 963 44 C 965 48, 967 51, 968 54 C 969 51, 971 48, 973 44" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 				</g>
 
-				<!-- 1 Year Yo-Yo -->
-				<text x="1080" y="156" class="c18-yoyo-title">1 Year Yo-Yo</text>
+				<!-- Phase 2: 1-Year Yo-Yo with Description Underneath -->
+				<text x="1080" y="136" class="c18-phase-tag phase-2">Phase 2</text>
+				<text x="1080" y="156" class="c18-yoyo-title">1-Year Yo-Yo</text>
 				<text x="1080" y="174" class="c18-yoyo-subtitle">Alternating between carnivore</text>
-				<text x="1080" y="188" class="c18-yoyo-subtitle">&amp; plant-based diet</text>
+				<text x="1080" y="190" class="c18-yoyo-subtitle">&amp; plant-based diet</text>
 				<g class="c18-arrow-group">
-					<path d="M 1080 196 C 1078 206, 1082 216, 1080 226" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" />
+					<path d="M 1080 198 C 1078 206, 1082 216, 1080 226" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" />
 					<path d="M 1075 218 C 1077 222, 1079 225, 1080 228 C 1081 225, 1083 222, 1085 218" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 				</g>
 
-				<!-- Strict Carnivore / Six Months Pain 0/10 with Hand-Drawn Arrow -->
+				<!-- Phase 3: Strict Carnivore, 6 Months Pain 0/10 -->
+				<text x="1290" y="222" class="c18-phase-tag phase-3">Phase 3</text>
 				<text x="1290" y="244" class="c18-exp7-title">Strict Carnivore</text>
-				<text x="1290" y="266" class="c18-exp7-subtitle">Six Months Pain 0/10</text>
+				<text x="1290" y="266" class="c18-exp7-subtitle">6 Months Pain 0/10</text>
 				<g class="c18-arrow-group">
 					<path d="M 1290 276 C 1288 316, 1292 358, 1290 398" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" />
 					<path d="M 1285 390 C 1287 394, 1289 397, 1290 400 C 1291 397, 1293 394, 1295 390" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -349,6 +351,27 @@ const { class: className = '' } = Astro.props;
 	}
 
 	/* Annotations */
+	.c18-phase-tag {
+		font-family: system-ui, -apple-system, sans-serif;
+		font-size: 13.5px;
+		font-weight: 800;
+		text-anchor: middle;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.phase-1 {
+		fill: #f87171;
+	}
+
+	.phase-2 {
+		fill: #fbbf24;
+	}
+
+	.phase-3 {
+		fill: #34d399;
+	}
+
 	.c18-peak-num {
 		font-family: system-ui, -apple-system, sans-serif;
 		font-size: 14.5px;
@@ -360,8 +383,8 @@ const { class: className = '' } = Astro.props;
 
 	.c18-peak-title {
 		font-family: system-ui, -apple-system, sans-serif;
-		font-size: 13.5px;
-		font-weight: 700;
+		font-size: 14.5px;
+		font-weight: 800;
 		fill: #ffffff;
 		text-anchor: middle;
 	}
