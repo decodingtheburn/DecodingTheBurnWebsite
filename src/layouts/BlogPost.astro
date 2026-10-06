@@ -20,6 +20,7 @@ interface Props extends CollectionEntry<'blog'>['data'] {
 	showAudioReader?: boolean;
 	showTOC?: boolean;
 	isHomepage?: boolean;
+	youtubeVideoId?: string;
 }
 
 const {
@@ -28,6 +29,7 @@ const {
 	pubDate,
 	updatedDate,
 	heroImage,
+	youtubeVideoId,
 	headings = [],
 	slug,
 	showAudioReader = Boolean(slug),
@@ -68,7 +70,17 @@ if (!postNumber && slug) {
 		<main class="post-container">
 			<article class="blog-post">
 				<div class="hero-image">
-					{heroImage && typeof heroImage === 'string' ? (
+					{youtubeVideoId ? (
+						<div class="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-lg">
+							<iframe
+								src={`https://www.youtube-nocookie.com/embed/${youtubeVideoId}`}
+								title={title}
+								class="h-full w-full border-0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowfullscreen
+							></iframe>
+						</div>
+					) : heroImage && typeof heroImage === 'string' ? (
 						<img src={heroImage} alt={title} class="post-image" />
 					) : (
 						heroImage && <Image src={heroImage} alt={title} class="post-image" />
