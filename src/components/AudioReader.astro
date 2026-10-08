@@ -218,6 +218,17 @@ if (headings && headings.length > 0) {
 						</div>
 					</div>
 				</div>
+
+				<!-- Row 5: Compact Recording Shortcuts Legend -->
+				<div class="tts-drawer-section tts-shortcuts-compact-section">
+					<div class="tts-shortcuts-compact-row">
+						<span class="tts-compact-item"><kbd class="tts-mini-kbd">C</kbd> Presenter Cursor</span>
+						<span class="tts-compact-sep">•</span>
+						<span class="tts-compact-item"><kbd class="tts-mini-kbd">S</kbd> Starting Screen</span>
+						<span class="tts-compact-sep">•</span>
+						<span class="tts-compact-item"><kbd class="tts-mini-kbd">T</kbd> Table of Contents</span>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -666,6 +677,54 @@ if (headings && headings.length > 0) {
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		color: #64748b;
+	}
+
+	/* Recording Shortcut Keys Legend CSS */
+	.tts-shortcuts-legend-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 0.65rem;
+		margin-top: 0.5rem;
+	}
+
+	/* Compact Recording Shortcuts Legend */
+	.tts-shortcuts-compact-section {
+		margin-top: 0.85rem;
+		padding-top: 0.75rem;
+		border-top: 1px dashed #e2e8f0;
+	}
+
+	.tts-shortcuts-compact-row {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+		font-size: 0.82rem;
+		color: #475569;
+		font-weight: 600;
+	}
+
+	.tts-compact-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	.tts-mini-kbd {
+		background: #0f172a;
+		color: #ffffff;
+		font-family: monospace;
+		font-size: 0.75rem;
+		font-weight: 800;
+		padding: 0.15rem 0.45rem;
+		border-radius: 5px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	}
+
+	.tts-compact-sep {
+		color: #cbd5e1;
+		font-size: 0.75rem;
 	}
 
 	.tts-chips-wrap {

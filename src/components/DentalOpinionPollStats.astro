@@ -1,0 +1,232 @@
+---
+// DentalOpinionPollStats.astro - Side-by-side stats comparison cards (REDO vs KEEP AS IS) + Top Anonymous Dental Comments
+---
+
+<div class="dental-poll-container">
+	<!-- 1. SIDE-BY-SIDE PERCENTAGE CARDS -->
+	<h3 class="poll-section-title">Facebook Dental Experts Consensus: Crown Replacement Poll</h3>
+	<div class="poll-cards-grid">
+		<!-- REDO CARD (84.5%) -->
+		<div class="poll-stat-card redo-card">
+			<div class="stat-header">
+				<span class="stat-icon">⚠️</span>
+				<h4 class="stat-label">REDO / REPLACE CROWN</h4>
+			</div>
+			<div class="stat-percentage">84.5%</div>
+			<p class="stat-caption">
+				<strong>49 out of 58 Dental Professionals</strong> recommended immediate replacement. Main reasons cited: severe open margin, food impaction, decay risk, and periodontal bone loss.
+			</p>
+		</div>
+
+		<!-- KEEP / WATCH CARD (15.5%) -->
+		<div class="poll-stat-card keep-card">
+			<div class="stat-header">
+				<span class="stat-icon">🛡️</span>
+				<h4 class="stat-label">KEEP AS IS / WATCH &amp; WAIT</h4>
+			</div>
+			<div class="stat-percentage">15.5%</div>
+			<p class="stat-caption">
+				<strong>9 out of 58 Dental Professionals</strong> suggested conservative monitoring or patch attempts. Main reasons cited: crown age (20+ years), lack of acute symptoms, or angulation questions.
+			</p>
+		</div>
+	</div>
+
+	<!-- 2. TOP 10 ANONYMOUS DENTAL COMMENTS -->
+	<h3 class="poll-section-title mt-8">Top 10 Most Common Professional Comments</h3>
+	<div class="comments-list-wrapper">
+		<div class="comment-card">
+			<div class="comment-number">1</div>
+			<p class="comment-text">"Open margin needs a new crown. This is a no brainer."</p>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-number">2</div>
+			<p class="comment-text">"Impossible to clean this area. The alternative is slow insidious decay progression under the crown which eventually causes debonding and potential nerve damage."</p>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-number">3</div>
+			<p class="comment-text">"110% needs a new crown. It was never done correctly in the first place. If left long enough it will result in root canal or tooth loss."</p>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-number">4</div>
+			<p class="comment-text">"Because of it you are getting food impaction and bone loss, needs to change."</p>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-number">5</div>
+			<p class="comment-text">"In dental school, one of the professors once looked at a student's work; the student said the margin was 'a little bit open'. The professor said, 'That's like being a little bit pregnant'."</p>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-number">6</div>
+			<p class="comment-text">"That open margin would have always ended in a cavity, because there's no way to clean in that space. Replace it or you will need a root canal soon."</p>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-number">7</div>
+			<p class="comment-text">"Get it fixed!!! Ticking time bomb!"</p>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-number">8</div>
+			<p class="comment-text">"Defective margin. It doesn't cover the whole tooth. I can see floss getting snagged every time!"</p>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-number">9</div>
+			<p class="comment-text">"To anyone saying leave the crown on, just watch it or patch it, I call BS! How are you going to watch as decay spreads under the crown?"</p>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-number">10</div>
+			<p class="comment-text">"If that's been there for years and you aren't getting food trapping or symptoms—leave it alone. I wouldn't touch it."</p>
+		</div>
+	</div>
+</div>
+
+<style>
+.dental-poll-container {
+	margin: 2.5rem 0;
+}
+
+.poll-section-title {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #111827;
+	margin-bottom: 1.25rem;
+	line-height: 1.3;
+}
+
+.poll-section-title.mt-8 {
+	margin-top: 2.5rem;
+}
+
+.poll-cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 1.5rem;
+}
+
+.poll-stat-card {
+	background: #ffffff;
+	border-radius: 16px;
+	padding: 1.75rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+	border: 1px solid #e5e7eb;
+}
+
+.redo-card {
+	background: #fff5f5;
+	border-color: #fca5a5;
+}
+
+.keep-card {
+	background: #f0fdf4;
+	border-color: #86efac;
+}
+
+.stat-header {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.stat-icon {
+	font-size: 1.5rem;
+}
+
+.stat-label {
+	font-size: 0.875rem;
+	font-weight: 700;
+	color: #1f2937;
+	margin: 0;
+	letter-spacing: 0.03em;
+}
+
+.redo-card .stat-label {
+	color: #991b1b;
+}
+
+.keep-card .stat-label {
+	color: #166534;
+}
+
+.stat-percentage {
+	font-size: 3.75rem;
+	font-weight: 900;
+	line-height: 1;
+	margin: 0.5rem 0 1rem 0;
+	font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+.redo-card .stat-percentage {
+	color: #dc2626;
+}
+
+.keep-card .stat-percentage {
+	color: #16a34a;
+}
+
+.stat-caption {
+	font-size: 0.875rem;
+	color: #4b5563;
+	margin: 0;
+	line-height: 1.45;
+}
+
+.comments-list-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.comment-card {
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	padding: 1rem 1.25rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	transition: background 0.15s ease;
+}
+
+.comment-card:hover {
+	background: #f1f5f9;
+}
+
+.comment-number {
+	width: 32px;
+	height: 32px;
+	border-radius: 9999px;
+	background: #0f172a;
+	color: #ffffff;
+	font-weight: 700;
+	font-size: 0.875rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.comment-text {
+	font-size: 0.925rem;
+	color: #334155;
+	margin: 0;
+	line-height: 1.45;
+	font-style: italic;
+}
+
+@media (max-width: 640px) {
+	.poll-cards-grid {
+		grid-template-columns: 1fr;
+	}
+}
+</style>

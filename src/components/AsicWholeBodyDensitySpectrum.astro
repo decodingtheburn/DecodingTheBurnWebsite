@@ -1,0 +1,359 @@
+---
+// AsicWholeBodyDensitySpectrum.astro - Standalone whole-body ASIC density spectrum component
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`asic-density-scale-section ${className}`}>
+	<div class="asic-density-scale-header">
+		<span class="asic-kicker">Comparative Human Electrophysiology</span>
+		<h4 class="asic-density-scale-title">Whole-Body ASIC Density Spectrum</h4>
+		<p class="asic-density-scale-desc">
+			Human body tissues ranked from highest acid-sensing receptor density down to the lowest. The dental pulp and tongue sit at the absolute peak of human acid sensitivity, explaining why a drop of acid that skin ignores triggers agonizing burning in the&nbsp;mouth.
+		</p>
+	</div>
+
+	<div class="density-zones-stack">
+		
+		<!-- ================= RED ZONE: EXTREME DENSITY ================= -->
+		<div class="zone-block">
+			<div class="zone-header red-zone-header">
+				<div class="zone-title-wrap">
+					<span class="zone-name-badge red-badge-text">RED ZONE</span>
+					<h5 class="zone-heading">EXTREME DENSITY: Instant Trigeminal Agony</h5>
+				</div>
+				<p class="zone-subtitle">
+					Massive nociceptor concentration (200 to 1,000+ nerve terminals / mm³). Minimal or zero keratin barrier allows free acid protons (H⁺) to trigger unbuffered 10/10 electrical&nbsp;shock.
+				</p>
+			</div>
+
+			<div class="density-items-stack">
+				<!-- Cornea -->
+				<div class="density-row red-density-row">
+					<div class="density-card-header">
+						<h6 class="density-title-wide">Cornea of the Eye</h6>
+					</div>
+					<div class="density-card-main">
+						<div class="density-text-col">
+							<div class="density-level-type red-level-type">Reaction: Instant Reflexive Agony &amp; Stinging</div>
+							<p class="density-description">Highest sensory nerve terminal density in the entire human body (Trigeminal V1). Unprotected by keratin, reacting immediately to any acidic droplet.</p>
+						</div>
+						<div class="density-stat-box red-stat-box">
+							<div class="density-stat-icon">👁️</div>
+							<span class="stat-category-label red-label-text">Density</span>
+							<div class="stat-main-value">2,000–7,000 / mm²</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Dental Pulp & Tubules -->
+				<div class="density-row red-density-row">
+					<div class="density-card-header">
+						<h6 class="density-title-wide">Dental Pulp &amp; Exposed Tubules</h6>
+					</div>
+					<div class="density-card-main">
+						<div class="density-text-col">
+							<div class="density-level-type red-level-type">Reaction: Excruciating 10/10 Trigeminal Fire</div>
+							<p class="density-description">Plexus of Raschkow houses millions of proton-gated ASIC3 channels. When enamel or gums recede, acid flows directly into open pulp tubules.</p>
+						</div>
+						<div class="density-stat-box red-stat-box">
+							<div class="density-stat-icon">🦷</div>
+							<span class="stat-category-label red-label-text">Density</span>
+							<div class="stat-main-value">~1,000+ / mm³</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tongue -->
+				<div class="density-row red-density-row">
+					<div class="density-card-header">
+						<h6 class="density-title-wide">Tongue (Tip &amp; Lateral Edges)</h6>
+					</div>
+					<div class="density-card-main">
+						<div class="density-text-col">
+							<div class="density-level-type red-level-type">Reaction: Severe Burning &amp; Chronic Stinging</div>
+							<p class="density-description">Lingual nerve (CN V3) endings sit right below thin non-keratinized mucosa, causing continuous burning upon acid contact.</p>
+						</div>
+						<div class="density-stat-box red-stat-box">
+							<div class="density-stat-icon">👅</div>
+							<span class="stat-category-label red-label-text">Density</span>
+							<div class="stat-main-value">200–500 / mm²</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ================= YELLOW ZONE: MODERATE DENSITY ================= -->
+		<div class="zone-block">
+			<div class="zone-header yellow-zone-header">
+				<div class="zone-title-wrap">
+					<span class="zone-name-badge yellow-badge-text">YELLOW ZONE</span>
+					<h5 class="zone-heading">MODERATE DENSITY: Visceral &amp; Deep Tissue Warning</h5>
+				</div>
+				<p class="zone-subtitle">
+					Moderate ASIC3 and ASIC1 expression (30 to 250 terminals / mm²). Detects internal ischemic lactic acid and acid reflux rather than external surface&nbsp;contact.
+				</p>
+			</div>
+
+			<div class="density-items-stack">
+				<div class="density-row yellow-density-row">
+					<div class="density-card-header">
+						<h6 class="density-title-wide">Hard Palate &amp; Gum Margins</h6>
+					</div>
+					<div class="density-card-main">
+						<div class="density-text-col">
+							<div class="density-level-type yellow-level-type">Reaction: Chronic Palatal Roof Burning</div>
+							<p class="density-description">Supplied by Greater Palatine (CN V2) and sulcular nerves. Detects pooling microbial acid along the dental gingiva.</p>
+						</div>
+						<div class="density-stat-box yellow-stat-box">
+							<div class="density-stat-icon">👄</div>
+							<span class="stat-category-label yellow-label-text">Density</span>
+							<div class="stat-main-value">100–250 / mm²</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="density-row yellow-density-row">
+					<div class="density-card-header">
+						<h6 class="density-title-wide">Heart Sensory Afferents (Myocardium)</h6>
+					</div>
+					<div class="density-card-main">
+						<div class="density-text-col">
+							<div class="density-level-type yellow-level-type">Reaction: Angina &amp; Ischemic Chest Pain</div>
+							<p class="density-description">Cardiac ASIC3 detects anaerobic lactic acid buildup during poor coronary flow, generating the deep chest pain of angina.</p>
+						</div>
+						<div class="density-stat-box yellow-stat-box">
+							<div class="density-stat-icon">❤️</div>
+							<span class="stat-category-label yellow-label-text">Density</span>
+							<div class="stat-main-value">Moderate-High</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="density-row yellow-density-row">
+					<div class="density-card-header">
+						<h6 class="density-title-wide">Esophageal Mucosa (Reflux Zone)</h6>
+					</div>
+					<div class="density-card-main">
+						<div class="density-text-col">
+							<div class="density-level-type yellow-level-type">Reaction: Heartburn &amp; Acid Reflux Burning</div>
+							<p class="density-description">Mucosal ASIC1 and ASIC3 sense stomach acid breaches when mucosal bicarbonate barriers are overwhelmed.</p>
+						</div>
+						<div class="density-stat-box yellow-stat-box">
+							<div class="density-stat-icon">🫁</div>
+							<span class="stat-category-label yellow-label-text">Density</span>
+							<div class="stat-main-value">Moderate</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ================= GREEN ZONE: LOWEST DENSITY ================= -->
+		<div class="zone-block">
+			<div class="zone-header green-zone-header">
+				<div class="zone-title-wrap">
+					<span class="zone-name-badge green-badge-text">GREEN ZONE</span>
+					<h5 class="zone-heading">LOWEST DENSITY: Protected &amp; Buffered Tissue</h5>
+				</div>
+				<p class="zone-subtitle">
+					Low ASIC density or dense structural keratin shielding (10 to 50 terminals / mm³). Tolerates acid contact or clears lactic acid rapidly within&nbsp;seconds.
+				</p>
+			</div>
+
+			<div class="density-items-stack">
+				<div class="density-row green-density-row">
+					<div class="density-card-header">
+						<h6 class="density-title-wide">Skeletal Muscle (Plank / Pose)</h6>
+					</div>
+					<div class="density-card-main">
+						<div class="density-text-col">
+							<div class="density-level-type green-level-type">Reaction: Temporary Muscle Fatigue Burn</div>
+							<p class="density-description">Group III/IV muscle afferents sense anaerobic lactate buildup during sustained isometric holds, disappearing once blood flow restores.</p>
+						</div>
+						<div class="density-stat-box green-stat-box">
+							<div class="density-stat-icon">🏋️</div>
+							<span class="stat-category-label green-label-text">Density</span>
+							<div class="stat-main-value">30–50 / mm³</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="density-row green-density-row">
+					<div class="density-card-header">
+						<h6 class="density-title-wide">Body Skin (Epidermis: Arms, Back, Legs)</h6>
+					</div>
+					<div class="density-card-main">
+						<div class="density-text-col">
+							<div class="density-level-type green-level-type">Reaction: Zero Pain (Protected by Keratin)</div>
+							<p class="density-description">Shielded by 15–20 layers of dead, dry keratin (*stratum corneum*) that completely block acid penetration to underlying nerve endings.</p>
+						</div>
+						<div class="density-stat-box green-stat-box">
+							<div class="density-stat-icon">🧴</div>
+							<span class="stat-category-label green-label-text">Density</span>
+							<div class="stat-main-value">10–20 / mm²</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<style>
+	.asic-density-scale-section {
+		max-width: 800px;
+		margin: 3.5rem auto;
+		background: radial-gradient(120% 120% at 50% 0%, #1c1032 0%, #0d081a 60%, #080410 100%);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.5rem;
+		padding: clamp(1.25rem, 3vw, 2.25rem);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+		color: #e2e8f0;
+	}
+
+	.asic-kicker {
+		font-size: 0.82rem;
+		font-weight: 700;
+		color: #c084fc;
+		letter-spacing: 0.04em;
+		display: block;
+		margin-bottom: 0.35rem;
+	}
+
+	.asic-density-scale-header {
+		margin-bottom: 2rem;
+		text-align: left;
+	}
+
+	.asic-density-scale-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0 0 0.5rem 0;
+		line-height: 1.3;
+		text-wrap: balance;
+	}
+
+	.asic-density-scale-desc {
+		font-size: 0.92rem;
+		line-height: 1.6;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.density-zones-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 2.25rem;
+	}
+
+	.zone-block {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.zone-header {
+		padding: 1rem 1.25rem;
+		border-radius: 0.9rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+	}
+
+	.red-zone-header { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); }
+	.yellow-zone-header { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); }
+	.green-zone-header { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); }
+
+	.zone-title-wrap {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.65rem;
+	}
+
+	.zone-name-badge { font-size: 0.78rem; font-weight: 900; letter-spacing: 0.05em; }
+	.red-badge-text { color: #f87171; }
+	.yellow-badge-text { color: #fbbf24; }
+	.green-badge-text { color: #34d399; }
+
+	.zone-heading {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0;
+		line-height: 1.25;
+	}
+
+	.zone-subtitle { font-size: 0.86rem; line-height: 1.5; color: #cbd5e1; margin: 0; text-wrap: pretty; }
+
+	.density-items-stack { display: flex; flex-direction: column; gap: 0.75rem; }
+
+	.density-row {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		background: rgba(15, 23, 42, 0.65);
+		border: 1px solid rgba(255, 255, 255, 0.09);
+		border-radius: 1.1rem;
+		padding: 1.15rem 1.4rem;
+		transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.density-row:hover { transform: translateX(4px); background: rgba(15, 23, 42, 0.85); }
+	.red-density-row:hover { border-color: rgba(239, 68, 68, 0.45); }
+	.yellow-density-row:hover { border-color: rgba(245, 158, 11, 0.45); }
+	.green-density-row:hover { border-color: rgba(16, 185, 129, 0.45); }
+
+	.density-card-header { border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0.5rem; }
+	.density-title-wide { font-family: var(--font-heading, system-ui, sans-serif); font-size: 1.12rem; font-weight: 900; color: #ffffff; margin: 0; line-height: 1.25; }
+
+	.density-card-main { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.25rem; }
+	.density-text-col { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
+
+	.density-level-type { font-size: 0.88rem; font-weight: 700; line-height: 1.35; }
+	.red-level-type { color: #fca5a5; }
+	.yellow-level-type { color: #fde047; }
+	.green-level-type { color: #6ee7b7; }
+
+	.density-description { font-size: 0.84rem; line-height: 1.5; color: #94a3b8; margin: 0; text-wrap: pretty; }
+
+	.density-stat-box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 0.65rem 1rem;
+		border-radius: 0.85rem;
+		min-width: 125px;
+		flex-shrink: 0;
+		text-align: center;
+		gap: 0.2rem;
+	}
+
+	.density-stat-icon { font-size: 1.85rem; line-height: 1; margin-bottom: 0.15rem; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4)); }
+	.red-stat-box { background: rgba(239, 68, 68, 0.18); border: 1px solid rgba(239, 68, 68, 0.4); }
+	.yellow-stat-box { background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); }
+	.green-stat-box { background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.4); }
+
+	.stat-category-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+	.red-label-text { color: #f87171; }
+	.yellow-label-text { color: #fbbf24; }
+	.green-label-text { color: #34d399; }
+
+	.stat-main-value { font-size: 0.95rem; font-weight: 900; color: #ffffff; line-height: 1.2; }
+
+	@media (max-width: 640px) {
+		.density-card-main { grid-template-columns: 1fr; }
+		.density-stat-box { width: 100%; min-width: 0; margin-top: 0.5rem; }
+	}
+</style>

@@ -1,0 +1,209 @@
+---
+// LowAcidRecipeCards.astro - Custom card grid component for Low-Acid BMS Meal Plans & Comfort Recipes (Using Plate 🍽️ & Food Bowl 🥗 Emojis)
+---
+
+<div class="recipe-cards-container">
+	<!-- PRESET MEAL PLANS (4 Options for 2x2 symmetry) -->
+	<h3 class="recipe-section-title">4 Sample Low-Acid, Low-Sugar Meal Plans</h3>
+	<div class="recipe-cards-grid grid-4-preset">
+		<div class="recipe-card preset-card">
+			<div class="recipe-emoji-centered">🍽️</div>
+			<h4 class="recipe-title">Option A: High-Energy Beef &amp; Tallow Plan</h4>
+			<p class="recipe-subtitle">For weight maintenance &amp; maximum stamina</p>
+			<ul class="recipe-bullet-list">
+				<li><strong>Breakfast:</strong> Scrambled eggs with 2 tbsp Hemp Hearts &amp; butter</li>
+				<li><strong>Lunch:</strong> Ground Beef (80/20) sautéed in tallow with zucchini</li>
+				<li><strong>Dinner:</strong> Ribeye steak with sautéed button mushrooms</li>
+			</ul>
+		</div>
+
+		<div class="recipe-card preset-card">
+			<div class="recipe-emoji-centered">🍱</div>
+			<h4 class="recipe-title">Option B: Gentle Seafood &amp; Avocado Plan</h4>
+			<p class="recipe-subtitle">Mild textures for sensitive gums &amp; mucosal repair</p>
+			<ul class="recipe-bullet-list">
+				<li><strong>Breakfast:</strong> Extra Firm Tofu scramble with sliced avocado</li>
+				<li><strong>Lunch:</strong> Canned Tuna (in water) mixed with olive oil over spinach</li>
+				<li><strong>Dinner:</strong> Atlantic Salmon fillet with steamed Bok Choy &amp; butter</li>
+			</ul>
+		</div>
+
+		<div class="recipe-card preset-card">
+			<div class="recipe-emoji-centered">🥗</div>
+			<h4 class="recipe-title">Option C: Plant-Forward Low-Acid Plan</h4>
+			<p class="recipe-subtitle">Clean plant protein, healthy fats &amp; minimal sugar</p>
+			<ul class="recipe-bullet-list">
+				<li><strong>Breakfast:</strong> Hemp Heart bowl warmed with coconut oil &amp; cinnamon</li>
+				<li><strong>Lunch:</strong> Pan-seared Extra Firm Tofu with steamed broccoli</li>
+				<li><strong>Dinner:</strong> Sautéed Button Mushrooms &amp; asparagus in ghee</li>
+			</ul>
+		</div>
+
+		<div class="recipe-card preset-card">
+			<div class="recipe-emoji-centered">🥘</div>
+			<h4 class="recipe-title">Option D: Poultry &amp; Mild Greens Plan</h4>
+			<p class="recipe-subtitle">Easy digestion &amp; light mucosal footprint</p>
+			<ul class="recipe-bullet-list">
+				<li><strong>Breakfast:</strong> Poached eggs over butterhead lettuce drizzled with olive oil</li>
+				<li><strong>Lunch:</strong> Ground Turkey (93/7) sautéed in duck fat with zucchini</li>
+				<li><strong>Dinner:</strong> Roast chicken thighs with steamed cauliflower in ghee</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- COMFORT RECIPES -->
+	<h3 class="recipe-section-title mt-8">3 Low-Acid Comfort Recipes</h3>
+	<div class="recipe-cards-grid">
+		<div class="recipe-card dish-card">
+			<div class="recipe-emoji-centered">🍲</div>
+			<h4 class="recipe-title">1. High-Energy Beef &amp; Zucchini Bowl</h4>
+			<div class="recipe-meta-badge">600+ kcal | Zero Acid</div>
+			<ul class="recipe-bullet-list">
+				<li><strong>Ingredients:</strong> 200g Ground Beef (80/20), 100g Zucchini, 1 tbsp tallow/butter, sea salt.</li>
+				<li><strong>Preparation:</strong> Pan-fry ground beef and zucchini in tallow until cooked through. Serve warm.</li>
+				<li><strong>Why It Works:</strong> Zero dietary acid, zero sugar, and deep calorie density.</li>
+			</ul>
+		</div>
+
+		<div class="recipe-card dish-card">
+			<div class="recipe-emoji-centered">🍽️</div>
+			<h4 class="recipe-title">2. Atlantic Salmon with Bok Choy</h4>
+			<div class="recipe-meta-badge">450 kcal | pH ~6.7</div>
+			<ul class="recipe-bullet-list">
+				<li><strong>Ingredients:</strong> 150g Atlantic Salmon, 100g Bok Choy, 1 tbsp butter, sea salt.</li>
+				<li><strong>Preparation:</strong> Pan-sear salmon fillet. Steam bok choy for 3 minutes until tender and toss with butter.</li>
+				<li><strong>Why It Works:</strong> Anti-inflammatory Omega-3 fats, neutral tissue pH (~6.7), and smooth mucosal comfort.</li>
+			</ul>
+		</div>
+
+		<div class="recipe-card dish-card">
+			<div class="recipe-emoji-centered">🥣</div>
+			<h4 class="recipe-title">3. Savory Tofu &amp; Hemp Heart Bowl</h4>
+			<div class="recipe-meta-badge">420 kcal | 25g Protein</div>
+			<ul class="recipe-bullet-list">
+				<li><strong>Ingredients:</strong> 150g Extra Firm Tofu, 30g Hemp Hearts, 100g Button Mushrooms, 1 tbsp avocado oil.</li>
+				<li><strong>Preparation:</strong> Sauté tofu cubes and mushrooms in avocado oil until golden. Top with raw hemp hearts.</li>
+				<li><strong>Why It Works:</strong> 25g+ of clean plant protein, zero mucosal acid irritation, and high energy density.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<style>
+.recipe-cards-container {
+	margin: 2rem 0;
+}
+
+.recipe-section-title {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #111827;
+	margin-bottom: 1.25rem;
+	line-height: 1.3;
+}
+
+.recipe-section-title.mt-8 {
+	margin-top: 2.5rem;
+}
+
+.recipe-cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 1.25rem;
+}
+
+.grid-4-preset {
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+@media (min-width: 1024px) {
+	.grid-4-preset {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.recipe-card {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	padding: 1.5rem 1.25rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.recipe-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.preset-card {
+	background: #fdfbf7;
+	border-color: #f3ebd8;
+}
+
+.dish-card {
+	background: #f8fafc;
+	border-color: #e2e8f0;
+}
+
+.recipe-emoji-centered {
+	font-size: 3.5rem;
+	line-height: 1;
+	margin-bottom: 0.75rem;
+}
+
+.recipe-title {
+	font-size: 1.05rem;
+	font-weight: 700;
+	color: #1e293b;
+	margin: 0 0 0.4rem 0;
+	line-height: 1.3;
+}
+
+.recipe-subtitle {
+	font-size: 0.85rem;
+	color: #64748b;
+	margin: 0 0 1rem 0;
+	font-style: italic;
+	line-height: 1.4;
+}
+
+.recipe-meta-badge {
+	display: inline-block;
+	background: #e0f2fe;
+	color: #0369a1;
+	font-size: 0.75rem;
+	font-weight: 600;
+	padding: 0.25rem 0.6rem;
+	border-radius: 9999px;
+	margin-bottom: 1rem;
+	line-height: 1.2;
+}
+
+.recipe-bullet-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 0.875rem;
+	color: #334155;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	width: 100%;
+	text-align: left;
+}
+
+.recipe-bullet-list li {
+	line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+	.recipe-cards-grid, .grid-4-preset {
+		grid-template-columns: 1fr;
+	}
+}
+</style>

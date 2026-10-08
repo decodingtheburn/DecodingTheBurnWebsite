@@ -6,10 +6,10 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { generateSlidesFromPost } from '../../utils/slideEngine';
 import { sortPostsDescending, getPostEntryNumber, sortPostsAscending } from '../../utils/postUtils';
 
-// Fetch all posts including drafts, sorted deterministically by entry number ascending (#1, #2, #3...)
+// Fetch all posts including drafts, sorted by pubDate descending (most recent on top)
 const rawPosts = await getCollection('blog');
-const allPostsAscending = sortPostsAscending(rawPosts);
-const allPosts = allPostsAscending;
+const allPostsDescending = sortPostsDescending(rawPosts);
+const allPosts = allPostsDescending;
 
 // Calculate slide count and metadata for each post, numbering drafts as D1, D2, D3...
 let liveCounter = 0;

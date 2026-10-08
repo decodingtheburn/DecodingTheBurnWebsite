@@ -1,0 +1,300 @@
+---
+interface Props {
+  listType?: 'personal' | 'top20';
+}
+
+const { listType = 'personal' } = Astro.props;
+
+// Personal Triggers in exact requested order: Alcohol, Coffee, Sparkling Water, Fruits, Grains, Vegetables, Stress
+const personalTriggers = [
+  {
+    id: "alcohol",
+    name: "Alcohol",
+    icon: "🍷",
+    desc: "Ethanol acts as a chemical solvent that desiccates mucosal tissue and increases epithelial permeability, allowing acids (pH 3.0–3.8 in wine and drinks) to penetrate deeper to mucosal C-fibers."
+  },
+  {
+    id: "coffee",
+    name: "Coffee",
+    icon: "☕",
+    desc: "Coffee (pH 4.8–5.1) delivers high concentrations of free hydrogen ions (H+). Exposed dentinal tubules or porous cementum allow these ions to diffuse down tubule channels directly to C-fiber nerves."
+  },
+  {
+    id: "sparkling-water",
+    name: "Sparkling Water & Carbonated Beverages",
+    icon: "🫧",
+    desc: "Dissolved carbon dioxide creates carbonic acid (pH 3.0–4.5), lowering oral pH and continuously firing ASIC3 acid receptors across sensitized mucosal tissue."
+  },
+  {
+    id: "fruits",
+    name: "Fruits (Citrus, Berries, Apples)",
+    icon: "🍎",
+    desc: "Fruits carry direct soluble organic acids (citric, malic, ascorbic acid) alongside simple sugars. Soluble acids directly activate ASIC3 receptors on nerve endings, while sugars ferment into lactic acid in oral trenches."
+  },
+  {
+    id: "grains",
+    name: "Grains & Processed Starches",
+    icon: "🌾",
+    desc: "Grains, breads, and starches break down into simple glucose during chewing. Oral anaerobic bacteria ferment these carbohydrates rapidly into lactic acid, creating prolonged low pH flares."
+  },
+  {
+    id: "vegetables",
+    name: "Vegetables (Tomatoes, Peppers, Raw Greens)",
+    icon: "🥦",
+    desc: "Savory vegetables contain natural sugars and mild organic acids. Chewing raw vegetables releases fermentable starches and natural oxalates that irritate sensitized mucosal membranes."
+  },
+  {
+    id: "stress",
+    name: "Stress",
+    icon: "🧠",
+    desc: "Acute stress activates the sympathetic nervous system, reducing salivary flow (making saliva thicker and less alkaline) while elevating systemic cortisol and lowering central pain inhibition."
+  }
+];
+
+// Top 20 Common BMS Triggers reported by patients
+const top20Triggers = [
+  {
+    id: "chili-peppers",
+    name: "Chili Peppers & Hot Sauce",
+    icon: "🌶️",
+    desc: "Capsaicin binds directly to TRPV1 heat-sensing channels on C-fibers, making room-temperature tissue register as scalding hot."
+  },
+  {
+    id: "cinnamon",
+    name: "Cinnamon & Cinnamaldehyde",
+    icon: "🪵",
+    desc: "Cinnamaldehyde is a potent TRPA1 receptor agonist that ignites intense chemical burning and localized mucosal inflammation."
+  },
+  {
+    id: "menthol-mint",
+    name: "Menthol & Intense Mint Flavoring",
+    icon: "🌿",
+    desc: "High-dose menthol activates TRPM8 cold/irritant channels. In hyper-sensitized nerves, cold stimulation cross-fires as severe burning pain."
+  },
+  {
+    id: "sls-detergent",
+    name: "Sodium Lauryl Sulfate (SLS Toothpaste)",
+    icon: "🪥",
+    desc: "SLS is a harsh detergent that strips the protective mucosal lipid barrier, exposing raw nerve endings to chemical irritants."
+  },
+  {
+    id: "alcohol-mouthwash",
+    name: "Alcohol-Based Mouthwashes",
+    icon: "🧴",
+    desc: "High-proof alcohol rinses severely desiccate mucosal tissue, lowering the activation threshold for TRPA1/TRPV1 channels."
+  },
+  {
+    id: "pineapple",
+    name: "Pineapple (Bromelain & Acid)",
+    icon: "🍍",
+    desc: "Combines high citric/malic acid (pH 3.2–4.0) with bromelain enzymes that actively digest mucosal glycoprotein barriers."
+  },
+  {
+    id: "vinegar-pickles",
+    name: "Vinegar & Pickled Foods",
+    icon: "🫙",
+    desc: "Acetic acid carries an extremely low pH (pH 2.4–3.4), unleashing massive free hydrogen ion concentrations into exposed tubule highways."
+  },
+  {
+    id: "tomatoes",
+    name: "Tomatoes & Tomato Paste",
+    icon: "🍅",
+    desc: "Rich in citric and malic acids (pH 4.0–4.5) alongside natural histamines that dilate local blood vessels and heighten nerve sensitivity."
+  },
+  {
+    id: "citrus-lemon",
+    name: "Lemons, Limes & Grapefruit",
+    icon: "🍋",
+    desc: "Extremely low pH (pH 2.0–3.0) directly demineralizes dentin and activates ASIC3 acid channels instantly upon contact."
+  },
+  {
+    id: "black-pepper",
+    name: "Black Pepper & Piperine",
+    icon: "🧂",
+    desc: "Piperine activates TRPV1 receptors on sensory nerves, creating a sustained burning sensation across sensitized oral mucosa."
+  },
+  {
+    id: "raw-garlic-onion",
+    name: "Raw Garlic & Onions",
+    icon: "🧄",
+    desc: "Allicin and sulfur compounds act as strong TRPA1 irritants that trigger chemical burning in damaged mucosal tissue."
+  },
+  {
+    id: "chocolate",
+    name: "Dark Chocolate & Cocoa",
+    icon: "🍫",
+    desc: "Contains high oxalate concentrations and biogenic amines (histamine/tyramine) that can trigger neuro-vascular inflammation."
+  },
+  {
+    id: "nuts-seeds",
+    name: "Walnuts, Almonds & High-Oxalate Nuts",
+    icon: "🥜",
+    desc: "Microscopic sharp oxalate crystals irritate delicate tongue mucosa, while high phytic acid binds protective salivary minerals."
+  },
+  {
+    id: "processed-starches",
+    name: "Bread, Crackers & Chips",
+    icon: "🍞",
+    desc: "Sticky starches wedge between teeth and under gumlines, providing rapid fuel for anaerobic bacteria to ferment into lactic acid."
+  },
+  {
+    id: "sparkling-water",
+    name: "Flavored Sparkling Water",
+    icon: "🫧",
+    desc: "Carbonic acid combined with natural citric acid flavorings creates a deceptive low pH (pH 3.5–4.5) that burns sensitized roots."
+  },
+  {
+    id: "energy-drinks",
+    name: "Energy Drinks & Pre-Workouts",
+    icon: "⚡",
+    desc: "Loaded with citric acid, malic acid, taurine, and high caffeine that dries saliva flow while flooding tubules with $H^+$ ions."
+  },
+  {
+    id: "sour-candy",
+    name: "Sour Candy & Citric Acid Lozenges",
+    icon: "🍬",
+    desc: "Coated in pure citric and fumaric acid, causing severe enamel etching and prolonged ASIC receptor activation."
+  },
+  {
+    id: "dry-mouth-xerostomia",
+    name: "Dry Mouth (Medication Xerostomia)",
+    icon: "💧",
+    desc: "Loss of salivary bicarbonate buffers allows normal mouth acids to concentrate directly against exposed root surfaces."
+  },
+  {
+    id: "piping-hot-soup",
+    name: "Steaming Hot Coffee or Soup",
+    icon: "🔥",
+    desc: "Temperatures above 43°C directly trigger TRPV1 heat receptors, causing sensitized C-fibers to fire continuously for hours."
+  },
+  {
+    id: "extended-talking",
+    name: "Extended Speech & Phone Calls",
+    icon: "🗣️",
+    desc: "Airflow dries the oral cavity while creating continuous mechanical friction between the tongue and sharp tooth margins."
+  }
+];
+
+const selectedList = listType === 'personal' ? personalTriggers : top20Triggers;
+---
+
+<div class="discoveries-container">
+	<div class="discoveries-stack">
+		{selectedList.map((trigger, index) => (
+			<div class="discovery-card">
+				<div class="discovery-number">Item #{index + 1}</div>
+				<div class="discovery-emoji-single">
+					<span class="discovery-emoji-item">{trigger.icon}</span>
+				</div>
+				<h4 class="discovery-title">{trigger.name}</h4>
+				<p class="discovery-desc">
+					<strong>Potential causes of the BMS increase or pain increase:</strong> {trigger.desc}
+				</p>
+			</div>
+		))}
+	</div>
+</div>
+
+<style>
+	.discoveries-container {
+		width: 100%;
+		margin: 2.75rem 0;
+		display: flex;
+		justify-content: center;
+	}
+
+	.discoveries-stack {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2.25rem;
+		width: 100%;
+	}
+
+	.discovery-card {
+		background: #ffffff;
+		border: 1.5px solid #e2e8f0;
+		border-radius: 1.5rem;
+		width: 82%;
+		max-width: 46ch;
+		padding: 2.75rem 2.25rem 2.5rem 2.25rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		box-shadow: 0 18px 45px rgba(15, 23, 42, 0.09), 0 4px 14px rgba(15, 23, 42, 0.04);
+		transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+		box-sizing: border-box;
+	}
+
+	.discovery-card:hover {
+		transform: translateY(-4px);
+		border-color: #cbd5e1;
+		box-shadow: 0 24px 54px rgba(15, 23, 42, 0.13), 0 6px 18px rgba(124, 58, 237, 0.09);
+	}
+
+	.discovery-number {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 0.95rem;
+		font-weight: 800;
+		color: #7c3aed;
+		letter-spacing: 0.03em;
+		margin-bottom: 0.95rem;
+		text-transform: uppercase;
+	}
+
+	.discovery-emoji-single {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 1.25rem;
+	}
+
+	.discovery-emoji-item {
+		font-size: 3.65rem;
+		line-height: 1;
+		filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.14));
+		display: inline-block;
+		transition: transform 0.25s ease;
+	}
+
+	.discovery-card:hover .discovery-emoji-item {
+		transform: scale(1.12);
+	}
+
+	.discovery-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+		font-weight: 900;
+		color: #0f172a;
+		margin: 0 0 0.95rem 0;
+		letter-spacing: -0.02em;
+		line-height: 1.22;
+		text-wrap: balance;
+	}
+
+	.discovery-desc {
+		font-size: 1.02rem;
+		color: #334155;
+		line-height: 1.58;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.discovery-desc strong {
+		color: #0f172a;
+		font-weight: 800;
+	}
+
+	@media (max-width: 640px) {
+		.discovery-card {
+			width: 100%;
+			max-width: 100%;
+			padding: 2.25rem 1.35rem 2rem 1.35rem;
+		}
+
+		.discovery-emoji-item {
+			font-size: 2.85rem;
+		}
+	}
+</style>

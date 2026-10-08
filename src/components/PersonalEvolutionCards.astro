@@ -1,0 +1,136 @@
+---
+// PersonalEvolutionCards.astro - Component displaying Denis's 3-stage personal dietary evolution continuum
+---
+
+<div class="evolution-cards-container">
+	<h3 class="evolution-title">My Personal Dietary Evolution Continuum</h3>
+	<div class="evolution-cards-grid">
+		<!-- Stage 1: Initial Trigger Diet -->
+		<div class="evolution-card stage-1">
+			<div class="evolution-step-badge">Stage 1: High Trigger Load</div>
+			<div class="evolution-emoji">🍊</div>
+			<h4 class="evolution-card-title">High-Acid &amp; Sugar Diet</h4>
+			<p class="evolution-desc">
+				Citrus, vinegar, sodas, coffee, sugars, and high-acid fruits causing daily 10/10 trigeminal nerve fires.
+			</p>
+		</div>
+
+		<!-- Stage 2: Episode 6 Baseline -->
+		<div class="evolution-card stage-2">
+			<div class="evolution-step-badge active-badge">Stage 2: Episode 6 Baseline</div>
+			<div class="evolution-emoji">🥗</div>
+			<h4 class="evolution-card-title">Low-Acid Balanced Diet</h4>
+			<p class="evolution-desc">
+				Low-acid meats, Hemp Hearts, Tofu, Button Mushrooms, and Olive Oil. Controlled pain during my 6th self-experiment.
+			</p>
+		</div>
+
+		<!-- Stage 3: Strict Carnivore -->
+		<div class="evolution-card stage-3">
+			<div class="evolution-step-badge">Stage 3: 0/10 Baseline</div>
+			<div class="evolution-emoji">🥩</div>
+			<h4 class="evolution-card-title">18-Month Carnivore Reset</h4>
+			<p class="evolution-desc">
+				100% zero-carb elimination baseline bringing pain to an unbroken 6-month 0/10 relief window.
+			</p>
+		</div>
+	</div>
+</div>
+
+<style>
+.evolution-cards-container {
+	margin: 2rem 0;
+}
+
+.evolution-title {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #111827;
+	margin-bottom: 1.25rem;
+	text-align: center;
+}
+
+.evolution-cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 1.25rem;
+}
+
+.evolution-card {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 14px;
+	padding: 1.5rem 1.25rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.evolution-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.stage-1 {
+	background: #fef2f2;
+	border-color: #fecaca;
+}
+
+.stage-2 {
+	background: #f0fdf4;
+	border-color: #bbf7d0;
+}
+
+.stage-3 {
+	background: #f0f9ff;
+	border-color: #bae6fd;
+}
+
+.evolution-step-badge {
+	display: inline-block;
+	background: rgba(0, 0, 0, 0.05);
+	color: #374151;
+	font-size: 0.75rem;
+	font-weight: 700;
+	padding: 0.25rem 0.6rem;
+	border-radius: 9999px;
+	margin-bottom: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.active-badge {
+	background: #15803d;
+	color: #ffffff;
+}
+
+.evolution-emoji {
+	font-size: 3.5rem;
+	line-height: 1;
+	margin-bottom: 0.75rem;
+}
+
+.evolution-card-title {
+	font-size: 1.1rem;
+	font-weight: 700;
+	color: #1f2937;
+	margin: 0 0 0.5rem 0;
+	line-height: 1.3;
+}
+
+.evolution-desc {
+	font-size: 0.875rem;
+	color: #4b5563;
+	margin: 0;
+	line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+	.evolution-cards-grid {
+		grid-template-columns: 1fr;
+	}
+}
+</style>

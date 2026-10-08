@@ -1,0 +1,391 @@
+---
+// Interactive BMS Questionnaire Component
+---
+
+<div class="bms-quiz-wrapper">
+	<div class="quiz-header-banner">
+		<p class="quiz-callout">
+			<strong>Want to help advance BMS research?</strong> If you want to share your data, answer these short questions below. At the end, click <strong>Submit</strong>. It is 100% anonymous—no name or email required.
+		</p>
+	</div>
+
+	<form id="bms-quiz-form" class="quiz-form">
+		<!-- Section 1 -->
+		<div class="quiz-section">
+			<h3 class="quiz-section-title">1. Daily Pain Patterns</h3>
+			
+			<div class="quiz-item">
+				<p class="quiz-question">Pain gets worse as the day goes on?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Pain gets worse as the day goes on?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Pain is lower or gone when waking up?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Pain is lower or gone when waking up?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Some days are significantly better than others?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Some days are significantly better than others?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Eating or drinking temporarily relieves burning?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Eating or drinking temporarily relieves burning?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Have you had periods where BMS disappeared then returned?</p>
+				<div class="quiz-btn-group quiz-btn-group-multi" role="radiogroup" aria-label="Have you had periods where BMS disappeared then returned?">
+					<button type="button" class="quiz-btn btn-opt" data-val="always">Always present (no breaks)</button>
+					<button type="button" class="quiz-btn btn-opt" data-val="1-time">Yes, 1 time</button>
+					<button type="button" class="quiz-btn btn-opt" data-val="2-times">Yes, 2 times</button>
+					<button type="button" class="quiz-btn btn-opt" data-val="3-plus">Yes, 3+ times</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Section 2 -->
+		<div class="quiz-section">
+			<h3 class="quiz-section-title">2. Food & Drink Triggers</h3>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Soft drinks or carbonated water trigger pain?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Soft drinks or carbonated water trigger pain?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Sugar or sweet foods trigger pain?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Sugar or sweet foods trigger pain?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Acidic foods (coffee, citrus, tomatoes) trigger pain?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Acidic foods trigger pain?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Spicy foods cause instant burning?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Spicy foods cause instant burning?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Alcohol or alcohol mouthwashes burn severely?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Alcohol or alcohol mouthwashes burn severely?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Section 3 -->
+		<div class="quiz-section">
+			<h3 class="quiz-section-title">3. Mouth & Sensory Symptoms</h3>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Burning mainly on tongue, palate, or lips?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Burning mainly on tongue, palate, or lips?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Metallic or altered taste in your mouth?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Metallic or altered taste in your mouth?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Persistent dry mouth feeling?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Persistent dry mouth feeling?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Mouth feels scalded like hot coffee burn?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Mouth feels scalded like hot coffee burn?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Section 4 -->
+		<div class="quiz-section">
+			<h3 class="quiz-section-title">4. Dental & History Factors</h3>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Pain started after a dental procedure?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Pain started after a dental procedure?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Foaming toothpaste (SLS) increases burning?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Foaming toothpaste (SLS) increases burning?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Gum recession or cold/hot tooth sensitivity?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Gum recession or cold/hot tooth sensitivity?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+
+			<div class="quiz-item">
+				<p class="quiz-question">Clench teeth, grind, or press tongue at night?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Clench teeth, grind, or press tongue at night?">
+					<button type="button" class="quiz-btn btn-yes" data-val="yes">Yes</button>
+					<button type="button" class="quiz-btn btn-maybe" data-val="maybe">Not sure / Unnoticed</button>
+					<button type="button" class="quiz-btn btn-no" data-val="no">No</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="quiz-submit-card">
+			<button type="button" id="quiz-submit-btn" class="quiz-submit-button">Submit Anonymous Data</button>
+			<p id="quiz-status-msg" class="quiz-status-msg"></p>
+			<p class="quiz-privacy-note">100% Anonymous. No account or email needed.</p>
+		</div>
+	</form>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const groups = document.querySelectorAll('.quiz-btn-group');
+		const submitBtn = document.getElementById('quiz-submit-btn');
+		const statusMsg = document.getElementById('quiz-status-msg');
+
+		groups.forEach(group => {
+			const buttons = group.querySelectorAll('.quiz-btn');
+			buttons.forEach(btn => {
+				btn.addEventListener('click', () => {
+					buttons.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+				});
+			});
+		});
+
+		if (submitBtn && statusMsg) {
+			submitBtn.addEventListener('click', () => {
+				submitBtn.disabled = true;
+				statusMsg.textContent = "Thank you! Your anonymous responses have been recorded.";
+				statusMsg.classList.add('success');
+			});
+		}
+	});
+</script>
+
+<style>
+	.bms-quiz-wrapper {
+		background: #ffffff;
+		border: 1px solid var(--card-border, #e2e8f0);
+		border-radius: 20px;
+		padding: 2rem;
+		margin: 2rem 0;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+	}
+
+	.quiz-header-banner {
+		background: #f8fafc;
+		border-left: 4px solid #10b981;
+		padding: 1rem 1.25rem;
+		border-radius: 8px;
+		margin-bottom: 2rem;
+	}
+
+	.quiz-callout {
+		margin: 0;
+		font-size: 1rem;
+		color: #334155;
+		line-height: 1.5;
+		text-wrap: pretty;
+	}
+
+	.quiz-section {
+		margin-bottom: 2rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px dashed #e2e8f0;
+	}
+
+	.quiz-section:last-of-type {
+		border-bottom: none;
+	}
+
+	.quiz-section-title {
+		font-size: 1.2rem;
+		font-weight: 700;
+		color: #0f172a;
+		margin: 0 0 1.25rem;
+		text-wrap: balance;
+	}
+
+	.quiz-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin-bottom: 1.25rem;
+		padding: 0.75rem 1rem;
+		background: #fafafa;
+		border-radius: 12px;
+		border: 1px solid #f1f5f9;
+	}
+
+	@media (min-width: 640px) {
+		.quiz-item {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+
+	.quiz-question {
+		margin: 0;
+		font-size: 0.98rem;
+		font-weight: 600;
+		color: #1e293b;
+		flex: 1;
+		line-height: 1.4;
+		text-wrap: pretty;
+	}
+
+	.quiz-btn-group {
+		display: flex;
+		gap: 0.4rem;
+		flex-shrink: 0;
+	}
+
+	.quiz-btn {
+		padding: 0.45rem 0.75rem;
+		font-size: 0.82rem;
+		font-weight: 600;
+		border-radius: 8px;
+		border: 1.5px solid #cbd5e1;
+		background: #ffffff;
+		color: #475569;
+		cursor: pointer;
+		transition: all 0.15s ease;
+		outline: none;
+	}
+
+	.quiz-btn:hover {
+		border-color: #94a3b8;
+		background: #f8fafc;
+	}
+
+	/* Activated States */
+	.quiz-btn.btn-yes.active {
+		background: #10b981;
+		border-color: #059669;
+		color: #ffffff;
+		box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+	}
+
+	.quiz-btn.btn-maybe.active {
+		background: #f59e0b;
+		border-color: #d97706;
+		color: #ffffff;
+		box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+	}
+
+	.quiz-btn.btn-no.active {
+		background: #ef4444;
+		border-color: #dc2626;
+		color: #ffffff;
+		box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+	}
+
+	.quiz-btn.btn-opt.active {
+		background: #2563eb;
+		border-color: #1d4ed8;
+		color: #ffffff;
+		box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+	}
+
+	.quiz-submit-card {
+		text-align: center;
+		margin-top: 2rem;
+		padding-top: 1.5rem;
+		border-top: 2px solid #f1f5f9;
+	}
+
+	.quiz-submit-button {
+		background: #0f172a;
+		color: #ffffff;
+		font-size: 1.05rem;
+		font-weight: 700;
+		padding: 0.85rem 2.5rem;
+		border-radius: 12px;
+		border: none;
+		cursor: pointer;
+		transition: background 0.15s ease;
+	}
+
+	.quiz-submit-button:hover {
+		background: #1e293b;
+	}
+
+	.quiz-status-msg {
+		margin: 1rem 0 0;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #10b981;
+	}
+
+	.quiz-privacy-note {
+		margin: 0.5rem 0 0;
+		font-size: 0.82rem;
+		color: #64748b;
+	}
+</style>

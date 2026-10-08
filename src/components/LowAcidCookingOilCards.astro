@@ -1,0 +1,197 @@
+---
+// LowAcidCookingOilCards.astro - Card grid component for Carnivore vs Low-Inflammation Cooking Oils & Fats
+---
+
+<div class="oils-cards-container">
+	<h3 class="oils-section-title">Cooking Fats & Oils: Carnivore vs Low-Inflammation Options</h3>
+	<p class="oils-section-subtitle">Pure oils contain zero sugar and zero carbohydrates. Adding these healthy fats boosts daily energy without triggering oral acid fermentation.</p>
+	
+	<div class="oils-cards-grid">
+		<!-- 1. Grass-Fed Ghee -->
+		<div class="oil-card animal-fat-card">
+			<div class="oil-emoji-hero">🧈</div>
+			<h4 class="oil-name">Grass-Fed Ghee</h4>
+			<div class="oil-badge">Animal Fat | Zero Acid</div>
+			<ul class="oil-stats-list">
+				<li><strong>Smoke Point:</strong> 485°F (250°C)</li>
+				<li><strong>Key Benefit:</strong> Pure milk fat with lactose & casein removed. Rich in gut-healing butyrate.</li>
+				<li><strong>Best Use:</strong> High-heat frying, searing steaks, or tossing warm vegetables.</li>
+			</ul>
+		</div>
+
+		<!-- 2. Beef Tallow & Suet -->
+		<div class="oil-card animal-fat-card">
+			<div class="oil-emoji-hero">🥩</div>
+			<h4 class="oil-name">Beef Tallow</h4>
+			<div class="oil-badge">Animal Fat | Zero Acid</div>
+			<ul class="oil-stats-list">
+				<li><strong>Smoke Point:</strong> 400°F (205°C)</li>
+				<li><strong>Key Benefit:</strong> Traditional carnivore fat with neutral tissue pH (~6.5). Zero plant oxalates.</li>
+				<li><strong>Best Use:</strong> Skillet cooking ground beef, roasting, or pan-frying.</li>
+			</ul>
+		</div>
+
+		<!-- 3. Duck Fat & Bacon Drippings -->
+		<div class="oil-card animal-fat-card">
+			<div class="oil-emoji-hero">🥓</div>
+			<h4 class="oil-name">Duck Fat & Bacon Drippings</h4>
+			<div class="oil-badge">Animal Fat | Zero Acid</div>
+			<ul class="oil-stats-list">
+				<li><strong>Smoke Point:</strong> ~375°F (190°C)</li>
+				<li><strong>Key Benefit:</strong> Highly flavorful, zero-carb fats that provide dense calorie support.</li>
+				<li><strong>Best Use:</strong> Sautéing mushrooms, asparagus, or crisping skin-on chicken.</li>
+			</ul>
+		</div>
+
+		<!-- 4. Avocado Oil -->
+		<div class="oil-card plant-oil-card">
+			<div class="oil-emoji-hero">🥑</div>
+			<h4 class="oil-name">Avocado Oil</h4>
+			<div class="oil-badge">Plant Oil | Zero Sugar</div>
+			<ul class="oil-stats-list">
+				<li><strong>Smoke Point:</strong> 520°F (270°C)</li>
+				<li><strong>Key Benefit:</strong> Extremely heat-stable monounsaturated fat with minimal mucosal irritation.</li>
+				<li><strong>Best Use:</strong> High-heat searing, roasting vegetables, or light salad drizzles.</li>
+			</ul>
+		</div>
+
+		<!-- 5. Extra Virgin Olive Oil -->
+		<div class="oil-card plant-oil-card">
+			<div class="oil-emoji-hero">🫒</div>
+			<h4 class="oil-name">Extra Virgin Olive Oil</h4>
+			<div class="oil-badge">Plant Oil | Zero Sugar</div>
+			<ul class="oil-stats-list">
+				<li><strong>Smoke Point:</strong> 375°F (190°C)</li>
+				<li><strong>Key Benefit:</strong> Rich in oleic acid and anti-inflammatory polyphenols.</li>
+				<li><strong>Best Use:</strong> Drizzling over warm cooked dishes or gentle low-heat cooking.</li>
+			</ul>
+		</div>
+
+		<!-- 6. Organic Coconut Oil -->
+		<div class="oil-card plant-oil-card">
+			<div class="oil-emoji-hero">🥥</div>
+			<h4 class="oil-name">Organic Coconut Oil</h4>
+			<div class="oil-badge">Plant Fat | Zero Sugar</div>
+			<ul class="oil-stats-list">
+				<li><strong>Smoke Point:</strong> 350°F (177°C)</li>
+				<li><strong>Key Benefit:</strong> High in lauric acid (natural antimicrobial). Great for mucosal soothing.</li>
+				<li><strong>Best Use:</strong> Mild stir-frying, baking, or gentle oral swishing.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<style>
+.oils-cards-container {
+	margin: 2.5rem 0;
+}
+
+.oils-section-title {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #111827;
+	margin-bottom: 0.25rem;
+	line-height: 1.3;
+}
+
+.oils-section-subtitle {
+	font-size: 0.875rem;
+	color: #4b5563;
+	margin-bottom: 1.25rem;
+	line-height: 1.45;
+}
+
+.oils-cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 1.25rem;
+}
+
+.oil-card {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	padding: 1.5rem 1.25rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.oil-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.animal-fat-card {
+	background: #fffdfa;
+	border-color: #fde68a;
+}
+
+.plant-oil-card {
+	background: #f8fafc;
+	border-color: #cbd5e1;
+}
+
+.oil-emoji-hero {
+	font-size: 3.5rem;
+	line-height: 1;
+	margin-bottom: 0.75rem;
+}
+
+.oil-name {
+	font-size: 1.1rem;
+	font-weight: 700;
+	color: #1e293b;
+	margin: 0 0 0.4rem 0;
+	line-height: 1.3;
+}
+
+.oil-badge {
+	display: inline-block;
+	background: #fef3c7;
+	color: #b45309;
+	font-size: 0.75rem;
+	font-weight: 600;
+	padding: 0.25rem 0.6rem;
+	border-radius: 9999px;
+	margin-bottom: 1rem;
+	line-height: 1.2;
+}
+
+.plant-oil-card .oil-badge {
+	background: #e0f2fe;
+	color: #0369a1;
+}
+
+.oil-stats-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 0.8125rem;
+	color: #334155;
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	width: 100%;
+	text-align: left;
+}
+
+.oil-stats-list li {
+	line-height: 1.4;
+	padding: 0.2rem 0;
+	border-bottom: 1px dashed #e2e8f0;
+}
+
+.oil-stats-list li:last-child {
+	border-bottom: none;
+}
+
+@media (max-width: 640px) {
+	.oils-cards-grid {
+		grid-template-columns: 1fr;
+	}
+}
+</style>
