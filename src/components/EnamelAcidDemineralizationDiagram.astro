@@ -1,0 +1,259 @@
+---
+// EnamelAcidDemineralizationDiagram.astro - High-contrast visual component explaining the chemical principle of enamel demineralization (H+ proton influx & Ca2+ mineral leaching)
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`enamel-acid-wrapper ${className}`}>
+	<div class="enamel-acid-card">
+		<div class="enamel-acid-header">
+			<span class="enamel-kicker">Biochemical Principle of Demineralization</span>
+			<h4 class="enamel-acid-title">How Acid Destroys Tooth Enamel: Proton Influx &amp; Mineral Leaching</h4>
+			<p class="enamel-acid-desc">
+				Tooth enamel is composed of crystalline <strong>Hydroxyapatite [Ca₁₀(PO₄)₆(OH)₂]</strong>—the hardest substance in the human body. However, when dietary pH drops below <strong>5.5</strong>, free hydrogen protons (H⁺) aggressively attack and dissolve this protective mineral lattice.
+			</p>
+		</div>
+
+		<!-- Interactive 3-Stage Chemical Process Visual Grid -->
+		<div class="enamel-process-grid">
+			<!-- Stage 1: Acid Attack (H+ Influx) -->
+			<div class="process-stage-card stage-attack">
+				<div class="stage-badge">Step 1</div>
+				<h5 class="stage-title">Proton Influx (H⁺ Attack)</h5>
+				<div class="chemical-formula-box">
+					<span class="formula-label">Dietary Acid Contact (pH &lt; 5.5)</span>
+					<span class="formula-reaction">H⁺ (Free Hydrogen Ions) → Enamel Surface</span>
+				</div>
+				<p class="stage-desc">
+					When you consume acidic coffee, citrus, wine, or soft drinks, millions of free hydrogen protons (<strong>H⁺</strong>) flood the mouth and bind directly to the outer hydroxyapatite enamel crystals.
+				</p>
+			</div>
+
+			<!-- Stage 2: Proton Binding & Chemical Reaction -->
+			<div class="process-stage-card stage-reaction">
+				<div class="stage-badge">Step 2</div>
+				<h5 class="stage-title">Crystal Lattice Breakdown</h5>
+				<div class="chemical-formula-box">
+					<span class="formula-label">Chemical Dissolution Reaction</span>
+					<span class="formula-reaction">H⁺ + PO₄³⁻ → HPO₄²⁻ &amp; H⁺ + OH⁻ → H₂O</span>
+				</div>
+				<p class="stage-desc">
+					The aggressive <strong>H⁺</strong> protons react with carbonate, phosphate (PO₄³⁻), and hydroxyl (OH⁻) groups in the enamel lattice, destroying the structural bonds that lock calcium in place.
+				</p>
+			</div>
+
+			<!-- Stage 3: Mineral Leaching (Ca2+ Extraction) -->
+			<div class="process-stage-card stage-leaching">
+				<div class="stage-badge">Step 3</div>
+				<h5 class="stage-title">Mineral Leaching (Ca²⁺ Out)</h5>
+				<div class="chemical-formula-box">
+					<span class="formula-label">Demineralization &amp; Extraction</span>
+					<span class="formula-reaction">Ca²⁺ + HPO₄²⁻ Leached OUT into Mouth</span>
+				</div>
+				<p class="stage-desc">
+					Unbound calcium (<strong>Ca²⁺</strong>) and phosphate ions are pulled completely OUT of the tooth into oral saliva. This erodes enamel prisms, exposing underlying dentinal tubules to sensory nerves.
+				</p>
+			</div>
+		</div>
+
+		<!-- Chemical Equation Banner Box -->
+		<div class="enamel-equation-box">
+			<div class="equation-header">
+				<span class="equation-kicker">The Demineralization Equation</span>
+				<h5 class="equation-title">Ca₁₀(PO₄)₆(OH)₂ + 8H⁺ ⇌ 10Ca²⁺ + 6HPO₄²⁻ + 2H₂O</h5>
+			</div>
+			<p class="equation-desc">
+				<strong>The Core Principle:</strong> Acid does not simply "burn" the tooth mechanically. High concentrations of <strong>H⁺ protons</strong> force the equilibrium equation to the right—extracting <strong>10 Calcium ions (Ca²⁺)</strong> and <strong>6 Phosphate groups (HPO₄²⁻)</strong> out of your tooth matrix for every unit of acid consumed. Over time, this dissolves enamel, exposes dentin tubules, and opens a direct pathway for nerve ignition.
+			</p>
+		</div>
+	</div>
+</div>
+
+<style>
+	.enamel-acid-wrapper {
+		margin: 3rem 0;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.enamel-acid-card {
+		background: radial-gradient(120% 120% at 50% 0%, #1a0f30 0%, #0c0718 60%, #07030e 100%);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		border-radius: 1.5rem;
+		padding: clamp(1.5rem, 3.5vw, 2.5rem);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+		color: #e2e8f0;
+	}
+
+	.enamel-acid-header {
+		text-align: center;
+		margin-bottom: 2rem;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.enamel-kicker {
+		font-size: 0.82rem;
+		font-weight: 700;
+		color: #c084fc;
+		letter-spacing: 0.04em;
+		display: block;
+		margin-bottom: 0.35rem;
+	}
+
+	.enamel-acid-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: clamp(1.4rem, 2.8vw, 1.95rem);
+		font-weight: 900;
+		color: #ffffff;
+		margin: 0 0 0.85rem 0;
+		line-height: 1.25;
+		text-wrap: balance;
+		letter-spacing: -0.02em;
+	}
+
+	.enamel-acid-desc {
+		font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+		line-height: 1.65;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	/* Process Grid (3 Cards) */
+	.enamel-process-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.25rem;
+		margin-bottom: 2rem;
+	}
+
+	.process-stage-card {
+		background: rgba(13, 8, 26, 0.75);
+		border: 1px solid rgba(168, 85, 247, 0.25);
+		border-radius: 1.15rem;
+		padding: 1.35rem 1.4rem;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		transition: transform 0.2s ease, border-color 0.2s ease;
+	}
+
+	.process-stage-card:hover {
+		transform: translateY(-3px);
+		border-color: rgba(168, 85, 247, 0.5);
+	}
+
+	.stage-badge {
+		font-size: 0.75rem;
+		font-weight: 900;
+		color: #fde047;
+		background: rgba(253, 224, 71, 0.15);
+		border: 1px solid rgba(253, 224, 71, 0.35);
+		padding: 0.2rem 0.55rem;
+		border-radius: 0.35rem;
+		width: fit-content;
+		margin-bottom: 0.75rem;
+	}
+
+	.stage-title {
+		font-family: var(--font-heading, system-ui, sans-serif);
+		font-size: 1.1rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0 0 0.75rem 0;
+		line-height: 1.3;
+	}
+
+	.chemical-formula-box {
+		background: rgba(8, 4, 16, 0.85);
+		border: 1px stroke rgba(239, 68, 68, 0.3);
+		border-left: 3px solid #ef4444;
+		padding: 0.65rem 0.85rem;
+		border-radius: 0.5rem;
+		margin-bottom: 0.85rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.stage-reaction {
+		.chemical-formula-box {
+			border-left-color: #a855f7;
+		}
+	}
+
+	.stage-leaching {
+		.chemical-formula-box {
+			border-left-color: #38bdf8;
+		}
+	}
+
+	.formula-label {
+		font-size: 0.72rem;
+		font-weight: 700;
+		color: #94a3b8;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+	}
+
+	.formula-reaction {
+		font-family: ui-monospace, monospace;
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: #f1f5f9;
+	}
+
+	.stage-desc {
+		font-size: 0.88rem;
+		line-height: 1.6;
+		color: #cbd5e1;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	/* Chemical Equation Box */
+	.enamel-equation-box {
+		background: rgba(168, 85, 247, 0.08);
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 1.15rem;
+		padding: 1.5rem 1.75rem;
+	}
+
+	.equation-header {
+		text-align: center;
+		margin-bottom: 0.85rem;
+	}
+
+	.equation-kicker {
+		font-size: 0.78rem;
+		font-weight: 700;
+		color: #c084fc;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		display: block;
+		margin-bottom: 0.3rem;
+	}
+
+	.equation-title {
+		font-family: ui-monospace, monospace;
+		font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+		font-weight: 800;
+		color: #fde047;
+		margin: 0;
+		line-height: 1.35;
+		word-break: break-word;
+	}
+
+	.equation-desc {
+		font-size: 0.92rem;
+		line-height: 1.65;
+		color: #e2e8f0;
+		margin: 0;
+		text-wrap: pretty;
+	}
+</style>
