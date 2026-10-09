@@ -1882,9 +1882,49 @@ if (!postNumber && slug) {
 					font-size: 1.2rem;
 				}
 
-				.post-content :global(.casebook-breakthrough-box) {
-					padding: 1.5rem 1.35rem;
+			/* Full-width video container for MDX embeds matching breakout tables */
+			.post-content :global(.video-embed-fullwidth) {
+				width: calc(100% + 14rem);
+				margin-left: -7rem;
+				margin-right: -7rem;
+				max-width: none;
+				margin-top: 2.5rem;
+				margin-bottom: 2.5rem;
+				border-radius: 20px;
+				overflow: hidden;
+				border: 1px solid rgba(168, 85, 247, 0.35);
+				background: #0d081a;
+				padding: 0.5rem;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.15);
+				box-sizing: border-box;
+			}
+
+			@media (max-width: 980px) {
+				.post-content :global(.video-embed-fullwidth) {
+					width: 100%;
+					margin-left: 0;
+					margin-right: 0;
 				}
+			}
+
+			.post-content :global(.video-embed-aspect) {
+				position: relative;
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				border-radius: 14px;
+				overflow: hidden;
+			}
+
+			.post-content :global(.video-embed-aspect iframe),
+			.post-content :global(iframe) {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100% !important;
+				height: 100% !important;
+				max-width: 100% !important;
+				min-width: 100% !important;
+				border: 0;
 			}
 		</style>
 		<PresenterCursor />
