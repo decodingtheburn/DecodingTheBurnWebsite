@@ -157,25 +157,80 @@ To understand one potential reason why acid triggers burning pain, watch this sh
 
 ## Part 5: What Acid Does to Your Teeth
 
-The first thing acid does is **create pain if there are exposed tubules**, and then it slowly **destroys your teeth** by dissolving vital minerals out of your tooth matrix. 
+The first thing acid does is **create pain if there are exposed tubules**, and then it slowly **destroys your teeth** by dissolving vital minerals out of your tooth matrix when the oral pH drops below the critical demineralization threshold (pH 5.5).
 
-In addition to acidic foods and drinks, sugar feeds oral bacteria which produces continuous acid against your teeth:
+In addition to acidic foods and drinks, fermentable carbohydrates and sugars feed oral bacteria (*Streptococcus mutans*), which continuously produce destructive lactic acid against your teeth:
 
+{/* Interactive Video Player with Custom Thumbnail Overlay */}
 <div style="width: 100%; max-width: 980px; margin: 2.5rem auto; box-sizing: border-box;">
-	<div style="position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid rgba(168, 85, 247, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.5); background: #0d081a;">
+	<div 
+		id="sugar-video-container" 
+		style="position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid rgba(168, 85, 247, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.5); background: #0d081a; cursor: pointer;"
+		onclick="
+			var frame = document.getElementById('sugar-video-iframe');
+			var overlay = document.getElementById('sugar-video-overlay');
+			if (frame && overlay) {
+				frame.src = 'https://www.youtube-nocookie.com/embed/wxqR9MLXJ3M?autoplay=1';
+				overlay.style.opacity = '0';
+				overlay.style.pointerEvents = 'none';
+				setTimeout(function() { overlay.style.display = 'none'; }, 250);
+			}
+		"
+	>
 		<iframe 
+			id="sugar-video-iframe"
 			src="https://www.youtube-nocookie.com/embed/wxqR9MLXJ3M" 
 			title="How Sugar and Bacteria Produce Acid That Hurts Teeth" 
 			style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
 			allowfullscreen>
 		</iframe>
+
+		{/* Custom Thumbnail Overlay */}
+		<div 
+			id="sugar-video-overlay"
+			style="position: absolute; inset: 0; background-image: url('/ph-scale-tooth-critical-threshold.png'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; z-index: 10; transition: opacity 0.25s ease;"
+		>
+			<div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); border: 2px solid rgba(255, 255, 255, 0.8); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.4); transition: transform 0.2s ease;">
+				<svg viewBox="0 0 24 24" width="34" height="34" fill="#ffffff" style="margin-left: 4px;">
+					<polygon points="5 3 19 12 5 21 5 3"></polygon>
+				</svg>
+			</div>
+		</div>
 	</div>
 </div>
 
 ---
 
-## Part 6: Why Some People Don't Have Pain With Acid
+## Part 6: What Foods Actually Contain Sugar (Yes, Even Vegetables)
+
+When people think of "cutting sugar," they immediately picture candy, ice cream, pastries, and soda. But in the oral cavity, **oral bacteria do not care whether sugar came from a candy bar or a garden-grown carrot.**
+
+The moment bacteria like *Streptococcus mutans* encounter any fermentable carbohydrate, they digest it and secrete **lactic acid** within seconds.
+
+### Hidden Sugars and Why Vegetables Feed Oral Acid:
+
+1. **Root Vegetables (Carrots, Beets, Parsnips, Sweet Potatoes):**
+   - A single medium carrot contains nearly **3 to 5 grams of pure sugar** (sucrose, glucose, and fructose).
+   - Beets and parsnips have high glycemic indexes, breaking down directly into simple sugars while chewed.
+
+2. **Nightshades and Fruit-Vegetables (Tomatoes, Bell Peppers, Onions):**
+   - Onions are packed with fermentable carbohydrates (fructans) and sugar. When onions caramelize or sweeten, that sweetness is real sugar.
+   - Red bell peppers contain up to **5 grams of sugar** per cup.
+   - Tomatoes combine high natural citric and malic acids with fermentable fructose: a double chemical blow against sensitive oral mucosa.
+
+3. **Starchy Vegetables (Corn, Peas, Potatoes, Squashes):**
+   - Chewing starches activates salivary amylase, which converts long-chain starches into maltose and glucose right inside the mouth.
+   - The sticky starch residue clings between teeth and inside gum pockets, fueling localized acid production for hours.
+
+4. **Fruits and Smoothies:**
+   - Even "healthy" green smoothies or fruit bowls bathe the oral cavity in free fructose, accelerating enamel demineralization.
+
+When I removed all plants, vegetables, and carbohydrates and switched to an all-meat carnivore protocol, I didn't just remove table sugar. I eliminated **100% of the fermentable fuel that oral bacteria use to manufacture acid**, stopping the daily acid cycle completely.
+
+---
+
+## Part 7: Why Some People Don't Have Pain With Acid
 
 Many people ask: *"If acid triggers nerves, why can a 20-year-old drink lemonade all day with zero burning? And why did I drink coffee for decades with no problems?"*
 
@@ -188,7 +243,7 @@ The answer comes down to protective barriers and the tooth's ability to build a 
 
 ---
 
-## Part 7: Is It BMS or Dentinal Hypersensitivity?
+## Part 8: Is It BMS or Dentinal Hypersensitivity?
 
 Distinguishing between idiopathic Burning Mouth Syndrome and widespread **Dentinal Hypersensitivity** presents a genuine diagnostic challenge for clinicians and patients alike.
 
@@ -198,7 +253,7 @@ Distinguishing between idiopathic Burning Mouth Syndrome and widespread **Dentin
 
 ---
 
-## Part 8: The 4 Biological Pathways of Acid Pain
+## Part 9: The 4 Biological Pathways of Acid Pain
 
 > **My Personal Story:**  
 > This is my personal working theory based on my own story. In my case, I had dental repairs performed, some of which had failed over time. When those specific restorations were fixed, my lower arch became much less sensitive and my pain resolved.
