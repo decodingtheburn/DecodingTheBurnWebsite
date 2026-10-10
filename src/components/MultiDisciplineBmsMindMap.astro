@@ -1,267 +1,394 @@
 ---
 // MultiDisciplineBmsMindMap.astro
-// Interactive / Graphical Mind Map linking all fields needed to resolve BMS
+// True Mind Map with dynamic SVG connection branches, clean white compact nodes, single-line titles, and expandable details
 ---
 
-<div class="bms-mindmap-container">
-	<div class="mindmap-header">
-		<span class="mindmap-kicker">Interactive System Matrix</span>
-		<h3 class="mindmap-main-title">The Cross-Discipline BMS Resolution&nbsp;Map</h3>
-		<p class="mindmap-subtitle">
-			Burning Mouth Syndrome cannot be diagnosed or resolved within a single medical silo. Click or hover on any discipline to see why that field holds a critical piece of the&nbsp;puzzle.
+<div class="mindmap-outer-wrapper">
+	<div class="mindmap-header-block">
+		<h3 class="mindmap-headline">The Multi-Discipline BMS Mind&nbsp;Map</h3>
+		<p class="mindmap-subline">
+			Click any node to expand the clinical reasoning. Trace how every field branches directly into central BMS&nbsp;resolution.
 		</p>
 	</div>
 
-	<!-- Central Hub & Orbital Nodes -->
-	<div class="mindmap-canvas">
+	<div class="mindmap-stage" id="bmsMindmapStage">
+		<!-- SVG Canvas for Connecting Branches -->
+		<svg class="mindmap-svg-canvas" id="bmsMindmapSvg" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<linearGradient id="grad-dentistry" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+					<stop offset="100%" stop-color="#059669" stop-opacity="0.8"/>
+				</linearGradient>
+				<linearGradient id="grad-perio" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+					<stop offset="100%" stop-color="#0d9488" stop-opacity="0.8"/>
+				</linearGradient>
+				<linearGradient id="grad-neuro" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+					<stop offset="100%" stop-color="#2563eb" stop-opacity="0.8"/>
+				</linearGradient>
+				<linearGradient id="grad-neuroscience" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+					<stop offset="100%" stop-color="#7c3aed" stop-opacity="0.8"/>
+				</linearGradient>
+				<linearGradient id="grad-gastro" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+					<stop offset="100%" stop-color="#d97706" stop-opacity="0.8"/>
+				</linearGradient>
+				<linearGradient id="grad-biochem" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+					<stop offset="100%" stop-color="#dc2626" stop-opacity="0.8"/>
+				</linearGradient>
+				<linearGradient id="grad-legal" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+					<stop offset="100%" stop-color="#0891b2" stop-opacity="0.8"/>
+				</linearGradient>
+				<linearGradient id="grad-orders" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+					<stop offset="100%" stop-color="#db2777" stop-opacity="0.8"/>
+				</linearGradient>
+				<linearGradient id="grad-engineering" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+					<stop offset="100%" stop-color="#9333ea" stop-opacity="0.8"/>
+				</linearGradient>
+			</defs>
+			<!-- Paths will be dynamically drawn / updated via JS -->
+			<g id="mindmapConnectionsLayer"></g>
+		</svg>
+
 		<!-- Central Core Node -->
-		<div class="mindmap-core">
-			<div class="core-circle">
-				<span class="core-icon">🎯</span>
-				<span class="core-title">BMS RESOLUTION</span>
-				<span class="core-sub">Systemic Unification</span>
+		<div class="map-core-node" id="coreNode">
+			<div class="core-inner">
+				<span class="core-glyph">🎯</span>
+				<span class="core-text">BMS Resolution</span>
+				<span class="core-tag">Unified Circuit</span>
 			</div>
-			<!-- Pulsing Ambient Ring -->
-			<div class="core-glow-ring"></div>
 		</div>
 
-		<!-- Surrounding Discipline Cards -->
-		<div class="mindmap-nodes-grid">
+		<!-- Left Column: Nodes 1 to 4 -->
+		<div class="map-column map-column-left">
 			<!-- Node 1: Restorative Dentistry -->
-			<div class="discipline-card card-dentistry">
-				<div class="card-header-bar">
-					<span class="card-icon">🦷</span>
-					<div class="card-header-text">
-						<h4 class="card-title">Restorative Dentistry</h4>
-						<span class="card-tag">Physical Hardware</span>
+			<details class="node-pill pill-dentistry" id="node-dentistry" data-stroke="url(#grad-dentistry)" data-color="#059669">
+				<summary class="node-summary">
+					<span class="node-icon">🦷</span>
+					<span class="node-title">Restorative Dentistry</span>
+					<span class="node-chevron">▾</span>
+				</summary>
+				<div class="node-drawer">
+					<p class="drawer-desc">
+						Controls crowns, fillings, margins, and non-carious cervical lesions.
+					</p>
+					<div class="drawer-callout callout-dentistry">
+						<strong>Why it matters:</strong> Micro-leaks and unsealed tubules channel acid directly into living dentin.
 					</div>
 				</div>
-				<p class="card-summary">
-					Controls crowns, fillings, margins, and cervical NCCLs. Aging cements and micro-gaps allow acidic fluids to leak directly into porous dentin.
-				</p>
-				<div class="card-key-factor">
-					<strong>Critical Link:</strong> Eliminates physical micro-leaks and unsealed tubules that fuel the burning.
-				</div>
-			</div>
+			</details>
 
-			<!-- Node 2: Oral Medicine & Perio -->
-			<div class="discipline-card card-perio">
-				<div class="card-header-bar">
-					<span class="card-icon">🩺</span>
-					<div class="card-header-text">
-						<h4 class="card-title">Periodontology &amp; Oral Med</h4>
-						<span class="card-tag">Mucosal Barrier</span>
+			<!-- Node 2: Periodontology & Oral Medicine -->
+			<details class="node-pill pill-perio" id="node-perio" data-stroke="url(#grad-perio)" data-color="#0d9488">
+				<summary class="node-summary">
+					<span class="node-icon">🩺</span>
+					<span class="node-title">Periodontology &amp; Oral Medicine</span>
+					<span class="node-chevron">▾</span>
+				</summary>
+				<div class="node-drawer">
+					<p class="drawer-desc">
+						Manages gum recession, root cementum exposure, and subgingival biofilm.
+					</p>
+					<div class="drawer-callout callout-perio">
+						<strong>Why it matters:</strong> Receded gums expose porous root tubules to friction and chemical irritation.
 					</div>
 				</div>
-				<p class="card-summary">
-					Manages gingival recession, root cementum exposure, and subgingival biofilm. Bridges hard enamel surfaces with fragile mucosal tissue.
-				</p>
-				<div class="card-key-factor">
-					<strong>Critical Link:</strong> Recession exposes unshielded root tubules to friction and chemical irritation.
-				</div>
-			</div>
+			</details>
 
 			<!-- Node 3: Clinical Neurology -->
-			<div class="discipline-card card-neurology">
-				<div class="card-header-bar">
-					<span class="card-icon">🧠</span>
-					<div class="card-header-text">
-						<h4 class="card-title">Clinical Neurology</h4>
-						<span class="card-tag">Central Sensitization</span>
+			<details class="node-pill pill-neuro" id="node-neuro" data-stroke="url(#grad-neuro)" data-color="#2563eb">
+				<summary class="node-summary">
+					<span class="node-icon">🧠</span>
+					<span class="node-title">Clinical Neurology</span>
+					<span class="node-chevron">▾</span>
+				</summary>
+				<div class="node-drawer">
+					<p class="drawer-desc">
+						Traces the trigeminal sensory system and brainstem central sensitization.
+					</p>
+					<div class="drawer-callout callout-neuro">
+						<strong>Why it matters:</strong> Explains how localized tooth leaks create diffuse, radiating oral burning.
 					</div>
 				</div>
-				<p class="card-summary">
-					Decodes trigeminal nerve pathways and brainstem "wind-up." Low-grade continuous peripheral firing lowers pain thresholds, causing diffuse oral burning.
-				</p>
-				<div class="card-key-factor">
-					<strong>Critical Link:</strong> Explains why localized tooth leaks radiate as whole-mouth tongue and palate burning.
-				</div>
-			</div>
+			</details>
 
 			<!-- Node 4: Molecular Neuroscience -->
-			<div class="discipline-card card-neuroscience">
-				<div class="card-header-bar">
-					<span class="card-icon">⚡</span>
-					<div class="card-header-text">
-						<h4 class="card-title">Molecular Neuroscience</h4>
-						<span class="card-tag">Ion Channel Receptors</span>
+			<details class="node-pill pill-neuroscience" id="node-neuroscience" data-stroke="url(#grad-neuroscience)" data-color="#7c3aed">
+				<summary class="node-summary">
+					<span class="node-icon">⚡</span>
+					<span class="node-title">Molecular Neuroscience</span>
+					<span class="node-chevron">▾</span>
+				</summary>
+				<div class="node-drawer">
+					<p class="drawer-desc">
+						Decodes Acid-Sensing Ion Channels (ASIC1, ASIC3), TRPV1, and TRPM8.
+					</p>
+					<div class="drawer-callout callout-neuroscience">
+						<strong>Why it matters:</strong> Proves hydrogen ions (H⁺) physically depolarize nerves; not psychosomatic.
 					</div>
 				</div>
-				<p class="card-summary">
-					Pinpoints Acid-Sensing Ion Channels (ASIC1, ASIC3), TRPV1, and TRPM8. Proves protons (H⁺) physically depolarize unmyelinated C-fibers.
-				</p>
-				<div class="card-key-factor">
-					<strong>Critical Link:</strong> Removes the "psychosomatic" label by identifying concrete molecular switches.
-				</div>
-			</div>
+			</details>
+		</div>
 
+		<!-- Right Column: Nodes 5 to 9 -->
+		<div class="map-column map-column-right">
 			<!-- Node 5: Gastroenterology & Medicine -->
-			<div class="discipline-card card-gastro">
-				<div class="card-header-bar">
-					<span class="card-icon">🔬</span>
-					<div class="card-header-text">
-						<h4 class="card-title">Medicine &amp; Gastroenterology</h4>
-						<span class="card-tag">Reflux &amp; Saliva Buffering</span>
+			<details class="node-pill pill-gastro" id="node-gastro" data-stroke="url(#grad-gastro)" data-color="#d97706">
+				<summary class="node-summary">
+					<span class="node-icon">🔬</span>
+					<span class="node-title">Medicine &amp; Gastroenterology</span>
+					<span class="node-chevron">▾</span>
+				</summary>
+				<div class="node-drawer">
+					<p class="drawer-desc">
+						Investigates silent nocturnal reflux (LPR/GERD) and salivary gland output.
+					</p>
+					<div class="drawer-callout callout-gastro">
+						<strong>Why it matters:</strong> Catches overnight stomach acids that dissolve protective tubule plugs.
 					</div>
 				</div>
-				<p class="card-summary">
-					Catches silent nocturnal acid reflux (LPR/GERD), Sjögren's, and salivary gland dysfunction that depletes bicarbonate and strips tooth pellicles.
-				</p>
-				<div class="card-key-factor">
-					<strong>Critical Link:</strong> Identifies hidden endogenous acid floods that dissolve protective tubule plugs overnight.
-				</div>
-			</div>
+			</details>
 
 			<!-- Node 6: Biochemistry & Nutrition -->
-			<div class="discipline-card card-biochem">
-				<div class="card-header-bar">
-					<span class="card-icon">🥩</span>
-					<div class="card-header-text">
-						<h4 class="card-title">Biochemistry &amp; Nutrition</h4>
-						<span class="card-tag">Chemical Fuel Input</span>
+			<details class="node-pill pill-biochem" id="node-biochem" data-stroke="url(#grad-biochem)" data-color="#dc2626">
+				<summary class="node-summary">
+					<span class="node-icon">🥩</span>
+					<span class="node-title">Biochemistry &amp; Nutrition</span>
+					<span class="node-chevron">▾</span>
+				</summary>
+				<div class="node-drawer">
+					<p class="drawer-desc">
+						Identifies dietary acids and bacterial carbohydrate fermentation.
+					</p>
+					<div class="drawer-callout callout-biochem">
+						<strong>Why it matters:</strong> Low-acid or carnivore elimination cuts off the chemical fuel feeding the pain.
 					</div>
 				</div>
-				<p class="card-summary">
-					Tracks dietary acids (citric, acetic, phosphoric) and fermentable sugars that oral bacteria ferment into lactic acid against teeth.
-				</p>
-				<div class="card-key-factor">
-					<strong>Critical Link:</strong> Elimination protocols (low-acid or carnivore) shut down the chemical fuel supply immediately.
-				</div>
-			</div>
+			</details>
 
 			<!-- Node 7: Legal & Patient Rights -->
-			<div class="discipline-card card-legal">
-				<div class="card-header-bar">
-					<span class="card-icon">⚖️</span>
-					<div class="card-header-text">
-						<h4 class="card-title">Legal &amp; Patient Data Rights</h4>
-						<span class="card-tag">Records Ownership</span>
+			<details class="node-pill pill-legal" id="node-legal" data-stroke="url(#grad-legal)" data-color="#0891b2">
+				<summary class="node-summary">
+					<span class="node-icon">⚖️</span>
+					<span class="node-title">Legal &amp; Patient Rights</span>
+					<span class="node-chevron">▾</span>
+				</summary>
+				<div class="node-drawer">
+					<p class="drawer-desc">
+						Enforces legal rights to raw DICOM X-rays, 6-point perio charts, and notes.
+					</p>
+					<div class="drawer-callout callout-legal">
+						<strong>Why it matters:</strong> Empowers patients to conduct forensic time-series audits without clinic friction.
 					</div>
 				</div>
-				<p class="card-summary">
-					Enforces patient legal rights (HIPAA, PIPEDA, Law 25) to full digital records, raw DICOM X-rays, perio charts, and unedited clinical notes.
-				</p>
-				<div class="card-key-factor">
-					<strong>Critical Link:</strong> Empowers patients to conduct forensic time-series audits without clinic gatekeeping.
-				</div>
-			</div>
+			</details>
 
 			<!-- Node 8: Professional Orders -->
-			<div class="discipline-card card-orders">
-				<div class="card-header-bar">
-					<span class="card-icon">🏛️</span>
-					<div class="card-header-text">
-						<h4 class="card-title">Professional Orders &amp; Boards</h4>
-						<span class="card-tag">Scopes of Practice</span>
+			<details class="node-pill pill-orders" id="node-orders" data-stroke="url(#grad-orders)" data-color="#db2777">
+				<summary class="node-summary">
+					<span class="node-icon">🏛️</span>
+					<span class="node-title">Professional Orders &amp; Boards</span>
+					<span class="node-chevron">▾</span>
+				</summary>
+				<div class="node-drawer">
+					<p class="drawer-desc">
+						Oversees regulatory scopes of practice separating dentistry and medicine.
+					</p>
+					<div class="drawer-callout callout-orders">
+						<strong>Why it matters:</strong> Must create joint guidelines so doctors and dentists can co-manage BMS safely.
 					</div>
 				</div>
-				<p class="card-summary">
-					Governs the regulatory boundaries between dental and medical colleges. The current divide traps BMS in a jurisdictional void where neither takes ownership.
-				</p>
-				<div class="card-key-factor">
-					<strong>Critical Link:</strong> Must establish updated interdisciplinary guidelines so doctors and dentists can co-manage patients safely.
-				</div>
-			</div>
+			</details>
 
 			<!-- Node 9: Systems Engineering -->
-			<div class="discipline-card card-engineering">
-				<div class="card-header-bar">
-					<span class="card-icon">⚙️</span>
-					<div class="card-header-text">
-						<h4 class="card-title">Systems Engineering</h4>
-						<span class="card-tag">Root-Cause Architecture</span>
+			<details class="node-pill pill-engineering" id="node-engineering" data-stroke="url(#grad-engineering)" data-color="#9333ea">
+				<summary class="node-summary">
+					<span class="node-icon">⚙️</span>
+					<span class="node-title">Systems Engineering</span>
+					<span class="node-chevron">▾</span>
+				</summary>
+				<div class="node-drawer">
+					<p class="drawer-desc">
+						Applies failure-mode analysis, variable elimination, and data logging.
+					</p>
+					<div class="drawer-callout callout-engineering">
+						<strong>Why it matters:</strong> Connects isolated clues into a logical, solvable circuit.
 					</div>
 				</div>
-				<p class="card-summary">
-					Applies failure-mode analysis (FMEA), baseline logging, and systematic variable elimination to connect fragmented medical clues into a coherent circuit.
-				</p>
-				<div class="card-key-factor">
-					<strong>Critical Link:</strong> Treats the patient as the Chief Systems Orchestrator who synthesizes all disparate clues.
-				</div>
-			</div>
+			</details>
 		</div>
 	</div>
 
-	<!-- Bottom Takeaway Bar -->
-	<div class="mindmap-footer-takeaway">
-		<div class="takeaway-badge">Core Principle</div>
-		<p class="takeaway-text">
-			When each specialty works in isolation, BMS is declared an incurable mystery. When all nine disciplines are connected as a unified circuit, the root causes become clear, measurable, and systematically&nbsp;treatable.
-		</p>
+	<!-- Minimal Bottom Takeaway -->
+	<div class="mindmap-bottom-note">
+		<span class="note-highlight">Core Takeaway:</span> When each field remains in its silo, BMS is declared an incurable mystery. When linked together, the root causes become clear, measurable, and systematically&nbsp;resolvable.
 	</div>
 </div>
 
+<script>
+	function updateMindmapLines() {
+		const stage = document.getElementById('bmsMindmapStage');
+		const svg = document.getElementById('bmsMindmapSvg');
+		const connectionsLayer = document.getElementById('mindmapConnectionsLayer');
+		const coreNode = document.getElementById('coreNode');
+		if (!stage || !svg || !connectionsLayer || !coreNode) return;
+
+		const stageRect = stage.getBoundingClientRect();
+		const coreRect = coreNode.getBoundingClientRect();
+
+		// Center of Core Node relative to Stage
+		const coreX = coreRect.left + coreRect.width / 2 - stageRect.left;
+		const coreY = coreRect.top + coreRect.height / 2 - stageRect.top;
+
+		const nodes = stage.querySelectorAll('.node-pill');
+		let pathsHtml = '';
+
+		nodes.forEach((node) => {
+			const summary = node.querySelector('.node-summary');
+			if (!summary) return;
+			const summaryRect = summary.getBoundingClientRect();
+			const isLeft = node.closest('.map-column-left') !== null;
+
+			// Anchor point on the node pill: inner edge facing the core
+			const nodeX = isLeft
+				? summaryRect.right - stageRect.left
+				: summaryRect.left - stageRect.left;
+			const nodeY = summaryRect.top + summaryRect.height / 2 - stageRect.top;
+
+			// Draw smooth cubic Bezier curve from Node to Core
+			const dx = Math.abs(coreX - nodeX);
+			const ctrl1X = isLeft ? nodeX + dx * 0.45 : nodeX - dx * 0.45;
+			const ctrl1Y = nodeY;
+			const ctrl2X = isLeft ? coreX - dx * 0.35 : coreX + dx * 0.35;
+			const ctrl2Y = coreY;
+
+			const stroke = node.getAttribute('data-stroke') || '#6366f1';
+			const color = node.getAttribute('data-color') || '#6366f1';
+			const isOpen = node.hasAttribute('open');
+
+			pathsHtml += `
+				<path 
+					d="M ${nodeX} ${nodeY} C ${ctrl1X} ${ctrl1Y}, ${ctrl2X} ${ctrl2Y}, ${coreX} ${coreY}" 
+					fill="none" 
+					stroke="${isOpen ? color : stroke}" 
+					stroke-width="${isOpen ? '3.5' : '2.2'}" 
+					stroke-dasharray="${isOpen ? 'none' : '4, 4'}"
+					opacity="${isOpen ? '1' : '0.75'}"
+					style="transition: all 0.3s ease;"
+				/>
+				<circle cx="${nodeX}" cy="${nodeY}" r="${isOpen ? '4.5' : '3.5'}" fill="${color}" />
+			`;
+		});
+
+		// Core anchor pulse dot
+		pathsHtml += `<circle cx="${coreX}" cy="${coreY}" r="5" fill="#4f46e5" />`;
+
+		connectionsLayer.innerHTML = pathsHtml;
+	}
+
+	// Setup listeners
+	window.addEventListener('resize', updateMindmapLines);
+	document.addEventListener('DOMContentLoaded', () => {
+		updateMindmapLines();
+		const stage = document.getElementById('bmsMindmapStage');
+		if (stage) {
+			const detailsList = stage.querySelectorAll('details');
+			detailsList.forEach((d) => {
+				d.addEventListener('toggle', () => {
+					// Recalculate curve positions when expanded
+					setTimeout(updateMindmapLines, 10);
+				});
+			});
+		}
+	});
+
+	// Immediate run for Astro hydration
+	setTimeout(updateMindmapLines, 100);
+	setTimeout(updateMindmapLines, 500);
+</script>
+
 <style>
-	.bms-mindmap-container {
-		background: linear-gradient(180deg, #0d081a 0%, #150f26 100%);
-		border: 1px solid rgba(168, 85, 247, 0.35);
+	.mindmap-outer-wrapper {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
 		border-radius: 24px;
 		padding: 2.75rem 2rem;
 		margin: 3rem auto;
-		color: #ffffff;
-		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+		box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06);
 		max-width: 1040px;
 		box-sizing: border-box;
+		position: relative;
 	}
 
-	.mindmap-header {
+	.mindmap-header-block {
 		text-align: center;
 		margin-bottom: 2.5rem;
 		padding: 0 1rem;
 	}
 
-	.mindmap-kicker {
-		display: inline-block;
-		font-size: 0.85rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: #c084fc;
-		margin-bottom: 0.5rem;
-	}
-
-	.mindmap-main-title {
-		font-size: clamp(1.85rem, 4vw, 2.75rem);
+	.mindmap-headline {
+		font-size: clamp(1.85rem, 4vw, 2.5rem);
 		font-weight: 800;
-		color: #ffffff;
+		color: #0f172a;
 		line-height: 1.15;
 		margin: 0 auto 0.75rem auto;
 		text-wrap: balance;
+		letter-spacing: -0.02em;
 	}
 
-	.mindmap-subtitle {
+	.mindmap-subline {
 		font-size: 1.05rem;
 		line-height: 1.6;
-		color: rgba(233, 213, 255, 0.85);
-		max-width: 760px;
+		color: #475569;
+		max-width: 720px;
 		margin: 0 auto;
 		text-wrap: balance;
 	}
 
-	/* Canvas & Grid */
-	.mindmap-canvas {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2.5rem;
+	/* Stage with SVG Canvas & Node Columns */
+	.mindmap-stage {
 		position: relative;
+		display: grid;
+		grid-template-columns: minmax(260px, 320px) minmax(180px, 220px) minmax(260px, 320px);
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+		min-height: 520px;
+		padding: 1.5rem 0;
 	}
 
-	/* Central Core */
-	.mindmap-core {
-		position: relative;
+	.mindmap-svg-canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	/* Central Node */
+	.map-core-node {
+		grid-column: 2;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-bottom: 0.5rem;
+		z-index: 2;
 	}
 
-	.core-circle {
-		width: 200px;
-		height: 200px;
+	.core-inner {
+		width: 175px;
+		height: 175px;
 		border-radius: 50%;
-		background: radial-gradient(circle at 35% 35%, #7e22ce 0%, #3b0764 100%);
-		border: 3px solid #c084fc;
+		background: #ffffff;
+		border: 3px solid #4f46e5;
+		box-shadow: 0 10px 30px -5px rgba(79, 70, 229, 0.25), 0 0 0 6px #eef2ff;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -269,225 +396,215 @@
 		text-align: center;
 		padding: 1rem;
 		box-sizing: border-box;
-		box-shadow: 0 0 35px rgba(168, 85, 247, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
-		z-index: 2;
+		transition: transform 0.2s ease;
 	}
 
-	.core-icon {
-		font-size: 2.25rem;
+	.core-inner:hover {
+		transform: scale(1.04);
+	}
+
+	.core-glyph {
+		font-size: 2rem;
 		line-height: 1;
 		margin-bottom: 0.35rem;
 	}
 
-	.core-title {
+	.core-text {
 		font-size: 1.05rem;
 		font-weight: 900;
-		color: #ffffff;
-		letter-spacing: 0.05em;
+		color: #1e1b4b;
 		line-height: 1.15;
+		letter-spacing: -0.01em;
+		text-transform: uppercase;
 	}
 
-	.core-sub {
+	.core-tag {
 		font-size: 0.78rem;
-		color: #e9d5ff;
+		font-weight: 700;
+		color: #4f46e5;
 		margin-top: 0.25rem;
-		font-weight: 500;
 	}
 
-	.core-glow-ring {
-		position: absolute;
-		width: 230px;
-		height: 230px;
-		border-radius: 50%;
-		border: 1px dashed rgba(192, 132, 252, 0.4);
-		animation: rotateRing 30s linear infinite;
-	}
-
-	@keyframes rotateRing {
-		from { transform: rotate(0deg); }
-		to { transform: rotate(360deg); }
-	}
-
-	/* Discipline Nodes Grid */
-	.mindmap-nodes-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1.25rem;
-		width: 100%;
-	}
-
-	.discipline-card {
-		background: rgba(26, 17, 43, 0.85);
-		border-radius: 18px;
-		padding: 1.35rem;
+	/* Node Columns */
+	.map-column {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-		transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-		position: relative;
+		gap: 1.15rem;
+		z-index: 2;
+	}
+
+	.map-column-left {
+		grid-column: 1;
+	}
+
+	.map-column-right {
+		grid-column: 3;
+	}
+
+	/* Node Pills - Crisp White Background, Single-line Title */
+	.node-pill {
+		background: #ffffff;
+		border: 1.5px solid #e2e8f0;
+		border-radius: 14px;
+		box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+		transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 		overflow: hidden;
 	}
 
-	.discipline-card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+	.node-pill:hover {
+		box-shadow: 0 6px 18px rgba(15, 23, 42, 0.09);
+		transform: translateY(-2px);
 	}
 
-	/* Discipline Card Specific Accent Colors */
-	.card-dentistry {
-		border-top: 4px solid #10b981;
+	.node-pill[open] {
+		box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
 	}
-	.card-dentistry:hover { border-color: #10b981; }
 
-	.card-perio {
-		border-top: 4px solid #14b8a6;
-	}
-	.card-perio:hover { border-color: #14b8a6; }
-
-	.card-neurology {
-		border-top: 4px solid #3b82f6;
-	}
-	.card-neurology:hover { border-color: #3b82f6; }
-
-	.card-neuroscience {
-		border-top: 4px solid #8b5cf6;
-	}
-	.card-neuroscience:hover { border-color: #8b5cf6; }
-
-	.card-gastro {
-		border-top: 4px solid #f59e0b;
-	}
-	.card-gastro:hover { border-color: #f59e0b; }
-
-	.card-biochem {
-		border-top: 4px solid #ef4444;
-	}
-	.card-biochem:hover { border-color: #ef4444; }
-
-	.card-legal {
-		border-top: 4px solid #06b6d4;
-	}
-	.card-legal:hover { border-color: #06b6d4; }
-
-	.card-orders {
-		border-top: 4px solid #ec4899;
-	}
-	.card-orders:hover { border-color: #ec4899; }
-
-	.card-engineering {
-		border-top: 4px solid #a855f7;
-	}
-	.card-engineering:hover { border-color: #a855f7; }
-
-	.card-header-bar {
+	/* Summary Header Bar (Fits on One Line) */
+	.node-summary {
 		display: flex;
 		align-items: center;
-		gap: 0.75rem;
-		margin-bottom: 0.85rem;
+		padding: 0.75rem 0.95rem;
+		cursor: pointer;
+		user-select: none;
+		list-style: none;
+		background: #ffffff;
+		gap: 0.55rem;
 	}
 
-	.card-icon {
-		font-size: 1.85rem;
+	.node-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.node-icon {
+		font-size: 1.25rem;
 		line-height: 1;
 		flex-shrink: 0;
 	}
 
-	.card-header-text {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.card-title {
-		font-size: 1.05rem;
-		font-weight: 800;
-		color: #ffffff;
-		margin: 0;
+	.node-title {
+		font-size: 0.92rem;
+		font-weight: 700;
+		color: #0f172a;
 		line-height: 1.2;
-	}
-
-	.card-tag {
-		font-size: 0.75rem;
-		font-weight: 600;
-		color: rgba(216, 180, 254, 0.85);
-		margin-top: 0.15rem;
-	}
-
-	.card-summary {
-		font-size: 0.88rem;
-		line-height: 1.5;
-		color: #cbd5e1;
-		margin: 0 0 1rem 0;
-		text-wrap: pretty;
-	}
-
-	.card-key-factor {
-		background: rgba(0, 0, 0, 0.35);
-		border-radius: 10px;
-		padding: 0.65rem 0.85rem;
-		font-size: 0.8rem;
-		line-height: 1.45;
-		color: #e2e8f0;
-		border-left: 3px solid rgba(192, 132, 252, 0.6);
-	}
-
-	.card-key-factor strong {
-		color: #ffffff;
-	}
-
-	/* Footer Takeaway */
-	.mindmap-footer-takeaway {
-		margin-top: 2.75rem;
-		background: rgba(88, 28, 135, 0.25);
-		border: 1px solid rgba(168, 85, 247, 0.35);
-		border-radius: 16px;
-		padding: 1.25rem 1.75rem;
-		display: flex;
-		align-items: center;
-		gap: 1.25rem;
-	}
-
-	.takeaway-badge {
-		background: #7e22ce;
-		color: #ffffff;
-		font-size: 0.78rem;
-		font-weight: 800;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		padding: 0.4rem 0.8rem;
-		border-radius: 8px;
 		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		flex-grow: 1;
+	}
+
+	.node-chevron {
+		font-size: 0.8rem;
+		color: #94a3b8;
+		transition: transform 0.2s ease;
 		flex-shrink: 0;
 	}
 
-	.takeaway-text {
-		margin: 0;
-		font-size: 0.95rem;
-		line-height: 1.55;
-		color: #f1f5f9;
+	.node-pill[open] .node-chevron {
+		transform: rotate(180deg);
+		color: #0f172a;
+	}
+
+	/* Drawer Description and Reason (Accordion Content) */
+	.node-drawer {
+		padding: 0.85rem 1rem 1rem 1rem;
+		border-top: 1px solid #f1f5f9;
+		background: #fafafa;
+		animation: fadeIn 0.2s ease;
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(-4px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	.drawer-desc {
+		font-size: 0.84rem;
+		line-height: 1.5;
+		color: #475569;
+		margin: 0 0 0.65rem 0;
 		text-wrap: pretty;
 	}
 
-	@media (max-width: 980px) {
-		.mindmap-nodes-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
+	.drawer-callout {
+		border-radius: 8px;
+		padding: 0.55rem 0.75rem;
+		font-size: 0.8rem;
+		line-height: 1.45;
 	}
 
-	@media (max-width: 680px) {
-		.bms-mindmap-container {
-			padding: 2rem 1.25rem;
-		}
+	/* Pill Borders & Accent Tones */
+	.pill-dentistry { border-left: 4px solid #059669; }
+	.callout-dentistry { background: #ecfdf5; color: #065f46; border-left: 3px solid #059669; }
 
-		.mindmap-nodes-grid {
-			grid-template-columns: 1fr;
-		}
+	.pill-perio { border-left: 4px solid #0d9488; }
+	.callout-perio { background: #f0fdfa; color: #115e59; border-left: 3px solid #0d9488; }
 
-		.mindmap-footer-takeaway {
+	.pill-neuro { border-left: 4px solid #2563eb; }
+	.callout-neuro { background: #eff6ff; color: #1e40af; border-left: 3px solid #2563eb; }
+
+	.pill-neuroscience { border-left: 4px solid #7c3aed; }
+	.callout-neuroscience { background: #f5f3ff; color: #5b21b6; border-left: 3px solid #7c3aed; }
+
+	.pill-gastro { border-left: 4px solid #d97706; }
+	.callout-gastro { background: #fffbeb; color: #92400e; border-left: 3px solid #d97706; }
+
+	.pill-biochem { border-left: 4px solid #dc2626; }
+	.callout-biochem { background: #fef2f2; color: #991b1b; border-left: 3px solid #dc2626; }
+
+	.pill-legal { border-left: 4px solid #0891b2; }
+	.callout-legal { background: #ecfeff; color: #155e75; border-left: 3px solid #0891b2; }
+
+	.pill-orders { border-left: 4px solid #db2777; }
+	.callout-orders { background: #fdf2f8; color: #9d174d; border-left: 3px solid #db2777; }
+
+	.pill-engineering { border-left: 4px solid #9333ea; }
+	.callout-engineering { background: #faf5ff; color: #6b21a8; border-left: 3px solid #9333ea; }
+
+	/* Bottom Takeaway */
+	.mindmap-bottom-note {
+		margin-top: 2.5rem;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 12px;
+		padding: 1rem 1.4rem;
+		font-size: 0.92rem;
+		line-height: 1.55;
+		color: #334155;
+		text-align: center;
+		text-wrap: balance;
+	}
+
+	.note-highlight {
+		font-weight: 800;
+		color: #0f172a;
+	}
+
+	/* Responsive Layout */
+	@media (max-width: 860px) {
+		.mindmap-stage {
+			display: flex;
 			flex-direction: column;
-			align-items: flex-start;
-			gap: 0.75rem;
+			gap: 1.25rem;
+		}
+
+		.mindmap-svg-canvas {
+			display: none; /* In stacked mobile view, curves are cleanly hidden */
+		}
+
+		.map-core-node {
+			order: -1;
+			margin-bottom: 0.75rem;
+		}
+
+		.core-inner {
+			width: 140px;
+			height: 140px;
+		}
+
+		.map-column {
+			width: 100%;
+			max-width: 440px;
 		}
 	}
 </style>
