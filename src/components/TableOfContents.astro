@@ -260,9 +260,9 @@ const navSections = [
 			const articleH2s = document.querySelectorAll('.post-content h2');
 			const drawerList = drawer.querySelector('.floating-drawer-list');
 			if (articleH2s.length > 0 && drawerList) {
-				// Check if hardcoded links exist in this document
-				const firstHardcoded = document.querySelector(navSections[0]?.href || '#');
-				if (!firstHardcoded && articleH2s.length >= 2) {
+				// Check if the current post already matches the hardcoded guide links
+				const introTarget = document.getElementById('introduction');
+				if (!introTarget && articleH2s.length >= 2) {
 					drawerList.innerHTML = '';
 					articleH2s.forEach(function(h2, idx) {
 						if (!h2.id) {
@@ -297,20 +297,23 @@ const navSections = [
 			}
 
 			// Close drawer when clicking section links
-			const sectionLinks = drawer.querySelectorAll('.floating-section-link');
-			sectionLinks.forEach(function(link) {
-				link.onclick = function(e) {
-					const targetId = link.getAttribute('data-target');
-					if (targetId) {
-						const targetEl = document.getElementById(targetId);
-						if (targetEl) {
-							e.preventDefault();
-							targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			function attachSectionLinkHandlers() {
+				const sectionLinks = drawer.querySelectorAll('.floating-section-link');
+				sectionLinks.forEach(function(link) {
+					link.onclick = function(e) {
+						const targetId = link.getAttribute('data-target');
+						if (targetId) {
+							const targetEl = document.getElementById(targetId);
+							if (targetEl) {
+								e.preventDefault();
+								targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+							}
 						}
-					}
-					closeDrawer();
-				};
-			});
+						closeDrawer();
+					};
+				});
+			}
+			attachSectionLinkHandlers();
 
 			// Media pill click handler: smooth scroll & brief highlight pulse
 			const mediaPills = drawer.querySelectorAll('.floating-media-pill');
@@ -334,25 +337,48 @@ const navSections = [
 			});
 
 			// Keyboard shortcut: Press T / t to toggle; Esc to close
-			window.addEventListener('keydown', function(e) {
-				const activeEl = document.activeElement;
-				if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
-					return;
-				}
-				if (e.key === 't' || e.key === 'T') {
-					e.preventDefault();
-					toggleDrawer();
-				} else if (e.key === 'Escape' && isOpen) {
-					e.preventDefault();
-					closeDrawer();
-				}
-			});
+			if (!window.__floatingTocKeyHandlerAttached) {
+				window.__floatingTocKeyHandlerAttached = true;
+				window.addEventListener('keydown', function(e) {
+					const activeEl = document.activeElement;
+					if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
+						return;
+					}
+					if (e.key === 't' || e.key === 'T') {
+						e.preventDefault();
+						// Re-fetch current drawer to avoid stale references
+						const currentDrawer = document.getElementById('floating-toc-drawer');
+						if (!currentDrawer) return;
+						const isCurrentlyOpen = currentDrawer.classList.contains('is-open');
+						if (isCurrentlyOpen) {
+							currentDrawer.classList.remove('is-open');
+							setTimeout(function() {
+								if (!currentDrawer.classList.contains('is-open')) currentDrawer.style.display = 'none';
+							}, 220);
+						} else {
+							currentDrawer.style.display = 'block';
+							void currentDrawer.offsetWidth;
+							currentDrawer.classList.add('is-open');
+						}
+					} else if (e.key === 'Escape') {
+						const currentDrawer = document.getElementById('floating-toc-drawer');
+						if (currentDrawer && currentDrawer.classList.contains('is-open')) {
+							e.preventDefault();
+							currentDrawer.classList.remove('is-open');
+							setTimeout(function() {
+								if (!currentDrawer.classList.contains('is-open')) currentDrawer.style.display = 'none';
+							}, 220);
+						}
+					}
+				});
+			}
 
 			// Highlight active section on scroll
-			const sectionIds = Array.from(sectionLinks).map(function(l) { return l.getAttribute('data-target'); });
-
 			function onScroll() {
-				if (!isOpen) return;
+				const currentDrawer = document.getElementById('floating-toc-drawer');
+				if (!currentDrawer || !currentDrawer.classList.contains('is-open')) return;
+				const sectionLinks = currentDrawer.querySelectorAll('.floating-section-link');
+				const sectionIds = Array.from(sectionLinks).map(function(l) { return l.getAttribute('data-target'); });
 				const scrollPos = window.scrollY + 180;
 				let currentId = '';
 
@@ -372,6 +398,7 @@ const navSections = [
 				});
 			}
 
+			window.removeEventListener('scroll', onScroll);
 			window.addEventListener('scroll', onScroll, { passive: true });
 		}
 
