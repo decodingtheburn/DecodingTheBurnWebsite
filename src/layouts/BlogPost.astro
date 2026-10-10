@@ -1921,24 +1921,36 @@ if (!postNumber && slug) {
 				}
 			}
 
-			.post-content :global(.video-embed-aspect) {
-				position: relative;
-				width: 100%;
-				aspect-ratio: 16 / 9;
-				border-radius: 14px;
-				overflow: hidden;
+			/* Universal Full-Width Video Embed Architecture */
+			.post-content :global(.video-responsive-wrapper),
+			.post-content :global(.video-embed-aspect),
+			.post-content :global(.video-container),
+			.post-content :global(.aspect-video) {
+				position: relative !important;
+				width: 100% !important;
+				max-width: 100% !important;
+				aspect-ratio: 16 / 9 !important;
+				border-radius: 18px !important;
+				overflow: hidden !important;
+				background: #0f172a !important;
+				box-sizing: border-box !important;
+				display: block !important;
 			}
 
+			.post-content :global(.video-responsive-wrapper iframe),
 			.post-content :global(.video-embed-aspect iframe),
+			.post-content :global(.video-container iframe),
+			.post-content :global(.aspect-video iframe),
 			.post-content :global(iframe) {
-				position: absolute;
-				top: 0;
-				left: 0;
+				position: absolute !important;
+				top: 0 !important;
+				left: 0 !important;
 				width: 100% !important;
 				height: 100% !important;
 				max-width: 100% !important;
 				min-width: 100% !important;
-				border: 0;
+				border: 0 !important;
+				display: block !important;
 			}
 		</style>
 		<PresenterCursor />
