@@ -4,8 +4,8 @@ description: "A complete, engineering-first roadmap to navigate Burning Mouth Sy
 pubDate: 2026-09-27
 category: "Patient-Led Science"
 heroImage: "/how-i-reduced-my-bms-pain-thumbnail.jpg"
-draft: false
-readyDraft: true
+draft: true
+readyDraft: false
 entryNumber: 18
 tags: ['patient', 'clinician', 'both']
 ---
