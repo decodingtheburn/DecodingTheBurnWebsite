@@ -48,10 +48,14 @@ const { class: className = '' } = Astro.props;
 				</div>
 			</div>
 
-			<!-- HUD Tools (Tooth Numbers, Auto-Spin, Wireframe, Center, Jawbone) -->
+			<!-- HUD Tools (Tooth Numbers, Mirror View, Auto-Spin, Wireframe, Center, Jawbone) -->
 			<div class="arch-hud-tools">
 				<button type="button" class="hud-btn" id="btnToggleNumbers" title="Toggle Tooth Numbers (#11 to #48 / US #1 to #32)">
 					<span>🔢 Numbers</span>
+				</button>
+				<button type="button" class="hud-btn" id="btnToggleMirror" title="Toggle Mirror View (Patient Perspective)">
+					<span id="mirrorIcon">🪞</span>
+					<span id="mirrorLabel">Mirror View</span>
 				</button>
 				<button type="button" class="hud-btn" id="btnToggleSpin" title="Toggle Turntable 3D Spin">
 					<span id="spinIcon">🔄</span>
@@ -642,6 +646,8 @@ const { class: className = '' } = Astro.props;
 	const hudHelperTip = document.getElementById('hudHelperTip');
 
 	const btnNumbers = document.getElementById('btnToggleNumbers');
+	const btnMirror = document.getElementById('btnToggleMirror');
+	const mirrorLabel = document.getElementById('mirrorLabel');
 	const btnSpin = document.getElementById('btnToggleSpin');
 	const spinLabel = document.getElementById('spinLabel');
 	const btnWireframe = document.getElementById('btnToggleWireframe');
@@ -763,7 +769,9 @@ const { class: className = '' } = Astro.props;
 	const lowerMeshes = [];
 	const boneMeshes = [];
 	const raycastableObjects = [];
+	const allSprites = [];
 	let isSpinning = false;
+	let isMirrored = false;
 	let isWireframe = false;
 	let showBone = false;
 	let showNumbers = false;
@@ -771,33 +779,43 @@ const { class: className = '' } = Astro.props;
 	let currentView = 'occlusion';
 	let selectedToothMesh = null;
 
-	// Helper to create sharp 3D billboard text sprites with true depth testing
-	function createTextSprite(text, borderColorHex, isSmall = false) {
+	// Helper to create clinical diagnostic badges with subtle drop shadow
+	function createClinicalSprite(text, borderColorHex) {
 		const canvas = document.createElement('canvas');
-		canvas.width = isSmall ? 128 : 280;
-		canvas.height = isSmall ? 64 : 80;
+		canvas.width = 280;
+		canvas.height = 76;
 		const ctx = canvas.getContext('2d');
 
-		const w = canvas.width - 6;
-		const h = canvas.height - 6;
-		const r = isSmall ? 10 : 14;
+		// Soft drop shadow
+		ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+		ctx.shadowBlur = 10;
+		ctx.shadowOffsetX = 0;
+		ctx.shadowOffsetY = 4;
 
 		// Card Background
-		ctx.fillStyle = 'rgba(12, 8, 26, 0.94)';
-		ctx.strokeStyle = borderColorHex;
-		ctx.lineWidth = isSmall ? 4 : 5;
+		const boxX = 6;
+		const boxY = 5;
+		const boxW = canvas.width - 12;
+		const boxH = canvas.height - 12;
+		const radius = 12;
 
+		ctx.fillStyle = 'rgba(12, 8, 26, 0.94)';
 		ctx.beginPath();
-		ctx.roundRect(3, 3, w, h, r);
+		ctx.roundRect(boxX, boxY, boxW, boxH, radius);
 		ctx.fill();
+
+		// Clean accent border
+		ctx.shadowColor = 'transparent';
+		ctx.strokeStyle = borderColorHex;
+		ctx.lineWidth = 3;
 		ctx.stroke();
 
 		// Sharp Typography
 		ctx.fillStyle = '#ffffff';
-		ctx.font = isSmall ? 'bold 36px system-ui, sans-serif' : 'bold 28px system-ui, sans-serif';
+		ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
-		ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+		ctx.fillText(text, canvas.width / 2, (canvas.height / 2) - 1);
 
 		const texture = new THREE.CanvasTexture(canvas);
 		texture.minFilter = THREE.LinearFilter;
@@ -808,7 +826,62 @@ const { class: className = '' } = Astro.props;
 			transparent: true
 		});
 		const sprite = new THREE.Sprite(mat);
-		sprite.scale.set(isSmall ? 0.65 : 1.45, isSmall ? 0.32 : 0.42, 1);
+		const baseScaleX = 1.35;
+		const baseScaleY = 0.38;
+		sprite.scale.set(baseScaleX, baseScaleY, 1);
+		sprite.userData.baseScaleX = baseScaleX;
+		allSprites.push(sprite);
+		return sprite;
+	}
+
+	// Helper to create 2x smaller tooth number sprites with tight padding, NO border, and pure drop shadow
+	function createToothNumberSprite(text) {
+		const canvas = document.createElement('canvas');
+		canvas.width = 56;
+		canvas.height = 32;
+		const ctx = canvas.getContext('2d');
+
+		// Rich drop shadow (no border)
+		ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+		ctx.shadowBlur = 6;
+		ctx.shadowOffsetX = 0;
+		ctx.shadowOffsetY = 2;
+
+		// Compact card box with minimal padding (no border)
+		const boxX = 4;
+		const boxY = 3;
+		const boxW = canvas.width - 8;
+		const boxH = canvas.height - 8;
+		const radius = 5;
+
+		ctx.fillStyle = 'rgba(15, 10, 30, 0.96)';
+		ctx.beginPath();
+		ctx.roundRect(boxX, boxY, boxW, boxH, radius);
+		ctx.fill();
+
+		// Crisp typography (no shadow on font itself)
+		ctx.shadowColor = 'transparent';
+		ctx.fillStyle = '#ffffff';
+		ctx.font = 'bold 16px system-ui, -apple-system, sans-serif';
+		ctx.textAlign = 'center';
+		ctx.textBaseline = 'middle';
+		ctx.fillText(text, canvas.width / 2, (canvas.height / 2) - 0.5);
+
+		const texture = new THREE.CanvasTexture(canvas);
+		texture.minFilter = THREE.LinearFilter;
+		const mat = new THREE.SpriteMaterial({
+			map: texture,
+			depthTest: true,
+			depthWrite: false,
+			transparent: true
+		});
+		const sprite = new THREE.Sprite(mat);
+		// Exactly 2x smaller than previous 0.65 x 0.32: width 0.28, height 0.16
+		const baseScaleX = 0.28;
+		const baseScaleY = 0.16;
+		sprite.scale.set(baseScaleX, baseScaleY, 1);
+		sprite.userData.baseScaleX = baseScaleX;
+		allSprites.push(sprite);
 		return sprite;
 	}
 
@@ -1128,7 +1201,7 @@ const { class: className = '' } = Astro.props;
 				markerGroup.add(beacon);
 
 				// 2. Crisp 3D Billboard Sprite badge floating cleanly outside the tooth
-				const sprite = createTextSprite(item.label, item.colorHex, false);
+				const sprite = createClinicalSprite(item.label, item.colorHex);
 				const badgePos = new THREE.Vector3(
 					toothMesh.position.x + outVec.x * 0.95,
 					toothMesh.position.y + item.yOffset * 1.3,
@@ -1148,18 +1221,18 @@ const { class: className = '' } = Astro.props;
 				raycastableObjects.push(sprite);
 			});
 
-			// Build Clean 3D Tooth Number Badges (#11 to #48) on every single tooth
+			// Build Clean 3D Tooth Number Badges (#11 to #48) on every single tooth (2x smaller, tight padding, drop shadow)
 			Object.entries(teethMeshes).forEach(([toothName, mesh]) => {
 				const dir = TOOTH_DIRECTORY[toothName];
 				const numStr = dir ? `#${dir.fdi}` : toothName.replace('tooth-', '#');
 				const isUpper = dir ? dir.arch === 'upper' : mesh.position.y > 0;
 				const outVec = getToothOutwardVector(mesh);
 
-				const numSprite = createTextSprite(numStr, '#a855f7', true);
+				const numSprite = createToothNumberSprite(numStr);
 				// Position precisely on the outer emergence crown edge facing outward
 				numSprite.position.set(
 					mesh.position.x + outVec.x * 0.65,
-					mesh.position.y + (isUpper ? -0.25 : 0.25),
+					mesh.position.y + (isUpper ? -0.22 : 0.22),
 					mesh.position.z + outVec.z * 0.65
 				);
 				numSprite.userData = { toothKey: toothName, arch: isUpper ? 'upper' : 'lower' };
@@ -1285,7 +1358,7 @@ const { class: className = '' } = Astro.props;
 			if (!view) return;
 
 			currentView = key;
-			if (hudViewLabel) hudViewLabel.textContent = view.label;
+			if (hudViewLabel) hudViewLabel.textContent = isMirrored ? `${view.label} (Mirror View)` : view.label;
 
 			syncSceneVisibility();
 
@@ -1319,6 +1392,26 @@ const { class: className = '' } = Astro.props;
 		btnNumbers.classList.toggle('active', showNumbers);
 		toothNumbersGroup.visible = showNumbers;
 		syncSceneVisibility();
+	});
+
+	btnMirror?.addEventListener('click', () => {
+		isMirrored = !isMirrored;
+		btnMirror.classList.toggle('active', isMirrored);
+
+		// Mirror modelGroup horizontally along X
+		modelGroup.scale.x = isMirrored ? -1 : 1;
+
+		// Ensure all billboard text sprites stay upright and non-mirrored
+		allSprites.forEach(sprite => {
+			const base = sprite.userData.baseScaleX || Math.abs(sprite.scale.x);
+			sprite.scale.x = isMirrored ? -base : base;
+		});
+
+		// Update HUD view label
+		if (hudViewLabel) {
+			const view = VIEW_PRESETS[currentView] || VIEW_PRESETS['occlusion'];
+			hudViewLabel.textContent = isMirrored ? `${view.label} (Mirror View)` : view.label;
+		}
 	});
 
 	btnSpin?.addEventListener('click', () => {
