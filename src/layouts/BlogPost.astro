@@ -76,9 +76,17 @@ if (!postNumber && slug) {
 						<p class="homepage-hero-subhead">
 							Together, let's find what makes our BMS worse - and what makes it&nbsp;better.
 						</p>
-						<p class="homepage-hero-intro-text">
-							Many of us navigating Burning Mouth Syndrome (BMS) have noticed an undeniable&nbsp;pattern.
-						</p>
+						<div class="homepage-hero-paragraphs">
+							<p>
+								Many of us navigating Burning Mouth Syndrome (BMS) have noticed an undeniable pattern. Certain everyday foods, drinks, and dental factors make our symptoms distinctly worse, while other changes bring noticeable&nbsp;relief.
+							</p>
+							<p>
+								This website and community serve as a shared research hub and open space to help us identify our personal triggers, compare daily observations, and discover what truly calms our oral burning. We do not have to solve this puzzle in&nbsp;isolation.
+							</p>
+							<p class="homepage-hero-closing">
+								Together, let's track the clues, share what works, and decode the&nbsp;burn.
+							</p>
+						</div>
 					</div>
 				) : null}
 
@@ -1020,20 +1028,31 @@ if (!postNumber && slug) {
 				line-height: 1.5;
 				color: #334155;
 				font-weight: 500;
-				margin: 0 auto 1.25rem auto;
+				margin: 0 auto 1.75rem auto;
 				max-width: 760px;
 				text-wrap: balance;
 				text-align: center;
 			}
-			.homepage-hero-intro-text {
-				font-size: clamp(1.05rem, 2vw, 1.25rem);
-				line-height: 1.6;
-				color: #475569;
-				font-weight: 500;
-				margin: 0 auto;
-				max-width: 680px;
-				text-wrap: balance;
+			.homepage-hero-paragraphs {
+				display: flex;
+				flex-direction: column;
+				gap: 1.15rem;
+				max-width: 760px;
+				margin: 0 auto 1rem auto;
 				text-align: center;
+			}
+			.homepage-hero-paragraphs p {
+				font-size: clamp(1.05rem, 2vw, 1.2rem);
+				line-height: 1.65;
+				color: #475569;
+				margin: 0;
+				text-wrap: pretty;
+			}
+			.homepage-hero-closing {
+				font-weight: 700;
+				color: #0f172a !important;
+				font-size: clamp(1.1rem, 2.1vw, 1.25rem) !important;
+				margin-top: 0.25rem;
 			}
 			.homepage-article-title {
 				font-size: clamp(2.4rem, 4.5vw, 3.4rem);
