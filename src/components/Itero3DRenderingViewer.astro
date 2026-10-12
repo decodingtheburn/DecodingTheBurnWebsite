@@ -783,6 +783,7 @@ const { class: className = '' } = Astro.props;
 	let activeFilter = 'all';
 	let currentView = 'occlusion';
 	let selectedToothMesh = null;
+	let selectedToothMeshB = null;
 
 	// Helper to create clinical diagnostic badges with dynamic width so NO text is ever truncated
 	function createClinicalSprite(text, borderColorHex) {
@@ -1029,6 +1030,7 @@ const { class: className = '' } = Astro.props;
 
 	// Clinical Audit Records Dictionary
 	const CLINICAL_RECORDS = {
+		// --- CROWN & DEFECTIVE MARGINS ---
 		'tooth-36': {
 			name: 'Tooth #36 [FDI] / #19 [US]: Defective Distal Crown Margin & Hidden Cavities',
 			subtitle: 'Lower Left First Molar • Mandibular Quadrant • Trigeminal Branch V3',
@@ -1040,226 +1042,651 @@ const { class: className = '' } = Astro.props;
 			sensitivity: 'Excruciating Hyperalgesia',
 			stressor: 'Anaerobic Bacterial Acid'
 		},
-		'tooth-23': {
-			name: 'Tooth #23 [FDI] / #11 [US]: 1mm Cervical Recession & 10/10 Floss Allodynia',
-			subtitle: 'Upper Left Canine • Maxillary Quadrant • Trigeminal Branch V2',
-			severity: 'Extreme Mechanical Allodynia',
-			clinical: 'Periodontal chart: "23B récession 1mm... L’intensité de l’inconfort au passage du fil de soie dentaire est de 10/10 et dure quelques secondes."',
-			mechanism: 'A 1mm recession exposes thousands of conical dentinal tubules. In a primed nervous system with sensitized ASIC3 channels, passing dental floss triggers a massive 10/10 shockwave straight into the maxillary nerve branch.',
-			pocket: '3mm sulcus',
-			bop: 'Negative at margin',
-			sensitivity: '10/10 Allodynia to Floss',
-			stressor: 'Exposed Dentinal Tubules'
-		},
-		'tooth-13': {
-			name: 'Tooth #13 [FDI] / #6 [US]: Canine Cervical Recession & Sensitivity',
-			subtitle: 'Upper Right Canine • Maxillary Quadrant • Trigeminal Branch V2',
-			severity: 'Bilateral Canine Sensitivity',
-			clinical: 'Bilateral canine flossing tenderness documented in dental chart alongside #23. Mild buccal recession exposing the cementoenamel junction.',
-			mechanism: 'Mechanical friction during daily hygiene stimulates sensitized nerve terminals within exposed coronal tubules.',
-			pocket: '2mm - 3mm',
+
+		// --- CERVICAL COMPOSITE PATCHES (5 CONFIRMED SITES) ---
+		'patch-11': {
+			name: 'Tooth #11 [FDI] / #8 [US]: Cervical Composite Patch over 1mm Recession',
+			subtitle: 'Upper Right Central Incisor • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: 'Class V Composite over Recession',
+			clinical: 'Dr. Matthieu Ménard clinical report: "11B composite avec récession". A Class V composite resin patch was bonded across the cervical root collar to seal exposed root dentin and counteract cold sensitivity.',
+			mechanism: 'Bonded composite margins along the cervical cementoenamel junction undergo micro-gapping from masticatory flexure, creating a microscopic subgingival niche where microbial biofilm contacts dentinal fluid.',
+			pocket: '2mm - 3mm Sulcus',
 			bop: 'Negative',
-			sensitivity: 'Moderate Floss Tenderness',
-			stressor: 'Mechanical Friction'
+			sensitivity: 'Cold & Air Sensitivity',
+			stressor: 'Cervical Bond Interface'
 		},
-		'tooth-24': {
-			name: 'Tooth #24 [FDI] / #12 [US]: Overcontoured Buccal Composite Filling',
-			subtitle: 'Upper Left First Premolar • Maxillary Quadrant • Trigeminal Branch V2',
-			severity: 'Chronic Plaque & Plaque Trap',
-			clinical: 'Dental audit noted: "24B composite avec surcontour." Filling ledge overhangs the natural emergence profile.',
-			mechanism: 'Bulky restorative ledges trap biofilm against the gingival margin. Chronic inflammatory vasodilation prevents mucosal epithelial closure.',
-			pocket: '3mm sulcus',
+		'patch-16': {
+			name: 'Tooth #16 [FDI] / #3 [US]: Buccal Cervical Composite Patch',
+			subtitle: 'Upper Right First Molar • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: 'Buccal Class V Composite Patch',
+			clinical: 'Dr. Matthieu Ménard report: "16B composite". Class V composite patch placed along the buccal gumline. Florida Probe recorded 4mm mesiobuccal and palatal sulcus depths in this sector.',
+			mechanism: 'Molar buccal cervical margins are difficult to maintain. Marginal micro-roughness accumulates acidogenic biofilm adjacent to delicate attached gingiva, causing chronic low-grade vascular dilation.',
+			pocket: '4mm Mesiobuccal & Palatal',
 			bop: 'Localized Bleeding',
-			sensitivity: 'Floss Snagging & Tenderness',
-			stressor: 'Microbial Plaque Retention'
+			sensitivity: 'Mild Floss Tenderness',
+			stressor: 'Subgingival Plaque Retention'
 		},
-		'tooth-26': {
-			name: 'Tooth #26 [FDI] / #14 [US]: Overcontoured Buccal Composite Filling',
+		'patch-24': {
+			name: 'Tooth #24 [FDI] / #12 [US]: Overcontoured Buccal Cervical Composite Patch',
+			subtitle: 'Upper Left First Premolar • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: 'Overcontoured Cervical Restoration',
+			clinical: 'Dr. Matthieu Ménard report: "24B composite avec surcontour." Buccal composite resin ledge bulges beyond the natural emergence profile, overhanging the gingival collar.',
+			mechanism: 'Overcontoured composite ledges create a mechanical overhang that traps anaerobic plaque and prevents normal self-cleansing. Constant inflammatory mediators trigger localized mucosal hyperalgesia.',
+			pocket: '3mm Sulcus',
+			bop: 'Localized Bleeding',
+			sensitivity: 'Floss Snagging & Soreness',
+			stressor: 'Restorative Overcontour Ledge'
+		},
+		'patch-26': {
+			name: 'Tooth #26 [FDI] / #14 [US]: Overcontoured Buccal Cervical Composite Patch',
 			subtitle: 'Upper Left First Molar • Maxillary Quadrant • Trigeminal Branch V2',
-			severity: 'Chronic Plaque & Plaque Trap',
-			clinical: 'Dental audit noted: "26B composite en surcontour." Bulky resin margin interfaces with the molar gingival collar.',
-			mechanism: 'Restoration overhang traps acid-producing bacteria directly adjacent to inflamed mucosal tissue.',
-			pocket: '3mm - 4mm',
+			severity: 'Overcontoured Molar Composite',
+			clinical: 'Dr. Matthieu Ménard report: "26B composite en surcontour." Bulky resin margin projects abruptly over the buccal gumline.',
+			mechanism: 'Restoration overhang harbors pathogenic biofilm directly beside the molar gingival sulcus, generating localized burning sensations upon contact with acidic food particles.',
+			pocket: '3mm - 4mm Sulcus',
 			bop: 'Positive on Probing',
 			sensitivity: 'Localized Burning Flare',
-			stressor: 'Biofilm Trap'
+			stressor: 'Biofilm Trap Overhang'
 		},
-		'tooth-14': {
-			name: 'Teeth #14 & #15 [FDI] / #4 & #5 [US]: Premolar Abfraction Lesions',
-			subtitle: 'Upper Right Premolars • Maxillary Quadrant • Trigeminal Branch V2',
-			severity: 'Non-Carious Cervical Wear',
-			clinical: 'Wedge-shaped cervical enamel notches along buccal cervical margins caused by eccentric bite stress and clenching.',
-			mechanism: 'Enamel microfractures expose dentin to dietary acids, triggering rapid burning flares upon contact with acidic or salty food.',
-			pocket: '2mm - 3mm',
+		'patch-44': {
+			name: 'Tooth #44 [FDI] / #28 [US]: Buccal Cervical Composite Patch (Slight Overcontour)',
+			subtitle: 'Lower Right First Premolar • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: 'Premolar Cervical Patch',
+			clinical: 'Dr. Matthieu Ménard report: "44B compo avec léger surcontour." Class V composite restoration placed over a mandibular premolar cervical wear facet with slight marginal ledge.',
+			mechanism: 'Slight marginal step catches dental floss fibers and retains bacterial debris directly adjacent to thin mandibular attached mucosa.',
+			pocket: '2mm - 3mm Sulcus',
 			bop: 'Negative',
-			sensitivity: 'Acid / Cold Sensitive',
-			stressor: 'Occlusal Flexure & Acid'
+			sensitivity: 'Tactile Floss Snag',
+			stressor: 'Marginal Emergence Step'
 		},
-		'tooth-34': {
-			name: 'Teeth #34 & #35 [FDI] / #20 & #21 [US]: Mandibular Premolar Abfractions',
-			subtitle: 'Lower Left Premolars • Mandibular Quadrant • Trigeminal Branch V3',
-			severity: 'Mechanical Enamel Notches',
-			clinical: 'Cervical wear facets and enamel notches adjacent to defective molar #36.',
-			mechanism: 'Occlusal forces from heavy chewing and clenching flex the cervical crown, dislodging brittle enamel prisms.',
-			pocket: '3mm sulcus',
-			bop: 'Mild',
-			sensitivity: 'Tactile Sensitivity',
-			stressor: 'Bite Stress'
-		},
-		'tooth-24-abfraction': {
-			name: 'Teeth #24 & #25 [FDI] / #12 & #13 [US]: Premolar Abfraction Notches & Composite Patches',
-			subtitle: 'Upper Left Premolars • Maxillary Quadrant • Trigeminal Branch V2',
-			severity: 'Abfractions Under Class V Restorations',
-			clinical: 'Dentists placed Class V composite resin patches over deep cervical notches. The overcontour documented on #24 ("composite avec surcontour") exists specifically because the clinician attempted to seal a wedge-shaped abfraction notch.',
-			mechanism: 'Heavy lateral chewing flexure dislodged enamel rods at the cementoenamel junction. When composite resin was bonded without addressing bite flexure, the margin developed micro-leakage, exposing conical dentinal tubules to bacterial acids.',
-			pocket: '3mm sulcus',
-			bop: 'Localized bleeding',
-			sensitivity: 'Acid & Cold Sensitive',
-			stressor: 'Bite Flexure & Plaque Retention'
-		},
-		'tooth-44': {
-			name: 'Teeth #44 & #45 [FDI] / #28 & #29 [US]: Premolar Abfraction Wear Facets',
-			subtitle: 'Lower Right Premolars • Mandibular Quadrant • Trigeminal Branch V3',
-			severity: 'Bilateral Mandibular Enamel Wear',
-			clinical: 'Cervical wear facets and enamel notches mirroring the contralateral premolars (#34 & #35). Caused by bilateral eccentric bruxism and nocturnal clenching.',
-			mechanism: 'Opposing bite forces flex the mandibular premolars during lateral excursion. Stripping of the enamel collar exposes coronal dentin to acidic foods and carbonated drinks.',
-			pocket: '2mm - 3mm',
+
+		// --- FLOSS PAIN & SENSITIVITY (3 TRIGGER ZONES) ---
+		'sens-13': {
+			name: 'Tooth #13 [FDI] / #6 [US]: Canine Cervical Floss Pain & Thin Biotype',
+			subtitle: 'Upper Right Canine • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: 'Bilateral Canine Floss Sensitivity',
+			clinical: 'Bilateral canine flossing tenderness recorded in clinical notes alongside tooth #23. Mild buccal recession exposing the cementoenamel junction with thin alveolar gingival tissue.',
+			mechanism: 'Mechanical friction from daily dental flossing rubs against exposed coronal dentinal tubules, depolarizing hypersensitized mechanoreceptors and firing nociceptive bursts into trigeminal branch V2.',
+			pocket: '2mm - 3mm Sulcus',
 			bop: 'Negative',
-			sensitivity: 'Mild Floss & Thermal Sensitivity',
-			stressor: 'Eccentric Occlusal Load'
+			sensitivity: 'Elevated Floss Friction Soreness',
+			stressor: 'Mechanical Hygiene Friction'
+		},
+		'sens-23': {
+			name: 'Tooth #23 [FDI] / #11 [US]: 10/10 Agonizing Floss Allodynia & 1mm Recession',
+			subtitle: 'Upper Left Canine • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: '10/10 Agonizing Floss Allodynia',
+			clinical: 'Dr. Nathalie Rei and Florida Probe audit: "23B récession 1mm... L’intensité de l’inconfort au passage du fil de soie dentaire est de 10/10 et dure quelques secondes."',
+			mechanism: 'A 1mm recession exposes thousands of conical dentinal tubules. In a primed nervous system with up-regulated ASIC3/TRPV1 ion channels, harmless floss gliding triggers an excruciating 10/10 electric shockwave straight into the maxillary nerve branch.',
+			pocket: '3mm Sulcus',
+			bop: 'Negative at margin',
+			sensitivity: '10/10 Excruciating Allodynia',
+			stressor: 'Exposed Tubules & Sensitized C-Fibers'
+		},
+		'sens-33-34': {
+			name: 'Interdental Contact #33-#34: Floss Trigger & Inadequate Attached Gingiva',
+			subtitle: 'Lower Left Canine / Premolar Embrasure • Trigeminal Branch V3',
+			severity: 'Interdental Mechanical Allodynia Zone',
+			clinical: 'Severe floss sensitivity and snagging between lower left canine #33 and first premolar #34. Periodontal charting documented inadequate attached gingiva on #34 and minimal attached gingiva on #33, leaving the interdental papilla vulnerable to mechanical trauma.',
+			mechanism: 'Deficient keratinized tissue leaves unmyelinated periosteal nociceptors unprotected. Mechanical floss tension compresses sensitized endings of the inferior alveolar nerve (V3), igniting radiating burning waves along the left mandibular quadrant.',
+			pocket: '3mm Interdental Sulcus',
+			bop: 'Localized Bleeding',
+			sensitivity: 'Severe Interproximal Floss Pain',
+			stressor: 'Floss Tension & Inadequate Attached Gingiva'
+		},
+
+		// --- PERIODONTAL POCKETS (WITH EXACT DEPTH/WIDTH) ---
+		'pocket-36': {
+			name: 'Tooth #36 [FDI] / #19 [US]: 4mm Distal Periodontal Pocket & Crown Margin',
+			subtitle: 'Lower Left First Molar • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: '4mm Deep Distal Pocket (Bleeding Site)',
+			clinical: 'Florida Probe recorded a 4mm distal pocket with bleeding on probing (#36D joint au distal). The probe dropped directly into the subgingival gap created by the defective crown margin.',
+			mechanism: 'A 4mm pocket is an anaerobic environment where P. gingivalis and T. denticola flourish, releasing toxins that erode connective tissue and stimulate pulp-canal nerve fibers.',
+			pocket: '4mm Distal & Lingual Pocket',
+			bop: 'Positive (severe)',
+			sensitivity: 'Severe Probing Agony',
+			stressor: 'Anaerobic Bacterial Colonization'
+		},
+		'pocket-37': {
+			name: 'Tooth #37 [FDI] / #18 [US]: 4mm Lingual Periodontal Pocket',
+			subtitle: 'Lower Left Second Molar • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: '4mm Lingual Pocket Site',
+			clinical: 'Florida Probe periodontal chart documented a 4mm lingual pocket depth with positive bleeding on probing adjacent to molar #36.',
+			mechanism: 'Deep lingual pocket traps acidic bacterial metabolites directly against the lingual cortex of the mandible, sensitizing the adjacent lingual nerve branch that innervates the tongue.',
+			pocket: '4mm Lingual Sulcus Depth',
+			bop: 'Positive on Probing',
+			sensitivity: 'Lingual Border Soreness',
+			stressor: 'Lingual Plate Biofilm Reservoir'
+		},
+		'pocket-46': {
+			name: 'Tooth #46 [FDI] / #30 [US]: 4mm Lingual Periodontal Pocket',
+			subtitle: 'Lower Right First Molar • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: '4mm Lingual Pocket Site',
+			clinical: 'Florida Probe documented a 4mm lingual sulcus pocket with bleeding on probing. Large occlusal restoration present.',
+			mechanism: 'Bilateral lingual pocketing on mandibular first molars correlates with chronic sublingual biofilm accumulation, maintaining bilateral mucosal neuro-inflammation.',
+			pocket: '4mm Lingual Pocket Depth',
+			bop: 'Positive (Bleeding site)',
+			sensitivity: 'Moderate Probing Discomfort',
+			stressor: 'Subgingival Molar Biofilm'
+		},
+		'pocket-47': {
+			name: 'Tooth #47 [FDI] / #31 [US]: 4mm Lingual Pocket & 1mm Cervical Recession',
+			subtitle: 'Lower Right Second Molar • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: '4mm Lingual Pocket with 1mm Recession',
+			clinical: 'Florida Probe documented a 4mm lingual pocket combined with 1mm buccal and distal recession (chart code: 0 1 1). Bleeding on probing confirmed.',
+			mechanism: 'The combination of recession and a 4mm pocket exposes cementum while retaining anaerobic bacteria, intensifying local thermal and osmotic sensitivity.',
+			pocket: '4mm Lingual Pocket Depth',
+			bop: 'Positive Bleeding',
+			sensitivity: 'Thermal & Tactile Irritation',
+			stressor: 'Combined Pocket & Recession'
+		},
+		'pocket-16': {
+			name: 'Tooth #16 [FDI] / #3 [US]: 4mm Mesiobuccal & Palatal Periodontal Pocket',
+			subtitle: 'Upper Right First Molar • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: '4mm Maxillary Molar Pocket',
+			clinical: 'Florida Probe charted 4mm mesiobuccal and 4mm palatal sulcus depths with bleeding on probing, coinciding with the buccal Class V composite patch.',
+			mechanism: 'Deep pocket along the palatal and mesiobuccal roots creates an active reservoir of endotoxins near the greater palatine nerve pathway.',
+			pocket: '4mm Mesiobuccal & Palatal',
+			bop: 'Positive Bleeding',
+			sensitivity: 'Palatal Tenderness',
+			stressor: 'Subgingival Plaque Colonization'
+		},
+		'pocket-27': {
+			name: 'Tooth #27 [FDI] / #15 [US]: 4mm Distobuccal Pocket & 1mm Recession',
+			subtitle: 'Upper Left Second Molar • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: '4mm Pocket with Generalized 1mm Recession',
+			clinical: 'Florida Probe documented 4mm distobuccal pocket depth and 1mm recession across all three measured surfaces (1 1 1).',
+			mechanism: 'Posterior maxillary pockets near the tuberosity create chronic low-grade antigenic stimulation of the posterior superior alveolar nerves.',
+			pocket: '4mm Distobuccal Pocket Depth',
+			bop: 'Positive Bleeding',
+			sensitivity: 'Molar Floss Tenderness',
+			stressor: 'Deep Posterior Sulcus Trap'
 		},
 		'pocket-molar': {
 			name: 'Periodontal Charting: 2mm - 4mm Pockets (9% Bleeding on Probing)',
 			subtitle: 'Full Mouth Florida Probe Audit • April 14, 2025',
 			severity: 'Severe Hyperalgesia on Probing',
-			clinical: '15 bleeding sites documented. Periodontist recorded: "Le sondage fut excessivement difficile et sensible... La condition ne peut expliquer l’ampleur des inconforts."',
+			clinical: '15 bleeding sites documented across 2mm to 4mm pocket depths. Periodontist recorded: "Le sondage fut excessivement difficile et sensible... La condition ne peut expliquer l’ampleur des inconforts."',
 			mechanism: 'The physical tissue damage did not match the agony: proving the patient suffered from severe peripheral and central neuropathic hyperalgesia.',
-			pocket: '2mm - 4mm (mostly 3mm)',
+			pocket: '2mm - 4mm (mostly 3mm, 4mm on molars)',
 			bop: '9% (15 bleeding sites)',
 			sensitivity: 'Severe Probing Agony',
 			stressor: 'Neuropathic Sensitization'
+		},
+
+		// --- RECESSIONS (1mm SITES) ---
+		'recess-23': {
+			name: 'Tooth #23 [FDI] / #11 [US]: 1mm Cervical Gum Recession',
+			subtitle: 'Upper Left Canine • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: '1mm Recession (1 1 1 on Florida Probe)',
+			clinical: 'Florida Probe chart confirmed 1mm recession across mesial, buccal, and distal aspects (1 1 1). Minimal attached gingiva documented.',
+			mechanism: 'Loss of the marginal gingival collar exposes root cementum and thousands of conical dentinal tubules to temperature changes and physical contact.',
+			pocket: '3mm Sulcus',
+			bop: 'Negative at margin',
+			sensitivity: '10/10 Floss Allodynia',
+			stressor: 'Exposed Dentinal Tubules'
+		},
+		'recess-11': {
+			name: 'Tooth #11 [FDI] / #8 [US]: 1mm Buccal Recession (Covered by Composite)',
+			subtitle: 'Upper Right Central Incisor • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: '1mm Recession with Class V Patch',
+			clinical: 'Florida Probe and Dr. Ménard audit: "11B composite avec récession". 1mm apical migration of the gingival margin covered with composite resin.',
+			mechanism: 'Root dentin exposure covered by a synthetic restoration creates a dual stressor: exposed tubules beneath the composite plus a margin interface subject to biofilm accumulation.',
+			pocket: '2mm - 3mm Sulcus',
+			bop: 'Negative',
+			sensitivity: 'Cold Sensitivity',
+			stressor: 'Exposed Cervical Root Collar'
+		},
+		'recess-24': {
+			name: 'Tooth #24 [FDI] / #12 [US]: 1mm Buccal Gum Recession',
+			subtitle: 'Upper Left First Premolar • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: '1mm Buccal Recession (0 1 0 on Chart)',
+			clinical: 'Florida Probe documented 1mm mid-buccal recession with minimal attached gingiva, underlying the overcontoured Class V composite patch.',
+			mechanism: 'Apical tissue retraction combined with restorative overhang creates chronic marginal tension, preventing healthy epithelial attachment.',
+			pocket: '3mm Sulcus',
+			bop: 'Localized Bleeding',
+			sensitivity: 'Floss Friction Tenderness',
+			stressor: 'Gingival Retraction & Overhang'
+		},
+		'recess-31': {
+			name: 'Tooth #31 & #32 [FDI] / #24 & #23 [US]: 1mm Mandibular Anterior Recession',
+			subtitle: 'Lower Left Central & Lateral Incisors • Trigeminal Branch V3',
+			severity: '1mm Anterior Recession (0 1 0 on Chart)',
+			clinical: 'Florida Probe chart documented 1mm mid-buccal recession on mandibular central incisor #31 and lateral incisor #32 with thin gingival biotype.',
+			mechanism: 'Thin mandibular labial bone and delicate keratinized gingiva expose incisor root collars to toothbrush abrasion and mechanical irritation.',
+			pocket: '2mm - 3mm Sulcus',
+			bop: 'Negative',
+			sensitivity: 'Cold Fluid Sensitivity',
+			stressor: 'Thin Cortical Bone & Recession'
+		},
+		'recess-47': {
+			name: 'Tooth #47 [FDI] / #31 [US]: 1mm Buccal & Distal Molar Recession',
+			subtitle: 'Lower Right Second Molar • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: '1mm Molar Recession (0 1 1 on Chart)',
+			clinical: 'Florida Probe charted 1mm recession on buccal and distal surfaces alongside a 4mm lingual periodontal pocket.',
+			mechanism: 'Root exposure on the terminal lower molar combined with deep sulcus depths creates a high-friction zone during mastication.',
+			pocket: '4mm Lingual / 3mm Buccal',
+			bop: 'Positive Bleeding',
+			sensitivity: 'Molar Chewing Soreness',
+			stressor: 'Exposed Posterior Root Surface'
+		},
+
+		// --- ABFRACTIONS & NON-CARIOUS WEAR ---
+		'abf-14': {
+			name: 'Teeth #14 & #15 [FDI] / #4 & #5 [US]: Premolar Abfraction Notches',
+			subtitle: 'Upper Right Premolars • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: 'Non-Carious Cervical Wear Notches',
+			clinical: 'Wedge-shaped cervical enamel notches along buccal cervical collars caused by eccentric lateral chewing forces and nocturnal clenching.',
+			mechanism: 'Enamel microfractures at the cervical fulcrum expose coronal dentin to dietary acids, firing burning signals upon contact with citrus or vinegar.',
+			pocket: '2mm - 3mm Sulcus',
+			bop: 'Negative',
+			sensitivity: 'Acid & Cold Sensitivity',
+			stressor: 'Occlusal Flexure & Dietary Acid'
+		},
+		'abf-25': {
+			name: 'Teeth #24 & #25 [FDI] / #12 & #13 [US]: Premolar Abfractions & Resin Patches',
+			subtitle: 'Upper Left Premolars • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: 'Abfractions Under Class V Restorations',
+			clinical: 'Deep wedge-shaped abfraction notches where previous dentists placed Class V composite patches. Overcontour on #24 resulted directly from trying to fill this notch.',
+			mechanism: 'Heavy lateral bite flexure dislodged cervical enamel prisms. When resin was bonded without managing bite force, micro-leakage developed along the margin.',
+			pocket: '3mm Sulcus',
+			bop: 'Localized Bleeding',
+			sensitivity: 'Tactile & Cold Sensitivity',
+			stressor: 'Bite Flexure & Plaque Retention'
+		},
+		'abf-34': {
+			name: 'Teeth #34 & #35 [FDI] / #20 & #21 [US]: Mandibular Premolar Abfraction Notches',
+			subtitle: 'Lower Left Premolars • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: 'Mechanical Cervical Enamel Notches',
+			clinical: 'Sharp cervical enamel wear notches immediately anterior to defective molar #36. Chart documented inadequate attached gingiva on #34.',
+			mechanism: 'Heavy masticatory forces flex the mandibular premolars during lateral grinding, popping off brittle enamel rods at the gingival margin.',
+			pocket: '3mm Sulcus',
+			bop: 'Mild on Probing',
+			sensitivity: 'Tactile Fingernail Sensitivity',
+			stressor: 'Lateral Occlusal Torque'
+		},
+		'abf-44': {
+			name: 'Teeth #44 & #45 [FDI] / #28 & #29 [US]: Mandibular Premolar Wear Facets',
+			subtitle: 'Lower Right Premolars • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: 'Bilateral Mandibular Enamel Wear',
+			clinical: 'Cervical wear facets mirroring contralateral teeth #34 & #35. Tooth #44 has a Class V composite patch with slight overcontour.',
+			mechanism: 'Bilateral nocturnal bruxism exerts heavy bending forces on premolars, stripping the enamel barrier and leaving open dentinal tubules.',
+			pocket: '2mm - 3mm Sulcus',
+			bop: 'Negative',
+			sensitivity: 'Mild Thermal Sensitivity',
+			stressor: 'Bilateral Chewing Flexure'
+		},
+
+		// --- NORMAL RESTORATIONS (FILLINGS) ---
+		'fill-46': {
+			name: 'Tooth #46 [FDI] / #30 [US]: Occlusal Restored Molar (Stable Restoration)',
+			subtitle: 'Lower Right First Molar • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: 'Stable Occlusal Restoration',
+			clinical: 'Well-condensed occlusal restorative filling. No secondary recurrent decay or coronal margin leakage identified on bite-wing radiographs.',
+			mechanism: 'Serves as an intact restorative control site, demonstrating that dental fillings without marginal leakage or overcontour do not provoke local neuropathic firing.',
+			pocket: '3mm Buccal / 4mm Lingual',
+			bop: 'Lingual Bleeding Only',
+			sensitivity: 'Normal Mastication',
+			stressor: 'Stable Restorative Surface'
+		},
+		'fill-17': {
+			name: 'Tooth #17 [FDI] / #2 [US]: Occlusal Restored Molar',
+			subtitle: 'Upper Right Second Molar • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: 'Intact Occlusal Restoration',
+			clinical: 'Occlusal restoration documented on dental charts. Radiographs confirm stable coronal margins without underlying pulpal pathology.',
+			mechanism: 'Normal mechanical chewing function. No active pulp horn inflammation or micro-leakage documented in this tooth.',
+			pocket: '3mm Sulcus',
+			bop: 'Negative',
+			sensitivity: 'Normal Function',
+			stressor: 'None (Stable Restoration)'
+		},
+		'fill-27': {
+			name: 'Tooth #27 [FDI] / #15 [US]: Restored Molar with 4mm Sulcus',
+			subtitle: 'Upper Left Second Molar • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: 'Restored Maxillary Molar',
+			clinical: 'Restored coronal anatomy. Florida Probe noted 4mm distobuccal sulcus depth with 1mm generalized recession.',
+			mechanism: 'Restoration is structurally intact; local sensitivity is driven by sulcular depth and root recession rather than restorative failure.',
+			pocket: '4mm Distobuccal / 3mm Mesial',
+			bop: 'Localized Bleeding',
+			sensitivity: 'Mild Floss Friction',
+			stressor: 'Sulcular Depth at Distal'
+		},
+		'fill-37': {
+			name: 'Tooth #37 [FDI] / #18 [US]: Restored Lower Molar Adjacent to #36',
+			subtitle: 'Lower Left Second Molar • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: 'Restored Mandibular Molar',
+			clinical: 'Occlusal/proximal restoration intact. Situated immediately distal to the defective crown margin on tooth #36.',
+			mechanism: 'Restoration itself is intact, but the interproximal embrasure with tooth #36 is exposed to the bacterial overflow from #36 distal margin breakdown.',
+			pocket: '4mm Lingual Sulcus Depth',
+			bop: 'Positive Bleeding',
+			sensitivity: 'Interproximal Food Impaction',
+			stressor: 'Contiguity to Defective #36'
 		}
 	};
 
 	// Clinical 3D Markers Definitions (Physically attached directly to specific teeth in 3D scene)
 	// Staggered heights (targetY) and outward radii (radiusOffset) guarantee zero label overlapping
 	const CLINICAL_3D_MARKERS = [
-		// Quadrant 3: Lower Left Molar & Pockets (Mandible, Trigeminal V3)
+		// --- CERVICAL PATCHES & DEFECTIVE CROWN (Cyan #06b6d4) ---
 		{
 			id: 'tooth-36',
 			tooth: 'tooth-36',
 			arch: 'lower',
-			category: 'crown',
-			label: '#36 Crown Leak & Cavities',
-			color: 0xef4444,
-			colorHex: '#ef4444',
-			targetY: -2.95,
+			category: 'cervical',
+			label: '#36 Defective Crown & Cavities',
+			color: 0x06b6d4,
+			colorHex: '#06b6d4',
+			targetY: -2.60,
 			radiusOffset: 2.15
 		},
 		{
-			id: 'pocket-molar',
-			tooth: 'tooth-36',
-			arch: 'lower',
-			category: 'pocket',
-			label: '3mm - 4mm Pockets (9% BOP)',
-			color: 0xa855f7,
-			colorHex: '#a855f7',
-			targetY: -3.65,
+			id: 'patch-11',
+			tooth: 'tooth-11',
+			arch: 'upper',
+			category: 'cervical',
+			label: '#11 Cervical Patch & Recession',
+			color: 0x06b6d4,
+			colorHex: '#06b6d4',
+			targetY: 2.85,
+			radiusOffset: 1.45
+		},
+		{
+			id: 'patch-16',
+			tooth: 'tooth-16',
+			arch: 'upper',
+			category: 'cervical',
+			label: '#16 Buccal Cervical Patch',
+			color: 0x06b6d4,
+			colorHex: '#06b6d4',
+			targetY: 2.65,
+			radiusOffset: 2.05
+		},
+		{
+			id: 'patch-24',
+			tooth: 'tooth-24',
+			arch: 'upper',
+			category: 'cervical',
+			label: '#24 Overcontoured Patch',
+			color: 0x06b6d4,
+			colorHex: '#06b6d4',
+			targetY: 3.30,
 			radiusOffset: 1.80
 		},
 		{
-			id: 'tooth-34',
+			id: 'patch-26',
+			tooth: 'tooth-26',
+			arch: 'upper',
+			category: 'cervical',
+			label: '#26 Overcontoured Patch',
+			color: 0x06b6d4,
+			colorHex: '#06b6d4',
+			targetY: 3.45,
+			radiusOffset: 1.85
+		},
+		{
+			id: 'patch-44',
+			tooth: 'tooth-44',
+			arch: 'lower',
+			category: 'cervical',
+			label: '#44 Cervical Patch (Slight Overcontour)',
+			color: 0x06b6d4,
+			colorHex: '#06b6d4',
+			targetY: -2.40,
+			radiusOffset: 1.75
+		},
+
+		// --- FLOSS PAIN & SENSITIVITY (Rose #f43f5e) ---
+		{
+			id: 'sens-13',
+			tooth: 'tooth-13',
+			arch: 'upper',
+			category: 'sensitivity',
+			label: '#13 Canine Floss Pain Zone',
+			color: 0xf43f5e,
+			colorHex: '#f43f5e',
+			targetY: 2.30,
+			radiusOffset: 1.55
+		},
+		{
+			id: 'sens-23',
+			tooth: 'tooth-23',
+			arch: 'upper',
+			category: 'sensitivity',
+			label: '#23 10/10 Floss Allodynia',
+			color: 0xf43f5e,
+			colorHex: '#f43f5e',
+			targetY: 2.30,
+			radiusOffset: 1.55
+		},
+		{
+			id: 'sens-33-34',
+			isInterproximal: true,
+			tooth: 'tooth-33',
+			toothB: 'tooth-34',
+			arch: 'lower',
+			category: 'sensitivity',
+			label: '#33-#34 Interdental Floss Pain',
+			color: 0xf43f5e,
+			colorHex: '#f43f5e',
+			targetY: -2.35,
+			radiusOffset: 1.65
+		},
+
+		// --- RECESSIONS (Orange #f97316) ---
+		{
+			id: 'recess-23',
+			tooth: 'tooth-23',
+			arch: 'upper',
+			category: 'recession',
+			label: '#23 1mm Cervical Recession',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			targetY: 3.10,
+			radiusOffset: 1.70
+		},
+		{
+			id: 'recess-11',
+			tooth: 'tooth-11',
+			arch: 'upper',
+			category: 'recession',
+			label: '#11 1mm Recession Under Patch',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			targetY: 3.65,
+			radiusOffset: 1.60
+		},
+		{
+			id: 'recess-24',
+			tooth: 'tooth-24',
+			arch: 'upper',
+			category: 'recession',
+			label: '#24 1mm Buccal Recession',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			targetY: 2.50,
+			radiusOffset: 2.10
+		},
+		{
+			id: 'recess-31',
+			tooth: 'tooth-31',
+			arch: 'lower',
+			category: 'recession',
+			label: '#31-#32 1mm Anterior Recession',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			targetY: -2.30,
+			radiusOffset: 1.45
+		},
+		{
+			id: 'recess-47',
+			tooth: 'tooth-47',
+			arch: 'lower',
+			category: 'recession',
+			label: '#47 1mm Molar Recession',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			targetY: -3.55,
+			radiusOffset: 2.05
+		},
+
+		// --- ABFRACTIONS & WEAR (Amber #eab308) ---
+		{
+			id: 'abf-14',
+			tooth: 'tooth-14',
+			arch: 'upper',
+			category: 'abfraction',
+			label: '#14-#15 Premolar Abfractions',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			targetY: 3.25,
+			radiusOffset: 1.80
+		},
+		{
+			id: 'abf-25',
+			tooth: 'tooth-25',
+			arch: 'upper',
+			category: 'abfraction',
+			label: '#24-#25 Premolar Abfractions',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			targetY: 2.60,
+			radiusOffset: 2.00
+		},
+		{
+			id: 'abf-34',
 			tooth: 'tooth-34',
 			arch: 'lower',
 			category: 'abfraction',
-			label: '#34-#35 Mandibular Wear',
+			label: '#34-#35 Mandibular Wear Notches',
 			color: 0xeab308,
 			colorHex: '#eab308',
-			targetY: -2.35,
-			radiusOffset: 1.80
+			targetY: -3.15,
+			radiusOffset: 1.85
 		},
-
-		// Quadrant 4: Lower Right (Mandible, Trigeminal V3)
 		{
-			id: 'tooth-44',
-			tooth: 'tooth-44',
+			id: 'abf-44',
+			tooth: 'tooth-45',
 			arch: 'lower',
 			category: 'abfraction',
 			label: '#44-#45 Mandibular Wear Facets',
 			color: 0xeab308,
 			colorHex: '#eab308',
-			targetY: -2.55,
+			targetY: -3.20,
 			radiusOffset: 1.85
 		},
 
-		// Quadrant 1: Upper Right (Maxilla, Trigeminal V2) - Staggered Tiers
+		// --- PERIODONTAL POCKETS (Purple #a855f7) - With Exact Depths ---
 		{
-			id: 'tooth-13',
-			tooth: 'tooth-13',
-			arch: 'upper',
-			category: 'recession',
-			label: '#13 Canine Floss Pain',
-			color: 0xf97316,
-			colorHex: '#f97316',
-			targetY: 2.35,
-			radiusOffset: 1.55
-		},
-		{
-			id: 'tooth-14',
-			tooth: 'tooth-14',
-			arch: 'upper',
-			category: 'abfraction',
-			label: '#14-#15 Abfraction Notches',
-			color: 0xeab308,
-			colorHex: '#eab308',
-			targetY: 3.25,
+			id: 'pocket-36',
+			tooth: 'tooth-36',
+			arch: 'lower',
+			category: 'pocket',
+			label: '#36 4mm Distal Pocket',
+			color: 0xa855f7,
+			colorHex: '#a855f7',
+			targetY: -3.60,
 			radiusOffset: 1.85
 		},
-
-		// Quadrant 2: Upper Left (Maxilla, Trigeminal V2) - 4 Alternating Tiers (Zero Overlap)
 		{
-			id: 'tooth-23',
-			tooth: 'tooth-23',
-			arch: 'upper',
-			category: 'recession',
-			label: '#23 1mm Recession (10/10 Pain)',
-			color: 0xf97316,
-			colorHex: '#f97316',
-			targetY: 2.35,
-			radiusOffset: 1.55
+			id: 'pocket-37',
+			tooth: 'tooth-37',
+			arch: 'lower',
+			category: 'pocket',
+			label: '#37 4mm Lingual Pocket',
+			color: 0xa855f7,
+			colorHex: '#a855f7',
+			targetY: -2.85,
+			radiusOffset: 2.25
 		},
 		{
-			id: 'tooth-24',
-			tooth: 'tooth-24',
+			id: 'pocket-46',
+			tooth: 'tooth-46',
+			arch: 'lower',
+			category: 'pocket',
+			label: '#46 4mm Lingual Pocket',
+			color: 0xa855f7,
+			colorHex: '#a855f7',
+			targetY: -3.55,
+			radiusOffset: 1.85
+		},
+		{
+			id: 'pocket-47',
+			tooth: 'tooth-47',
+			arch: 'lower',
+			category: 'pocket',
+			label: '#47 4mm Lingual Pocket',
+			color: 0xa855f7,
+			colorHex: '#a855f7',
+			targetY: -2.75,
+			radiusOffset: 2.25
+		},
+		{
+			id: 'pocket-16',
+			tooth: 'tooth-16',
 			arch: 'upper',
+			category: 'pocket',
+			label: '#16 4mm Mesiobuccal Pocket',
+			color: 0xa855f7,
+			colorHex: '#a855f7',
+			targetY: 3.55,
+			radiusOffset: 1.85
+		},
+		{
+			id: 'pocket-27',
+			tooth: 'tooth-27',
+			arch: 'upper',
+			category: 'pocket',
+			label: '#27 4mm Distobuccal Pocket',
+			color: 0xa855f7,
+			colorHex: '#a855f7',
+			targetY: 2.60,
+			radiusOffset: 2.25
+		},
+
+		// --- NORMAL RESTORATIONS (Sky Blue #38bdf8) ---
+		{
+			id: 'fill-46',
+			tooth: 'tooth-46',
+			arch: 'lower',
 			category: 'filling',
-			label: '#24 Composite Overcontour',
+			label: '#46 Occlusal/Lingual Restoration',
 			color: 0x38bdf8,
 			colorHex: '#38bdf8',
-			targetY: 3.25,
-			radiusOffset: 1.85
-		},
-		{
-			id: 'tooth-24-abfraction',
-			tooth: 'tooth-25',
-			arch: 'upper',
-			category: 'abfraction',
-			label: '#24-#25 Abfraction Notches',
-			color: 0xeab308,
-			colorHex: '#eab308',
-			targetY: 2.45,
+			targetY: -2.65,
 			radiusOffset: 2.15
 		},
 		{
-			id: 'tooth-26',
-			tooth: 'tooth-26',
+			id: 'fill-17',
+			tooth: 'tooth-17',
 			arch: 'upper',
 			category: 'filling',
-			label: '#26 Composite Overcontour',
+			label: '#17 Occlusal Restoration',
 			color: 0x38bdf8,
 			colorHex: '#38bdf8',
-			targetY: 3.50,
-			radiusOffset: 1.70
+			targetY: 2.75,
+			radiusOffset: 2.25
+		},
+		{
+			id: 'fill-27',
+			tooth: 'tooth-27',
+			arch: 'upper',
+			category: 'filling',
+			label: '#27 Restored Molar',
+			color: 0x38bdf8,
+			colorHex: '#38bdf8',
+			targetY: 3.55,
+			radiusOffset: 2.10
+		},
+		{
+			id: 'fill-37',
+			tooth: 'tooth-37',
+			arch: 'lower',
+			category: 'filling',
+			label: '#37 Restored Molar',
+			color: 0x38bdf8,
+			colorHex: '#38bdf8',
+			targetY: -3.65,
+			radiusOffset: 2.10
 		}
 	];
 
@@ -1329,25 +1756,67 @@ const { class: className = '' } = Astro.props;
 				const markerGroup = new THREE.Group();
 				markerGroup.userData = { id: item.id, category: item.category, arch: item.arch };
 
-				const outVec = getToothOutwardVector(toothMesh);
-				const isUpper = item.arch === 'upper';
+				let dotPos, badgePos, outVec, isUpper;
+				isUpper = item.arch === 'upper';
 
-				if (!toothMesh.geometry.boundingBox) toothMesh.geometry.computeBoundingBox();
-				const bMin = toothMesh.geometry.boundingBox.min;
-				const bMax = toothMesh.geometry.boundingBox.max;
-				const worldMinY = toothMesh.position.y + bMin.y;
-				const worldMaxY = toothMesh.position.y + bMax.y;
-				const crownY = isUpper
-					? worldMinY + (worldMaxY - worldMinY) * 0.26
-					: worldMaxY - (worldMaxY - worldMinY) * 0.26;
+				if (item.isInterproximal) {
+					const meshB = teethMeshes[item.toothB];
+					if (!meshB) return;
+
+					const outVecA = getToothOutwardVector(toothMesh);
+					const outVecB = getToothOutwardVector(meshB);
+					let ox = (outVecA.x + outVecB.x) * 0.5;
+					let oz = (outVecA.z + outVecB.z) * 0.5;
+					const olen = Math.hypot(ox, oz) || 1;
+					outVec = { x: ox / olen, z: oz / olen };
+
+					const midX = (toothMesh.position.x + meshB.position.x) * 0.5;
+					const midY = (toothMesh.position.y + meshB.position.y) * 0.5;
+					const midZ = (toothMesh.position.z + meshB.position.z) * 0.5;
+
+					const dotDist = 0.50;
+					dotPos = new THREE.Vector3(
+						midX + outVec.x * dotDist,
+						midY,
+						midZ + outVec.z * dotDist
+					);
+
+					const targetY = item.targetY || (isUpper ? 2.5 : -2.35);
+					const badgeDist = item.radiusOffset || (isUpper ? 1.6 : 1.75);
+					badgePos = new THREE.Vector3(
+						midX + outVec.x * badgeDist,
+						targetY,
+						midZ + outVec.z * badgeDist
+					);
+				} else {
+					outVec = getToothOutwardVector(toothMesh);
+
+					if (!toothMesh.geometry.boundingBox) toothMesh.geometry.computeBoundingBox();
+					const bMin = toothMesh.geometry.boundingBox.min;
+					const bMax = toothMesh.geometry.boundingBox.max;
+					const worldMinY = toothMesh.position.y + bMin.y;
+					const worldMaxY = toothMesh.position.y + bMax.y;
+					const crownY = isUpper
+						? worldMinY + (worldMaxY - worldMinY) * 0.26
+						: worldMaxY - (worldMaxY - worldMinY) * 0.26;
+
+					const dotDist = 0.50;
+					dotPos = new THREE.Vector3(
+						toothMesh.position.x + outVec.x * dotDist,
+						crownY,
+						toothMesh.position.z + outVec.z * dotDist
+					);
+
+					const targetY = item.targetY || (isUpper ? 2.7 : -2.5);
+					const badgeDist = item.radiusOffset || (isUpper ? 1.55 : 1.85);
+					badgePos = new THREE.Vector3(
+						toothMesh.position.x + outVec.x * badgeDist,
+						targetY,
+						toothMesh.position.z + outVec.z * badgeDist
+					);
+				}
 
 				// 1. Glowing 3D Beacon Dot right on the outer visible enamel/cervical tooth surface
-				const dotDist = 0.50;
-				const dotPos = new THREE.Vector3(
-					toothMesh.position.x + outVec.x * dotDist,
-					crownY,
-					toothMesh.position.z + outVec.z * dotDist
-				);
 				const beacon = createBeaconSphere(item.color, 0.14);
 				beacon.position.copy(dotPos);
 				beacon.userData = { id: item.id };
@@ -1356,13 +1825,6 @@ const { class: className = '' } = Astro.props;
 
 				// 2. High/Low Floating Billboard Badge (completely outside teeth and gums)
 				const sprite = createClinicalSprite(item.label, item.colorHex);
-				const targetY = item.targetY || (isUpper ? 2.7 : -2.5);
-				const badgeDist = item.radiusOffset || (isUpper ? 1.55 : 1.85);
-				const badgePos = new THREE.Vector3(
-					toothMesh.position.x + outVec.x * badgeDist,
-					targetY,
-					toothMesh.position.z + outVec.z * badgeDist
-				);
 				sprite.position.copy(badgePos);
 				sprite.userData = { id: item.id };
 				markerGroup.add(sprite);
@@ -1504,6 +1966,12 @@ const { class: className = '' } = Astro.props;
 		if (selectedToothMesh) {
 			selectedToothMesh.material.color.setHex(0xfaf8f2);
 			selectedToothMesh.material.emissive.setHex(0x1c1a17);
+			selectedToothMesh = null;
+		}
+		if (selectedToothMeshB) {
+			selectedToothMeshB.material.color.setHex(0xfaf8f2);
+			selectedToothMeshB.material.emissive.setHex(0x1c1a17);
+			selectedToothMeshB = null;
 		}
 
 		const markerDef = CLINICAL_3D_MARKERS.find(m => m.id === key);
@@ -1513,6 +1981,12 @@ const { class: className = '' } = Astro.props;
 			selectedToothMesh.material.color.setHex(0xffffff);
 			selectedToothMesh.material.emissive.setHex(0x9333ea);
 			selectedToothMesh.material.emissiveIntensity = 0.65;
+		}
+		if (markerDef && markerDef.isInterproximal && markerDef.toothB && teethMeshes[markerDef.toothB]) {
+			selectedToothMeshB = teethMeshes[markerDef.toothB];
+			selectedToothMeshB.material.color.setHex(0xffffff);
+			selectedToothMeshB.material.emissive.setHex(0x9333ea);
+			selectedToothMeshB.material.emissiveIntensity = 0.65;
 		}
 	}
 
@@ -1600,11 +2074,13 @@ const { class: className = '' } = Astro.props;
 			activeFilter = btn.getAttribute('data-filter') || 'all';
 			syncSceneVisibility();
 
-			if (activeFilter === 'crown') updateDiagnosticDrawer('tooth-36');
-			else if (activeFilter === 'recession') updateDiagnosticDrawer('tooth-23');
-			else if (activeFilter === 'abfraction') updateDiagnosticDrawer('tooth-14');
-			else if (activeFilter === 'filling') updateDiagnosticDrawer('tooth-24');
-			else if (activeFilter === 'pocket') updateDiagnosticDrawer('pocket-molar');
+			if (activeFilter === 'sensitivity') updateDiagnosticDrawer('sens-23');
+			else if (activeFilter === 'cervical') updateDiagnosticDrawer('tooth-36');
+			else if (activeFilter === 'recession') updateDiagnosticDrawer('recess-23');
+			else if (activeFilter === 'abfraction') updateDiagnosticDrawer('abf-14');
+			else if (activeFilter === 'pocket') updateDiagnosticDrawer('pocket-36');
+			else if (activeFilter === 'filling') updateDiagnosticDrawer('fill-46');
+			else if (activeFilter === 'all') updateDiagnosticDrawer('tooth-36');
 		});
 	});
 
@@ -1711,7 +2187,9 @@ const { class: className = '' } = Astro.props;
 			const targetKey = markerDef ? markerDef.tooth : key;
 
 			const info = TOOTH_DIRECTORY[targetKey];
-			if (info && hudHelperTip) {
+			if (markerDef && hudHelperTip) {
+				hudHelperTip.innerHTML = `<span>🎯 <strong>${markerDef.label}</strong>: Click to view diagnostic findings</span>`;
+			} else if (info && hudHelperTip) {
 				hudHelperTip.innerHTML = `<span>🎯 <strong>Tooth #${info.fdi} [FDI] / #${info.uni} [US]</strong>: ${info.name}</span>`;
 			}
 		} else {
