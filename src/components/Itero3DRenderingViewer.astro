@@ -885,9 +885,70 @@ const { class: className = '' } = Astro.props;
 		return sprite;
 	}
 
-	// Helper to create a glowing 3D sphere marker sitting right on the tooth
-	function createBeaconSphere(colorHex) {
-		const geom = new THREE.SphereGeometry(0.12, 16, 16);
+	// Helper to create a glowing 3D beacon sphere sitting right on the tooth surface
+	function createBeaconSphere(colorHex, radius = 0.14) {
+		const group = new THREE.Group();
+
+		// 1. Core glowing bead
+		const geom = new THREE.SphereGeometry(radius, 16, 16);
+		const mat = new THREE.MeshStandardMaterial({
+			color: colorHex,
+			emissive: colorHex,
+			emissiveIntensity: 1.2,
+			roughness: 0.15,
+			depthTest: true,
+			depthWrite: false
+		});
+		const sphere = new THREE.Mesh(geom, mat);
+		group.add(sphere);
+
+		// 2. High-contrast luminous halo ring directly around the bead
+		const ringGeom = new THREE.RingGeometry(radius * 1.15, radius * 1.7, 24);
+		const ringMat = new THREE.MeshBasicMaterial({
+			color: colorHex,
+			side: THREE.DoubleSide,
+			transparent: true,
+			opacity: 0.85,
+			depthTest: true,
+			depthWrite: false
+		});
+		const ring = new THREE.Mesh(ringGeom, ringMat);
+		group.add(ring);
+
+		return group;
+	}
+
+	// Helper to create a solid 3D cylinder stem connecting a start point to an end point
+	function createStemCylinder(startPos, endPos, colorHex, radius = 0.018) {
+		const dir = new THREE.Vector3().subVectors(endPos, startPos);
+		const length = dir.length();
+		if (length < 0.01) return new THREE.Group();
+
+		const geom = new THREE.CylinderGeometry(radius, radius, length, 10);
+		geom.translate(0, length / 2, 0);
+		geom.rotateX(Math.PI / 2);
+
+		const mat = new THREE.MeshStandardMaterial({
+			color: colorHex,
+			emissive: colorHex,
+			emissiveIntensity: 0.75,
+			roughness: 0.25,
+			depthTest: true,
+			depthWrite: false
+		});
+
+		const cylinder = new THREE.Mesh(geom, mat);
+		cylinder.position.copy(startPos);
+		cylinder.lookAt(endPos);
+		return cylinder;
+	}
+
+	// Helper to create a 3D pointer arrow cone pointing at the tooth dot
+	function createArrowCone(pos, dirNormalized, colorHex) {
+		const geom = new THREE.ConeGeometry(0.08, 0.22, 12);
+		geom.translate(0, -0.11, 0);
+		geom.rotateX(Math.PI / 2);
+
 		const mat = new THREE.MeshStandardMaterial({
 			color: colorHex,
 			emissive: colorHex,
@@ -896,20 +957,11 @@ const { class: className = '' } = Astro.props;
 			depthTest: true,
 			depthWrite: false
 		});
-		return new THREE.Mesh(geom, mat);
-	}
 
-	// Helper to create thin leader line connecting surface beacon to floating badge
-	function createLeaderLine(startPos, endPos, colorHex) {
-		const geom = new THREE.BufferGeometry().setFromPoints([startPos, endPos]);
-		const mat = new THREE.LineBasicMaterial({
-			color: colorHex,
-			transparent: true,
-			opacity: 0.6,
-			depthTest: true,
-			depthWrite: false
-		});
-		return new THREE.Line(geom, mat);
+		const cone = new THREE.Mesh(geom, mat);
+		cone.position.copy(pos);
+		cone.lookAt(pos.clone().add(dirNormalized));
+		return cone;
 	}
 
 	// Complete 32 Permanent Teeth Directory (FDI & Universal Mappings)
@@ -1031,6 +1083,28 @@ const { class: className = '' } = Astro.props;
 			sensitivity: 'Tactile Sensitivity',
 			stressor: 'Bite Stress'
 		},
+		'tooth-24-abfraction': {
+			name: 'Teeth #24 & #25 [FDI] / #12 & #13 [US]: Premolar Abfraction Notches & Composite Patches',
+			subtitle: 'Upper Left Premolars • Maxillary Quadrant • Trigeminal Branch V2',
+			severity: 'Abfractions Under Class V Restorations',
+			clinical: 'Dentists placed Class V composite resin patches over deep cervical notches. The overcontour documented on #24 ("composite avec surcontour") exists specifically because the clinician attempted to seal a wedge-shaped abfraction notch.',
+			mechanism: 'Heavy lateral chewing flexure dislodged enamel rods at the cementoenamel junction. When composite resin was bonded without addressing bite flexure, the margin developed micro-leakage, exposing conical dentinal tubules to bacterial acids.',
+			pocket: '3mm sulcus',
+			bop: 'Localized bleeding',
+			sensitivity: 'Acid & Cold Sensitive',
+			stressor: 'Bite Flexure & Plaque Retention'
+		},
+		'tooth-44': {
+			name: 'Teeth #44 & #45 [FDI] / #28 & #29 [US]: Premolar Abfraction Wear Facets',
+			subtitle: 'Lower Right Premolars • Mandibular Quadrant • Trigeminal Branch V3',
+			severity: 'Bilateral Mandibular Enamel Wear',
+			clinical: 'Cervical wear facets and enamel notches mirroring the contralateral premolars (#34 & #35). Caused by bilateral eccentric bruxism and nocturnal clenching.',
+			mechanism: 'Opposing bite forces flex the mandibular premolars during lateral excursion. Stripping of the enamel collar exposes coronal dentin to acidic foods and carbonated drinks.',
+			pocket: '2mm - 3mm',
+			bop: 'Negative',
+			sensitivity: 'Mild Floss & Thermal Sensitivity',
+			stressor: 'Eccentric Occlusal Load'
+		},
 		'pocket-molar': {
 			name: 'Periodontal Charting: 2mm - 4mm Pockets (9% Bleeding on Probing)',
 			subtitle: 'Full Mouth Florida Probe Audit • April 14, 2025',
@@ -1054,67 +1128,7 @@ const { class: className = '' } = Astro.props;
 			label: '#36 Crown Leak & Cavities',
 			color: 0xef4444,
 			colorHex: '#ef4444',
-			yOffset: 0.1
-		},
-		{
-			id: 'tooth-23',
-			tooth: 'tooth-23',
-			arch: 'upper',
-			category: 'recession',
-			label: '#23 1mm Recession (10/10 Pain)',
-			color: 0xf97316,
-			colorHex: '#f97316',
-			yOffset: -0.15
-		},
-		{
-			id: 'tooth-13',
-			tooth: 'tooth-13',
-			arch: 'upper',
-			category: 'recession',
-			label: '#13 Canine Floss Pain',
-			color: 0xf97316,
-			colorHex: '#f97316',
-			yOffset: -0.15
-		},
-		{
-			id: 'tooth-24',
-			tooth: 'tooth-24',
-			arch: 'upper',
-			category: 'filling',
-			label: '#24 Composite Overcontour',
-			color: 0x38bdf8,
-			colorHex: '#38bdf8',
-			yOffset: -0.12
-		},
-		{
-			id: 'tooth-26',
-			tooth: 'tooth-26',
-			arch: 'upper',
-			category: 'filling',
-			label: '#26 Composite Overcontour',
-			color: 0x38bdf8,
-			colorHex: '#38bdf8',
-			yOffset: -0.12
-		},
-		{
-			id: 'tooth-14',
-			tooth: 'tooth-14',
-			arch: 'upper',
-			category: 'abfraction',
-			label: '#14-#15 Abfraction Notches',
-			color: 0xeab308,
-			colorHex: '#eab308',
-			yOffset: -0.12
-		},
-		{
-			id: 'tooth-34',
-			tooth: 'tooth-34',
-			arch: 'lower',
-			category: 'abfraction',
-			label: '#34-#35 Mandibular Wear',
-			color: 0xeab308,
-			colorHex: '#eab308',
-			yOffset: 0.12
+			targetY: -2.75
 		},
 		{
 			id: 'pocket-molar',
@@ -1124,7 +1138,87 @@ const { class: className = '' } = Astro.props;
 			label: '3mm - 4mm Pockets (9% BOP)',
 			color: 0xa855f7,
 			colorHex: '#a855f7',
-			yOffset: 0.35
+			targetY: -2.40
+		},
+		{
+			id: 'tooth-23',
+			tooth: 'tooth-23',
+			arch: 'upper',
+			category: 'recession',
+			label: '#23 1mm Recession (10/10 Pain)',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			targetY: 2.65
+		},
+		{
+			id: 'tooth-13',
+			tooth: 'tooth-13',
+			arch: 'upper',
+			category: 'recession',
+			label: '#13 Canine Floss Pain',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			targetY: 2.65
+		},
+		{
+			id: 'tooth-24',
+			tooth: 'tooth-24',
+			arch: 'upper',
+			category: 'filling',
+			label: '#24 Composite Overcontour',
+			color: 0x38bdf8,
+			colorHex: '#38bdf8',
+			targetY: 2.65
+		},
+		{
+			id: 'tooth-26',
+			tooth: 'tooth-26',
+			arch: 'upper',
+			category: 'filling',
+			label: '#26 Composite Overcontour',
+			color: 0x38bdf8,
+			colorHex: '#38bdf8',
+			targetY: 2.95
+		},
+		{
+			id: 'tooth-14',
+			tooth: 'tooth-14',
+			arch: 'upper',
+			category: 'abfraction',
+			label: '#14-#15 Abfraction Notches',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			targetY: 2.65
+		},
+		{
+			id: 'tooth-24-abfraction',
+			tooth: 'tooth-25',
+			arch: 'upper',
+			category: 'abfraction',
+			label: '#24-#25 Abfraction & Overcontour',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			targetY: 2.95
+		},
+		{
+			id: 'tooth-34',
+			tooth: 'tooth-34',
+			arch: 'lower',
+			category: 'abfraction',
+			label: '#34-#35 Mandibular Wear',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			targetY: -2.40
+		},
+		{
+			id: 'tooth-44',
+			tooth: 'tooth-44',
+			arch: 'lower',
+			category: 'abfraction',
+			label: '#44-#45 Mandibular Wear Facets',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			targetY: -2.40
 		}
 	];
 
@@ -1188,32 +1282,40 @@ const { class: className = '' } = Astro.props;
 				markerGroup.userData = { id: item.id, category: item.category, arch: item.arch };
 
 				const outVec = getToothOutwardVector(toothMesh);
+				const isUpper = item.arch === 'upper';
 
-				// 1. Glowing 3D Beacon sphere right on the outer tooth surface
-				const beacon = createBeaconSphere(item.color);
-				beacon.userData = { id: item.id };
-				const beaconPos = new THREE.Vector3(
-					toothMesh.position.x + outVec.x * 0.45,
-					toothMesh.position.y + item.yOffset,
-					toothMesh.position.z + outVec.z * 0.45
+				// 1. Glowing 3D Beacon Dot right on the outer visible enamel/cervical tooth surface
+				const dotPos = new THREE.Vector3(
+					toothMesh.position.x + outVec.x * 0.74,
+					toothMesh.position.y + (isUpper ? -0.1 : 0.1),
+					toothMesh.position.z + outVec.z * 0.74
 				);
-				beacon.position.copy(beaconPos);
+				const beacon = createBeaconSphere(item.color, 0.14);
+				beacon.position.copy(dotPos);
+				beacon.userData = { id: item.id };
+				beacon.lookAt(dotPos.clone().add(new THREE.Vector3(outVec.x, 0, outVec.z)));
 				markerGroup.add(beacon);
 
-				// 2. Crisp 3D Billboard Sprite badge floating cleanly outside the tooth
+				// 2. High/Low Floating Billboard Badge (completely outside teeth and gums)
 				const sprite = createClinicalSprite(item.label, item.colorHex);
+				const targetY = item.targetY || (isUpper ? 2.7 : -2.5);
 				const badgePos = new THREE.Vector3(
-					toothMesh.position.x + outVec.x * 0.95,
-					toothMesh.position.y + item.yOffset * 1.3,
-					toothMesh.position.z + outVec.z * 0.95
+					toothMesh.position.x + outVec.x * 1.15,
+					targetY,
+					toothMesh.position.z + outVec.z * 1.15
 				);
 				sprite.position.copy(badgePos);
 				sprite.userData = { id: item.id };
 				markerGroup.add(sprite);
 
-				// 3. Subtle thin leader line connecting the tooth surface beacon to the floating badge
-				const line = createLeaderLine(beaconPos, badgePos, item.color);
-				markerGroup.add(line);
+				// 3. Solid 3D Stem Cylinder connecting the tooth surface dot to the floating badge
+				const stem = createStemCylinder(dotPos, badgePos, item.color, 0.018);
+				markerGroup.add(stem);
+
+				// 4. Directional Arrow Cone pointing directly at the tooth dot
+				const arrowDir = isUpper ? new THREE.Vector3(0, -1, 0) : new THREE.Vector3(0, 1, 0);
+				const arrowCone = createArrowCone(dotPos, arrowDir, item.color);
+				markerGroup.add(arrowCone);
 
 				clinicalMarkersGroup.add(markerGroup);
 				active3DMarkerObjects.push(markerGroup);
@@ -1221,23 +1323,55 @@ const { class: className = '' } = Astro.props;
 				raycastableObjects.push(sprite);
 			});
 
-			// Build Clean 3D Tooth Number Badges (#11 to #48) on every single tooth (2x smaller, tight padding, drop shadow)
+			// Build Clean 3D Tooth Number Badges (#11 to #48) interlinked with dot + stem
 			Object.entries(teethMeshes).forEach(([toothName, mesh]) => {
 				const dir = TOOTH_DIRECTORY[toothName];
 				const numStr = dir ? `#${dir.fdi}` : toothName.replace('tooth-', '#');
 				const isUpper = dir ? dir.arch === 'upper' : mesh.position.y > 0;
 				const outVec = getToothOutwardVector(mesh);
 
-				const numSprite = createToothNumberSprite(numStr);
-				// Position precisely on the outer emergence crown edge facing outward
-				numSprite.position.set(
-					mesh.position.x + outVec.x * 0.65,
-					mesh.position.y + (isUpper ? -0.22 : 0.22),
-					mesh.position.z + outVec.z * 0.65
+				const numGroup = new THREE.Group();
+				numGroup.userData = { toothKey: toothName, arch: isUpper ? 'upper' : 'lower' };
+
+				// 1. Tooth Surface Dot (Luminous purple bead right on the tooth enamel)
+				const dotGeom = new THREE.SphereGeometry(0.08, 12, 12);
+				const dotMat = new THREE.MeshStandardMaterial({
+					color: 0xc084fc,
+					emissive: 0xa855f7,
+					emissiveIntensity: 1.0,
+					roughness: 0.2,
+					depthTest: true,
+					depthWrite: false
+				});
+				const surfaceDot = new THREE.Mesh(dotGeom, dotMat);
+				const dotPos = new THREE.Vector3(
+					mesh.position.x + outVec.x * 0.74,
+					mesh.position.y + (isUpper ? -0.1 : 0.1),
+					mesh.position.z + outVec.z * 0.74
 				);
+				surfaceDot.position.copy(dotPos);
+				surfaceDot.userData = { toothKey: toothName };
+				numGroup.add(surfaceDot);
+
+				// 2. Interlinking Stem Line (Cylinder connecting dot to number badge)
+				const badgeY = dotPos.y + (isUpper ? 0.52 : -0.52);
+				const badgePos = new THREE.Vector3(
+					mesh.position.x + outVec.x * 0.95,
+					badgeY,
+					mesh.position.z + outVec.z * 0.95
+				);
+				const stem = createStemCylinder(dotPos, badgePos, 0xa855f7, 0.012);
+				numGroup.add(stem);
+
+				// 3. Compact 2x Smaller Number Badge (pure drop shadow, no border)
+				const numSprite = createToothNumberSprite(numStr);
+				numSprite.position.copy(badgePos);
 				numSprite.userData = { toothKey: toothName, arch: isUpper ? 'upper' : 'lower' };
-				toothNumbersGroup.add(numSprite);
+				numGroup.add(numSprite);
+
+				toothNumbersGroup.add(numGroup);
 				raycastableObjects.push(numSprite);
+				raycastableObjects.push(surfaceDot);
 			});
 
 			if (loadingOverlay) loadingOverlay.classList.add('hidden');
