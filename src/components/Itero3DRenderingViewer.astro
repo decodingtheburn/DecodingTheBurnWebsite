@@ -16,15 +16,14 @@ const { class: className = '' } = Astro.props;
 				<span class="pulse-dot"></span>
 				<span>iTero Element 3D Digital Color Scan</span>
 			</div>
-			<div class="itero-engine-pill">
-				<span class="engine-badge">WebGL True 3D Mesh</span>
-			</div>
 			<div class="itero-patient-meta">
+				<span class="engine-tag">WebGL True 3D Mesh</span>
+				<span class="meta-separator">•</span>
 				<span>Patient: Denis Ethier</span>
 				<span class="meta-separator">•</span>
 				<span>Scan Date: April 2025</span>
 				<span class="meta-separator">•</span>
-				<span>Vertices: 12,718 Polygons</span>
+				<span>12,718 Polygons</span>
 			</div>
 		</div>
 
@@ -110,7 +109,7 @@ const { class: className = '' } = Astro.props;
 		<div class="itero-inspection-drawer" id="inspectionDrawer">
 			<div class="drawer-header">
 				<div class="drawer-tooth-title" id="drawerTitle">Anatomical Overview: Full 3D Digital Mesh</div>
-				<span class="drawer-status-pill" id="drawerStatusPill">Active 3D Polygonal Model</span>
+				<span class="drawer-status-text" id="drawerStatusText">Active 3D Polygonal Model</span>
 			</div>
 			<div class="drawer-content-grid">
 				<div class="drawer-info-block">
@@ -120,19 +119,19 @@ const { class: className = '' } = Astro.props;
 					</p>
 				</div>
 				<div class="drawer-stats-block">
-					<div class="stat-mini-pill">
+					<div class="stat-mini-card">
 						<span class="stat-mini-label">Crown Defect</span>
 						<span class="stat-mini-value critical" id="statCrown">Tooth #36D</span>
 					</div>
-					<div class="stat-mini-pill">
+					<div class="stat-mini-card">
 						<span class="stat-mini-label">Pocket Range</span>
 						<span class="stat-mini-value" id="statPockets">2mm - 4mm</span>
 					</div>
-					<div class="stat-mini-pill">
+					<div class="stat-mini-card">
 						<span class="stat-mini-label">Floss Pain</span>
 						<span class="stat-mini-value warning" id="statFloss">10/10 Canines</span>
 					</div>
-					<div class="stat-mini-pill">
+					<div class="stat-mini-card">
 						<span class="stat-mini-label">Mesh Resolution</span>
 						<span class="stat-mini-value" id="statTissue">12K Polygons</span>
 					</div>
@@ -194,16 +193,9 @@ const { class: className = '' } = Astro.props;
 		50% { opacity: 0.4; transform: scale(1.3); }
 	}
 
-	.itero-engine-pill .engine-badge {
-		background: rgba(56, 189, 248, 0.15);
-		border: 1px solid rgba(56, 189, 248, 0.4);
+	.engine-tag {
 		color: #38bdf8;
-		font-size: 0.72rem;
-		font-weight: 800;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		padding: 0.2rem 0.6rem;
-		border-radius: 9999px;
+		font-weight: 700;
 	}
 
 	.itero-patient-meta {
@@ -268,8 +260,8 @@ const { class: className = '' } = Astro.props;
 		color: #f1f5f9;
 		font-size: 0.82rem;
 		font-weight: 800;
-		padding: 0.35rem 0.85rem;
-		border-radius: 9999px;
+		padding: 0.4rem 0.85rem;
+		border-radius: 8px;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 	}
 
@@ -280,8 +272,8 @@ const { class: className = '' } = Astro.props;
 		color: #cbd5e1;
 		font-size: 0.74rem;
 		font-weight: 600;
-		padding: 0.35rem 0.8rem;
-		border-radius: 9999px;
+		padding: 0.4rem 0.8rem;
+		border-radius: 8px;
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45rem;
@@ -493,14 +485,10 @@ const { class: className = '' } = Astro.props;
 		letter-spacing: -0.015em;
 	}
 
-	.drawer-status-pill {
-		font-size: 0.74rem;
-		font-weight: 700;
+	.drawer-status-text {
+		font-size: 0.82rem;
+		font-weight: 600;
 		color: #c084fc;
-		background: rgba(168, 85, 247, 0.12);
-		border: 1px solid rgba(168, 85, 247, 0.3);
-		padding: 0.25rem 0.65rem;
-		border-radius: 9999px;
 	}
 
 	.drawer-content-grid {
@@ -517,12 +505,10 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.drawer-subhead {
-		font-size: 0.85rem;
-		font-weight: 700;
-		color: #a855f7;
+		font-size: 0.82rem;
+		font-weight: 600;
+		color: #c084fc;
 		margin-bottom: 0.4rem;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
 	}
 
 	.drawer-desc {
@@ -538,7 +524,7 @@ const { class: className = '' } = Astro.props;
 		gap: 0.65rem;
 	}
 
-	.stat-mini-pill {
+	.stat-mini-card {
 		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid rgba(168, 85, 247, 0.2);
 		border-radius: 12px;
@@ -549,16 +535,14 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.stat-mini-label {
-		font-size: 0.7rem;
+		font-size: 0.74rem;
 		color: #94a3b8;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.04em;
+		font-weight: 500;
 	}
 
 	.stat-mini-value {
 		font-size: 1.05rem;
-		font-weight: 800;
+		font-weight: 700;
 		color: #ffffff;
 	}
 
@@ -590,7 +574,7 @@ const { class: className = '' } = Astro.props;
 
 	const drawerTitle = document.getElementById('drawerTitle');
 	const drawerDesc = document.getElementById('drawerDesc');
-	const drawerStatusPill = document.getElementById('drawerStatusPill');
+	const drawerStatusText = document.getElementById('drawerStatusText');
 
 	const pin36 = document.getElementById('pinTooth36');
 	const pin23 = document.getElementById('pinTooth23');
@@ -738,7 +722,7 @@ const { class: className = '' } = Astro.props;
 		if (hudAngleBadge) hudAngleBadge.textContent = info.name;
 		if (drawerTitle) drawerTitle.textContent = info.name;
 		if (drawerDesc) drawerDesc.textContent = info.desc;
-		if (drawerStatusPill) drawerStatusPill.textContent = info.status;
+		if (drawerStatusText) drawerStatusText.textContent = info.status;
 
 		viewButtons.forEach(btn => {
 			if (btn.getAttribute('data-view') === viewKey) btn.classList.add('active');
