@@ -1,6 +1,6 @@
 ---
 // Itero3DRenderingViewer.astro
-// Clean 3D Dental Arch Anatomy & Clinical Issue Map (Powered by Three.js & BodyParts3D Data)
+// True 3D Dental Arch Anatomy & Clinical Issue Map with True 3D Sprites & Real-Time Tracking
 interface Props {
 	class?: string;
 }
@@ -25,7 +25,7 @@ const { class: className = '' } = Astro.props;
 			</div>
 		</div>
 
-		<!-- Main 3D Viewport & Interactive Stage (2x Height, 820px) -->
+		<!-- Main 3D Viewport & Interactive Stage (2x Height: 820px) -->
 		<div class="arch-viewport" id="archViewport">
 			<!-- Three.js Canvas Mount Container -->
 			<div id="threeArchContainer" class="three-arch-container"></div>
@@ -36,79 +36,23 @@ const { class: className = '' } = Astro.props;
 				<span class="loading-text">Loading 3D Dental Arch Anatomy...</span>
 			</div>
 
-			<!-- Dynamic Screen-Space Hotspot Pins -->
-			<div id="hotspotPinsContainer" class="hotspot-pins-container">
-				<!-- Tooth #36: Defective Crown & Caries -->
-				<div class="clinical-pin pin-crown active" data-pin="tooth-36" title="Tooth #36: Defective Distal Crown Margin">
-					<span class="pin-pulse"></span>
-					<span class="pin-marker"></span>
-					<span class="pin-tag">#36 Defective Crown &amp; Cavities</span>
-				</div>
-
-				<!-- Tooth #23: Canine Recession & Floss Allodynia -->
-				<div class="clinical-pin pin-recession active" data-pin="tooth-23" title="Tooth #23: 1mm Cervical Recession + 10/10 Pain">
-					<span class="pin-pulse"></span>
-					<span class="pin-marker"></span>
-					<span class="pin-tag">#23 Canine Recession (10/10 Pain)</span>
-				</div>
-
-				<!-- Tooth #13: Canine Recession -->
-				<div class="clinical-pin pin-recession active" data-pin="tooth-13" title="Tooth #13: Cervical Sensitivity">
-					<span class="pin-pulse"></span>
-					<span class="pin-marker"></span>
-					<span class="pin-tag">#13 Canine Sensitivity</span>
-				</div>
-
-				<!-- Tooth #24: Overcontoured Composite -->
-				<div class="clinical-pin pin-filling active" data-pin="tooth-24" title="Tooth #24: Overcontoured Buccal Composite">
-					<span class="pin-pulse"></span>
-					<span class="pin-marker"></span>
-					<span class="pin-tag">#24 Composite Overcontour</span>
-				</div>
-
-				<!-- Tooth #26: Overcontoured Composite -->
-				<div class="clinical-pin pin-filling active" data-pin="tooth-26" title="Tooth #26: Overcontoured Buccal Composite">
-					<span class="pin-pulse"></span>
-					<span class="pin-marker"></span>
-					<span class="pin-tag">#26 Composite Overcontour</span>
-				</div>
-
-				<!-- Premolars: Abfraction Lesions -->
-				<div class="clinical-pin pin-abfraction active" data-pin="tooth-14" title="Teeth #14, #15: Premolar Abfraction Notches">
-					<span class="pin-pulse"></span>
-					<span class="pin-marker"></span>
-					<span class="pin-tag">#14-#15 Abfraction Notches</span>
-				</div>
-
-				<!-- Lower Premolars: Mandibular Abfraction -->
-				<div class="clinical-pin pin-abfraction active" data-pin="tooth-34" title="Teeth #34, #35: Mandibular Abfractions">
-					<span class="pin-pulse"></span>
-					<span class="pin-marker"></span>
-					<span class="pin-tag">#34-#35 Mandibular Wear</span>
-				</div>
-
-				<!-- Periodontal Pockets: Florida Probe Chart -->
-				<div class="clinical-pin pin-pocket active" data-pin="pocket-molar" title="Molar Quadrants: 3mm-4mm Pockets">
-					<span class="pin-pulse"></span>
-					<span class="pin-marker"></span>
-					<span class="pin-tag">3mm - 4mm Pockets (9% BOP)</span>
-				</div>
-			</div>
-
 			<!-- Viewport Floating HUD Controls -->
 			<div class="arch-hud-top">
 				<div class="hud-view-label" id="hudViewLabel">Both Arches (In Centric Occlusion)</div>
 				<div class="hud-helper-tip">
-					<span>🖱️ Drag / Touch to rotate 360°</span>
+					<span>🖱️ Drag to rotate 360°</span>
 					<span>•</span>
 					<span>🔍 Scroll to zoom</span>
 					<span>•</span>
-					<span>🎯 Click any tooth to inspect</span>
+					<span>🎯 Click tooth or 3D badge to inspect</span>
 				</div>
 			</div>
 
-			<!-- HUD Tools (Wireframe, Auto-Spin, Center, Bone Toggle) -->
+			<!-- HUD Tools (Tooth Numbers, Auto-Spin, Wireframe, Center, Jawbone) -->
 			<div class="arch-hud-tools">
+				<button type="button" class="hud-btn active" id="btnToggleNumbers" title="Toggle Tooth Numbers (#11 to #48)">
+					<span>🔢 Numbers</span>
+				</button>
 				<button type="button" class="hud-btn" id="btnToggleSpin" title="Toggle Turntable 3D Spin">
 					<span id="spinIcon">🔄</span>
 					<span id="spinLabel">Spin 3D</span>
@@ -125,7 +69,7 @@ const { class: className = '' } = Astro.props;
 			</div>
 		</div>
 
-		<!-- Perspective Selector Bar (Profiles Removed, Core Arch Views Only) -->
+		<!-- Perspective Selector Bar (Core Arch Views) -->
 		<div class="arch-perspective-bar" role="tablist" aria-label="3D Anatomical Views">
 			<button type="button" class="perspective-btn active" data-view="occlusion">
 				<span>Centric Occlusion (Bite)</span>
@@ -373,98 +317,6 @@ const { class: className = '' } = Astro.props;
 		font-weight: 600;
 	}
 
-	/* Hotspot Pins Container */
-	.hotspot-pins-container {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		z-index: 15;
-		overflow: hidden;
-	}
-
-	.clinical-pin {
-		position: absolute;
-		transform: translate(-50%, -50%);
-		pointer-events: auto;
-		cursor: pointer;
-		display: none;
-		align-items: center;
-		justify-content: center;
-		width: 24px;
-		height: 24px;
-		transition: opacity 0.2s ease, transform 0.2s ease;
-	}
-
-	.clinical-pin.active {
-		display: flex;
-	}
-
-	.clinical-pin:hover {
-		transform: translate(-50%, -50%) scale(1.18);
-		z-index: 30;
-	}
-
-	.pin-marker {
-		width: 12px;
-		height: 12px;
-		border-radius: 50%;
-		background: #ffffff;
-		box-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
-		position: relative;
-		z-index: 2;
-	}
-
-	.pin-pulse {
-		position: absolute;
-		inset: 0;
-		border-radius: 50%;
-		animation: pinPulse 2s infinite ease-out;
-	}
-
-	@keyframes pinPulse {
-		0% { transform: scale(0.7); opacity: 1; }
-		100% { transform: scale(2.4); opacity: 0; }
-	}
-
-	.pin-tag {
-		position: absolute;
-		left: 28px;
-		top: 50%;
-		transform: translateY(-50%);
-		background: rgba(15, 10, 30, 0.94);
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		color: #ffffff;
-		font-size: 0.76rem;
-		font-weight: 700;
-		line-height: 1.35;
-		padding: 0.28rem 0.65rem;
-		border-radius: 6px;
-		white-space: nowrap;
-		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.75);
-		pointer-events: none;
-	}
-
-	/* Pin Color Schemes */
-	.pin-crown .pin-marker { background: #ef4444; box-shadow: 0 0 12px #ef4444; }
-	.pin-crown .pin-pulse { border: 2px solid #ef4444; }
-	.pin-crown .pin-tag { border-color: rgba(239, 68, 68, 0.5); color: #fca5a5; }
-
-	.pin-recession .pin-marker { background: #f97316; box-shadow: 0 0 12px #f97316; }
-	.pin-recession .pin-pulse { border: 2px solid #f97316; }
-	.pin-recession .pin-tag { border-color: rgba(249, 115, 22, 0.5); color: #fdba74; }
-
-	.pin-filling .pin-marker { background: #38bdf8; box-shadow: 0 0 12px #38bdf8; }
-	.pin-filling .pin-pulse { border: 2px solid #38bdf8; }
-	.pin-filling .pin-tag { border-color: rgba(56, 189, 248, 0.5); color: #7dd3fc; }
-
-	.pin-abfraction .pin-marker { background: #eab308; box-shadow: 0 0 12px #eab308; }
-	.pin-abfraction .pin-pulse { border: 2px solid #eab308; }
-	.pin-abfraction .pin-tag { border-color: rgba(234, 179, 8, 0.5); color: #fde047; }
-
-	.pin-pocket .pin-marker { background: #a855f7; box-shadow: 0 0 12px #a855f7; }
-	.pin-pocket .pin-pulse { border: 2px solid #a855f7; }
-	.pin-pocket .pin-tag { border-color: rgba(168, 85, 247, 0.5); color: #d8b4fe; }
-
 	/* Floating HUD Controls */
 	.arch-hud-top {
 		position: absolute;
@@ -515,6 +367,7 @@ const { class: className = '' } = Astro.props;
 		display: flex;
 		gap: 0.55rem;
 		z-index: 20;
+		flex-wrap: wrap;
 	}
 
 	.hud-btn {
@@ -777,8 +630,8 @@ const { class: className = '' } = Astro.props;
 	const viewport = document.getElementById('archViewport');
 	const loadingOverlay = document.getElementById('archLoadingOverlay');
 	const hudViewLabel = document.getElementById('hudViewLabel');
-	const pinsContainer = document.getElementById('hotspotPinsContainer');
 
+	const btnNumbers = document.getElementById('btnToggleNumbers');
 	const btnSpin = document.getElementById('btnToggleSpin');
 	const spinLabel = document.getElementById('spinLabel');
 	const btnWireframe = document.getElementById('btnToggleWireframe');
@@ -825,6 +678,15 @@ const { class: className = '' } = Astro.props;
 	controls.minDistance = 3.5;
 	controls.target.set(0, 0, 0);
 
+	// Camera animation control: user interaction stops preset animation immediately
+	let isCameraAnimating = false;
+	const targetCamPos = new THREE.Vector3(0, 0.45, 11.2);
+	const targetLookAt = new THREE.Vector3(0, 0, 0);
+
+	controls.addEventListener('start', () => {
+		isCameraAnimating = false;
+	});
+
 	// Studio Lighting Setup
 	const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
 	scene.add(ambientLight);
@@ -841,14 +703,21 @@ const { class: className = '' } = Astro.props;
 	blueRimLight.position.set(0, -6, 5);
 	scene.add(blueRimLight);
 
-	// Subtle Floor Grid
+	// Floor Grid
 	const grid = new THREE.GridHelper(12, 24, 0xa855f7, 0x241242);
 	grid.position.y = -2.6;
 	scene.add(grid);
 
-	// Root Group for Models
+	// Root Group for All 3D Content (Teeth, Gums, and 3D Sprites)
 	const modelGroup = new THREE.Group();
 	scene.add(modelGroup);
+
+	// Groups for 3D Markers & Tooth Numbers
+	const clinicalMarkersGroup = new THREE.Group();
+	modelGroup.add(clinicalMarkersGroup);
+
+	const toothNumbersGroup = new THREE.Group();
+	modelGroup.add(toothNumbersGroup);
 
 	// Material Definitions: Enamel Ivory White & Darker Natural Pink Gums
 	const toothMaterial = new THREE.MeshStandardMaterial({
@@ -859,10 +728,10 @@ const { class: className = '' } = Astro.props;
 		side: THREE.DoubleSide
 	});
 
-	// Darker Anatomical Mucosal Pink Gums
+	// Darker Anatomical Mucosal Pink Gums (#be185d deep rich pink)
 	const gingivaMaterial = new THREE.MeshStandardMaterial({
-		color: 0xc73866, // Darker rich anatomical pink (#c73866)
-		emissive: 0x3d0d1e, // Deep crimson-pink base to prevent dark voids
+		color: 0xbe185d,
+		emissive: 0x4a0e24,
 		roughness: 0.36,
 		metalness: 0.02,
 		side: THREE.DoubleSide
@@ -880,12 +749,60 @@ const { class: className = '' } = Astro.props;
 	// Storage & State
 	const teethMeshes = {};
 	const boneMeshes = [];
-	const raycastableTeeth = [];
+	const raycastableObjects = [];
 	let isSpinning = false;
 	let isWireframe = false;
 	let showBone = false;
+	let showNumbers = true;
 	let activeFilter = 'all';
 	let selectedToothMesh = null;
+
+	// Helper to create sharp 3D billboard text sprites
+	function createTextSprite(text, borderColorHex, isSmall = false) {
+		const canvas = document.createElement('canvas');
+		canvas.width = isSmall ? 128 : 280;
+		canvas.height = isSmall ? 64 : 80;
+		const ctx = canvas.getContext('2d');
+
+		const w = canvas.width - 6;
+		const h = canvas.height - 6;
+		const r = isSmall ? 10 : 14;
+
+		// Card Background
+		ctx.fillStyle = 'rgba(12, 8, 26, 0.92)';
+		ctx.strokeStyle = borderColorHex;
+		ctx.lineWidth = isSmall ? 4 : 5;
+
+		ctx.beginPath();
+		ctx.roundRect(3, 3, w, h, r);
+		ctx.fill();
+		ctx.stroke();
+
+		// Sharp Typography
+		ctx.fillStyle = '#ffffff';
+		ctx.font = isSmall ? 'bold 36px system-ui, sans-serif' : 'bold 30px system-ui, sans-serif';
+		ctx.textAlign = 'center';
+		ctx.textBaseline = 'middle';
+		ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+		const texture = new THREE.CanvasTexture(canvas);
+		texture.minFilter = THREE.LinearFilter;
+		const mat = new THREE.SpriteMaterial({
+			map: texture,
+			depthTest: false,
+			transparent: true
+		});
+		const sprite = new THREE.Sprite(mat);
+		sprite.scale.set(isSmall ? 0.65 : 1.55, isSmall ? 0.32 : 0.45, 1);
+		return sprite;
+	}
+
+	// Helper to create a glowing 3D sphere marker sitting right on the tooth
+	function createBeaconSphere(colorHex) {
+		const geom = new THREE.SphereGeometry(0.13, 16, 16);
+		const mat = new THREE.MeshBasicMaterial({ color: colorHex, depthTest: false });
+		return new THREE.Mesh(geom, mat);
+	}
 
 	// Clinical Audit Records Dictionary
 	const CLINICAL_RECORDS = {
@@ -979,26 +896,91 @@ const { class: className = '' } = Astro.props;
 		}
 	};
 
-	// 3D Hotspot Coordinates
-	const PIN_LOCATIONS = {
-		'tooth-36': new THREE.Vector3(2.126, -0.45, -0.357),
-		'tooth-23': new THREE.Vector3(1.584, 1.15, 1.977),
-		'tooth-13': new THREE.Vector3(-1.716, 1.15, 1.978),
-		'tooth-24': new THREE.Vector3(1.883, 1.12, 1.245),
-		'tooth-26': new THREE.Vector3(2.269, 1.25, -0.179),
-		'tooth-14': new THREE.Vector3(-2.15, 1.12, 0.95),
-		'tooth-34': new THREE.Vector3(1.65, -0.95, 0.75),
-		'pocket-molar': new THREE.Vector3(2.35, 0.35, -0.9)
-	};
+	// Clinical 3D Markers Definitions (Attached directly to exact teeth in 3D scene)
+	const CLINICAL_3D_MARKERS = [
+		{
+			id: 'tooth-36',
+			tooth: 'tooth-36',
+			category: 'crown',
+			label: '#36 Crown Leak & Cavities',
+			color: 0xef4444,
+			colorHex: '#ef4444',
+			offset: [0.45, 0.2, -0.15]
+		},
+		{
+			id: 'tooth-23',
+			tooth: 'tooth-23',
+			category: 'recession',
+			label: '#23 1mm Recession (10/10 Pain)',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			offset: [0.25, 0.25, 0.25]
+		},
+		{
+			id: 'tooth-13',
+			tooth: 'tooth-13',
+			category: 'recession',
+			label: '#13 Canine Floss Pain',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			offset: [-0.25, 0.25, 0.25]
+		},
+		{
+			id: 'tooth-24',
+			tooth: 'tooth-24',
+			category: 'filling',
+			label: '#24 Composite Overcontour',
+			color: 0x38bdf8,
+			colorHex: '#38bdf8',
+			offset: [0.35, 0.2, 0.15]
+		},
+		{
+			id: 'tooth-26',
+			tooth: 'tooth-26',
+			category: 'filling',
+			label: '#26 Composite Overcontour',
+			color: 0x38bdf8,
+			colorHex: '#38bdf8',
+			offset: [0.45, 0.25, 0.05]
+		},
+		{
+			id: 'tooth-14',
+			tooth: 'tooth-14',
+			category: 'abfraction',
+			label: '#14-#15 Abfraction Notches',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			offset: [-0.35, 0.2, 0.15]
+		},
+		{
+			id: 'tooth-34',
+			tooth: 'tooth-34',
+			category: 'abfraction',
+			label: '#34-#35 Mandibular Wear',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			offset: [0.3, 0.15, 0.15]
+		},
+		{
+			id: 'pocket-molar',
+			tooth: 'tooth-36',
+			category: 'pocket',
+			label: '3mm - 4mm Pockets (9% BOP)',
+			color: 0xa855f7,
+			colorHex: '#a855f7',
+			offset: [0.55, 0.65, -0.05]
+		}
+	];
 
-	// Load 3D GLB Model & Compute Vertex Normals for Accurate Lighting
+	const active3DMarkerObjects = [];
+
+	// Load 3D GLB Model
 	const loader = new THREE.GLTFLoader();
 	loader.load(
 		'/models/dental-arch-opt.glb',
 		(gltf) => {
 			gltf.scene.traverse((child) => {
 				if (child.isMesh) {
-					// Compute normals if missing so lighting never renders black
 					if (child.geometry && !child.geometry.attributes.normal) {
 						child.geometry.computeVertexNormals();
 					}
@@ -1007,9 +989,8 @@ const { class: className = '' } = Astro.props;
 					if (name.startsWith('tooth-')) {
 						child.material = toothMaterial.clone();
 						teethMeshes[name] = child;
-						raycastableTeeth.push(child);
+						raycastableObjects.push(child);
 					} else if (name.startsWith('gingiva-')) {
-						// Assign vibrant warm healthy pink gums
 						child.material = gingivaMaterial.clone();
 					} else if (name.includes('alveolar') || name.includes('mandible') || name.includes('maxilla')) {
 						child.material = boneMaterial;
@@ -1022,6 +1003,56 @@ const { class: className = '' } = Astro.props;
 			});
 
 			modelGroup.add(gltf.scene);
+
+			// Build True 3D Clinical Issue Markers attached directly to teeth
+			CLINICAL_3D_MARKERS.forEach(item => {
+				const toothMesh = teethMeshes[item.tooth];
+				if (!toothMesh) return;
+
+				const markerGroup = new THREE.Group();
+				markerGroup.userData = { id: item.id, category: item.category };
+
+				// 1. Glowing 3D Beacon sphere right on the tooth surface
+				const beacon = createBeaconSphere(item.color);
+				beacon.userData = { id: item.id };
+				markerGroup.add(beacon);
+
+				// 2. Crisp 3D Billboard Sprite badge floating slightly above beacon
+				const sprite = createTextSprite(item.label, item.colorHex, false);
+				sprite.position.set(0, 0.45, 0.05);
+				sprite.userData = { id: item.id };
+				markerGroup.add(sprite);
+
+				// Position marker group at tooth position + calibrated surface offset
+				markerGroup.position.set(
+					toothMesh.position.x + item.offset[0],
+					toothMesh.position.y + item.offset[1],
+					toothMesh.position.z + item.offset[2]
+				);
+
+				clinicalMarkersGroup.add(markerGroup);
+				active3DMarkerObjects.push(markerGroup);
+				raycastableObjects.push(beacon);
+				raycastableObjects.push(sprite);
+			});
+
+			// Build Clean 3D Tooth Number Badges (#11 to #48) on every single tooth
+			Object.entries(teethMeshes).forEach(([toothName, mesh]) => {
+				const numStr = toothName.replace('tooth-', '#');
+				const isUpper = mesh.position.y > 0;
+
+				const numSprite = createTextSprite(numStr, '#a855f7', true);
+				// Position right at the emergence edge of the tooth
+				numSprite.position.set(
+					mesh.position.x,
+					mesh.position.y + (isUpper ? -0.45 : 0.45),
+					mesh.position.z + 0.15
+				);
+				numSprite.userData = { toothKey: toothName };
+				toothNumbersGroup.add(numSprite);
+				raycastableObjects.push(numSprite);
+			});
+
 			if (loadingOverlay) loadingOverlay.classList.add('hidden');
 			updateDiagnosticDrawer('tooth-36');
 		},
@@ -1049,37 +1080,22 @@ const { class: className = '' } = Astro.props;
 		if (metricSensitivity) metricSensitivity.textContent = rec.sensitivity;
 		if (metricStressor) metricStressor.textContent = rec.stressor;
 
-		// Highlight tooth
+		// Highlight selected tooth with purple emissive glow
 		if (selectedToothMesh) {
 			selectedToothMesh.material.color.setHex(0xfaf8f2);
 			selectedToothMesh.material.emissive.setHex(0x1c1a17);
 		}
 
-		if (teethMeshes[key]) {
-			selectedToothMesh = teethMeshes[key];
+		const targetToothKey = key === 'pocket-molar' ? 'tooth-36' : key;
+		if (teethMeshes[targetToothKey]) {
+			selectedToothMesh = teethMeshes[targetToothKey];
 			selectedToothMesh.material.color.setHex(0xffffff);
 			selectedToothMesh.material.emissive.setHex(0x9333ea);
-			selectedToothMesh.material.emissiveIntensity = 0.5;
+			selectedToothMesh.material.emissiveIntensity = 0.55;
 		}
 	}
 
-	// Hotspot Pin Click Listeners
-	document.querySelectorAll('.clinical-pin').forEach(pin => {
-		pin.addEventListener('click', (e) => {
-			e.stopPropagation();
-			const key = pin.getAttribute('data-pin');
-			if (key) {
-				updateDiagnosticDrawer(key);
-				// Focus camera towards pin
-				const loc = PIN_LOCATIONS[key];
-				if (loc) {
-					controls.target.set(loc.x * 0.7, loc.y * 0.7, loc.z * 0.7);
-				}
-			}
-		});
-	});
-
-	// Perspective Camera Views (Core Views: Occlusion, Upper, Lower)
+	// Perspective Camera Views
 	const VIEW_PRESETS = {
 		'occlusion': {
 			label: 'Both Arches (In Centric Occlusion)',
@@ -1109,14 +1125,12 @@ const { class: className = '' } = Astro.props;
 
 			if (hudViewLabel) hudViewLabel.textContent = view.label;
 
-			// Smooth camera animation
+			// Trigger smooth glide to preset
 			targetCamPos.set(view.camPos[0], view.camPos[1], view.camPos[2]);
 			targetLookAt.set(view.target[0], view.target[1], view.target[2]);
+			isCameraAnimating = true;
 		});
 	});
-
-	const targetCamPos = new THREE.Vector3(0, 0.45, 11.2);
-	const targetLookAt = new THREE.Vector3(0, 0, 0);
 
 	// Filter Logic
 	filterButtons.forEach(btn => {
@@ -1126,22 +1140,12 @@ const { class: className = '' } = Astro.props;
 
 			activeFilter = btn.getAttribute('data-filter') || 'all';
 
-			document.querySelectorAll('.clinical-pin').forEach(pin => {
-				const isCrown = pin.classList.contains('pin-crown');
-				const isRecession = pin.classList.contains('pin-recession');
-				const isAbfraction = pin.classList.contains('pin-abfraction');
-				const isFilling = pin.classList.contains('pin-filling');
-				const isPocket = pin.classList.contains('pin-pocket');
-
-				let show = false;
-				if (activeFilter === 'all') show = true;
-				else if (activeFilter === 'crown' && isCrown) show = true;
-				else if (activeFilter === 'recession' && isRecession) show = true;
-				else if (activeFilter === 'abfraction' && isAbfraction) show = true;
-				else if (activeFilter === 'filling' && isFilling) show = true;
-				else if (activeFilter === 'pocket' && isPocket) show = true;
-
-				pin.classList.toggle('active', show);
+			active3DMarkerObjects.forEach(group => {
+				const cat = group.userData.category;
+				let isVisible = false;
+				if (activeFilter === 'all') isVisible = true;
+				else if (activeFilter === cat) isVisible = true;
+				group.visible = isVisible;
 			});
 
 			if (activeFilter === 'crown') updateDiagnosticDrawer('tooth-36');
@@ -1153,6 +1157,12 @@ const { class: className = '' } = Astro.props;
 	});
 
 	// HUD Tools Listeners
+	btnNumbers?.addEventListener('click', () => {
+		showNumbers = !showNumbers;
+		btnNumbers.classList.toggle('active', showNumbers);
+		toothNumbersGroup.visible = showNumbers;
+	});
+
 	btnSpin?.addEventListener('click', () => {
 		isSpinning = !isSpinning;
 		btnSpin.classList.toggle('active', isSpinning);
@@ -1169,7 +1179,7 @@ const { class: className = '' } = Astro.props;
 	btnReset?.addEventListener('click', () => {
 		targetCamPos.set(0, 0.45, 11.2);
 		targetLookAt.set(0, 0, 0);
-		controls.target.set(0, 0, 0);
+		isCameraAnimating = true;
 	});
 
 	btnBone?.addEventListener('click', () => {
@@ -1178,7 +1188,7 @@ const { class: className = '' } = Astro.props;
 		boneMeshes.forEach(m => m.visible = showBone);
 	});
 
-	// Raycaster for Tooth Clicking
+	// Raycaster for Clicking 3D Teeth, Sprites, and Beacons
 	const raycaster = new THREE.Raycaster();
 	const mouse = new THREE.Vector2();
 
@@ -1188,60 +1198,46 @@ const { class: className = '' } = Astro.props;
 		mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
 		raycaster.setFromCamera(mouse, camera);
-		const intersects = raycaster.intersectObjects(raycastableTeeth);
+		const intersects = raycaster.intersectObjects(raycastableObjects, true);
 
 		if (intersects.length > 0) {
-			const clickedTooth = intersects[0].object;
-			const toothKey = clickedTooth.name;
+			const hit = intersects[0].object;
+			let toothKey = hit.name;
+
+			// If clicked a 3D marker or number sprite
+			if (hit.userData && hit.userData.id) {
+				toothKey = hit.userData.id;
+			} else if (hit.userData && hit.userData.toothKey) {
+				toothKey = hit.userData.toothKey;
+			}
+
 			if (CLINICAL_RECORDS[toothKey]) {
 				updateDiagnosticDrawer(toothKey);
-			} else {
-				if (drawerTitle) drawerTitle.textContent = `${toothKey.toUpperCase()} (Normal Anatomical Profile)`;
-				if (drawerSubtitle) drawerSubtitle.textContent = 'Intact Enamel Crown • Physiological Periodontal Sulcus';
+			} else if (toothKey && toothKey.startsWith('tooth-')) {
+				if (drawerTitle) drawerTitle.textContent = `${toothKey.toUpperCase()} (Normal Reference Tooth)`;
+				if (drawerSubtitle) drawerSubtitle.textContent = 'Intact Enamel Crown • Physiological Sulcus';
 				if (drawerSeverity) drawerSeverity.textContent = 'Normal Reference';
-				if (drawerClinicalText) drawerClinicalText.textContent = 'This tooth presents normal anatomical morphology without documented restoration margins, cavities, or severe cervical defects.';
+				if (drawerClinicalText) drawerClinicalText.textContent = 'This tooth presents intact morphology without documented restoration margins, cavities, or severe cervical defects.';
 				if (drawerBmsMechanism) drawerBmsMechanism.textContent = 'Acts as a normal reference surface. Not an active primary mechanical trigger in your clinical audit.';
 				if (metricPocket) metricPocket.textContent = '2mm - 3mm (Normal)';
 				if (metricBop) metricBop.textContent = 'Negative';
 				if (metricSensitivity) metricSensitivity.textContent = 'Normal';
 				if (metricStressor) metricStressor.textContent = 'None';
+
+				// Highlight normal tooth
+				if (selectedToothMesh) {
+					selectedToothMesh.material.color.setHex(0xfaf8f2);
+					selectedToothMesh.material.emissive.setHex(0x1c1a17);
+				}
+				if (teethMeshes[toothKey]) {
+					selectedToothMesh = teethMeshes[toothKey];
+					selectedToothMesh.material.color.setHex(0xffffff);
+					selectedToothMesh.material.emissive.setHex(0x60a5fa);
+					selectedToothMesh.material.emissiveIntensity = 0.4;
+				}
 			}
 		}
 	});
-
-	// Screen-Space Pin Projection
-	const tempVec = new THREE.Vector3();
-	function updatePinPositions() {
-		const rect = renderer.domElement.getBoundingClientRect();
-		const halfW = rect.width / 2;
-		const halfH = rect.height / 2;
-
-		document.querySelectorAll('.clinical-pin').forEach(pin => {
-			const key = pin.getAttribute('data-pin');
-			const pos3D = PIN_LOCATIONS[key];
-			if (!pos3D) return;
-
-			tempVec.copy(pos3D);
-			tempVec.applyMatrix4(modelGroup.matrixWorld);
-			tempVec.project(camera);
-
-			// Behind camera check
-			if (tempVec.z > 1.0) {
-				pin.style.display = 'none';
-				return;
-			}
-
-			if (pin.classList.contains('active')) {
-				pin.style.display = 'flex';
-			}
-
-			const screenX = (tempVec.x * halfW) + halfW;
-			const screenY = -(tempVec.y * halfH) + halfH;
-
-			pin.style.left = `${screenX}px`;
-			pin.style.top = `${screenY}px`;
-		});
-	}
 
 	// Resize Handler
 	window.addEventListener('resize', () => {
@@ -1254,7 +1250,7 @@ const { class: className = '' } = Astro.props;
 		}
 	});
 
-	// Render Loop
+	// Render Animation Loop
 	function animate() {
 		requestAnimationFrame(animate);
 
@@ -1263,14 +1259,17 @@ const { class: className = '' } = Astro.props;
 			modelGroup.rotation.y += 0.007;
 		}
 
-		// Smooth Camera Transition
-		camera.position.lerp(targetCamPos, 0.05);
-		controls.target.lerp(targetLookAt, 0.05);
+		// Smooth Camera Transition only when triggered by preset button
+		if (isCameraAnimating) {
+			camera.position.lerp(targetCamPos, 0.08);
+			controls.target.lerp(targetLookAt, 0.08);
+
+			if (camera.position.distanceTo(targetCamPos) < 0.03 && controls.target.distanceTo(targetLookAt) < 0.03) {
+				isCameraAnimating = false;
+			}
+		}
+
 		controls.update();
-
-		// Project 3D pins to 2D screen
-		updatePinPositions();
-
 		renderer.render(scene, camera);
 	}
 
