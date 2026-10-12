@@ -77,6 +77,28 @@ if (!postNumber && slug) {
 							Together, let's find what makes our BMS worse - and what makes it&nbsp;better.
 						</p>
 					</div>
+
+					<div class="homepage-intro-card">
+						<div class="homepage-intro-media">
+							<img 
+								src="/denis-ethier.jpg" 
+								alt="Denis Ethier researching Burning Mouth Syndrome" 
+								class="homepage-intro-img"
+								loading="eager"
+							/>
+						</div>
+						<div class="homepage-intro-content">
+							<p>
+								Many of us with Burning Mouth Syndrome notice a clear pattern: certain foods, drinks, and dental factors make the pain flare up, while others bring real&nbsp;relief.
+							</p>
+							<p>
+								This site is a shared research hub. We come together to spot our triggers, compare daily notes, and discover what actually calms oral burning. No one has to solve this puzzle&nbsp;alone.
+							</p>
+							<p class="homepage-intro-closing">
+								Together, let's track the clues, share what works, and decode the&nbsp;burn.
+							</p>
+						</div>
+					</div>
 				) : null}
 
 				<div class="hero-image">
@@ -1021,6 +1043,70 @@ if (!postNumber && slug) {
 				max-width: 760px;
 				text-wrap: balance;
 				text-align: center;
+			}
+			/* Homepage Intro Block (Image on Left, Text on Right) */
+			.homepage-intro-card {
+				display: grid;
+				grid-template-columns: 280px 1fr;
+				gap: 2.25rem;
+				align-items: center;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-left: 5px solid #dc2626;
+				border-radius: 20px;
+				padding: 2rem 2.25rem;
+				margin: 0 auto 3rem auto;
+				max-width: 920px;
+				box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+				text-align: left;
+			}
+			.homepage-intro-media {
+				width: 100%;
+				aspect-ratio: 4 / 3;
+				border-radius: 14px;
+				overflow: hidden;
+				background: #0f172a;
+				border: 1px solid rgba(15, 23, 42, 0.1);
+				box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+			}
+			.homepage-intro-img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center 25%;
+				display: block;
+			}
+			.homepage-intro-content {
+				display: flex;
+				flex-direction: column;
+				gap: 0.95rem;
+			}
+			.homepage-intro-content p {
+				margin: 0;
+				font-size: 1.05rem;
+				line-height: 1.62;
+				color: #334155;
+				text-wrap: pretty;
+			}
+			.homepage-intro-closing {
+				font-weight: 700;
+				color: #0f172a !important;
+				font-size: 1.1rem !important;
+				margin-top: 0.25rem;
+			}
+			@media (max-width: 768px) {
+				.homepage-intro-card {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+					padding: 1.5rem 1.4rem;
+					border-left-width: 4px;
+					margin-bottom: 2.5rem;
+				}
+				.homepage-intro-media {
+					max-width: 320px;
+					margin: 0 auto;
+					aspect-ratio: 16 / 10;
+				}
 			}
 			.homepage-article-title {
 				font-size: clamp(2.4rem, 4.5vw, 3.4rem);
