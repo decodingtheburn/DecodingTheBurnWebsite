@@ -1,6 +1,6 @@
 ---
 // Itero3DRenderingViewer.astro
-// True WebGL 3D Polygonal Mesh & Intraoral Scan Viewer (Powered by Three.js & Real iTero Data)
+// Clean 3D Dental Arch Anatomy & Clinical Issue Map (Powered by Three.js & BodyParts3D Data)
 interface Props {
 	class?: string;
 }
@@ -8,132 +8,212 @@ interface Props {
 const { class: className = '' } = Astro.props;
 ---
 
-<div class={`itero-3d-wrapper ${className}`}>
-	<div class="itero-card">
-		<!-- Top Bar / Terminal Header -->
-		<div class="itero-topbar">
-			<div class="itero-scan-badge">
-				<span class="pulse-dot"></span>
-				<span>iTero Element 3D Digital Color Scan</span>
+<div class={`dental-arch-wrapper ${className}`}>
+	<div class="dental-arch-card">
+		<!-- Top Bar Header -->
+		<div class="arch-topbar">
+			<div class="arch-title-group">
+				<span class="status-indicator"></span>
+				<span class="arch-main-title">3D Dental Arch Anatomy &amp; Clinical Issue&nbsp;Map</span>
 			</div>
-			<div class="itero-patient-meta">
-				<span class="engine-tag">WebGL True 3D Mesh</span>
+			<div class="arch-meta-details">
+				<span>BodyParts3D Anatomical Reference</span>
 				<span class="meta-separator">•</span>
-				<span>Patient: Denis Ethier</span>
+				<span>FDI Tooth Numbering</span>
 				<span class="meta-separator">•</span>
-				<span>Scan Date: April 2025</span>
-				<span class="meta-separator">•</span>
-				<span>12,718 Polygons</span>
+				<span>Denis Ethier Diagnostic Audit</span>
 			</div>
 		</div>
 
 		<!-- Main 3D Viewport & Interactive Stage -->
-		<div class="itero-viewport" id="iteroViewport">
-			<!-- WebGL Canvas Mount Container -->
-			<div id="threeWebglContainer" class="three-canvas-container"></div>
+		<div class="arch-viewport" id="archViewport">
+			<!-- Three.js Canvas Mount Container -->
+			<div id="threeArchContainer" class="three-arch-container"></div>
 
-			<!-- 3D Overlay Holographic HUD -->
-			<div class="itero-hud-overlay">
-				<div class="hud-angle-badge" id="hudAngleBadge">True 3D Maxillary Arch (Upper Palate)</div>
-				<div class="hud-controls-hint">
-					<span>🖱️ Drag / Touch to rotate 360° in 3D</span>
-					<span>•</span>
-					<span>🔍 Scroll / Pinch to zoom</span>
-					<span>•</span>
-					<span>🎯 Click tooth to inspect</span>
+			<!-- Loading Indicator Overlay -->
+			<div id="archLoadingOverlay" class="arch-loading-overlay">
+				<div class="loading-spinner"></div>
+				<span class="loading-text">Loading 3D Dental Arch Anatomy...</span>
+			</div>
+
+			<!-- Dynamic Screen-Space Hotspot Pins -->
+			<div id="hotspotPinsContainer" class="hotspot-pins-container">
+				<!-- Tooth #36: Defective Crown & Caries -->
+				<div class="clinical-pin pin-crown active" data-pin="tooth-36" title="Tooth #36: Defective Distal Crown Margin">
+					<span class="pin-pulse"></span>
+					<span class="pin-marker"></span>
+					<span class="pin-tag">#36 Defective Crown &amp; Cavities</span>
+				</div>
+
+				<!-- Tooth #23: Canine Recession & Floss Allodynia -->
+				<div class="clinical-pin pin-recession active" data-pin="tooth-23" title="Tooth #23: 1mm Cervical Recession + 10/10 Pain">
+					<span class="pin-pulse"></span>
+					<span class="pin-marker"></span>
+					<span class="pin-tag">#23 Canine Recession (10/10 Pain)</span>
+				</div>
+
+				<!-- Tooth #13: Canine Recession -->
+				<div class="clinical-pin pin-recession active" data-pin="tooth-13" title="Tooth #13: Cervical Sensitivity">
+					<span class="pin-pulse"></span>
+					<span class="pin-marker"></span>
+					<span class="pin-tag">#13 Canine Sensitivity</span>
+				</div>
+
+				<!-- Tooth #24: Overcontoured Composite -->
+				<div class="clinical-pin pin-filling active" data-pin="tooth-24" title="Tooth #24: Overcontoured Buccal Composite">
+					<span class="pin-pulse"></span>
+					<span class="pin-marker"></span>
+					<span class="pin-tag">#24 Composite Overcontour</span>
+				</div>
+
+				<!-- Tooth #26: Overcontoured Composite -->
+				<div class="clinical-pin pin-filling active" data-pin="tooth-26" title="Tooth #26: Overcontoured Buccal Composite">
+					<span class="pin-pulse"></span>
+					<span class="pin-marker"></span>
+					<span class="pin-tag">#26 Composite Overcontour</span>
+				</div>
+
+				<!-- Premolars: Abfraction Lesions -->
+				<div class="clinical-pin pin-abfraction active" data-pin="tooth-14" title="Teeth #14, #15: Premolar Abfraction Notches">
+					<span class="pin-pulse"></span>
+					<span class="pin-marker"></span>
+					<span class="pin-tag">#14-#15 Abfraction Notches</span>
+				</div>
+
+				<!-- Lower Premolars: Mandibular Abfraction -->
+				<div class="clinical-pin pin-abfraction active" data-pin="tooth-34" title="Teeth #34, #35: Mandibular Abfractions">
+					<span class="pin-pulse"></span>
+					<span class="pin-marker"></span>
+					<span class="pin-tag">#34-#35 Mandibular Wear</span>
+				</div>
+
+				<!-- Periodontal Pockets: Florida Probe Chart -->
+				<div class="clinical-pin pin-pocket active" data-pin="pocket-molar" title="Molar Quadrants: 3mm-4mm Pockets">
+					<span class="pin-pulse"></span>
+					<span class="pin-marker"></span>
+					<span class="pin-tag">3mm - 4mm Pockets (9% BOP)</span>
 				</div>
 			</div>
 
-			<!-- Interactive Lighting & Wireframe Toggles -->
-			<div class="itero-hud-tools">
-				<button type="button" class="tool-btn active" id="btnToggleShading" title="Toggle Surface Lighting">
-					<span>💡 Shaded</span>
+			<!-- Viewport Floating HUD Controls -->
+			<div class="arch-hud-top">
+				<div class="hud-view-label" id="hudViewLabel">Both Arches (In Centric Occlusion)</div>
+				<div class="hud-helper-tip">
+					<span>🖱️ Drag / Touch to rotate 360°</span>
+					<span>•</span>
+					<span>🔍 Scroll to zoom</span>
+					<span>•</span>
+					<span>🎯 Click any tooth to inspect</span>
+				</div>
+			</div>
+
+			<!-- HUD Tools (Wireframe, Auto-Spin, Center, Bone Toggle) -->
+			<div class="arch-hud-tools">
+				<button type="button" class="hud-btn" id="btnToggleSpin" title="Toggle Turntable 3D Spin">
+					<span id="spinIcon">🔄</span>
+					<span id="spinLabel">Spin 3D</span>
 				</button>
-				<button type="button" class="tool-btn" id="btnToggleWireframe" title="Toggle 3D Wireframe Polygons">
+				<button type="button" class="hud-btn" id="btnToggleWireframe" title="Toggle 3D Wireframe Mesh">
 					<span>🕸️ Wireframe</span>
 				</button>
-				<button type="button" class="tool-btn" id="btnResetCamera" title="Reset 3D Camera">
+				<button type="button" class="hud-btn" id="btnResetView" title="Reset 3D Camera">
 					<span>🎯 Center</span>
 				</button>
-			</div>
-
-			<!-- Diagnostic Hotspots (Positioned dynamically in 3D projection) -->
-			<div class="hotspot-pin pin-crown" id="pinTooth36" data-tooth="36" title="Tooth #36: Defective Distal Crown Margin">
-				<span class="pin-ring"></span>
-				<span class="pin-dot"></span>
-				<span class="pin-label">#36 Distal Crown Leak</span>
-			</div>
-
-			<div class="hotspot-pin pin-recession" id="pinTooth23" data-tooth="23" title="Tooth #23: 1mm Cervical Recession + Allodynia">
-				<span class="pin-ring"></span>
-				<span class="pin-dot"></span>
-				<span class="pin-label">#23 Canine Recession</span>
-			</div>
-
-			<div class="hotspot-pin pin-overcontour" id="pinTooth26" data-tooth="26" title="Tooth #26: Overcontoured Buccal Composite">
-				<span class="pin-ring"></span>
-				<span class="pin-dot"></span>
-				<span class="pin-label">#26 Composite Overcontour</span>
+				<button type="button" class="hud-btn" id="btnToggleBone" title="Toggle Alveolar Bone">
+					<span>🦴 Jawbone</span>
+				</button>
 			</div>
 		</div>
 
-		<!-- Interactive 3D Model & Scan Perspective Selector Bar -->
-		<div class="itero-view-selector" role="tablist" aria-label="3D Scan Perspectives">
-			<button type="button" class="view-pill-btn active" data-view="mesh-upper">
-				<span class="view-badge-3d">3D</span>
-				<span>Upper Arch (True 3D Mesh)</span>
+		<!-- Perspective Selector Bar -->
+		<div class="arch-perspective-bar" role="tablist" aria-label="3D Anatomical Views">
+			<button type="button" class="perspective-btn active" data-view="occlusion">
+				<span>Centric Occlusion (Bite)</span>
 			</button>
-			<button type="button" class="view-pill-btn" data-view="mesh-lower">
-				<span class="view-badge-3d">3D</span>
-				<span>Lower Arch (#36 Crown Mesh)</span>
+			<button type="button" class="perspective-btn" data-view="upper">
+				<span>Upper Arch (Maxilla)</span>
 			</button>
-			<button type="button" class="view-pill-btn" data-view="frontal">
-				<span class="view-num">1</span>
-				<span>Frontal Bite</span>
+			<button type="button" class="perspective-btn" data-view="lower">
+				<span>Lower Arch (Mandible)</span>
 			</button>
-			<button type="button" class="view-pill-btn" data-view="right">
-				<span class="view-num">2</span>
-				<span>Right Lateral Bite</span>
+			<button type="button" class="perspective-btn" data-view="left-profile">
+				<span>Left Profile (#36 Focus)</span>
 			</button>
-			<button type="button" class="view-pill-btn" data-view="left">
-				<span class="view-num">3</span>
-				<span>Left Lateral Bite</span>
-			</button>
-			<button type="button" class="view-pill-btn orbit-btn" id="toggleAutoOrbit">
-				<span class="orbit-icon">🔄</span>
-				<span id="orbitBtnText">3D Turntable Spin</span>
+			<button type="button" class="perspective-btn" data-view="right-profile">
+				<span>Right Profile</span>
 			</button>
 		</div>
 
-		<!-- Diagnostic Inspection Drawer -->
-		<div class="itero-inspection-drawer" id="inspectionDrawer">
-			<div class="drawer-header">
-				<div class="drawer-tooth-title" id="drawerTitle">Anatomical Overview: Full 3D Digital Mesh</div>
-				<span class="drawer-status-text" id="drawerStatusText">Active 3D Polygonal Model</span>
+		<!-- Issue Category Filter Buttons -->
+		<div class="arch-filter-bar">
+			<span class="filter-heading">Diagnostic Issue Filters:</span>
+			<div class="filter-buttons">
+				<button type="button" class="filter-btn active" data-filter="all">
+					<span class="filter-dot dot-all"></span>
+					<span>All Clinical Issues</span>
+				</button>
+				<button type="button" class="filter-btn" data-filter="recession">
+					<span class="filter-dot dot-recession"></span>
+					<span>Recessions &amp; Allodynia</span>
+				</button>
+				<button type="button" class="filter-btn" data-filter="abfraction">
+					<span class="filter-dot dot-abfraction"></span>
+					<span>Abfractions &amp; Wear</span>
+				</button>
+				<button type="button" class="filter-btn" data-filter="filling">
+					<span class="filter-dot dot-filling"></span>
+					<span>Fillings &amp; Overcontours</span>
+				</button>
+				<button type="button" class="filter-btn" data-filter="crown">
+					<span class="filter-dot dot-crown"></span>
+					<span>Crown Defect (#36)</span>
+				</button>
+				<button type="button" class="filter-btn" data-filter="pocket">
+					<span class="filter-dot dot-pocket"></span>
+					<span>Periodontal Pockets</span>
+				</button>
 			</div>
-			<div class="drawer-content-grid">
-				<div class="drawer-info-block">
-					<div class="drawer-subhead">Clinical Correlation (Chart &amp; Florida Probe)</div>
-					<p class="drawer-desc" id="drawerDesc">
-						This is a true 3D polygonal mesh generated directly from my digital intraoral scans. You can spin it freely in full 3D space, switch between shaded color and polygonal wireframe modes, or view the lateral bite profiles.
+		</div>
+
+		<!-- Diagnostic Clinical Drawer -->
+		<div class="arch-diagnostic-drawer" id="archDrawer">
+			<div class="drawer-header-row">
+				<div class="drawer-title-block">
+					<h3 class="drawer-tooth-title" id="drawerTitle">Tooth #36: Defective Distal Crown Margin &amp; Hidden Cavities</h3>
+					<span class="drawer-quadrant-sub" id="drawerSubtitle">Lower Left First Molar • Mandibular Quadrant • Trigeminal Branch V3</span>
+				</div>
+				<span class="drawer-severity-badge" id="drawerSeverity">Primary Neuropathic Trigger</span>
+			</div>
+
+			<div class="drawer-content-layout">
+				<div class="drawer-text-block">
+					<h4 class="drawer-section-heading">Clinical Chart &amp; Independent Radiograph Finding</h4>
+					<p class="drawer-body-text" id="drawerClinicalText">
+						Florida Probe periodontal charting confirmed a defective distal crown margin ("#36D joint au distal"). An independent radiograph audit uncovered three hidden recurrent cavities undermining the enamel and dentin beneath the 20-year-old restoration.
+					</p>
+
+					<h4 class="drawer-section-heading" style="margin-top: 1rem;">Direct Neuropathic Mechanism in Burning Mouth Syndrome</h4>
+					<p class="drawer-body-text" id="drawerBmsMechanism">
+						Because this mechanical margin sits subgingivally, it acts as a permanent incubator for anaerobic bacterial biofilm. Microorganisms pump lactic and acetic acids directly into exposed dentinal tubules, constantly stimulating the inferior alveolar nerve and sensitizing the trigeminal system.
 					</p>
 				</div>
-				<div class="drawer-stats-block">
-					<div class="stat-mini-card">
-						<span class="stat-mini-label">Crown Defect</span>
-						<span class="stat-mini-value critical" id="statCrown">Tooth #36D</span>
+
+				<div class="drawer-metrics-grid">
+					<div class="metric-card">
+						<span class="metric-label">Sulcus / Pocket Depth</span>
+						<span class="metric-value" id="metricPocket">3mm - 4mm</span>
 					</div>
-					<div class="stat-mini-card">
-						<span class="stat-mini-label">Pocket Range</span>
-						<span class="stat-mini-value" id="statPockets">2mm - 4mm</span>
+					<div class="metric-card">
+						<span class="metric-label">Bleeding on Probing (BOP)</span>
+						<span class="metric-value critical" id="metricBop">Positive (9% total sites)</span>
 					</div>
-					<div class="stat-mini-card">
-						<span class="stat-mini-label">Floss Pain</span>
-						<span class="stat-mini-value warning" id="statFloss">10/10 Canines</span>
+					<div class="metric-card">
+						<span class="metric-label">Mechanical Sensitivity</span>
+						<span class="metric-value warning" id="metricSensitivity">Extreme Hyperalgesia</span>
 					</div>
-					<div class="stat-mini-card">
-						<span class="stat-mini-label">Mesh Resolution</span>
-						<span class="stat-mini-value" id="statTissue">12K Polygons</span>
+					<div class="metric-card">
+						<span class="metric-label">Biological Stressor</span>
+						<span class="metric-value" id="metricStressor">Acid &amp; Plaque Trap</span>
 					</div>
 				</div>
 			</div>
@@ -142,69 +222,61 @@ const { class: className = '' } = Astro.props;
 </div>
 
 <style>
-	.itero-3d-wrapper {
+	.dental-arch-wrapper {
 		margin: 2.75rem 0;
 		width: 100%;
 		font-family: var(--font-body, system-ui, sans-serif);
 	}
 
-	.itero-card {
+	.dental-arch-card {
 		background: #090614;
 		border: 1px solid rgba(168, 85, 247, 0.35);
-		border-radius: 24px;
+		border-radius: 20px;
 		overflow: hidden;
-		box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 35px rgba(168, 85, 247, 0.15);
+		box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 35px rgba(168, 85, 247, 0.12);
 		position: relative;
 	}
 
-	/* Top Bar */
-	.itero-topbar {
+	/* Top Bar Header */
+	.arch-topbar {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 1rem 1.4rem;
+		padding: 1.1rem 1.5rem;
 		background: rgba(18, 12, 38, 0.85);
 		border-bottom: 1px solid rgba(168, 85, 247, 0.2);
 		flex-wrap: wrap;
-		gap: 0.75rem;
+		gap: 0.8rem;
 	}
 
-	.itero-scan-badge {
+	.arch-title-group {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.55rem;
-		font-size: 0.84rem;
-		font-weight: 800;
-		color: #e9d5ff;
-		letter-spacing: 0.02em;
+		gap: 0.6rem;
 	}
 
-	.pulse-dot {
+	.status-indicator {
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
 		background: #10b981;
 		box-shadow: 0 0 10px #10b981;
-		animation: scanPulse 1.8s infinite ease-in-out;
 	}
 
-	@keyframes scanPulse {
-		0%, 100% { opacity: 1; transform: scale(1); }
-		50% { opacity: 0.4; transform: scale(1.3); }
-	}
-
-	.engine-tag {
-		color: #38bdf8;
+	.arch-main-title {
+		font-size: 0.95rem;
 		font-weight: 700;
+		color: #ffffff;
+		letter-spacing: -0.01em;
 	}
 
-	.itero-patient-meta {
+	.arch-meta-details {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.6rem;
-		font-size: 0.78rem;
+		gap: 0.65rem;
+		font-size: 0.8rem;
 		color: #94a3b8;
-		font-weight: 500;
+		flex-wrap: wrap;
 	}
 
 	.meta-separator {
@@ -212,34 +284,163 @@ const { class: className = '' } = Astro.props;
 	}
 
 	/* Viewport Stage */
-	.itero-viewport {
+	.arch-viewport {
 		position: relative;
 		width: 100%;
 		aspect-ratio: 16 / 9;
-		background: radial-gradient(circle at center, #170f30 0%, #06030c 100%);
+		background: radial-gradient(circle at center, #1b1038 0%, #06030c 100%);
 		overflow: hidden;
 		cursor: grab;
 		user-select: none;
 	}
 
-	.itero-viewport:active {
+	.arch-viewport:active {
 		cursor: grabbing;
 	}
 
-	.three-canvas-container {
+	.three-arch-container {
 		width: 100%;
 		height: 100%;
 		display: block;
 	}
 
-	.three-canvas-container canvas {
+	.three-arch-container canvas {
 		width: 100% !important;
 		height: 100% !important;
 		display: block;
 	}
 
-	/* Holographic HUD Overlays */
-	.itero-hud-overlay {
+	/* Loading Overlay */
+	.arch-loading-overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(9, 6, 20, 0.92);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		z-index: 50;
+		transition: opacity 0.4s ease;
+	}
+
+	.arch-loading-overlay.hidden {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.loading-spinner {
+		width: 44px;
+		height: 44px;
+		border: 3px solid rgba(168, 85, 247, 0.2);
+		border-top-color: #a855f7;
+		border-radius: 50%;
+		animation: spin 1s infinite linear;
+	}
+
+	@keyframes spin {
+		to { transform: rotate(360deg); }
+	}
+
+	.loading-text {
+		color: #cbd5e1;
+		font-size: 0.88rem;
+		font-weight: 600;
+	}
+
+	/* Hotspot Pins Container */
+	.hotspot-pins-container {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 15;
+		overflow: hidden;
+	}
+
+	.clinical-pin {
+		position: absolute;
+		transform: translate(-50%, -50%);
+		pointer-events: auto;
+		cursor: pointer;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	.clinical-pin.active {
+		display: flex;
+	}
+
+	.clinical-pin:hover {
+		transform: translate(-50%, -50%) scale(1.15);
+		z-index: 30;
+	}
+
+	.pin-marker {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: #ffffff;
+		box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+		position: relative;
+		z-index: 2;
+	}
+
+	.pin-pulse {
+		position: absolute;
+		inset: 0;
+		border-radius: 50%;
+		animation: pinPulse 2s infinite ease-out;
+	}
+
+	@keyframes pinPulse {
+		0% { transform: scale(0.7); opacity: 1; }
+		100% { transform: scale(2.4); opacity: 0; }
+	}
+
+	.pin-tag {
+		position: absolute;
+		left: 28px;
+		top: 50%;
+		transform: translateY(-50%);
+		background: rgba(15, 10, 30, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		color: #ffffff;
+		font-size: 0.74rem;
+		font-weight: 700;
+		padding: 0.25rem 0.6rem;
+		border-radius: 6px;
+		white-space: nowrap;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+		pointer-events: none;
+	}
+
+	/* Pin Color Schemes */
+	.pin-crown .pin-marker { background: #ef4444; box-shadow: 0 0 12px #ef4444; }
+	.pin-crown .pin-pulse { border: 2px solid #ef4444; }
+	.pin-crown .pin-tag { border-color: rgba(239, 68, 68, 0.5); color: #fca5a5; }
+
+	.pin-recession .pin-marker { background: #f97316; box-shadow: 0 0 12px #f97316; }
+	.pin-recession .pin-pulse { border: 2px solid #f97316; }
+	.pin-recession .pin-tag { border-color: rgba(249, 115, 22, 0.5); color: #fdba74; }
+
+	.pin-filling .pin-marker { background: #38bdf8; box-shadow: 0 0 12px #38bdf8; }
+	.pin-filling .pin-pulse { border: 2px solid #38bdf8; }
+	.pin-filling .pin-tag { border-color: rgba(56, 189, 248, 0.5); color: #7dd3fc; }
+
+	.pin-abfraction .pin-marker { background: #eab308; box-shadow: 0 0 12px #eab308; }
+	.pin-abfraction .pin-pulse { border: 2px solid #eab308; }
+	.pin-abfraction .pin-tag { border-color: rgba(234, 179, 8, 0.5); color: #fde047; }
+
+	.pin-pocket .pin-marker { background: #a855f7; box-shadow: 0 0 12px #a855f7; }
+	.pin-pocket .pin-pulse { border: 2px solid #a855f7; }
+	.pin-pocket .pin-tag { border-color: rgba(168, 85, 247, 0.5); color: #d8b4fe; }
+
+	/* Floating HUD Controls */
+	.arch-hud-top {
 		position: absolute;
 		top: 1rem;
 		left: 1rem;
@@ -253,34 +454,33 @@ const { class: className = '' } = Astro.props;
 		gap: 0.5rem;
 	}
 
-	.hud-angle-badge {
-		background: rgba(15, 23, 42, 0.75);
+	.hud-view-label {
+		background: rgba(15, 23, 42, 0.85);
 		backdrop-filter: blur(8px);
-		border: 1px solid rgba(192, 132, 252, 0.4);
+		border: 1px solid rgba(192, 132, 252, 0.35);
 		color: #f1f5f9;
 		font-size: 0.82rem;
-		font-weight: 800;
+		font-weight: 700;
 		padding: 0.4rem 0.85rem;
 		border-radius: 8px;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 	}
 
-	.hud-controls-hint {
-		background: rgba(15, 23, 42, 0.65);
+	.hud-helper-tip {
+		background: rgba(15, 23, 42, 0.7);
 		backdrop-filter: blur(8px);
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		color: #cbd5e1;
 		font-size: 0.74rem;
-		font-weight: 600;
+		font-weight: 500;
 		padding: 0.4rem 0.8rem;
 		border-radius: 8px;
 		display: inline-flex;
 		align-items: center;
-		gap: 0.45rem;
+		gap: 0.5rem;
 	}
 
-	/* HUD Tools (Shading, Wireframe, Center) */
-	.itero-hud-tools {
+	.arch-hud-tools {
 		position: absolute;
 		bottom: 1rem;
 		right: 1rem;
@@ -289,127 +489,105 @@ const { class: className = '' } = Astro.props;
 		z-index: 20;
 	}
 
-	.tool-btn {
-		background: rgba(15, 23, 42, 0.8);
+	.hud-btn {
+		background: rgba(15, 23, 42, 0.85);
 		backdrop-filter: blur(8px);
 		border: 1px solid rgba(168, 85, 247, 0.3);
 		color: #cbd5e1;
-		font-size: 0.75rem;
-		font-weight: 700;
-		padding: 0.35rem 0.75rem;
+		font-size: 0.76rem;
+		font-weight: 600;
+		padding: 0.4rem 0.8rem;
 		border-radius: 8px;
 		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
 		transition: all 0.2s ease;
 	}
 
-	.tool-btn:hover {
+	.hud-btn:hover {
 		background: rgba(168, 85, 247, 0.25);
 		color: #ffffff;
 		border-color: #c084fc;
 	}
 
-	.tool-btn.active {
+	.hud-btn.active {
 		background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
 		color: #ffffff;
 		border-color: #d8b4fe;
 		box-shadow: 0 2px 10px rgba(168, 85, 247, 0.4);
 	}
 
-	/* Hotspot Pins */
-	.hotspot-pin {
-		position: absolute;
-		width: 22px;
-		height: 22px;
-		transform: translate(-50%, -50%);
-		cursor: pointer;
-		z-index: 15;
+	/* Perspective Selector Bar */
+	.arch-perspective-bar {
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		transition: opacity 0.25s ease, transform 0.2s ease;
-	}
-
-	.pin-ring {
-		position: absolute;
-		inset: 0;
-		border-radius: 50%;
-		border: 2px solid #ef4444;
-		animation: ringPulse 1.8s infinite ease-out;
-	}
-
-	.pin-dot {
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-		background: #ef4444;
-		box-shadow: 0 0 10px #ef4444;
-	}
-
-	.pin-label {
-		position: absolute;
-		left: 28px;
-		top: 50%;
-		transform: translateY(-50%);
-		background: rgba(15, 23, 42, 0.9);
-		border: 1px solid rgba(239, 68, 68, 0.5);
-		color: #ffffff;
-		font-size: 0.72rem;
-		font-weight: 700;
-		padding: 0.2rem 0.55rem;
-		border-radius: 6px;
-		white-space: nowrap;
-		pointer-events: none;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-	}
-
-	.pin-recession .pin-ring,
-	.pin-recession .pin-dot {
-		border-color: #f59e0b;
-		background: #f59e0b;
-		box-shadow: 0 0 10px #f59e0b;
-	}
-
-	.pin-recession .pin-label {
-		border-color: rgba(245, 158, 11, 0.5);
-	}
-
-	.pin-overcontour .pin-ring,
-	.pin-overcontour .pin-dot {
-		border-color: #38bdf8;
-		background: #38bdf8;
-		box-shadow: 0 0 10px #38bdf8;
-	}
-
-	.pin-overcontour .pin-label {
-		border-color: rgba(56, 189, 248, 0.5);
-	}
-
-	@keyframes ringPulse {
-		0% { transform: scale(0.8); opacity: 1; }
-		100% { transform: scale(2.2); opacity: 0; }
-	}
-
-	/* View Selector Bar */
-	.itero-view-selector {
-		display: flex;
-		align-items: center;
-		gap: 0.6rem;
-		padding: 0.85rem 1.25rem;
-		background: rgba(15, 10, 32, 0.9);
+		gap: 0.5rem;
+		padding: 0.75rem 1.25rem;
+		background: rgba(15, 10, 32, 0.95);
 		border-top: 1px solid rgba(168, 85, 247, 0.2);
 		border-bottom: 1px solid rgba(168, 85, 247, 0.2);
 		overflow-x: auto;
 		white-space: nowrap;
 	}
 
-	.view-pill-btn {
-		background: rgba(255, 255, 255, 0.05);
+	.perspective-btn {
+		background: rgba(255, 255, 255, 0.04);
 		border: 1px solid rgba(168, 85, 247, 0.25);
 		color: #cbd5e1;
-		font-size: 0.82rem;
-		font-weight: 700;
-		padding: 0.5rem 0.95rem;
-		border-radius: 10px;
+		font-size: 0.8rem;
+		font-weight: 600;
+		padding: 0.45rem 0.9rem;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.perspective-btn:hover {
+		background: rgba(168, 85, 247, 0.18);
+		color: #ffffff;
+		border-color: #c084fc;
+	}
+
+	.perspective-btn.active {
+		background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+		border-color: #d8b4fe;
+		color: #ffffff;
+		box-shadow: 0 3px 12px rgba(168, 85, 247, 0.35);
+	}
+
+	/* Issue Filter Bar */
+	.arch-filter-bar {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem 1.25rem;
+		background: rgba(10, 7, 24, 0.98);
+		border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+		flex-wrap: wrap;
+	}
+
+	.filter-heading {
+		font-size: 0.78rem;
+		font-weight: 600;
+		color: #94a3b8;
+	}
+
+	.filter-buttons {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.filter-btn {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		color: #cbd5e1;
+		font-size: 0.76rem;
+		font-weight: 500;
+		padding: 0.35rem 0.75rem;
+		border-radius: 6px;
 		cursor: pointer;
 		display: inline-flex;
 		align-items: center;
@@ -417,168 +595,172 @@ const { class: className = '' } = Astro.props;
 		transition: all 0.2s ease;
 	}
 
-	.view-pill-btn:hover {
+	.filter-btn:hover {
+		background: rgba(255, 255, 255, 0.08);
+		color: #ffffff;
+	}
+
+	.filter-btn.active {
 		background: rgba(168, 85, 247, 0.2);
-		border-color: #c084fc;
+		border-color: #a855f7;
 		color: #ffffff;
 	}
 
-	.view-pill-btn.active {
-		background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
-		border-color: #d8b4fe;
-		color: #ffffff;
-		box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
-	}
-
-	.view-badge-3d {
-		background: #0284c7;
-		color: #ffffff;
-		font-size: 0.66rem;
-		font-weight: 800;
-		padding: 0.15rem 0.4rem;
-		border-radius: 4px;
-	}
-
-	.view-num {
-		width: 18px;
-		height: 18px;
+	.filter-dot {
+		width: 8px;
+		height: 8px;
 		border-radius: 50%;
-		background: rgba(0, 0, 0, 0.35);
-		font-size: 0.7rem;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
 	}
 
-	.orbit-btn {
-		margin-left: auto;
-		border-color: rgba(56, 189, 248, 0.35);
-		color: #7dd3fc;
-	}
+	.dot-all { background: #ffffff; }
+	.dot-recession { background: #f97316; }
+	.dot-abfraction { background: #eab308; }
+	.dot-filling { background: #38bdf8; }
+	.dot-crown { background: #ef4444; }
+	.dot-pocket { background: #a855f7; }
 
-	.orbit-btn.active {
-		background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-		border-color: #38bdf8;
-		color: #ffffff;
-		box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
-	}
-
-	/* Inspection Drawer */
-	.itero-inspection-drawer {
-		padding: 1.5rem 1.6rem;
+	/* Diagnostic Drawer */
+	.arch-diagnostic-drawer {
+		padding: 1.6rem 1.8rem;
 		background: #0d081a;
 	}
 
-	.drawer-header {
+	.drawer-header-row {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 0.85rem;
+		align-items: flex-start;
+		margin-bottom: 1.2rem;
 		flex-wrap: wrap;
-		gap: 0.5rem;
+		gap: 0.8rem;
+	}
+
+	.drawer-title-block {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
 
 	.drawer-tooth-title {
-		font-size: 1.15rem;
-		font-weight: 800;
+		font-size: 1.18rem;
+		font-weight: 700;
 		color: #ffffff;
+		margin: 0;
 		letter-spacing: -0.015em;
 	}
 
-	.drawer-status-text {
+	.drawer-quadrant-sub {
 		font-size: 0.82rem;
+		color: #a855f7;
+		font-weight: 500;
+	}
+
+	.drawer-severity-badge {
+		font-size: 0.78rem;
 		font-weight: 600;
-		color: #c084fc;
+		color: #fca5a5;
+		background: rgba(239, 68, 68, 0.15);
+		border: 1px solid rgba(239, 68, 68, 0.35);
+		padding: 0.3rem 0.7rem;
+		border-radius: 6px;
 	}
 
-	.drawer-content-grid {
+	.drawer-content-layout {
 		display: grid;
-		grid-template-columns: 1.4fr 1fr;
-		gap: 1.5rem;
+		grid-template-columns: 1.45fr 1fr;
+		gap: 1.6rem;
 	}
 
-	@media (max-width: 820px) {
-		.drawer-content-grid {
+	@media (max-width: 840px) {
+		.drawer-content-layout {
 			grid-template-columns: 1fr;
-			gap: 1.1rem;
+			gap: 1.2rem;
 		}
 	}
 
-	.drawer-subhead {
-		font-size: 0.82rem;
+	.drawer-section-heading {
+		font-size: 0.8rem;
 		font-weight: 600;
 		color: #c084fc;
-		margin-bottom: 0.4rem;
+		margin: 0 0 0.35rem 0;
 	}
 
-	.drawer-desc {
+	.drawer-body-text {
 		font-size: 0.92rem;
-		line-height: 1.6;
+		line-height: 1.65;
 		color: #cbd5e1;
 		margin: 0;
 	}
 
-	.drawer-stats-block {
+	.drawer-metrics-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 0.65rem;
+		gap: 0.7rem;
 	}
 
-	.stat-mini-card {
+	.metric-card {
 		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid rgba(168, 85, 247, 0.2);
-		border-radius: 12px;
-		padding: 0.65rem 0.85rem;
+		border-radius: 10px;
+		padding: 0.75rem 0.9rem;
 		display: flex;
 		flex-direction: column;
-		gap: 0.2rem;
+		gap: 0.25rem;
 	}
 
-	.stat-mini-label {
-		font-size: 0.74rem;
+	.metric-label {
+		font-size: 0.72rem;
 		color: #94a3b8;
 		font-weight: 500;
 	}
 
-	.stat-mini-value {
-		font-size: 1.05rem;
+	.metric-value {
+		font-size: 0.98rem;
 		font-weight: 700;
 		color: #ffffff;
 	}
 
-	.stat-mini-value.critical {
+	.metric-value.critical {
 		color: #f87171;
 	}
 
-	.stat-mini-value.warning {
+	.metric-value.warning {
 		color: #fbbf24;
 	}
 </style>
 
-<!-- Load Three.js Library for True 3D WebGL Rendering -->
+<!-- Load Three.js core, GLTFLoader, and OrbitControls -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" is:inline></script>
+<script src="/vendor/three/GLTFLoader.js" is:inline></script>
+<script src="/vendor/three/OrbitControls.js" is:inline></script>
 
 <script is:inline>
 (() => {
-	const container = document.getElementById('threeWebglContainer');
-	if (!container || typeof THREE === 'undefined') return;
+	const container = document.getElementById('threeArchContainer');
+	const viewport = document.getElementById('archViewport');
+	const loadingOverlay = document.getElementById('archLoadingOverlay');
+	const hudViewLabel = document.getElementById('hudViewLabel');
+	const pinsContainer = document.getElementById('hotspotPinsContainer');
 
-	const viewport = document.getElementById('iteroViewport');
-	const hudAngleBadge = document.getElementById('hudAngleBadge');
-	const viewButtons = document.querySelectorAll('.view-pill-btn[data-view]');
-	const orbitBtn = document.getElementById('toggleAutoOrbit');
-	const orbitBtnText = document.getElementById('orbitBtnText');
-	const btnShading = document.getElementById('btnToggleShading');
+	const btnSpin = document.getElementById('btnToggleSpin');
+	const spinLabel = document.getElementById('spinLabel');
 	const btnWireframe = document.getElementById('btnToggleWireframe');
-	const btnReset = document.getElementById('btnResetCamera');
+	const btnReset = document.getElementById('btnResetView');
+	const btnBone = document.getElementById('btnToggleBone');
+
+	const perspectiveButtons = document.querySelectorAll('.perspective-btn');
+	const filterButtons = document.querySelectorAll('.filter-btn');
 
 	const drawerTitle = document.getElementById('drawerTitle');
-	const drawerDesc = document.getElementById('drawerDesc');
-	const drawerStatusText = document.getElementById('drawerStatusText');
+	const drawerSubtitle = document.getElementById('drawerSubtitle');
+	const drawerSeverity = document.getElementById('drawerSeverity');
+	const drawerClinicalText = document.getElementById('drawerClinicalText');
+	const drawerBmsMechanism = document.getElementById('drawerBmsMechanism');
+	const metricPocket = document.getElementById('metricPocket');
+	const metricBop = document.getElementById('metricBop');
+	const metricSensitivity = document.getElementById('metricSensitivity');
+	const metricStressor = document.getElementById('metricStressor');
 
-	const pin36 = document.getElementById('pinTooth36');
-	const pin23 = document.getElementById('pinTooth23');
-	const pin26 = document.getElementById('pinTooth26');
+	if (!container || typeof THREE === 'undefined') return;
 
 	// Three.js Scene Setup
 	const scene = new THREE.Scene();
@@ -587,254 +769,443 @@ const { class: className = '' } = Astro.props;
 	const width = container.clientWidth || 960;
 	const height = container.clientHeight || 540;
 
-	const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-	camera.position.set(0, 4.5, 7.5);
-	camera.lookAt(0, 0, 0);
+	const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+	camera.position.set(0, 0.6, 8.2);
 
 	const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 	renderer.setSize(width, height);
 	renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-	renderer.shadowMap.enabled = true;
+	renderer.toneMapping = THREE.ACESFilmicToneMapping;
+	renderer.toneMappingExposure = 1.05;
 	container.appendChild(renderer.domElement);
 
-	// Studio Lighting
-	const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+	// Orbit Controls
+	const controls = new THREE.OrbitControls(camera, renderer.domElement);
+	controls.enableDamping = true;
+	controls.dampingFactor = 0.08;
+	controls.maxDistance = 18;
+	controls.minDistance = 3.2;
+	controls.target.set(0, 0, 0);
+
+	// Studio Lighting Setup
+	const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
 	scene.add(ambientLight);
 
-	const dirLight1 = new THREE.DirectionalLight(0xfff5ea, 1.2);
-	dirLight1.position.set(5, 10, 7);
-	scene.add(dirLight1);
+	const keyLight = new THREE.DirectionalLight(0xfff7ee, 1.3);
+	keyLight.position.set(6, 8, 8);
+	scene.add(keyLight);
 
-	const dirLight2 = new THREE.DirectionalLight(0xc084fc, 0.7);
-	dirLight2.position.set(-6, -4, -5);
-	scene.add(dirLight2);
+	const fillLight = new THREE.DirectionalLight(0xc084fc, 0.65);
+	fillLight.position.set(-7, 4, -5);
+	scene.add(fillLight);
 
-	const blueRimLight = new THREE.PointLight(0x38bdf8, 1.4, 25);
-	blueRimLight.position.set(0, -5, 5);
+	const blueRimLight = new THREE.DirectionalLight(0x38bdf8, 0.75);
+	blueRimLight.position.set(0, -6, 5);
 	scene.add(blueRimLight);
 
-	// Grid floor
-	const gridHelper = new THREE.GridHelper(12, 24, 0xa855f7, 0x3b1d6e);
-	gridHelper.position.y = -2.2;
-	scene.add(gridHelper);
+	// Subtle Floor Grid
+	const grid = new THREE.GridHelper(12, 24, 0xa855f7, 0x241242);
+	grid.position.y = -2.4;
+	scene.add(grid);
 
-	// 3D Objects Storage
-	const meshes = {};
-	const rootGroup = new THREE.Group();
-	scene.add(rootGroup);
+	// Root Group for Models
+	const modelGroup = new THREE.Group();
+	scene.add(modelGroup);
 
-	let isWireframe = false;
-	let isShaded = true;
-	let currentView = 'mesh-upper';
-	let isOrbiting = true;
-
-	// Build WebGL BufferGeometry from JSON
-	function createArchMesh(data, name) {
-		const geom = new THREE.BufferGeometry();
-		const positions = new Float32Array(data.vertices);
-		const colors = new Float32Array(data.colors);
-		const indices = new Uint32Array(data.indices);
-
-		geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-		geom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-		geom.setIndex(new THREE.BufferAttribute(indices, 1));
-		geom.computeVertexNormals();
-
-		const mat = new THREE.MeshStandardMaterial({
-			vertexColors: true,
-			roughness: 0.35,
-			metalness: 0.1,
-			side: THREE.DoubleSide
-		});
-
-		const mesh = new THREE.Mesh(geom, mat);
-		mesh.name = name;
-		return mesh;
-	}
-
-	// Fetch JSON mesh datasets
-	Promise.all([
-		fetch('/itero-upper-arch.json').then(r => r.json()),
-		fetch('/itero-lower-arch.json').then(r => r.json())
-	]).then(([upperData, lowerData]) => {
-		const upperMesh = createArchMesh(upperData, 'upper');
-		upperMesh.rotation.x = -Math.PI * 0.45;
-		upperMesh.position.y = 0.5;
-		rootGroup.add(upperMesh);
-		meshes['mesh-upper'] = upperMesh;
-
-		const lowerMesh = createArchMesh(lowerData, 'lower');
-		lowerMesh.rotation.x = Math.PI * 0.45;
-		lowerMesh.position.y = -0.5;
-		lowerMesh.visible = false;
-		rootGroup.add(lowerMesh);
-		meshes['mesh-lower'] = lowerMesh;
-
-		updateViewMode('mesh-upper');
-	}).catch(err => {
-		console.warn('Could not load 3D mesh JSON, falling back to procedural arch', err);
+	// Material Definitions
+	const toothMaterial = new THREE.MeshStandardMaterial({
+		color: 0xfaf7ee,
+		roughness: 0.16,
+		metalness: 0.04
 	});
 
-	// View Modes Metadata
-	const VIEW_INFO = {
-		'mesh-upper': {
-			name: 'True 3D Maxillary Arch (Upper Palate)',
-			desc: 'Interactive 3D polygonal mesh of the upper arch and palate. Observe the full 3D curvature, canine margins, and palatal vault.',
-			status: 'Maxillary 3D Mesh',
-			camPos: [0, 5.0, 7.0],
-			targetMesh: 'upper'
+	const gingivaMaterial = new THREE.MeshStandardMaterial({
+		color: 0xd97585,
+		roughness: 0.45,
+		metalness: 0.0
+	});
+
+	const boneMaterial = new THREE.MeshStandardMaterial({
+		color: 0xcdbead,
+		roughness: 0.55,
+		metalness: 0.0,
+		transparent: true,
+		opacity: 0.85
+	});
+
+	// Storage & State
+	const teethMeshes = {};
+	const boneMeshes = [];
+	const raycastableTeeth = [];
+	let isSpinning = false;
+	let isWireframe = false;
+	let showBone = false;
+	let activeFilter = 'all';
+	let selectedToothMesh = null;
+
+	// Clinical Audit Records Dictionary
+	const CLINICAL_RECORDS = {
+		'tooth-36': {
+			name: 'Tooth #36: Defective Distal Crown Margin & Hidden Cavities',
+			subtitle: 'Lower Left First Molar • Mandibular Quadrant • Trigeminal V3',
+			severity: 'Primary Neuropathic Trigger',
+			clinical: 'Florida Probe audit confirmed defective distal margin ("#36D joint au distal"). Independent X-ray review discovered three hidden cavities eroding dentin beneath the crown.',
+			mechanism: 'Subgingival food/plaque trap produces constant lactic and acetic acids. Acid penetrates directly into exposed dentinal tubules, firing the inferior alveolar nerve (V3).',
+			pocket: '3mm - 4mm',
+			bop: 'Positive (severe)',
+			sensitivity: 'Excruciating Hyperalgesia',
+			stressor: 'Anaerobic Bacterial Acid'
 		},
-		'mesh-lower': {
-			name: 'True 3D Mandibular Arch (Tooth #36 Crown)',
-			desc: 'Interactive 3D polygonal mesh of the lower dentition. Directly inspect the 3D geometry around tooth #36 where the defective distal margin was discovered.',
-			status: 'Tooth #36 Zone',
-			camPos: [0, 5.0, 7.0],
-			targetMesh: 'lower'
+		'tooth-23': {
+			name: 'Tooth #23: 1mm Cervical Recession & 10/10 Floss Allodynia',
+			subtitle: 'Upper Left Canine • Maxillary Quadrant • Trigeminal V2',
+			severity: 'Extreme Mechanical Allodynia',
+			clinical: 'Periodontal chart: "23B récession 1mm... L’intensité de l’inconfort au passage du fil de soie dentaire est de 10/10 et dure quelques secondes."',
+			mechanism: 'A 1mm recession exposes thousands of conical dentinal tubules. In a primed nervous system with sensitized ASIC3 channels, passing floss triggers a massive 10/10 shockwave.',
+			pocket: '3mm sulcus',
+			bop: 'Negative at margin',
+			sensitivity: '10/10 Allodynia to Floss',
+			stressor: 'Exposed Dentinal Tubules'
 		},
-		'frontal': {
-			name: 'Frontal Occlusion (In Bite Profile)',
-			desc: 'Frontal anterior bite relationship. Both upper and lower teeth aligned in centric occlusion showing incisor overlap.',
-			status: 'Allodynia Site',
-			camPos: [0, 0.5, 9.0],
-			targetMesh: 'both'
+		'tooth-13': {
+			name: 'Tooth #13: Canine Cervical Recession & Sensitivity',
+			subtitle: 'Upper Right Canine • Maxillary Quadrant • Trigeminal V2',
+			severity: 'Bilateral Canine Sensitivity',
+			clinical: 'Bilateral canine flossing tenderness documented in dental chart alongside #23. Mild buccal recession exposing cementoenamel junction.',
+			mechanism: 'Mechanical friction during daily hygiene stimulates sensitized nerve terminals within exposed coronal tubules.',
+			pocket: '2mm - 3mm',
+			bop: 'Negative',
+			sensitivity: 'Moderate Floss Tenderness',
+			stressor: 'Mechanical Friction'
 		},
-		'right': {
-			name: 'Right Lateral Occlusion',
-			desc: 'Right side lateral intercuspation showing premolar and molar contact geometry.',
-			status: 'Right Quadrant',
-			camPos: [7.5, 1.0, 4.0],
-			targetMesh: 'both'
+		'tooth-24': {
+			name: 'Tooth #24: Overcontoured Buccal Composite Filling',
+			subtitle: 'Upper Left First Premolar • Maxillary Quadrant • Trigeminal V2',
+			severity: 'Chronic Plaque & Plaque Trap',
+			clinical: 'Dental audit noted: "24B composite avec surcontour." Filling ledge overhangs the natural emergence profile.',
+			mechanism: 'Bulky restorative ledges trap biofilm against the gingival margin. Chronic inflammatory vasodilation prevents mucosal epithelial closure.',
+			pocket: '3mm sulcus',
+			bop: 'Localized Bleeding',
+			sensitivity: 'Floss Snagging & Tenderness',
+			stressor: 'Microbial Plaque Retention'
 		},
-		'left': {
-			name: 'Left Lateral Occlusion (#36 Distal Gap)',
-			desc: 'Left side profile focusing directly on lower molar #36 and upper opposing premolars/composites.',
-			status: 'Defective Distal Gap',
-			camPos: [-7.5, 1.0, 4.0],
-			targetMesh: 'both'
+		'tooth-26': {
+			name: 'Tooth #26: Overcontoured Buccal Composite Filling',
+			subtitle: 'Upper Left First Molar • Maxillary Quadrant • Trigeminal V2',
+			severity: 'Chronic Plaque & Plaque Trap',
+			clinical: 'Dental audit noted: "26B composite en surcontour." Bulky resin margin interfaces with molar gingival collar.',
+			mechanism: 'Restoration overhang traps acid-producing bacteria directly adjacent to inflamed mucosal tissue.',
+			pocket: '3mm - 4mm',
+			bop: 'Positive on Probing',
+			sensitivity: 'Localized Burning Flare',
+			stressor: 'Biofilm Trap'
+		},
+		'tooth-14': {
+			name: 'Teeth #14 & #15: Premolar Abfraction Lesions',
+			subtitle: 'Upper Right Premolars • Maxillary Quadrant • Trigeminal V2',
+			severity: 'Non-Carious Cervical Wear',
+			clinical: 'Wedge-shaped cervical enamel notches along buccal cervical margins caused by eccentric bite stress and clenching.',
+			mechanism: 'Enamel microfractures expose dentin to dietary acids, triggering rapid burning flares upon contact with acidic or salty food.',
+			pocket: '2mm - 3mm',
+			bop: 'Negative',
+			sensitivity: 'Acid / Cold Sensitive',
+			stressor: 'Occlusal Flexure & Acid'
+		},
+		'tooth-34': {
+			name: 'Teeth #34 & #35: Mandibular Premolar Abfractions',
+			subtitle: 'Lower Left Premolars • Mandibular Quadrant • Trigeminal V3',
+			severity: 'Mechanical Enamel Notches',
+			clinical: 'Cervical wear facets and enamel notches adjacent to defective molar #36.',
+			mechanism: 'Occlusal forces from heavy chewing and clenching flex the cervical crown, dislodging enamel prisms.',
+			pocket: '3mm sulcus',
+			bop: 'Mild',
+			sensitivity: 'Tactile Sensitivity',
+			stressor: 'Bite Stress'
+		},
+		'pocket-molar': {
+			name: 'Periodontal Charting: 2mm - 4mm Pockets (9% Bleeding on Probing)',
+			subtitle: 'Full Mouth Florida Probe Audit • April 14, 2025',
+			severity: 'Severe Hyperalgesia on Probing',
+			clinical: '15 bleeding sites documented. Periodontist recorded: "Le sondage fut excessivement difficile et sensible... La condition ne peut expliquer l’ampleur des inconforts."',
+			mechanism: 'The physical tissue damage did not match the agony: proving the patient suffered from severe peripheral and central neuropathic hyperalgesia.',
+			pocket: '2mm - 4mm (mostly 3mm)',
+			bop: '9% (15 bleeding sites)',
+			sensitivity: 'Severe Probing Agony',
+			stressor: 'Neuropathic Sensitization'
 		}
 	};
 
-	function updateViewMode(viewKey) {
-		currentView = viewKey;
-		const info = VIEW_INFO[viewKey];
-		if (!info) return;
+	// 3D Hotspot Coordinates
+	const PIN_LOCATIONS = {
+		'tooth-36': new THREE.Vector3(2.126, -0.45, -0.357),
+		'tooth-23': new THREE.Vector3(1.584, 1.15, 1.977),
+		'tooth-13': new THREE.Vector3(-1.716, 1.15, 1.978),
+		'tooth-24': new THREE.Vector3(1.883, 1.12, 1.245),
+		'tooth-26': new THREE.Vector3(2.269, 1.25, -0.179),
+		'tooth-14': new THREE.Vector3(-2.15, 1.12, 0.95),
+		'tooth-34': new THREE.Vector3(1.65, -0.95, 0.75),
+		'pocket-molar': new THREE.Vector3(2.35, 0.35, -0.9)
+	};
 
-		if (hudAngleBadge) hudAngleBadge.textContent = info.name;
-		if (drawerTitle) drawerTitle.textContent = info.name;
-		if (drawerDesc) drawerDesc.textContent = info.desc;
-		if (drawerStatusText) drawerStatusText.textContent = info.status;
+	// Load 3D GLB Model
+	const loader = new THREE.GLTFLoader();
+	loader.load(
+		'/models/dental-arch-opt.glb',
+		(gltf) => {
+			gltf.scene.traverse((child) => {
+				if (child.isMesh) {
+					const name = child.name || '';
+					if (name.startsWith('tooth-')) {
+						child.material = toothMaterial.clone();
+						teethMeshes[name] = child;
+						raycastableTeeth.push(child);
+					} else if (name.startsWith('gingiva-')) {
+						child.material = gingivaMaterial;
+					} else if (name.includes('alveolar') || name.includes('mandible') || name.includes('maxilla')) {
+						child.material = boneMaterial;
+						child.visible = false;
+						boneMeshes.push(child);
+					} else if (name.includes('sinus') || name.includes('condyle')) {
+						child.visible = false;
+					}
+				}
+			});
 
-		viewButtons.forEach(btn => {
-			if (btn.getAttribute('data-view') === viewKey) btn.classList.add('active');
-			else btn.classList.remove('active');
-		});
-
-		// Toggle mesh visibility
-		if (meshes['mesh-upper']) {
-			meshes['mesh-upper'].visible = (info.targetMesh === 'upper' || info.targetMesh === 'both');
+			modelGroup.add(gltf.scene);
+			if (loadingOverlay) loadingOverlay.classList.add('hidden');
+			updateDiagnosticDrawer('tooth-36');
+		},
+		undefined,
+		(err) => {
+			console.warn('Error loading dental arch GLB:', err);
+			if (loadingOverlay) {
+				loadingOverlay.innerHTML = '<span style="color:#f87171;">Failed to load 3D model</span>';
+			}
 		}
-		if (meshes['mesh-lower']) {
-			meshes['mesh-lower'].visible = (info.targetMesh === 'lower' || info.targetMesh === 'both');
+	);
+
+	// Update Diagnostic Drawer
+	function updateDiagnosticDrawer(key) {
+		const rec = CLINICAL_RECORDS[key];
+		if (!rec) return;
+
+		if (drawerTitle) drawerTitle.textContent = rec.name;
+		if (drawerSubtitle) drawerSubtitle.textContent = rec.subtitle;
+		if (drawerSeverity) drawerSeverity.textContent = rec.severity;
+		if (drawerClinicalText) drawerClinicalText.textContent = rec.clinical;
+		if (drawerBmsMechanism) drawerBmsMechanism.textContent = rec.mechanism;
+		if (metricPocket) metricPocket.textContent = rec.pocket;
+		if (metricBop) metricBop.textContent = rec.bop;
+		if (metricSensitivity) metricSensitivity.textContent = rec.sensitivity;
+		if (metricStressor) metricStressor.textContent = rec.stressor;
+
+		// Highlight tooth
+		if (selectedToothMesh) {
+			selectedToothMesh.material.color.setHex(0xfaf7ee);
+			selectedToothMesh.material.emissive.setHex(0x000000);
 		}
 
-		// Smooth camera fly
-		targetCamPos.set(info.camPos[0], info.camPos[1], info.camPos[2]);
+		if (teethMeshes[key]) {
+			selectedToothMesh = teethMeshes[key];
+			selectedToothMesh.material.color.setHex(0xffffff);
+			selectedToothMesh.material.emissive.setHex(0x9333ea);
+			selectedToothMesh.material.emissiveIntensity = 0.45;
+		}
 	}
 
-	viewButtons.forEach(btn => {
-		btn.addEventListener('click', () => {
-			const v = btn.getAttribute('data-view');
-			if (v) updateViewMode(v);
+	// Hotspot Pin Click Listeners
+	document.querySelectorAll('.clinical-pin').forEach(pin => {
+		pin.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const key = pin.getAttribute('data-pin');
+			if (key) {
+				updateDiagnosticDrawer(key);
+				// Fly camera towards pin
+				const loc = PIN_LOCATIONS[key];
+				if (loc) {
+					controls.target.set(loc.x * 0.7, loc.y * 0.7, loc.z * 0.7);
+				}
+			}
 		});
 	});
 
-	// Camera & Interaction Controls
-	const targetCamPos = new THREE.Vector3(0, 5.0, 7.0);
-	let isDragging = false;
-	let prevMouseX = 0;
-	let prevMouseY = 0;
-
-	viewport.addEventListener('mousedown', (e) => {
-		isDragging = true;
-		prevMouseX = e.clientX;
-		prevMouseY = e.clientY;
-	});
-
-	window.addEventListener('mousemove', (e) => {
-		if (!isDragging) return;
-		const dx = e.clientX - prevMouseX;
-		const dy = e.clientY - prevMouseY;
-		prevMouseX = e.clientX;
-		prevMouseY = e.clientY;
-
-		rootGroup.rotation.y += dx * 0.008;
-		rootGroup.rotation.x += dy * 0.008;
-	});
-
-	window.addEventListener('mouseup', () => {
-		isDragging = false;
-	});
-
-	// Touch Drag
-	viewport.addEventListener('touchstart', (e) => {
-		if (e.touches.length === 1) {
-			isDragging = true;
-			prevMouseX = e.touches[0].clientX;
-			prevMouseY = e.touches[0].clientY;
+	// Perspective Camera Views
+	const VIEW_PRESETS = {
+		'occlusion': {
+			label: 'Both Arches (In Centric Occlusion)',
+			camPos: [0, 0.4, 8.2],
+			target: [0, 0, 0]
+		},
+		'upper': {
+			label: 'Upper Arch (Maxilla & Palate)',
+			camPos: [0, -4.8, 5.5],
+			target: [0, 1.2, 0.2]
+		},
+		'lower': {
+			label: 'Lower Arch (Mandible & Tooth #36)',
+			camPos: [0, 5.0, 5.2],
+			target: [0, -0.8, -0.3]
+		},
+		'left-profile': {
+			label: 'Left Profile (Focus on #36 Crown & Composites)',
+			camPos: [6.2, 0.2, 2.8],
+			target: [1.8, -0.1, 0.2]
+		},
+		'right-profile': {
+			label: 'Right Profile (Canines & Premolars)',
+			camPos: [-6.2, 0.2, 2.8],
+			target: [-1.8, -0.1, 0.2]
 		}
-	}, { passive: true });
+	};
 
-	window.addEventListener('touchmove', (e) => {
-		if (!isDragging || e.touches.length !== 1) return;
-		const dx = e.touches[0].clientX - prevMouseX;
-		const dy = e.touches[0].clientY - prevMouseY;
-		prevMouseX = e.touches[0].clientX;
-		prevMouseY = e.touches[0].clientY;
+	perspectiveButtons.forEach(btn => {
+		btn.addEventListener('click', () => {
+			perspectiveButtons.forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
 
-		rootGroup.rotation.y += dx * 0.008;
-		rootGroup.rotation.x += dy * 0.008;
-	}, { passive: true });
+			const key = btn.getAttribute('data-view');
+			const view = VIEW_PRESETS[key];
+			if (!view) return;
 
-	window.addEventListener('touchend', () => {
-		isDragging = false;
+			if (hudViewLabel) hudViewLabel.textContent = view.label;
+
+			// Smooth camera animation
+			targetCamPos.set(view.camPos[0], view.camPos[1], view.camPos[2]);
+			targetLookAt.set(view.target[0], view.target[1], view.target[2]);
+		});
 	});
 
-	// Scroll Zoom
-	viewport.addEventListener('wheel', (e) => {
-		e.preventDefault();
-		camera.position.z += e.deltaY * 0.005;
-		camera.position.z = Math.max(3.5, Math.min(14, camera.position.z));
-	}, { passive: false });
+	const targetCamPos = new THREE.Vector3(0, 0.4, 8.2);
+	const targetLookAt = new THREE.Vector3(0, 0, 0);
 
-	// Tools Toggles
-	orbitBtn?.addEventListener('click', () => {
-		isOrbiting = !isOrbiting;
-		orbitBtn.classList.toggle('active', isOrbiting);
-		if (orbitBtnText) orbitBtnText.textContent = isOrbiting ? 'Pause 3D Spin' : '3D Turntable Spin';
+	// Filter Logic
+	filterButtons.forEach(btn => {
+		btn.addEventListener('click', () => {
+			filterButtons.forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
+
+			activeFilter = btn.getAttribute('data-filter') || 'all';
+
+			document.querySelectorAll('.clinical-pin').forEach(pin => {
+				const isCrown = pin.classList.contains('pin-crown');
+				const isRecession = pin.classList.contains('pin-recession');
+				const isAbfraction = pin.classList.contains('pin-abfraction');
+				const isFilling = pin.classList.contains('pin-filling');
+				const isPocket = pin.classList.contains('pin-pocket');
+
+				let show = false;
+				if (activeFilter === 'all') show = true;
+				else if (activeFilter === 'crown' && isCrown) show = true;
+				else if (activeFilter === 'recession' && isRecession) show = true;
+				else if (activeFilter === 'abfraction' && isAbfraction) show = true;
+				else if (activeFilter === 'filling' && isFilling) show = true;
+				else if (activeFilter === 'pocket' && isPocket) show = true;
+
+				pin.classList.toggle('active', show);
+			});
+
+			// If specific filter selected, update drawer to first related issue
+			if (activeFilter === 'crown') updateDiagnosticDrawer('tooth-36');
+			else if (activeFilter === 'recession') updateDiagnosticDrawer('tooth-23');
+			else if (activeFilter === 'abfraction') updateDiagnosticDrawer('tooth-14');
+			else if (activeFilter === 'filling') updateDiagnosticDrawer('tooth-24');
+			else if (activeFilter === 'pocket') updateDiagnosticDrawer('pocket-molar');
+		});
+	});
+
+	// HUD Tools Listeners
+	btnSpin?.addEventListener('click', () => {
+		isSpinning = !isSpinning;
+		btnSpin.classList.toggle('active', isSpinning);
+		if (spinLabel) spinLabel.textContent = isSpinning ? 'Pause Spin' : 'Spin 3D';
 	});
 
 	btnWireframe?.addEventListener('click', () => {
 		isWireframe = !isWireframe;
 		btnWireframe.classList.toggle('active', isWireframe);
-		Object.values(meshes).forEach(m => {
-			if (m && m.material) m.material.wireframe = isWireframe;
-		});
-	});
-
-	btnShading?.addEventListener('click', () => {
-		isShaded = !isShaded;
-		btnShading.classList.toggle('active', isShaded);
-		ambientLight.intensity = isShaded ? 0.85 : 1.8;
-		dirLight1.intensity = isShaded ? 1.2 : 0.0;
+		toothMaterial.wireframe = isWireframe;
+		gingivaMaterial.wireframe = isWireframe;
 	});
 
 	btnReset?.addEventListener('click', () => {
-		rootGroup.rotation.set(0, 0, 0);
-		camera.position.set(0, 5.0, 7.5);
-		camera.lookAt(0, 0, 0);
+		targetCamPos.set(0, 0.4, 8.2);
+		targetLookAt.set(0, 0, 0);
+		controls.target.set(0, 0, 0);
 	});
 
-	// Responsive Resize
+	btnBone?.addEventListener('click', () => {
+		showBone = !showBone;
+		btnBone.classList.toggle('active', showBone);
+		boneMeshes.forEach(m => m.visible = showBone);
+	});
+
+	// Raycaster for Tooth Clicking
+	const raycaster = new THREE.Raycaster();
+	const mouse = new THREE.Vector2();
+
+	viewport.addEventListener('click', (e) => {
+		const rect = renderer.domElement.getBoundingClientRect();
+		mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+		mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+		raycaster.setFromCamera(mouse, camera);
+		const intersects = raycaster.intersectObjects(raycastableTeeth);
+
+		if (intersects.length > 0) {
+			const clickedTooth = intersects[0].object;
+			const toothKey = clickedTooth.name;
+			if (CLINICAL_RECORDS[toothKey]) {
+				updateDiagnosticDrawer(toothKey);
+			} else {
+				// Fallback generic info for unannotated teeth
+				if (drawerTitle) drawerTitle.textContent = `${toothKey.toUpperCase()} (Normal Anatomical Profile)`;
+				if (drawerSubtitle) drawerSubtitle.textContent = 'Intact Enamel Crown • Physiological Periodontal Sulcus';
+				if (drawerSeverity) drawerSeverity.textContent = 'Normal Reference';
+				if (drawerClinicalText) drawerClinicalText.textContent = 'This tooth presents normal anatomical morphology without documented restoration margins, cavities, or severe cervical defects.';
+				if (drawerBmsMechanism) drawerBmsMechanism.textContent = 'Acts as a normal reference surface. Not an active primary mechanical trigger in your clinical audit.';
+				if (metricPocket) metricPocket.textContent = '2mm - 3mm (Normal)';
+				if (metricBop) metricBop.textContent = 'Negative';
+				if (metricSensitivity) metricSensitivity.textContent = 'Normal';
+				if (metricStressor) metricStressor.textContent = 'None';
+			}
+		}
+	});
+
+	// Screen-Space Pin Projection
+	const tempVec = new THREE.Vector3();
+	function updatePinPositions() {
+		const rect = renderer.domElement.getBoundingClientRect();
+		const halfW = rect.width / 2;
+		const halfH = rect.height / 2;
+
+		document.querySelectorAll('.clinical-pin').forEach(pin => {
+			const key = pin.getAttribute('data-pin');
+			const pos3D = PIN_LOCATIONS[key];
+			if (!pos3D) return;
+
+			tempVec.copy(pos3D);
+			tempVec.applyMatrix4(modelGroup.matrixWorld);
+			tempVec.project(camera);
+
+			// Behind camera check
+			if (tempVec.z > 1.0) {
+				pin.style.display = 'none';
+				return;
+			}
+
+			if (pin.classList.contains('active')) {
+				pin.style.display = 'flex';
+			}
+
+			const screenX = (tempVec.x * halfW) + halfW;
+			const screenY = -(tempVec.y * halfH) + halfH;
+
+			pin.style.left = `${screenX}px`;
+			pin.style.top = `${screenY}px`;
+		});
+	}
+
+	// Resize Handler
 	window.addEventListener('resize', () => {
 		const newW = container.clientWidth;
 		const newH = container.clientHeight;
@@ -845,18 +1216,22 @@ const { class: className = '' } = Astro.props;
 		}
 	});
 
-	// Render Animation Loop
+	// Render Loop
 	function animate() {
 		requestAnimationFrame(animate);
 
-		// Turntable Orbit
-		if (isOrbiting && !isDragging) {
-			rootGroup.rotation.y += 0.008;
+		// Turntable Rotation
+		if (isSpinning) {
+			modelGroup.rotation.y += 0.007;
 		}
 
-		// Smooth Camera Position Interpolation
-		camera.position.lerp(targetCamPos, 0.06);
-		camera.lookAt(0, 0, 0);
+		// Smooth Camera Transition
+		camera.position.lerp(targetCamPos, 0.05);
+		controls.target.lerp(targetLookAt, 0.05);
+		controls.update();
+
+		// Project 3D pins to 2D screen
+		updatePinPositions();
 
 		renderer.render(scene, camera);
 	}
