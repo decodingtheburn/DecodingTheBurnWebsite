@@ -834,35 +834,40 @@ const { class: className = '' } = Astro.props;
 		return sprite;
 	}
 
-	// Helper to create 2x smaller tooth number sprites with tight padding, NO border, and pure drop shadow
+	// Helper to create high-contrast dark green tooth number sprites with emerald accent border
 	function createToothNumberSprite(text) {
 		const canvas = document.createElement('canvas');
-		canvas.width = 56;
-		canvas.height = 32;
+		canvas.width = 64;
+		canvas.height = 36;
 		const ctx = canvas.getContext('2d');
 
-		// Rich drop shadow (no border)
+		// Rich drop shadow
 		ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
-		ctx.shadowBlur = 6;
+		ctx.shadowBlur = 8;
 		ctx.shadowOffsetX = 0;
 		ctx.shadowOffsetY = 2;
 
-		// Compact card box with minimal padding (no border)
-		const boxX = 4;
+		// Card box: Rich dark forest green (#064e3b)
+		const boxX = 3;
 		const boxY = 3;
-		const boxW = canvas.width - 8;
-		const boxH = canvas.height - 8;
-		const radius = 5;
+		const boxW = canvas.width - 6;
+		const boxH = canvas.height - 6;
+		const radius = 6;
 
-		ctx.fillStyle = 'rgba(15, 10, 30, 0.96)';
+		ctx.fillStyle = 'rgba(6, 78, 59, 0.96)';
 		ctx.beginPath();
 		ctx.roundRect(boxX, boxY, boxW, boxH, radius);
 		ctx.fill();
 
-		// Crisp typography (no shadow on font itself)
+		// Sharp emerald border (#10b981) for contrast against both dark bg and pink gums
 		ctx.shadowColor = 'transparent';
+		ctx.strokeStyle = '#10b981';
+		ctx.lineWidth = 2.5;
+		ctx.stroke();
+
+		// Crisp white typography for maximum contrast
 		ctx.fillStyle = '#ffffff';
-		ctx.font = 'bold 16px system-ui, -apple-system, sans-serif';
+		ctx.font = 'bold 18px system-ui, -apple-system, sans-serif';
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 		ctx.fillText(text, canvas.width / 2, (canvas.height / 2) - 0.5);
@@ -876,9 +881,9 @@ const { class: className = '' } = Astro.props;
 			transparent: true
 		});
 		const sprite = new THREE.Sprite(mat);
-		// Exactly 2x smaller than previous 0.65 x 0.32: width 0.28, height 0.16
-		const baseScaleX = 0.28;
-		const baseScaleY = 0.16;
+		// Compact scale: width 0.30, height 0.17
+		const baseScaleX = 0.30;
+		const baseScaleY = 0.17;
 		sprite.scale.set(baseScaleX, baseScaleY, 1);
 		sprite.userData.baseScaleX = baseScaleX;
 		allSprites.push(sprite);
@@ -1224,10 +1229,10 @@ const { class: className = '' } = Astro.props;
 
 	const active3DMarkerObjects = [];
 
-	// Compute outward normal unit vector from the oral cavity center (0, 0, 0.35) through the tooth
+	// Compute outward normal unit vector from the oral cavity center (0, 0, 0.15) through the tooth
 	function getToothOutwardVector(mesh) {
 		const dx = mesh.position.x;
-		const dz = mesh.position.z - 0.35;
+		const dz = mesh.position.z - 0.15;
 		const len = Math.hypot(dx, dz) || 1;
 		return { x: dx / len, z: dz / len };
 	}
@@ -1284,11 +1289,21 @@ const { class: className = '' } = Astro.props;
 				const outVec = getToothOutwardVector(toothMesh);
 				const isUpper = item.arch === 'upper';
 
+				if (!toothMesh.geometry.boundingBox) toothMesh.geometry.computeBoundingBox();
+				const bMin = toothMesh.geometry.boundingBox.min;
+				const bMax = toothMesh.geometry.boundingBox.max;
+				const worldMinY = toothMesh.position.y + bMin.y;
+				const worldMaxY = toothMesh.position.y + bMax.y;
+				const crownY = isUpper
+					? worldMinY + (worldMaxY - worldMinY) * 0.26
+					: worldMaxY - (worldMaxY - worldMinY) * 0.26;
+
 				// 1. Glowing 3D Beacon Dot right on the outer visible enamel/cervical tooth surface
+				const dotDist = 0.50;
 				const dotPos = new THREE.Vector3(
-					toothMesh.position.x + outVec.x * 0.74,
-					toothMesh.position.y + (isUpper ? -0.1 : 0.1),
-					toothMesh.position.z + outVec.z * 0.74
+					toothMesh.position.x + outVec.x * dotDist,
+					crownY,
+					toothMesh.position.z + outVec.z * dotDist
 				);
 				const beacon = createBeaconSphere(item.color, 0.14);
 				beacon.position.copy(dotPos);
@@ -1299,10 +1314,11 @@ const { class: className = '' } = Astro.props;
 				// 2. High/Low Floating Billboard Badge (completely outside teeth and gums)
 				const sprite = createClinicalSprite(item.label, item.colorHex);
 				const targetY = item.targetY || (isUpper ? 2.7 : -2.5);
+				const badgeDist = isUpper ? 1.45 : 1.70;
 				const badgePos = new THREE.Vector3(
-					toothMesh.position.x + outVec.x * 1.15,
+					toothMesh.position.x + outVec.x * badgeDist,
 					targetY,
-					toothMesh.position.z + outVec.z * 1.15
+					toothMesh.position.z + outVec.z * badgeDist
 				);
 				sprite.position.copy(badgePos);
 				sprite.userData = { id: item.id };
@@ -1331,41 +1347,52 @@ const { class: className = '' } = Astro.props;
 				const isUpper = dir ? dir.arch === 'upper' : mesh.position.y > 0;
 				const outVec = getToothOutwardVector(mesh);
 
+				if (!mesh.geometry.boundingBox) mesh.geometry.computeBoundingBox();
+				const bMin = mesh.geometry.boundingBox.min;
+				const bMax = mesh.geometry.boundingBox.max;
+				const worldMinY = mesh.position.y + bMin.y;
+				const worldMaxY = mesh.position.y + bMax.y;
+				const crownY = isUpper
+					? worldMinY + (worldMaxY - worldMinY) * 0.26
+					: worldMaxY - (worldMaxY - worldMinY) * 0.26;
+
 				const numGroup = new THREE.Group();
 				numGroup.userData = { toothKey: toothName, arch: isUpper ? 'upper' : 'lower' };
 
-				// 1. Tooth Surface Dot (Luminous purple bead right on the tooth enamel)
+				// 1. Tooth Surface Dot (Luminous emerald green bead right on the tooth enamel)
 				const dotGeom = new THREE.SphereGeometry(0.08, 12, 12);
 				const dotMat = new THREE.MeshStandardMaterial({
-					color: 0xc084fc,
-					emissive: 0xa855f7,
-					emissiveIntensity: 1.0,
-					roughness: 0.2,
+					color: 0x10b981,
+					emissive: 0x059669,
+					emissiveIntensity: 1.2,
+					roughness: 0.15,
 					depthTest: true,
 					depthWrite: false
 				});
 				const surfaceDot = new THREE.Mesh(dotGeom, dotMat);
+				const dotDist = 0.50;
 				const dotPos = new THREE.Vector3(
-					mesh.position.x + outVec.x * 0.74,
-					mesh.position.y + (isUpper ? -0.1 : 0.1),
-					mesh.position.z + outVec.z * 0.74
+					mesh.position.x + outVec.x * dotDist,
+					crownY,
+					mesh.position.z + outVec.z * dotDist
 				);
 				surfaceDot.position.copy(dotPos);
 				surfaceDot.userData = { toothKey: toothName };
 				numGroup.add(surfaceDot);
 
-				// 2. Interlinking Stem Line (Cylinder connecting dot to number badge)
-				const badgeY = dotPos.y + (isUpper ? 0.52 : -0.52);
+				// 2. Interlinking Stem Line in emerald green
+				const badgeDist = isUpper ? 1.45 : 1.70;
+				const badgeY = isUpper ? (crownY + 0.62) : (crownY - 0.50);
 				const badgePos = new THREE.Vector3(
-					mesh.position.x + outVec.x * 0.95,
+					mesh.position.x + outVec.x * badgeDist,
 					badgeY,
-					mesh.position.z + outVec.z * 0.95
+					mesh.position.z + outVec.z * badgeDist
 				);
-				const stem = createStemCylinder(dotPos, badgePos, 0xa855f7, 0.012);
+				const stem = createStemCylinder(dotPos, badgePos, 0x10b981, 0.014);
 				stem.userData = { toothKey: toothName };
 				numGroup.add(stem);
 
-				// 3. Compact 2x Smaller Number Badge (pure drop shadow, no border)
+				// 3. Compact Dark Green Number Badge (pure drop shadow, emerald border, white text)
 				const numSprite = createToothNumberSprite(numStr);
 				numSprite.position.copy(badgePos);
 				numSprite.userData = { toothKey: toothName, arch: isUpper ? 'upper' : 'lower' };
