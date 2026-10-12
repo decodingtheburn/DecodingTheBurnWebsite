@@ -1310,17 +1310,18 @@ const { class: className = '' } = Astro.props;
 
 				// 3. Solid 3D Stem Cylinder connecting the tooth surface dot to the floating badge
 				const stem = createStemCylinder(dotPos, badgePos, item.color, 0.018);
+				stem.userData = { id: item.id };
 				markerGroup.add(stem);
 
 				// 4. Directional Arrow Cone pointing directly at the tooth dot
 				const arrowDir = isUpper ? new THREE.Vector3(0, -1, 0) : new THREE.Vector3(0, 1, 0);
 				const arrowCone = createArrowCone(dotPos, arrowDir, item.color);
+				arrowCone.userData = { id: item.id };
 				markerGroup.add(arrowCone);
 
 				clinicalMarkersGroup.add(markerGroup);
 				active3DMarkerObjects.push(markerGroup);
-				raycastableObjects.push(beacon);
-				raycastableObjects.push(sprite);
+				raycastableObjects.push(beacon, sprite, stem, arrowCone);
 			});
 
 			// Build Clean 3D Tooth Number Badges (#11 to #48) interlinked with dot + stem
@@ -1361,6 +1362,7 @@ const { class: className = '' } = Astro.props;
 					mesh.position.z + outVec.z * 0.95
 				);
 				const stem = createStemCylinder(dotPos, badgePos, 0xa855f7, 0.012);
+				stem.userData = { toothKey: toothName };
 				numGroup.add(stem);
 
 				// 3. Compact 2x Smaller Number Badge (pure drop shadow, no border)
@@ -1370,8 +1372,7 @@ const { class: className = '' } = Astro.props;
 				numGroup.add(numSprite);
 
 				toothNumbersGroup.add(numGroup);
-				raycastableObjects.push(numSprite);
-				raycastableObjects.push(surfaceDot);
+				raycastableObjects.push(numSprite, surfaceDot, stem);
 			});
 
 			if (loadingOverlay) loadingOverlay.classList.add('hidden');
@@ -1419,7 +1420,8 @@ const { class: className = '' } = Astro.props;
 			selectedToothMesh.material.emissive.setHex(0x1c1a17);
 		}
 
-		const targetToothKey = key === 'pocket-molar' ? 'tooth-36' : key;
+		const markerDef = CLINICAL_3D_MARKERS.find(m => m.id === key);
+		const targetToothKey = markerDef ? markerDef.tooth : (key === 'pocket-molar' ? 'tooth-36' : key);
 		if (teethMeshes[targetToothKey]) {
 			selectedToothMesh = teethMeshes[targetToothKey];
 			selectedToothMesh.material.color.setHex(0xffffff);
@@ -1599,15 +1601,30 @@ const { class: className = '' } = Astro.props;
 		return visibleHits.length > 0 ? visibleHits[0].object : null;
 	}
 
+	function resolveHitKey(hit) {
+		let curr = hit;
+		while (curr && curr !== scene) {
+			if (curr.userData) {
+				if (curr.userData.id) return curr.userData.id;
+				if (curr.userData.toothKey) return curr.userData.toothKey;
+			}
+			if (curr.name && (curr.name.startsWith('tooth-') || curr.name === 'pocket-molar')) {
+				return curr.name;
+			}
+			curr = curr.parent;
+		}
+		return hit ? hit.name || null : null;
+	}
+
 	viewport.addEventListener('mousemove', (e) => {
 		const hit = getIntersectedObject(e);
 		if (hit) {
 			viewport.style.cursor = 'pointer';
-			let key = hit.name;
-			if (hit.userData && hit.userData.id) key = hit.userData.id;
-			else if (hit.userData && hit.userData.toothKey) key = hit.userData.toothKey;
+			const key = resolveHitKey(hit);
+			const markerDef = CLINICAL_3D_MARKERS.find(m => m.id === key);
+			const targetKey = markerDef ? markerDef.tooth : key;
 
-			const info = TOOTH_DIRECTORY[key];
+			const info = TOOTH_DIRECTORY[targetKey];
 			if (info && hudHelperTip) {
 				hudHelperTip.innerHTML = `<span>🎯 <strong>Tooth #${info.fdi} [FDI] / #${info.uni} [US]</strong>: ${info.name}</span>`;
 			}
@@ -1622,14 +1639,8 @@ const { class: className = '' } = Astro.props;
 	viewport.addEventListener('click', (e) => {
 		const hit = getIntersectedObject(e);
 		if (hit) {
-			let toothKey = hit.name;
-			if (hit.userData && hit.userData.id) {
-				toothKey = hit.userData.id;
-			} else if (hit.userData && hit.userData.toothKey) {
-				toothKey = hit.userData.toothKey;
-			}
-
-			if (CLINICAL_RECORDS[toothKey] || TOOTH_DIRECTORY[toothKey]) {
+			const toothKey = resolveHitKey(hit);
+			if (toothKey && (CLINICAL_RECORDS[toothKey] || TOOTH_DIRECTORY[toothKey])) {
 				updateDiagnosticDrawer(toothKey);
 			}
 		}
