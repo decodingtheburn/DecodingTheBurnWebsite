@@ -60,12 +60,18 @@ import TongueLogo from './TongueLogo.astro';
     <a href="/contact">Contact</a>
 
     <div class="mobile-actions">
-        <a href="/follow" class="btn btn-primary">Join the mailing list</a>
+        <a href="/follow" class="btn btn-primary btn-community">
+          <span class="btn-main-text">Join the Community</span>
+          <span class="btn-sub-text">It's free</span>
+        </a>
     </div>
   </div>
 
   <div class="nav-actions">
-    <a href="/follow" class="btn btn-primary">Join the mailing list</a>
+    <a href="/follow" class="btn btn-primary btn-community">
+      <span class="btn-main-text">Join the Community</span>
+      <span class="btn-sub-text">It's free</span>
+    </a>
   </div>
 
   <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
@@ -206,6 +212,38 @@ import TongueLogo from './TongueLogo.astro';
   .dropdown-menu a:hover {
     background: #f8fafc;
     color: var(--accent) !important;
+  }
+
+  .btn-community {
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.35rem 1.15rem !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 9999px !important;
+  }
+
+  .btn-community .btn-main-text {
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em;
+    color: #ffffff !important;
+    line-height: 1.15 !important;
+    display: block;
+  }
+
+  .btn-community .btn-sub-text {
+    font-size: 0.65rem !important;
+    font-weight: 500 !important;
+    opacity: 0.9;
+    letter-spacing: 0.02em;
+    color: #ffe4e6 !important;
+    line-height: 1 !important;
+    margin-top: 1px;
+    display: block;
   }
 
   .mobile-menu-header {
