@@ -6,10 +6,9 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { generateSlidesFromPost } from '../../utils/slideEngine';
 import { sortPostsDescending, getPostEntryNumber, sortPostsAscending } from '../../utils/postUtils';
 
-// Fetch all posts including drafts, sorted by pubDate descending (most recent on top)
+// Fetch all posts including drafts, sorted strictly by pubDate descending (newest publication date first)
 const rawPosts = await getCollection('blog');
-const allPostsDescending = sortPostsDescending(rawPosts);
-const allPosts = allPostsDescending;
+const allPosts = [...rawPosts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 // Calculate slide count and metadata for each post, numbering drafts as D1, D2, D3...
 let liveCounter = 0;
@@ -1723,16 +1722,16 @@ const staticPages = [
 						<div class="filter-block">
 							<span class="filter-label">Sort Order</span>
 							<div class="filter-buttons-list sort-buttons-list">
-								<button type="button" class="sort-pill-btn active" data-sort="entry-asc">
-									<span class="filter-pill-name">
-										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-										Oldest First (#1...)
-									</span>
-								</button>
-								<button type="button" class="sort-pill-btn" data-sort="entry-desc">
+								<button type="button" class="sort-pill-btn active" data-sort="date-desc">
 									<span class="filter-pill-name">
 										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
 										Newest First
+									</span>
+								</button>
+								<button type="button" class="sort-pill-btn" data-sort="date-asc">
+									<span class="filter-pill-name">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+										Oldest First
 									</span>
 								</button>
 								<button type="button" class="sort-pill-btn" data-sort="slides-desc">
@@ -2384,7 +2383,7 @@ const staticPages = [
 			let currentStatus = 'all';
 			let currentCategory = 'all';
 			let currentSearch = '';
-			let currentSort = 'entry-asc';
+			let currentSort = 'date-desc';
 			let currentGroup = 'none';
 			let currentCols = '2';
 
@@ -2419,22 +2418,30 @@ const staticPages = [
 					}
 				});
 
-				// Sort visible cards
+				// Sort visible cards strictly
 				const visibleCards = allCards.filter(c => c.style.display !== 'none');
 				visibleCards.sort((a, b) => {
+					const timeA = parseInt(a.getAttribute('data-timestamp') || '0', 10);
+					const timeB = parseInt(b.getAttribute('data-timestamp') || '0', 10);
 					const entryA = parseInt(a.getAttribute('data-sort-order') || a.getAttribute('data-entry') || '0', 10);
 					const entryB = parseInt(b.getAttribute('data-sort-order') || b.getAttribute('data-entry') || '0', 10);
 					const slidesA = parseInt(a.getAttribute('data-slides') || '0', 10);
 					const slidesB = parseInt(b.getAttribute('data-slides') || '0', 10);
 					const titleA = a.getAttribute('data-title') || '';
 					const titleB = b.getAttribute('data-title') || '';
-					const timeA = parseInt(a.getAttribute('data-timestamp') || '0', 10);
-					const timeB = parseInt(b.getAttribute('data-timestamp') || '0', 10);
 
-					if (currentSort === 'entry-desc') return entryB - entryA || timeB - timeA;
-					if (currentSort === 'entry-asc') return entryA - entryB || timeA - timeB;
-					if (currentSort === 'slides-desc') return slidesB - slidesA || entryB - entryA;
-					if (currentSort === 'title-asc') return titleA.localeCompare(titleB);
+					if (currentSort === 'date-desc' || currentSort === 'entry-desc') {
+						return timeB - timeA || entryB - entryA;
+					}
+					if (currentSort === 'date-asc' || currentSort === 'entry-asc') {
+						return timeA - timeB || entryA - entryB;
+					}
+					if (currentSort === 'slides-desc') {
+						return slidesB - slidesA || timeB - timeA;
+					}
+					if (currentSort === 'title-asc') {
+						return titleA.localeCompare(titleB);
+					}
 					return 0;
 				});
 
@@ -2601,7 +2608,7 @@ const staticPages = [
 				currentSearch = '';
 				currentStatus = 'all';
 				currentCategory = 'all';
-				currentSort = 'entry-desc';
+				currentSort = 'date-desc';
 				currentGroup = 'none';
 				currentCols = '2';
 
@@ -2616,7 +2623,7 @@ const staticPages = [
 				});
 
 				sortButtons.forEach(b => {
-					if (b.getAttribute('data-sort') === 'entry-desc') b.classList.add('active');
+					if (b.getAttribute('data-sort') === 'date-desc') b.classList.add('active');
 					else b.classList.remove('active');
 				});
 
