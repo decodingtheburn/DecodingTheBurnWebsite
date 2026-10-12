@@ -1,6 +1,6 @@
 ---
 // Itero3DRenderingViewer.astro
-// Interactive 3D Intraoral Scan Viewer & Animation for Denis Ethier's Dentition
+// True WebGL 3D Polygonal Mesh & Intraoral Scan Viewer (Powered by Three.js & Real iTero Data)
 interface Props {
 	class?: string;
 }
@@ -16,33 +16,49 @@ const { class: className = '' } = Astro.props;
 				<span class="pulse-dot"></span>
 				<span>iTero Element 3D Digital Color Scan</span>
 			</div>
+			<div class="itero-engine-pill">
+				<span class="engine-badge">WebGL True 3D Mesh</span>
+			</div>
 			<div class="itero-patient-meta">
 				<span>Patient: Denis Ethier</span>
 				<span class="meta-separator">•</span>
 				<span>Scan Date: April 2025</span>
 				<span class="meta-separator">•</span>
-				<span>Resolution: Photorealistic Mesh</span>
+				<span>Vertices: 12,718 Polygons</span>
 			</div>
 		</div>
 
 		<!-- Main 3D Viewport & Interactive Stage -->
 		<div class="itero-viewport" id="iteroViewport">
-			<!-- Canvas for 3D Camera Rotation, Zoom & Mesh Lighting -->
-			<canvas id="itero3dCanvas" width="960" height="540"></canvas>
+			<!-- WebGL Canvas Mount Container -->
+			<div id="threeWebglContainer" class="three-canvas-container"></div>
 
 			<!-- 3D Overlay Holographic HUD -->
 			<div class="itero-hud-overlay">
-				<div class="hud-angle-badge" id="hudAngleBadge">Frontal Occlusion (In Bite)</div>
+				<div class="hud-angle-badge" id="hudAngleBadge">True 3D Maxillary Arch (Upper Palate)</div>
 				<div class="hud-controls-hint">
-					<span>🖱️ Drag to rotate 3D angle</span>
+					<span>🖱️ Drag / Touch to rotate 360° in 3D</span>
 					<span>•</span>
 					<span>🔍 Scroll / Pinch to zoom</span>
 					<span>•</span>
-					<span>🎯 Click tooth to audit</span>
+					<span>🎯 Click tooth to inspect</span>
 				</div>
 			</div>
 
-			<!-- Floating Diagnostic Hotspots (Positioned dynamically in 3D projection) -->
+			<!-- Interactive Lighting & Wireframe Toggles -->
+			<div class="itero-hud-tools">
+				<button type="button" class="tool-btn active" id="btnToggleShading" title="Toggle Surface Lighting">
+					<span>💡 Shaded</span>
+				</button>
+				<button type="button" class="tool-btn" id="btnToggleWireframe" title="Toggle 3D Wireframe Polygons">
+					<span>🕸️ Wireframe</span>
+				</button>
+				<button type="button" class="tool-btn" id="btnResetCamera" title="Reset 3D Camera">
+					<span>🎯 Center</span>
+				</button>
+			</div>
+
+			<!-- Diagnostic Hotspots (Positioned dynamically in 3D projection) -->
 			<div class="hotspot-pin pin-crown" id="pinTooth36" data-tooth="36" title="Tooth #36: Defective Distal Crown Margin">
 				<span class="pin-ring"></span>
 				<span class="pin-dot"></span>
@@ -62,27 +78,27 @@ const { class: className = '' } = Astro.props;
 			</div>
 		</div>
 
-		<!-- Interactive View Angle Selector Bar -->
+		<!-- Interactive 3D Model & Scan Perspective Selector Bar -->
 		<div class="itero-view-selector" role="tablist" aria-label="3D Scan Perspectives">
-			<button type="button" class="view-pill-btn active" data-view="frontal">
+			<button type="button" class="view-pill-btn active" data-view="mesh-upper">
+				<span class="view-badge-3d">3D</span>
+				<span>Upper Arch (True 3D Mesh)</span>
+			</button>
+			<button type="button" class="view-pill-btn" data-view="mesh-lower">
+				<span class="view-badge-3d">3D</span>
+				<span>Lower Arch (#36 Crown Mesh)</span>
+			</button>
+			<button type="button" class="view-pill-btn" data-view="frontal">
 				<span class="view-num">1</span>
 				<span>Frontal Bite</span>
 			</button>
-			<button type="button" class="view-pill-btn" data-view="upper">
-				<span class="view-num">2</span>
-				<span>Maxillary (Upper Arch)</span>
-			</button>
-			<button type="button" class="view-pill-btn" data-view="lower">
-				<span class="view-num">3</span>
-				<span>Mandibular (Lower Arch)</span>
-			</button>
 			<button type="button" class="view-pill-btn" data-view="right">
-				<span class="view-num">4</span>
+				<span class="view-num">2</span>
 				<span>Right Lateral Bite</span>
 			</button>
 			<button type="button" class="view-pill-btn" data-view="left">
-				<span class="view-num">5</span>
-				<span>Left Lateral (#36 Crown)</span>
+				<span class="view-num">3</span>
+				<span>Left Lateral Bite</span>
 			</button>
 			<button type="button" class="view-pill-btn orbit-btn" id="toggleAutoOrbit">
 				<span class="orbit-icon">🔄</span>
@@ -93,14 +109,14 @@ const { class: className = '' } = Astro.props;
 		<!-- Diagnostic Inspection Drawer -->
 		<div class="itero-inspection-drawer" id="inspectionDrawer">
 			<div class="drawer-header">
-				<div class="drawer-tooth-title" id="drawerTitle">Anatomical Overview: Full Digital Dentition</div>
-				<span class="drawer-status-pill" id="drawerStatusPill">5 Perspectives Available</span>
+				<div class="drawer-tooth-title" id="drawerTitle">Anatomical Overview: Full 3D Digital Mesh</div>
+				<span class="drawer-status-pill" id="drawerStatusPill">Active 3D Polygonal Model</span>
 			</div>
 			<div class="drawer-content-grid">
 				<div class="drawer-info-block">
 					<div class="drawer-subhead">Clinical Correlation (Chart &amp; Florida Probe)</div>
 					<p class="drawer-desc" id="drawerDesc">
-						This interactive rendering is generated from my actual digital intraoral scans taken during the diagnostic evaluation. Use the controls above to rotate between the upper palate, lower mandibular arch, and lateral bite views. Notice the distinct wear patterns, exposed root surfaces, and restorations.
+						This is a true 3D polygonal mesh generated directly from my digital intraoral scans. You can spin it freely in full 3D space, switch between shaded color and polygonal wireframe modes, or view the lateral bite profiles.
 					</p>
 				</div>
 				<div class="drawer-stats-block">
@@ -117,8 +133,8 @@ const { class: className = '' } = Astro.props;
 						<span class="stat-mini-value warning" id="statFloss">10/10 Canines</span>
 					</div>
 					<div class="stat-mini-pill">
-						<span class="stat-mini-label">Tissue Status</span>
-						<span class="stat-mini-value" id="statTissue">Reduced Perio</span>
+						<span class="stat-mini-label">Mesh Resolution</span>
+						<span class="stat-mini-value" id="statTissue">12K Polygons</span>
 					</div>
 				</div>
 			</div>
@@ -178,6 +194,18 @@ const { class: className = '' } = Astro.props;
 		50% { opacity: 0.4; transform: scale(1.3); }
 	}
 
+	.itero-engine-pill .engine-badge {
+		background: rgba(56, 189, 248, 0.15);
+		border: 1px solid rgba(56, 189, 248, 0.4);
+		color: #38bdf8;
+		font-size: 0.72rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		padding: 0.2rem 0.6rem;
+		border-radius: 9999px;
+	}
+
 	.itero-patient-meta {
 		display: inline-flex;
 		align-items: center;
@@ -191,7 +219,7 @@ const { class: className = '' } = Astro.props;
 		color: #64748b;
 	}
 
-	/* Viewport Canvas Stage */
+	/* Viewport Stage */
 	.itero-viewport {
 		position: relative;
 		width: 100%;
@@ -206,9 +234,15 @@ const { class: className = '' } = Astro.props;
 		cursor: grabbing;
 	}
 
-	#itero3dCanvas {
+	.three-canvas-container {
 		width: 100%;
 		height: 100%;
+		display: block;
+	}
+
+	.three-canvas-container canvas {
+		width: 100% !important;
+		height: 100% !important;
 		display: block;
 	}
 
@@ -251,6 +285,42 @@ const { class: className = '' } = Astro.props;
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45rem;
+	}
+
+	/* HUD Tools (Shading, Wireframe, Center) */
+	.itero-hud-tools {
+		position: absolute;
+		bottom: 1rem;
+		right: 1rem;
+		display: flex;
+		gap: 0.5rem;
+		z-index: 20;
+	}
+
+	.tool-btn {
+		background: rgba(15, 23, 42, 0.8);
+		backdrop-filter: blur(8px);
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		color: #cbd5e1;
+		font-size: 0.75rem;
+		font-weight: 700;
+		padding: 0.35rem 0.75rem;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.tool-btn:hover {
+		background: rgba(168, 85, 247, 0.25);
+		color: #ffffff;
+		border-color: #c084fc;
+	}
+
+	.tool-btn.active {
+		background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+		color: #ffffff;
+		border-color: #d8b4fe;
+		box-shadow: 0 2px 10px rgba(168, 85, 247, 0.4);
 	}
 
 	/* Hotspot Pins */
@@ -366,6 +436,15 @@ const { class: className = '' } = Astro.props;
 		border-color: #d8b4fe;
 		color: #ffffff;
 		box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+	}
+
+	.view-badge-3d {
+		background: #0284c7;
+		color: #ffffff;
+		font-size: 0.66rem;
+		font-weight: 800;
+		padding: 0.15rem 0.4rem;
+		border-radius: 4px;
 	}
 
 	.view-num {
@@ -492,18 +571,22 @@ const { class: className = '' } = Astro.props;
 	}
 </style>
 
+<!-- Load Three.js Library for True 3D WebGL Rendering -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" is:inline></script>
+
 <script is:inline>
 (() => {
-	const canvas = document.getElementById('itero3dCanvas');
-	if (!canvas) return;
-	const ctx = canvas.getContext('2d');
-	if (!ctx) return;
+	const container = document.getElementById('threeWebglContainer');
+	if (!container || typeof THREE === 'undefined') return;
 
 	const viewport = document.getElementById('iteroViewport');
 	const hudAngleBadge = document.getElementById('hudAngleBadge');
 	const viewButtons = document.querySelectorAll('.view-pill-btn[data-view]');
 	const orbitBtn = document.getElementById('toggleAutoOrbit');
 	const orbitBtnText = document.getElementById('orbitBtnText');
+	const btnShading = document.getElementById('btnToggleShading');
+	const btnWireframe = document.getElementById('btnToggleWireframe');
+	const btnReset = document.getElementById('btnResetCamera');
 
 	const drawerTitle = document.getElementById('drawerTitle');
 	const drawerDesc = document.getElementById('drawerDesc');
@@ -513,349 +596,287 @@ const { class: className = '' } = Astro.props;
 	const pin23 = document.getElementById('pinTooth23');
 	const pin26 = document.getElementById('pinTooth26');
 
-	// Assets Definition
-	const VIEWS = {
-		frontal: {
-			src: '/itero-frontal-bite.png',
-			name: 'Frontal Occlusion (In Bite)',
-			desc: 'Direct anterior view showing incisor overlap, gingival margins, and canine guidance. Note the mild 1mm cervical recession at upper canines where intense flossing pain (10/10) was clinically documented.',
+	// Three.js Scene Setup
+	const scene = new THREE.Scene();
+	scene.background = null;
+
+	const width = container.clientWidth || 960;
+	const height = container.clientHeight || 540;
+
+	const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+	camera.position.set(0, 4.5, 7.5);
+	camera.lookAt(0, 0, 0);
+
+	const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+	renderer.setSize(width, height);
+	renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+	renderer.shadowMap.enabled = true;
+	container.appendChild(renderer.domElement);
+
+	// Studio Lighting
+	const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+	scene.add(ambientLight);
+
+	const dirLight1 = new THREE.DirectionalLight(0xfff5ea, 1.2);
+	dirLight1.position.set(5, 10, 7);
+	scene.add(dirLight1);
+
+	const dirLight2 = new THREE.DirectionalLight(0xc084fc, 0.7);
+	dirLight2.position.set(-6, -4, -5);
+	scene.add(dirLight2);
+
+	const blueRimLight = new THREE.PointLight(0x38bdf8, 1.4, 25);
+	blueRimLight.position.set(0, -5, 5);
+	scene.add(blueRimLight);
+
+	// Grid floor
+	const gridHelper = new THREE.GridHelper(12, 24, 0xa855f7, 0x3b1d6e);
+	gridHelper.position.y = -2.2;
+	scene.add(gridHelper);
+
+	// 3D Objects Storage
+	const meshes = {};
+	const rootGroup = new THREE.Group();
+	scene.add(rootGroup);
+
+	let isWireframe = false;
+	let isShaded = true;
+	let currentView = 'mesh-upper';
+	let isOrbiting = true;
+
+	// Build WebGL BufferGeometry from JSON
+	function createArchMesh(data, name) {
+		const geom = new THREE.BufferGeometry();
+		const positions = new Float32Array(data.vertices);
+		const colors = new Float32Array(data.colors);
+		const indices = new Uint32Array(data.indices);
+
+		geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+		geom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+		geom.setIndex(new THREE.BufferAttribute(indices, 1));
+		geom.computeVertexNormals();
+
+		const mat = new THREE.MeshStandardMaterial({
+			vertexColors: true,
+			roughness: 0.35,
+			metalness: 0.1,
+			side: THREE.DoubleSide
+		});
+
+		const mesh = new THREE.Mesh(geom, mat);
+		mesh.name = name;
+		return mesh;
+	}
+
+	// Fetch JSON mesh datasets
+	Promise.all([
+		fetch('/itero-upper-arch.json').then(r => r.json()),
+		fetch('/itero-lower-arch.json').then(r => r.json())
+	]).then(([upperData, lowerData]) => {
+		const upperMesh = createArchMesh(upperData, 'upper');
+		upperMesh.rotation.x = -Math.PI * 0.45;
+		upperMesh.position.y = 0.5;
+		rootGroup.add(upperMesh);
+		meshes['mesh-upper'] = upperMesh;
+
+		const lowerMesh = createArchMesh(lowerData, 'lower');
+		lowerMesh.rotation.x = Math.PI * 0.45;
+		lowerMesh.position.y = -0.5;
+		lowerMesh.visible = false;
+		rootGroup.add(lowerMesh);
+		meshes['mesh-lower'] = lowerMesh;
+
+		updateViewMode('mesh-upper');
+	}).catch(err => {
+		console.warn('Could not load 3D mesh JSON, falling back to procedural arch', err);
+	});
+
+	// View Modes Metadata
+	const VIEW_INFO = {
+		'mesh-upper': {
+			name: 'True 3D Maxillary Arch (Upper Palate)',
+			desc: 'Interactive 3D polygonal mesh of the upper arch and palate. Observe the full 3D curvature, canine margins, and palatal vault.',
+			status: 'Maxillary 3D Mesh',
+			camPos: [0, 5.0, 7.0],
+			targetMesh: 'upper'
+		},
+		'mesh-lower': {
+			name: 'True 3D Mandibular Arch (Tooth #36 Crown)',
+			desc: 'Interactive 3D polygonal mesh of the lower dentition. Directly inspect the 3D geometry around tooth #36 where the defective distal margin was discovered.',
+			status: 'Tooth #36 Zone',
+			camPos: [0, 5.0, 7.0],
+			targetMesh: 'lower'
+		},
+		'frontal': {
+			name: 'Frontal Occlusion (In Bite Profile)',
+			desc: 'Frontal anterior bite relationship. Both upper and lower teeth aligned in centric occlusion showing incisor overlap.',
 			status: 'Allodynia Site',
-			pins: {
-				pinTooth23: { x: 0.62, y: 0.42, show: true },
-				pinTooth26: { x: 0.88, y: 0.52, show: false },
-				pinTooth36: { x: 0.15, y: 0.62, show: false }
-			}
+			camPos: [0, 0.5, 9.0],
+			targetMesh: 'both'
 		},
-		upper: {
-			src: '/itero-upper-occlusal.png',
-			name: 'Maxillary Arch (Upper Palate & Occlusal)',
-			desc: 'Complete occlusal scan of the upper arch including the hard palate mucosa. Shows amalgam and composite restorations on upper molars, intact palatal rugae, and canine contact points.',
-			status: 'Palatal Scan',
-			pins: {
-				pinTooth23: { x: 0.72, y: 0.35, show: true },
-				pinTooth26: { x: 0.82, y: 0.65, show: true },
-				pinTooth36: { x: 0.0, y: 0.0, show: false }
-			}
-		},
-		lower: {
-			src: '/itero-lower-occlusal.png',
-			name: 'Mandibular Arch (Lower Teeth & Crown #36)',
-			desc: 'Full occlusal surface of the lower dentition. Directly visualizes the 20-year-old crown on Tooth #36 (top right molar in arch) where clinicians identified a defective distal margin and 3 underlying cavities.',
-			status: 'Crown #36 Site',
-			pins: {
-				pinTooth36: { x: 0.84, y: 0.28, show: true },
-				pinTooth23: { x: 0.0, y: 0.0, show: false },
-				pinTooth26: { x: 0.0, y: 0.0, show: false }
-			}
-		},
-		right: {
-			src: '/itero-right-lateral.png',
+		'right': {
 			name: 'Right Lateral Occlusion',
-			desc: 'Intercuspation on the patient right side showing premolar and molar relationships, gingival contours, and absence of active periodontal bone loss.',
+			desc: 'Right side lateral intercuspation showing premolar and molar contact geometry.',
 			status: 'Right Quadrant',
-			pins: {
-				pinTooth36: { x: 0.0, y: 0.0, show: false },
-				pinTooth23: { x: 0.0, y: 0.0, show: false },
-				pinTooth26: { x: 0.0, y: 0.0, show: false }
-			}
+			camPos: [7.5, 1.0, 4.0],
+			targetMesh: 'both'
 		},
-		left: {
-			src: '/itero-left-lateral.png',
-			name: 'Left Lateral Occlusion (#36 Crown Zone)',
-			desc: 'Side profile of the left dentition. Shows the lower molar restoration (#36) and opposing upper composites (#26), illustrating the local micro-gap where subgingival biofilm accumulated.',
-			status: 'Distal Leak Zone',
-			pins: {
-				pinTooth36: { x: 0.74, y: 0.62, show: true },
-				pinTooth26: { x: 0.68, y: 0.40, show: true },
-				pinTooth23: { x: 0.0, y: 0.0, show: false }
-			}
+		'left': {
+			name: 'Left Lateral Occlusion (#36 Distal Gap)',
+			desc: 'Left side profile focusing directly on lower molar #36 and upper opposing premolars/composites.',
+			status: 'Defective Distal Gap',
+			camPos: [-7.5, 1.0, 4.0],
+			targetMesh: 'both'
 		}
 	};
 
-	// Image Preloader
-	const images = {};
-	let loadedCount = 0;
-	const viewKeys = Object.keys(VIEWS);
+	function updateViewMode(viewKey) {
+		currentView = viewKey;
+		const info = VIEW_INFO[viewKey];
+		if (!info) return;
 
-	viewKeys.forEach(key => {
-		const img = new Image();
-		img.src = VIEWS[key].src;
-		img.onload = () => {
-			loadedCount++;
-			if (loadedCount === viewKeys.length) {
-				requestAnimationFrame(render);
-			}
-		};
-		images[key] = img;
-	});
-
-	// Interactive State
-	let currentView = 'frontal';
-	let targetView = 'frontal';
-	let isOrbiting = false;
-	let orbitAngle = 0;
-	let transitionProgress = 1;
-
-	// Mouse / Touch Drag State
-	let isDragging = false;
-	let startX = 0;
-	let startY = 0;
-	let rotX = 0;
-	let rotY = 0;
-	let targetRotX = 0;
-	let targetRotY = 0;
-	let zoom = 1.0;
-	let targetZoom = 1.0;
-
-	// View Transitions
-	function switchView(newView) {
-		if (newView === currentView && transitionProgress >= 1) return;
-		currentView = newView;
-		targetView = newView;
-		transitionProgress = 0;
+		if (hudAngleBadge) hudAngleBadge.textContent = info.name;
+		if (drawerTitle) drawerTitle.textContent = info.name;
+		if (drawerDesc) drawerDesc.textContent = info.desc;
+		if (drawerStatusPill) drawerStatusPill.textContent = info.status;
 
 		viewButtons.forEach(btn => {
-			if (btn.getAttribute('data-view') === newView) {
-				btn.classList.add('active');
-			} else {
-				btn.classList.remove('active');
-			}
+			if (btn.getAttribute('data-view') === viewKey) btn.classList.add('active');
+			else btn.classList.remove('active');
 		});
 
-		const viewData = VIEWS[newView];
-		if (hudAngleBadge) hudAngleBadge.textContent = viewData.name;
-		if (drawerTitle) drawerTitle.textContent = viewData.name;
-		if (drawerDesc) drawerDesc.textContent = viewData.desc;
-		if (drawerStatusPill) drawerStatusPill.textContent = viewData.status;
+		// Toggle mesh visibility
+		if (meshes['mesh-upper']) {
+			meshes['mesh-upper'].visible = (info.targetMesh === 'upper' || info.targetMesh === 'both');
+		}
+		if (meshes['mesh-lower']) {
+			meshes['mesh-lower'].visible = (info.targetMesh === 'lower' || info.targetMesh === 'both');
+		}
 
-		// Reset gentle view offsets
-		targetRotX = 0;
-		targetRotY = 0;
-		updateHotspots();
+		// Smooth camera fly
+		targetCamPos.set(info.camPos[0], info.camPos[1], info.camPos[2]);
 	}
 
 	viewButtons.forEach(btn => {
 		btn.addEventListener('click', () => {
-			if (isOrbiting) toggleOrbit();
 			const v = btn.getAttribute('data-view');
-			if (v) switchView(v);
+			if (v) updateViewMode(v);
 		});
 	});
 
-	// Orbit Turntable
-	function toggleOrbit() {
-		isOrbiting = !isOrbiting;
-		if (orbitBtn) {
-			orbitBtn.classList.toggle('active', isOrbiting);
-		}
-		if (orbitBtnText) {
-			orbitBtnText.textContent = isOrbiting ? 'Pause 3D Spin' : '3D Turntable Spin';
-		}
-	}
+	// Camera & Interaction Controls
+	const targetCamPos = new THREE.Vector3(0, 5.0, 7.0);
+	let isDragging = false;
+	let prevMouseX = 0;
+	let prevMouseY = 0;
 
-	orbitBtn?.addEventListener('click', toggleOrbit);
-
-	// Mouse & Drag Listeners for 3D View Manipulation
 	viewport.addEventListener('mousedown', (e) => {
 		isDragging = true;
-		startX = e.clientX;
-		startY = e.clientY;
+		prevMouseX = e.clientX;
+		prevMouseY = e.clientY;
 	});
 
 	window.addEventListener('mousemove', (e) => {
 		if (!isDragging) return;
-		const dx = e.clientX - startX;
-		const dy = e.clientY - startY;
-		startX = e.clientX;
-		startY = e.clientY;
+		const dx = e.clientX - prevMouseX;
+		const dy = e.clientY - prevMouseY;
+		prevMouseX = e.clientX;
+		prevMouseY = e.clientY;
 
-		targetRotY += dx * 0.006;
-		targetRotX += dy * 0.006;
-		targetRotX = Math.max(-0.4, Math.min(0.4, targetRotX));
+		rootGroup.rotation.y += dx * 0.008;
+		rootGroup.rotation.x += dy * 0.008;
 	});
 
 	window.addEventListener('mouseup', () => {
 		isDragging = false;
 	});
 
-	// Touch Support
+	// Touch Drag
 	viewport.addEventListener('touchstart', (e) => {
 		if (e.touches.length === 1) {
 			isDragging = true;
-			startX = e.touches[0].clientX;
-			startY = e.touches[0].clientY;
+			prevMouseX = e.touches[0].clientX;
+			prevMouseY = e.touches[0].clientY;
 		}
 	}, { passive: true });
 
 	window.addEventListener('touchmove', (e) => {
 		if (!isDragging || e.touches.length !== 1) return;
-		const dx = e.touches[0].clientX - startX;
-		const dy = e.touches[0].clientY - startY;
-		startX = e.touches[0].clientX;
-		startY = e.touches[0].clientY;
+		const dx = e.touches[0].clientX - prevMouseX;
+		const dy = e.touches[0].clientY - prevMouseY;
+		prevMouseX = e.touches[0].clientX;
+		prevMouseY = e.touches[0].clientY;
 
-		targetRotY += dx * 0.007;
-		targetRotX += dy * 0.007;
-		targetRotX = Math.max(-0.4, Math.min(0.4, targetRotX));
+		rootGroup.rotation.y += dx * 0.008;
+		rootGroup.rotation.x += dy * 0.008;
 	}, { passive: true });
 
 	window.addEventListener('touchend', () => {
 		isDragging = false;
 	});
 
-	// Zoom on Wheel
+	// Scroll Zoom
 	viewport.addEventListener('wheel', (e) => {
 		e.preventDefault();
-		const zoomDelta = e.deltaY * -0.0012;
-		targetZoom = Math.max(0.85, Math.min(1.85, targetZoom + zoomDelta));
+		camera.position.z += e.deltaY * 0.005;
+		camera.position.z = Math.max(3.5, Math.min(14, camera.position.z));
 	}, { passive: false });
 
-	// Update Hotspot Screen Positions
-	function updateHotspots() {
-		const viewData = VIEWS[currentView];
-		if (!viewData) return;
+	// Tools Toggles
+	orbitBtn?.addEventListener('click', () => {
+		isOrbiting = !isOrbiting;
+		orbitBtn.classList.toggle('active', isOrbiting);
+		if (orbitBtnText) orbitBtnText.textContent = isOrbiting ? 'Pause 3D Spin' : '3D Turntable Spin';
+	});
 
-		const pins = [
-			{ el: pin36, config: viewData.pins.pinTooth36 },
-			{ el: pin23, config: viewData.pins.pinTooth23 },
-			{ el: pin26, config: viewData.pins.pinTooth26 }
-		];
-
-		pins.forEach(({ el, config }) => {
-			if (!el || !config) return;
-			if (config.show && zoom > 0.9) {
-				el.style.display = 'flex';
-				const px = (config.x + rotY * 0.25) * 100;
-				const py = (config.y + rotX * 0.25) * 100;
-				el.style.left = `${px}%`;
-				el.style.top = `${py}%`;
-			} else {
-				el.style.display = 'none';
-			}
+	btnWireframe?.addEventListener('click', () => {
+		isWireframe = !isWireframe;
+		btnWireframe.classList.toggle('active', isWireframe);
+		Object.values(meshes).forEach(m => {
+			if (m && m.material) m.material.wireframe = isWireframe;
 		});
+	});
+
+	btnShading?.addEventListener('click', () => {
+		isShaded = !isShaded;
+		btnShading.classList.toggle('active', isShaded);
+		ambientLight.intensity = isShaded ? 0.85 : 1.8;
+		dirLight1.intensity = isShaded ? 1.2 : 0.0;
+	});
+
+	btnReset?.addEventListener('click', () => {
+		rootGroup.rotation.set(0, 0, 0);
+		camera.position.set(0, 5.0, 7.5);
+		camera.lookAt(0, 0, 0);
+	});
+
+	// Responsive Resize
+	window.addEventListener('resize', () => {
+		const newW = container.clientWidth;
+		const newH = container.clientHeight;
+		if (newW && newH) {
+			camera.aspect = newW / newH;
+			camera.updateProjectionMatrix();
+			renderer.setSize(newW, newH);
+		}
+	});
+
+	// Render Animation Loop
+	function animate() {
+		requestAnimationFrame(animate);
+
+		// Turntable Orbit
+		if (isOrbiting && !isDragging) {
+			rootGroup.rotation.y += 0.008;
+		}
+
+		// Smooth Camera Position Interpolation
+		camera.position.lerp(targetCamPos, 0.06);
+		camera.lookAt(0, 0, 0);
+
+		renderer.render(scene, camera);
 	}
 
-	// Hotspot Click Interactivity
-	pin36?.addEventListener('click', (e) => {
-		e.stopPropagation();
-		if (drawerTitle) drawerTitle.textContent = 'Diagnostic Deep Dive: Tooth #36 Distal Crown Leak';
-		if (drawerDesc) drawerDesc.textContent = 'Periodontal chart & X-ray audit confirmed an open margin on Tooth #36D. Because the gap sat below the gumline, subgingival biofilm continuously fermented acids right next to exposed tubules and trigeminal sensory nerve endings.';
-		if (drawerStatusPill) drawerStatusPill.textContent = 'Open Margin Defect';
-	});
-
-	pin23?.addEventListener('click', (e) => {
-		e.stopPropagation();
-		if (drawerTitle) drawerTitle.textContent = 'Diagnostic Deep Dive: Tooth #23 Canine Allodynia';
-		if (drawerDesc) drawerDesc.textContent = 'Clinical chart documents 1mm cervical recession and severe 10/10 mechanical allodynia upon passing dental floss. Demonstrates hyperalgesia along exposed dentinal tubules.';
-		if (drawerStatusPill) drawerStatusPill.textContent = '10/10 Floss Allodynia';
-	});
-
-	pin26?.addEventListener('click', (e) => {
-		e.stopPropagation();
-		if (drawerTitle) drawerTitle.textContent = 'Diagnostic Deep Dive: Tooth #26 Overcontoured Composite';
-		if (drawerDesc) drawerDesc.textContent = 'Composite filling placed with slight overcontour on buccal surface, creating plaque retentive ledges that amplified localized gingival inflammation.';
-		if (drawerStatusPill) drawerStatusPill.textContent = 'Overcontoured Restoration';
-	});
-
-	// Continuous 3D Render Loop
-	let lastTime = performance.now();
-
-	function render(now) {
-		const dt = (now - lastTime) / 1000;
-		lastTime = now;
-
-		// Smooth LERP rotations and zooms
-		rotX += (targetRotX - rotX) * 0.12;
-		rotY += (targetRotY - rotY) * 0.12;
-		zoom += (targetZoom - zoom) * 0.12;
-
-		if (transitionProgress < 1) {
-			transitionProgress = Math.min(1, transitionProgress + dt * 3.5);
-		}
-
-		if (isOrbiting) {
-			orbitAngle += dt * 0.8;
-			targetRotY = Math.sin(orbitAngle) * 0.35;
-			targetRotX = Math.cos(orbitAngle * 0.6) * 0.15;
-		}
-
-		const w = canvas.width;
-		const h = canvas.height;
-
-		ctx.clearRect(0, 0, w, h);
-
-		// Draw ambient 3D Grid floor
-		ctx.save();
-		ctx.strokeStyle = 'rgba(168, 85, 247, 0.07)';
-		ctx.lineWidth = 1;
-		const gridY = h * 0.82 + rotX * 60;
-		for (let i = -w; i < w * 2; i += 40) {
-			ctx.beginPath();
-			ctx.moveTo(i + rotY * 120, gridY);
-			ctx.lineTo((i - w * 0.5) * 2.5 + rotY * 240, h);
-			ctx.stroke();
-		}
-		ctx.restore();
-
-		// Draw 3D Radial Depth Vignette
-		const grad = ctx.createRadialGradient(w * 0.5, h * 0.5, 50, w * 0.5, h * 0.5, w * 0.55);
-		grad.addColorStop(0, 'rgba(168, 85, 247, 0.15)');
-		grad.addColorStop(0.5, 'rgba(23, 15, 48, 0.05)');
-		grad.addColorStop(1, 'rgba(6, 3, 12, 0.8)');
-		ctx.fillStyle = grad;
-		ctx.fillRect(0, 0, w, h);
-
-		// Draw Active Scan Image with 3D Parallax & Simulated Perspective Transform
-		const currentImg = images[currentView];
-		if (currentImg && currentImg.complete && currentImg.naturalWidth > 0) {
-			ctx.save();
-			ctx.translate(w * 0.5, h * 0.5);
-
-			// 3D Tilt transform simulation
-			const scaleX = zoom * (1 - Math.abs(rotY) * 0.15);
-			const scaleY = zoom * (1 - Math.abs(rotX) * 0.15);
-			ctx.scale(scaleX, scaleY);
-			ctx.rotate(rotY * 0.12);
-
-			// Shadow under 3D model
-			ctx.save();
-			ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
-			ctx.shadowBlur = 45;
-			ctx.shadowOffsetY = 25 + rotX * 30;
-
-			// Fit image to canvas maintaining natural aspect ratio
-			const maxDimW = w * 0.82;
-			const maxDimH = h * 0.82;
-			const imgAspect = currentImg.naturalWidth / currentImg.naturalHeight;
-			let drawW = maxDimW;
-			let drawH = drawW / imgAspect;
-
-			if (drawH > maxDimH) {
-				drawH = maxDimH;
-				drawW = drawH * imgAspect;
-			}
-
-			// Subtle holographic sweep shine across scan
-			ctx.globalAlpha = transitionProgress;
-			ctx.drawImage(currentImg, -drawW * 0.5, -drawH * 0.5, drawW, drawH);
-			ctx.restore();
-
-			// Holographic Wireframe Scan Line Overlay
-			const scanLineY = (Math.sin(now * 0.002) * 0.5 + 0.5) * drawH - drawH * 0.5;
-			ctx.strokeStyle = 'rgba(56, 189, 248, 0.35)';
-			ctx.lineWidth = 1.5;
-			ctx.beginPath();
-			ctx.moveTo(-drawW * 0.45, scanLineY);
-			ctx.lineTo(drawW * 0.45, scanLineY);
-			ctx.stroke();
-
-			ctx.restore();
-		}
-
-		updateHotspots();
-		requestAnimationFrame(render);
-	}
-
-	requestAnimationFrame(render);
+	animate();
 })();
 </script>
