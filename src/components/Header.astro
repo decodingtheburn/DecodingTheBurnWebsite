@@ -180,14 +180,14 @@ import TongueLogo from './TongueLogo.astro';
     left: 50%;
     transform: translateX(-50%) translateY(8px);
     background: #ffffff;
-    border: 1px solid var(--card-border);
+    border: 1px solid rgba(226, 232, 240, 0.9);
     border-radius: 12px;
-    box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.12);
-    min-width: 190px;
-    padding: 0.5rem 0;
+    box-shadow: 0 14px 35px -6px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+    min-width: 195px;
+    padding: 0.45rem 0.4rem;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1050;
   }
 
@@ -195,22 +195,26 @@ import TongueLogo from './TongueLogo.astro';
   .nav-dropdown:focus-within .dropdown-menu {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(2px);
+    transform: translateX(-50%) translateY(4px);
   }
 
   .dropdown-menu a {
     display: block;
-    padding: 0.6rem 1.15rem;
+    padding: 0.55rem 0.95rem;
     color: #334155 !important;
-    font-size: 0.9rem !important;
+    font-size: 0.88rem !important; /* Exactly matches main menu font size */
     font-weight: 600 !important;
     text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease;
+    border-radius: 8px;
+    border-left: 2.5px solid transparent;
+    transition: all 0.18s ease;
   }
 
   .dropdown-menu a:hover {
-    background: #f8fafc;
-    color: var(--accent) !important;
+    background: #fff1f2;
+    color: #e11d48 !important; /* Flame accent from logo */
+    border-left: 2.5px solid #e11d48;
+    padding-left: 1.1rem; /* Smooth subtle slide with left border accent */
   }
 
   .btn-community {
