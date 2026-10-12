@@ -779,27 +779,39 @@ const { class: className = '' } = Astro.props;
 	let currentView = 'occlusion';
 	let selectedToothMesh = null;
 
-	// Helper to create clinical diagnostic badges with subtle drop shadow
+	// Helper to create clinical diagnostic badges with dynamic width so NO text is ever truncated
 	function createClinicalSprite(text, borderColorHex) {
 		const canvas = document.createElement('canvas');
-		canvas.width = 280;
-		canvas.height = 76;
 		const ctx = canvas.getContext('2d');
+		const fontStr = 'bold 24px system-ui, -apple-system, sans-serif';
+		ctx.font = fontStr;
+
+		// Accurately measure text width to guarantee zero truncation
+		const metrics = ctx.measureText(text);
+		const textWidth = Math.ceil(metrics.width);
+		const padX = 36;
+		const canvasW = Math.max(360, textWidth + padX * 2);
+		const canvasH = 72;
+		canvas.width = canvasW;
+		canvas.height = canvasH;
+
+		// Re-apply context font after canvas resize
+		ctx.font = fontStr;
 
 		// Soft drop shadow
-		ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
-		ctx.shadowBlur = 10;
+		ctx.shadowColor = 'rgba(0, 0, 0, 0.92)';
+		ctx.shadowBlur = 12;
 		ctx.shadowOffsetX = 0;
 		ctx.shadowOffsetY = 4;
 
 		// Card Background
 		const boxX = 6;
-		const boxY = 5;
-		const boxW = canvas.width - 12;
-		const boxH = canvas.height - 12;
-		const radius = 12;
+		const boxY = 4;
+		const boxW = canvasW - 12;
+		const boxH = canvasH - 8;
+		const radius = 10;
 
-		ctx.fillStyle = 'rgba(12, 8, 26, 0.94)';
+		ctx.fillStyle = 'rgba(12, 8, 26, 0.96)';
 		ctx.beginPath();
 		ctx.roundRect(boxX, boxY, boxW, boxH, radius);
 		ctx.fill();
@@ -810,12 +822,11 @@ const { class: className = '' } = Astro.props;
 		ctx.lineWidth = 3;
 		ctx.stroke();
 
-		// Sharp Typography
+		// Sharp Typography with ample breathing room
 		ctx.fillStyle = '#ffffff';
-		ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
-		ctx.fillText(text, canvas.width / 2, (canvas.height / 2) - 1);
+		ctx.fillText(text, canvasW / 2, (canvasH / 2) - 0.5);
 
 		const texture = new THREE.CanvasTexture(canvas);
 		texture.minFilter = THREE.LinearFilter;
@@ -826,10 +837,12 @@ const { class: className = '' } = Astro.props;
 			transparent: true
 		});
 		const sprite = new THREE.Sprite(mat);
-		const baseScaleX = 1.35;
-		const baseScaleY = 0.38;
-		sprite.scale.set(baseScaleX, baseScaleY, 1);
-		sprite.userData.baseScaleX = baseScaleX;
+		// Compute accurate world scale preserving true aspect ratio
+		const worldHeight = 0.36;
+		const worldWidth = worldHeight * (canvasW / canvasH);
+		sprite.scale.set(worldWidth, worldHeight, 1);
+		sprite.userData.baseScaleX = worldWidth;
+		sprite.userData.baseScaleY = worldHeight;
 		allSprites.push(sprite);
 		return sprite;
 	}
@@ -969,10 +982,10 @@ const { class: className = '' } = Astro.props;
 		return cone;
 	}
 
-	// Complete 32 Permanent Teeth Directory (FDI & Universal Mappings)
+	// Complete 32 Permanent Teeth Directory (28 Active + 4 Extracted Wisdom Teeth)
 	const TOOTH_DIRECTORY = {
 		// Quadrant 1: Upper Right (Maxilla, Trigeminal V2)
-		'tooth-18': { fdi: '18', uni: '1', name: 'Upper Right 3rd Molar (Wisdom)', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-18': { fdi: '18', uni: '1', name: 'Upper Right 3rd Molar (Extracted Wisdom Tooth)', arch: 'upper', branch: 'Trigeminal Branch V2', extracted: true },
 		'tooth-17': { fdi: '17', uni: '2', name: 'Upper Right 2nd Molar', arch: 'upper', branch: 'Trigeminal Branch V2' },
 		'tooth-16': { fdi: '16', uni: '3', name: 'Upper Right 1st Molar', arch: 'upper', branch: 'Trigeminal Branch V2' },
 		'tooth-15': { fdi: '15', uni: '4', name: 'Upper Right 2nd Premolar', arch: 'upper', branch: 'Trigeminal Branch V2' },
@@ -988,7 +1001,7 @@ const { class: className = '' } = Astro.props;
 		'tooth-25': { fdi: '25', uni: '13', name: 'Upper Left 2nd Premolar', arch: 'upper', branch: 'Trigeminal Branch V2' },
 		'tooth-26': { fdi: '26', uni: '14', name: 'Upper Left 1st Molar', arch: 'upper', branch: 'Trigeminal Branch V2' },
 		'tooth-27': { fdi: '27', uni: '15', name: 'Upper Left 2nd Molar', arch: 'upper', branch: 'Trigeminal Branch V2' },
-		'tooth-28': { fdi: '28', uni: '16', name: 'Upper Left 3rd Molar (Wisdom)', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-28': { fdi: '28', uni: '16', name: 'Upper Left 3rd Molar (Extracted Wisdom Tooth)', arch: 'upper', branch: 'Trigeminal Branch V2', extracted: true },
 		// Quadrant 3: Lower Left (Mandible, Trigeminal V3)
 		'tooth-31': { fdi: '31', uni: '24', name: 'Lower Left Central Incisor', arch: 'lower', branch: 'Trigeminal Branch V3' },
 		'tooth-32': { fdi: '32', uni: '23', name: 'Lower Left Lateral Incisor', arch: 'lower', branch: 'Trigeminal Branch V3' },
@@ -997,7 +1010,7 @@ const { class: className = '' } = Astro.props;
 		'tooth-35': { fdi: '35', uni: '20', name: 'Lower Left 2nd Premolar', arch: 'lower', branch: 'Trigeminal Branch V3' },
 		'tooth-36': { fdi: '36', uni: '19', name: 'Lower Left 1st Molar', arch: 'lower', branch: 'Trigeminal Branch V3' },
 		'tooth-37': { fdi: '37', uni: '18', name: 'Lower Left 2nd Molar', arch: 'lower', branch: 'Trigeminal Branch V3' },
-		'tooth-38': { fdi: '38', uni: '17', name: 'Lower Left 3rd Molar (Wisdom)', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-38': { fdi: '38', uni: '17', name: 'Lower Left 3rd Molar (Extracted Wisdom Tooth)', arch: 'lower', branch: 'Trigeminal Branch V3', extracted: true },
 		// Quadrant 4: Lower Right (Mandible, Trigeminal V3)
 		'tooth-41': { fdi: '41', uni: '25', name: 'Lower Right Central Incisor', arch: 'lower', branch: 'Trigeminal Branch V3' },
 		'tooth-42': { fdi: '42', uni: '26', name: 'Lower Right Lateral Incisor', arch: 'lower', branch: 'Trigeminal Branch V3' },
@@ -1006,7 +1019,7 @@ const { class: className = '' } = Astro.props;
 		'tooth-45': { fdi: '45', uni: '29', name: 'Lower Right 2nd Premolar', arch: 'lower', branch: 'Trigeminal Branch V3' },
 		'tooth-46': { fdi: '46', uni: '30', name: 'Lower Right 1st Molar', arch: 'lower', branch: 'Trigeminal Branch V3' },
 		'tooth-47': { fdi: '47', uni: '31', name: 'Lower Right 2nd Molar', arch: 'lower', branch: 'Trigeminal Branch V3' },
-		'tooth-48': { fdi: '48', uni: '32', name: 'Lower Right 3rd Molar (Wisdom)', arch: 'lower', branch: 'Trigeminal Branch V3' }
+		'tooth-48': { fdi: '48', uni: '32', name: 'Lower Right 3rd Molar (Extracted Wisdom Tooth)', arch: 'lower', branch: 'Trigeminal Branch V3', extracted: true }
 	};
 
 	// Clinical Audit Records Dictionary
@@ -1124,7 +1137,9 @@ const { class: className = '' } = Astro.props;
 	};
 
 	// Clinical 3D Markers Definitions (Physically attached directly to specific teeth in 3D scene)
+	// Staggered heights (targetY) and outward radii (radiusOffset) guarantee zero label overlapping
 	const CLINICAL_3D_MARKERS = [
+		// Quadrant 3: Lower Left Molar & Pockets (Mandible, Trigeminal V3)
 		{
 			id: 'tooth-36',
 			tooth: 'tooth-36',
@@ -1133,7 +1148,8 @@ const { class: className = '' } = Astro.props;
 			label: '#36 Crown Leak & Cavities',
 			color: 0xef4444,
 			colorHex: '#ef4444',
-			targetY: -2.75
+			targetY: -2.95,
+			radiusOffset: 2.15
 		},
 		{
 			id: 'pocket-molar',
@@ -1143,67 +1159,8 @@ const { class: className = '' } = Astro.props;
 			label: '3mm - 4mm Pockets (9% BOP)',
 			color: 0xa855f7,
 			colorHex: '#a855f7',
-			targetY: -2.40
-		},
-		{
-			id: 'tooth-23',
-			tooth: 'tooth-23',
-			arch: 'upper',
-			category: 'recession',
-			label: '#23 1mm Recession (10/10 Pain)',
-			color: 0xf97316,
-			colorHex: '#f97316',
-			targetY: 2.65
-		},
-		{
-			id: 'tooth-13',
-			tooth: 'tooth-13',
-			arch: 'upper',
-			category: 'recession',
-			label: '#13 Canine Floss Pain',
-			color: 0xf97316,
-			colorHex: '#f97316',
-			targetY: 2.65
-		},
-		{
-			id: 'tooth-24',
-			tooth: 'tooth-24',
-			arch: 'upper',
-			category: 'filling',
-			label: '#24 Composite Overcontour',
-			color: 0x38bdf8,
-			colorHex: '#38bdf8',
-			targetY: 2.65
-		},
-		{
-			id: 'tooth-26',
-			tooth: 'tooth-26',
-			arch: 'upper',
-			category: 'filling',
-			label: '#26 Composite Overcontour',
-			color: 0x38bdf8,
-			colorHex: '#38bdf8',
-			targetY: 2.95
-		},
-		{
-			id: 'tooth-14',
-			tooth: 'tooth-14',
-			arch: 'upper',
-			category: 'abfraction',
-			label: '#14-#15 Abfraction Notches',
-			color: 0xeab308,
-			colorHex: '#eab308',
-			targetY: 2.65
-		},
-		{
-			id: 'tooth-24-abfraction',
-			tooth: 'tooth-25',
-			arch: 'upper',
-			category: 'abfraction',
-			label: '#24-#25 Abfraction & Overcontour',
-			color: 0xeab308,
-			colorHex: '#eab308',
-			targetY: 2.95
+			targetY: -3.65,
+			radiusOffset: 1.80
 		},
 		{
 			id: 'tooth-34',
@@ -1213,8 +1170,11 @@ const { class: className = '' } = Astro.props;
 			label: '#34-#35 Mandibular Wear',
 			color: 0xeab308,
 			colorHex: '#eab308',
-			targetY: -2.40
+			targetY: -2.35,
+			radiusOffset: 1.80
 		},
+
+		// Quadrant 4: Lower Right (Mandible, Trigeminal V3)
 		{
 			id: 'tooth-44',
 			tooth: 'tooth-44',
@@ -1223,7 +1183,78 @@ const { class: className = '' } = Astro.props;
 			label: '#44-#45 Mandibular Wear Facets',
 			color: 0xeab308,
 			colorHex: '#eab308',
-			targetY: -2.40
+			targetY: -2.55,
+			radiusOffset: 1.85
+		},
+
+		// Quadrant 1: Upper Right (Maxilla, Trigeminal V2) - Staggered Tiers
+		{
+			id: 'tooth-13',
+			tooth: 'tooth-13',
+			arch: 'upper',
+			category: 'recession',
+			label: '#13 Canine Floss Pain',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			targetY: 2.35,
+			radiusOffset: 1.55
+		},
+		{
+			id: 'tooth-14',
+			tooth: 'tooth-14',
+			arch: 'upper',
+			category: 'abfraction',
+			label: '#14-#15 Abfraction Notches',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			targetY: 3.25,
+			radiusOffset: 1.85
+		},
+
+		// Quadrant 2: Upper Left (Maxilla, Trigeminal V2) - 4 Alternating Tiers (Zero Overlap)
+		{
+			id: 'tooth-23',
+			tooth: 'tooth-23',
+			arch: 'upper',
+			category: 'recession',
+			label: '#23 1mm Recession (10/10 Pain)',
+			color: 0xf97316,
+			colorHex: '#f97316',
+			targetY: 2.35,
+			radiusOffset: 1.55
+		},
+		{
+			id: 'tooth-24',
+			tooth: 'tooth-24',
+			arch: 'upper',
+			category: 'filling',
+			label: '#24 Composite Overcontour',
+			color: 0x38bdf8,
+			colorHex: '#38bdf8',
+			targetY: 3.25,
+			radiusOffset: 1.85
+		},
+		{
+			id: 'tooth-24-abfraction',
+			tooth: 'tooth-25',
+			arch: 'upper',
+			category: 'abfraction',
+			label: '#24-#25 Abfraction Notches',
+			color: 0xeab308,
+			colorHex: '#eab308',
+			targetY: 2.45,
+			radiusOffset: 2.15
+		},
+		{
+			id: 'tooth-26',
+			tooth: 'tooth-26',
+			arch: 'upper',
+			category: 'filling',
+			label: '#26 Composite Overcontour',
+			color: 0x38bdf8,
+			colorHex: '#38bdf8',
+			targetY: 3.50,
+			radiusOffset: 1.70
 		}
 	];
 
@@ -1250,6 +1281,13 @@ const { class: className = '' } = Astro.props;
 
 					const name = child.name || '';
 					if (name.startsWith('tooth-')) {
+						const isWisdom = (name === 'tooth-18' || name === 'tooth-28' || name === 'tooth-38' || name === 'tooth-48');
+						if (isWisdom) {
+							// Denis does not have wisdom teeth: keep meshes hidden so 3D model reflects his mouth
+							child.visible = false;
+							return;
+						}
+
 						child.material = toothMaterial.clone();
 						teethMeshes[name] = child;
 						raycastableObjects.push(child);
@@ -1314,7 +1352,7 @@ const { class: className = '' } = Astro.props;
 				// 2. High/Low Floating Billboard Badge (completely outside teeth and gums)
 				const sprite = createClinicalSprite(item.label, item.colorHex);
 				const targetY = item.targetY || (isUpper ? 2.7 : -2.5);
-				const badgeDist = isUpper ? 1.45 : 1.70;
+				const badgeDist = item.radiusOffset || (isUpper ? 1.55 : 1.85);
 				const badgePos = new THREE.Vector3(
 					toothMesh.position.x + outVec.x * badgeDist,
 					targetY,
@@ -1340,8 +1378,12 @@ const { class: className = '' } = Astro.props;
 				raycastableObjects.push(beacon, sprite, stem, arrowCone);
 			});
 
-			// Build Clean 3D Tooth Number Badges (#11 to #48) interlinked with dot + stem
+			// Build Clean 3D Tooth Number Badges (#11 to #47) interlinked with dot + stem (28 active teeth)
 			Object.entries(teethMeshes).forEach(([toothName, mesh]) => {
+				if (toothName === 'tooth-18' || toothName === 'tooth-28' || toothName === 'tooth-38' || toothName === 'tooth-48') {
+					// Denis had all wisdom teeth extracted: skip generating tooth number badges
+					return;
+				}
 				const dir = TOOTH_DIRECTORY[toothName];
 				const numStr = dir ? `#${dir.fdi}` : toothName.replace('tooth-', '#');
 				const isUpper = dir ? dir.arch === 'upper' : mesh.position.y > 0;
@@ -1430,15 +1472,27 @@ const { class: className = '' } = Astro.props;
 			if (metricSensitivity) metricSensitivity.textContent = rec.sensitivity;
 			if (metricStressor) metricStressor.textContent = rec.stressor;
 		} else if (toothInfo) {
-			if (drawerTitle) drawerTitle.textContent = `Tooth #${toothInfo.fdi} [FDI] / #${toothInfo.uni} [US]: ${toothInfo.name}`;
-			if (drawerSubtitle) drawerSubtitle.textContent = `${toothInfo.arch === 'upper' ? 'Maxillary Quadrant' : 'Mandibular Quadrant'} • ${toothInfo.branch}`;
-			if (drawerSeverity) drawerSeverity.textContent = 'Intact Reference Tooth';
-			if (drawerClinicalText) drawerClinicalText.textContent = 'Intact clinical morphology. No defective restorations, margin gaps, or active periodontal breakdown documented in this sector.';
-			if (drawerBmsMechanism) drawerBmsMechanism.textContent = 'Serves as a normal reference comparator. Not currently identified as an active nociceptive trigger source in your oral examination.';
-			if (metricPocket) metricPocket.textContent = '2mm - 3mm (Normal sulcus)';
-			if (metricBop) metricBop.textContent = 'Negative';
-			if (metricSensitivity) metricSensitivity.textContent = 'Normal';
-			if (metricStressor) metricStressor.textContent = 'None';
+			if (toothInfo.extracted) {
+				if (drawerTitle) drawerTitle.textContent = `Tooth #${toothInfo.fdi} [FDI] / #${toothInfo.uni} [US]: ${toothInfo.name}`;
+				if (drawerSubtitle) drawerSubtitle.textContent = `${toothInfo.arch === 'upper' ? 'Maxillary Quadrant' : 'Mandibular Quadrant'} • ${toothInfo.branch}`;
+				if (drawerSeverity) drawerSeverity.textContent = 'Surgically Extracted Wisdom Tooth';
+				if (drawerClinicalText) drawerClinicalText.textContent = 'Denis had all third molars (wisdom teeth #18, #28, #38, #48) surgically extracted. This tooth is naturally absent in his dentition.';
+				if (drawerBmsMechanism) drawerBmsMechanism.textContent = 'Historical extraction site. No retained root fragments or residual alveolar osteitis identified in independent audits.';
+				if (metricPocket) metricPocket.textContent = 'N/A (Tooth absent)';
+				if (metricBop) metricBop.textContent = 'None';
+				if (metricSensitivity) metricSensitivity.textContent = 'None';
+				if (metricStressor) metricStressor.textContent = 'None (Extracted)';
+			} else {
+				if (drawerTitle) drawerTitle.textContent = `Tooth #${toothInfo.fdi} [FDI] / #${toothInfo.uni} [US]: ${toothInfo.name}`;
+				if (drawerSubtitle) drawerSubtitle.textContent = `${toothInfo.arch === 'upper' ? 'Maxillary Quadrant' : 'Mandibular Quadrant'} • ${toothInfo.branch}`;
+				if (drawerSeverity) drawerSeverity.textContent = 'Intact Reference Tooth';
+				if (drawerClinicalText) drawerClinicalText.textContent = 'Intact clinical morphology. No defective restorations, margin gaps, or active periodontal breakdown documented in this sector.';
+				if (drawerBmsMechanism) drawerBmsMechanism.textContent = 'Serves as a normal reference comparator. Not currently identified as an active nociceptive trigger source in your oral examination.';
+				if (metricPocket) metricPocket.textContent = '2mm - 3mm (Normal sulcus)';
+				if (metricBop) metricBop.textContent = 'Negative';
+				if (metricSensitivity) metricSensitivity.textContent = 'Normal';
+				if (metricStressor) metricStressor.textContent = 'None';
+			}
 		}
 
 		// Highlight selected tooth with rich purple emissive glow
