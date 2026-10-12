@@ -88,31 +88,35 @@ const { class: className = '' } = Astro.props;
 
 		<!-- Issue Category Filter Buttons -->
 		<div class="arch-filter-bar">
-			<span class="filter-heading">Diagnostic Issue Filters:</span>
+			<span class="filter-heading">Diagnostic Layer:</span>
 			<div class="filter-buttons">
 				<button type="button" class="filter-btn active" data-filter="all">
 					<span class="filter-dot dot-all"></span>
 					<span>All Clinical Issues</span>
 				</button>
-				<button type="button" class="filter-btn" data-filter="crown">
-					<span class="filter-dot dot-crown"></span>
-					<span>Crown Defect (#36)</span>
+				<button type="button" class="filter-btn" data-filter="sensitivity">
+					<span class="filter-dot dot-sensitivity"></span>
+					<span>Floss Pain &amp; Sensitivity</span>
+				</button>
+				<button type="button" class="filter-btn" data-filter="cervical">
+					<span class="filter-dot dot-cervical"></span>
+					<span>Cervical Patches &amp; Crown</span>
 				</button>
 				<button type="button" class="filter-btn" data-filter="recession">
 					<span class="filter-dot dot-recession"></span>
-					<span>Recessions &amp; Allodynia</span>
+					<span>Recessions (1mm)</span>
 				</button>
 				<button type="button" class="filter-btn" data-filter="abfraction">
 					<span class="filter-dot dot-abfraction"></span>
 					<span>Abfractions &amp; Wear</span>
 				</button>
-				<button type="button" class="filter-btn" data-filter="filling">
-					<span class="filter-dot dot-filling"></span>
-					<span>Fillings &amp; Overcontours</span>
-				</button>
 				<button type="button" class="filter-btn" data-filter="pocket">
 					<span class="filter-dot dot-pocket"></span>
-					<span>Periodontal Pockets</span>
+					<span>Periodontal Pockets (3-4mm)</span>
+				</button>
+				<button type="button" class="filter-btn" data-filter="filling">
+					<span class="filter-dot dot-filling"></span>
+					<span>Normal Restorations</span>
 				</button>
 			</div>
 		</div>
@@ -511,11 +515,12 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.dot-all { background: #ffffff; }
-	.dot-crown { background: #ef4444; }
+	.dot-sensitivity { background: #f43f5e; }
+	.dot-cervical { background: #06b6d4; }
 	.dot-recession { background: #f97316; }
 	.dot-abfraction { background: #eab308; }
-	.dot-filling { background: #38bdf8; }
 	.dot-pocket { background: #a855f7; }
+	.dot-filling { background: #38bdf8; }
 
 	/* Diagnostic Drawer */
 	.arch-diagnostic-drawer {
