@@ -25,7 +25,7 @@ const { class: className = '' } = Astro.props;
 			</div>
 		</div>
 
-		<!-- Main 3D Viewport & Interactive Stage -->
+		<!-- Main 3D Viewport & Interactive Stage (2x Height, 820px) -->
 		<div class="arch-viewport" id="archViewport">
 			<!-- Three.js Canvas Mount Container -->
 			<div id="threeArchContainer" class="three-arch-container"></div>
@@ -125,7 +125,7 @@ const { class: className = '' } = Astro.props;
 			</div>
 		</div>
 
-		<!-- Perspective Selector Bar -->
+		<!-- Perspective Selector Bar (Profiles Removed, Core Arch Views Only) -->
 		<div class="arch-perspective-bar" role="tablist" aria-label="3D Anatomical Views">
 			<button type="button" class="perspective-btn active" data-view="occlusion">
 				<span>Centric Occlusion (Bite)</span>
@@ -135,12 +135,6 @@ const { class: className = '' } = Astro.props;
 			</button>
 			<button type="button" class="perspective-btn" data-view="lower">
 				<span>Lower Arch (Mandible)</span>
-			</button>
-			<button type="button" class="perspective-btn" data-view="left-profile">
-				<span>Left Profile (#36 Focus)</span>
-			</button>
-			<button type="button" class="perspective-btn" data-view="right-profile">
-				<span>Right Profile</span>
 			</button>
 		</div>
 
@@ -192,7 +186,7 @@ const { class: className = '' } = Astro.props;
 						Florida Probe periodontal charting confirmed a defective distal crown margin ("#36D joint au distal"). An independent radiograph audit uncovered three hidden recurrent cavities undermining the enamel and dentin beneath the 20-year-old restoration.
 					</p>
 
-					<h4 class="drawer-section-heading" style="margin-top: 1rem;">Direct Neuropathic Mechanism in Burning Mouth Syndrome</h4>
+					<h4 class="drawer-section-heading" style="margin-top: 1.15rem;">Direct Neuropathic Mechanism in Burning Mouth Syndrome</h4>
 					<p class="drawer-body-text" id="drawerBmsMechanism">
 						Because this mechanical margin sits subgingivally, it acts as a permanent incubator for anaerobic bacterial biofilm. Microorganisms pump lactic and acetic acids directly into exposed dentinal tubules, constantly stimulating the inferior alveolar nerve and sensitizing the trigeminal system.
 					</p>
@@ -222,10 +216,23 @@ const { class: className = '' } = Astro.props;
 </div>
 
 <style>
+	/* 90% Viewport Width Breakout Container */
 	.dental-arch-wrapper {
-		margin: 2.75rem 0;
-		width: 100%;
+		margin: 3.5rem 0 4rem 0;
+		width: 90vw;
+		max-width: 1400px;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		box-sizing: border-box;
 		font-family: var(--font-body, system-ui, sans-serif);
+	}
+
+	@media (max-width: 768px) {
+		.dental-arch-wrapper {
+			width: 95vw;
+			margin: 2rem 0 2.5rem 0;
+		}
 	}
 
 	.dental-arch-card {
@@ -242,7 +249,7 @@ const { class: className = '' } = Astro.props;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 1.1rem 1.5rem;
+		padding: 1.15rem 1.6rem;
 		background: rgba(18, 12, 38, 0.85);
 		border-bottom: 1px solid rgba(168, 85, 247, 0.2);
 		flex-wrap: wrap;
@@ -252,7 +259,7 @@ const { class: className = '' } = Astro.props;
 	.arch-title-group {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.6rem;
+		gap: 0.65rem;
 	}
 
 	.status-indicator {
@@ -264,8 +271,9 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.arch-main-title {
-		font-size: 0.95rem;
+		font-size: 1rem;
 		font-weight: 700;
+		line-height: 1.4;
 		color: #ffffff;
 		letter-spacing: -0.01em;
 	}
@@ -273,8 +281,9 @@ const { class: className = '' } = Astro.props;
 	.arch-meta-details {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.65rem;
-		font-size: 0.8rem;
+		gap: 0.7rem;
+		font-size: 0.82rem;
+		line-height: 1.5;
 		color: #94a3b8;
 		flex-wrap: wrap;
 	}
@@ -283,15 +292,30 @@ const { class: className = '' } = Astro.props;
 		color: #64748b;
 	}
 
-	/* Viewport Stage */
+	/* 2x Height 3D Viewport Stage (820px tall) */
 	.arch-viewport {
 		position: relative;
 		width: 100%;
-		aspect-ratio: 16 / 9;
-		background: radial-gradient(circle at center, #1b1038 0%, #06030c 100%);
+		height: 820px;
+		min-height: 820px;
+		background: radial-gradient(circle at center, #1c113b 0%, #06030c 100%);
 		overflow: hidden;
 		cursor: grab;
 		user-select: none;
+	}
+
+	@media (max-width: 860px) {
+		.arch-viewport {
+			height: 620px;
+			min-height: 620px;
+		}
+	}
+
+	@media (max-width: 580px) {
+		.arch-viewport {
+			height: 520px;
+			min-height: 520px;
+		}
 	}
 
 	.arch-viewport:active {
@@ -314,12 +338,12 @@ const { class: className = '' } = Astro.props;
 	.arch-loading-overlay {
 		position: absolute;
 		inset: 0;
-		background: rgba(9, 6, 20, 0.92);
+		background: rgba(9, 6, 20, 0.94);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 1rem;
+		gap: 1.1rem;
 		z-index: 50;
 		transition: opacity 0.4s ease;
 	}
@@ -330,8 +354,8 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.loading-spinner {
-		width: 44px;
-		height: 44px;
+		width: 46px;
+		height: 46px;
 		border: 3px solid rgba(168, 85, 247, 0.2);
 		border-top-color: #a855f7;
 		border-radius: 50%;
@@ -344,7 +368,8 @@ const { class: className = '' } = Astro.props;
 
 	.loading-text {
 		color: #cbd5e1;
-		font-size: 0.88rem;
+		font-size: 0.9rem;
+		line-height: 1.4;
 		font-weight: 600;
 	}
 
@@ -375,7 +400,7 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.clinical-pin:hover {
-		transform: translate(-50%, -50%) scale(1.15);
+		transform: translate(-50%, -50%) scale(1.18);
 		z-index: 30;
 	}
 
@@ -384,7 +409,7 @@ const { class: className = '' } = Astro.props;
 		height: 12px;
 		border-radius: 50%;
 		background: #ffffff;
-		box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+		box-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
 		position: relative;
 		z-index: 2;
 	}
@@ -406,15 +431,16 @@ const { class: className = '' } = Astro.props;
 		left: 28px;
 		top: 50%;
 		transform: translateY(-50%);
-		background: rgba(15, 10, 30, 0.92);
+		background: rgba(15, 10, 30, 0.94);
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		color: #ffffff;
-		font-size: 0.74rem;
+		font-size: 0.76rem;
 		font-weight: 700;
-		padding: 0.25rem 0.6rem;
+		line-height: 1.35;
+		padding: 0.28rem 0.65rem;
 		border-radius: 6px;
 		white-space: nowrap;
-		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.75);
 		pointer-events: none;
 	}
 
@@ -442,66 +468,69 @@ const { class: className = '' } = Astro.props;
 	/* Floating HUD Controls */
 	.arch-hud-top {
 		position: absolute;
-		top: 1rem;
-		left: 1rem;
-		right: 1rem;
+		top: 1.15rem;
+		left: 1.15rem;
+		right: 1.15rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		pointer-events: none;
 		z-index: 10;
 		flex-wrap: wrap;
-		gap: 0.5rem;
+		gap: 0.6rem;
 	}
 
 	.hud-view-label {
-		background: rgba(15, 23, 42, 0.85);
+		background: rgba(15, 23, 42, 0.88);
 		backdrop-filter: blur(8px);
 		border: 1px solid rgba(192, 132, 252, 0.35);
 		color: #f1f5f9;
-		font-size: 0.82rem;
+		font-size: 0.84rem;
 		font-weight: 700;
-		padding: 0.4rem 0.85rem;
+		line-height: 1.35;
+		padding: 0.45rem 0.95rem;
 		border-radius: 8px;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 	}
 
 	.hud-helper-tip {
-		background: rgba(15, 23, 42, 0.7);
+		background: rgba(15, 23, 42, 0.72);
 		backdrop-filter: blur(8px);
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		color: #cbd5e1;
-		font-size: 0.74rem;
+		font-size: 0.78rem;
 		font-weight: 500;
-		padding: 0.4rem 0.8rem;
+		line-height: 1.45;
+		padding: 0.42rem 0.85rem;
 		border-radius: 8px;
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 0.55rem;
 	}
 
 	.arch-hud-tools {
 		position: absolute;
-		bottom: 1rem;
-		right: 1rem;
+		bottom: 1.15rem;
+		right: 1.15rem;
 		display: flex;
-		gap: 0.5rem;
+		gap: 0.55rem;
 		z-index: 20;
 	}
 
 	.hud-btn {
-		background: rgba(15, 23, 42, 0.85);
+		background: rgba(15, 23, 42, 0.88);
 		backdrop-filter: blur(8px);
 		border: 1px solid rgba(168, 85, 247, 0.3);
 		color: #cbd5e1;
-		font-size: 0.76rem;
+		font-size: 0.78rem;
 		font-weight: 600;
-		padding: 0.4rem 0.8rem;
+		line-height: 1.4;
+		padding: 0.45rem 0.85rem;
 		border-radius: 8px;
 		cursor: pointer;
 		display: inline-flex;
 		align-items: center;
-		gap: 0.4rem;
+		gap: 0.45rem;
 		transition: all 0.2s ease;
 	}
 
@@ -522,8 +551,8 @@ const { class: className = '' } = Astro.props;
 	.arch-perspective-bar {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.75rem 1.25rem;
+		gap: 0.65rem;
+		padding: 0.85rem 1.4rem;
 		background: rgba(15, 10, 32, 0.95);
 		border-top: 1px solid rgba(168, 85, 247, 0.2);
 		border-bottom: 1px solid rgba(168, 85, 247, 0.2);
@@ -535,9 +564,10 @@ const { class: className = '' } = Astro.props;
 		background: rgba(255, 255, 255, 0.04);
 		border: 1px solid rgba(168, 85, 247, 0.25);
 		color: #cbd5e1;
-		font-size: 0.8rem;
+		font-size: 0.84rem;
 		font-weight: 600;
-		padding: 0.45rem 0.9rem;
+		line-height: 1.4;
+		padding: 0.5rem 1rem;
 		border-radius: 8px;
 		cursor: pointer;
 		transition: all 0.2s ease;
@@ -560,23 +590,24 @@ const { class: className = '' } = Astro.props;
 	.arch-filter-bar {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		padding: 0.75rem 1.25rem;
+		gap: 1.1rem;
+		padding: 0.85rem 1.4rem;
 		background: rgba(10, 7, 24, 0.98);
 		border-bottom: 1px solid rgba(168, 85, 247, 0.2);
 		flex-wrap: wrap;
 	}
 
 	.filter-heading {
-		font-size: 0.78rem;
+		font-size: 0.82rem;
 		font-weight: 600;
+		line-height: 1.45;
 		color: #94a3b8;
 	}
 
 	.filter-buttons {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 0.55rem;
 		flex-wrap: wrap;
 	}
 
@@ -584,14 +615,15 @@ const { class: className = '' } = Astro.props;
 		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid rgba(255, 255, 255, 0.12);
 		color: #cbd5e1;
-		font-size: 0.76rem;
+		font-size: 0.78rem;
 		font-weight: 500;
-		padding: 0.35rem 0.75rem;
+		line-height: 1.4;
+		padding: 0.38rem 0.8rem;
 		border-radius: 6px;
 		cursor: pointer;
 		display: inline-flex;
 		align-items: center;
-		gap: 0.45rem;
+		gap: 0.5rem;
 		transition: all 0.2s ease;
 	}
 
@@ -601,7 +633,7 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.filter-btn.active {
-		background: rgba(168, 85, 247, 0.2);
+		background: rgba(168, 85, 247, 0.22);
 		border-color: #a855f7;
 		color: #ffffff;
 	}
@@ -621,7 +653,7 @@ const { class: className = '' } = Astro.props;
 
 	/* Diagnostic Drawer */
 	.arch-diagnostic-drawer {
-		padding: 1.6rem 1.8rem;
+		padding: 1.8rem 2rem;
 		background: #0d081a;
 	}
 
@@ -629,64 +661,68 @@ const { class: className = '' } = Astro.props;
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
-		margin-bottom: 1.2rem;
+		margin-bottom: 1.35rem;
 		flex-wrap: wrap;
-		gap: 0.8rem;
+		gap: 0.85rem;
 	}
 
 	.drawer-title-block {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: 0.3rem;
 	}
 
 	.drawer-tooth-title {
-		font-size: 1.18rem;
+		font-size: 1.25rem;
 		font-weight: 700;
+		line-height: 1.35;
 		color: #ffffff;
 		margin: 0;
 		letter-spacing: -0.015em;
 	}
 
 	.drawer-quadrant-sub {
-		font-size: 0.82rem;
+		font-size: 0.85rem;
+		line-height: 1.5;
 		color: #a855f7;
 		font-weight: 500;
 	}
 
 	.drawer-severity-badge {
-		font-size: 0.78rem;
+		font-size: 0.8rem;
 		font-weight: 600;
+		line-height: 1.35;
 		color: #fca5a5;
 		background: rgba(239, 68, 68, 0.15);
 		border: 1px solid rgba(239, 68, 68, 0.35);
-		padding: 0.3rem 0.7rem;
+		padding: 0.32rem 0.75rem;
 		border-radius: 6px;
 	}
 
 	.drawer-content-layout {
 		display: grid;
 		grid-template-columns: 1.45fr 1fr;
-		gap: 1.6rem;
+		gap: 1.75rem;
 	}
 
-	@media (max-width: 840px) {
+	@media (max-width: 860px) {
 		.drawer-content-layout {
 			grid-template-columns: 1fr;
-			gap: 1.2rem;
+			gap: 1.35rem;
 		}
 	}
 
 	.drawer-section-heading {
-		font-size: 0.8rem;
+		font-size: 0.85rem;
 		font-weight: 600;
+		line-height: 1.45;
 		color: #c084fc;
-		margin: 0 0 0.35rem 0;
+		margin: 0 0 0.4rem 0;
 	}
 
 	.drawer-body-text {
-		font-size: 0.92rem;
-		line-height: 1.65;
+		font-size: 0.95rem;
+		line-height: 1.7;
 		color: #cbd5e1;
 		margin: 0;
 	}
@@ -694,27 +730,29 @@ const { class: className = '' } = Astro.props;
 	.drawer-metrics-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 0.7rem;
+		gap: 0.75rem;
 	}
 
 	.metric-card {
 		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid rgba(168, 85, 247, 0.2);
 		border-radius: 10px;
-		padding: 0.75rem 0.9rem;
+		padding: 0.85rem 1rem;
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: 0.3rem;
 	}
 
 	.metric-label {
-		font-size: 0.72rem;
+		font-size: 0.74rem;
+		line-height: 1.45;
 		color: #94a3b8;
 		font-weight: 500;
 	}
 
 	.metric-value {
-		font-size: 0.98rem;
+		font-size: 1.05rem;
+		line-height: 1.35;
 		font-weight: 700;
 		color: #ffffff;
 	}
@@ -767,16 +805,16 @@ const { class: className = '' } = Astro.props;
 	scene.background = null;
 
 	const width = container.clientWidth || 960;
-	const height = container.clientHeight || 540;
+	const height = container.clientHeight || 820;
 
-	const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
-	camera.position.set(0, 0.6, 8.2);
+	const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+	camera.position.set(0, 0.35, 7.8);
 
 	const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 	renderer.setSize(width, height);
 	renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 	renderer.toneMapping = THREE.ACESFilmicToneMapping;
-	renderer.toneMappingExposure = 1.05;
+	renderer.toneMappingExposure = 1.1;
 	container.appendChild(renderer.domElement);
 
 	// Orbit Controls
@@ -788,41 +826,46 @@ const { class: className = '' } = Astro.props;
 	controls.target.set(0, 0, 0);
 
 	// Studio Lighting Setup
-	const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+	const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
 	scene.add(ambientLight);
 
-	const keyLight = new THREE.DirectionalLight(0xfff7ee, 1.3);
+	const keyLight = new THREE.DirectionalLight(0xfff7ee, 1.4);
 	keyLight.position.set(6, 8, 8);
 	scene.add(keyLight);
 
-	const fillLight = new THREE.DirectionalLight(0xc084fc, 0.65);
+	const fillLight = new THREE.DirectionalLight(0xc084fc, 0.7);
 	fillLight.position.set(-7, 4, -5);
 	scene.add(fillLight);
 
-	const blueRimLight = new THREE.DirectionalLight(0x38bdf8, 0.75);
+	const blueRimLight = new THREE.DirectionalLight(0x38bdf8, 0.85);
 	blueRimLight.position.set(0, -6, 5);
 	scene.add(blueRimLight);
 
 	// Subtle Floor Grid
 	const grid = new THREE.GridHelper(12, 24, 0xa855f7, 0x241242);
-	grid.position.y = -2.4;
+	grid.position.y = -2.6;
 	scene.add(grid);
 
 	// Root Group for Models
 	const modelGroup = new THREE.Group();
 	scene.add(modelGroup);
 
-	// Material Definitions
+	// Material Definitions: Enamel Ivory White & Vibrant Healthy Pink Gums
 	const toothMaterial = new THREE.MeshStandardMaterial({
-		color: 0xfaf7ee,
+		color: 0xfaf8f2,
+		emissive: 0x1c1a17,
 		roughness: 0.16,
-		metalness: 0.04
+		metalness: 0.04,
+		side: THREE.DoubleSide
 	});
 
+	// Vibrant Warm Healthy Pink Gums (With Emissive Base so they never appear black in shadow)
 	const gingivaMaterial = new THREE.MeshStandardMaterial({
-		color: 0xd97585,
-		roughness: 0.45,
-		metalness: 0.0
+		color: 0xf472b6, // Healthy vibrant pink (#f472b6)
+		emissive: 0x5a1828, // Warm crimson-pink base to prevent dark voids
+		roughness: 0.35,
+		metalness: 0.02,
+		side: THREE.DoubleSide
 	});
 
 	const boneMaterial = new THREE.MeshStandardMaterial({
@@ -830,7 +873,8 @@ const { class: className = '' } = Astro.props;
 		roughness: 0.55,
 		metalness: 0.0,
 		transparent: true,
-		opacity: 0.85
+		opacity: 0.85,
+		side: THREE.DoubleSide
 	});
 
 	// Storage & State
@@ -947,20 +991,26 @@ const { class: className = '' } = Astro.props;
 		'pocket-molar': new THREE.Vector3(2.35, 0.35, -0.9)
 	};
 
-	// Load 3D GLB Model
+	// Load 3D GLB Model & Compute Vertex Normals for Accurate Lighting
 	const loader = new THREE.GLTFLoader();
 	loader.load(
 		'/models/dental-arch-opt.glb',
 		(gltf) => {
 			gltf.scene.traverse((child) => {
 				if (child.isMesh) {
+					// Compute normals if missing so lighting never renders black
+					if (child.geometry && !child.geometry.attributes.normal) {
+						child.geometry.computeVertexNormals();
+					}
+
 					const name = child.name || '';
 					if (name.startsWith('tooth-')) {
 						child.material = toothMaterial.clone();
 						teethMeshes[name] = child;
 						raycastableTeeth.push(child);
 					} else if (name.startsWith('gingiva-')) {
-						child.material = gingivaMaterial;
+						// Assign vibrant warm healthy pink gums
+						child.material = gingivaMaterial.clone();
 					} else if (name.includes('alveolar') || name.includes('mandible') || name.includes('maxilla')) {
 						child.material = boneMaterial;
 						child.visible = false;
@@ -1001,15 +1051,15 @@ const { class: className = '' } = Astro.props;
 
 		// Highlight tooth
 		if (selectedToothMesh) {
-			selectedToothMesh.material.color.setHex(0xfaf7ee);
-			selectedToothMesh.material.emissive.setHex(0x000000);
+			selectedToothMesh.material.color.setHex(0xfaf8f2);
+			selectedToothMesh.material.emissive.setHex(0x1c1a17);
 		}
 
 		if (teethMeshes[key]) {
 			selectedToothMesh = teethMeshes[key];
 			selectedToothMesh.material.color.setHex(0xffffff);
 			selectedToothMesh.material.emissive.setHex(0x9333ea);
-			selectedToothMesh.material.emissiveIntensity = 0.45;
+			selectedToothMesh.material.emissiveIntensity = 0.5;
 		}
 	}
 
@@ -1020,7 +1070,7 @@ const { class: className = '' } = Astro.props;
 			const key = pin.getAttribute('data-pin');
 			if (key) {
 				updateDiagnosticDrawer(key);
-				// Fly camera towards pin
+				// Focus camera towards pin
 				const loc = PIN_LOCATIONS[key];
 				if (loc) {
 					controls.target.set(loc.x * 0.7, loc.y * 0.7, loc.z * 0.7);
@@ -1029,32 +1079,22 @@ const { class: className = '' } = Astro.props;
 		});
 	});
 
-	// Perspective Camera Views
+	// Perspective Camera Views (Core Views: Occlusion, Upper, Lower)
 	const VIEW_PRESETS = {
 		'occlusion': {
 			label: 'Both Arches (In Centric Occlusion)',
-			camPos: [0, 0.4, 8.2],
+			camPos: [0, 0.35, 7.8],
 			target: [0, 0, 0]
 		},
 		'upper': {
 			label: 'Upper Arch (Maxilla & Palate)',
-			camPos: [0, -4.8, 5.5],
+			camPos: [0, -4.8, 5.2],
 			target: [0, 1.2, 0.2]
 		},
 		'lower': {
 			label: 'Lower Arch (Mandible & Tooth #36)',
-			camPos: [0, 5.0, 5.2],
+			camPos: [0, 4.8, 5.0],
 			target: [0, -0.8, -0.3]
-		},
-		'left-profile': {
-			label: 'Left Profile (Focus on #36 Crown & Composites)',
-			camPos: [6.2, 0.2, 2.8],
-			target: [1.8, -0.1, 0.2]
-		},
-		'right-profile': {
-			label: 'Right Profile (Canines & Premolars)',
-			camPos: [-6.2, 0.2, 2.8],
-			target: [-1.8, -0.1, 0.2]
 		}
 	};
 
@@ -1075,7 +1115,7 @@ const { class: className = '' } = Astro.props;
 		});
 	});
 
-	const targetCamPos = new THREE.Vector3(0, 0.4, 8.2);
+	const targetCamPos = new THREE.Vector3(0, 0.35, 7.8);
 	const targetLookAt = new THREE.Vector3(0, 0, 0);
 
 	// Filter Logic
@@ -1104,7 +1144,6 @@ const { class: className = '' } = Astro.props;
 				pin.classList.toggle('active', show);
 			});
 
-			// If specific filter selected, update drawer to first related issue
 			if (activeFilter === 'crown') updateDiagnosticDrawer('tooth-36');
 			else if (activeFilter === 'recession') updateDiagnosticDrawer('tooth-23');
 			else if (activeFilter === 'abfraction') updateDiagnosticDrawer('tooth-14');
@@ -1128,7 +1167,7 @@ const { class: className = '' } = Astro.props;
 	});
 
 	btnReset?.addEventListener('click', () => {
-		targetCamPos.set(0, 0.4, 8.2);
+		targetCamPos.set(0, 0.35, 7.8);
 		targetLookAt.set(0, 0, 0);
 		controls.target.set(0, 0, 0);
 	});
@@ -1157,7 +1196,6 @@ const { class: className = '' } = Astro.props;
 			if (CLINICAL_RECORDS[toothKey]) {
 				updateDiagnosticDrawer(toothKey);
 			} else {
-				// Fallback generic info for unannotated teeth
 				if (drawerTitle) drawerTitle.textContent = `${toothKey.toUpperCase()} (Normal Anatomical Profile)`;
 				if (drawerSubtitle) drawerSubtitle.textContent = 'Intact Enamel Crown • Physiological Periodontal Sulcus';
 				if (drawerSeverity) drawerSeverity.textContent = 'Normal Reference';
