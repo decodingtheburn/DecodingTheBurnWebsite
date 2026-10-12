@@ -1,6 +1,6 @@
 ---
 // Itero3DRenderingViewer.astro
-// True 3D Dental Arch Anatomy & Clinical Issue Map with True 3D Sprites & Real-Time Tracking
+// True 3D Dental Arch Anatomy & Clinical Issue Map with Physically-Attached 3D Sprites
 interface Props {
 	class?: string;
 }
@@ -19,13 +19,13 @@ const { class: className = '' } = Astro.props;
 			<div class="arch-meta-details">
 				<span>BodyParts3D Anatomical Reference</span>
 				<span class="meta-separator">•</span>
-				<span>FDI Tooth Numbering</span>
+				<span>FDI &amp; Universal Numbering</span>
 				<span class="meta-separator">•</span>
-				<span>Denis Ethier Diagnostic Audit</span>
+				<span>Denis Ethier Diagnostic&nbsp;Audit</span>
 			</div>
 		</div>
 
-		<!-- Main 3D Viewport & Interactive Stage (2x Height: 820px) -->
+		<!-- Main 3D Viewport & Interactive Stage (820px Tall) -->
 		<div class="arch-viewport" id="archViewport">
 			<!-- Three.js Canvas Mount Container -->
 			<div id="threeArchContainer" class="three-arch-container"></div>
@@ -38,19 +38,19 @@ const { class: className = '' } = Astro.props;
 
 			<!-- Viewport Floating HUD Controls -->
 			<div class="arch-hud-top">
-				<div class="hud-view-label" id="hudViewLabel">Both Arches (In Centric Occlusion)</div>
-				<div class="hud-helper-tip">
+				<div class="hud-view-label" id="hudViewLabel">Centric Occlusion (Bite Relationship)</div>
+				<div class="hud-helper-tip" id="hudHelperTip">
 					<span>🖱️ Drag to rotate 360°</span>
 					<span>•</span>
 					<span>🔍 Scroll to zoom</span>
 					<span>•</span>
-					<span>🎯 Click tooth or 3D badge to inspect</span>
+					<span>🎯 Click tooth or marker to&nbsp;inspect</span>
 				</div>
 			</div>
 
 			<!-- HUD Tools (Tooth Numbers, Auto-Spin, Wireframe, Center, Jawbone) -->
 			<div class="arch-hud-tools">
-				<button type="button" class="hud-btn active" id="btnToggleNumbers" title="Toggle Tooth Numbers (#11 to #48)">
+				<button type="button" class="hud-btn" id="btnToggleNumbers" title="Toggle Tooth Numbers (#11 to #48 / US #1 to #32)">
 					<span>🔢 Numbers</span>
 				</button>
 				<button type="button" class="hud-btn" id="btnToggleSpin" title="Toggle Turntable 3D Spin">
@@ -72,13 +72,13 @@ const { class: className = '' } = Astro.props;
 		<!-- Perspective Selector Bar (Core Arch Views) -->
 		<div class="arch-perspective-bar" role="tablist" aria-label="3D Anatomical Views">
 			<button type="button" class="perspective-btn active" data-view="occlusion">
-				<span>Centric Occlusion (Bite)</span>
+				<span>Centric Occlusion (Bite&nbsp;Relationship)</span>
 			</button>
 			<button type="button" class="perspective-btn" data-view="upper">
-				<span>Upper Arch (Maxilla)</span>
+				<span>Upper Arch (Maxilla &amp;&nbsp;Palate)</span>
 			</button>
 			<button type="button" class="perspective-btn" data-view="lower">
-				<span>Lower Arch (Mandible)</span>
+				<span>Lower Arch (Mandible &amp; Tooth&nbsp;#36)</span>
 			</button>
 		</div>
 
@@ -89,6 +89,10 @@ const { class: className = '' } = Astro.props;
 				<button type="button" class="filter-btn active" data-filter="all">
 					<span class="filter-dot dot-all"></span>
 					<span>All Clinical Issues</span>
+				</button>
+				<button type="button" class="filter-btn" data-filter="crown">
+					<span class="filter-dot dot-crown"></span>
+					<span>Crown Defect (#36)</span>
 				</button>
 				<button type="button" class="filter-btn" data-filter="recession">
 					<span class="filter-dot dot-recession"></span>
@@ -102,10 +106,6 @@ const { class: className = '' } = Astro.props;
 					<span class="filter-dot dot-filling"></span>
 					<span>Fillings &amp; Overcontours</span>
 				</button>
-				<button type="button" class="filter-btn" data-filter="crown">
-					<span class="filter-dot dot-crown"></span>
-					<span>Crown Defect (#36)</span>
-				</button>
 				<button type="button" class="filter-btn" data-filter="pocket">
 					<span class="filter-dot dot-pocket"></span>
 					<span>Periodontal Pockets</span>
@@ -117,10 +117,10 @@ const { class: className = '' } = Astro.props;
 		<div class="arch-diagnostic-drawer" id="archDrawer">
 			<div class="drawer-header-row">
 				<div class="drawer-title-block">
-					<h3 class="drawer-tooth-title" id="drawerTitle">Tooth #36: Defective Distal Crown Margin &amp; Hidden Cavities</h3>
-					<span class="drawer-quadrant-sub" id="drawerSubtitle">Lower Left First Molar • Mandibular Quadrant • Trigeminal Branch V3</span>
+					<h3 class="drawer-tooth-title" id="drawerTitle">Tooth #36 [FDI] / #19 [US]: Defective Distal Crown Margin &amp; Hidden&nbsp;Cavities</h3>
+					<span class="drawer-quadrant-sub" id="drawerSubtitle">Lower Left First Molar • Mandibular Quadrant • Trigeminal Branch&nbsp;V3</span>
 				</div>
-				<span class="drawer-severity-badge" id="drawerSeverity">Primary Neuropathic Trigger</span>
+				<div class="drawer-severity-label" id="drawerSeverity">Primary Neuropathic Trigger</div>
 			</div>
 
 			<div class="drawer-content-layout">
@@ -132,7 +132,7 @@ const { class: className = '' } = Astro.props;
 
 					<h4 class="drawer-section-heading" style="margin-top: 1.15rem;">Direct Neuropathic Mechanism in Burning Mouth Syndrome</h4>
 					<p class="drawer-body-text" id="drawerBmsMechanism">
-						Because this mechanical margin sits subgingivally, it acts as a permanent incubator for anaerobic bacterial biofilm. Microorganisms pump lactic and acetic acids directly into exposed dentinal tubules, constantly stimulating the inferior alveolar nerve and sensitizing the trigeminal system.
+						Because this mechanical margin sits subgingivally, it acts as a permanent incubator for anaerobic bacterial biofilm. Microorganisms pump lactic and acetic acids directly into exposed dentinal tubules, constantly stimulating the inferior alveolar nerve and sensitizing the trigeminal&nbsp;system.
 					</p>
 				</div>
 
@@ -236,7 +236,7 @@ const { class: className = '' } = Astro.props;
 		color: #64748b;
 	}
 
-	/* 2x Height 3D Viewport Stage (820px tall) */
+	/* 820px Tall 3D Viewport Stage */
 	.arch-viewport {
 		position: relative;
 		width: 100%;
@@ -250,8 +250,8 @@ const { class: className = '' } = Astro.props;
 
 	@media (max-width: 860px) {
 		.arch-viewport {
-			height: 620px;
-			min-height: 620px;
+			height: 650px;
+			min-height: 650px;
 		}
 	}
 
@@ -333,31 +333,35 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.hud-view-label {
-		background: rgba(15, 23, 42, 0.88);
-		backdrop-filter: blur(8px);
-		border: 1px solid rgba(192, 132, 252, 0.35);
-		color: #f1f5f9;
-		font-size: 0.84rem;
-		font-weight: 700;
-		line-height: 1.35;
-		padding: 0.45rem 0.95rem;
+		background: rgba(12, 8, 26, 0.88);
+		border: 1px solid rgba(168, 85, 247, 0.4);
+		padding: 0.45rem 0.9rem;
 		border-radius: 8px;
-		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+		font-size: 0.84rem;
+		font-weight: 600;
+		line-height: 1.4;
+		color: #e9d5ff;
+		backdrop-filter: blur(8px);
 	}
 
 	.hud-helper-tip {
-		background: rgba(15, 23, 42, 0.72);
-		backdrop-filter: blur(8px);
+		background: rgba(12, 8, 26, 0.78);
 		border: 1px solid rgba(255, 255, 255, 0.1);
-		color: #cbd5e1;
-		font-size: 0.78rem;
-		font-weight: 500;
-		line-height: 1.45;
-		padding: 0.42rem 0.85rem;
+		padding: 0.45rem 0.9rem;
 		border-radius: 8px;
-		display: inline-flex;
+		font-size: 0.78rem;
+		line-height: 1.4;
+		color: #94a3b8;
+		display: flex;
 		align-items: center;
-		gap: 0.55rem;
+		gap: 0.6rem;
+		backdrop-filter: blur(8px);
+	}
+
+	@media (max-width: 640px) {
+		.hud-helper-tip {
+			display: none;
+		}
 	}
 
 	.arch-hud-tools {
@@ -365,16 +369,15 @@ const { class: className = '' } = Astro.props;
 		bottom: 1.15rem;
 		right: 1.15rem;
 		display: flex;
-		gap: 0.55rem;
-		z-index: 20;
+		gap: 0.5rem;
+		z-index: 10;
 		flex-wrap: wrap;
 	}
 
 	.hud-btn {
-		background: rgba(15, 23, 42, 0.88);
-		backdrop-filter: blur(8px);
-		border: 1px solid rgba(168, 85, 247, 0.3);
-		color: #cbd5e1;
+		background: rgba(18, 12, 38, 0.88);
+		border: 1px solid rgba(168, 85, 247, 0.35);
+		color: #e2e8f0;
 		font-size: 0.78rem;
 		font-weight: 600;
 		line-height: 1.4;
@@ -385,68 +388,74 @@ const { class: className = '' } = Astro.props;
 		align-items: center;
 		gap: 0.45rem;
 		transition: all 0.2s ease;
+		backdrop-filter: blur(8px);
 	}
 
 	.hud-btn:hover {
 		background: rgba(168, 85, 247, 0.25);
+		border-color: #a855f7;
 		color: #ffffff;
-		border-color: #c084fc;
+		transform: translateY(-1px);
 	}
 
 	.hud-btn.active {
-		background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+		background: #a855f7;
 		color: #ffffff;
-		border-color: #d8b4fe;
-		box-shadow: 0 2px 10px rgba(168, 85, 247, 0.4);
+		border-color: #c084fc;
+		box-shadow: 0 0 14px rgba(168, 85, 247, 0.5);
 	}
 
 	/* Perspective Selector Bar */
 	.arch-perspective-bar {
 		display: flex;
-		align-items: center;
-		gap: 0.65rem;
-		padding: 0.85rem 1.4rem;
-		background: rgba(15, 10, 32, 0.95);
-		border-top: 1px solid rgba(168, 85, 247, 0.2);
+		background: rgba(18, 12, 38, 0.95);
 		border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+		padding: 0.5rem;
+		gap: 0.5rem;
 		overflow-x: auto;
-		white-space: nowrap;
 	}
 
 	.perspective-btn {
-		background: rgba(255, 255, 255, 0.04);
-		border: 1px solid rgba(168, 85, 247, 0.25);
+		flex: 1;
+		min-width: 170px;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
 		color: #cbd5e1;
-		font-size: 0.84rem;
+		font-size: 0.85rem;
 		font-weight: 600;
 		line-height: 1.4;
-		padding: 0.5rem 1rem;
-		border-radius: 8px;
+		padding: 0.65rem 1rem;
+		border-radius: 10px;
 		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
 		transition: all 0.2s ease;
+		white-space: nowrap;
 	}
 
 	.perspective-btn:hover {
-		background: rgba(168, 85, 247, 0.18);
+		background: rgba(168, 85, 247, 0.15);
+		border-color: rgba(168, 85, 247, 0.4);
 		color: #ffffff;
-		border-color: #c084fc;
 	}
 
 	.perspective-btn.active {
-		background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
-		border-color: #d8b4fe;
+		background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(147, 51, 234, 0.2) 100%);
+		border-color: #a855f7;
 		color: #ffffff;
-		box-shadow: 0 3px 12px rgba(168, 85, 247, 0.35);
+		box-shadow: 0 0 15px rgba(168, 85, 247, 0.25);
 	}
 
-	/* Issue Filter Bar */
+	/* Filter Bar */
 	.arch-filter-bar {
 		display: flex;
 		align-items: center;
+		padding: 0.95rem 1.6rem;
+		background: rgba(12, 8, 26, 0.9);
+		border-bottom: 1px solid rgba(168, 85, 247, 0.15);
 		gap: 1.1rem;
-		padding: 0.85rem 1.4rem;
-		background: rgba(10, 7, 24, 0.98);
-		border-bottom: 1px solid rgba(168, 85, 247, 0.2);
 		flex-wrap: wrap;
 	}
 
@@ -498,10 +507,10 @@ const { class: className = '' } = Astro.props;
 	}
 
 	.dot-all { background: #ffffff; }
+	.dot-crown { background: #ef4444; }
 	.dot-recession { background: #f97316; }
 	.dot-abfraction { background: #eab308; }
 	.dot-filling { background: #38bdf8; }
-	.dot-crown { background: #ef4444; }
 	.dot-pocket { background: #a855f7; }
 
 	/* Diagnostic Drawer */
@@ -541,15 +550,15 @@ const { class: className = '' } = Astro.props;
 		font-weight: 500;
 	}
 
-	.drawer-severity-badge {
-		font-size: 0.8rem;
+	/* Clean severity typography without pill bubble container */
+	.drawer-severity-label {
+		font-size: 0.85rem;
 		font-weight: 600;
 		line-height: 1.35;
-		color: #fca5a5;
-		background: rgba(239, 68, 68, 0.15);
-		border: 1px solid rgba(239, 68, 68, 0.35);
-		padding: 0.32rem 0.75rem;
-		border-radius: 6px;
+		color: #f87171;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
 	}
 
 	.drawer-content-layout {
@@ -598,24 +607,24 @@ const { class: className = '' } = Astro.props;
 
 	.metric-label {
 		font-size: 0.74rem;
-		line-height: 1.45;
+		line-height: 1.4;
 		color: #94a3b8;
 		font-weight: 500;
 	}
 
 	.metric-value {
-		font-size: 1.05rem;
-		line-height: 1.35;
+		font-size: 0.95rem;
 		font-weight: 700;
+		line-height: 1.35;
 		color: #ffffff;
 	}
 
 	.metric-value.critical {
-		color: #f87171;
+		color: #ef4444;
 	}
 
 	.metric-value.warning {
-		color: #fbbf24;
+		color: #f97316;
 	}
 </style>
 
@@ -630,6 +639,7 @@ const { class: className = '' } = Astro.props;
 	const viewport = document.getElementById('archViewport');
 	const loadingOverlay = document.getElementById('archLoadingOverlay');
 	const hudViewLabel = document.getElementById('hudViewLabel');
+	const hudHelperTip = document.getElementById('hudHelperTip');
 
 	const btnNumbers = document.getElementById('btnToggleNumbers');
 	const btnSpin = document.getElementById('btnToggleSpin');
@@ -708,7 +718,7 @@ const { class: className = '' } = Astro.props;
 	grid.position.y = -2.6;
 	scene.add(grid);
 
-	// Root Group for All 3D Content (Teeth, Gums, and 3D Sprites)
+	// Root Group for All 3D Content (Teeth, Gums, Markers, Numbers)
 	const modelGroup = new THREE.Group();
 	scene.add(modelGroup);
 
@@ -717,6 +727,7 @@ const { class: className = '' } = Astro.props;
 	modelGroup.add(clinicalMarkersGroup);
 
 	const toothNumbersGroup = new THREE.Group();
+	toothNumbersGroup.visible = false; // Start clean, toggled via button
 	modelGroup.add(toothNumbersGroup);
 
 	// Material Definitions: Enamel Ivory White & Darker Natural Pink Gums
@@ -748,16 +759,19 @@ const { class: className = '' } = Astro.props;
 
 	// Storage & State
 	const teethMeshes = {};
+	const upperMeshes = [];
+	const lowerMeshes = [];
 	const boneMeshes = [];
 	const raycastableObjects = [];
 	let isSpinning = false;
 	let isWireframe = false;
 	let showBone = false;
-	let showNumbers = true;
+	let showNumbers = false;
 	let activeFilter = 'all';
+	let currentView = 'occlusion';
 	let selectedToothMesh = null;
 
-	// Helper to create sharp 3D billboard text sprites
+	// Helper to create sharp 3D billboard text sprites with true depth testing
 	function createTextSprite(text, borderColorHex, isSmall = false) {
 		const canvas = document.createElement('canvas');
 		canvas.width = isSmall ? 128 : 280;
@@ -769,7 +783,7 @@ const { class: className = '' } = Astro.props;
 		const r = isSmall ? 10 : 14;
 
 		// Card Background
-		ctx.fillStyle = 'rgba(12, 8, 26, 0.92)';
+		ctx.fillStyle = 'rgba(12, 8, 26, 0.94)';
 		ctx.strokeStyle = borderColorHex;
 		ctx.lineWidth = isSmall ? 4 : 5;
 
@@ -780,7 +794,7 @@ const { class: className = '' } = Astro.props;
 
 		// Sharp Typography
 		ctx.fillStyle = '#ffffff';
-		ctx.font = isSmall ? 'bold 36px system-ui, sans-serif' : 'bold 30px system-ui, sans-serif';
+		ctx.font = isSmall ? 'bold 36px system-ui, sans-serif' : 'bold 28px system-ui, sans-serif';
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 		ctx.fillText(text, canvas.width / 2, canvas.height / 2);
@@ -789,50 +803,111 @@ const { class: className = '' } = Astro.props;
 		texture.minFilter = THREE.LinearFilter;
 		const mat = new THREE.SpriteMaterial({
 			map: texture,
-			depthTest: false,
+			depthTest: true,
+			depthWrite: false,
 			transparent: true
 		});
 		const sprite = new THREE.Sprite(mat);
-		sprite.scale.set(isSmall ? 0.65 : 1.55, isSmall ? 0.32 : 0.45, 1);
+		sprite.scale.set(isSmall ? 0.65 : 1.45, isSmall ? 0.32 : 0.42, 1);
 		return sprite;
 	}
 
 	// Helper to create a glowing 3D sphere marker sitting right on the tooth
 	function createBeaconSphere(colorHex) {
-		const geom = new THREE.SphereGeometry(0.13, 16, 16);
-		const mat = new THREE.MeshBasicMaterial({ color: colorHex, depthTest: false });
+		const geom = new THREE.SphereGeometry(0.12, 16, 16);
+		const mat = new THREE.MeshStandardMaterial({
+			color: colorHex,
+			emissive: colorHex,
+			emissiveIntensity: 0.9,
+			roughness: 0.2,
+			depthTest: true,
+			depthWrite: false
+		});
 		return new THREE.Mesh(geom, mat);
 	}
+
+	// Helper to create thin leader line connecting surface beacon to floating badge
+	function createLeaderLine(startPos, endPos, colorHex) {
+		const geom = new THREE.BufferGeometry().setFromPoints([startPos, endPos]);
+		const mat = new THREE.LineBasicMaterial({
+			color: colorHex,
+			transparent: true,
+			opacity: 0.6,
+			depthTest: true,
+			depthWrite: false
+		});
+		return new THREE.Line(geom, mat);
+	}
+
+	// Complete 32 Permanent Teeth Directory (FDI & Universal Mappings)
+	const TOOTH_DIRECTORY = {
+		// Quadrant 1: Upper Right (Maxilla, Trigeminal V2)
+		'tooth-18': { fdi: '18', uni: '1', name: 'Upper Right 3rd Molar (Wisdom)', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-17': { fdi: '17', uni: '2', name: 'Upper Right 2nd Molar', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-16': { fdi: '16', uni: '3', name: 'Upper Right 1st Molar', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-15': { fdi: '15', uni: '4', name: 'Upper Right 2nd Premolar', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-14': { fdi: '14', uni: '5', name: 'Upper Right 1st Premolar', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-13': { fdi: '13', uni: '6', name: 'Upper Right Canine', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-12': { fdi: '12', uni: '7', name: 'Upper Right Lateral Incisor', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-11': { fdi: '11', uni: '8', name: 'Upper Right Central Incisor', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		// Quadrant 2: Upper Left (Maxilla, Trigeminal V2)
+		'tooth-21': { fdi: '21', uni: '9', name: 'Upper Left Central Incisor', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-22': { fdi: '22', uni: '10', name: 'Upper Left Lateral Incisor', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-23': { fdi: '23', uni: '11', name: 'Upper Left Canine', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-24': { fdi: '24', uni: '12', name: 'Upper Left 1st Premolar', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-25': { fdi: '25', uni: '13', name: 'Upper Left 2nd Premolar', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-26': { fdi: '26', uni: '14', name: 'Upper Left 1st Molar', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-27': { fdi: '27', uni: '15', name: 'Upper Left 2nd Molar', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		'tooth-28': { fdi: '28', uni: '16', name: 'Upper Left 3rd Molar (Wisdom)', arch: 'upper', branch: 'Trigeminal Branch V2' },
+		// Quadrant 3: Lower Left (Mandible, Trigeminal V3)
+		'tooth-31': { fdi: '31', uni: '24', name: 'Lower Left Central Incisor', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-32': { fdi: '32', uni: '23', name: 'Lower Left Lateral Incisor', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-33': { fdi: '33', uni: '22', name: 'Lower Left Canine', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-34': { fdi: '34', uni: '21', name: 'Lower Left 1st Premolar', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-35': { fdi: '35', uni: '20', name: 'Lower Left 2nd Premolar', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-36': { fdi: '36', uni: '19', name: 'Lower Left 1st Molar', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-37': { fdi: '37', uni: '18', name: 'Lower Left 2nd Molar', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-38': { fdi: '38', uni: '17', name: 'Lower Left 3rd Molar (Wisdom)', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		// Quadrant 4: Lower Right (Mandible, Trigeminal V3)
+		'tooth-41': { fdi: '41', uni: '25', name: 'Lower Right Central Incisor', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-42': { fdi: '42', uni: '26', name: 'Lower Right Lateral Incisor', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-43': { fdi: '43', uni: '27', name: 'Lower Right Canine', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-44': { fdi: '44', uni: '28', name: 'Lower Right 1st Premolar', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-45': { fdi: '45', uni: '29', name: 'Lower Right 2nd Premolar', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-46': { fdi: '46', uni: '30', name: 'Lower Right 1st Molar', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-47': { fdi: '47', uni: '31', name: 'Lower Right 2nd Molar', arch: 'lower', branch: 'Trigeminal Branch V3' },
+		'tooth-48': { fdi: '48', uni: '32', name: 'Lower Right 3rd Molar (Wisdom)', arch: 'lower', branch: 'Trigeminal Branch V3' }
+	};
 
 	// Clinical Audit Records Dictionary
 	const CLINICAL_RECORDS = {
 		'tooth-36': {
-			name: 'Tooth #36: Defective Distal Crown Margin & Hidden Cavities',
-			subtitle: 'Lower Left First Molar • Mandibular Quadrant • Trigeminal V3',
+			name: 'Tooth #36 [FDI] / #19 [US]: Defective Distal Crown Margin & Hidden Cavities',
+			subtitle: 'Lower Left First Molar • Mandibular Quadrant • Trigeminal Branch V3',
 			severity: 'Primary Neuropathic Trigger',
-			clinical: 'Florida Probe audit confirmed defective distal margin ("#36D joint au distal"). Independent X-ray review discovered three hidden cavities eroding dentin beneath the crown.',
-			mechanism: 'Subgingival food/plaque trap produces constant lactic and acetic acids. Acid penetrates directly into exposed dentinal tubules, firing the inferior alveolar nerve (V3).',
+			clinical: 'Florida Probe periodontal charting confirmed a defective distal crown margin ("#36D joint au distal"). An independent radiograph audit uncovered three hidden recurrent cavities undermining the enamel and dentin beneath the 20-year-old restoration.',
+			mechanism: 'Because this mechanical margin sits subgingivally, it acts as a permanent incubator for anaerobic bacterial biofilm. Microorganisms pump lactic and acetic acids directly into exposed dentinal tubules, constantly stimulating the inferior alveolar nerve and sensitizing the trigeminal system.',
 			pocket: '3mm - 4mm',
 			bop: 'Positive (severe)',
 			sensitivity: 'Excruciating Hyperalgesia',
 			stressor: 'Anaerobic Bacterial Acid'
 		},
 		'tooth-23': {
-			name: 'Tooth #23: 1mm Cervical Recession & 10/10 Floss Allodynia',
-			subtitle: 'Upper Left Canine • Maxillary Quadrant • Trigeminal V2',
+			name: 'Tooth #23 [FDI] / #11 [US]: 1mm Cervical Recession & 10/10 Floss Allodynia',
+			subtitle: 'Upper Left Canine • Maxillary Quadrant • Trigeminal Branch V2',
 			severity: 'Extreme Mechanical Allodynia',
 			clinical: 'Periodontal chart: "23B récession 1mm... L’intensité de l’inconfort au passage du fil de soie dentaire est de 10/10 et dure quelques secondes."',
-			mechanism: 'A 1mm recession exposes thousands of conical dentinal tubules. In a primed nervous system with sensitized ASIC3 channels, passing floss triggers a massive 10/10 shockwave.',
+			mechanism: 'A 1mm recession exposes thousands of conical dentinal tubules. In a primed nervous system with sensitized ASIC3 channels, passing dental floss triggers a massive 10/10 shockwave straight into the maxillary nerve branch.',
 			pocket: '3mm sulcus',
 			bop: 'Negative at margin',
 			sensitivity: '10/10 Allodynia to Floss',
 			stressor: 'Exposed Dentinal Tubules'
 		},
 		'tooth-13': {
-			name: 'Tooth #13: Canine Cervical Recession & Sensitivity',
-			subtitle: 'Upper Right Canine • Maxillary Quadrant • Trigeminal V2',
+			name: 'Tooth #13 [FDI] / #6 [US]: Canine Cervical Recession & Sensitivity',
+			subtitle: 'Upper Right Canine • Maxillary Quadrant • Trigeminal Branch V2',
 			severity: 'Bilateral Canine Sensitivity',
-			clinical: 'Bilateral canine flossing tenderness documented in dental chart alongside #23. Mild buccal recession exposing cementoenamel junction.',
+			clinical: 'Bilateral canine flossing tenderness documented in dental chart alongside #23. Mild buccal recession exposing the cementoenamel junction.',
 			mechanism: 'Mechanical friction during daily hygiene stimulates sensitized nerve terminals within exposed coronal tubules.',
 			pocket: '2mm - 3mm',
 			bop: 'Negative',
@@ -840,8 +915,8 @@ const { class: className = '' } = Astro.props;
 			stressor: 'Mechanical Friction'
 		},
 		'tooth-24': {
-			name: 'Tooth #24: Overcontoured Buccal Composite Filling',
-			subtitle: 'Upper Left First Premolar • Maxillary Quadrant • Trigeminal V2',
+			name: 'Tooth #24 [FDI] / #12 [US]: Overcontoured Buccal Composite Filling',
+			subtitle: 'Upper Left First Premolar • Maxillary Quadrant • Trigeminal Branch V2',
 			severity: 'Chronic Plaque & Plaque Trap',
 			clinical: 'Dental audit noted: "24B composite avec surcontour." Filling ledge overhangs the natural emergence profile.',
 			mechanism: 'Bulky restorative ledges trap biofilm against the gingival margin. Chronic inflammatory vasodilation prevents mucosal epithelial closure.',
@@ -851,10 +926,10 @@ const { class: className = '' } = Astro.props;
 			stressor: 'Microbial Plaque Retention'
 		},
 		'tooth-26': {
-			name: 'Tooth #26: Overcontoured Buccal Composite Filling',
-			subtitle: 'Upper Left First Molar • Maxillary Quadrant • Trigeminal V2',
+			name: 'Tooth #26 [FDI] / #14 [US]: Overcontoured Buccal Composite Filling',
+			subtitle: 'Upper Left First Molar • Maxillary Quadrant • Trigeminal Branch V2',
 			severity: 'Chronic Plaque & Plaque Trap',
-			clinical: 'Dental audit noted: "26B composite en surcontour." Bulky resin margin interfaces with molar gingival collar.',
+			clinical: 'Dental audit noted: "26B composite en surcontour." Bulky resin margin interfaces with the molar gingival collar.',
 			mechanism: 'Restoration overhang traps acid-producing bacteria directly adjacent to inflamed mucosal tissue.',
 			pocket: '3mm - 4mm',
 			bop: 'Positive on Probing',
@@ -862,8 +937,8 @@ const { class: className = '' } = Astro.props;
 			stressor: 'Biofilm Trap'
 		},
 		'tooth-14': {
-			name: 'Teeth #14 & #15: Premolar Abfraction Lesions',
-			subtitle: 'Upper Right Premolars • Maxillary Quadrant • Trigeminal V2',
+			name: 'Teeth #14 & #15 [FDI] / #4 & #5 [US]: Premolar Abfraction Lesions',
+			subtitle: 'Upper Right Premolars • Maxillary Quadrant • Trigeminal Branch V2',
 			severity: 'Non-Carious Cervical Wear',
 			clinical: 'Wedge-shaped cervical enamel notches along buccal cervical margins caused by eccentric bite stress and clenching.',
 			mechanism: 'Enamel microfractures expose dentin to dietary acids, triggering rapid burning flares upon contact with acidic or salty food.',
@@ -873,11 +948,11 @@ const { class: className = '' } = Astro.props;
 			stressor: 'Occlusal Flexure & Acid'
 		},
 		'tooth-34': {
-			name: 'Teeth #34 & #35: Mandibular Premolar Abfractions',
-			subtitle: 'Lower Left Premolars • Mandibular Quadrant • Trigeminal V3',
+			name: 'Teeth #34 & #35 [FDI] / #20 & #21 [US]: Mandibular Premolar Abfractions',
+			subtitle: 'Lower Left Premolars • Mandibular Quadrant • Trigeminal Branch V3',
 			severity: 'Mechanical Enamel Notches',
 			clinical: 'Cervical wear facets and enamel notches adjacent to defective molar #36.',
-			mechanism: 'Occlusal forces from heavy chewing and clenching flex the cervical crown, dislodging enamel prisms.',
+			mechanism: 'Occlusal forces from heavy chewing and clenching flex the cervical crown, dislodging brittle enamel prisms.',
 			pocket: '3mm sulcus',
 			bop: 'Mild',
 			sensitivity: 'Tactile Sensitivity',
@@ -896,83 +971,99 @@ const { class: className = '' } = Astro.props;
 		}
 	};
 
-	// Clinical 3D Markers Definitions (Attached directly to exact teeth in 3D scene)
+	// Clinical 3D Markers Definitions (Physically attached directly to specific teeth in 3D scene)
 	const CLINICAL_3D_MARKERS = [
 		{
 			id: 'tooth-36',
 			tooth: 'tooth-36',
+			arch: 'lower',
 			category: 'crown',
 			label: '#36 Crown Leak & Cavities',
 			color: 0xef4444,
 			colorHex: '#ef4444',
-			offset: [0.45, 0.2, -0.15]
+			yOffset: 0.1
 		},
 		{
 			id: 'tooth-23',
 			tooth: 'tooth-23',
+			arch: 'upper',
 			category: 'recession',
 			label: '#23 1mm Recession (10/10 Pain)',
 			color: 0xf97316,
 			colorHex: '#f97316',
-			offset: [0.25, 0.25, 0.25]
+			yOffset: -0.15
 		},
 		{
 			id: 'tooth-13',
 			tooth: 'tooth-13',
+			arch: 'upper',
 			category: 'recession',
 			label: '#13 Canine Floss Pain',
 			color: 0xf97316,
 			colorHex: '#f97316',
-			offset: [-0.25, 0.25, 0.25]
+			yOffset: -0.15
 		},
 		{
 			id: 'tooth-24',
 			tooth: 'tooth-24',
+			arch: 'upper',
 			category: 'filling',
 			label: '#24 Composite Overcontour',
 			color: 0x38bdf8,
 			colorHex: '#38bdf8',
-			offset: [0.35, 0.2, 0.15]
+			yOffset: -0.12
 		},
 		{
 			id: 'tooth-26',
 			tooth: 'tooth-26',
+			arch: 'upper',
 			category: 'filling',
 			label: '#26 Composite Overcontour',
 			color: 0x38bdf8,
 			colorHex: '#38bdf8',
-			offset: [0.45, 0.25, 0.05]
+			yOffset: -0.12
 		},
 		{
 			id: 'tooth-14',
 			tooth: 'tooth-14',
+			arch: 'upper',
 			category: 'abfraction',
 			label: '#14-#15 Abfraction Notches',
 			color: 0xeab308,
 			colorHex: '#eab308',
-			offset: [-0.35, 0.2, 0.15]
+			yOffset: -0.12
 		},
 		{
 			id: 'tooth-34',
 			tooth: 'tooth-34',
+			arch: 'lower',
 			category: 'abfraction',
 			label: '#34-#35 Mandibular Wear',
 			color: 0xeab308,
 			colorHex: '#eab308',
-			offset: [0.3, 0.15, 0.15]
+			yOffset: 0.12
 		},
 		{
 			id: 'pocket-molar',
 			tooth: 'tooth-36',
+			arch: 'lower',
 			category: 'pocket',
 			label: '3mm - 4mm Pockets (9% BOP)',
 			color: 0xa855f7,
 			colorHex: '#a855f7',
-			offset: [0.55, 0.65, -0.05]
+			yOffset: 0.35
 		}
 	];
 
 	const active3DMarkerObjects = [];
+
+	// Compute outward normal unit vector from the oral cavity center (0, 0, 0.35) through the tooth
+	function getToothOutwardVector(mesh) {
+		const dx = mesh.position.x;
+		const dz = mesh.position.z - 0.35;
+		const len = Math.hypot(dx, dz) || 1;
+		return { x: dx / len, z: dz / len };
+	}
 
 	// Load 3D GLB Model
 	const loader = new THREE.GLTFLoader();
@@ -990,8 +1081,19 @@ const { class: className = '' } = Astro.props;
 						child.material = toothMaterial.clone();
 						teethMeshes[name] = child;
 						raycastableObjects.push(child);
-					} else if (name.startsWith('gingiva-')) {
+
+						const dir = TOOTH_DIRECTORY[name];
+						if (dir && dir.arch === 'upper') {
+							upperMeshes.push(child);
+						} else {
+							lowerMeshes.push(child);
+						}
+					} else if (name === 'gingiva-upper') {
 						child.material = gingivaMaterial.clone();
+						upperMeshes.push(child);
+					} else if (name === 'gingiva-lower') {
+						child.material = gingivaMaterial.clone();
+						lowerMeshes.push(child);
 					} else if (name.includes('alveolar') || name.includes('mandible') || name.includes('maxilla')) {
 						child.material = boneMaterial;
 						child.visible = false;
@@ -1004,31 +1106,41 @@ const { class: className = '' } = Astro.props;
 
 			modelGroup.add(gltf.scene);
 
-			// Build True 3D Clinical Issue Markers attached directly to teeth
+			// Build True 3D Clinical Issue Markers physically attached to exact teeth
 			CLINICAL_3D_MARKERS.forEach(item => {
 				const toothMesh = teethMeshes[item.tooth];
 				if (!toothMesh) return;
 
 				const markerGroup = new THREE.Group();
-				markerGroup.userData = { id: item.id, category: item.category };
+				markerGroup.userData = { id: item.id, category: item.category, arch: item.arch };
 
-				// 1. Glowing 3D Beacon sphere right on the tooth surface
+				const outVec = getToothOutwardVector(toothMesh);
+
+				// 1. Glowing 3D Beacon sphere right on the outer tooth surface
 				const beacon = createBeaconSphere(item.color);
 				beacon.userData = { id: item.id };
+				const beaconPos = new THREE.Vector3(
+					toothMesh.position.x + outVec.x * 0.45,
+					toothMesh.position.y + item.yOffset,
+					toothMesh.position.z + outVec.z * 0.45
+				);
+				beacon.position.copy(beaconPos);
 				markerGroup.add(beacon);
 
-				// 2. Crisp 3D Billboard Sprite badge floating slightly above beacon
+				// 2. Crisp 3D Billboard Sprite badge floating cleanly outside the tooth
 				const sprite = createTextSprite(item.label, item.colorHex, false);
-				sprite.position.set(0, 0.45, 0.05);
+				const badgePos = new THREE.Vector3(
+					toothMesh.position.x + outVec.x * 0.95,
+					toothMesh.position.y + item.yOffset * 1.3,
+					toothMesh.position.z + outVec.z * 0.95
+				);
+				sprite.position.copy(badgePos);
 				sprite.userData = { id: item.id };
 				markerGroup.add(sprite);
 
-				// Position marker group at tooth position + calibrated surface offset
-				markerGroup.position.set(
-					toothMesh.position.x + item.offset[0],
-					toothMesh.position.y + item.offset[1],
-					toothMesh.position.z + item.offset[2]
-				);
+				// 3. Subtle thin leader line connecting the tooth surface beacon to the floating badge
+				const line = createLeaderLine(beaconPos, badgePos, item.color);
+				markerGroup.add(line);
 
 				clinicalMarkersGroup.add(markerGroup);
 				active3DMarkerObjects.push(markerGroup);
@@ -1038,17 +1150,19 @@ const { class: className = '' } = Astro.props;
 
 			// Build Clean 3D Tooth Number Badges (#11 to #48) on every single tooth
 			Object.entries(teethMeshes).forEach(([toothName, mesh]) => {
-				const numStr = toothName.replace('tooth-', '#');
-				const isUpper = mesh.position.y > 0;
+				const dir = TOOTH_DIRECTORY[toothName];
+				const numStr = dir ? `#${dir.fdi}` : toothName.replace('tooth-', '#');
+				const isUpper = dir ? dir.arch === 'upper' : mesh.position.y > 0;
+				const outVec = getToothOutwardVector(mesh);
 
 				const numSprite = createTextSprite(numStr, '#a855f7', true);
-				// Position right at the emergence edge of the tooth
+				// Position precisely on the outer emergence crown edge facing outward
 				numSprite.position.set(
-					mesh.position.x,
-					mesh.position.y + (isUpper ? -0.45 : 0.45),
-					mesh.position.z + 0.15
+					mesh.position.x + outVec.x * 0.65,
+					mesh.position.y + (isUpper ? -0.25 : 0.25),
+					mesh.position.z + outVec.z * 0.65
 				);
-				numSprite.userData = { toothKey: toothName };
+				numSprite.userData = { toothKey: toothName, arch: isUpper ? 'upper' : 'lower' };
 				toothNumbersGroup.add(numSprite);
 				raycastableObjects.push(numSprite);
 			});
@@ -1068,19 +1182,31 @@ const { class: className = '' } = Astro.props;
 	// Update Diagnostic Drawer
 	function updateDiagnosticDrawer(key) {
 		const rec = CLINICAL_RECORDS[key];
-		if (!rec) return;
+		const toothInfo = TOOTH_DIRECTORY[key];
 
-		if (drawerTitle) drawerTitle.textContent = rec.name;
-		if (drawerSubtitle) drawerSubtitle.textContent = rec.subtitle;
-		if (drawerSeverity) drawerSeverity.textContent = rec.severity;
-		if (drawerClinicalText) drawerClinicalText.textContent = rec.clinical;
-		if (drawerBmsMechanism) drawerBmsMechanism.textContent = rec.mechanism;
-		if (metricPocket) metricPocket.textContent = rec.pocket;
-		if (metricBop) metricBop.textContent = rec.bop;
-		if (metricSensitivity) metricSensitivity.textContent = rec.sensitivity;
-		if (metricStressor) metricStressor.textContent = rec.stressor;
+		if (rec) {
+			if (drawerTitle) drawerTitle.textContent = rec.name;
+			if (drawerSubtitle) drawerSubtitle.textContent = rec.subtitle;
+			if (drawerSeverity) drawerSeverity.textContent = rec.severity;
+			if (drawerClinicalText) drawerClinicalText.textContent = rec.clinical;
+			if (drawerBmsMechanism) drawerBmsMechanism.textContent = rec.mechanism;
+			if (metricPocket) metricPocket.textContent = rec.pocket;
+			if (metricBop) metricBop.textContent = rec.bop;
+			if (metricSensitivity) metricSensitivity.textContent = rec.sensitivity;
+			if (metricStressor) metricStressor.textContent = rec.stressor;
+		} else if (toothInfo) {
+			if (drawerTitle) drawerTitle.textContent = `Tooth #${toothInfo.fdi} [FDI] / #${toothInfo.uni} [US]: ${toothInfo.name}`;
+			if (drawerSubtitle) drawerSubtitle.textContent = `${toothInfo.arch === 'upper' ? 'Maxillary Quadrant' : 'Mandibular Quadrant'} • ${toothInfo.branch}`;
+			if (drawerSeverity) drawerSeverity.textContent = 'Intact Reference Tooth';
+			if (drawerClinicalText) drawerClinicalText.textContent = 'Intact clinical morphology. No defective restorations, margin gaps, or active periodontal breakdown documented in this sector.';
+			if (drawerBmsMechanism) drawerBmsMechanism.textContent = 'Serves as a normal reference comparator. Not currently identified as an active nociceptive trigger source in your oral examination.';
+			if (metricPocket) metricPocket.textContent = '2mm - 3mm (Normal sulcus)';
+			if (metricBop) metricBop.textContent = 'Negative';
+			if (metricSensitivity) metricSensitivity.textContent = 'Normal';
+			if (metricStressor) metricStressor.textContent = 'None';
+		}
 
-		// Highlight selected tooth with purple emissive glow
+		// Highlight selected tooth with rich purple emissive glow
 		if (selectedToothMesh) {
 			selectedToothMesh.material.color.setHex(0xfaf8f2);
 			selectedToothMesh.material.emissive.setHex(0x1c1a17);
@@ -1091,26 +1217,61 @@ const { class: className = '' } = Astro.props;
 			selectedToothMesh = teethMeshes[targetToothKey];
 			selectedToothMesh.material.color.setHex(0xffffff);
 			selectedToothMesh.material.emissive.setHex(0x9333ea);
-			selectedToothMesh.material.emissiveIntensity = 0.55;
+			selectedToothMesh.material.emissiveIntensity = 0.65;
+		}
+	}
+
+	// Update markers and meshes visibility based on view preset and issue filter
+	function syncSceneVisibility() {
+		// Arch isolation
+		if (currentView === 'upper') {
+			upperMeshes.forEach(m => m.visible = true);
+			lowerMeshes.forEach(m => m.visible = false);
+		} else if (currentView === 'lower') {
+			upperMeshes.forEach(m => m.visible = false);
+			lowerMeshes.forEach(m => m.visible = true);
+		} else {
+			upperMeshes.forEach(m => m.visible = true);
+			lowerMeshes.forEach(m => m.visible = true);
+		}
+
+		// Clinical markers visibility
+		active3DMarkerObjects.forEach(group => {
+			const cat = group.userData.category;
+			const arch = group.userData.arch;
+
+			let matchFilter = (activeFilter === 'all' || activeFilter === cat);
+			let matchView = (currentView === 'occlusion' || currentView === arch);
+
+			group.visible = matchFilter && matchView;
+		});
+
+		// Tooth numbers visibility
+		if (toothNumbersGroup) {
+			toothNumbersGroup.children.forEach(sprite => {
+				const arch = sprite.userData.arch;
+				let matchView = (currentView === 'occlusion' || currentView === arch);
+				sprite.visible = showNumbers && matchView;
+			});
 		}
 	}
 
 	// Perspective Camera Views
 	const VIEW_PRESETS = {
 		'occlusion': {
-			label: 'Both Arches (In Centric Occlusion)',
+			label: 'Centric Occlusion (Bite Relationship)',
 			camPos: [0, 0.45, 11.2],
 			target: [0, 0, 0]
 		},
 		'upper': {
 			label: 'Upper Arch (Maxilla & Palate)',
-			camPos: [0, -5.8, 7.5],
+			camPos: [0, -6.2, 5.8],
 			target: [0, 1.2, 0.2]
 		},
 		'lower': {
 			label: 'Lower Arch (Mandible & Tooth #36)',
-			camPos: [0, 5.8, 7.2],
-			target: [0, -0.8, -0.3]
+			camPos: [0, 6.2, 5.8],
+			target: [0, -0.8, -0.2]
 		}
 	};
 
@@ -1123,7 +1284,10 @@ const { class: className = '' } = Astro.props;
 			const view = VIEW_PRESETS[key];
 			if (!view) return;
 
+			currentView = key;
 			if (hudViewLabel) hudViewLabel.textContent = view.label;
+
+			syncSceneVisibility();
 
 			// Trigger smooth glide to preset
 			targetCamPos.set(view.camPos[0], view.camPos[1], view.camPos[2]);
@@ -1139,14 +1303,7 @@ const { class: className = '' } = Astro.props;
 			btn.classList.add('active');
 
 			activeFilter = btn.getAttribute('data-filter') || 'all';
-
-			active3DMarkerObjects.forEach(group => {
-				const cat = group.userData.category;
-				let isVisible = false;
-				if (activeFilter === 'all') isVisible = true;
-				else if (activeFilter === cat) isVisible = true;
-				group.visible = isVisible;
-			});
+			syncSceneVisibility();
 
 			if (activeFilter === 'crown') updateDiagnosticDrawer('tooth-36');
 			else if (activeFilter === 'recession') updateDiagnosticDrawer('tooth-23');
@@ -1161,6 +1318,7 @@ const { class: className = '' } = Astro.props;
 		showNumbers = !showNumbers;
 		btnNumbers.classList.toggle('active', showNumbers);
 		toothNumbersGroup.visible = showNumbers;
+		syncSceneVisibility();
 	});
 
 	btnSpin?.addEventListener('click', () => {
@@ -1177,8 +1335,9 @@ const { class: className = '' } = Astro.props;
 	});
 
 	btnReset?.addEventListener('click', () => {
-		targetCamPos.set(0, 0.45, 11.2);
-		targetLookAt.set(0, 0, 0);
+		const view = VIEW_PRESETS[currentView] || VIEW_PRESETS['occlusion'];
+		targetCamPos.set(view.camPos[0], view.camPos[1], view.camPos[2]);
+		targetLookAt.set(view.target[0], view.target[1], view.target[2]);
 		isCameraAnimating = true;
 	});
 
@@ -1188,11 +1347,11 @@ const { class: className = '' } = Astro.props;
 		boneMeshes.forEach(m => m.visible = showBone);
 	});
 
-	// Raycaster for Clicking 3D Teeth, Sprites, and Beacons
+	// Raycaster for Hover and Click Interaction
 	const raycaster = new THREE.Raycaster();
 	const mouse = new THREE.Vector2();
 
-	viewport.addEventListener('click', (e) => {
+	function getIntersectedObject(e) {
 		const rect = renderer.domElement.getBoundingClientRect();
 		mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
 		mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
@@ -1200,41 +1359,51 @@ const { class: className = '' } = Astro.props;
 		raycaster.setFromCamera(mouse, camera);
 		const intersects = raycaster.intersectObjects(raycastableObjects, true);
 
-		if (intersects.length > 0) {
-			const hit = intersects[0].object;
-			let toothKey = hit.name;
+		// Filter for currently visible objects only
+		const visibleHits = intersects.filter(hit => {
+			let obj = hit.object;
+			while (obj && obj !== scene) {
+				if (obj.visible === false) return false;
+				obj = obj.parent;
+			}
+			return true;
+		});
 
-			// If clicked a 3D marker or number sprite
+		return visibleHits.length > 0 ? visibleHits[0].object : null;
+	}
+
+	viewport.addEventListener('mousemove', (e) => {
+		const hit = getIntersectedObject(e);
+		if (hit) {
+			viewport.style.cursor = 'pointer';
+			let key = hit.name;
+			if (hit.userData && hit.userData.id) key = hit.userData.id;
+			else if (hit.userData && hit.userData.toothKey) key = hit.userData.toothKey;
+
+			const info = TOOTH_DIRECTORY[key];
+			if (info && hudHelperTip) {
+				hudHelperTip.innerHTML = `<span>🎯 <strong>Tooth #${info.fdi} [FDI] / #${info.uni} [US]</strong>: ${info.name}</span>`;
+			}
+		} else {
+			viewport.style.cursor = 'grab';
+			if (hudHelperTip) {
+				hudHelperTip.innerHTML = '<span>🖱️ Drag to rotate 360°</span><span>•</span><span>🔍 Scroll to zoom</span><span>•</span><span>🎯 Click tooth or marker to&nbsp;inspect</span>';
+			}
+		}
+	});
+
+	viewport.addEventListener('click', (e) => {
+		const hit = getIntersectedObject(e);
+		if (hit) {
+			let toothKey = hit.name;
 			if (hit.userData && hit.userData.id) {
 				toothKey = hit.userData.id;
 			} else if (hit.userData && hit.userData.toothKey) {
 				toothKey = hit.userData.toothKey;
 			}
 
-			if (CLINICAL_RECORDS[toothKey]) {
+			if (CLINICAL_RECORDS[toothKey] || TOOTH_DIRECTORY[toothKey]) {
 				updateDiagnosticDrawer(toothKey);
-			} else if (toothKey && toothKey.startsWith('tooth-')) {
-				if (drawerTitle) drawerTitle.textContent = `${toothKey.toUpperCase()} (Normal Reference Tooth)`;
-				if (drawerSubtitle) drawerSubtitle.textContent = 'Intact Enamel Crown • Physiological Sulcus';
-				if (drawerSeverity) drawerSeverity.textContent = 'Normal Reference';
-				if (drawerClinicalText) drawerClinicalText.textContent = 'This tooth presents intact morphology without documented restoration margins, cavities, or severe cervical defects.';
-				if (drawerBmsMechanism) drawerBmsMechanism.textContent = 'Acts as a normal reference surface. Not an active primary mechanical trigger in your clinical audit.';
-				if (metricPocket) metricPocket.textContent = '2mm - 3mm (Normal)';
-				if (metricBop) metricBop.textContent = 'Negative';
-				if (metricSensitivity) metricSensitivity.textContent = 'Normal';
-				if (metricStressor) metricStressor.textContent = 'None';
-
-				// Highlight normal tooth
-				if (selectedToothMesh) {
-					selectedToothMesh.material.color.setHex(0xfaf8f2);
-					selectedToothMesh.material.emissive.setHex(0x1c1a17);
-				}
-				if (teethMeshes[toothKey]) {
-					selectedToothMesh = teethMeshes[toothKey];
-					selectedToothMesh.material.color.setHex(0xffffff);
-					selectedToothMesh.material.emissive.setHex(0x60a5fa);
-					selectedToothMesh.material.emissiveIntensity = 0.4;
-				}
 			}
 		}
 	});
