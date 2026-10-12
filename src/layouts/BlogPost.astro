@@ -70,6 +70,15 @@ if (!postNumber && slug) {
 		<Header />
 		<main class="post-container">
 			<article class="blog-post">
+				{isHomepage ? (
+					<div class="homepage-hero-header">
+						<h1 class="homepage-hero-title">Finding what calms&nbsp;BMS</h1>
+						<p class="homepage-hero-subhead">
+							Together, let's find what makes our BMS worse - and what makes it&nbsp;better.
+						</p>
+					</div>
+				) : null}
+
 				<div class="hero-image">
 					{youtubeVideoId ? (
 						<iframe
@@ -89,7 +98,11 @@ if (!postNumber && slug) {
 				{showAudioReader && <AudioReader title={title} headings={headings} />}
 				{showTOC && <TableOfContents />}
 
-				<h1 set:html={title} />
+				{isHomepage ? (
+					<h2 class="homepage-article-title" set:html={title} />
+				) : (
+					<h1 set:html={title} />
+				)}
 
 				{!isHomepage && (
 					<div class="post-meta">
@@ -976,6 +989,47 @@ if (!postNumber && slug) {
 				font-weight: 800;
 				margin: 2.25rem auto 1.5rem auto;
 				max-width: 18ch;
+				width: 100%;
+				text-wrap: balance;
+				text-align: center;
+				display: block;
+			}
+			/* Homepage Hero Header Above Video */
+			.homepage-hero-header {
+				text-align: center;
+				margin: 0.5rem auto 2.5rem auto;
+				max-width: 860px;
+				width: 100%;
+			}
+			.homepage-hero-title {
+				font-size: clamp(3.2rem, 6.5vw, 4.8rem);
+				line-height: 1.12;
+				letter-spacing: -0.035em;
+				color: var(--text-primary);
+				font-weight: 900;
+				margin: 0 auto 1.25rem auto;
+				max-width: 22ch;
+				text-wrap: balance;
+				text-align: center;
+			}
+			.homepage-hero-subhead {
+				font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+				line-height: 1.5;
+				color: #334155;
+				font-weight: 500;
+				margin: 0 auto;
+				max-width: 760px;
+				text-wrap: balance;
+				text-align: center;
+			}
+			.homepage-article-title {
+				font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+				line-height: 1.18;
+				letter-spacing: -0.03em;
+				color: var(--text-primary);
+				font-weight: 800;
+				margin: 2.25rem auto 1.5rem auto;
+				max-width: 22ch;
 				width: 100%;
 				text-wrap: balance;
 				text-align: center;
