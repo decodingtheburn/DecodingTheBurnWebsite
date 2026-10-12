@@ -808,7 +808,7 @@ const { class: className = '' } = Astro.props;
 	const height = container.clientHeight || 820;
 
 	const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-	camera.position.set(0, 0.35, 7.8);
+	camera.position.set(0, 0.45, 11.2);
 
 	const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 	renderer.setSize(width, height);
@@ -821,8 +821,8 @@ const { class: className = '' } = Astro.props;
 	const controls = new THREE.OrbitControls(camera, renderer.domElement);
 	controls.enableDamping = true;
 	controls.dampingFactor = 0.08;
-	controls.maxDistance = 18;
-	controls.minDistance = 3.2;
+	controls.maxDistance = 24;
+	controls.minDistance = 3.5;
 	controls.target.set(0, 0, 0);
 
 	// Studio Lighting Setup
@@ -850,7 +850,7 @@ const { class: className = '' } = Astro.props;
 	const modelGroup = new THREE.Group();
 	scene.add(modelGroup);
 
-	// Material Definitions: Enamel Ivory White & Vibrant Healthy Pink Gums
+	// Material Definitions: Enamel Ivory White & Darker Natural Pink Gums
 	const toothMaterial = new THREE.MeshStandardMaterial({
 		color: 0xfaf8f2,
 		emissive: 0x1c1a17,
@@ -859,11 +859,11 @@ const { class: className = '' } = Astro.props;
 		side: THREE.DoubleSide
 	});
 
-	// Vibrant Warm Healthy Pink Gums (With Emissive Base so they never appear black in shadow)
+	// Darker Anatomical Mucosal Pink Gums
 	const gingivaMaterial = new THREE.MeshStandardMaterial({
-		color: 0xf472b6, // Healthy vibrant pink (#f472b6)
-		emissive: 0x5a1828, // Warm crimson-pink base to prevent dark voids
-		roughness: 0.35,
+		color: 0xc73866, // Darker rich anatomical pink (#c73866)
+		emissive: 0x3d0d1e, // Deep crimson-pink base to prevent dark voids
+		roughness: 0.36,
 		metalness: 0.02,
 		side: THREE.DoubleSide
 	});
@@ -1083,17 +1083,17 @@ const { class: className = '' } = Astro.props;
 	const VIEW_PRESETS = {
 		'occlusion': {
 			label: 'Both Arches (In Centric Occlusion)',
-			camPos: [0, 0.35, 7.8],
+			camPos: [0, 0.45, 11.2],
 			target: [0, 0, 0]
 		},
 		'upper': {
 			label: 'Upper Arch (Maxilla & Palate)',
-			camPos: [0, -4.8, 5.2],
+			camPos: [0, -5.8, 7.5],
 			target: [0, 1.2, 0.2]
 		},
 		'lower': {
 			label: 'Lower Arch (Mandible & Tooth #36)',
-			camPos: [0, 4.8, 5.0],
+			camPos: [0, 5.8, 7.2],
 			target: [0, -0.8, -0.3]
 		}
 	};
@@ -1115,7 +1115,7 @@ const { class: className = '' } = Astro.props;
 		});
 	});
 
-	const targetCamPos = new THREE.Vector3(0, 0.35, 7.8);
+	const targetCamPos = new THREE.Vector3(0, 0.45, 11.2);
 	const targetLookAt = new THREE.Vector3(0, 0, 0);
 
 	// Filter Logic
@@ -1167,7 +1167,7 @@ const { class: className = '' } = Astro.props;
 	});
 
 	btnReset?.addEventListener('click', () => {
-		targetCamPos.set(0, 0.35, 7.8);
+		targetCamPos.set(0, 0.45, 11.2);
 		targetLookAt.set(0, 0, 0);
 		controls.target.set(0, 0, 0);
 	});
