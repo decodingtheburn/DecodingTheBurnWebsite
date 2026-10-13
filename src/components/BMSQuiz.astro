@@ -1,11 +1,12 @@
 ---
 // Interactive BMS Questionnaire Component - 7 Clinical Diagnostic Categories
+// Designed for mature audiences (50+): Large legible fonts, centered questions, clear option pills, 80% breakout container width
 ---
 
 <div class="bms-quiz-wrapper">
 	<div class="quiz-header-banner">
 		<p class="quiz-callout">
-			<strong>Want to help advance BMS research?</strong> Answer the 7-part clinical questionnaire below to map your symptom profile. When finished, click <strong>Submit Anonymous Data</strong>. It is 100% anonymous, with no name or email&nbsp;required.
+			<strong>Want to help advance BMS research?</strong> Answer the short questions below to map your symptoms. When finished, tap <strong>Submit Anonymous Data</strong>. It is 100% anonymous, with no name or email&nbsp;required.
 		</p>
 	</div>
 
@@ -15,10 +16,10 @@
 			<h3 class="quiz-section-title">1. Pain Characteristics, Timing &amp; Evolution</h3>
 			
 			<div class="quiz-item">
-				<p class="quiz-question">How would you describe the sensation: is it a scalding or burning heat, an electric shock, a dull ache, or raw&nbsp;hypersensitivity?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Pain sensation type">
-					<button type="button" class="quiz-btn" data-val="scalding-heat">Scalding / Burning Heat</button>
-					<button type="button" class="quiz-btn" data-val="electric-shock">Electric Shock / Stabbing</button>
+				<p class="quiz-question">What does the burning sensation feel&nbsp;like?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Sensation feeling">
+					<button type="button" class="quiz-btn" data-val="scalding">Scalding / Burning Heat</button>
+					<button type="button" class="quiz-btn" data-val="electric">Electric Shock / Stabbing</button>
 					<button type="button" class="quiz-btn" data-val="dull-ache">Dull Ache</button>
 					<button type="button" class="quiz-btn" data-val="raw-hypersensitivity">Raw Hypersensitivity</button>
 					<button type="button" class="quiz-btn" data-val="mixed">Mixed Sensations</button>
@@ -26,233 +27,233 @@
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Does the pain follow a daily cycle (e.g., worse upon waking in the morning, or starts mild and builds toward the&nbsp;evening)?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Daily cycle pattern">
-					<button type="button" class="quiz-btn" data-val="builds-evening">Starts Mild, Builds by Evening</button>
-					<button type="button" class="quiz-btn" data-val="worse-morning">Worse Upon Waking in Morning</button>
-					<button type="button" class="quiz-btn" data-val="constant">Constant Intensity All Day</button>
-					<button type="button" class="quiz-btn" data-val="unpredictable">Unpredictable / Fluctuating</button>
+				<p class="quiz-question">Does your pain get worse as the day goes&nbsp;on?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Daily pain cycle">
+					<button type="button" class="quiz-btn" data-val="builds-evening">Yes, builds toward evening</button>
+					<button type="button" class="quiz-btn" data-val="worse-morning">Worse upon waking</button>
+					<button type="button" class="quiz-btn" data-val="constant">Constant all day</button>
+					<button type="button" class="quiz-btn" data-val="unpredictable">Random flare-ups</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Does the pain wake you up from sleep, or does it only bother you during the&nbsp;day?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Sleep interruption">
-					<button type="button" class="quiz-btn" data-val="day-only">Only Bothers During Day</button>
-					<button type="button" class="quiz-btn" data-val="sometimes-wakes">Sometimes Wakes Me From Sleep</button>
-					<button type="button" class="quiz-btn" data-val="frequently-wakes">Frequently Wakes Me at Night</button>
+				<p class="quiz-question">Does the burning wake you up at&nbsp;night?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Nighttime waking">
+					<button type="button" class="quiz-btn" data-val="day-only">No, only bothers during the day</button>
+					<button type="button" class="quiz-btn" data-val="sometimes-wakes">Sometimes wakes me</button>
+					<button type="button" class="quiz-btn" data-val="frequently-wakes">Frequently wakes me</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">What is your baseline intensity on a scale of 0 to 10, and what does it spike to during a&nbsp;flare?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Baseline and spike intensity">
-					<button type="button" class="quiz-btn" data-val="mild-spike">Baseline 1-3 (Spikes to 7-10)</button>
-					<button type="button" class="quiz-btn" data-val="mod-spike">Baseline 4-6 (Spikes to 8-10)</button>
-					<button type="button" class="quiz-btn" data-val="severe-constant">Constant 7-10 High Pain</button>
-					<button type="button" class="quiz-btn" data-val="variable-baseline">Variable / No Clear Baseline</button>
+				<p class="quiz-question">How intense is your pain on a 0 to 10&nbsp;scale?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Pain intensity">
+					<button type="button" class="quiz-btn" data-val="mild-spike">Mild (1 to 3), spikes to 7-10</button>
+					<button type="button" class="quiz-btn" data-val="mod-spike">Moderate (4 to 6), spikes to 8-10</button>
+					<button type="button" class="quiz-btn" data-val="severe-constant">Constant severe pain (7 to 10)</button>
+					<button type="button" class="quiz-btn" data-val="variable">Fluctuates / No clear baseline</button>
 				</div>
 			</div>
 		</div>
 
 		<!-- Section 2 -->
 		<div class="quiz-section">
-			<h3 class="quiz-section-title">2. Triggers, Provocations &amp; Aggravating Factors</h3>
+			<h3 class="quiz-section-title">2. Triggers &amp; Aggravating Factors</h3>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Does touching the gumline, light brushing, or passing dental floss trigger a sharp, instantaneous spike (e.g., shooting to a&nbsp;10/10)?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Flossing and gumline mechanical spike">
-					<button type="button" class="quiz-btn" data-val="sharp-spike">Yes (Sharp Flossing / Brushing Spike)</button>
-					<button type="button" class="quiz-btn" data-val="mild-tender">Mild Tenderness</button>
-					<button type="button" class="quiz-btn" data-val="no-spike">No Spike</button>
+				<p class="quiz-question">Does flossing or touching your gumline cause sharp&nbsp;pain?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Flossing and gumline sensitivity">
+					<button type="button" class="quiz-btn" data-val="sharp-spike">Yes, sharp shooting pain</button>
+					<button type="button" class="quiz-btn" data-val="mild-tender">Mild tender spot</button>
+					<button type="button" class="quiz-btn" data-val="no-spike">No pain</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">How do your teeth and gums react to temperature changes, specifically ice water, hot liquids, or cold&nbsp;air?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Temperature sensitivity">
-					<button type="button" class="quiz-btn" data-val="sharp-cold">Sharp Cold Water Pain</button>
-					<button type="button" class="quiz-btn" data-val="hot-liquids">Hot Liquids Trigger Burning</button>
-					<button type="button" class="quiz-btn" data-val="cold-air">Cold Air Breathing Sensitivity</button>
-					<button type="button" class="quiz-btn" data-val="no-temp">No Reaction to Temperature</button>
+				<p class="quiz-question">Do cold air, ice water, or hot drinks trigger&nbsp;pain?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Temperature triggers">
+					<button type="button" class="quiz-btn" data-val="sharp-cold">Cold water or ice</button>
+					<button type="button" class="quiz-btn" data-val="hot-liquids">Hot liquids trigger burning</button>
+					<button type="button" class="quiz-btn" data-val="cold-air">Cold air breathing</button>
+					<button type="button" class="quiz-btn" data-val="no-temp">No temperature reaction</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Do acidic foods or drinks (citrus, coffee, wine, carbonated water) sting immediately upon contact, or do you notice a delayed flare 24 to 72 hours&nbsp;later?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Acid trigger timing">
-					<button type="button" class="quiz-btn" data-val="immediate">Immediate Contact Stinging</button>
-					<button type="button" class="quiz-btn" data-val="delayed">Delayed Flare (24-72h Later)</button>
-					<button type="button" class="quiz-btn" data-val="both">Both Immediate &amp; Delayed</button>
-					<button type="button" class="quiz-btn" data-val="neither">Neither / No Effect</button>
+				<p class="quiz-question">Do acidic foods, citrus, or coffee trigger your&nbsp;burning?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Acid triggers">
+					<button type="button" class="quiz-btn" data-val="immediate">Stings immediately on contact</button>
+					<button type="button" class="quiz-btn" data-val="delayed">Delayed flare 1 to 3 days later</button>
+					<button type="button" class="quiz-btn" data-val="both">Both immediate &amp; delayed</button>
+					<button type="button" class="quiz-btn" data-val="neither">No reaction</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Does chewing or biting down firmly reproduce or worsen the&nbsp;discomfort?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Chewing or biting pressure pain">
-					<button type="button" class="quiz-btn" data-val="yes-bite">Yes (Biting / Chewing Hurts)</button>
-					<button type="button" class="quiz-btn" data-val="mild-bite">Mild Pressure Discomfort</button>
-					<button type="button" class="quiz-btn" data-val="no-bite">No Pressure Pain</button>
+				<p class="quiz-question">Does chewing or biting down firmly&nbsp;hurt?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Biting and chewing pain">
+					<button type="button" class="quiz-btn" data-val="yes-bite">Yes, biting hurts</button>
+					<button type="button" class="quiz-btn" data-val="mild-bite">Mild pressure ache</button>
+					<button type="button" class="quiz-btn" data-val="no-bite">No biting pain</button>
 				</div>
 			</div>
 		</div>
 
 		<!-- Section 3 -->
 		<div class="quiz-section">
-			<h3 class="quiz-section-title">3. Anatomical Distribution &amp; Radiation</h3>
+			<h3 class="quiz-section-title">3. Location &amp; Pain Spread</h3>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Can you point to a single tooth with one finger, or is the discomfort spread across entire quadrants, gums, or the&nbsp;palate?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Localization vs spread">
-					<button type="button" class="quiz-btn" data-val="quadrant-spread">Spread Across Quadrants / Palate</button>
-					<button type="button" class="quiz-btn" data-val="single-tooth">Point to 1-2 Specific Teeth</button>
-					<button type="button" class="quiz-btn" data-val="shifts">Shifts and Migrates Around</button>
+				<p class="quiz-question">Can you point to one tooth, or does it spread across your&nbsp;mouth?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Location localization">
+					<button type="button" class="quiz-btn" data-val="quadrant-spread">Spreads across palate or gums</button>
+					<button type="button" class="quiz-btn" data-val="single-tooth">One or two specific teeth</button>
+					<button type="button" class="quiz-btn" data-val="shifts">Moves and shifts around</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Does the discomfort radiate into your cheeks, the roof of your mouth, your nose, or deep into the ear&nbsp;canal?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Radiation pathways">
-					<button type="button" class="quiz-btn" data-val="radiates-deep">Yes (Radiates to Ear, Cheek, or Nose)</button>
-					<button type="button" class="quiz-btn" data-val="mild-radiation">Occasional Mild Radiation</button>
-					<button type="button" class="quiz-btn" data-val="no-radiation">No (Confined to Mouth Surface)</button>
+				<p class="quiz-question">Does the burning spread into your cheeks, nose, or&nbsp;ears?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Pain radiation">
+					<button type="button" class="quiz-btn" data-val="radiates-deep">Yes, radiates to ear, cheek, or nose</button>
+					<button type="button" class="quiz-btn" data-val="mild-radiation">Occasionally radiates</button>
+					<button type="button" class="quiz-btn" data-val="no-radiation">Stays inside mouth only</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Is the pain strictly one-sided (unilateral), or does it cross the midline to involve both sides of your&nbsp;face?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Unilateral vs bilateral">
-					<button type="button" class="quiz-btn" data-val="unilateral">Strictly One-Sided (Unilateral)</button>
-					<button type="button" class="quiz-btn" data-val="bilateral">Both Sides (Bilateral / Crosses Midline)</button>
+				<p class="quiz-question">Is the burning on one side only, or both&nbsp;sides?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Symmetry">
+					<button type="button" class="quiz-btn" data-val="unilateral">One side only (unilateral)</button>
+					<button type="button" class="quiz-btn" data-val="bilateral">Both sides of mouth</button>
 				</div>
 			</div>
 		</div>
 
 		<!-- Section 4 -->
 		<div class="quiz-section">
-			<h3 class="quiz-section-title">4. Mechanical, Muscular &amp; Bruxism Clues</h3>
+			<h3 class="quiz-section-title">4. Jaw Clenching &amp; Grinding</h3>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Do you wake up with tightness, soreness, or fatigue in your jaw muscles (masseters or&nbsp;temples)?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Morning jaw muscle tightness">
-					<button type="button" class="quiz-btn" data-val="yes-tightness">Yes (Morning Jaw Stiffness)</button>
-					<button type="button" class="quiz-btn" data-val="sometimes-tight">Sometimes / Mild</button>
-					<button type="button" class="quiz-btn" data-val="no-tightness">No Tightness</button>
+				<p class="quiz-question">Do you wake up with tight or sore jaw&nbsp;muscles?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Morning jaw stiffness">
+					<button type="button" class="quiz-btn" data-val="yes-tightness">Yes, morning jaw tightness</button>
+					<button type="button" class="quiz-btn" data-val="sometimes-tight">Sometimes / Mild stiffness</button>
+					<button type="button" class="quiz-btn" data-val="no-tightness">No stiffness</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Have you caught yourself clenching your teeth, grinding at night, or pressing your tongue firmly against your teeth or the roof of your&nbsp;mouth?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Clenching, grinding, or tongue bracing">
-					<button type="button" class="quiz-btn" data-val="yes-bruxism">Yes (Clenching, Grinding, or Tongue Bracing)</button>
-					<button type="button" class="quiz-btn" data-val="unaware">Not Sure / Possible</button>
+				<p class="quiz-question">Do you clench your teeth, grind at night, or press your&nbsp;tongue?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Bruxism habits">
+					<button type="button" class="quiz-btn" data-val="yes-bruxism">Yes, clenching or tongue bracing</button>
+					<button type="button" class="quiz-btn" data-val="unaware">Not sure / Possible</button>
 					<button type="button" class="quiz-btn" data-val="no-bruxism">No</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Do you experience clicking, popping, or catching in your jaw joint (TMJ) when you open wide or&nbsp;chew?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="TMJ clicking or popping">
-					<button type="button" class="quiz-btn" data-val="yes-tmj">Yes (Clicking / Popping TMJ)</button>
-					<button type="button" class="quiz-btn" data-val="mild-tmj">Occasional Mild Clicking</button>
-					<button type="button" class="quiz-btn" data-val="no-tmj">No TMJ Issues</button>
+				<p class="quiz-question">Does your jaw joint click, pop, or catch when opening or&nbsp;chewing?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="TMJ symptoms">
+					<button type="button" class="quiz-btn" data-val="yes-tmj">Yes, clicking or popping TMJ</button>
+					<button type="button" class="quiz-btn" data-val="mild-tmj">Occasional mild clicking</button>
+					<button type="button" class="quiz-btn" data-val="no-tmj">No TMJ clicking</button>
 				</div>
 			</div>
 		</div>
 
 		<!-- Section 5 -->
 		<div class="quiz-section">
-			<h3 class="quiz-section-title">5. Salivary &amp; Sensory Symptoms</h3>
+			<h3 class="quiz-section-title">5. Dry Mouth, Taste &amp; Fatigue</h3>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Does your mouth feel dry, sticky, or like sandpaper, even if you drink plenty of&nbsp;water?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Dry mouth and sandpaper feeling">
-					<button type="button" class="quiz-btn" data-val="severe-dry">Yes (Severe Dryness / Sandpaper Feel)</button>
-					<button type="button" class="quiz-btn" data-val="moderate-dry">Moderately Dry</button>
-					<button type="button" class="quiz-btn" data-val="normal-saliva">No (Normal Saliva)</button>
+				<p class="quiz-question">Does your mouth feel dry, sticky, or like&nbsp;sandpaper?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Dry mouth sensation">
+					<button type="button" class="quiz-btn" data-val="severe-dry">Yes, sandpaper dry</button>
+					<button type="button" class="quiz-btn" data-val="moderate-dry">Moderately dry</button>
+					<button type="button" class="quiz-btn" data-val="normal-saliva">Normal saliva</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Have you noticed any alteration in your sense of taste (dysgeusia), such as a persistent metallic, salty, or bitter&nbsp;taste?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Altered taste dysgeusia">
-					<button type="button" class="quiz-btn" data-val="yes-taste">Yes (Metallic, Bitter, or Salty Taste)</button>
-					<button type="button" class="quiz-btn" data-val="mild-taste">Mild / Intermittent Alteration</button>
-					<button type="button" class="quiz-btn" data-val="normal-taste">No (Normal Taste)</button>
+				<p class="quiz-question">Do you have a strange metallic, salty, or bitter&nbsp;taste?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Taste alteration">
+					<button type="button" class="quiz-btn" data-val="yes-taste">Yes, altered metallic or bitter taste</button>
+					<button type="button" class="quiz-btn" data-val="mild-taste">Mild or intermittent</button>
+					<button type="button" class="quiz-btn" data-val="normal-taste">Normal taste</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Do you feel gritty or dry eyes, joint aches, or chronic fatigue alongside the mouth discomfort (screening for autoimmune and Sjögren's&nbsp;conditions)?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Autoimmune Sjögren's screening">
-					<button type="button" class="quiz-btn" data-val="yes-autoimmune">Yes (Dry Eyes, Joint Aches, or Fatigue)</button>
-					<button type="button" class="quiz-btn" data-val="mild-autoimmune">Mild / Some Symptoms</button>
-					<button type="button" class="quiz-btn" data-val="no-autoimmune">No (Screening Negative)</button>
+				<p class="quiz-question">Do you have dry eyes, joint aches, or chronic&nbsp;fatigue?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Autoimmune screening">
+					<button type="button" class="quiz-btn" data-val="yes-autoimmune">Yes, dry eyes, joint pain, or fatigue</button>
+					<button type="button" class="quiz-btn" data-val="mild-autoimmune">Mild symptoms</button>
+					<button type="button" class="quiz-btn" data-val="no-autoimmune">No systemic symptoms</button>
 				</div>
 			</div>
 		</div>
 
 		<!-- Section 6 -->
 		<div class="quiz-section">
-			<h3 class="quiz-section-title">6. Dental History &amp; Restoration Margins</h3>
+			<h3 class="quiz-section-title">6. Dental History &amp; Fillings</h3>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Have you had recent cleanings, root scaling, or dental work that seemed to trigger or worsen the&nbsp;burning?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Dental procedure onset">
-					<button type="button" class="quiz-btn" data-val="yes-procedure">Yes (Started or Flared After Dental Work)</button>
-					<button type="button" class="quiz-btn" data-val="uncertain-procedure">Not Sure / Uncorrelated</button>
-					<button type="button" class="quiz-btn" data-val="no-procedure">No Previous Dental Trigger</button>
+				<p class="quiz-question">Did the burning start or worsen after dental&nbsp;work?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Dental visit onset">
+					<button type="button" class="quiz-btn" data-val="yes-procedure">Yes, flared after dental work</button>
+					<button type="button" class="quiz-btn" data-val="uncertain-procedure">Not sure / Uncorrelated</button>
+					<button type="button" class="quiz-btn" data-val="no-procedure">No connection</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Do you have older crowns, composite fillings, or exposed root recessions at the gumline in the affected&nbsp;areas?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Crowns and cervical recessions">
-					<button type="button" class="quiz-btn" data-val="yes-restorations">Yes (Crowns, Recessions, or Fillings Present)</button>
-					<button type="button" class="quiz-btn" data-val="minor-recessions">Minor Gumline Recession Only</button>
-					<button type="button" class="quiz-btn" data-val="no-restorations">No (Natural Intact Teeth)</button>
+				<p class="quiz-question">Do you have crowns, fillings, or receding gums where it&nbsp;burns?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Restorations and recession">
+					<button type="button" class="quiz-btn" data-val="yes-restorations">Yes, crowns, fillings, or receded gums</button>
+					<button type="button" class="quiz-btn" data-val="minor-recessions">Minor gumline recession only</button>
+					<button type="button" class="quiz-btn" data-val="no-restorations">Natural intact teeth</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Has placing a filling, applying a desensitizing agent (like Gluma or fluoride), or having a professional cleaning ever temporarily improved the&nbsp;pain?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Desensitizer temporary relief">
-					<button type="button" class="quiz-btn" data-val="yes-relief">Yes (Temporary Relief Noticed)</button>
-					<button type="button" class="quiz-btn" data-val="never-tried">Haven't Tried / Not Sure</button>
-					<button type="button" class="quiz-btn" data-val="no-change">No Change</button>
+				<p class="quiz-question">Did a filling or dental desensitizer (like Gluma) ever give temporary&nbsp;relief?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Desensitizer relief">
+					<button type="button" class="quiz-btn" data-val="yes-relief">Yes, gave temporary relief</button>
+					<button type="button" class="quiz-btn" data-val="never-tried">Never tried / Not sure</button>
+					<button type="button" class="quiz-btn" data-val="no-change">No relief noticed</button>
 				</div>
 			</div>
 		</div>
 
 		<!-- Section 7 -->
 		<div class="quiz-section">
-			<h3 class="quiz-section-title">7. Systemic, Medication &amp; Dietary Screen</h3>
+			<h3 class="quiz-section-title">7. Medications, Vitamins &amp; Reflux</h3>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Have you started any new blood pressure medications (especially ACE inhibitors), antidepressants, or inhalers around the time this&nbsp;started?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="New medication onset">
-					<button type="button" class="quiz-btn" data-val="yes-meds">Yes (Started New Medication Around Onset)</button>
-					<button type="button" class="quiz-btn" data-val="multiple-meds">Multiple Med Changes</button>
-					<button type="button" class="quiz-btn" data-val="no-meds">No New Medications</button>
+				<p class="quiz-question">Did you start new blood pressure meds, inhalers, or&nbsp;antidepressants?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Medication onset">
+					<button type="button" class="quiz-btn" data-val="yes-meds">Yes, started new meds around onset</button>
+					<button type="button" class="quiz-btn" data-val="multiple-meds">Multiple medication changes</button>
+					<button type="button" class="quiz-btn" data-val="no-meds">No new medications</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Have you been evaluated for systemic nutritional deficiencies, such as low B12, folate, ferritin or iron, or&nbsp;zinc?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Nutritional deficiency evaluation">
-					<button type="button" class="quiz-btn" data-val="yes-deficiencies">Yes, Deficiencies Confirmed</button>
-					<button type="button" class="quiz-btn" data-val="tested-normal">Tested Normal on Standard Labs</button>
-					<button type="button" class="quiz-btn" data-val="never-tested">Never Tested</button>
+				<p class="quiz-question">Have you had blood tests for low B12, iron, or&nbsp;zinc?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Blood deficiency tests">
+					<button type="button" class="quiz-btn" data-val="yes-deficiencies">Yes, deficiencies found</button>
+					<button type="button" class="quiz-btn" data-val="tested-normal">Tested normal</button>
+					<button type="button" class="quiz-btn" data-val="never-tested">Never tested</button>
 				</div>
 			</div>
 
 			<div class="quiz-item">
-				<p class="quiz-question">Do you have a history of acid reflux (GERD or LPR), irritable bowel syndrome (IBS), or known food&nbsp;intolerances?</p>
-				<div class="quiz-btn-group" role="radiogroup" aria-label="Reflux or GI history">
-					<button type="button" class="quiz-btn" data-val="yes-reflux">Yes (Acid Reflux, GERD, or IBS History)</button>
-					<button type="button" class="quiz-btn" data-val="mild-reflux">Mild Occasional Heartburn</button>
-					<button type="button" class="quiz-btn" data-val="no-reflux">No GI / Reflux History</button>
+				<p class="quiz-question">Do you have acid reflux, heartburn, or stomach&nbsp;issues?</p>
+				<div class="quiz-btn-group" role="radiogroup" aria-label="Reflux or stomach issues">
+					<button type="button" class="quiz-btn" data-val="yes-reflux">Yes, reflux or heartburn history</button>
+					<button type="button" class="quiz-btn" data-val="mild-reflux">Mild or occasional heartburn</button>
+					<button type="button" class="quiz-btn" data-val="no-reflux">No reflux history</button>
 				</div>
 			</div>
 		</div>
@@ -297,42 +298,47 @@
 	.bms-quiz-wrapper {
 		background: #ffffff;
 		border: 1px solid var(--card-border, #e2e8f0);
-		border-radius: 20px;
-		padding: 1.5rem;
-		margin: 2.5rem auto;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+		border-radius: 24px;
+		padding: 1.75rem 1.25rem;
+		margin: 3rem auto;
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
 		width: 100%;
 		box-sizing: border-box;
 	}
 
-	/* 80% width on Desktop and Tablet as requested */
-	@media (min-width: 640px) {
+	/* 80% Page Width Breakout on Desktop and Tablet as requested */
+	@media (min-width: 768px) {
 		.bms-quiz-wrapper {
-			width: 80%;
-			max-width: 80%;
-			padding: 2.25rem 2rem;
+			position: relative;
+			width: 80vw;
+			max-width: 1180px;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 3rem 2.75rem 3.5rem 2.75rem;
 		}
 	}
 
 	.quiz-header-banner {
-		background: #f8fafc;
-		border-left: 4px solid #10b981;
-		padding: 1rem 1.25rem;
-		border-radius: 8px;
-		margin-bottom: 2rem;
+		background: #f0fdf4;
+		border: 1.5px solid #bbf7d0;
+		border-left: 6px solid #10b981;
+		padding: 1.25rem 1.75rem;
+		border-radius: 16px;
+		margin-bottom: 2.75rem;
+		text-align: center;
 	}
 
 	.quiz-callout {
 		margin: 0;
-		font-size: 1rem;
-		color: #334155;
-		line-height: 1.5;
-		text-wrap: pretty;
+		font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+		color: #166534;
+		line-height: 1.6;
+		text-wrap: balance;
 	}
 
 	.quiz-section {
-		margin-bottom: 2.25rem;
-		padding-bottom: 1.75rem;
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
 		border-bottom: 1px solid #e2e8f0;
 	}
 
@@ -341,106 +347,137 @@
 	}
 
 	.quiz-section-title {
-		font-size: 1.25rem;
-		font-weight: 700;
+		font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+		font-weight: 800;
 		color: #0f172a;
-		margin: 0 0 1.25rem;
+		margin: 0 0 1.75rem 0;
+		text-align: center;
 		text-wrap: balance;
+		letter-spacing: -0.02em;
 	}
 
 	.quiz-item {
 		display: flex;
 		flex-direction: column;
-		gap: 0.65rem;
-		margin-bottom: 1.25rem;
-		padding: 1rem 1.15rem;
+		align-items: center;
+		text-align: center;
+		margin-bottom: 2rem;
+		padding: 1.75rem 1.25rem;
 		background: #f8fafc;
-		border-radius: 14px;
-		border: 1px solid #e2e8f0;
-		transition: border-color 0.15s ease, background-color 0.15s ease;
+		border-radius: 18px;
+		border: 1.5px solid #e2e8f0;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	@media (min-width: 640px) {
+		.quiz-item {
+			padding: 2rem 1.75rem;
+		}
 	}
 
 	.quiz-item:hover {
 		border-color: #cbd5e1;
-		background: #f1f5f9;
+		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
 	}
 
+	/* Much bigger, centered, senior-friendly question typography */
 	.quiz-question {
-		margin: 0;
-		font-size: 0.98rem;
-		font-weight: 600;
-		color: #1e293b;
-		line-height: 1.45;
-		text-wrap: pretty;
+		margin: 0 0 1.35rem 0;
+		font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+		font-weight: 700;
+		color: #0f172a;
+		line-height: 1.4;
+		text-align: center;
+		text-wrap: balance;
+		width: 100%;
+		max-width: 850px;
 	}
 
+	/* Answers centered below the question */
 	.quiz-btn-group {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.45rem;
+		justify-content: center;
+		gap: 0.75rem;
+		width: 100%;
+		max-width: 920px;
 	}
 
+	/* Much bigger font size, accessible padding for 50+ users */
 	.quiz-btn {
-		padding: 0.5rem 0.85rem;
-		font-size: 0.85rem;
+		padding: 0.85rem 1.5rem;
+		font-size: clamp(1.02rem, 1.4vw, 1.16rem);
 		font-weight: 600;
-		border-radius: 8px;
-		border: 1.5px solid #cbd5e1;
+		border-radius: 12px;
+		border: 2px solid #cbd5e1;
 		background: #ffffff;
-		color: #334155;
+		color: #1e293b;
 		cursor: pointer;
-		transition: all 0.15s ease;
+		transition: all 0.18s ease;
 		outline: none;
-		text-align: left;
+		text-align: center;
+		line-height: 1.3;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+		min-height: 48px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.quiz-btn:hover {
 		border-color: #94a3b8;
-		background: #f8fafc;
+		background: #f1f5f9;
+		transform: translateY(-1px);
 	}
 
-	/* Activated States */
+	/* High-contrast accessible active state */
 	.quiz-btn.active {
-		background: #10b981;
-		border-color: #059669;
+		background: #059669;
+		border-color: #047857;
 		color: #ffffff;
-		box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+		font-weight: 700;
+		box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+		transform: translateY(-1px);
 	}
 
 	.quiz-submit-card {
 		text-align: center;
-		margin-top: 2rem;
-		padding-top: 1.5rem;
-		border-top: 2px solid #f1f5f9;
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 2px solid #e2e8f0;
 	}
 
 	.quiz-submit-button {
 		background: #0f172a;
 		color: #ffffff;
-		font-size: 1.05rem;
+		font-size: clamp(1.15rem, 1.8vw, 1.35rem);
 		font-weight: 700;
-		padding: 0.85rem 2.5rem;
-		border-radius: 12px;
+		padding: 1.1rem 3.25rem;
+		border-radius: 16px;
 		border: none;
 		cursor: pointer;
-		transition: background 0.15s ease, transform 0.1s ease;
+		transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+		box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+		min-height: 52px;
 	}
 
 	.quiz-submit-button:hover {
 		background: #1e293b;
-		transform: translateY(-1px);
+		transform: translateY(-2px);
+		box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
 	}
 
 	.quiz-status-msg {
-		margin: 1rem 0 0;
-		font-size: 0.95rem;
-		font-weight: 600;
-		color: #10b981;
+		margin: 1.25rem 0 0;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: #059669;
 	}
 
 	.quiz-privacy-note {
-		margin: 0.5rem 0 0;
-		font-size: 0.82rem;
+		margin: 0.75rem 0 0;
+		font-size: 0.95rem;
 		color: #64748b;
 	}
 </style>
