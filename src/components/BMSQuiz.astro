@@ -6,12 +6,120 @@
 
 <div class="bms-quiz-wrapper">
 	<div class="quiz-header-banner">
+		<h2 class="quiz-version-heading">Version 1, Oct&nbsp;2026</h2>
 		<p class="quiz-callout">
 			<strong>Real-Time Anonymous BMS Community Research:</strong> Tap your answers below. Each response is immediately and anonymously saved to our central research database, instantly revealing how other BMS patients experience the same&nbsp;symptom.
 		</p>
 	</div>
 
 	<div id="bms-quiz-container" class="quiz-container">
+		<!-- Participant Demographics -->
+		<div class="quiz-category-card">
+			<h3 class="category-title">Participant Demographics</h3>
+			
+			<div class="quiz-item" data-qid="q0_sex">
+				<div class="question-emoji" aria-hidden="true">👤</div>
+				<p class="quiz-question">What is your biological&nbsp;sex?</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="Biological sex">
+					<button type="button" class="quiz-option-btn" data-val="female">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Female</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="male">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Male</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="prefer-not-to-say">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Prefer not to&nbsp;say</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
+
+			<div class="quiz-item" data-qid="q0_age">
+				<div class="question-emoji" aria-hidden="true">🎂</div>
+				<p class="quiz-question">What is your age&nbsp;bracket?</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="Age bracket">
+					<button type="button" class="quiz-option-btn" data-val="under-40">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Under 40 years&nbsp;old</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="40-49">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">40 to 49 years&nbsp;old</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="50-59">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">50 to 59 years&nbsp;old</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="60-69">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">60 to 69 years&nbsp;old</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="70-plus">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">70 years or&nbsp;older</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
+		</div>
+
 		<!-- Category 1 -->
 		<div class="quiz-category-card">
 			<h3 class="category-title">1. Pain Sensation</h3>
@@ -1318,6 +1426,16 @@
 		margin-bottom: 4rem;
 		text-align: center;
 		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	}
+
+	.quiz-version-heading {
+		font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0 0 0.5rem 0;
+		letter-spacing: -0.015em;
+		text-align: center;
+		text-wrap: balance;
 	}
 
 	.quiz-callout {
