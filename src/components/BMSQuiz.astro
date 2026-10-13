@@ -1,6 +1,6 @@
 ---
 // Interactive BMS Questionnaire Component - 7 Clinical Diagnostic Categories
-// Designed for mature audiences (50+): Large legible fonts, centered questions, vertically stacked options, 80% breakout container width
+// Designed for mature audiences (50+): 3x larger titles, dark orange buttons, question-level emojis, multi-select capability
 // Real-time Firestore submission with instant community statistics display
 ---
 
@@ -14,12 +14,13 @@
 	<div id="bms-quiz-container" class="quiz-container">
 		<!-- Category 1 -->
 		<div class="quiz-category-card">
-			<div class="category-emoji" aria-hidden="true">🔥</div>
 			<h3 class="category-title">1. Pain Sensation</h3>
 			
-			<div class="quiz-item" data-qid="q1_sensation">
+			<div class="quiz-item" data-qid="q1_sensation" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">🔥</div>
 				<p class="quiz-question">What does the burning sensation feel&nbsp;like?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Sensation feeling">
+				<p class="multiselect-hint">Select all that apply</p>
+				<div class="quiz-options-list" role="group" aria-label="Sensation feeling">
 					<button type="button" class="quiz-option-btn" data-val="scalding">
 						<div class="option-header">
 							<span class="option-label">Scalding or Burning Heat</span>
@@ -73,6 +74,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q2_daily_cycle">
+				<div class="question-emoji" aria-hidden="true">⏰</div>
 				<p class="quiz-question">Does your pain get worse as the day goes&nbsp;on?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Daily pain cycle">
 					<button type="button" class="quiz-option-btn" data-val="builds-evening">
@@ -119,6 +121,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q3_night_waking">
+				<div class="question-emoji" aria-hidden="true">🌙</div>
 				<p class="quiz-question">Does the burning wake you up from&nbsp;sleep?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Nighttime waking">
 					<button type="button" class="quiz-option-btn" data-val="day-only">
@@ -156,6 +159,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q4_intensity">
+				<div class="question-emoji" aria-hidden="true">📊</div>
 				<p class="quiz-question">How intense is your pain on a 0 to 10&nbsp;scale?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Pain intensity">
 					<button type="button" class="quiz-option-btn" data-val="mild-spike">
@@ -204,10 +208,10 @@
 
 		<!-- Category 2 -->
 		<div class="quiz-category-card">
-			<div class="category-emoji" aria-hidden="true">⚡</div>
 			<h3 class="category-title">2. Pain Triggers</h3>
 
 			<div class="quiz-item" data-qid="q5_flossing_spike">
+				<div class="question-emoji" aria-hidden="true">🪥</div>
 				<p class="quiz-question">Does light brushing or flossing trigger sharp&nbsp;pain?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Flossing and brushing sensitivity">
 					<button type="button" class="quiz-option-btn" data-val="sharp-spike">
@@ -244,9 +248,11 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q6_temp_triggers">
+			<div class="quiz-item" data-qid="q6_temp_triggers" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">❄️</div>
 				<p class="quiz-question">Do temperature changes (ice, hot drinks, cold air)&nbsp;hurt?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Temperature triggers">
+				<p class="multiselect-hint">Select all that apply</p>
+				<div class="quiz-options-list" role="group" aria-label="Temperature triggers">
 					<button type="button" class="quiz-option-btn" data-val="sharp-cold">
 						<div class="option-header">
 							<span class="option-label">Ice water or cold drinks trigger pain</span>
@@ -291,6 +297,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q7_acid_triggers">
+				<div class="question-emoji" aria-hidden="true">🍋</div>
 				<p class="quiz-question">Do acidic foods, citrus, or coffee trigger&nbsp;burning?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Acid triggers">
 					<button type="button" class="quiz-option-btn" data-val="immediate">
@@ -337,6 +344,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q8_chewing_pain">
+				<div class="question-emoji" aria-hidden="true">🥩</div>
 				<p class="quiz-question">Does chewing or biting down firmly&nbsp;hurt?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Biting and chewing pain">
 					<button type="button" class="quiz-option-btn" data-val="yes-bite">
@@ -376,10 +384,10 @@
 
 		<!-- Category 3 -->
 		<div class="quiz-category-card">
-			<div class="category-emoji" aria-hidden="true">📍</div>
 			<h3 class="category-title">3. Burning Location</h3>
 
 			<div class="quiz-item" data-qid="q9_point_spread">
+				<div class="question-emoji" aria-hidden="true">📍</div>
 				<p class="quiz-question">Can you point to one tooth, or does it&nbsp;spread?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Location spread">
 					<button type="button" class="quiz-option-btn" data-val="quadrant-spread">
@@ -416,9 +424,11 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q10_radiation">
+			<div class="quiz-item" data-qid="q10_radiation" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">👂</div>
 				<p class="quiz-question">Does the burning spread into cheeks, nose, or&nbsp;ears?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Pain radiation">
+				<p class="multiselect-hint">Select all that apply</p>
+				<div class="quiz-options-list" role="group" aria-label="Pain radiation">
 					<button type="button" class="quiz-option-btn" data-val="radiates-deep">
 						<div class="option-header">
 							<span class="option-label">Yes, radiates to ear, cheek, or nose</span>
@@ -454,6 +464,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q11_symmetry">
+				<div class="question-emoji" aria-hidden="true">⚖️</div>
 				<p class="quiz-question">Is the burning on one side only, or both&nbsp;sides?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Symmetry">
 					<button type="button" class="quiz-option-btn" data-val="unilateral">
@@ -484,10 +495,10 @@
 
 		<!-- Category 4 -->
 		<div class="quiz-category-card">
-			<div class="category-emoji" aria-hidden="true">🦷</div>
 			<h3 class="category-title">4. Jaw Clenching</h3>
 
 			<div class="quiz-item" data-qid="q12_jaw_tightness">
+				<div class="question-emoji" aria-hidden="true">🥱</div>
 				<p class="quiz-question">Do you wake up with tight or sore jaw&nbsp;muscles?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Morning jaw stiffness">
 					<button type="button" class="quiz-option-btn" data-val="yes-tightness">
@@ -524,9 +535,11 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q13_clenching_bruxism">
+			<div class="quiz-item" data-qid="q13_clenching_bruxism" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">🦷</div>
 				<p class="quiz-question">Do you clench your teeth, grind at night, or brace your&nbsp;tongue?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Bruxism habits">
+				<p class="multiselect-hint">Select all that apply</p>
+				<div class="quiz-options-list" role="group" aria-label="Bruxism habits">
 					<button type="button" class="quiz-option-btn" data-val="yes-bruxism">
 						<div class="option-header">
 							<span class="option-label">Yes, clenching, night grinding, or tongue bracing</span>
@@ -562,6 +575,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q14_tmj_clicking">
+				<div class="question-emoji" aria-hidden="true">💥</div>
 				<p class="quiz-question">Does your jaw joint (TMJ) click or pop when&nbsp;chewing?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="TMJ clicking">
 					<button type="button" class="quiz-option-btn" data-val="yes-clicking">
@@ -601,10 +615,10 @@
 
 		<!-- Category 5 -->
 		<div class="quiz-category-card">
-			<div class="category-emoji" aria-hidden="true">👅</div>
 			<h3 class="category-title">5. Dry Mouth</h3>
 
 			<div class="quiz-item" data-qid="q15_dry_sandpaper">
+				<div class="question-emoji" aria-hidden="true">🏜️</div>
 				<p class="quiz-question">Does your mouth feel dry or sticky despite drinking&nbsp;water?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Mouth dryness">
 					<button type="button" class="quiz-option-btn" data-val="very-dry">
@@ -642,6 +656,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q16_taste_dysgeusia">
+				<div class="question-emoji" aria-hidden="true">👅</div>
 				<p class="quiz-question">Have you noticed an altered, metallic, or salty&nbsp;taste?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Taste dysgeusia">
 					<button type="button" class="quiz-option-btn" data-val="metallic-salty">
@@ -678,9 +693,11 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q17_sjogren_eyes_joints">
+			<div class="quiz-item" data-qid="q17_sjogren_eyes_joints" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">👁️</div>
 				<p class="quiz-question">Do you experience gritty dry eyes, joint aches, or&nbsp;fatigue?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Systemic dry symptoms">
+				<p class="multiselect-hint">Select all that apply</p>
+				<div class="quiz-options-list" role="group" aria-label="Systemic dry symptoms">
 					<button type="button" class="quiz-option-btn" data-val="yes-autoimmune">
 						<div class="option-header">
 							<span class="option-label">Yes, dry eyes, joint aches, or chronic fatigue</span>
@@ -718,10 +735,10 @@
 
 		<!-- Category 6 -->
 		<div class="quiz-category-card">
-			<div class="category-emoji" aria-hidden="true">🪥</div>
 			<h3 class="category-title">6. Dental History</h3>
 
 			<div class="quiz-item" data-qid="q18_dental_onset">
+				<div class="question-emoji" aria-hidden="true">🏥</div>
 				<p class="quiz-question">Did the burning start or worsen after dental&nbsp;work?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Dental onset connection">
 					<button type="button" class="quiz-option-btn" data-val="yes-procedure">
@@ -758,9 +775,11 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q19_crowns_recession">
+			<div class="quiz-item" data-qid="q19_crowns_recession" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">👑</div>
 				<p class="quiz-question">Do you have crowns, fillings, or receded gums where it&nbsp;burns?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Restorations and receded gums">
+				<p class="multiselect-hint">Select all that apply</p>
+				<div class="quiz-options-list" role="group" aria-label="Restorations and receded gums">
 					<button type="button" class="quiz-option-btn" data-val="yes-restorations">
 						<div class="option-header">
 							<span class="option-label">Yes, crowns, fillings, or receded root margins</span>
@@ -796,6 +815,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q20_desensitizer_relief">
+				<div class="question-emoji" aria-hidden="true">🛡️</div>
 				<p class="quiz-question">Did a filling or dental desensitizer ever give temporary&nbsp;relief?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Desensitizer relief">
 					<button type="button" class="quiz-option-btn" data-val="yes-relief">
@@ -835,12 +855,13 @@
 
 		<!-- Category 7 -->
 		<div class="quiz-category-card">
-			<div class="category-emoji" aria-hidden="true">💊</div>
 			<h3 class="category-title">7. Medications and Reflux</h3>
 
-			<div class="quiz-item" data-qid="q21_new_medications">
+			<div class="quiz-item" data-qid="q21_new_medications" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">💊</div>
 				<p class="quiz-question">Did you start new blood pressure meds, inhalers, or&nbsp;antidepressants?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Medication onset">
+				<p class="multiselect-hint">Select all that apply</p>
+				<div class="quiz-options-list" role="group" aria-label="Medication onset">
 					<button type="button" class="quiz-option-btn" data-val="yes-meds">
 						<div class="option-header">
 							<span class="option-label">Yes, started new prescription around onset</span>
@@ -876,6 +897,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q22_nutrient_testing">
+				<div class="question-emoji" aria-hidden="true">🩸</div>
 				<p class="quiz-question">Have you had blood tests for low B12, folate, iron, or&nbsp;zinc?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Nutrient blood testing">
 					<button type="button" class="quiz-option-btn" data-val="yes-deficiencies">
@@ -913,6 +935,7 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q23_acid_reflux">
+				<div class="question-emoji" aria-hidden="true">🌋</div>
 				<p class="quiz-question">Do you have acid reflux, heartburn, or stomach&nbsp;issues?</p>
 				<div class="quiz-options-list" role="radiogroup" aria-label="Reflux or stomach issues">
 					<button type="button" class="quiz-option-btn" data-val="yes-reflux">
@@ -992,9 +1015,13 @@
 			const feedback = item.querySelector('.quiz-item-feedback');
 			const feedbackText = item.querySelector('.feedback-text');
 
+			const selectedList = Array.isArray(selectedVal) 
+				? selectedVal 
+				: (selectedVal ? [selectedVal] : []);
+
 			buttons.forEach(btn => {
 				const val = btn.getAttribute('data-val');
-				const isSelected = val === selectedVal;
+				const isSelected = selectedList.includes(val);
 				if (isSelected) {
 					btn.classList.add('selected');
 				} else {
@@ -1029,12 +1056,15 @@
 
 		items.forEach(item => {
 			const qid = item.getAttribute('data-qid');
+			const isMultiSelect = item.getAttribute('data-multiselect') === 'true';
 			const savedVal = savedAnswers[qid];
 
 			if (savedVal) {
-				// Mark as selected immediately
-				const btn = item.querySelector(`.quiz-option-btn[data-val="${savedVal}"]`);
-				if (btn) btn.classList.add('selected');
+				const selectedList = Array.isArray(savedVal) ? savedVal : [savedVal];
+				selectedList.forEach(v => {
+					const btn = item.querySelector(`.quiz-option-btn[data-val="${v}"]`);
+					if (btn) btn.classList.add('selected');
+				});
 
 				// Fetch live stats from Firestore
 				if (db && qid) {
@@ -1052,59 +1082,109 @@
 			const buttons = item.querySelectorAll('.quiz-option-btn');
 			buttons.forEach(btn => {
 				btn.addEventListener('click', async () => {
-					const newVal = btn.getAttribute('data-val');
+					const clickedVal = btn.getAttribute('data-val');
 					const currentAnswers = getStoredAnswers();
-					const oldVal = currentAnswers[qid];
+					const statRef = doc(db, 'bms_quiz_stats', qid);
+					const userRef = doc(db, 'bms_quiz_responses', anonUserId);
 
-					if (oldVal === newVal) {
-						// Already selected, re-highlight
-						return;
-					}
+					if (isMultiSelect) {
+						let currentSelected = Array.isArray(currentAnswers[qid]) 
+							? [...currentAnswers[qid]] 
+							: (currentAnswers[qid] ? [currentAnswers[qid]] : []);
 
-					// Optimistic UI selection
-					buttons.forEach(b => b.classList.remove('selected'));
-					btn.classList.add('selected');
-					saveStoredAnswer(qid, newVal);
-
-					// Submit to Firestore in real-time
-					try {
-						const statRef = doc(db, 'bms_quiz_stats', qid);
-						const userRef = doc(db, 'bms_quiz_responses', anonUserId);
-
-						const updates = {
-							total: increment(oldVal ? 0 : 1),
+						const isAlreadySelected = currentSelected.includes(clickedVal);
+						let updates = {
 							lastUpdated: serverTimestamp(),
-							options: {
-								[newVal]: increment(1)
-							}
+							options: {}
 						};
-						if (oldVal) {
-							updates.options[oldVal] = increment(-1);
+
+						if (isAlreadySelected) {
+							// Deselecting option
+							currentSelected = currentSelected.filter(v => v !== clickedVal);
+							btn.classList.remove('selected');
+							updates.options[clickedVal] = increment(-1);
+							if (currentSelected.length === 0) {
+								updates.total = increment(-1);
+							}
+						} else {
+							// Selecting option
+							if (currentSelected.length === 0) {
+								updates.total = increment(1);
+							}
+							currentSelected.push(clickedVal);
+							btn.classList.add('selected');
+							updates.options[clickedVal] = increment(1);
 						}
 
-						// Write to central database
-						await Promise.all([
-							setDoc(statRef, updates, { merge: true }),
-							setDoc(userRef, {
-								answers: {
-									[qid]: newVal
-								},
-								updatedAt: serverTimestamp()
-							}, { merge: true })
-						]);
+						saveStoredAnswer(qid, currentSelected);
 
-						// Fetch live community stats immediately upon saving
-						const snap = await getDoc(statRef);
-						if (snap.exists()) {
-							updateQuestionStatsUI(item, newVal, snap.data());
+						try {
+							await Promise.all([
+								setDoc(statRef, updates, { merge: true }),
+								setDoc(userRef, {
+									answers: {
+										[qid]: currentSelected
+									},
+									updatedAt: serverTimestamp()
+								}, { merge: true })
+							]);
+
+							const snap = await getDoc(statRef);
+							if (snap.exists()) {
+								updateQuestionStatsUI(item, currentSelected, snap.data());
+							}
+						} catch (err) {
+							console.error('Error saving multi-select to Firebase:', err);
+							updateQuestionStatsUI(item, currentSelected, {
+								total: 1,
+								options: { [clickedVal]: 1 }
+							});
 						}
-					} catch (err) {
-						console.error('Error saving to Firebase:', err);
-						// Fallback: render optimistic 1-vote feedback
-						updateQuestionStatsUI(item, newVal, {
-							total: 1,
-							options: { [newVal]: 1 }
-						});
+
+					} else {
+						// Single select
+						const oldVal = currentAnswers[qid];
+						if (oldVal === clickedVal) {
+							return;
+						}
+
+						buttons.forEach(b => b.classList.remove('selected'));
+						btn.classList.add('selected');
+						saveStoredAnswer(qid, clickedVal);
+
+						try {
+							const updates = {
+								total: increment(oldVal ? 0 : 1),
+								lastUpdated: serverTimestamp(),
+								options: {
+									[clickedVal]: increment(1)
+								}
+							};
+							if (oldVal) {
+								updates.options[oldVal] = increment(-1);
+							}
+
+							await Promise.all([
+								setDoc(statRef, updates, { merge: true }),
+								setDoc(userRef, {
+									answers: {
+										[qid]: clickedVal
+									},
+									updatedAt: serverTimestamp()
+								}, { merge: true })
+							]);
+
+							const snap = await getDoc(statRef);
+							if (snap.exists()) {
+								updateQuestionStatsUI(item, clickedVal, snap.data());
+							}
+						} catch (err) {
+							console.error('Error saving single-select to Firebase:', err);
+							updateQuestionStatsUI(item, clickedVal, {
+								total: 1,
+								options: { [clickedVal]: 1 }
+							});
+						}
 					}
 				});
 			});
@@ -1117,7 +1197,7 @@
 		background: #0d041a;
 		border: 1px solid rgba(168, 85, 247, 0.3);
 		border-radius: 28px;
-		padding: 2rem 1.25rem 3rem 1.25rem;
+		padding: 2.25rem 1.25rem 3.5rem 1.25rem;
 		margin: 3.5rem auto;
 		box-shadow: 0 25px 60px -15px rgba(5, 0, 15, 0.9);
 		width: 100%;
@@ -1133,7 +1213,7 @@
 			max-width: 1180px;
 			left: 50%;
 			transform: translateX(-50%);
-			padding: 3.5rem 3rem 4rem 3rem;
+			padding: 4rem 3rem 4.5rem 3rem;
 		}
 	}
 
@@ -1142,7 +1222,7 @@
 		border: 1.5px solid rgba(168, 85, 247, 0.45);
 		padding: 1.35rem 1.75rem;
 		border-radius: 18px;
-		margin-bottom: 3.5rem;
+		margin-bottom: 4rem;
 		text-align: center;
 		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 	}
@@ -1156,65 +1236,56 @@
 	}
 
 	.quiz-callout strong {
-		color: #38bdf8;
+		color: #fb923c;
 		font-weight: 700;
 	}
 
 	.quiz-container {
 		display: flex;
 		flex-direction: column;
-		gap: 3.5rem;
+		gap: 4.5rem;
 	}
 
 	/* Category Card on Dark Purple Background */
 	.quiz-category-card {
 		background: linear-gradient(180deg, #180933 0%, #110526 100%);
 		border: 1.5px solid rgba(168, 85, 247, 0.35);
-		border-radius: 26px;
-		padding: 2.75rem 1.25rem;
+		border-radius: 28px;
+		padding: 3rem 1.25rem 3.5rem 1.25rem;
 		box-shadow: 0 18px 45px -10px rgba(10, 2, 25, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 	}
 
 	@media (min-width: 640px) {
 		.quiz-category-card {
-			padding: 3.25rem 2.25rem;
+			padding: 4rem 2.5rem 4.5rem 2.5rem;
 		}
 	}
 
-	/* Large Centered Emoji */
-	.category-emoji {
-		font-size: clamp(3.2rem, 5.5vw, 4.3rem);
-		line-height: 1;
-		text-align: center;
-		margin: 0 auto 0.85rem auto;
-		display: block;
-		filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
-	}
-
-	/* 2x Bigger, Centered Category Title */
+	/* 3x Bigger Category Title in White with Extra Bottom Padding */
 	.category-title {
-		font-size: clamp(2.5rem, 5vw, 3.8rem);
+		font-size: clamp(3.2rem, 6.8vw, 5rem);
 		font-weight: 900;
 		color: #ffffff !important;
-		margin: 0 auto 2.5rem auto;
+		margin: 0 auto 4rem auto;
 		text-align: center;
 		text-wrap: balance;
-		letter-spacing: -0.03em;
-		line-height: 1.15;
-		max-width: 950px;
+		letter-spacing: -0.035em;
+		line-height: 1.08;
+		max-width: 980px;
+		padding-bottom: 0.5rem;
 	}
 
-	/* Question Box / Item */
+	/* Question Box / Item with 2x More Padding Under */
 	.quiz-item {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		margin-bottom: 2.25rem;
-		padding: 2rem 1.25rem;
+		margin-bottom: 3.5rem;
+		padding: 3rem 1.25rem 3.5rem 1.25rem;
 		background: rgba(255, 255, 255, 0.035);
-		border-radius: 20px;
-		border: 1.5px solid rgba(168, 85, 247, 0.2);
+		border-radius: 24px;
+		border: 1.5px solid rgba(168, 85, 247, 0.22);
 		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 		transition: border-color 0.2s ease, box-shadow 0.2s ease;
 	}
@@ -1224,19 +1295,29 @@
 	}
 
 	.quiz-item:hover {
-		border-color: rgba(192, 132, 252, 0.4);
+		border-color: rgba(249, 115, 22, 0.45);
 		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 	}
 
 	@media (min-width: 640px) {
 		.quiz-item {
-			padding: 2.5rem 2rem;
+			padding: 3.5rem 2.25rem 4rem 2.25rem;
 		}
 	}
 
-	/* Centered Question Font in Pure White */
+	/* Large Centered Emoji on Every Question */
+	.question-emoji {
+		font-size: clamp(3.2rem, 5.5vw, 4.3rem);
+		line-height: 1;
+		text-align: center;
+		margin: 0 auto 1.35rem auto;
+		display: block;
+		filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
+	}
+
+	/* Centered Question Font in Pure White with 2x More Padding Under */
 	.quiz-question {
-		margin: 0 auto 1.75rem auto;
+		margin: 0 auto 0.75rem auto;
 		font-size: clamp(1.52rem, 2.6vw, 1.95rem);
 		font-weight: 700;
 		color: #ffffff !important;
@@ -1248,48 +1329,63 @@
 		letter-spacing: -0.015em;
 	}
 
+	.multiselect-hint {
+		font-size: 0.95rem;
+		color: #fdba74;
+		font-weight: 600;
+		margin: 0 auto 2.75rem auto;
+		text-align: center;
+		letter-spacing: 0.02em;
+	}
+
+	/* When no multiselect hint, ensure 2x padding under question */
+	.quiz-item:not([data-multiselect="true"]) .quiz-question {
+		margin-bottom: 3.25rem;
+	}
+
 	/* Answers Stacked On Top of Each Other */
 	.quiz-options-list {
 		display: flex;
 		flex-direction: column;
-		gap: 0.95rem;
+		gap: 1.1rem;
 		width: 100%;
 		max-width: 680px;
 		margin: 0 auto;
 	}
 
-	/* Accessible, Generous Option Button */
+	/* Dark Orange Accessible Option Button */
 	.quiz-option-btn {
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: 1.15rem 1.5rem;
-		min-height: 60px;
-		background: rgba(36, 17, 72, 0.85);
-		border: 2px solid rgba(192, 132, 252, 0.3);
-		border-radius: 15px;
-		color: #f1f5f9;
+		padding: 1.25rem 1.6rem;
+		min-height: 62px;
+		background: linear-gradient(135deg, #3d1706 0%, #260c02 100%);
+		border: 2px solid rgba(234, 88, 12, 0.45);
+		border-radius: 16px;
+		color: #ffedd5;
 		cursor: pointer;
 		text-align: left;
 		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 		outline: none;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 	}
 
 	.quiz-option-btn:hover {
-		background: rgba(55, 23, 110, 0.95);
-		border-color: rgba(192, 132, 252, 0.6);
-		transform: translateY(-1px);
-		box-shadow: 0 6px 18px rgba(168, 85, 247, 0.25);
+		background: linear-gradient(135deg, #5c2007 0%, #3d1706 100%);
+		border-color: #f97316;
+		color: #ffffff;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px rgba(234, 88, 12, 0.4);
 	}
 
-	/* Selected Option High-Contrast Glow */
+	/* Selected Option High-Contrast Dark Orange Glow */
 	.quiz-option-btn.selected {
-		background: rgba(91, 33, 182, 0.95);
-		border-color: #c084fc;
+		background: linear-gradient(135deg, #c2410c 0%, #9a3412 100%);
+		border-color: #fdba74;
 		color: #ffffff;
-		box-shadow: 0 0 24px rgba(168, 85, 247, 0.45);
+		box-shadow: 0 0 25px rgba(249, 115, 22, 0.65), 0 4px 14px rgba(0, 0, 0, 0.4);
 	}
 
 	.option-header {
@@ -1301,7 +1397,7 @@
 	}
 
 	.option-label {
-		font-size: clamp(1.12rem, 1.7vw, 1.3rem);
+		font-size: clamp(1.15rem, 1.7vw, 1.32rem);
 		font-weight: 600;
 		line-height: 1.35;
 		color: inherit;
@@ -1313,7 +1409,7 @@
 		display: none;
 		font-size: clamp(1rem, 1.4vw, 1.15rem);
 		font-weight: 700;
-		color: #38bdf8;
+		color: #fbbf24;
 		white-space: nowrap;
 		margin-left: auto;
 	}
@@ -1327,10 +1423,10 @@
 		display: none;
 		width: 100%;
 		height: 8px;
-		background: rgba(255, 255, 255, 0.12);
+		background: rgba(255, 255, 255, 0.15);
 		border-radius: 4px;
 		overflow: hidden;
-		margin-top: 0.65rem;
+		margin-top: 0.75rem;
 	}
 
 	.option-stat-bar.visible {
@@ -1340,7 +1436,7 @@
 	.option-stat-fill {
 		height: 100%;
 		width: 0%;
-		background: linear-gradient(90deg, #a855f7 0%, #38bdf8 100%);
+		background: linear-gradient(90deg, #ea580c 0%, #f59e0b 100%);
 		border-radius: 4px;
 		transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 	}
@@ -1351,9 +1447,9 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.6rem;
-		margin-top: 1.35rem;
-		font-size: 0.98rem;
-		color: #cbd5e1;
+		margin-top: 1.75rem;
+		font-size: 1rem;
+		color: #fed7aa;
 		font-weight: 600;
 	}
 
@@ -1364,9 +1460,9 @@
 	.feedback-pulse {
 		width: 9px;
 		height: 9px;
-		background: #10b981;
+		background: #f97316;
 		border-radius: 50%;
-		box-shadow: 0 0 10px #10b981;
+		box-shadow: 0 0 10px #f97316;
 		animation: pulse-dot 2s infinite ease-in-out;
 	}
 
@@ -1383,8 +1479,8 @@
 
 	.quiz-completion-banner {
 		text-align: center;
-		margin-top: 4rem;
-		padding: 2.25rem 1.5rem;
+		margin-top: 4.5rem;
+		padding: 2.5rem 1.5rem;
 		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid rgba(168, 85, 247, 0.25);
 		border-radius: 20px;
