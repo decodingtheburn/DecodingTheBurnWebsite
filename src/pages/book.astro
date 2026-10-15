@@ -98,105 +98,161 @@ import { SITE_TITLE } from '../consts';
 				border-color: #94a3b8;
 			}
 
-			/* Book Cover */
-			.book-cover {
-				position: relative;
-				background: linear-gradient(145deg, #181226 0%, #0d0915 100%);
-				color: #ffffff;
-				border-radius: 14px;
-				padding: 5.5rem 3.5rem 4.5rem;
-				box-shadow: 
-					0 28px 60px -12px rgba(0, 0, 0, 0.4),
-					0 0 0 1px rgba(255, 255, 255, 0.08),
-					inset 8px 0 18px rgba(0, 0, 0, 0.65);
+			/* Book Cover (Proportional 1:1.5 Aspect Ratio) */
+			.book-cover-container {
+				display: flex;
+				justify-content: center;
 				margin-bottom: 4rem;
-				text-align: center;
-				overflow: hidden;
-				border-left: 16px solid #09060f;
 			}
 
+			.book-cover {
+				position: relative;
+				width: 100%;
+				max-width: 540px;
+				aspect-ratio: 1 / 1.52; /* Standard 6"x9" book cover proportion */
+				background: radial-gradient(circle at 50% 30%, #1e1438 0%, #110c22 65%, #080511 100%);
+				color: #ffffff;
+				border-radius: 10px 18px 18px 10px;
+				box-shadow: 
+					0 30px 70px -15px rgba(0, 0, 0, 0.55),
+					0 10px 25px rgba(0, 0, 0, 0.35),
+					0 0 0 1px rgba(255, 255, 255, 0.08),
+					inset 12px 0 20px rgba(0, 0, 0, 0.8);
+				text-align: center;
+				overflow: hidden;
+				border-left: 20px solid #07040d;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 3rem 2.25rem 2.5rem;
+				box-sizing: border-box;
+			}
+
+			/* Book Spine Ridge highlight */
 			.book-cover::before {
 				content: '';
 				position: absolute;
 				top: 0;
-				left: 0;
-				right: 0;
 				bottom: 0;
-				background: radial-gradient(circle at 50% 20%, rgba(197, 160, 89, 0.15) 0%, transparent 70%);
-				pointer-events: none;
+				left: 0;
+				width: 3px;
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.2) 100%);
+				box-shadow: 2px 0 8px rgba(0, 0, 0, 0.7);
+				z-index: 5;
 			}
 
 			.cover-gold-border {
-				border: 2px solid rgba(197, 160, 89, 0.45);
-				border-radius: 10px;
-				padding: 3.5rem 2.5rem;
+				border: 1.5px solid rgba(197, 160, 89, 0.45);
+				border-radius: 8px;
+				padding: 2.25rem 1.75rem;
 				position: relative;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				height: 100%;
+				box-sizing: border-box;
+				background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.06) 0%, transparent 80%);
 			}
 
 			.cover-eyebrow {
 				font-family: 'Cinzel', serif;
-				font-size: 0.85rem;
-				font-weight: 600;
-				letter-spacing: 0.25em;
+				font-size: 0.78rem;
+				font-weight: 700;
+				letter-spacing: 0.22em;
 				color: #c5a059;
 				text-transform: uppercase;
-				margin-bottom: 1.75rem;
+				margin-bottom: 0.75rem;
 			}
 
 			.cover-title {
 				font-family: 'Cinzel', serif;
-				font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+				font-size: clamp(2rem, 4.2vw, 2.75rem);
 				font-weight: 800;
 				line-height: 1.15;
 				color: #ffffff;
-				margin-bottom: 1.5rem;
-				text-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+				margin: 0 0 0.85rem;
+				text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
 			}
 
 			.cover-subtitle {
 				font-family: 'Lora', serif;
-				font-size: clamp(1.05rem, 2.3vw, 1.3rem);
+				font-size: 0.92rem;
 				font-weight: 400;
 				font-style: italic;
 				color: #cbd5e1;
-				line-height: 1.65;
-				max-width: 680px;
-				margin: 0 auto 2.5rem;
+				line-height: 1.55;
+				max-width: 440px;
+				margin: 0 auto;
+			}
+
+			/* Center Illustration */
+			.cover-illustration-wrap {
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 1.5rem 0;
+			}
+
+			.cover-tooth-glow {
+				position: absolute;
+				width: 170px;
+				height: 170px;
+				border-radius: 50%;
+				background: radial-gradient(circle, rgba(197, 160, 89, 0.3) 0%, rgba(124, 58, 237, 0.2) 50%, transparent 75%);
+				filter: blur(20px);
+				pointer-events: none;
+			}
+
+			.cover-tooth-img {
+				position: relative;
+				z-index: 2;
+				max-height: 190px;
+				width: auto;
+				object-fit: contain;
+				filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 15px rgba(197, 160, 89, 0.25));
+				opacity: 0.92;
+				transition: transform 0.4s ease, opacity 0.4s ease;
+			}
+
+			.book-cover:hover .cover-tooth-img {
+				transform: scale(1.03);
+				opacity: 0.98;
 			}
 
 			.cover-divider {
-				width: 90px;
-				height: 2px;
+				width: 70px;
+				height: 1.5px;
 				background: linear-gradient(90deg, transparent, #c5a059, transparent);
-				margin: 2.25rem auto;
+				margin: 1rem auto;
 			}
 
 			.cover-author {
 				font-family: 'Cinzel', serif;
-				font-size: 1.35rem;
+				font-size: 1.15rem;
 				font-weight: 700;
-				letter-spacing: 0.15em;
+				letter-spacing: 0.16em;
 				color: #f8fafc;
 				text-transform: uppercase;
-				margin-bottom: 0.5rem;
+				margin-bottom: 0.35rem;
 			}
 
 			.cover-author-sub {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.9rem;
+				font-size: 0.78rem;
 				color: #94a3b8;
 				font-weight: 500;
 			}
 
 			.cover-edition-tag {
 				display: inline-block;
-				margin-top: 2.25rem;
+				margin-top: 0.85rem;
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.78rem;
+				font-size: 0.72rem;
 				font-weight: 700;
 				color: #c5a059;
-				border: 1px solid rgba(197, 160, 89, 0.5);
-				padding: 0.4rem 1.15rem;
+				border: 1px solid rgba(197, 160, 89, 0.45);
+				padding: 0.3rem 0.95rem;
 				border-radius: 9999px;
 				background: rgba(197, 160, 89, 0.08);
 			}
@@ -449,21 +505,35 @@ import { SITE_TITLE } from '../consts';
 			</div>
 
 			<!-- BOOK COVER -->
-			<div class="book-cover">
-				<div class="cover-gold-border">
-					<div class="cover-eyebrow">A Forensic Medical Investigation</div>
-					<h1 class="cover-title">Decoding the&nbsp;Burn</h1>
-					<p class="cover-subtitle">
-						An Investigator's Field Guide to Dental Hardware Leaks, Acid Chemistry, and Calming the Oral Neuropathic Circuit
-					</p>
-					
-					<div class="cover-divider"></div>
+			<div class="book-cover-container">
+				<div class="book-cover">
+					<div class="cover-gold-border">
+						<div>
+							<div class="cover-eyebrow">A Forensic Medical Investigation</div>
+							<h1 class="cover-title">Decoding the&nbsp;Burn</h1>
+							<p class="cover-subtitle">
+								An Investigator's Field Guide to Dental Hardware Leaks, Acid Chemistry, and Calming the Oral Neuropathic Circuit
+							</p>
+						</div>
 
-					<div class="cover-author">Denis Ethier</div>
-					<div class="cover-author-sub">Founder, DecodingTheBurn.com &bull; Chronic Neuropathy Investigator</div>
-
-					<div>
-						<span class="cover-edition-tag">Version 1.0 &bull; 2026 Edition</span>
+						<div class="cover-illustration-wrap">
+							<div class="cover-tooth-glow"></div>
+							<img 
+								src="/tooth-transparent.png" 
+								alt="Dental Hardware Tubule Anatomy Illustration" 
+								class="cover-tooth-img"
+								loading="eager"
+							/>
+						</div>
+						
+						<div>
+							<div class="cover-divider"></div>
+							<div class="cover-author">Denis Ethier</div>
+							<div class="cover-author-sub">Founder, DecodingTheBurn.com &bull; Chronic Neuropathy Investigator</div>
+							<div>
+								<span class="cover-edition-tag">Version 1.0 &bull; 2026 Edition</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
