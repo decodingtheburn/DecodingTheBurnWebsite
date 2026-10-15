@@ -293,18 +293,23 @@ import { SITE_TITLE } from '../consts';
 				justify-content: space-between;
 				align-items: center;
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.75rem;
-				font-weight: 600;
-				letter-spacing: 0.08em;
-				color: #94a3b8;
+				font-size: 0.78rem;
+				font-weight: 700;
+				letter-spacing: 0.06em;
+				color: #475569;
 				text-transform: uppercase;
-				border-bottom: 1px solid #f1f5f9;
+				border-bottom: 1px solid #e2e8f0;
 				padding-bottom: 1rem;
 				margin-bottom: 2.75rem;
 			}
 
-			.page-running-head .part-label {
+			.page-running-head .chapter-header-label {
 				color: #7c3aed;
+			}
+
+			.page-running-head .page-count-label {
+				color: #94a3b8;
+				font-weight: 600;
 			}
 
 			.page-number-footer {
@@ -320,11 +325,11 @@ import { SITE_TITLE } from '../consts';
 				color: #94a3b8;
 			}
 
-			/* Section / Part Header Banner (Top of Chapter) */
+			/* Section / Part Header Banner (Top of Chapter Opening Page) */
 			.part-break-banner {
 				background: #f8fafc;
 				border-left: 4px solid #7c3aed;
-				padding: 1.25rem 1.5rem;
+				padding: 1.15rem 1.5rem;
 				margin-bottom: 2.25rem;
 				border-radius: 0 8px 8px 0;
 			}
@@ -333,7 +338,7 @@ import { SITE_TITLE } from '../consts';
 				font-family: 'Plus Jakarta Sans', sans-serif;
 				font-size: 0.85rem;
 				font-weight: 700;
-				letter-spacing: 0.1em;
+				letter-spacing: 0.08em;
 				text-transform: uppercase;
 				color: #7c3aed;
 				margin: 0;
@@ -347,18 +352,6 @@ import { SITE_TITLE } from '../consts';
 				color: #0f172a;
 				margin-bottom: 2.25rem;
 				text-wrap: balance;
-			}
-
-			/* Continuation Header on Follow-Up Pages of the Same Chapter */
-			.chapter-continued-title {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 1.15rem;
-				font-weight: 600;
-				font-style: italic;
-				color: #64748b;
-				margin-bottom: 2rem;
-				padding-bottom: 0.75rem;
-				border-bottom: 1px dashed #e2e8f0;
 			}
 
 			.page-body-content {
@@ -480,10 +473,10 @@ import { SITE_TITLE } from '../consts';
 					border-radius: 6px;
 				}
 				.book-cover {
-					padding: 3.5rem 1.75rem 3rem;
+					padding: 3rem 1.5rem 2.25rem;
 				}
 				.cover-gold-border {
-					padding: 2.25rem 1.25rem;
+					padding: 1.75rem 1.15rem;
 				}
 			}
 		</style>
@@ -542,8 +535,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Decoding the Burn</span>
-						<span class="part-label">Contents</span>
+						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="page-count-label">Contents</span>
 					</div>
 
 					<h2 style="font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem; color: #0f172a;">
@@ -552,10 +545,10 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="toc-list">
 
-						<div class="toc-part-header">Part I: The Breakdown (The Mystery &amp; The Medical Maze)</div>
+						<div class="toc-part-header">Part I: The Mystery and The Medical Maze</div>
 
 						<div class="toc-item">
-							<a href="#page-1" class="toc-link">Chapter 1: The Expectation (My Journey, Your Journey, and the Starting Point)</a>
+							<a href="#page-1" class="toc-link">Chapter 1: The Expectation</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">1</span>
 						</div>
@@ -573,92 +566,92 @@ import { SITE_TITLE } from '../consts';
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-19" class="toc-link">Chapter 4: The Slow Fuse: A Decade-by-Decade Breakdown</a>
+							<a href="#page-19" class="toc-link">Chapter 4: The Slow Fuse</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">19</span>
 						</div>
 
-						<div class="toc-part-header">Part II: The Biophysics of the Breach (Hardware &amp; Chemistry)</div>
+						<div class="toc-part-header">Part II: Hardware and Chemistry</div>
 
 						<div class="toc-item">
-							<a href="#page-25" class="toc-link">Chapter 5: The Exposed Tubule Audit (The Uncounted Conduits)</a>
+							<a href="#page-25" class="toc-link">Chapter 5: The Exposed Tubule Audit</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">25</span>
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-31" class="toc-link">Chapter 6: The Chemical Ingress (The pH 6.2-6.7 Trap)</a>
+							<a href="#page-31" class="toc-link">Chapter 6: The Chemical Ingress</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">31</span>
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-37" class="toc-link">Chapter 7: The Circuit: From Acid to Brainstem Crosstalk</a>
+							<a href="#page-37" class="toc-link">Chapter 7: The Oral Neuropathic Circuit</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">37</span>
 						</div>
 
-						<div class="toc-part-header">Part III: The Sister Neuropathy: Mapping BMS to Diabetes (&quot;Type 6&quot;)</div>
+						<div class="toc-part-header">Part III: Mapping BMS to Diabetes</div>
 
 						<div class="toc-item">
-							<a href="#page-43" class="toc-link">Chapter 8: The Diabetic Parallel: Small-Fiber Burning in the Extremities</a>
+							<a href="#page-43" class="toc-link">Chapter 8: The Diabetic Parallel</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">43</span>
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-49" class="toc-link">Chapter 9: The Two Bottlenecks: Systemic Pancreas vs. Local Tubules</a>
+							<a href="#page-49" class="toc-link">Chapter 9: The Two Bottlenecks</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">49</span>
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-55" class="toc-link">Chapter 10: The B12 Blind Spot &amp; Drug-Induced Nerve Starvation</a>
+							<a href="#page-55" class="toc-link">Chapter 10: The B12 Blind Spot</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">55</span>
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-61" class="toc-link">Chapter 11: Remission vs. The Myth of Inevitable Progression</a>
+							<a href="#page-61" class="toc-link">Chapter 11: Remission vs. Progression</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">61</span>
 						</div>
 
-						<div class="toc-part-header">Part IV: The Protocol &amp; The Baseline (Calming the Circuit)</div>
+						<div class="toc-part-header">Part IV: Calming the Circuit</div>
 
 						<div class="toc-item">
-							<a href="#page-67" class="toc-link">Chapter 12: Starving the Fire: The Strict Elimination Baseline</a>
+							<a href="#page-67" class="toc-link">Chapter 12: Starving the Fire</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">67</span>
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-73" class="toc-link">Chapter 13: Mechanical Shields &amp; Dental Carpentry</a>
+							<a href="#page-73" class="toc-link">Chapter 13: Mechanical Shields</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">73</span>
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-79" class="toc-link">Chapter 14: The Recovery Protocol &amp; Radical Acceptance</a>
+							<a href="#page-79" class="toc-link">Chapter 14: The Recovery Protocol</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">79</span>
 						</div>
 
-						<div class="toc-part-header">Part V: The Clinical Dialogue (How to Talk to Your Care Team)</div>
+						<div class="toc-part-header">Part V: How to Talk to Your Care Team</div>
 
 						<div class="toc-item">
-							<a href="#page-85" class="toc-link">Chapter 15: How to Talk to Your Doctor: The 2-Week Elimination Test</a>
+							<a href="#page-85" class="toc-link">Chapter 15: How to Talk to Your Doctor</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">85</span>
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-91" class="toc-link">Chapter 16: How to Talk to Your Dentist: The Hardware Inspection Audit</a>
+							<a href="#page-91" class="toc-link">Chapter 16: How to Talk to Your Dentist</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">91</span>
 						</div>
 
-						<div class="toc-part-header">Part VI: The Bigger Picture (Community &amp; The Medical Divide)</div>
+						<div class="toc-part-header">Part VI: Community and The Medical Divide</div>
 
 						<div class="toc-item">
 							<a href="#page-97" class="toc-link">Chapter 17: The Institutional Blind Spot</a>
@@ -667,7 +660,7 @@ import { SITE_TITLE } from '../consts';
 						</div>
 
 						<div class="toc-item">
-							<a href="#page-103" class="toc-link">Chapter 18: Citizen Science &amp; Open-Access Data</a>
+							<a href="#page-103" class="toc-link">Chapter 18: Citizen Science and Data</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num">103</span>
 						</div>
@@ -680,19 +673,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Expectation (My Journey, Your Journey, and the Starting Point) (Page 1 of 6) -->
+			<!-- Chapter 1: The Expectation (Page 1 of 6) -->
 			<section class="book-page" id="page-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 1</span>
+						<span class="chapter-header-label">Chapter 1: The Expectation</span>
+						<span class="page-count-label">Page 1</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part I: The Breakdown (The Mystery &amp; The Medical Maze)</p>
+						<p class="part-break-title">Part I: The Mystery and The Medical Maze</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 1: The Expectation (My Journey, Your Journey, and the&nbsp;Starting&nbsp;Point)</h2>
+					<h2 class="chapter-title">Chapter 1:&nbsp;The&nbsp;Expectation</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Let’s set the expectations straight from sentence one: this book documents my specific journey, and yours will not be an exact&nbsp;carbon&nbsp;copy.</p>
@@ -709,16 +702,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Expectation (My Journey, Your Journey, and the Starting Point) (Page 2 of 6) -->
+			<!-- Chapter 1: The Expectation (Page 2 of 6) -->
 			<section class="book-page" id="page-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 2</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 1: The Expectation (My Journey, Your Journey, and the&nbsp;Starting&nbsp;Point)  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 1: The Expectation</span>
+						<span class="page-count-label">Page 2</span>
 					</div>
 
 					<div class="chapter-content">
@@ -735,16 +724,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Expectation (My Journey, Your Journey, and the Starting Point) (Page 3 of 6) -->
+			<!-- Chapter 1: The Expectation (Page 3 of 6) -->
 			<section class="book-page" id="page-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 3</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 1: The Expectation (My Journey, Your Journey, and the&nbsp;Starting&nbsp;Point)  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 1: The Expectation</span>
+						<span class="page-count-label">Page 3</span>
 					</div>
 
 					<div class="chapter-content">
@@ -761,16 +746,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Expectation (My Journey, Your Journey, and the Starting Point) (Page 4 of 6) -->
+			<!-- Chapter 1: The Expectation (Page 4 of 6) -->
 			<section class="book-page" id="page-4">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 4</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 1: The Expectation (My Journey, Your Journey, and the&nbsp;Starting&nbsp;Point)  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 1: The Expectation</span>
+						<span class="page-count-label">Page 4</span>
 					</div>
 
 					<div class="chapter-content">
@@ -787,16 +768,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Expectation (My Journey, Your Journey, and the Starting Point) (Page 5 of 6) -->
+			<!-- Chapter 1: The Expectation (Page 5 of 6) -->
 			<section class="book-page" id="page-5">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 5</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 1: The Expectation (My Journey, Your Journey, and the&nbsp;Starting&nbsp;Point)  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 1: The Expectation</span>
+						<span class="page-count-label">Page 5</span>
 					</div>
 
 					<div class="chapter-content">
@@ -813,16 +790,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Expectation (My Journey, Your Journey, and the Starting Point) (Page 6 of 6) -->
+			<!-- Chapter 1: The Expectation (Page 6 of 6) -->
 			<section class="book-page" id="page-6">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 6</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 1: The Expectation (My Journey, Your Journey, and the&nbsp;Starting&nbsp;Point)  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 1: The Expectation</span>
+						<span class="page-count-label">Page 6</span>
 					</div>
 
 					<div class="chapter-content">
@@ -843,12 +816,12 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-7">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 7</span>
+						<span class="chapter-header-label">Chapter 2: The Day the Fire Started</span>
+						<span class="page-count-label">Page 7</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part I: The Breakdown (The Mystery &amp; The Medical Maze)</p>
+						<p class="part-break-title">Part I: The Mystery and The Medical Maze</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 2: The Day the&nbsp;Fire&nbsp;Started</h2>
@@ -871,12 +844,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-8">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 8</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 2: The Day the&nbsp;Fire&nbsp;Started  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 2: The Day the Fire Started</span>
+						<span class="page-count-label">Page 8</span>
 					</div>
 
 					<div class="chapter-content">
@@ -896,12 +865,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-9">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 9</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 2: The Day the&nbsp;Fire&nbsp;Started  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 2: The Day the Fire Started</span>
+						<span class="page-count-label">Page 9</span>
 					</div>
 
 					<div class="chapter-content">
@@ -921,12 +886,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-10">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 10</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 2: The Day the&nbsp;Fire&nbsp;Started  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 2: The Day the Fire Started</span>
+						<span class="page-count-label">Page 10</span>
 					</div>
 
 					<div class="chapter-content">
@@ -946,12 +907,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-11">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 11</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 2: The Day the&nbsp;Fire&nbsp;Started  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 2: The Day the Fire Started</span>
+						<span class="page-count-label">Page 11</span>
 					</div>
 
 					<div class="chapter-content">
@@ -971,12 +928,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-12">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 12</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 2: The Day the&nbsp;Fire&nbsp;Started  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 2: The Day the Fire Started</span>
+						<span class="page-count-label">Page 12</span>
 					</div>
 
 					<div class="chapter-content">
@@ -996,12 +949,12 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-13">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 13</span>
+						<span class="chapter-header-label">Chapter 3: The Supplement Graveyard</span>
+						<span class="page-count-label">Page 13</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part I: The Breakdown (The Mystery &amp; The Medical Maze)</p>
+						<p class="part-break-title">Part I: The Mystery and The Medical Maze</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 3: The&nbsp;Supplement&nbsp;Graveyard</h2>
@@ -1025,12 +978,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-14">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 14</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 3: The&nbsp;Supplement&nbsp;Graveyard  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 3: The Supplement Graveyard</span>
+						<span class="page-count-label">Page 14</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1051,12 +1000,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-15">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 15</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 3: The&nbsp;Supplement&nbsp;Graveyard  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 3: The Supplement Graveyard</span>
+						<span class="page-count-label">Page 15</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1077,12 +1022,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-16">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 16</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 3: The&nbsp;Supplement&nbsp;Graveyard  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 3: The Supplement Graveyard</span>
+						<span class="page-count-label">Page 16</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1103,12 +1044,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-17">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 17</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 3: The&nbsp;Supplement&nbsp;Graveyard  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 3: The Supplement Graveyard</span>
+						<span class="page-count-label">Page 17</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1129,12 +1066,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-18">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 18</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 3: The&nbsp;Supplement&nbsp;Graveyard  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 3: The Supplement Graveyard</span>
+						<span class="page-count-label">Page 18</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1151,19 +1084,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 4: The Slow Fuse: A Decade-by-Decade Breakdown (Page 1 of 6) -->
+			<!-- Chapter 4: The Slow Fuse (Page 1 of 6) -->
 			<section class="book-page" id="page-19">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 19</span>
+						<span class="chapter-header-label">Chapter 4: The Slow Fuse</span>
+						<span class="page-count-label">Page 19</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part I: The Breakdown (The Mystery &amp; The Medical Maze)</p>
+						<p class="part-break-title">Part I: The Mystery and The Medical Maze</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 4: The Slow Fuse: A&nbsp;Decade-by-Decade&nbsp;Breakdown</h2>
+					<h2 class="chapter-title">Chapter 4: The&nbsp;Slow&nbsp;Fuse</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>The fire that erupted in my mouth did not materialize out of thin air. It was a slow-motion mechanical and biological collapse fifty years in&nbsp;the&nbsp;making.</p>
@@ -1182,16 +1115,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 4: The Slow Fuse: A Decade-by-Decade Breakdown (Page 2 of 6) -->
+			<!-- Chapter 4: The Slow Fuse (Page 2 of 6) -->
 			<section class="book-page" id="page-20">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 20</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 4: The Slow Fuse: A&nbsp;Decade-by-Decade&nbsp;Breakdown  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 4: The Slow Fuse</span>
+						<span class="page-count-label">Page 20</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1211,16 +1140,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 4: The Slow Fuse: A Decade-by-Decade Breakdown (Page 3 of 6) -->
+			<!-- Chapter 4: The Slow Fuse (Page 3 of 6) -->
 			<section class="book-page" id="page-21">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 21</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 4: The Slow Fuse: A&nbsp;Decade-by-Decade&nbsp;Breakdown  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 4: The Slow Fuse</span>
+						<span class="page-count-label">Page 21</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1239,16 +1164,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 4: The Slow Fuse: A Decade-by-Decade Breakdown (Page 4 of 6) -->
+			<!-- Chapter 4: The Slow Fuse (Page 4 of 6) -->
 			<section class="book-page" id="page-22">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 22</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 4: The Slow Fuse: A&nbsp;Decade-by-Decade&nbsp;Breakdown  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 4: The Slow Fuse</span>
+						<span class="page-count-label">Page 22</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1267,16 +1188,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 4: The Slow Fuse: A Decade-by-Decade Breakdown (Page 5 of 6) -->
+			<!-- Chapter 4: The Slow Fuse (Page 5 of 6) -->
 			<section class="book-page" id="page-23">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 23</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 4: The Slow Fuse: A&nbsp;Decade-by-Decade&nbsp;Breakdown  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 4: The Slow Fuse</span>
+						<span class="page-count-label">Page 23</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1295,16 +1212,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 4: The Slow Fuse: A Decade-by-Decade Breakdown (Page 6 of 6) -->
+			<!-- Chapter 4: The Slow Fuse (Page 6 of 6) -->
 			<section class="book-page" id="page-24">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part I: The Breakdown</span>
-						<span class="part-label">Page 24</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 4: The Slow Fuse: A&nbsp;Decade-by-Decade&nbsp;Breakdown  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 4: The Slow Fuse</span>
+						<span class="page-count-label">Page 24</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1323,19 +1236,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 5: The Exposed Tubule Audit (The Uncounted Conduits) (Page 1 of 6) -->
+			<!-- Chapter 5: The Exposed Tubule Audit (Page 1 of 6) -->
 			<section class="book-page" id="page-25">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 25</span>
+						<span class="chapter-header-label">Chapter 5: The Exposed Tubule Audit</span>
+						<span class="page-count-label">Page 25</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part II: The Biophysics of the Breach (Hardware &amp; Chemistry)</p>
+						<p class="part-break-title">Part II: Hardware and Chemistry</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 5: The Exposed Tubule Audit (The&nbsp;Uncounted&nbsp;Conduits)</h2>
+					<h2 class="chapter-title">Chapter 5: The Exposed&nbsp;Tubule&nbsp;Audit</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>If you hand a contractor a blueprint of a house with an active water leak, the first thing they measure is the size and number of the broken pipes. In conventional dentistry, however, the examination stops at the&nbsp;outer&nbsp;surface.</p>
@@ -1352,16 +1265,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 5: The Exposed Tubule Audit (The Uncounted Conduits) (Page 2 of 6) -->
+			<!-- Chapter 5: The Exposed Tubule Audit (Page 2 of 6) -->
 			<section class="book-page" id="page-26">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 26</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 5: The Exposed Tubule Audit (The&nbsp;Uncounted&nbsp;Conduits)  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 5: The Exposed Tubule Audit</span>
+						<span class="page-count-label">Page 26</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1379,16 +1288,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 5: The Exposed Tubule Audit (The Uncounted Conduits) (Page 3 of 6) -->
+			<!-- Chapter 5: The Exposed Tubule Audit (Page 3 of 6) -->
 			<section class="book-page" id="page-27">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 27</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 5: The Exposed Tubule Audit (The&nbsp;Uncounted&nbsp;Conduits)  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 5: The Exposed Tubule Audit</span>
+						<span class="page-count-label">Page 27</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1405,16 +1310,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 5: The Exposed Tubule Audit (The Uncounted Conduits) (Page 4 of 6) -->
+			<!-- Chapter 5: The Exposed Tubule Audit (Page 4 of 6) -->
 			<section class="book-page" id="page-28">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 28</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 5: The Exposed Tubule Audit (The&nbsp;Uncounted&nbsp;Conduits)  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 5: The Exposed Tubule Audit</span>
+						<span class="page-count-label">Page 28</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1431,16 +1332,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 5: The Exposed Tubule Audit (The Uncounted Conduits) (Page 5 of 6) -->
+			<!-- Chapter 5: The Exposed Tubule Audit (Page 5 of 6) -->
 			<section class="book-page" id="page-29">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 29</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 5: The Exposed Tubule Audit (The&nbsp;Uncounted&nbsp;Conduits)  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 5: The Exposed Tubule Audit</span>
+						<span class="page-count-label">Page 29</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1457,16 +1354,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 5: The Exposed Tubule Audit (The Uncounted Conduits) (Page 6 of 6) -->
+			<!-- Chapter 5: The Exposed Tubule Audit (Page 6 of 6) -->
 			<section class="book-page" id="page-30">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 30</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 5: The Exposed Tubule Audit (The&nbsp;Uncounted&nbsp;Conduits)  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 5: The Exposed Tubule Audit</span>
+						<span class="page-count-label">Page 30</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1483,19 +1376,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 6: The Chemical Ingress (The pH 6.2-6.7 Trap) (Page 1 of 6) -->
+			<!-- Chapter 6: The Chemical Ingress (Page 1 of 6) -->
 			<section class="book-page" id="page-31">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 31</span>
+						<span class="chapter-header-label">Chapter 6: The Chemical Ingress</span>
+						<span class="page-count-label">Page 31</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part II: The Biophysics of the Breach (Hardware &amp; Chemistry)</p>
+						<p class="part-break-title">Part II: Hardware and Chemistry</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 6: The Chemical Ingress (The pH&nbsp;6.2-6.7&nbsp;Trap)</h2>
+					<h2 class="chapter-title">Chapter 6: The&nbsp;Chemical&nbsp;Ingress</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Having millions of open, microscopic dentinal tubules sitting across receded root margins creates an undeniable structural breach. But a physical breach alone does not explain why the pain burns with such ferocious intensity. A pipe can sit open in a calm room without causing&nbsp;an&nbsp;explosion.</p>
@@ -1513,16 +1406,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 6: The Chemical Ingress (The pH 6.2-6.7 Trap) (Page 2 of 6) -->
+			<!-- Chapter 6: The Chemical Ingress (Page 2 of 6) -->
 			<section class="book-page" id="page-32">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 32</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 6: The Chemical Ingress (The pH&nbsp;6.2-6.7&nbsp;Trap)  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 6: The Chemical Ingress</span>
+						<span class="page-count-label">Page 32</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1541,16 +1430,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 6: The Chemical Ingress (The pH 6.2-6.7 Trap) (Page 3 of 6) -->
+			<!-- Chapter 6: The Chemical Ingress (Page 3 of 6) -->
 			<section class="book-page" id="page-33">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 33</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 6: The Chemical Ingress (The pH&nbsp;6.2-6.7&nbsp;Trap)  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 6: The Chemical Ingress</span>
+						<span class="page-count-label">Page 33</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1569,16 +1454,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 6: The Chemical Ingress (The pH 6.2-6.7 Trap) (Page 4 of 6) -->
+			<!-- Chapter 6: The Chemical Ingress (Page 4 of 6) -->
 			<section class="book-page" id="page-34">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 34</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 6: The Chemical Ingress (The pH&nbsp;6.2-6.7&nbsp;Trap)  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 6: The Chemical Ingress</span>
+						<span class="page-count-label">Page 34</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1597,16 +1478,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 6: The Chemical Ingress (The pH 6.2-6.7 Trap) (Page 5 of 6) -->
+			<!-- Chapter 6: The Chemical Ingress (Page 5 of 6) -->
 			<section class="book-page" id="page-35">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 35</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 6: The Chemical Ingress (The pH&nbsp;6.2-6.7&nbsp;Trap)  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 6: The Chemical Ingress</span>
+						<span class="page-count-label">Page 35</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1625,16 +1502,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 6: The Chemical Ingress (The pH 6.2-6.7 Trap) (Page 6 of 6) -->
+			<!-- Chapter 6: The Chemical Ingress (Page 6 of 6) -->
 			<section class="book-page" id="page-36">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 36</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 6: The Chemical Ingress (The pH&nbsp;6.2-6.7&nbsp;Trap)  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 6: The Chemical Ingress</span>
+						<span class="page-count-label">Page 36</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1653,19 +1526,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 7: The Circuit: From Acid to Brainstem Crosstalk (Page 1 of 6) -->
+			<!-- Chapter 7: The Oral Neuropathic Circuit (Page 1 of 6) -->
 			<section class="book-page" id="page-37">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 37</span>
+						<span class="chapter-header-label">Chapter 7: The Oral Neuropathic Circuit</span>
+						<span class="page-count-label">Page 37</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part II: The Biophysics of the Breach (Hardware &amp; Chemistry)</p>
+						<p class="part-break-title">Part II: Hardware and Chemistry</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 7: The Circuit: From Acid to&nbsp;Brainstem&nbsp;Crosstalk</h2>
+					<h2 class="chapter-title">Chapter 7: The Oral&nbsp;Neuropathic&nbsp;Circuit</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>One of the most maddening paradoxes of Burning Mouth Syndrome is the sheer scale of&nbsp;the&nbsp;fire.</p>
@@ -1687,16 +1560,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 7: The Circuit: From Acid to Brainstem Crosstalk (Page 2 of 6) -->
+			<!-- Chapter 7: The Oral Neuropathic Circuit (Page 2 of 6) -->
 			<section class="book-page" id="page-38">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 38</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 7: The Circuit: From Acid to&nbsp;Brainstem&nbsp;Crosstalk  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 7: The Oral Neuropathic Circuit</span>
+						<span class="page-count-label">Page 38</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1719,16 +1588,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 7: The Circuit: From Acid to Brainstem Crosstalk (Page 3 of 6) -->
+			<!-- Chapter 7: The Oral Neuropathic Circuit (Page 3 of 6) -->
 			<section class="book-page" id="page-39">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 39</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 7: The Circuit: From Acid to&nbsp;Brainstem&nbsp;Crosstalk  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 7: The Oral Neuropathic Circuit</span>
+						<span class="page-count-label">Page 39</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1751,16 +1616,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 7: The Circuit: From Acid to Brainstem Crosstalk (Page 4 of 6) -->
+			<!-- Chapter 7: The Oral Neuropathic Circuit (Page 4 of 6) -->
 			<section class="book-page" id="page-40">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 40</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 7: The Circuit: From Acid to&nbsp;Brainstem&nbsp;Crosstalk  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 7: The Oral Neuropathic Circuit</span>
+						<span class="page-count-label">Page 40</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1783,16 +1644,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 7: The Circuit: From Acid to Brainstem Crosstalk (Page 5 of 6) -->
+			<!-- Chapter 7: The Oral Neuropathic Circuit (Page 5 of 6) -->
 			<section class="book-page" id="page-41">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 41</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 7: The Circuit: From Acid to&nbsp;Brainstem&nbsp;Crosstalk  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 7: The Oral Neuropathic Circuit</span>
+						<span class="page-count-label">Page 41</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1814,16 +1671,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 7: The Circuit: From Acid to Brainstem Crosstalk (Page 6 of 6) -->
+			<!-- Chapter 7: The Oral Neuropathic Circuit (Page 6 of 6) -->
 			<section class="book-page" id="page-42">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part II: The Biophysics of the Breach</span>
-						<span class="part-label">Page 42</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 7: The Circuit: From Acid to&nbsp;Brainstem&nbsp;Crosstalk  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 7: The Oral Neuropathic Circuit</span>
+						<span class="page-count-label">Page 42</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1845,19 +1698,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 8: The Diabetic Parallel: Small-Fiber Burning in the Extremities (Page 1 of 6) -->
+			<!-- Chapter 8: The Diabetic Parallel (Page 1 of 6) -->
 			<section class="book-page" id="page-43">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 43</span>
+						<span class="chapter-header-label">Chapter 8: The Diabetic Parallel</span>
+						<span class="page-count-label">Page 43</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part III: The Sister Neuropathy: Mapping BMS to Diabetes (&quot;Type 6&quot;)</p>
+						<p class="part-break-title">Part III: Mapping BMS to Diabetes</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 8: The Diabetic Parallel: Small-Fiber Burning in&nbsp;the&nbsp;Extremities</h2>
+					<h2 class="chapter-title">Chapter 8: The&nbsp;Diabetic&nbsp;Parallel</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When you tell an ear, nose, and throat doctor or an oral surgeon that your tongue, palate, and gums feel like they are being bathed in boiling liquid, you are frequently met with blank stares, polite nods, and a referral to psychiatry. Because the oral mucosa appears pink and healthy on the surface, the medical system treats the burning as an isolated,&nbsp;incomprehensible&nbsp;phantom.</p>
@@ -1875,16 +1728,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 8: The Diabetic Parallel: Small-Fiber Burning in the Extremities (Page 2 of 6) -->
+			<!-- Chapter 8: The Diabetic Parallel (Page 2 of 6) -->
 			<section class="book-page" id="page-44">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 44</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 8: The Diabetic Parallel: Small-Fiber Burning in&nbsp;the&nbsp;Extremities  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 8: The Diabetic Parallel</span>
+						<span class="page-count-label">Page 44</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1903,16 +1752,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 8: The Diabetic Parallel: Small-Fiber Burning in the Extremities (Page 3 of 6) -->
+			<!-- Chapter 8: The Diabetic Parallel (Page 3 of 6) -->
 			<section class="book-page" id="page-45">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 45</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 8: The Diabetic Parallel: Small-Fiber Burning in&nbsp;the&nbsp;Extremities  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 8: The Diabetic Parallel</span>
+						<span class="page-count-label">Page 45</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1931,16 +1776,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 8: The Diabetic Parallel: Small-Fiber Burning in the Extremities (Page 4 of 6) -->
+			<!-- Chapter 8: The Diabetic Parallel (Page 4 of 6) -->
 			<section class="book-page" id="page-46">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 46</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 8: The Diabetic Parallel: Small-Fiber Burning in&nbsp;the&nbsp;Extremities  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 8: The Diabetic Parallel</span>
+						<span class="page-count-label">Page 46</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1958,16 +1799,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 8: The Diabetic Parallel: Small-Fiber Burning in the Extremities (Page 5 of 6) -->
+			<!-- Chapter 8: The Diabetic Parallel (Page 5 of 6) -->
 			<section class="book-page" id="page-47">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 47</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 8: The Diabetic Parallel: Small-Fiber Burning in&nbsp;the&nbsp;Extremities  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 8: The Diabetic Parallel</span>
+						<span class="page-count-label">Page 47</span>
 					</div>
 
 					<div class="chapter-content">
@@ -1985,16 +1822,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 8: The Diabetic Parallel: Small-Fiber Burning in the Extremities (Page 6 of 6) -->
+			<!-- Chapter 8: The Diabetic Parallel (Page 6 of 6) -->
 			<section class="book-page" id="page-48">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 48</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 8: The Diabetic Parallel: Small-Fiber Burning in&nbsp;the&nbsp;Extremities  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 8: The Diabetic Parallel</span>
+						<span class="page-count-label">Page 48</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2012,24 +1845,24 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 9: The Two Bottlenecks: Systemic Pancreas vs. Local Tubules (Page 1 of 6) -->
+			<!-- Chapter 9: The Two Bottlenecks (Page 1 of 6) -->
 			<section class="book-page" id="page-49">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 49</span>
+						<span class="chapter-header-label">Chapter 9: The Two Bottlenecks</span>
+						<span class="page-count-label">Page 49</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part III: The Sister Neuropathy: Mapping BMS to Diabetes (&quot;Type 6&quot;)</p>
+						<p class="part-break-title">Part III: Mapping BMS to Diabetes</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 9: The Two Bottlenecks: Systemic Pancreas vs.&nbsp;Local&nbsp;Tubules</h2>
+					<h2 class="chapter-title">Chapter 9: The&nbsp;Two&nbsp;Bottlenecks</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Once you recognize that Diabetic Peripheral Neuropathy and Burning Mouth Syndrome share the exact same sensory wiring, the natural question is: why does one burn in the toes while the other burns in&nbsp;the&nbsp;mouth?</p>
 						<p>The answer comes down to location and transport. Both conditions result in an unbuffered lactic acid bath tripping unshielded peripheral nerve sensors, but the fuel arrives through two entirely different&nbsp;biological&nbsp;gateways.</p>
-						<h3>The Systemic Bottleneck (Diabetes Type 1 &&nbsp;Type&nbsp;2)</h3>
+						<h3>The Systemic Bottleneck (Diabetes Type 1 and&nbsp;Type&nbsp;2)</h3>
 						<h3>In classical diabetes, the failure occurs at the systemic&nbsp;metabolic&nbsp;level:</h3>
 						<p>In Type 1 Diabetes: An autoimmune destruction of pancreatic beta cells stops insulin&nbsp;production&nbsp;entirely.</p>
 						<p>In Type 2 Diabetes: Chronic carbohydrate overload, hyperinsulinemia, and ectopic fat accumulation in the liver and pancreas lead to profound&nbsp;insulin&nbsp;resistance.</p>
@@ -2042,16 +1875,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 9: The Two Bottlenecks: Systemic Pancreas vs. Local Tubules (Page 2 of 6) -->
+			<!-- Chapter 9: The Two Bottlenecks (Page 2 of 6) -->
 			<section class="book-page" id="page-50">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 50</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 9: The Two Bottlenecks: Systemic Pancreas vs.&nbsp;Local&nbsp;Tubules  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 9: The Two Bottlenecks</span>
+						<span class="page-count-label">Page 50</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2070,16 +1899,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 9: The Two Bottlenecks: Systemic Pancreas vs. Local Tubules (Page 3 of 6) -->
+			<!-- Chapter 9: The Two Bottlenecks (Page 3 of 6) -->
 			<section class="book-page" id="page-51">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 51</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 9: The Two Bottlenecks: Systemic Pancreas vs.&nbsp;Local&nbsp;Tubules  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 9: The Two Bottlenecks</span>
+						<span class="page-count-label">Page 51</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2098,16 +1923,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 9: The Two Bottlenecks: Systemic Pancreas vs. Local Tubules (Page 4 of 6) -->
+			<!-- Chapter 9: The Two Bottlenecks (Page 4 of 6) -->
 			<section class="book-page" id="page-52">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 52</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 9: The Two Bottlenecks: Systemic Pancreas vs.&nbsp;Local&nbsp;Tubules  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 9: The Two Bottlenecks</span>
+						<span class="page-count-label">Page 52</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2126,16 +1947,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 9: The Two Bottlenecks: Systemic Pancreas vs. Local Tubules (Page 5 of 6) -->
+			<!-- Chapter 9: The Two Bottlenecks (Page 5 of 6) -->
 			<section class="book-page" id="page-53">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 53</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 9: The Two Bottlenecks: Systemic Pancreas vs.&nbsp;Local&nbsp;Tubules  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 9: The Two Bottlenecks</span>
+						<span class="page-count-label">Page 53</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2154,16 +1971,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 9: The Two Bottlenecks: Systemic Pancreas vs. Local Tubules (Page 6 of 6) -->
+			<!-- Chapter 9: The Two Bottlenecks (Page 6 of 6) -->
 			<section class="book-page" id="page-54">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 54</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 9: The Two Bottlenecks: Systemic Pancreas vs.&nbsp;Local&nbsp;Tubules  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 9: The Two Bottlenecks</span>
+						<span class="page-count-label">Page 54</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2182,19 +1995,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 10: The B12 Blind Spot & Drug-Induced Nerve Starvation (Page 1 of 6) -->
+			<!-- Chapter 10: The B12 Blind Spot (Page 1 of 6) -->
 			<section class="book-page" id="page-55">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 55</span>
+						<span class="chapter-header-label">Chapter 10: The B12 Blind Spot</span>
+						<span class="page-count-label">Page 55</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part III: The Sister Neuropathy: Mapping BMS to Diabetes (&quot;Type 6&quot;)</p>
+						<p class="part-break-title">Part III: Mapping BMS to Diabetes</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 10: The B12 Blind Spot & Drug-Induced&nbsp;Nerve&nbsp;Starvation</h2>
+					<h2 class="chapter-title">Chapter 10: The B12&nbsp;Blind&nbsp;Spot</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>If you want to understand how modern medicine creates diagnostic traps for nerve sufferers, look no further than&nbsp;Vitamin&nbsp;B12.</p>
@@ -2211,16 +2024,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 10: The B12 Blind Spot & Drug-Induced Nerve Starvation (Page 2 of 6) -->
+			<!-- Chapter 10: The B12 Blind Spot (Page 2 of 6) -->
 			<section class="book-page" id="page-56">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 56</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 10: The B12 Blind Spot & Drug-Induced&nbsp;Nerve&nbsp;Starvation  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 10: The B12 Blind Spot</span>
+						<span class="page-count-label">Page 56</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2237,16 +2046,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 10: The B12 Blind Spot & Drug-Induced Nerve Starvation (Page 3 of 6) -->
+			<!-- Chapter 10: The B12 Blind Spot (Page 3 of 6) -->
 			<section class="book-page" id="page-57">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 57</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 10: The B12 Blind Spot & Drug-Induced&nbsp;Nerve&nbsp;Starvation  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 10: The B12 Blind Spot</span>
+						<span class="page-count-label">Page 57</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2263,16 +2068,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 10: The B12 Blind Spot & Drug-Induced Nerve Starvation (Page 4 of 6) -->
+			<!-- Chapter 10: The B12 Blind Spot (Page 4 of 6) -->
 			<section class="book-page" id="page-58">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 58</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 10: The B12 Blind Spot & Drug-Induced&nbsp;Nerve&nbsp;Starvation  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 10: The B12 Blind Spot</span>
+						<span class="page-count-label">Page 58</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2289,16 +2090,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 10: The B12 Blind Spot & Drug-Induced Nerve Starvation (Page 5 of 6) -->
+			<!-- Chapter 10: The B12 Blind Spot (Page 5 of 6) -->
 			<section class="book-page" id="page-59">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 59</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 10: The B12 Blind Spot & Drug-Induced&nbsp;Nerve&nbsp;Starvation  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 10: The B12 Blind Spot</span>
+						<span class="page-count-label">Page 59</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2315,16 +2112,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 10: The B12 Blind Spot & Drug-Induced Nerve Starvation (Page 6 of 6) -->
+			<!-- Chapter 10: The B12 Blind Spot (Page 6 of 6) -->
 			<section class="book-page" id="page-60">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 60</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 10: The B12 Blind Spot & Drug-Induced&nbsp;Nerve&nbsp;Starvation  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 10: The B12 Blind Spot</span>
+						<span class="page-count-label">Page 60</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2341,19 +2134,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 11: Remission vs. The Myth of Inevitable Progression (Page 1 of 6) -->
+			<!-- Chapter 11: Remission vs. Progression (Page 1 of 6) -->
 			<section class="book-page" id="page-61">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 61</span>
+						<span class="chapter-header-label">Chapter 11: Remission vs. Progression</span>
+						<span class="page-count-label">Page 61</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part III: The Sister Neuropathy: Mapping BMS to Diabetes (&quot;Type 6&quot;)</p>
+						<p class="part-break-title">Part III: Mapping BMS to Diabetes</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 11: Remission vs. The Myth of&nbsp;Inevitable&nbsp;Progression</h2>
+					<h2 class="chapter-title">Chapter 11: Remission&nbsp;vs.&nbsp;Progression</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>In modern clinical practice, conventional medicine operates under a deeply fatalistic premise when dealing with both Type 2 diabetes and Burning Mouth Syndrome: the dogma of inevitable&nbsp;chronic&nbsp;progression.</p>
@@ -2369,16 +2162,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 11: Remission vs. The Myth of Inevitable Progression (Page 2 of 6) -->
+			<!-- Chapter 11: Remission vs. Progression (Page 2 of 6) -->
 			<section class="book-page" id="page-62">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 62</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 11: Remission vs. The Myth of&nbsp;Inevitable&nbsp;Progression  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 11: Remission vs. Progression</span>
+						<span class="page-count-label">Page 62</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2394,16 +2183,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 11: Remission vs. The Myth of Inevitable Progression (Page 3 of 6) -->
+			<!-- Chapter 11: Remission vs. Progression (Page 3 of 6) -->
 			<section class="book-page" id="page-63">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 63</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 11: Remission vs. The Myth of&nbsp;Inevitable&nbsp;Progression  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 11: Remission vs. Progression</span>
+						<span class="page-count-label">Page 63</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2419,16 +2204,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 11: Remission vs. The Myth of Inevitable Progression (Page 4 of 6) -->
+			<!-- Chapter 11: Remission vs. Progression (Page 4 of 6) -->
 			<section class="book-page" id="page-64">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 64</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 11: Remission vs. The Myth of&nbsp;Inevitable&nbsp;Progression  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 11: Remission vs. Progression</span>
+						<span class="page-count-label">Page 64</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2444,16 +2225,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 11: Remission vs. The Myth of Inevitable Progression (Page 5 of 6) -->
+			<!-- Chapter 11: Remission vs. Progression (Page 5 of 6) -->
 			<section class="book-page" id="page-65">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 65</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 11: Remission vs. The Myth of&nbsp;Inevitable&nbsp;Progression  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 11: Remission vs. Progression</span>
+						<span class="page-count-label">Page 65</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2469,16 +2246,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 11: Remission vs. The Myth of Inevitable Progression (Page 6 of 6) -->
+			<!-- Chapter 11: Remission vs. Progression (Page 6 of 6) -->
 			<section class="book-page" id="page-66">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part III: The Sister Neuropathy: Mapping BMS to Diabetes</span>
-						<span class="part-label">Page 66</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 11: Remission vs. The Myth of&nbsp;Inevitable&nbsp;Progression  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 11: Remission vs. Progression</span>
+						<span class="page-count-label">Page 66</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2494,19 +2267,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 12: Starving the Fire: The Strict Elimination Baseline (Page 1 of 6) -->
+			<!-- Chapter 12: Starving the Fire (Page 1 of 6) -->
 			<section class="book-page" id="page-67">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 67</span>
+						<span class="chapter-header-label">Chapter 12: Starving the Fire</span>
+						<span class="page-count-label">Page 67</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part IV: The Protocol &amp; The Baseline (Calming the Circuit)</p>
+						<p class="part-break-title">Part IV: Calming the Circuit</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 12: Starving the Fire: The Strict&nbsp;Elimination&nbsp;Baseline</h2>
+					<h2 class="chapter-title">Chapter 12: Starving&nbsp;the&nbsp;Fire</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When you are in the grip of a 10/10 burning mouth flare, your oral nervous system is caught in an acute electrical storm. You cannot negotiate with the fire, and you cannot test complex&nbsp;multi-ingredient&nbsp;remedies.</p>
@@ -2524,16 +2297,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 12: Starving the Fire: The Strict Elimination Baseline (Page 2 of 6) -->
+			<!-- Chapter 12: Starving the Fire (Page 2 of 6) -->
 			<section class="book-page" id="page-68">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 68</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 12: Starving the Fire: The Strict&nbsp;Elimination&nbsp;Baseline  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 12: Starving the Fire</span>
+						<span class="page-count-label">Page 68</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2552,16 +2321,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 12: Starving the Fire: The Strict Elimination Baseline (Page 3 of 6) -->
+			<!-- Chapter 12: Starving the Fire (Page 3 of 6) -->
 			<section class="book-page" id="page-69">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 69</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 12: Starving the Fire: The Strict&nbsp;Elimination&nbsp;Baseline  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 12: Starving the Fire</span>
+						<span class="page-count-label">Page 69</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2580,23 +2345,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 12: Starving the Fire: The Strict Elimination Baseline (Page 4 of 6) -->
+			<!-- Chapter 12: Starving the Fire (Page 4 of 6) -->
 			<section class="book-page" id="page-70">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 70</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 12: Starving the Fire: The Strict&nbsp;Elimination&nbsp;Baseline  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 12: Starving the Fire</span>
+						<span class="page-count-label">Page 70</span>
 					</div>
 
 					<div class="chapter-content">
 						<h3>What Goes on the&nbsp;Safe&nbsp;Plate</h3>
 						<p>To keep oral pH strictly neutral and deprive bacteria of fermentable fuel, the baseline diet&nbsp;consists&nbsp;of:</p>
 						<p>Ruminant Meats: Ground beef, ribeye steaks, veal, lamb, and organ&nbsp;meats&nbsp;(liver).</p>
-						<p>Poultry & Seafood: Chicken, turkey, wild salmon, cod, shrimp, and oysters (which provide natural zinc, copper, and&nbsp;bioavailable&nbsp;B-vitamins).</p>
+						<p>Poultry and Seafood: Chicken, turkey, wild salmon, cod, shrimp, and oysters (which provide natural zinc, copper, and&nbsp;bioavailable&nbsp;B-vitamins).</p>
 						<p>Clean Animal Fats: Beef tallow, suet, and natural meat drippings for cooking (avoiding seed and&nbsp;vegetable&nbsp;oils).</p>
 						<p>Pasture-Raised Eggs: Boiled, scrambled, or fried in clean&nbsp;animal&nbsp;fat.</p>
 
@@ -2608,16 +2369,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 12: Starving the Fire: The Strict Elimination Baseline (Page 5 of 6) -->
+			<!-- Chapter 12: Starving the Fire (Page 5 of 6) -->
 			<section class="book-page" id="page-71">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 71</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 12: Starving the Fire: The Strict&nbsp;Elimination&nbsp;Baseline  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 12: Starving the Fire</span>
+						<span class="page-count-label">Page 71</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2635,16 +2392,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 12: Starving the Fire: The Strict Elimination Baseline (Page 6 of 6) -->
+			<!-- Chapter 12: Starving the Fire (Page 6 of 6) -->
 			<section class="book-page" id="page-72">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 72</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 12: Starving the Fire: The Strict&nbsp;Elimination&nbsp;Baseline  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 12: Starving the Fire</span>
+						<span class="page-count-label">Page 72</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2662,19 +2415,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 13: Mechanical Shields & Dental Carpentry (Page 1 of 6) -->
+			<!-- Chapter 13: Mechanical Shields (Page 1 of 6) -->
 			<section class="book-page" id="page-73">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 73</span>
+						<span class="chapter-header-label">Chapter 13: Mechanical Shields</span>
+						<span class="page-count-label">Page 73</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part IV: The Protocol &amp; The Baseline (Calming the Circuit)</p>
+						<p class="part-break-title">Part IV: Calming the Circuit</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 13: Mechanical Shields &&nbsp;Dental&nbsp;Carpentry</h2>
+					<h2 class="chapter-title">Chapter 13:&nbsp;Mechanical&nbsp;Shields</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>While an elimination baseline extinguishes the chemical fire, it does not fix the physical breaches in your mouth. If you rely solely on diet, you are forced to remain in perpetual&nbsp;nutritional&nbsp;restriction.</p>
@@ -2691,16 +2444,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 13: Mechanical Shields & Dental Carpentry (Page 2 of 6) -->
+			<!-- Chapter 13: Mechanical Shields (Page 2 of 6) -->
 			<section class="book-page" id="page-74">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 74</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 13: Mechanical Shields &&nbsp;Dental&nbsp;Carpentry  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 13: Mechanical Shields</span>
+						<span class="page-count-label">Page 74</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2718,16 +2467,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 13: Mechanical Shields & Dental Carpentry (Page 3 of 6) -->
+			<!-- Chapter 13: Mechanical Shields (Page 3 of 6) -->
 			<section class="book-page" id="page-75">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 75</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 13: Mechanical Shields &&nbsp;Dental&nbsp;Carpentry  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 13: Mechanical Shields</span>
+						<span class="page-count-label">Page 75</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2744,16 +2489,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 13: Mechanical Shields & Dental Carpentry (Page 4 of 6) -->
+			<!-- Chapter 13: Mechanical Shields (Page 4 of 6) -->
 			<section class="book-page" id="page-76">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 76</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 13: Mechanical Shields &&nbsp;Dental&nbsp;Carpentry  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 13: Mechanical Shields</span>
+						<span class="page-count-label">Page 76</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2770,22 +2511,18 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 13: Mechanical Shields & Dental Carpentry (Page 5 of 6) -->
+			<!-- Chapter 13: Mechanical Shields (Page 5 of 6) -->
 			<section class="book-page" id="page-77">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 77</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 13: Mechanical Shields &&nbsp;Dental&nbsp;Carpentry  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 13: Mechanical Shields</span>
+						<span class="page-count-label">Page 77</span>
 					</div>
 
 					<div class="chapter-content">
 						<p>Gluma Desensitizer: A liquid formulation combining glutaraldehyde and HEMA&nbsp;(hydroxyethyl&nbsp;methacrylate).</p>
 						<p>When applied to bare dentin, glutaraldehyde causes the proteins dissolved in dentinal fluid to coagulate and precipitate, forming a biological seal up to 200 microns deep inside&nbsp;the&nbsp;tubules.</p>
-						<p>Light-Cured Unfilled Resin Glazes: Products like Seal & Protect or Tokuyama Shield Force Plus form a micro-thin, cured polymer film directly over exposed root collars, sealing thousands of open pipes without leaving bulky plastic margins that irritate&nbsp;the&nbsp;gums.</p>
+						<p>Light-Cured Unfilled Resin Glazes: Products like Seal and Protect or Tokuyama Shield Force Plus form a micro-thin, cured polymer film directly over exposed root collars, sealing thousands of open pipes without leaving bulky plastic margins that irritate&nbsp;the&nbsp;gums.</p>
 						<h3>Permanent Carpentry: Restoring&nbsp;Compromised&nbsp;Margins</h3>
 
 					</div>
@@ -2796,16 +2533,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 13: Mechanical Shields & Dental Carpentry (Page 6 of 6) -->
+			<!-- Chapter 13: Mechanical Shields (Page 6 of 6) -->
 			<section class="book-page" id="page-78">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 78</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 13: Mechanical Shields &&nbsp;Dental&nbsp;Carpentry  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 13: Mechanical Shields</span>
+						<span class="page-count-label">Page 78</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2822,19 +2555,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 14: The Recovery Protocol & Radical Acceptance (Page 1 of 6) -->
+			<!-- Chapter 14: The Recovery Protocol (Page 1 of 6) -->
 			<section class="book-page" id="page-79">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 79</span>
+						<span class="chapter-header-label">Chapter 14: The Recovery Protocol</span>
+						<span class="page-count-label">Page 79</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part IV: The Protocol &amp; The Baseline (Calming the Circuit)</p>
+						<p class="part-break-title">Part IV: Calming the Circuit</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 14: The Recovery Protocol &&nbsp;Radical&nbsp;Acceptance</h2>
+					<h2 class="chapter-title">Chapter 14: The&nbsp;Recovery&nbsp;Protocol</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Even with a strong understanding of your triggers and dental margins,&nbsp;setbacks&nbsp;happen.</p>
@@ -2852,16 +2585,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 14: The Recovery Protocol & Radical Acceptance (Page 2 of 6) -->
+			<!-- Chapter 14: The Recovery Protocol (Page 2 of 6) -->
 			<section class="book-page" id="page-80">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 80</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 14: The Recovery Protocol &&nbsp;Radical&nbsp;Acceptance  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 14: The Recovery Protocol</span>
+						<span class="page-count-label">Page 80</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2879,16 +2608,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 14: The Recovery Protocol & Radical Acceptance (Page 3 of 6) -->
+			<!-- Chapter 14: The Recovery Protocol (Page 3 of 6) -->
 			<section class="book-page" id="page-81">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 81</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 14: The Recovery Protocol &&nbsp;Radical&nbsp;Acceptance  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 14: The Recovery Protocol</span>
+						<span class="page-count-label">Page 81</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2906,16 +2631,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 14: The Recovery Protocol & Radical Acceptance (Page 4 of 6) -->
+			<!-- Chapter 14: The Recovery Protocol (Page 4 of 6) -->
 			<section class="book-page" id="page-82">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 82</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 14: The Recovery Protocol &&nbsp;Radical&nbsp;Acceptance  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 14: The Recovery Protocol</span>
+						<span class="page-count-label">Page 82</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2933,16 +2654,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 14: The Recovery Protocol & Radical Acceptance (Page 5 of 6) -->
+			<!-- Chapter 14: The Recovery Protocol (Page 5 of 6) -->
 			<section class="book-page" id="page-83">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 83</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 14: The Recovery Protocol &&nbsp;Radical&nbsp;Acceptance  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 14: The Recovery Protocol</span>
+						<span class="page-count-label">Page 83</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2960,16 +2677,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 14: The Recovery Protocol & Radical Acceptance (Page 6 of 6) -->
+			<!-- Chapter 14: The Recovery Protocol (Page 6 of 6) -->
 			<section class="book-page" id="page-84">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part IV: The Protocol &amp; The Baseline</span>
-						<span class="part-label">Page 84</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 14: The Recovery Protocol &&nbsp;Radical&nbsp;Acceptance  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 14: The Recovery Protocol</span>
+						<span class="page-count-label">Page 84</span>
 					</div>
 
 					<div class="chapter-content">
@@ -2987,19 +2700,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 15: How to Talk to Your Doctor: The 2-Week Elimination Test (Page 1 of 6) -->
+			<!-- Chapter 15: How to Talk to Your Doctor (Page 1 of 6) -->
 			<section class="book-page" id="page-85">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 85</span>
+						<span class="chapter-header-label">Chapter 15: How to Talk to Your Doctor</span>
+						<span class="page-count-label">Page 85</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part V: The Clinical Dialogue (How to Talk to Your Care Team)</p>
+						<p class="part-break-title">Part V: How to Talk to Your Care Team</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 15: How to Talk to Your Doctor: The 2-Week&nbsp;Elimination&nbsp;Test</h2>
+					<h2 class="chapter-title">Chapter 15: How to Talk to&nbsp;Your&nbsp;Doctor</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Walking into a standard fifteen-minute medical consultation to discuss chronic oral burning can be one of the most frustrating experiences of a&nbsp;patient’s&nbsp;life.</p>
@@ -3015,16 +2728,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 15: How to Talk to Your Doctor: The 2-Week Elimination Test (Page 2 of 6) -->
+			<!-- Chapter 15: How to Talk to Your Doctor (Page 2 of 6) -->
 			<section class="book-page" id="page-86">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 86</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 15: How to Talk to Your Doctor: The 2-Week&nbsp;Elimination&nbsp;Test  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 15: How to Talk to Your Doctor</span>
+						<span class="page-count-label">Page 86</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3041,16 +2750,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 15: How to Talk to Your Doctor: The 2-Week Elimination Test (Page 3 of 6) -->
+			<!-- Chapter 15: How to Talk to Your Doctor (Page 3 of 6) -->
 			<section class="book-page" id="page-87">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 87</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 15: How to Talk to Your Doctor: The 2-Week&nbsp;Elimination&nbsp;Test  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 15: How to Talk to Your Doctor</span>
+						<span class="page-count-label">Page 87</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3067,16 +2772,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 15: How to Talk to Your Doctor: The 2-Week Elimination Test (Page 4 of 6) -->
+			<!-- Chapter 15: How to Talk to Your Doctor (Page 4 of 6) -->
 			<section class="book-page" id="page-88">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 88</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 15: How to Talk to Your Doctor: The 2-Week&nbsp;Elimination&nbsp;Test  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 15: How to Talk to Your Doctor</span>
+						<span class="page-count-label">Page 88</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3093,16 +2794,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 15: How to Talk to Your Doctor: The 2-Week Elimination Test (Page 5 of 6) -->
+			<!-- Chapter 15: How to Talk to Your Doctor (Page 5 of 6) -->
 			<section class="book-page" id="page-89">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 89</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 15: How to Talk to Your Doctor: The 2-Week&nbsp;Elimination&nbsp;Test  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 15: How to Talk to Your Doctor</span>
+						<span class="page-count-label">Page 89</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3119,16 +2816,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 15: How to Talk to Your Doctor: The 2-Week Elimination Test (Page 6 of 6) -->
+			<!-- Chapter 15: How to Talk to Your Doctor (Page 6 of 6) -->
 			<section class="book-page" id="page-90">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 90</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 15: How to Talk to Your Doctor: The 2-Week&nbsp;Elimination&nbsp;Test  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 15: How to Talk to Your Doctor</span>
+						<span class="page-count-label">Page 90</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3145,19 +2838,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 16: How to Talk to Your Dentist: The Hardware Inspection Audit (Page 1 of 6) -->
+			<!-- Chapter 16: How to Talk to Your Dentist (Page 1 of 6) -->
 			<section class="book-page" id="page-91">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 91</span>
+						<span class="chapter-header-label">Chapter 16: How to Talk to Your Dentist</span>
+						<span class="page-count-label">Page 91</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part V: The Clinical Dialogue (How to Talk to Your Care Team)</p>
+						<p class="part-break-title">Part V: How to Talk to Your Care Team</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 16: How to Talk to Your Dentist: The Hardware&nbsp;Inspection&nbsp;Audit</h2>
+					<h2 class="chapter-title">Chapter 16: How to Talk to&nbsp;Your&nbsp;Dentist</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>If talking to your doctor requires biochemical diplomacy, talking to your dentist requires speaking the precise language&nbsp;of&nbsp;micro-carpentry.</p>
@@ -3174,16 +2867,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 16: How to Talk to Your Dentist: The Hardware Inspection Audit (Page 2 of 6) -->
+			<!-- Chapter 16: How to Talk to Your Dentist (Page 2 of 6) -->
 			<section class="book-page" id="page-92">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 92</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 16: How to Talk to Your Dentist: The Hardware&nbsp;Inspection&nbsp;Audit  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 16: How to Talk to Your Dentist</span>
+						<span class="page-count-label">Page 92</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3200,16 +2889,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 16: How to Talk to Your Dentist: The Hardware Inspection Audit (Page 3 of 6) -->
+			<!-- Chapter 16: How to Talk to Your Dentist (Page 3 of 6) -->
 			<section class="book-page" id="page-93">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 93</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 16: How to Talk to Your Dentist: The Hardware&nbsp;Inspection&nbsp;Audit  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 16: How to Talk to Your Dentist</span>
+						<span class="page-count-label">Page 93</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3226,16 +2911,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 16: How to Talk to Your Dentist: The Hardware Inspection Audit (Page 4 of 6) -->
+			<!-- Chapter 16: How to Talk to Your Dentist (Page 4 of 6) -->
 			<section class="book-page" id="page-94">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 94</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 16: How to Talk to Your Dentist: The Hardware&nbsp;Inspection&nbsp;Audit  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 16: How to Talk to Your Dentist</span>
+						<span class="page-count-label">Page 94</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3252,16 +2933,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 16: How to Talk to Your Dentist: The Hardware Inspection Audit (Page 5 of 6) -->
+			<!-- Chapter 16: How to Talk to Your Dentist (Page 5 of 6) -->
 			<section class="book-page" id="page-95">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 95</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 16: How to Talk to Your Dentist: The Hardware&nbsp;Inspection&nbsp;Audit  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 16: How to Talk to Your Dentist</span>
+						<span class="page-count-label">Page 95</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3278,16 +2955,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 16: How to Talk to Your Dentist: The Hardware Inspection Audit (Page 6 of 6) -->
+			<!-- Chapter 16: How to Talk to Your Dentist (Page 6 of 6) -->
 			<section class="book-page" id="page-96">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part V: The Clinical Dialogue</span>
-						<span class="part-label">Page 96</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 16: How to Talk to Your Dentist: The Hardware&nbsp;Inspection&nbsp;Audit  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 16: How to Talk to Your Dentist</span>
+						<span class="page-count-label">Page 96</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3308,12 +2981,12 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-97">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 97</span>
+						<span class="chapter-header-label">Chapter 17: The Institutional Blind Spot</span>
+						<span class="page-count-label">Page 97</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part VI: The Bigger Picture (Community &amp; The Medical Divide)</p>
+						<p class="part-break-title">Part VI: Community and The Medical Divide</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 17: The Institutional&nbsp;Blind&nbsp;Spot</h2>
@@ -3335,12 +3008,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-98">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 98</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 17: The Institutional&nbsp;Blind&nbsp;Spot  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 17: The Institutional Blind Spot</span>
+						<span class="page-count-label">Page 98</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3359,12 +3028,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-99">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 99</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 17: The Institutional&nbsp;Blind&nbsp;Spot  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 17: The Institutional Blind Spot</span>
+						<span class="page-count-label">Page 99</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3383,12 +3048,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-100">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 100</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 17: The Institutional&nbsp;Blind&nbsp;Spot  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 17: The Institutional Blind Spot</span>
+						<span class="page-count-label">Page 100</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3407,12 +3068,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-101">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 101</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 17: The Institutional&nbsp;Blind&nbsp;Spot  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 17: The Institutional Blind Spot</span>
+						<span class="page-count-label">Page 101</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3431,12 +3088,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-102">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 102</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 17: The Institutional&nbsp;Blind&nbsp;Spot  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 17: The Institutional Blind Spot</span>
+						<span class="page-count-label">Page 102</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3451,19 +3104,19 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 18: Citizen Science & Open-Access Data (Page 1 of 6) -->
+			<!-- Chapter 18: Citizen Science and Data (Page 1 of 6) -->
 			<section class="book-page" id="page-103">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 103</span>
+						<span class="chapter-header-label">Chapter 18: Citizen Science and Data</span>
+						<span class="page-count-label">Page 103</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part VI: The Bigger Picture (Community &amp; The Medical Divide)</p>
+						<p class="part-break-title">Part VI: Community and The Medical Divide</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 18: Citizen Science &&nbsp;Open-Access&nbsp;Data</h2>
+					<h2 class="chapter-title">Chapter 18: Citizen Science&nbsp;and&nbsp;Data</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When institutions fail to bridge the divide, the responsibility shifts to the people with skin in the game: the patients living with&nbsp;the&nbsp;fire.</p>
@@ -3477,16 +3130,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 18: Citizen Science & Open-Access Data (Page 2 of 6) -->
+			<!-- Chapter 18: Citizen Science and Data (Page 2 of 6) -->
 			<section class="book-page" id="page-104">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 104</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 18: Citizen Science &&nbsp;Open-Access&nbsp;Data  -  Continued (Part 2 of 6)
+						<span class="chapter-header-label">Chapter 18: Citizen Science and Data</span>
+						<span class="page-count-label">Page 104</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3501,16 +3150,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 18: Citizen Science & Open-Access Data (Page 3 of 6) -->
+			<!-- Chapter 18: Citizen Science and Data (Page 3 of 6) -->
 			<section class="book-page" id="page-105">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 105</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 18: Citizen Science &&nbsp;Open-Access&nbsp;Data  -  Continued (Part 3 of 6)
+						<span class="chapter-header-label">Chapter 18: Citizen Science and Data</span>
+						<span class="page-count-label">Page 105</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3525,16 +3170,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 18: Citizen Science & Open-Access Data (Page 4 of 6) -->
+			<!-- Chapter 18: Citizen Science and Data (Page 4 of 6) -->
 			<section class="book-page" id="page-106">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 106</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 18: Citizen Science &&nbsp;Open-Access&nbsp;Data  -  Continued (Part 4 of 6)
+						<span class="chapter-header-label">Chapter 18: Citizen Science and Data</span>
+						<span class="page-count-label">Page 106</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3549,16 +3190,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 18: Citizen Science & Open-Access Data (Page 5 of 6) -->
+			<!-- Chapter 18: Citizen Science and Data (Page 5 of 6) -->
 			<section class="book-page" id="page-107">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 107</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 18: Citizen Science &&nbsp;Open-Access&nbsp;Data  -  Continued (Part 5 of 6)
+						<span class="chapter-header-label">Chapter 18: Citizen Science and Data</span>
+						<span class="page-count-label">Page 107</span>
 					</div>
 
 					<div class="chapter-content">
@@ -3573,16 +3210,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 18: Citizen Science & Open-Access Data (Page 6 of 6) -->
+			<!-- Chapter 18: Citizen Science and Data (Page 6 of 6) -->
 			<section class="book-page" id="page-108">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span>Part VI: The Bigger Picture</span>
-						<span class="part-label">Page 108</span>
-					</div>
-
-					<div class="chapter-continued-title">
-						Chapter 18: Citizen Science &&nbsp;Open-Access&nbsp;Data  -  Continued (Part 6 of 6)
+						<span class="chapter-header-label">Chapter 18: Citizen Science and Data</span>
+						<span class="page-count-label">Page 108</span>
 					</div>
 
 					<div class="chapter-content">
