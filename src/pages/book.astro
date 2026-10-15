@@ -257,7 +257,7 @@ import { SITE_TITLE } from '../consts';
 				background: rgba(197, 160, 89, 0.08);
 			}
 
-			/* Book Page (Individual Sheet with Increased Padding) */
+			/* Book Page (Proportional 1:1.414 Standard Book Aspect Ratio) */
 			.book-page {
 				background-color: #ffffff;
 				border-radius: 8px;
@@ -269,7 +269,9 @@ import { SITE_TITLE } from '../consts';
 				margin-bottom: 4rem;
 				position: relative;
 				border-left: 1px solid #f1f5f9;
-				min-height: 650px;
+				min-height: 1050px;
+				aspect-ratio: 1 / 1.414; /* Standard proportional book trim ratio (e.g. 6"x9" or ISO 1:√2) */
+				box-sizing: border-box;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
