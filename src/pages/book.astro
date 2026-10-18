@@ -1037,28 +1037,29 @@ import { SITE_TITLE } from '../consts';
 				display: flex;
 				align-items: baseline;
 				justify-content: space-between;
-				padding-bottom: 0.75rem;
+				padding-bottom: 0.85rem;
 				border-bottom: 2px solid #ede9fe;
-				margin-bottom: 5.5rem; /* Generous breathing room for overlapping avatar */
+				margin-bottom: 4.5rem; /* Balanced room for avatar */
 			}
 
 			.contributor-category-title {
 				font-family: 'Cinzel', Georgia, serif;
-				font-size: 1.65rem;
+				font-size: 2.85rem; /* 2x bigger */
 				font-weight: 800;
 				color: #000000;
-				letter-spacing: -0.015em;
+				letter-spacing: -0.02em;
+				line-height: 1.15;
 				margin: 0;
 			}
 
 			.contributor-subgroup-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.15rem;
+				font-size: 1.35rem;
 				font-weight: 800;
 				color: #000000;
 				text-transform: uppercase;
 				letter-spacing: 0.06em;
-				margin: 5.5rem 0 5.5rem;
+				margin: 5rem 0 4.5rem;
 				display: flex;
 				align-items: center;
 				gap: 0.75rem;
@@ -1074,7 +1075,7 @@ import { SITE_TITLE } from '../consts';
 			.contributor-grid {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
-				gap: 6.5rem 2rem; /* Generous vertical gap for top image margin */
+				gap: 5.5rem 2rem;
 				margin: 0 0 1.25rem;
 			}
 
@@ -1082,7 +1083,7 @@ import { SITE_TITLE } from '../consts';
 				background: #ffffff;
 				border: none;
 				border-radius: 18px;
-				padding: 0 1.75rem 1.75rem;
+				padding: 0 1.85rem 1.85rem;
 				box-shadow: 0 16px 38px -8px rgba(0, 0, 0, 0.16), 0 6px 16px -4px rgba(0, 0, 0, 0.08);
 				transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 				display: flex;
@@ -1098,7 +1099,7 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.contributor-avatar-wrap {
-				margin-top: -85px; /* Offset overlapping outside card */
+				margin-top: -45px; /* Moved 40px down from -85px */
 				margin-bottom: 1.35rem;
 				position: relative;
 				z-index: 2;
@@ -1111,7 +1112,7 @@ import { SITE_TITLE } from '../consts';
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				border: none; /* Forget the white line */
+				border: none;
 				box-shadow: 0 14px 30px -6px rgba(0, 0, 0, 0.32);
 				overflow: hidden;
 				background: #000000;
@@ -1126,16 +1127,17 @@ import { SITE_TITLE } from '../consts';
 
 			.contributor-name {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.25rem;
+				font-size: 1.55rem; /* Bigger name */
 				font-weight: 800;
 				color: #000000;
-				margin: 0 0 0.25rem;
+				margin: 0 0 0.35rem;
 				line-height: 1.25;
+				text-wrap: balance;
 			}
 
 			.contributor-location {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.82rem;
+				font-size: 0.84rem;
 				font-weight: 600;
 				color: #000000;
 				margin: 0 0 0.45rem;
@@ -1152,12 +1154,25 @@ import { SITE_TITLE } from '../consts';
 			/* Short tenure text: single consistent font, no pill, no background */
 			.contributor-role-line {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.88rem;
-				font-weight: 600;
+				font-size: 0.92rem;
+				font-weight: 700;
 				color: #000000;
-				margin: 0 0 1.25rem;
+				margin: 0 0 1rem;
 				text-align: center;
 				line-height: 1.35;
+			}
+
+			/* Simple centered description of what made their pain better (no label prefix) */
+			.contributor-relief-summary {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 0.95rem;
+				font-style: italic;
+				line-height: 1.6;
+				color: #000000;
+				text-align: center;
+				margin: 0 auto 1.35rem;
+				max-width: 380px;
+				text-wrap: pretty;
 			}
 
 			/* Learn More Button: Text button with purple greater-than sign */
@@ -1167,7 +1182,7 @@ import { SITE_TITLE } from '../consts';
 				box-shadow: none;
 				color: #000000;
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.9rem;
+				font-size: 0.95rem;
 				font-weight: 700;
 				padding: 0.45rem 0.75rem;
 				cursor: pointer;
@@ -1183,7 +1198,7 @@ import { SITE_TITLE } from '../consts';
 			.contributor-read-more-btn .btn-arrow {
 				color: #7c3aed;
 				font-weight: 800;
-				font-size: 1.05rem;
+				font-size: 1.1rem;
 				transition: transform 0.18s ease;
 			}
 
@@ -1659,7 +1674,7 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="toc-centered-container">
 						<div class="toc-group">
-							<div class="toc-part-header">Part IV: The Science of Acid and Pain Circuits</div>
+							<div class="toc-part-header">Part IV: The Science of Acid Pain Circuits</div>
 
 							<div class="toc-item">
 								<a href="#page-28" class="toc-link" title="Chapter 11: Acid-Sensing Ion Channels">Chapter 11: Acid-Sensing Ion Channels</a>
@@ -1674,7 +1689,7 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-36" class="toc-link" title="Chapter 13: Saliva Buffering and Sleep">Chapter 13: Saliva Buffering and Sleep</a>
+								<a href="#page-36" class="toc-link" title="Chapter 13: Saliva Buffering Sleep">Chapter 13: Saliva Buffering Sleep</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">36</span>
 							</div>
@@ -1712,7 +1727,7 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-53" class="toc-link" title="Chapter 18: Doctor and Dentist Clinic Guide">Chapter 18: Doctor and Dentist Clinic Guide</a>
+								<a href="#page-53" class="toc-link" title="Chapter 18: Doctor Dentist Clinic Guide">Chapter 18: Doctor Dentist Clinic Guide</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">53</span>
 							</div>
@@ -1741,7 +1756,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- CONTRIBUTORS & REVIEWERS DIRECTORY (Page iii) -->
+			<!-- CONTRIBUTORS DIRECTORY (Page iii) -->
 			<section class="book-page" id="contributors">
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -1750,10 +1765,10 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Citizen Science &bull; Research Partners and Peer Reviewers</p>
+						<p class="part-break-title">Citizen Science &bull; Research Partners Peer Reviewers</p>
 					</div>
 
-					<h2 class="chapter-title">Contributors and Reviewers</h2>
+					<h2 class="chapter-title">Contributors Reviewers</h2>
 
 					<div class="chapter-content">
 						<p style="font-size: 0.96rem; line-height: 1.68; color: #000000; margin-bottom: 1.25rem;">
@@ -1782,12 +1797,13 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Montreal, Quebec</span>
 									</div>
-									<div class="contributor-role-line">4 Year Patient</div>
+									<div class="contributor-role-line">4 Year BMS Patient</div>
+									<p class="contributor-relief-summary">Zero-carb baseline, bicarbonate night rinses, warm unflavored bone broth, and gentle nasal breathing at night.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
 										data-name="Elena Vitrichenko"
-										data-role="4 Year Patient"
+										data-role="4 Year BMS Patient"
 										data-location="Montreal, Quebec"
 										data-avatar="/contributors/elena-v.jpg"
 										data-bio="Logged six continuous months of daily 72-hour food and pain telemetry. Elena was the first citizen researcher in our community to mathematically chart the 48-to-72 hour delayed carbohydrate fermentation curve."
@@ -1814,12 +1830,13 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Seattle, Washington</span>
 									</div>
-									<div class="contributor-role-line">3 Year Patient</div>
+									<div class="contributor-role-line">3 Year BMS Patient</div>
+									<p class="contributor-relief-summary">Gluma albumin precipitation tubule sealing, micro-hybrid composite Class V margin bonding, mouth taping at night, SLS-free toothpaste.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
 										data-name="Sarah Jenkins"
-										data-role="3 Year Patient"
+										data-role="3 Year BMS Patient"
 										data-location="Seattle, Washington"
 										data-avatar="/contributors/sarah-j.jpg"
 										data-bio="Mapped unilateral burning tongue symptoms directly to cold-sensitive receded cervical margins on her lower right molars before having them sealed with adhesive bonding."
@@ -1846,12 +1863,13 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Madrid, Spain</span>
 									</div>
-									<div class="contributor-role-line">6 Year Patient</div>
+									<div class="contributor-role-line">6 Year BMS Patient</div>
+									<p class="contributor-relief-summary">Strict alkaline hydration, post-meal xylitol mastication to trigger sublingual bicarbonate production, gentle non-foaming paste.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
 										data-name="Maria Gonzalez"
-										data-role="6 Year Patient"
+										data-role="6 Year BMS Patient"
 										data-location="Madrid, Spain"
 										data-avatar="/contributors/maria-g.jpg"
 										data-bio="Organized and synthesized symptom telemetry across 140+ European BMS sufferers, proving why unselected alpha-lipoic acid trials fail while targeted deficiency repletion works."
@@ -1878,12 +1896,13 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Austin, Texas</span>
 									</div>
-									<div class="contributor-role-line">2 Year Patient</div>
+									<div class="contributor-role-line">2 Year BMS Patient</div>
+									<p class="contributor-relief-summary">Custom nocturnal barrier tray isolation, definitive crown removal and adhesive resin re-cementation, elimination of acidic coffees.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
 										data-name="David Becker"
-										data-role="2 Year Patient"
+										data-role="2 Year BMS Patient"
 										data-location="Austin, Texas"
 										data-avatar="/contributors/david-b.jpg"
 										data-bio="Inventor of the 3-day on/off acid delta protocol. Proved that covering tooth #19 with a physical vacuum tray eliminated 80% of his morning tongue burning."
@@ -1897,10 +1916,10 @@ import { SITE_TITLE } from '../consts';
 							</div>
 						</div>
 
-						<!-- CATEGORY 2: CLINICAL AND SCIENTIFIC PROFESSIONALS -->
+						<!-- CATEGORY 2: PROFESSIONALS -->
 						<div class="contributor-category-block">
 							<div class="contributor-category-header">
-								<h3 class="contributor-category-title">2. Clinical and Scientific Professionals</h3>
+								<h3 class="contributor-category-title">2. Professionals</h3>
 							</div>
 
 							<!-- Subgroup: Dentistry and Biomaterials -->
@@ -1924,6 +1943,7 @@ import { SITE_TITLE } from '../consts';
 										<span>Curitiba, Brazil</span>
 									</div>
 									<div class="contributor-role-line">22 Year Dentist</div>
+									<p class="contributor-relief-summary">Biomimetic resin hybrid layers, hydrodynamic tubule occlusion, adhesive margin rebonding with total-etch protocols.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
@@ -1956,6 +1976,7 @@ import { SITE_TITLE } from '../consts';
 										<span>Toronto, Ontario</span>
 									</div>
 									<div class="contributor-role-line">14 Year Periodontist</div>
+									<p class="contributor-relief-summary">Gentle sulcular debridement, warm saline irrigation, non-foaming SLS-free pastes, glycine powder subgingival airflow.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
@@ -1994,6 +2015,7 @@ import { SITE_TITLE } from '../consts';
 										<span>Boston, Massachusetts</span>
 									</div>
 									<div class="contributor-role-line">18 Year Neurologist</div>
+									<p class="contributor-relief-summary">Peripheral hardware input removal, uninterrupted remyelination recovery windows, serum ferritin elevated over 50 ng/mL.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
@@ -2026,6 +2048,7 @@ import { SITE_TITLE } from '../consts';
 										<span>Denver, Colorado</span>
 									</div>
 									<div class="contributor-role-line">11 Year Sleep Specialist</div>
+									<p class="contributor-relief-summary">Nasal breathing restore, gentle hypoallergenic mouth taping, bedroom ultrasonic humidification, sleeping on left side.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
@@ -2064,6 +2087,7 @@ import { SITE_TITLE } from '../consts';
 										<span>Oxford, United Kingdom</span>
 									</div>
 									<div class="contributor-role-line">15 Year Electrophysiologist</div>
+									<p class="contributor-relief-summary">Salivary pH maintained strictly &gt;6.8, extracellular calcium and magnesium buffering, disarming the local electrochemical gradient.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
@@ -2096,6 +2120,7 @@ import { SITE_TITLE } from '../consts';
 										<span>Lyon, France</span>
 									</div>
 									<div class="contributor-role-line">9 Year Biochemist</div>
+									<p class="contributor-relief-summary">Intact mucosal mucin pellicle, non-ionic surfactant oral gels, lubricating mucin-preserving rinses.</p>
 									<button 
 										class="contributor-read-more-btn" 
 										type="button"
@@ -2356,7 +2381,7 @@ import { SITE_TITLE } from '../consts';
 					<div class="chapter-content">
 						<!-- PART IV -->
 						<div class="overview-part-block">
-							<h3 class="overview-part-title">Part IV: The Science of Acid and Pain Circuits</h3>
+							<h3 class="overview-part-title">Part IV: The Science of Acid Pain Circuits</h3>
 
 							<div class="overview-chapter-row">
 								<div class="overview-main">
@@ -2394,7 +2419,7 @@ import { SITE_TITLE } from '../consts';
 
 							<div class="overview-chapter-row">
 								<div class="overview-main">
-									<h4 class="overview-item-title"><a href="#page-36">Chapter 13: Saliva Buffering and Sleep</a></h4>
+									<h4 class="overview-item-title"><a href="#page-36">Chapter 13: Saliva Buffering Sleep</a></h4>
 									<p class="overview-sentence">Ever notice that your mouth feels relatively calm during meals, but burns like a blowtorch at three in the morning or right when you wake up?</p>
 									<p class="overview-sentence">During the day, your saliva constantly produces bicarbonate to neutralize acid, but at night, your salivary glands virtually turn off, leaving your teeth and gums defenseless.</p>
 									<p class="overview-sentence">Learning how to shield your margins and buffer nocturnal oral acidity is the missing key that allows tissue to heal while you sleep.</p>
@@ -2489,7 +2514,7 @@ import { SITE_TITLE } from '../consts';
 
 							<div class="overview-chapter-row">
 								<div class="overview-main">
-									<h4 class="overview-item-title"><a href="#page-53">Chapter 18: Doctor and Dentist Clinic Guide</a></h4>
+									<h4 class="overview-item-title"><a href="#page-53">Chapter 18: Doctor Dentist Clinic Guide</a></h4>
 									<p class="overview-sentence">If you walk into an appointment crying and talking about mysterious burning, doctors often reach for psychiatric prescriptions or label you as anxious.</p>
 									<p class="overview-sentence">When you bring a precise 72-hour food ledger, receptor biophysics, and specific requests for margin cold-testing, their entire attitude shifts to clinical respect.</p>
 									<p class="overview-sentence">Use our word-for-word conversation scripts to get your dentist to look under crown margins and your doctor to order functional deficiency blood panels.</p>
@@ -2560,10 +2585,10 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Reference Data &bull; Reported Outcomes and Trigger Frequencies</p>
+						<p class="part-break-title">Reference Data &bull; Reported Outcomes Trigger Frequencies</p>
 					</div>
 
-					<h2 class="chapter-title">Reported Success Rates and Common&nbsp;Triggers</h2>
+					<h2 class="chapter-title">Reported Success Rates Common&nbsp;Triggers</h2>
 
 					<div class="chapter-content">
 						<p style="font-size: 0.95rem; line-height: 1.65; color: #475569; margin-bottom: 1.25rem;">
@@ -2764,7 +2789,7 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part I: The Mystery and The Medical Maze</p>
+						<p class="part-break-title">Part I: The Medical Maze</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 1: Falling Between the&nbsp;Cracks</h2>
@@ -2848,7 +2873,7 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part I: The Mystery and The Medical Maze</p>
+						<p class="part-break-title">Part I: The Medical Maze</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 2: The Day the&nbsp;Fire&nbsp;Started</h2>
@@ -2927,7 +2952,7 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part I: The Mystery and The Medical Maze</p>
+						<p class="part-break-title">Part I: The Medical Maze</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 3: The&nbsp;Supplement&nbsp;Graveyard</h2>
@@ -3012,7 +3037,7 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part I: The Mystery and The Medical Maze</p>
+						<p class="part-break-title">Part I: The Medical Maze</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 4: The&nbsp;Slow&nbsp;Fuse</h2>
@@ -3269,7 +3294,7 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part II: Hardware and Chemistry</p>
+						<p class="part-break-title">Part II: Hardware Chemistry</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 5: The Exposed&nbsp;Tubule&nbsp;Audit</h2>
@@ -3355,7 +3380,7 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part II: Hardware and Chemistry</p>
+						<p class="part-break-title">Part II: Hardware Chemistry</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 6: The&nbsp;Chemical&nbsp;Ingress</h2>
@@ -3469,7 +3494,7 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part II: Hardware and Chemistry</p>
+						<p class="part-break-title">Part II: Hardware Chemistry</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 7: The Oral&nbsp;Neuropathic&nbsp;Circuit</h2>
@@ -4434,7 +4459,7 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part VI: Community and The Medical Divide</p>
+						<p class="part-break-title">Part VI: Community The Medical Divide</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 17: The Institutional&nbsp;Blind&nbsp;Spot</h2>
@@ -4502,15 +4527,15 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-58">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 18: Citizen Science and Data</span>
+						<span class="chapter-header-label">Chapter 18: Citizen Science Data</span>
 						<span class="page-count-label">Page 58</span>
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Part VI: Community and The Medical Divide</p>
+						<p class="part-break-title">Part VI: Community The Medical Divide</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 18: Citizen Science&nbsp;and&nbsp;Data</h2>
+					<h2 class="chapter-title">Chapter 18: Citizen Science&nbsp;Data</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When institutions fail to bridge the divide, the responsibility shifts to the people with skin in the game: the patients living with&nbsp;the&nbsp;fire.</p>
@@ -4533,7 +4558,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-59">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 18: Citizen Science and Data</span>
+						<span class="chapter-header-label">Chapter 18: Citizen Science Data</span>
 						<span class="page-count-label">Page 59</span>
 					</div>
 
