@@ -1005,6 +1005,136 @@ import { SITE_TITLE } from '../consts';
 				margin-bottom: 0.75rem;
 			}
 
+			/* Contributor Page Styling */
+			.contributor-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1.25rem;
+				margin: 1.5rem 0 1.75rem;
+			}
+
+			.contributor-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 10px;
+				padding: 1.25rem 1.35rem;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+				transition: border-color 0.15s ease, box-shadow 0.15s ease;
+			}
+
+			.contributor-card:hover {
+				border-color: #cbd5e1;
+				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+			}
+
+			.contributor-role-tag {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.72rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				color: #7c3aed;
+				margin-bottom: 0.35rem;
+				display: block;
+			}
+
+			.contributor-name {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.02rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin: 0 0 0.35rem;
+			}
+
+			.contributor-desc {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 0.88rem;
+				line-height: 1.55;
+				color: #475569;
+				margin: 0;
+			}
+
+			.contributor-apply-box {
+				background: linear-gradient(135deg, #fbfcfe 0%, #f5f3ff 100%);
+				border: 1.5px dashed #c4b5fd;
+				border-radius: 12px;
+				padding: 1.75rem 2rem;
+				margin: 1.75rem 0 0.5rem;
+				text-align: center;
+			}
+
+			.contributor-apply-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.15rem;
+				font-weight: 700;
+				color: #2e1065;
+				margin: 0 0 0.5rem;
+			}
+
+			.contributor-apply-text {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 0.92rem;
+				line-height: 1.6;
+				color: #4b5563;
+				max-width: 640px;
+				margin: 0 auto 1.25rem;
+			}
+
+			.contributor-apply-btn {
+				background: #7c3aed;
+				color: #ffffff;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-weight: 700;
+				font-size: 0.92rem;
+				padding: 0.75rem 1.6rem;
+				border-radius: 8px;
+				border: none;
+				cursor: pointer;
+				transition: background 0.15s ease, transform 0.15s ease;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.contributor-apply-btn:hover {
+				background: #6d28d9;
+				transform: translateY(-1px);
+			}
+
+			/* Contributor Modal Form */
+			.contributor-form-group {
+				margin-bottom: 1rem;
+				text-align: left;
+			}
+
+			.contributor-form-label {
+				display: block;
+				font-size: 0.84rem;
+				font-weight: 700;
+				color: #1e293b;
+				margin-bottom: 0.35rem;
+			}
+
+			.contributor-form-input,
+			.contributor-form-textarea {
+				width: 100%;
+				padding: 0.75rem 0.95rem;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 8px;
+				font-family: inherit;
+				font-size: 0.9rem;
+				color: #0f172a;
+				outline: none;
+				box-sizing: border-box;
+				transition: border-color 0.2s, box-shadow 0.2s;
+			}
+
+			.contributor-form-input:focus,
+			.contributor-form-textarea:focus {
+				border-color: #7c3aed;
+				box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+			}
+
 			@media (max-width: 768px) {
 				.book-viewport {
 					padding: 0 1rem;
@@ -1050,6 +1180,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 				<div class="toolbar-actions">
 					<a href="#toc" class="toolbar-btn">Table of Contents</a>
+					<a href="#contributors" class="toolbar-btn">Contributors</a>
 					<a href="#overview-1" class="toolbar-btn">Overview</a>
 					<a href="#research-stats" class="toolbar-btn">Reported Success Rates</a>
 					<a href="#page-1" class="toolbar-btn">Start Reading →</a>
@@ -1061,10 +1192,10 @@ import { SITE_TITLE } from '../consts';
 				<div class="book-cover">
 					<div class="cover-gold-border">
 						<div>
-							<div class="cover-eyebrow">A First Principles Patient Investigation</div>
-							<h1 class="cover-title">Decoding the&nbsp;Burn</h1>
+							<div class="cover-eyebrow">Practical Guide</div>
+							<h1 class="cover-title">Find What Make Your BMS&nbsp;Better</h1>
 							<p class="cover-subtitle">
-								A look at the first principles of pain receptors in Burning Mouth Syndrome: Dental Hardware Leaks, Acid Chemistry, and Calming the Oral Neuropathic Circuit
+								A practical guide on trial and&nbsp;elimination
 							</p>
 						</div>
 
@@ -1105,16 +1236,21 @@ import { SITE_TITLE } from '../consts';
 						A First Principles Investigation in Seven Parts
 					</p>
 
-					<div style="max-width: 660px; margin: 0 auto 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 0.85rem 1.25rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.84rem;">
+					<div style="max-width: 660px; margin: 0 auto 2.5rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; padding: 0.85rem 1.15rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem;">
 						<div class="toc-item" style="margin: 0; padding: 0;">
-							<a href="#overview-1" class="toc-link" style="font-weight: 600; color: #4338ca;">Roadmap &amp; Chapter Summaries</a>
+							<a href="#contributors" class="toc-link" style="font-weight: 600; color: #4338ca;">Contributors &amp; Reviewers</a>
 							<span class="toc-dots"></span>
 							<span class="toc-num" style="color: #6366f1;">iii</span>
 						</div>
 						<div class="toc-item" style="margin: 0; padding: 0;">
-							<a href="#research-stats" class="toc-link" style="font-weight: 600; color: #4338ca;">Reported Outcomes &amp; Trigger Rates</a>
+							<a href="#overview-1" class="toc-link" style="font-weight: 600; color: #4338ca;">Roadmap &amp; Summaries</a>
 							<span class="toc-dots"></span>
-							<span class="toc-num" style="color: #6366f1;">v</span>
+							<span class="toc-num" style="color: #6366f1;">iv</span>
+						</div>
+						<div class="toc-item" style="margin: 0; padding: 0;">
+							<a href="#research-stats" class="toc-link" style="font-weight: 600; color: #4338ca;">Reported Outcomes</a>
+							<span class="toc-dots"></span>
+							<span class="toc-num" style="color: #6366f1;">vi</span>
 						</div>
 					</div>
 
@@ -1297,7 +1433,94 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- CHAPTER OVERVIEW: PART 1 (Pages ii) -->
+			<!-- CONTRIBUTORS & REVIEWERS DIRECTORY (Page iii) -->
+			<section class="book-page" id="contributors">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="page-count-label">Citizen Science &bull; Page iii</span>
+					</div>
+
+					<div class="part-break-banner">
+						<p class="part-break-title">Citizen Science &bull; Research Partners &amp; Peer Reviewers</p>
+					</div>
+
+					<h2 class="chapter-title">Contributors, Research Partners &amp;&nbsp;Reviewers</h2>
+
+					<div class="chapter-content">
+						<p style="font-size: 0.96rem; line-height: 1.68; color: #334155; margin-bottom: 1.25rem;">
+							<em>Decoding the Burn</em> is built on open citizen science: patient symptom ledgers, empirical testing logs, and interdisciplinary peer reviews across dentistry, neuroscience, and nutrition. Every breakthrough in this guide was tested or reviewed by individuals who refused to accept "idiopathic" as a final&nbsp;answer.
+						</p>
+
+						<div class="contributor-grid">
+							<div class="contributor-card">
+								<span class="contributor-role-tag">Dental Biomaterials Consultant</span>
+								<h3 class="contributor-name">Dr. R. M., DDS</h3>
+								<p class="contributor-desc">Reviewed microscopic dentinal tubule fluid dynamics, Gluma albumin precipitation protocols, and adhesive resin sealing for exposed root collars.</p>
+							</div>
+
+							<div class="contributor-card">
+								<span class="contributor-role-tag">Orofacial Neuroscience Reviewer</span>
+								<h3 class="contributor-name">Dr. S. K., MD</h3>
+								<p class="contributor-desc">Provided clinical peer review on trigeminal central sensitization, spinal nucleus wind-up, and peripheral small fiber neuropathy parallels.</p>
+							</div>
+
+							<div class="contributor-card">
+								<span class="contributor-role-tag">Periodontal Microbiology Specialist</span>
+								<h3 class="contributor-name">Sarah L., RDH</h3>
+								<p class="contributor-desc">Advised on subgingival biofilm lactic acid fermentation, sulcular pH shifts, and non-foaming SLS-free oral care standards.</p>
+							</div>
+
+							<div class="contributor-card">
+								<span class="contributor-role-tag">Airway &amp; Nocturnal Saliva Analyst</span>
+								<h3 class="contributor-name">Marcus T., RPSGT</h3>
+								<p class="contributor-desc">Contributed data on mouth breathing mechanics, nocturnal salivary bicarbonate drops, and oral mucosa desiccation during sleep.</p>
+							</div>
+
+							<div class="contributor-card">
+								<span class="contributor-role-tag">Citizen Science Data Pioneer</span>
+								<h3 class="contributor-name">Elena V. (Montreal, QC)</h3>
+								<p class="contributor-desc">Logged six continuous months of daily 72-hour food and pain telemetry; first to mathematically chart the delayed carbohydrate fermentation curve.</p>
+							</div>
+
+							<div class="contributor-card">
+								<span class="contributor-role-tag">Patient Trial Contributor</span>
+								<h3 class="contributor-name">David B. (Austin, TX)</h3>
+								<p class="contributor-desc">Validated the 3-day on/off acid delta protocol and proved focal crown margin microleakage using custom barrier tray isolation.</p>
+							</div>
+
+							<div class="contributor-card">
+								<span class="contributor-role-tag">European Patient Survey Lead</span>
+								<h3 class="contributor-name">Maria G. (Madrid, Spain)</h3>
+								<p class="contributor-desc">Coordinated multi-country survey data across 140+ European BMS sufferers evaluating trigger frequencies and alpha-lipoic acid trials.</p>
+							</div>
+
+							<div class="contributor-card">
+								<span class="contributor-role-tag">Hardware Remission Case Contributor</span>
+								<h3 class="contributor-name">Robert H. (Melbourne, Australia)</h3>
+								<p class="contributor-desc">Documented full remission of severe lingual burning following tactile margin audit, crown cement replacement, and tubule bonding.</p>
+							</div>
+						</div>
+
+						<div class="contributor-apply-box">
+							<h3 class="contributor-apply-title">Join the Contributor Directory</h3>
+							<p class="contributor-apply-text">
+								Have you tracked your delayed food triggers, uncovered a hidden crown margin leak, or tested dentin tubule desensitizers? Submit your clinical findings or patient logs to be verified and credited as a contributor in upcoming editions.
+							</p>
+							<button id="open-contributor-modal-btn" class="contributor-apply-btn" type="button">
+								<span>Submit Your Findings to Become a Contributor</span>
+								<span aria-hidden="true">&rarr;</span>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>iii</span>
+				</div>
+			</section>
+
+			<!-- CHAPTER OVERVIEW: PART 1 (Page iv) -->
 			<section class="book-page" id="overview-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -1500,11 +1723,11 @@ import { SITE_TITLE } from '../consts';
 				</div>
 
 				<div class="page-number-footer">
-					<span>iii</span>
+					<span>iv</span>
 				</div>
 			</section>
 
-			<!-- CHAPTER OVERVIEW: PART 2 (Page iv) -->
+			<!-- CHAPTER OVERVIEW: PART 2 (Page v) -->
 			<section class="book-page" id="overview-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -1712,16 +1935,16 @@ import { SITE_TITLE } from '../consts';
 				</div>
 
 				<div class="page-number-footer">
-					<span>iv</span>
+					<span>v</span>
 				</div>
 			</section>
 
-			<!-- REPORTED INTERVENTION OUTCOMES & TRIGGER RATES (Page v) -->
+			<!-- REPORTED INTERVENTION OUTCOMES & TRIGGER RATES (Page vi) -->
 			<section class="book-page" id="research-stats">
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Clinical Data &bull; Page v</span>
+						<span class="page-count-label">Clinical Data &bull; Page vi</span>
 					</div>
 
 					<div class="part-break-banner">
@@ -1916,7 +2139,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 
 				<div class="page-number-footer">
-					<span>v</span>
+					<span>vi</span>
 				</div>
 			</section>
 
@@ -3774,8 +3997,66 @@ import { SITE_TITLE } from '../consts';
 			</div>
 		</div>
 
+		<!-- Contributor Application Modal Backdrop -->
+		<div id="contributor-modal" class="feedback-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="contributor-modal-title">
+			<div class="feedback-modal-card" style="max-width: 580px;">
+				<button id="contributor-modal-close-btn" class="feedback-modal-close" type="button" aria-label="Close modal">&times;</button>
+				
+				<h3 id="contributor-modal-title" class="feedback-modal-title">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+						<circle cx="8.5" cy="7" r="4"></circle>
+						<line x1="20" y1="8" x2="20" y2="14"></line>
+						<line x1="23" y1="11" x2="17" y2="11"></line>
+					</svg>
+					<span>Join the Contributor Directory</span>
+				</h3>
+				<p class="feedback-step-note">
+					Share your patient investigation notes, clinical case reviews, or biomaterial test findings to be credited in future editions of Decoding the Burn.
+				</p>
+
+				<!-- Application Form -->
+				<form id="contributor-form">
+					<div class="contributor-form-group">
+						<label for="contrib-name" class="contributor-form-label">Full Name or Handle / Location *</label>
+						<input id="contrib-name" class="contributor-form-input" type="text" placeholder="e.g. Sarah Jenkins (Seattle, WA)" required />
+					</div>
+
+					<div class="contributor-form-group">
+						<label for="contrib-role" class="contributor-form-label">Role or Perspective *</label>
+						<input id="contrib-role" class="contributor-form-input" type="text" placeholder="e.g. Patient Researcher, Dentist, RDH, Microbiologist" required />
+					</div>
+
+					<div class="contributor-form-group">
+						<label for="contrib-notes" class="contributor-form-label">Summary of Findings or Case Log *</label>
+						<textarea id="contrib-notes" class="contributor-form-textarea" rows="4" placeholder="Briefly describe your BMS history, hardware discoveries (e.g. leaking crown, exposed tubules), food trigger lag, or interventions that helped..." required></textarea>
+					</div>
+
+					<div class="contributor-form-group">
+						<label for="contrib-email" class="contributor-form-label">Email Address (for follow-up verification) *</label>
+						<input id="contrib-email" class="contributor-form-input" type="email" placeholder="you@example.com" required />
+					</div>
+
+					<div class="feedback-actions" style="margin-top: 1.5rem;">
+						<button id="contributor-cancel-btn" class="feedback-btn feedback-btn-secondary" type="button">Cancel</button>
+						<button id="contributor-submit-btn" class="feedback-btn feedback-btn-primary" type="submit">Submit Contribution</button>
+					</div>
+				</form>
+
+				<!-- Contributor Success State -->
+				<div id="contributor-success-state" class="feedback-success-state" style="display: none;">
+					<div class="feedback-success-icon">✓</div>
+					<h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: #0f172a; font-weight: 700;">Submission Received!</h4>
+					<p style="margin: 0; font-size: 0.88rem; color: #64748b; line-height: 1.55;">
+						Thank you for sharing your data and clinical insights. Denis will review your submission and reach out before listing your contribution in the directory.
+					</p>
+				</div>
+			</div>
+		</div>
+
 		<script is:inline>
 			(() => {
+				// --- Selection Feedback Elements ---
 				const triggerBtn = document.getElementById('selection-feedback-btn');
 				const modal = document.getElementById('feedback-modal');
 				const closeBtn = document.getElementById('feedback-modal-close-btn');
@@ -3792,6 +4073,98 @@ import { SITE_TITLE } from '../consts';
 				const step1 = document.getElementById('feedback-step-1');
 				const step2 = document.getElementById('feedback-step-2');
 				const stepSuccess = document.getElementById('feedback-step-success');
+
+				// --- Contributor Application Modal Elements ---
+				const openContribBtn = document.getElementById('open-contributor-modal-btn');
+				const contribModal = document.getElementById('contributor-modal');
+				const closeContribBtn = document.getElementById('contributor-modal-close-btn');
+				const cancelContribBtn = document.getElementById('contributor-cancel-btn');
+				const contribForm = document.getElementById('contributor-form');
+				const contribSubmitBtn = document.getElementById('contributor-submit-btn');
+				const contribSuccessState = document.getElementById('contributor-success-state');
+
+				const contribNameInput = document.getElementById('contrib-name');
+				const contribRoleInput = document.getElementById('contrib-role');
+				const contribNotesInput = document.getElementById('contrib-notes');
+				const contribEmailInput = document.getElementById('contrib-email');
+
+				// --- Contributor Modal Logic ---
+				function openContributorModal() {
+					if (contribForm) contribForm.style.display = 'block';
+					if (contribSuccessState) contribSuccessState.style.display = 'none';
+					if (contribModal) contribModal.style.display = 'flex';
+					setTimeout(() => contribNameInput?.focus(), 80);
+				}
+
+				function closeContributorModal() {
+					if (contribModal) contribModal.style.display = 'none';
+				}
+
+				openContribBtn?.addEventListener('click', openContributorModal);
+				closeContribBtn?.addEventListener('click', closeContributorModal);
+				cancelContribBtn?.addEventListener('click', closeContributorModal);
+
+				contribModal?.addEventListener('click', (e) => {
+					if (e.target === contribModal) {
+						closeContributorModal();
+					}
+				});
+
+				contribForm?.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					const name = contribNameInput?.value.trim() || '';
+					const role = contribRoleInput?.value.trim() || '';
+					const notes = contribNotesInput?.value.trim() || '';
+					const email = contribEmailInput?.value.trim() || '';
+
+					if (!name || !role || !notes || !email) return;
+
+					const originalBtnText = contribSubmitBtn ? contribSubmitBtn.textContent : '';
+					if (contribSubmitBtn) {
+						contribSubmitBtn.textContent = 'Submitting...';
+						contribSubmitBtn.disabled = true;
+					}
+
+					const payload = {
+						_subject: `[Book Contributor Application] ${name} (${role})`,
+						_template: "table",
+						_captcha: "false",
+						Applicant_Name: name,
+						Role_or_Perspective: role,
+						Key_Findings_or_Notes: notes,
+						Contact_Email: email,
+						Submission_Date: new Date().toLocaleString()
+					};
+
+					try {
+						await fetch("https://formsubmit.co/ajax/denis@denisethier.com", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+								"Accept": "application/json"
+							},
+							body: JSON.stringify(payload)
+						});
+					} catch (err) {
+						console.warn("Contributor submission notice:", err);
+					}
+
+					if (contribForm) contribForm.style.display = 'none';
+					if (contribSuccessState) contribSuccessState.style.display = 'block';
+
+					setTimeout(() => {
+						closeContributorModal();
+						if (contribForm) {
+							contribForm.reset();
+							contribForm.style.display = 'block';
+						}
+						if (contribSuccessState) contribSuccessState.style.display = 'none';
+						if (contribSubmitBtn) {
+							contribSubmitBtn.textContent = originalBtnText || 'Submit Contribution';
+							contribSubmitBtn.disabled = false;
+						}
+					}, 2800);
+				});
 
 				let currentSelectedQuote = '';
 				let userCommentText = '';
