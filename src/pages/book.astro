@@ -9,8 +9,8 @@ import { SITE_TITLE } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="Decoding the Burn (Book Draft) | Field Guide to BMS Recovery" 
-			description="An Investigator's Field Guide to Dental Hardware Leaks, Acid Chemistry, and Calming the Oral Neuropathic Circuit." 
+			title="Decoding the Burn (Book Draft) | First Principles of BMS" 
+			description="A look at the first principles of pain receptors in Burning Mouth Syndrome: Dental Hardware Leaks, Acid Chemistry, and Calming the Oral Neuropathic Circuit." 
 			noindex={true}
 		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,11 +24,14 @@ import { SITE_TITLE } from '../consts';
 				--ink-color: #1a202c;
 				--ink-subtle: #4a5568;
 				--book-spine-gold: #c5a059;
-				--book-cover-bg: #110c1f;
+				--book-cover-bg: #090514;
+				--brand-purple-deep: #1e0b38;
+				--brand-purple-dark: #2a0845;
+				--brand-rose-subtle: #fb7185;
 			}
 
 			body {
-				background-color: #eef2f6;
+				background-color: #0d091a;
 				color: var(--ink-color);
 				font-family: 'Lora', Georgia, serif;
 				margin: 0;
@@ -47,12 +50,12 @@ import { SITE_TITLE } from '../consts';
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				background: rgba(255, 255, 255, 0.95);
+				background: rgba(22, 14, 38, 0.95);
 				backdrop-filter: blur(10px);
 				padding: 0.85rem 1.5rem;
 				border-radius: 14px;
-				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-				border: 1px solid #e2e8f0;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+				border: 1px solid rgba(147, 51, 234, 0.25);
 				margin-bottom: 2.5rem;
 				font-family: 'Plus Jakarta Sans', sans-serif;
 			}
@@ -60,20 +63,20 @@ import { SITE_TITLE } from '../consts';
 			.toolbar-title {
 				font-size: 0.9rem;
 				font-weight: 600;
-				color: #475569;
+				color: #e2e8f0;
 				display: flex;
 				align-items: center;
 				gap: 0.6rem;
 			}
 
 			.toolbar-badge {
-				background: #f1f5f9;
-				color: #0f172a;
+				background: rgba(147, 51, 234, 0.2);
+				color: #e9d5ff;
 				font-size: 0.75rem;
 				font-weight: 700;
 				padding: 0.25rem 0.65rem;
 				border-radius: 6px;
-				border: 1px solid #cbd5e1;
+				border: 1px solid rgba(168, 85, 247, 0.3);
 			}
 
 			.toolbar-actions {
@@ -82,9 +85,9 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.toolbar-btn {
-				background: #ffffff;
-				border: 1px solid #cbd5e1;
-				color: #1e293b;
+				background: #1b122e;
+				border: 1px solid rgba(147, 51, 234, 0.35);
+				color: #f1f5f9;
 				padding: 0.4rem 0.95rem;
 				border-radius: 8px;
 				font-size: 0.82rem;
@@ -94,8 +97,9 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.toolbar-btn:hover {
-				background: #f8fafc;
-				border-color: #94a3b8;
+				background: #2a1847;
+				border-color: #a855f7;
+				color: #ffffff;
 			}
 
 			/* Book Cover (Proportional 1:1.5 Aspect Ratio) */
@@ -110,17 +114,17 @@ import { SITE_TITLE } from '../consts';
 				width: 100%;
 				max-width: 540px;
 				aspect-ratio: 1 / 1.52; /* Standard 6"x9" book cover proportion */
-				background: radial-gradient(circle at 50% 30%, #1e1438 0%, #110c22 65%, #080511 100%);
+				background: radial-gradient(circle at 50% 25%, #240b3b 0%, #150726 55%, #080310 100%);
 				color: #ffffff;
 				border-radius: 10px 18px 18px 10px;
 				box-shadow: 
-					0 30px 70px -15px rgba(0, 0, 0, 0.55),
-					0 10px 25px rgba(0, 0, 0, 0.35),
-					0 0 0 1px rgba(255, 255, 255, 0.08),
-					inset 12px 0 20px rgba(0, 0, 0, 0.8);
+					0 30px 70px -15px rgba(0, 0, 0, 0.75),
+					0 10px 30px rgba(42, 8, 69, 0.45),
+					0 0 0 1px rgba(168, 85, 247, 0.2),
+					inset 14px 0 24px rgba(0, 0, 0, 0.85);
 				text-align: center;
 				overflow: hidden;
-				border-left: 20px solid #07040d;
+				border-left: 20px solid #06020c;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
@@ -136,13 +140,13 @@ import { SITE_TITLE } from '../consts';
 				bottom: 0;
 				left: 0;
 				width: 3px;
-				background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.2) 100%);
-				box-shadow: 2px 0 8px rgba(0, 0, 0, 0.7);
+				background: linear-gradient(180deg, rgba(251, 113, 133, 0.35) 0%, rgba(147, 51, 234, 0.2) 50%, rgba(251, 113, 133, 0.3) 100%);
+				box-shadow: 2px 0 8px rgba(0, 0, 0, 0.8);
 				z-index: 5;
 			}
 
 			.cover-gold-border {
-				border: 1.5px solid rgba(197, 160, 89, 0.45);
+				border: 1.5px solid rgba(168, 85, 247, 0.35);
 				border-radius: 8px;
 				padding: 2.25rem 1.75rem;
 				position: relative;
@@ -151,7 +155,7 @@ import { SITE_TITLE } from '../consts';
 				justify-content: space-between;
 				height: 100%;
 				box-sizing: border-box;
-				background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.06) 0%, transparent 80%);
+				background: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.08) 0%, transparent 80%);
 			}
 
 			.cover-eyebrow {
@@ -159,7 +163,7 @@ import { SITE_TITLE } from '../consts';
 				font-size: 0.78rem;
 				font-weight: 700;
 				letter-spacing: 0.22em;
-				color: #c5a059;
+				color: #e9d5ff;
 				text-transform: uppercase;
 				margin-bottom: 0.75rem;
 			}
@@ -171,15 +175,15 @@ import { SITE_TITLE } from '../consts';
 				line-height: 1.15;
 				color: #ffffff;
 				margin: 0 0 0.85rem;
-				text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+				text-shadow: 0 4px 25px rgba(0, 0, 0, 0.85);
 			}
 
 			.cover-subtitle {
 				font-family: 'Lora', serif;
-				font-size: 0.92rem;
+				font-size: 0.95rem;
 				font-weight: 400;
 				font-style: italic;
-				color: #cbd5e1;
+				color: #e2e8f0;
 				line-height: 1.55;
 				max-width: 440px;
 				margin: 0 auto;
@@ -196,11 +200,11 @@ import { SITE_TITLE } from '../consts';
 
 			.cover-tooth-glow {
 				position: absolute;
-				width: 170px;
-				height: 170px;
+				width: 180px;
+				height: 180px;
 				border-radius: 50%;
-				background: radial-gradient(circle, rgba(197, 160, 89, 0.3) 0%, rgba(124, 58, 237, 0.2) 50%, transparent 75%);
-				filter: blur(20px);
+				background: radial-gradient(circle, rgba(147, 51, 234, 0.35) 0%, rgba(225, 29, 72, 0.2) 50%, transparent 75%);
+				filter: blur(22px);
 				pointer-events: none;
 			}
 
@@ -210,8 +214,8 @@ import { SITE_TITLE } from '../consts';
 				max-height: 190px;
 				width: auto;
 				object-fit: contain;
-				filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 15px rgba(197, 160, 89, 0.25));
-				opacity: 0.92;
+				filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
+				opacity: 0.94;
 				transition: transform 0.4s ease, opacity 0.4s ease;
 			}
 
@@ -223,7 +227,7 @@ import { SITE_TITLE } from '../consts';
 			.cover-divider {
 				width: 70px;
 				height: 1.5px;
-				background: linear-gradient(90deg, transparent, #c5a059, transparent);
+				background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.7), transparent);
 				margin: 1rem auto;
 			}
 
@@ -239,22 +243,20 @@ import { SITE_TITLE } from '../consts';
 
 			.cover-author-sub {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.78rem;
-				color: #94a3b8;
+				font-size: 0.82rem;
+				color: #cbd5e1;
 				font-weight: 500;
 			}
 
 			.cover-edition-tag {
-				display: inline-block;
-				margin-top: 0.85rem;
+				display: block;
+				margin-top: 0.75rem;
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.72rem;
-				font-weight: 700;
-				color: #c5a059;
-				border: 1px solid rgba(197, 160, 89, 0.45);
-				padding: 0.3rem 0.95rem;
-				border-radius: 9999px;
-				background: rgba(197, 160, 89, 0.08);
+				font-size: 0.76rem;
+				font-weight: 600;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: #a78bfa;
 			}
 
 			/* Proportional Book Page (Content Pages) */
@@ -262,15 +264,15 @@ import { SITE_TITLE } from '../consts';
 				background-color: #ffffff;
 				border-radius: 8px;
 				box-shadow: 
-					0 18px 40px -8px rgba(0, 0, 0, 0.08),
-					0 6px 18px rgba(0, 0, 0, 0.03),
-					0 0 0 1px rgba(0, 0, 0, 0.04);
-				padding: 4.5rem 5rem 4.5rem;
+					0 18px 40px -8px rgba(0, 0, 0, 0.25),
+					0 6px 18px rgba(0, 0, 0, 0.15),
+					0 0 0 1px rgba(0, 0, 0, 0.06);
+				padding: 4.25rem 4.75rem 4rem;
 				margin-bottom: 4rem;
 				position: relative;
 				border-left: 1px solid #f1f5f9;
 				min-height: 1050px;
-				aspect-ratio: 1 / 1.414; /* Standard proportional book trim ratio */
+				height: auto;
 				box-sizing: border-box;
 				display: flex;
 				flex-direction: column;
@@ -282,15 +284,15 @@ import { SITE_TITLE } from '../consts';
 				background-color: #ffffff;
 				border-radius: 8px;
 				box-shadow: 
-					0 18px 40px -8px rgba(0, 0, 0, 0.08),
-					0 6px 18px rgba(0, 0, 0, 0.03),
-					0 0 0 1px rgba(0, 0, 0, 0.04);
+					0 18px 40px -8px rgba(0, 0, 0, 0.25),
+					0 6px 18px rgba(0, 0, 0, 0.15),
+					0 0 0 1px rgba(0, 0, 0, 0.06);
 				padding: 3.5rem 4rem 3rem;
 				margin-bottom: 4rem;
 				position: relative;
 				border-left: 1px solid #f1f5f9;
 				min-height: 1050px;
-				aspect-ratio: 1 / 1.414;
+				height: auto;
 				box-sizing: border-box;
 				display: flex;
 				flex-direction: column;
@@ -382,10 +384,10 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.chapter-content p {
-				font-size: 1.05rem;
-				line-height: 1.82;
+				font-size: 1.02rem;
+				line-height: 1.78;
 				color: #27272a;
-				margin-bottom: 1.4rem;
+				margin-bottom: 1.25rem;
 				text-wrap: pretty;
 			}
 
@@ -406,27 +408,27 @@ import { SITE_TITLE } from '../consts';
 				font-family: 'Plus Jakarta Sans', sans-serif;
 				color: #0f172a;
 				font-weight: 700;
-				margin-top: 1.75rem;
-				margin-bottom: 0.85rem;
+				margin-top: 1.6rem;
+				margin-bottom: 0.75rem;
 				line-height: 1.35;
 			}
 
 			.chapter-content h3 {
-				font-size: 1.2rem;
+				font-size: 1.18rem;
 				border-bottom: 1px solid #f1f5f9;
 				padding-bottom: 0.35rem;
 			}
 
 			.chapter-content h4 {
-				font-size: 1.05rem;
+				font-size: 1.02rem;
 			}
 
 			/* Callout / Pull quote inside book */
 			.book-callout {
-				margin: 1.5rem 0;
-				padding: 1.15rem 1.5rem;
+				margin: 1.25rem 0;
+				padding: 1rem 1.35rem;
 				background: #f8fafc;
-				border-left: 3px solid #0f172a;
+				border-left: 3px solid #7c3aed;
 				font-style: italic;
 				color: #334155;
 				border-radius: 0 6px 6px 0;
@@ -494,6 +496,182 @@ import { SITE_TITLE } from '../consts';
 				color: #64748b;
 			}
 
+			/* Book Overview Typography (Grouped by Part) */
+			.overview-part-block {
+				margin-bottom: 2.25rem;
+			}
+
+			.overview-part-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.88rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: #7c3aed;
+				margin-bottom: 1.15rem;
+				border-bottom: 1.5px solid #e2e8f0;
+				padding-bottom: 0.4rem;
+			}
+
+			.overview-chapter-row {
+				display: grid;
+				grid-template-columns: 1.55fr 1fr;
+				gap: 1.75rem;
+				align-items: center;
+				margin-bottom: 1.85rem;
+				padding-bottom: 1.35rem;
+				border-bottom: 1px dashed #e2e8f0;
+			}
+
+			.overview-chapter-row:last-child {
+				border-bottom: none;
+				margin-bottom: 0.5rem;
+				padding-bottom: 0;
+			}
+
+			.overview-main {
+				flex: 1;
+			}
+
+			.overview-item-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.98rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin-top: 0;
+				margin-bottom: 0.45rem;
+			}
+
+			.overview-item-title a {
+				color: #0f172a;
+				text-decoration: none;
+				transition: color 0.15s ease;
+			}
+
+			.overview-item-title a:hover {
+				color: #7c3aed;
+			}
+
+			.overview-sentence {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 0.98rem;
+				line-height: 1.72;
+				color: #27272a;
+				margin-bottom: 0.55rem;
+				text-wrap: pretty;
+			}
+
+			.overview-subtopics {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-left: 3.5px solid #7c3aed;
+				border-radius: 0 8px 8px 0;
+				padding: 0.95rem 1.15rem 0.95rem 1.25rem;
+			}
+
+			.overview-subtopics-header {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.72rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: #7c3aed;
+				margin-bottom: 0.6rem;
+			}
+
+			.overview-subtopics ol {
+				margin: 0;
+				padding-left: 1.2rem;
+			}
+
+			.overview-subtopics li {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.82rem;
+				line-height: 1.5;
+				color: #334155;
+				margin-bottom: 0.4rem;
+			}
+
+			.overview-subtopics li:last-child {
+				margin-bottom: 0;
+			}
+
+			/* Reported Interventions & Triggers Research Table */
+			.research-table-wrapper {
+				margin: 1.75rem 0 2rem;
+				border: 1px solid #e2e8f0;
+				border-radius: 10px;
+				overflow: hidden;
+				background: #ffffff;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+			}
+
+			.research-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.86rem;
+				text-align: left;
+			}
+
+			.research-table th {
+				background: #0f172a;
+				color: #ffffff;
+				padding: 0.85rem 1.1rem;
+				font-size: 0.76rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+			}
+
+			.research-table td {
+				padding: 0.85rem 1.1rem;
+				border-bottom: 1px solid #f1f5f9;
+				color: #334155;
+				line-height: 1.5;
+			}
+
+			.research-table tr:last-child td {
+				border-bottom: none;
+			}
+
+			.research-table tr:nth-child(even) {
+				background-color: #fbfcfe;
+			}
+
+			.rate-badge {
+				display: inline-block;
+				padding: 0.2rem 0.6rem;
+				border-radius: 6px;
+				font-weight: 700;
+				font-size: 0.8rem;
+				white-space: nowrap;
+			}
+
+			.rate-high {
+				background: #ecfdf5;
+				color: #065f46;
+				border: 1px solid #a7f3d0;
+			}
+
+			.rate-moderate {
+				background: #eff6ff;
+				color: #1e40af;
+				border: 1px solid #bfdbfe;
+			}
+
+			.rate-low {
+				background: #fef2f2;
+				color: #991b1b;
+				border: 1px solid #fecaca;
+			}
+
+			.rate-variable {
+				background: #fefce8;
+				color: #854d0e;
+				border: 1px solid #fef08a;
+			}
+
 			@media (max-width: 768px) {
 				.book-viewport {
 					padding: 0 1rem;
@@ -509,6 +687,10 @@ import { SITE_TITLE } from '../consts';
 				.toc-grid {
 					grid-template-columns: 1fr;
 					gap: 1.25rem;
+				}
+				.overview-chapter-row {
+					grid-template-columns: 1fr;
+					gap: 1rem;
 				}
 				.toc-link {
 					max-width: 100%;
@@ -531,10 +713,12 @@ import { SITE_TITLE } from '../consts';
 			<div class="reading-toolbar">
 				<div class="toolbar-title">
 					<span>📖 Book Reader View</span>
-					<span class="toolbar-badge">Draft 1.0 &bull; 59 Full Pages</span>
+					<span class="toolbar-badge">First Edition &bull; 62 Pages</span>
 				</div>
 				<div class="toolbar-actions">
 					<a href="#toc" class="toolbar-btn">Table of Contents</a>
+					<a href="#overview-1" class="toolbar-btn">Overview</a>
+					<a href="#research-stats" class="toolbar-btn">Reported Success Rates</a>
 					<a href="#page-1" class="toolbar-btn">Start Reading →</a>
 				</div>
 			</div>
@@ -544,10 +728,10 @@ import { SITE_TITLE } from '../consts';
 				<div class="book-cover">
 					<div class="cover-gold-border">
 						<div>
-							<div class="cover-eyebrow">A Forensic Medical Investigation</div>
+							<div class="cover-eyebrow">A First Principles Patient Investigation</div>
 							<h1 class="cover-title">Decoding the&nbsp;Burn</h1>
 							<p class="cover-subtitle">
-								An Investigator's Field Guide to Dental Hardware Leaks, Acid Chemistry, and Calming the Oral Neuropathic Circuit
+								A look at the first principles of pain receptors in Burning Mouth Syndrome: Dental Hardware Leaks, Acid Chemistry, and Calming the Oral Neuropathic Circuit
 							</p>
 						</div>
 
@@ -564,9 +748,9 @@ import { SITE_TITLE } from '../consts';
 						<div>
 							<div class="cover-divider"></div>
 							<div class="cover-author">Denis Ethier</div>
-							<div class="cover-author-sub">Founder, DecodingTheBurn.com &bull; Chronic Neuropathy Investigator</div>
+							<div class="cover-author-sub">A Patient Research on BMS</div>
 							<div>
-								<span class="cover-edition-tag">Version 1.0 &bull; 2026 Edition</span>
+								<span class="cover-edition-tag">2026 First Edition</span>
 							</div>
 						</div>
 					</div>
@@ -590,142 +774,158 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="toc-grid">
 
-						<div class="toc-group">
-							<div class="toc-part-header">Part I: The Mystery and The Medical Maze</div>
+						<!-- Column 1: Parts I, II, III -->
+						<div class="toc-column">
+							<div class="toc-group">
+								<div class="toc-part-header">Part I: The Mystery and The Medical Maze</div>
 
-							<div class="toc-item">
-								<a href="#page-1" class="toc-link" title="Chapter 1: The Expectation">Chapter 1: The Expectation</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">1</span>
+								<div class="toc-item">
+									<a href="#page-1" class="toc-link" title="Chapter 1: Falling Between the Cracks">Chapter 1: Between the Cracks</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">1</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-3" class="toc-link" title="Chapter 2: The Expectation">Chapter 2: The Expectation</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">3</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-4" class="toc-link" title="Chapter 3: The Day the Fire Started">Chapter 3: The Day the Fire Started</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">4</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-7" class="toc-link" title="Chapter 4: Adding Stuff — The Medicine Trap">Chapter 4: The Medicine Trap</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">7</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-9" class="toc-link" title="Chapter 5: Adding Stuff — The Supplement Graveyard">Chapter 5: The Supplement Graveyard</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">9</span>
+								</div>
 							</div>
 
-							<div class="toc-item">
-								<a href="#page-4" class="toc-link" title="Chapter 2: The Day the Fire Started">Chapter 2: The Day the Fire Started</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">4</span>
+							<div class="toc-group">
+								<div class="toc-part-header">Part II: Removing Stuff &amp; Rechecking Hardware</div>
+
+								<div class="toc-item">
+									<a href="#page-11" class="toc-link" title="Chapter 6: Removing Stuff — The Elimination Baseline">Chapter 6: The Elimination Baseline</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">11</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-15" class="toc-link" title="Chapter 7: Rechecking Hardware — Tubule Audit">Chapter 7: Rechecking the Hardware</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">15</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-18" class="toc-link" title="Chapter 8: The Chemical Ingress">Chapter 8: The Chemical Ingress</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">18</span>
+								</div>
 							</div>
 
-							<div class="toc-item">
-								<a href="#page-7" class="toc-link" title="Chapter 3: The Supplement Graveyard">Chapter 3: The Supplement Graveyard</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">7</span>
-							</div>
+							<div class="toc-group">
+								<div class="toc-part-header">Part III: The Discipline of Elimination</div>
 
-							<div class="toc-item">
-								<a href="#page-10" class="toc-link" title="Chapter 4: The Slow Fuse">Chapter 4: The Slow Fuse</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">10</span>
-							</div>
+								<div class="toc-item">
+									<a href="#page-22" class="toc-link" title="Chapter 9: Why Elimination Is So Hard">Chapter 9: Why Elimination Is So Hard</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">22</span>
+								</div>
 
+								<div class="toc-item">
+									<a href="#page-25" class="toc-link" title="Chapter 10: The Diabetic Parallel">Chapter 10: The Diabetic Parallel</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">25</span>
+								</div>
+							</div>
 						</div>
 
-						<div class="toc-group">
-							<div class="toc-part-header">Part II: Hardware and Chemistry</div>
+						<!-- Column 2: Parts IV, V, VI, VII -->
+						<div class="toc-column">
+							<div class="toc-group">
+								<div class="toc-part-header">Part IV: The Science of Acid and Pain Circuits</div>
 
-							<div class="toc-item">
-								<a href="#page-15" class="toc-link" title="Chapter 5: The Exposed Tubule Audit">Chapter 5: The Exposed Tubule Audit</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">15</span>
+								<div class="toc-item">
+									<a href="#page-28" class="toc-link" title="Chapter 11: Acid-Sensing Ion Channels">Chapter 11: Acid-Sensing Ion Channels</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">28</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-32" class="toc-link" title="Chapter 12: The Oral Neuropathic Circuit">Chapter 12: The Oral Neuropathic Circuit</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">32</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-36" class="toc-link" title="Chapter 13: Saliva Buffering and Sleep">Chapter 13: Saliva Buffering &amp; Sleep</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">36</span>
+								</div>
 							</div>
 
-							<div class="toc-item">
-								<a href="#page-18" class="toc-link" title="Chapter 6: The Chemical Ingress">Chapter 6: The Chemical Ingress</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">18</span>
+							<div class="toc-group">
+								<div class="toc-part-header">Part V: Calming the Circuit</div>
+
+								<div class="toc-item">
+									<a href="#page-40" class="toc-link" title="Chapter 14: Starving the Fire">Chapter 14: Starving the Fire</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">40</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-43" class="toc-link" title="Chapter 15: Mechanical Shields">Chapter 15: Mechanical Shields</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">43</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-46" class="toc-link" title="Chapter 16: The Recovery Protocol">Chapter 16: The Recovery Protocol</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">46</span>
+								</div>
 							</div>
 
-							<div class="toc-item">
-								<a href="#page-22" class="toc-link" title="Chapter 7: The Oral Neuropathic Circuit">Chapter 7: The Oral Neuropathic Circuit</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">22</span>
+							<div class="toc-group">
+								<div class="toc-part-header">Part VI: Building Your Care Team</div>
+
+								<div class="toc-item">
+									<a href="#page-50" class="toc-link" title="Chapter 17: Finding the Right Specialists">Chapter 17: Finding Right Specialists</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">50</span>
+								</div>
+
+								<div class="toc-item">
+									<a href="#page-53" class="toc-link" title="Chapter 18: How to Talk to Doctor &amp; Dentist">Chapter 18: How to Talk to Your Team</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">53</span>
+								</div>
 							</div>
 
-						</div>
+							<div class="toc-group">
+								<div class="toc-part-header">Part VII: For Medical Professionals</div>
 
-						<div class="toc-group">
-							<div class="toc-part-header">Part III: Mapping BMS to Diabetes</div>
+								<div class="toc-item">
+									<a href="#page-56" class="toc-link" title="Chapter 19: The Institutional Divide">Chapter 19: The Institutional Divide</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">56</span>
+								</div>
 
-							<div class="toc-item">
-								<a href="#page-27" class="toc-link" title="Chapter 8: The Diabetic Parallel">Chapter 8: The Diabetic Parallel</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">27</span>
+								<div class="toc-item">
+									<a href="#page-58" class="toc-link" title="Chapter 20: An Open Letter to Clinicians">Chapter 20: An Open Letter to Clinicians</a>
+									<span class="toc-dots"></span>
+									<span class="toc-num">58</span>
+								</div>
 							</div>
-
-							<div class="toc-item">
-								<a href="#page-31" class="toc-link" title="Chapter 9: The Two Bottlenecks">Chapter 9: The Two Bottlenecks</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">31</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-35" class="toc-link" title="Chapter 10: The B12 Blind Spot">Chapter 10: The B12 Blind Spot</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">35</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-38" class="toc-link" title="Chapter 11: Remission vs. Progression">Chapter 11: Remission vs. Progression</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">38</span>
-							</div>
-
-						</div>
-
-						<div class="toc-group">
-							<div class="toc-part-header">Part IV: Calming the Circuit</div>
-
-							<div class="toc-item">
-								<a href="#page-41" class="toc-link" title="Chapter 12: Starving the Fire">Chapter 12: Starving the Fire</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">41</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-44" class="toc-link" title="Chapter 13: Mechanical Shields">Chapter 13: Mechanical Shields</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">44</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-47" class="toc-link" title="Chapter 14: The Recovery Protocol">Chapter 14: The Recovery Protocol</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">47</span>
-							</div>
-
-						</div>
-
-						<div class="toc-group">
-							<div class="toc-part-header">Part V: How to Talk to Your Care Team</div>
-
-							<div class="toc-item">
-								<a href="#page-50" class="toc-link" title="Chapter 15: How to Talk to Your Doctor">Chapter 15: How to Talk to Your Doctor</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">50</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-53" class="toc-link" title="Chapter 16: How to Talk to Your Dentist">Chapter 16: How to Talk to Your Dentist</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">53</span>
-							</div>
-
-						</div>
-
-						<div class="toc-group">
-							<div class="toc-part-header">Part VI: Community and The Medical Divide</div>
-
-							<div class="toc-item">
-								<a href="#page-55" class="toc-link" title="Chapter 17: The Institutional Blind Spot">Chapter 17: The Institutional Blind Spot</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">55</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-58" class="toc-link" title="Chapter 18: Citizen Science and Data">Chapter 18: Citizen Science and Data</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">58</span>
-							</div>
-
 						</div>
 
 					</div>
@@ -736,11 +936,430 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Expectation (Page 1 of 3) -->
+			<!-- CHAPTER OVERVIEW: PART 1 (Pages ii) -->
+			<section class="book-page" id="overview-1">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="page-count-label">Overview &bull; Parts I - III</span>
+					</div>
+
+					<div class="part-break-banner">
+						<p class="part-break-title">Chapter Roadmap &bull; Parts I to III</p>
+					</div>
+
+					<h2 class="chapter-title">Chapter Summaries &amp; Key Subtopics</h2>
+
+					<div class="chapter-content">
+						<!-- PART I -->
+						<div class="overview-part-block">
+							<h3 class="overview-part-title">Part I: The Mystery and The Medical Maze</h3>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-1">Chapter 1: Falling Between the Cracks</a></h4>
+									<p class="overview-sentence">BMS patients fall directly into the institutional gaps separating dentists, neurologists, pain specialists, and primary physicians.</p>
+									<p class="overview-sentence">None of these four professions are trained to evaluate the intersection of dental tubule leaks and fluid biochemistry.</p>
+									<p class="overview-sentence">By testing an acid-elimination trial from first principles, we bypass bureaucratic labels to find actionable answers.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>The 4 typical specialists patients cycle through</li>
+										<li>The microscopic hardware blind spot of 2D X-rays</li>
+										<li>First principles: testing inputs before labeling "idiopathic"</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-3">Chapter 2: The Expectation</a></h4>
+									<p class="overview-sentence">No two oral arches or nervous systems are identical, meaning this guide delivers a debugging method rather than a cookie-cutter prescription.</p>
+									<p class="overview-sentence">The core turning point occurs when you stop hunting for a single miracle cure and begin logging what makes symptoms slightly better versus slightly worse.</p>
+									<p class="overview-sentence">By isolating daily dietary and physical variables, the invisible pain signal transforms into measurable data.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Why personal triggers vary across dental margins</li>
+										<li>The "Better or Worse" input tracking ledger</li>
+										<li>Isolating variables rather than testing multiple changes at once</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-4">Chapter 3: The Day the Fire Started</a></h4>
+									<p class="overview-sentence">The onset of burning mouth syndrome arrives like an unceasing scalding burn that refuses to cool down.</p>
+									<p class="overview-sentence">Standard dental visual exams and 2D bitewing X-rays return completely clear, leading providers to label the tissue as completely healthy.</p>
+									<p class="overview-sentence">Faced with an idiopathic diagnosis and central nerve-dulling sedatives, the author refused to accept that the alarm was firing in a vacuum.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Acute permanent scalding sensation without visible blister</li>
+										<li>Spotless bloodwork and clean dental exams</li>
+										<li>Why biological sensors do not trip unceasingly without an input</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-7">Chapter 4: Adding Stuff — The Medicine Trap</a></h4>
+									<p class="overview-sentence">When examinations show no obvious infection, doctors routinely prescribe central pharmaceutical suppressors like gabapentin, pregabalin, and clonazepam.</p>
+									<p class="overview-sentence">These medications attempt to turn down the central nervous system volume without addressing the peripheral fire tripping the alarm.</p>
+									<p class="overview-sentence">Understanding the difference between masking central reception and removing peripheral triggers is crucial for long-term recovery.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>The standard prescription roster: Gabapentin, TCAs, Benzodiazepines</li>
+										<li>Central volume dampening vs. peripheral signal generation</li>
+										<li>Why adding more pharmaceuticals rarely resolves a hardware leak</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-9">Chapter 5: Adding Stuff — The Supplement Graveyard</a></h4>
+									<p class="overview-sentence">Desperate for non-toxic relief, patients routinely spend thousands of dollars on endless stacks of vitamins, herbs, and anti-inflammatory pills.</p>
+									<p class="overview-sentence">Over fifty distinct compounds failed to produce a single point of lasting relief in the author's own multi-year trial.</p>
+									<p class="overview-sentence">Relief only began once the input fuel was physically removed rather than trying to chemically out-supplement an active breach.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>The 50+ supplement experiment catalog (ALA, B-Complex, Zinc, PEA)</li>
+										<li>The cognitive trap of buying hope in a bottle</li>
+										<li>Why supplementation cannot seal open dentinal fluid tubules</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- PART II -->
+						<div class="overview-part-block">
+							<h3 class="overview-part-title">Part II: Removing Stuff &amp; Rechecking Hardware</h3>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-11">Chapter 6: Removing Stuff — The Elimination Baseline &amp; The Slow Fuse</a></h4>
+									<p class="overview-sentence">Unlike acute allergic reactions that trigger within minutes, oral burning frequently exhibits a confusing 48 to 72 hour delayed latency.</p>
+									<p class="overview-sentence">Community survey data confirms dietary acidity as the number-one reported trigger for over 70% of sufferers, followed by hot spices and starches.</p>
+									<p class="overview-sentence">Establishing a strict 2-week zero-acid baseline cleanly eliminates the active chemical fuel and reveals whether acidity is driving your pain.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>The 48-72 hour bacterial fermentation clock</li>
+										<li>Reported triggers: Acids (70%), Spices (58%), SLS (52%), Sugar (46%)</li>
+										<li>The 2-week low-acid to strict zero-acid elimination test</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-15">Chapter 7: Rechecking Hardware — The Exposed Tubule Audit</a></h4>
+									<p class="overview-sentence">Dentin is not solid stone, but rather an intricate porous matrix housing up to 40,000 microscopic fluid pipes per square millimeter.</p>
+									<p class="overview-sentence">When gumlines recede or crown margins wash out, these open pathways conduct fluid shifts directly to pulp nerves.</p>
+									<p class="overview-sentence">Auditing physical margins with micro-explorers and cold tests uncovers the physical breaches standard X-rays miss.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Nanoscale dentinal anatomy: 40,000 tubules per mm²</li>
+										<li>Sub-micron crown cement washouts and shadow occlusion</li>
+										<li>Abfraction collars and gingival recession margins</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-18">Chapter 8: The Chemical Ingress</a></h4>
+									<p class="overview-sentence">Exposed tubules act as hydraulic channels through which oral acids, mouthwashes, and bacteria readily penetrate.</p>
+									<p class="overview-sentence">Once inside, acidic protons alter intradental pressure and excite unshielded mechanoreceptors.</p>
+									<p class="overview-sentence">Understanding chemical ingress explains why common daily hygiene products often escalate the very burning they claim to soothe.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Hydraulic conductance and hydrodynamic fluid flow</li>
+										<li>Acidic proton ingress into pulp tissue</li>
+										<li>Why abrasive and foaming oral care products irritate receded necks</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- PART III -->
+						<div class="overview-part-block">
+							<h3 class="overview-part-title">Part III: The Discipline of Elimination</h3>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-22">Chapter 9: Why Elimination Is So Hard</a></h4>
+									<p class="overview-sentence">Eliminating all dietary acids and fermentable carbohydrates introduces severe psychological, social, and culinary challenges into daily life.</p>
+									<p class="overview-sentence">The 72-hour delayed latency makes compliance deceptively difficult because an accidental dietary slip on Monday does not burn until Wednesday night.</p>
+									<p class="overview-sentence">Mastering the mental discipline of true baseline elimination is the indispensable price for establishing unambiguous physical cause-and-effect.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>The psychological friction of strict dietary restriction</li>
+										<li>Navigating social dining and hidden industrial food acids</li>
+										<li>Breaking the delayed feedback loop through systematic journaling</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-25">Chapter 10: The Diabetic Parallel</a></h4>
+									<p class="overview-sentence">Diabetic neuropathy offers the clearest medical blueprint for understanding how metabolic and chemical inputs degrade fine peripheral nerve fibers.</p>
+									<p class="overview-sentence">Just as blood glucose must be stringently managed to halt diabetic burning, oral acid loads must be minimized to spare oral sensory fibers.</p>
+									<p class="overview-sentence">Drawing this parallel shifts our focus from mystical nerve defects to actionable biophysical management.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Small-fiber peripheral neuropathy mechanics</li>
+										<li>Managing chemical input thresholds to permit neural remyelination</li>
+										<li>Why unceasing daily irritation prevents baseline nerve recovery</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>ii</span>
+				</div>
+			</section>
+
+			<!-- CHAPTER OVERVIEW: PART 2 (Pages iii) -->
+			<section class="book-page" id="overview-2">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="page-count-label">Overview &bull; Parts IV - VII</span>
+					</div>
+
+					<div class="part-break-banner">
+						<p class="part-break-title">Chapter Roadmap &bull; Parts IV to VII</p>
+					</div>
+
+					<h2 class="chapter-title">Chapter Summaries &amp; Key Subtopics</h2>
+
+					<div class="chapter-content">
+						<!-- PART IV -->
+						<div class="overview-part-block">
+							<h3 class="overview-part-title">Part IV: The Science of Acid and Pain Circuits</h3>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-28">Chapter 11: Acid-Sensing Ion Channels (ASICs) &amp; TRPV1</a></h4>
+									<p class="overview-sentence">Oral mucosa and dental pulp are densely populated with Acid-Sensing Ion Channels and heat-sensitive TRPV1 pain receptors.</p>
+									<p class="overview-sentence">When local pH drops below 6.5, these specialized ion channels open wide, depolarizing sensory neurons and triggering burning signals.</p>
+									<p class="overview-sentence">Understanding receptor biophysics confirms that Burning Mouth Syndrome is an electrochemical response to tangible hydrogen ion exposure.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>ASIC1, ASIC3, and TRPV1 receptor gating biophysics</li>
+										<li>Hydrogen ion (H+) concentration and depolarization thresholds</li>
+										<li>How acidic foods and lactic acid biofilms trigger the burning cascade</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-32">Chapter 12: The Oral Neuropathic Circuit</a></h4>
+									<p class="overview-sentence">Peripheral irritation along the trigeminal mandibular or lingual branches does not stay neatly confined to one tooth.</p>
+									<p class="overview-sentence">Sustained micro-injury produces central sensitization within the spinal trigeminal nucleus, referring pain diffusely across the tongue and palate.</p>
+									<p class="overview-sentence">Calming this burning requires stopping the peripheral hardware trigger at the gumline so central nerves can repolarize.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Trigeminal nerve branches: Lingual, Inferior Alveolar, Maxillary</li>
+										<li>Central sensitization and pain wind-up in the brainstem</li>
+										<li>How a single focal tooth breach refers burning to the entire tongue</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-36">Chapter 13: Saliva Buffering and Sleep</a></h4>
+									<p class="overview-sentence">Recovery stalls when patients overlook the critical bottlenecks of saliva buffering capacity and nocturnal flow reduction.</p>
+									<p class="overview-sentence">Salivary bicarbonate production naturally declines dramatically during sleep, allowing resting oral acidity to surge unchecked overnight.</p>
+									<p class="overview-sentence">Supporting resting neutral pH through nighttime buffering and hydration forms the bedrock of mucosal stabilization.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Bicarbonate buffering chemistry and salivary flow rates</li>
+										<li>Circadian nocturnal acid surge and dry mouth vulnerability</li>
+										<li>Strategies for maintaining a neutral oral environment overnight</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- PART V -->
+						<div class="overview-part-block">
+							<h3 class="overview-part-title">Part V: Calming the Circuit</h3>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-40">Chapter 14: Starving the Fire</a></h4>
+									<p class="overview-sentence">Starving the fire means completely withholding the fermentable starches and dietary acids that feed the oral pain circuit.</p>
+									<p class="overview-sentence">Shifting to an ultra-low carbohydrate baseline deprives subgingival bacteria of the raw material needed to manufacture lactic acid.</p>
+									<p class="overview-sentence">This immediate drop in local acid concentration frequently lowers the baseline burning intensity within days.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Depriving anaerobic subgingival bacteria of fermentable starches</li>
+										<li>The zero-fermentable protein and fat nutrition baseline</li>
+										<li>Immediate reduction of mucosal inflammation within 3 to 5 days</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-43">Chapter 15: Mechanical Shields</a></h4>
+									<p class="overview-sentence">Dietary changes starve the chemical fire, but physical tooth defects still require mechanical shielding.</p>
+									<p class="overview-sentence">Applying high-performance desensitizers, resins, or custom occlusive barriers physically seals open dentinal tubules against saliva.</p>
+									<p class="overview-sentence">Sealing these microscopic hardware breaches stops hydraulic fluid motion and breaks the pain reflex.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Gluma, potassium oxalate, and biomimetic bonding agents</li>
+										<li>Custom barrier trays for nocturnal mucosal protection</li>
+										<li>Hardware repair: re-cementing leaking crowns and sealing root collars</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-46">Chapter 16: The Recovery Protocol</a></h4>
+									<p class="overview-sentence">The complete protocol integrates strict acid elimination, hardware tubule sealing, and micro-nutrient replenishment into an eight-week sequence.</p>
+									<p class="overview-sentence">Each phase is methodically timed to verify stability before introducing new variables or testing food challenges.</p>
+									<p class="overview-sentence">Following this structured path eliminates guesswork and guides patients to measurable remission.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Phase 1: Zero-Acid Baseline &amp; Chemical Calm (Weeks 1-2)</li>
+										<li>Phase 2: Hardware Audit &amp; Tubule Sealing (Weeks 3-4)</li>
+										<li>Phase 3: Neuro-Regeneration &amp; Variable Reintroduction (Weeks 5-8)</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- PART VI -->
+						<div class="overview-part-block">
+							<h3 class="overview-part-title">Part VI: Building Your Care Team</h3>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-50">Chapter 17: Finding the Right Specialists</a></h4>
+									<p class="overview-sentence">Treating chronic oral burning requires assembling a cooperative care team rather than relying on a single uninterested general practitioner.</p>
+									<p class="overview-sentence">Patients must seek out biomimetic dentists trained in adhesive sealing, airway-literate providers, and open-minded neurologists.</p>
+									<p class="overview-sentence">Knowing how to vet clinical candidates before booking protects you from costly appointments that lead to dead ends.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>How to find and vet biomimetic &amp; adhesive dentists</li>
+										<li>Selecting orofacial pain specialists who look beyond medication</li>
+										<li>Red flags in initial consultations: dismissal, rushing, and refusal to explore</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-53">Chapter 18: How to Talk to Your Doctor &amp; Dentist</a></h4>
+									<p class="overview-sentence">Walking into a consultation with emotional complaints often triggers dismissive labels or psychological referrals.</p>
+									<p class="overview-sentence">Presenting clean symptom ledgers, receptor biophysics, and specific hardware requests commands clinical respect.</p>
+									<p class="overview-sentence">This chapter equips you with word-for-word scripts to secure targeted margin examinations and diagnostic blood panels without friction.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>Word-for-word conversation scripts for dental examinations</li>
+										<li>Presenting the 72-hour food ledger as objective telemetry data</li>
+										<li>Requesting functional B12, MMA, and ferritin tests from your physician</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- PART VII -->
+						<div class="overview-part-block">
+							<h3 class="overview-part-title">Part VII: For Medical Professionals</h3>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-56">Chapter 19: The Institutional Divide</a></h4>
+									<p class="overview-sentence">Academic medicine divides the human skull into separate departments that rarely communicate with one another.</p>
+									<p class="overview-sentence">Dentistry focuses on bone and teeth, while medicine focuses on systemic organs, leaving the oral neuro-chemical border unattended.</p>
+									<p class="overview-sentence">Recognizing this institutional divide frees patients from self-blame and validates their real physical experience.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>The historical split between dental schools and medical academies</li>
+										<li>Why oral sensory neuroscience falls between curricular cracks</li>
+										<li>The urgency of interdisciplinary clinics uniting dental and medical care</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="overview-chapter-row">
+								<div class="overview-main">
+									<h4 class="overview-item-title"><a href="#page-58">Chapter 20: An Open Letter to Clinicians</a></h4>
+									<p class="overview-sentence">When a patient presents with severe burning and spotless tissue, diagnosing "idiopathic" should be a confession of current tool limitations rather than a final verdict.</p>
+									<p class="overview-sentence">Clinicians must look beyond 2D radiographs, respect multi-day chemical latency, and inspect sub-micron hardware margins.</p>
+									<p class="overview-sentence">By collaborating with patients as investigative partners, medicine can finally replace chronic palliative sedation with genuine biophysical cures.</p>
+								</div>
+								<div class="overview-subtopics">
+									<div class="overview-subtopics-header">Core Subtopics</div>
+									<ul>
+										<li>The limitations of 2D bitewing X-rays for detecting crown cement washout</li>
+										<li>Validating patient suffering: why "looks fine" is never the whole story</li>
+										<li>A call for clinical trials at the junction of adhesive dentistry and ASIC biology</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>iii</span>
+				</div>
+			</section>
+
+			<!-- Chapter 1: Falling Between the Cracks (Page 1 of 2) -->
 			<section class="book-page" id="page-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 1: The Expectation</span>
+						<span class="chapter-header-label">Chapter 1: Falling Between the Cracks</span>
 						<span class="page-count-label">Page 1</span>
 					</div>
 
@@ -748,17 +1367,16 @@ import { SITE_TITLE } from '../consts';
 						<p class="part-break-title">Part I: The Mystery and The Medical Maze</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 1:&nbsp;The&nbsp;Expectation</h2>
+					<h2 class="chapter-title">Chapter 1: Falling Between the&nbsp;Cracks</h2>
 
 					<div class="chapter-content is-first-page">
-						<p>Let’s set the expectations straight from sentence one: this book documents my specific journey, and yours will not be an exact&nbsp;carbon&nbsp;copy.</p>
-						<p>In chronic oral pain, no two nervous systems or dental arches are identical. You might share some of my exact clues, or your triggers might occur along completely different margins. What we share is not a universal prescription; what we share is&nbsp;a&nbsp;method.</p>
-						<h3>What This Book Is - and What&nbsp;It&nbsp;Isn’t</h3>
-						<p>This is an investigator’s field log, not a promise of an overnight cure. If you bought this book hoping for a magic pill, a single miracle herb, or a guarantee that copying my plate will instantly resolve your burning, you will&nbsp;be&nbsp;disappointed.</p>
-						<p>This is a framework for debugging an erratic physical system. My profession is computer programming. In programming, when a complex network crashes or an error code trips continuously, we do not throw up our hands, label the bug "idiopathic," and walk away. We isolate the variables. We check the physical interfaces. We track the&nbsp;incoming&nbsp;data.</p>
-						<p>Your mouth is not possessed by a phantom. It is biological hardware running on real electrochemical sensors. If those sensors are firing a 10/10 alarm, an input is&nbsp;tripping&nbsp;them.</p>
-						<h3>The Real Starting Point: The "Better or&nbsp;Worse"&nbsp;Ledger</h3>
-
+						<p>After we discover our pain and realize that we have Burning Mouth Syndrome, we quickly find that we have fallen into the cracks between disconnected professions. None of them are trained to look across&nbsp;the&nbsp;hallway.</p>
+						<p>When your mouth burns relentlessly, you naturally turn to the medical system. Yet as you cycle through offices, you notice a recurring blind spot: every specialist evaluates your mouth through the narrow lens of their own specialty, leaving the root cause&nbsp;untouched.</p>
+						<h3>The Specialist Gauntlet We Typically&nbsp;Walk</h3>
+						<p><strong>1. The Dentist:</strong> Evaluates teeth purely as macroscopic hardware, drilling visible cavities and checking bone levels. They rarely learn why generalized burning occurs. In the traditional dental pain model, pain is localized to an individual tooth; if it is generalized, many simply do not know. Solid crowns cast opaque shadows on X-rays that can hide sub-micron cement washouts, and standard training does not consider that an acid leak on a single tooth can refer blinding burning across the tongue or roof of&nbsp;the&nbsp;mouth.</p>
+						<p><strong>2. The Orofacial Pain Specialist:</strong> When dentists run out of answers, they refer us into the medical world. The specialist often prescribes central nerve-dulling medications without ordering high-resolution scans of the physical margins or exploring local&nbsp;chemical&nbsp;triggers.</p>
+						<p><strong>3. The Neurologist:</strong> Understands the brainstem switchboard and facial nerve wiring, but has zero training in dental anatomy or biomaterials. They do not examine how an exposed root neck contains tens of thousands of open fluid tubules per square millimeter, or how chewing everyday bread turns into lactic acid right at&nbsp;the&nbsp;gumline.</p>
+						<p><strong>4. The Primary Care Doctor:</strong> Measures systemic venous blood flowing through your arm. Spotless lab results tell them nothing about the micro-chemical acid bath sitting inside a two-millimeter&nbsp;gum&nbsp;crevice.</p>
 					</div>
 				</div>
 
@@ -767,30 +1385,25 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Expectation (Page 2 of 3) -->
+			<!-- Chapter 1: Falling Between the Cracks (Page 2 of 2) -->
 			<section class="book-page" id="page-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 1: The Expectation</span>
+						<span class="chapter-header-label">Chapter 1: Falling Between the Cracks</span>
 						<span class="page-count-label">Page 2</span>
 					</div>
 
 					<div class="chapter-content">
-						<p>Before I discovered that my lower molar crown had three cavities hidden beneath its metal margin, and long before I understood the 72-hour bacterial fermentation clock, I had to abandon the trap that keeps millions of patients paralyzed: the search for a single,&nbsp;immediate&nbsp;cause.</p>
-						<p>Most sufferers look at their condition in flat binary terms: "I ate a strawberry at noon, and my mouth didn't burn at 12:15, so food has nothing to do&nbsp;with&nbsp;it."</p>
-						<h3>My entire breakthrough started with a much simpler,&nbsp;grounded&nbsp;question:</h3>
-						<h3>What makes the burning slightly worse, and what makes it&nbsp;slightly&nbsp;better?</h3>
-						<p>When you stop treating the pain as a uniform cloud and start treating it as a fluctuating signal, you discover that the volume is being turned up or down by specific&nbsp;daily&nbsp;inputs:</p>
-						<div class="book-callout"><p>What drives it up: Direct acids (coffee, citrus, wine), delayed starches (48-72 hour latency), and unshielded root dentin subjected to&nbsp;mechanical&nbsp;shear.</p></div>
-						<div class="book-callout"><p>What calms it down: Non-acidic fluids, resting neutral saliva, zero-fermentable protein baselines, and mechanical barriers such as bonding&nbsp;and&nbsp;sealants.</p></div>
-						<p>When you track those variables, the&nbsp;patterns&nbsp;emerge:</p>
-						<p>If you drink black coffee and feel a raw sting within 20 minutes, that is direct&nbsp;chemical&nbsp;contact.</p>
-						<p>If you eat bread, pasta, or potatoes on Monday and your mouth explodes on Wednesday night, that is delayed&nbsp;bacterial&nbsp;fermentation.</p>
-						<p>If cold air or a toothbrush bristle hits a receded root collar and sets off an electric ache, that is a mechanical&nbsp;hardware&nbsp;breach.</p>
-						<h3>How to Use This&nbsp;Field&nbsp;Guide</h3>
-						<h3>Do not treat this book as medical dogma. Treat it as an&nbsp;investigative&nbsp;companion:</h3>
-						<p>Read the Biophysics First: Understand how unshielded dentinal tubules and Acid-Sensing Ion Channels (ASICs) translate everyday acids into&nbsp;nerve&nbsp;fires.</p>
-
+						<p>Because nobody sits at the exact intersection where dental hardware meets fluid chemistry and nerve electrophysiology, Burning Mouth Syndrome is routinely declared an incurable,&nbsp;idiopathic&nbsp;mystery.</p>
+						<div class="book-callout">
+							<p>When you fall between their worlds, you have to stop trusting administrative labels and look at the physical realities of&nbsp;the&nbsp;circuit.</p>
+						</div>
+						<p>Once dentists and doctors run out of options, we cannot simply assume the pain is a phantom. It was not a phantom for me, and it is not a phantom&nbsp;for&nbsp;you.</p>
+						<h3>Solving It From First Principles</h3>
+						<p>Let's look at the actual pain receptors involved. What makes the burning better or worse? Up to 70% of people with BMS report that acidic foods and drinks make their symptoms substantially worse, which means they feel better with less acid in&nbsp;their&nbsp;diet.</p>
+						<p>Why not trial a low-acid baseline for two weeks? If that confirms acid is a trigger, take it one step further with a strict zero-acid trial. There is an actionable nutritional framework available to test, the exact approach that brought my own pain down&nbsp;to&nbsp;zero.</p>
+						<p>If a zero-acid diet does not change your symptoms, you have at least eliminated a crucial variable cleanly. But if it does eliminate or reduce the burning, you now have a direct physical clue pointing to what is tripping the&nbsp;circuit.</p>
+						<p>Acid in the mouth activates specific Acid-Sensing Ion Channels (ASICs), and our oral tissues are packed with them. By testing this baseline, we can help a significant portion of our community find relief and uncover real&nbsp;answers.</p>
 					</div>
 				</div>
 
@@ -799,20 +1412,25 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Expectation (Page 3 of 3) -->
+			<!-- Chapter 2: The Expectation (Page 3 of 3 in Part I) -->
 			<section class="book-page" id="page-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 1: The Expectation</span>
+						<span class="chapter-header-label">Chapter 2: The Expectation</span>
 						<span class="page-count-label">Page 3</span>
 					</div>
 
-					<div class="chapter-content">
-						<p>Observe Your Own Baseline: Stop changing five things at once. Track what enters your mouth against what happens over a&nbsp;72-hour&nbsp;window.</p>
-						<p>Audit Your Hardware: Take the clinical guides in the back of this book directly to your dentist and doctor to inspect the physical margins standard 2D&nbsp;exams&nbsp;overlook.</p>
-						<p>I spent four years in the dark, tested over 50 supplements with zero relief, and suffered through unrelenting 10/10 pain before I finally found a stable 0/10 calm. You do not have to spend four&nbsp;years&nbsp;guessing.</p>
-						<p>Here is what I observed, here is what the data revealed, and here is how you can begin mapping the variables in your&nbsp;own&nbsp;mouth.</p>
+					<h2 class="chapter-title">Chapter 2:&nbsp;The&nbsp;Expectation</h2>
 
+					<div class="chapter-content is-first-page">
+						<p>Let’s set the expectations straight from sentence one: this book documents my specific journey, and yours will not be an exact&nbsp;carbon&nbsp;copy.</p>
+						<p>In chronic oral pain, no two nervous systems or dental arches are identical. You might share some of my exact clues, or your triggers might occur along completely different margins. What we share is not a universal prescription; what we share is&nbsp;a&nbsp;method.</p>
+						<h3>What This Book Is - and What&nbsp;It&nbsp;Isn’t</h3>
+						<p>This is an investigator’s field log, not a promise of an overnight cure. If you came here hoping for a magic pill, a single miracle herb, or a guarantee that copying my exact plate will instantly resolve your burning, you will&nbsp;be&nbsp;disappointed.</p>
+						<p>This is a framework for debugging an erratic physical system. In computer programming, when a complex network crashes or an error code trips continuously, we do not throw up our hands, label the bug "idiopathic," and walk away. We isolate the variables. We check the physical interfaces. We track the&nbsp;incoming&nbsp;data.</p>
+						<p>Your mouth is biological hardware running on real electrochemical sensors. If those sensors are firing an unceasing alarm, an input is actively&nbsp;tripping&nbsp;them.</p>
+						<p>Before I discovered that my lower molar crown had three cavities hidden beneath its metal margin, I had to abandon the search for an immediate single cause and start tracking what made the pain slightly worse and what made it&nbsp;slightly&nbsp;better.</p>
+						<p>Observe your baseline, audit your dental margins, and test the variables systematically. You do not have to spend four years guessing in&nbsp;the&nbsp;dark.</p>
 					</div>
 				</div>
 
