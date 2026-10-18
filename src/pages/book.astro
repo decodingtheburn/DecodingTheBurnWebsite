@@ -1026,103 +1026,147 @@ import { SITE_TITLE } from '../consts';
 				margin-bottom: 0.75rem;
 			}
 
-			/* Contributor Page Styling */
+			/* Contributor Page Styling (Premium Vertical Card Design) */
 			.contributor-category-block {
-				margin-bottom: 2rem;
+				margin-bottom: 2.5rem;
 			}
 
 			.contributor-category-header {
 				display: flex;
 				align-items: center;
-				gap: 0.65rem;
-				padding-bottom: 0.5rem;
-				border-bottom: 2px solid #f1f5f9;
-				margin-bottom: 1.15rem;
+				justify-content: space-between;
+				padding-bottom: 0.65rem;
+				border-bottom: 2px solid #ede9fe;
+				margin-bottom: 1.5rem;
 			}
 
 			.contributor-category-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.12rem;
+				font-size: 1.18rem;
 				font-weight: 800;
-				color: #0f172a;
-				letter-spacing: -0.01em;
+				color: #1e1b4b;
+				letter-spacing: -0.015em;
 				margin: 0;
 			}
 
 			.contributor-category-badge {
 				font-size: 0.72rem;
 				font-weight: 700;
-				padding: 0.15rem 0.55rem;
+				padding: 0.2rem 0.65rem;
 				border-radius: 999px;
-				background: #f1f5f9;
-				color: #475569;
+				background: #f5f3ff;
+				border: 1px solid #ddd6fe;
+				color: #6d28d9;
 			}
 
 			.contributor-subgroup-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.86rem;
-				font-weight: 700;
-				color: #64748b;
+				font-size: 0.84rem;
+				font-weight: 800;
+				color: #7c3aed;
 				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				margin: 1.25rem 0 0.75rem;
+				letter-spacing: 0.08em;
+				margin: 1.5rem 0 0.85rem;
 				display: flex;
 				align-items: center;
 				gap: 0.5rem;
 			}
 
+			.contributor-subgroup-title::after {
+				content: '';
+				flex: 1;
+				height: 1px;
+				background: #ede9fe;
+			}
+
 			.contributor-grid {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
-				gap: 1.15rem;
-				margin: 0 0 1rem;
+				gap: 1.5rem;
+				margin: 0 0 1.25rem;
 			}
 
 			.contributor-card {
-				background: #ffffff;
-				border: 1px solid #e2e8f0;
-				border-radius: 12px;
-				padding: 1.25rem;
-				box-shadow: 0 3px 10px rgba(0, 0, 0, 0.02);
-				transition: border-color 0.15s ease, box-shadow 0.15s ease;
+				background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+				border: 1px solid rgba(226, 232, 240, 0.95);
+				border-radius: 16px;
+				padding: 1.65rem 1.4rem 1.4rem;
+				box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+				transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
 				display: flex;
-				align-items: flex-start;
-				gap: 1rem;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.contributor-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, #a855f7 0%, #ec4899 50%, #6366f1 100%);
+				opacity: 0.85;
 			}
 
 			.contributor-card:hover {
+				transform: translateY(-4px);
 				border-color: #cbd5e1;
-				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+				box-shadow: 0 20px 35px -8px rgba(124, 58, 237, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.06);
 			}
 
 			.contributor-avatar-wrap {
-				flex-shrink: 0;
+				margin-bottom: 1rem;
 				position: relative;
 			}
 
 			.contributor-avatar {
-				width: 54px;
-				height: 54px;
+				width: 86px;
+				height: 86px;
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				border: 2px solid #ffffff;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+				border: 3.5px solid #ffffff;
+				box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.18), 0 4px 10px rgba(15, 23, 42, 0.08);
 				overflow: hidden;
-				font-weight: 800;
-				font-size: 0.88rem;
-				font-family: 'Plus Jakarta Sans', sans-serif;
+				background: #ffffff;
 			}
 
+			.contributor-avatar img,
 			.contributor-avatar svg {
 				width: 100%;
 				height: 100%;
+				object-fit: cover;
+				display: block;
 			}
 
-			.contributor-info {
-				flex: 1;
-				min-width: 0;
+			.contributor-name {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.08rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.15rem;
+				line-height: 1.25;
+			}
+
+			.contributor-location {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.8rem;
+				font-weight: 600;
+				color: #64748b;
+				margin: 0 0 0.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+			}
+
+			.contributor-location svg {
+				opacity: 0.7;
 			}
 
 			.contributor-role-tag {
@@ -1130,27 +1174,89 @@ import { SITE_TITLE } from '../consts';
 				font-size: 0.72rem;
 				font-weight: 800;
 				text-transform: uppercase;
-				letter-spacing: 0.06em;
+				letter-spacing: 0.07em;
 				color: #7c3aed;
-				margin-bottom: 0.25rem;
-				display: block;
+				margin: 0 0 0.35rem;
+				display: inline-block;
 			}
 
-			.contributor-name {
+			.contributor-tenure {
+				display: inline-block;
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.98rem;
+				font-size: 0.74rem;
 				font-weight: 700;
-				color: #0f172a;
-				margin: 0 0 0.35rem;
-				line-height: 1.3;
+				color: #0369a1;
+				background: #f0f9ff;
+				border: 1px solid #bae6fd;
+				padding: 0.15rem 0.55rem;
+				border-radius: 6px;
+				margin-bottom: 0.85rem;
 			}
 
 			.contributor-desc {
 				font-family: 'Lora', Georgia, serif;
-				font-size: 0.86rem;
-				line-height: 1.55;
+				font-size: 0.88rem;
+				line-height: 1.6;
 				color: #475569;
-				margin: 0;
+				margin: 0 0 0.95rem;
+				text-align: center;
+			}
+
+			/* Particularities: What Makes Better vs Worst */
+			.contributor-particulars {
+				width: 100%;
+				margin-top: auto;
+				padding: 0.85rem 0.95rem;
+				background: #ffffff;
+				border: 1px solid #f1f5f9;
+				border-radius: 10px;
+				box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
+				text-align: left;
+				font-size: 0.8rem;
+				line-height: 1.5;
+				box-sizing: border-box;
+			}
+
+			.particulars-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.72rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				color: #94a3b8;
+				margin-bottom: 0.45rem;
+				display: block;
+			}
+
+			.particulars-row {
+				display: flex;
+				align-items: baseline;
+				gap: 0.4rem;
+				margin-bottom: 0.3rem;
+			}
+
+			.particulars-row:last-child {
+				margin-bottom: 0;
+			}
+
+			.particulars-label-better {
+				font-weight: 700;
+				color: #059669;
+				flex-shrink: 0;
+				font-size: 0.76rem;
+			}
+
+			.particulars-label-worst {
+				font-weight: 700;
+				color: #dc2626;
+				flex-shrink: 0;
+				font-size: 0.76rem;
+			}
+
+			.particulars-val {
+				color: #334155;
+				font-family: 'Lora', Georgia, serif;
+				font-size: 0.82rem;
 			}
 
 			.contributor-apply-box {
@@ -1571,67 +1677,127 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<div class="contributor-grid">
+								<!-- Patient 1: Elena V. -->
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%); color: #db2777;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#f472b6" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#ec4899" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/elena-v.svg" alt="Portrait of Elena V." width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">Citizen Science Data Pioneer</span>
-										<h4 class="contributor-name">Elena V. (Montreal, QC)</h4>
-										<p class="contributor-desc">Logged six continuous months of daily 72-hour food and pain telemetry; first to mathematically chart the delayed carbohydrate fermentation curve.</p>
+									<h4 class="contributor-name">Elena V.</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Montreal, Quebec</span>
+									</div>
+									<span class="contributor-role-tag">Patient</span>
+									<span class="contributor-tenure">4 Years with BMS</span>
+									<p class="contributor-desc">Logged six continuous months of daily 72-hour food and pain telemetry; first to mathematically chart the delayed carbohydrate fermentation curve.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Particularities &amp; Triggers</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Zero-carb baseline, bicarbonate night rinses, warm bone broth</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Sourdough bread (48h delay), tomato sauce, oral dryness during sleep</span>
+										</div>
 									</div>
 								</div>
 
+								<!-- Patient 2: Sarah J. -->
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); color: #2563eb;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#60a5fa" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#3b82f6" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/sarah-j.svg" alt="Portrait of Sarah J." width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">Patient Trial Contributor</span>
-										<h4 class="contributor-name">David B. (Austin, TX)</h4>
-										<p class="contributor-desc">Validated the 3-day on/off acid delta protocol and proved focal crown margin microleakage using custom barrier tray isolation.</p>
+									<h4 class="contributor-name">Sarah J.</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Seattle, Washington</span>
+									</div>
+									<span class="contributor-role-tag">Patient</span>
+									<span class="contributor-tenure">3 Years with BMS</span>
+									<p class="contributor-desc">Tested tubule-sealing desensitizers and mapped lingual pain variations before and after Class V cervical composite bonding.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Particularities &amp; Triggers</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Gluma resin margin sealing, mouth taping at night, SLS-free gel</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Whitening toothpaste, cold ice water hitting lower molars, citrus</span>
+										</div>
 									</div>
 								</div>
 
+								<!-- Patient 3: Maria G. -->
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%); color: #9333ea;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#c084fc" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#a855f7" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/maria-g.svg" alt="Portrait of Maria G." width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">European Patient Survey Lead</span>
-										<h4 class="contributor-name">Maria G. (Madrid, Spain)</h4>
-										<p class="contributor-desc">Coordinated multi-country survey data across 140+ European BMS sufferers evaluating trigger frequencies and alpha-lipoic acid trials.</p>
+									<h4 class="contributor-name">Maria G.</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Madrid, Spain</span>
+									</div>
+									<span class="contributor-role-tag">Patient</span>
+									<span class="contributor-tenure">6 Years with BMS</span>
+									<p class="contributor-desc">Coordinated multi-country survey data across 140+ European BMS sufferers evaluating trigger frequencies and alpha-lipoic acid trials.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Particularities &amp; Triggers</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Strict alkaline hydration, chewing xylitol gum after meals, zinc</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Red wine, balsamic vinegar, hot paprika, commercial mint lozenges</span>
+										</div>
 									</div>
 								</div>
 
+								<!-- Patient 4: David B. -->
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); color: #16a34a;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#4ade80" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#22c55e" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/david-b.svg" alt="Portrait of David B." width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">Hardware Remission Case Contributor</span>
-										<h4 class="contributor-name">Robert H. (Melbourne, Australia)</h4>
-										<p class="contributor-desc">Documented full remission of severe lingual burning following tactile margin audit, crown cement replacement, and tubule bonding.</p>
+									<h4 class="contributor-name">David B.</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Austin, Texas</span>
+									</div>
+									<span class="contributor-role-tag">Patient</span>
+									<span class="contributor-tenure">2 Years with BMS</span>
+									<p class="contributor-desc">Validated the 3-day on/off acid delta protocol and proved focal crown margin microleakage using custom barrier tray isolation.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Particularities &amp; Triggers</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Custom nocturnal barrier tray, crown re-cementation, ribeye steak</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Morning black coffee, carbonated seltzers, mouth breathing</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1651,33 +1817,61 @@ import { SITE_TITLE } from '../consts';
 							<div class="contributor-grid">
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); color: #0284c7;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#38bdf8" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#0ea5e9" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/dr-r-m.svg" alt="Portrait of Dr. R. M., DDS" width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">Dental Biomaterials Consultant</span>
-										<h4 class="contributor-name">Dr. R. M., DDS</h4>
-										<p class="contributor-desc">Reviewed microscopic dentinal tubule fluid dynamics, Gluma albumin precipitation protocols, and adhesive resin sealing for exposed root collars.</p>
+									<h4 class="contributor-name">Dr. R. M., DDS</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Curitiba, Brazil</span>
+									</div>
+									<span class="contributor-role-tag">Dental Biomaterials Consultant</span>
+									<span class="contributor-tenure">22 Years Clinical Practice</span>
+									<p class="contributor-desc">Reviewed microscopic dentinal tubule fluid dynamics, Gluma albumin precipitation protocols, and adhesive resin sealing for exposed root collars.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Clinical Insights</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Hydrodynamic tubule occlusion, biomimetic resin hybrid layers</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Micro-leaking zinc phosphate cements, unbonded receded margins</span>
+										</div>
 									</div>
 								</div>
 
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); color: #059669;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#34d399" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#10b981" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/sarah-l.svg" alt="Portrait of Sarah L., RDH" width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">Periodontal Microbiology Specialist</span>
-										<h4 class="contributor-name">Sarah L., RDH</h4>
-										<p class="contributor-desc">Advised on subgingival biofilm lactic acid fermentation, sulcular pH shifts, and non-foaming SLS-free oral care standards.</p>
+									<h4 class="contributor-name">Sarah L., RDH</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Toronto, Ontario</span>
+									</div>
+									<span class="contributor-role-tag">Periodontal Microbiology Specialist</span>
+									<span class="contributor-tenure">14 Years Hygiene Practice</span>
+									<p class="contributor-desc">Advised on subgingival biofilm lactic acid fermentation, sulcular pH shifts, and non-foaming SLS-free oral care standards.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Clinical Insights</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Gentle sulcular debridement, warm saline flushes, non-foaming paste</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Alcohol mouthwashes, aggressive ultrasonic scaling on roots</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1689,33 +1883,61 @@ import { SITE_TITLE } from '../consts';
 							<div class="contributor-grid">
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); color: #4f46e5;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#818cf8" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#6366f1" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/dr-s-k.svg" alt="Portrait of Dr. S. K., MD" width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">Orofacial Neuroscience Reviewer</span>
-										<h4 class="contributor-name">Dr. S. K., MD</h4>
-										<p class="contributor-desc">Provided clinical peer review on trigeminal central sensitization, spinal nucleus wind-up, and peripheral small fiber neuropathy parallels.</p>
+									<h4 class="contributor-name">Dr. S. K., MD</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Boston, Massachusetts</span>
+									</div>
+									<span class="contributor-role-tag">Orofacial Neuroscience Reviewer</span>
+									<span class="contributor-tenure">18 Years Neurological Research</span>
+									<p class="contributor-desc">Provided clinical peer review on trigeminal central sensitization, spinal nucleus wind-up, and peripheral small fiber neuropathy parallels.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Clinical Insights</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Peripheral input removal, quiet neuro-recovery windows, ferritin &gt;50</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Continuous noxious proton exposure, high-dose anticholinergics</span>
+										</div>
 									</div>
 								</div>
 
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #d97706;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#fbbf24" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#f59e0b" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/marcus-t.svg" alt="Portrait of Marcus T., RPSGT" width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">Airway &amp; Nocturnal Saliva Analyst</span>
-										<h4 class="contributor-name">Marcus T., RPSGT</h4>
-										<p class="contributor-desc">Contributed data on mouth breathing mechanics, nocturnal salivary bicarbonate drops, and oral mucosa desiccation during sleep.</p>
+									<h4 class="contributor-name">Marcus T., RPSGT</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Denver, Colorado</span>
+									</div>
+									<span class="contributor-role-tag">Airway &amp; Nocturnal Saliva Analyst</span>
+									<span class="contributor-tenure">11 Years Sleep Physiology</span>
+									<p class="contributor-desc">Contributed data on mouth breathing mechanics, nocturnal salivary bicarbonate drops, and oral mucosa desiccation during sleep.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Clinical Insights</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Nasal breathing restore, gentle sleep taping, bedroom humidification</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Open-mouth snoring, dry air desiccation, late evening sugary snacks</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1727,33 +1949,61 @@ import { SITE_TITLE } from '../consts';
 							<div class="contributor-grid">
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%); color: #a21caf;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#e879f9" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#d946ef" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/dr-j-p.svg" alt="Portrait of Dr. J. P., PhD" width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">Electrophysiology Research Analyst</span>
-										<h4 class="contributor-name">Dr. J. P., PhD</h4>
-										<p class="contributor-desc">Reviewed biophysical gating kinetics of ASIC1 and TRPV1 proton channels under dynamic salivary pH shifts and calcium gradients.</p>
+									<h4 class="contributor-name">Dr. J. P., PhD</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Oxford, United Kingdom</span>
+									</div>
+									<span class="contributor-role-tag">Electrophysiology Research Analyst</span>
+									<span class="contributor-tenure">15 Years Ion Channel Research</span>
+									<p class="contributor-desc">Reviewed biophysical gating kinetics of ASIC1 and TRPV1 proton channels under dynamic salivary pH shifts and calcium gradients.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Scientific Insights</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Salivary neutral pH &gt;6.8, extracellular calcium buffering</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Transient drops below pH 6.0, sustained proton channel activation</span>
+										</div>
 									</div>
 								</div>
 
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar" style="background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); color: #ea580c;">
-											<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="24" cy="18" r="9" fill="#fb923c" opacity="0.8"/>
-												<path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#f97316" opacity="0.7"/>
-											</svg>
+										<div class="contributor-avatar">
+											<img src="/contributors/claire-m.svg" alt="Portrait of Claire M., MSc" width="86" height="86" loading="lazy" />
 										</div>
 									</div>
-									<div class="contributor-info">
-										<span class="contributor-role-tag">Oral Biochemistry Researcher</span>
-										<h4 class="contributor-name">Claire M., MSc</h4>
-										<p class="contributor-desc">Analyzed mucin layer dissolution rates against commercial surfactant detergents and low-pH dietary challenges.</p>
+									<h4 class="contributor-name">Claire M., MSc</h4>
+									<div class="contributor-location">
+										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+											<circle cx="12" cy="10" r="3"></circle>
+										</svg>
+										<span>Lyon, France</span>
+									</div>
+									<span class="contributor-role-tag">Oral Biochemistry Researcher</span>
+									<span class="contributor-tenure">9 Years Salivary Proteomics</span>
+									<p class="contributor-desc">Analyzed mucin layer dissolution rates against commercial surfactant detergents and low-pH dietary challenges.</p>
+									<div class="contributor-particulars">
+										<span class="particulars-title">Scientific Insights</span>
+										<div class="particulars-row">
+											<span class="particulars-label-better">Better:</span>
+											<span class="particulars-val">Intact salivary pellicle, lubricating high molecular weight mucins</span>
+										</div>
+										<div class="particulars-row">
+											<span class="particulars-label-worst">Worst:</span>
+											<span class="particulars-val">Sodium lauryl sulfate detergents, frequent low-pH acidic drinks</span>
+										</div>
 									</div>
 								</div>
 							</div>
