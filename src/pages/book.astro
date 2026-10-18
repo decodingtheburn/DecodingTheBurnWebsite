@@ -1027,8 +1027,10 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			/* Contributor Page Styling (Premium Vertical Card Design) */
+
+			/* Contributor Page Styling (Premium Vertical Card Design with Overlapping Avatars) */
 			.contributor-category-block {
-				margin-bottom: 2.75rem;
+				margin-bottom: 3.5rem;
 			}
 
 			.contributor-category-header {
@@ -1037,12 +1039,12 @@ import { SITE_TITLE } from '../consts';
 				justify-content: space-between;
 				padding-bottom: 0.65rem;
 				border-bottom: 2px solid #ede9fe;
-				margin-bottom: 1.5rem;
+				margin-bottom: 4.5rem; /* Room for overlapping avatar */
 			}
 
 			.contributor-category-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.2rem;
+				font-size: 1.22rem;
 				font-weight: 800;
 				color: #000000;
 				letter-spacing: -0.015em;
@@ -1061,12 +1063,12 @@ import { SITE_TITLE } from '../consts';
 
 			.contributor-subgroup-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.86rem;
+				font-size: 0.88rem;
 				font-weight: 800;
 				color: #000000;
 				text-transform: uppercase;
 				letter-spacing: 0.08em;
-				margin: 1.75rem 0 0.95rem;
+				margin: 4.5rem 0 4.5rem;
 				display: flex;
 				align-items: center;
 				gap: 0.5rem;
@@ -1082,55 +1084,46 @@ import { SITE_TITLE } from '../consts';
 			.contributor-grid {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
-				gap: 1.6rem;
+				gap: 5.5rem 1.6rem; /* Vertical gap accounts for 86px offset */
 				margin: 0 0 1.25rem;
 			}
 
 			.contributor-card {
 				background: #ffffff;
-				border: 1px solid rgba(203, 213, 225, 0.8);
-				border-radius: 16px;
-				padding: 1.75rem 1.4rem 1.4rem;
-				box-shadow: 0 14px 34px -4px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.06);
-				transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 20px;
+				padding: 0 1.4rem 1.4rem;
+				box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.16), 0 6px 16px -4px rgba(0, 0, 0, 0.08);
+				transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.24s ease;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				text-align: center;
 				position: relative;
-				overflow: hidden;
-			}
-
-			.contributor-card::before {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				height: 4.5px;
-				background: linear-gradient(90deg, #7c3aed 0%, #db2777 50%, #4338ca 100%);
 			}
 
 			.contributor-card:hover {
-				transform: translateY(-5px);
-				border-color: #94a3b8;
-				box-shadow: 0 24px 48px -10px rgba(0, 0, 0, 0.2), 0 8px 18px -4px rgba(0, 0, 0, 0.1);
+				transform: translateY(-6px);
+				border-color: #7c3aed;
+				box-shadow: 0 28px 55px -12px rgba(124, 58, 237, 0.25), 0 10px 24px -4px rgba(0, 0, 0, 0.12);
 			}
 
 			.contributor-avatar-wrap {
-				margin-bottom: 1.1rem;
+				margin-top: -86px; /* Half of 172px avatar overlaps outside card */
+				margin-bottom: 1rem;
 				position: relative;
+				z-index: 2;
 			}
 
 			.contributor-avatar {
-				width: 90px;
-				height: 90px;
+				width: 172px;
+				height: 172px;
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				border: 3.5px solid #ffffff;
-				box-shadow: 0 14px 30px -4px rgba(0, 0, 0, 0.32), 0 4px 12px rgba(0, 0, 0, 0.18);
+				border: 5px solid #ffffff;
+				box-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.36), 0 6px 16px rgba(0, 0, 0, 0.18);
 				overflow: hidden;
 				background: #ffffff;
 			}
@@ -1144,7 +1137,7 @@ import { SITE_TITLE } from '../consts';
 
 			.contributor-name {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.12rem;
+				font-size: 1.15rem;
 				font-weight: 800;
 				color: #000000;
 				margin: 0 0 0.15rem;
@@ -1156,7 +1149,7 @@ import { SITE_TITLE } from '../consts';
 				font-size: 0.82rem;
 				font-weight: 700;
 				color: #000000;
-				margin: 0 0 0.5rem;
+				margin: 0 0 0.45rem;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -1167,94 +1160,218 @@ import { SITE_TITLE } from '../consts';
 				stroke: #000000;
 			}
 
-			.contributor-role-tag {
+			.contributor-combined-tag {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
 				font-family: 'Plus Jakarta Sans', sans-serif;
 				font-size: 0.74rem;
 				font-weight: 800;
+				color: #000000;
+				background: #f5f3ff;
+				border: 1.5px solid #ddd6fe;
+				padding: 0.2rem 0.75rem;
+				border-radius: 999px;
+				margin-bottom: 0.95rem;
+			}
+
+			.contributor-combined-tag .tag-highlight {
+				color: #6d28d9;
 				text-transform: uppercase;
-				letter-spacing: 0.07em;
-				color: #4c1d95;
-				margin: 0 0 0.35rem;
-				display: inline-block;
+				letter-spacing: 0.06em;
 			}
 
-			.contributor-tenure {
-				display: inline-block;
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.75rem;
-				font-weight: 800;
-				color: #000000;
-				background: #f0f9ff;
-				border: 1.5px solid #7dd3fc;
-				padding: 0.15rem 0.65rem;
-				border-radius: 6px;
-				margin-bottom: 0.85rem;
+			.contributor-combined-tag .tag-dot {
+				color: #94a3b8;
 			}
 
-			.contributor-desc {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 0.88rem;
-				line-height: 1.6;
-				color: #000000;
-				margin: 0 0 1rem;
-				text-align: center;
-			}
-
-			/* Particularities: What Makes Better vs Worst */
-			.contributor-particulars {
+			/* Better Summary Box (Replaces generic description) */
+			.contributor-better-summary {
 				width: 100%;
-				margin-top: auto;
-				padding: 0.95rem 1rem;
-				background: #fafafa;
-				border: 1.5px solid #e2e8f0;
+				background: #f0fdf4;
+				border: 1.5px solid #bbf7d0;
 				border-radius: 12px;
-				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+				padding: 0.85rem 0.95rem;
+				margin-bottom: 1rem;
 				text-align: left;
-				font-size: 0.82rem;
-				line-height: 1.55;
 				box-sizing: border-box;
 			}
 
-			.particulars-title {
+			.better-summary-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
 				font-size: 0.74rem;
 				font-weight: 800;
 				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				color: #166534;
+				display: flex;
+				align-items: center;
+				gap: 0.35rem;
+				margin-bottom: 0.3rem;
+			}
+
+			.better-summary-text {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 0.86rem;
+				line-height: 1.55;
+				color: #000000;
+				margin: 0;
+				font-weight: 500;
+			}
+
+			/* Read More Trigger Button */
+			.contributor-read-more-btn {
+				background: #ffffff;
+				border: 1.5px solid #cbd5e1;
+				color: #000000;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.78rem;
+				font-weight: 700;
+				padding: 0.45rem 1rem;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				margin-top: auto;
+				width: 100%;
+				justify-content: center;
+			}
+
+			.contributor-read-more-btn:hover {
+				background: #000000;
+				color: #ffffff;
+				border-color: #000000;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+			}
+
+			.contributor-read-more-btn svg {
+				transition: transform 0.2s ease;
+			}
+
+			.contributor-read-more-btn:hover svg {
+				transform: translateX(3px);
+			}
+
+			/* Detail Pop-up Modal */
+			.case-modal-backdrop {
+				position: fixed;
+				inset: 0;
+				background: rgba(15, 23, 42, 0.65);
+				backdrop-filter: blur(6px);
+				display: none;
+				justify-content: center;
+				align-items: center;
+				z-index: 10000;
+				padding: 1.25rem;
+			}
+
+			.case-modal-card {
+				background: #ffffff;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 20px;
+				box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4);
+				max-width: 540px;
+				width: 100%;
+				padding: 2.2rem 2rem 2rem;
+				position: relative;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				text-align: left;
+				max-height: 90vh;
+				overflow-y: auto;
+				animation: modalSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			.case-modal-header {
+				display: flex;
+				align-items: center;
+				gap: 1.1rem;
+				margin-bottom: 1.25rem;
+				padding-bottom: 1.1rem;
+				border-bottom: 1.5px solid #f1f5f9;
+			}
+
+			.case-modal-avatar {
+				width: 72px;
+				height: 72px;
+				border-radius: 50%;
+				overflow: hidden;
+				border: 3px solid #7c3aed;
+				flex-shrink: 0;
+				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+			}
+
+			.case-modal-avatar img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.case-modal-name {
+				font-size: 1.2rem;
+				font-weight: 800;
+				color: #000000;
+				margin: 0 0 0.15rem;
+			}
+
+			.case-modal-meta {
+				font-size: 0.8rem;
+				font-weight: 700;
+				color: #64748b;
+				margin: 0;
+			}
+
+			.case-modal-section-title {
+				font-size: 0.76rem;
+				font-weight: 800;
+				text-transform: uppercase;
 				letter-spacing: 0.07em;
 				color: #000000;
-				margin-bottom: 0.5rem;
+				margin: 1.25rem 0 0.45rem;
+			}
+
+			.case-modal-bio {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 0.92rem;
+				line-height: 1.65;
+				color: #000000;
+				margin: 0 0 1rem;
+			}
+
+			.case-modal-box {
+				background: #f8fafc;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 12px;
+				padding: 1rem;
+				margin-bottom: 0.85rem;
+			}
+
+			.case-modal-box-better {
+				background: #f0fdf4;
+				border-color: #bbf7d0;
+			}
+
+			.case-modal-box-worst {
+				background: #fef2f2;
+				border-color: #fecaca;
+			}
+
+			.case-modal-box-label {
+				font-size: 0.76rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				margin-bottom: 0.35rem;
 				display: block;
 			}
 
-			.particulars-row {
-				display: flex;
-				align-items: baseline;
-				gap: 0.45rem;
-				margin-bottom: 0.35rem;
-			}
-
-			.particulars-row:last-child {
-				margin-bottom: 0;
-			}
-
-			.particulars-label-better {
-				font-weight: 800;
-				color: #047857;
-				flex-shrink: 0;
-				font-size: 0.78rem;
-			}
-
-			.particulars-label-worst {
-				font-weight: 800;
-				color: #b91c1c;
-				flex-shrink: 0;
-				font-size: 0.78rem;
-			}
-
-			.particulars-val {
-				color: #000000;
+			.case-modal-box-text {
 				font-family: 'Lora', Georgia, serif;
-				font-size: 0.84rem;
+				font-size: 0.88rem;
+				line-height: 1.55;
+				color: #000000;
+				margin: 0;
 				font-weight: 500;
 			}
 
@@ -1680,7 +1797,7 @@ import { SITE_TITLE } from '../consts';
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/elena-v.jpg" alt="Portrait of Elena V." width="90" height="90" loading="lazy" />
+											<img src="/contributors/elena-v.jpg" alt="Portrait of Elena V." width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">Elena V.</h4>
@@ -1691,27 +1808,43 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Montreal, Quebec</span>
 									</div>
-									<span class="contributor-role-tag">Patient</span>
-									<span class="contributor-tenure">4 Years with BMS</span>
-									<p class="contributor-desc">Logged six continuous months of daily 72-hour food and pain telemetry; first to mathematically chart the delayed carbohydrate fermentation curve.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Particularities &amp; Triggers</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Zero-carb baseline, bicarbonate night rinses, warm bone broth</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Sourdough bread (48h delay), tomato sauce, oral dryness during sleep</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Patient</span>
+										<span class="tag-dot">&bull;</span>
+										<span>4 Years with BMS</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Shifted to a zero-carb animal-based baseline, executed nightly sodium bicarbonate oral rinses, and eliminated delayed-fuse sourdough starches.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="Elena V."
+										data-role="Patient &bull; 4 Years with BMS"
+										data-location="Montreal, Quebec"
+										data-avatar="/contributors/elena-v.jpg"
+										data-bio="Logged six continuous months of daily 72-hour food and pain telemetry. Elena was the first citizen researcher in our community to mathematically chart the 48-to-72 hour delayed carbohydrate fermentation curve."
+										data-better="Zero-carb baseline, bicarbonate night rinses, warm unflavored bone broth, and gentle nasal breathing at night."
+										data-worst="Sourdough bread (triggers burning flare on a 48h delay), commercial tomato sauce, oral mucosal dryness during sleep."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 
 								<!-- Patient 2: Sarah J. -->
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/sarah-j.jpg" alt="Portrait of Sarah J." width="90" height="90" loading="lazy" />
+											<img src="/contributors/sarah-j.jpg" alt="Portrait of Sarah J." width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">Sarah J.</h4>
@@ -1722,27 +1855,43 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Seattle, Washington</span>
 									</div>
-									<span class="contributor-role-tag">Patient</span>
-									<span class="contributor-tenure">3 Years with BMS</span>
-									<p class="contributor-desc">Tested tubule-sealing desensitizers and mapped lingual pain variations before and after Class V cervical composite bonding.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Particularities &amp; Triggers</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Gluma resin margin sealing, mouth taping at night, SLS-free gel</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Whitening toothpaste, cold ice water hitting lower molars, citrus</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Patient</span>
+										<span class="tag-dot">&bull;</span>
+										<span>3 Years with BMS</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Sealed microscopic open tubules with Gluma desensitizer, bonded exposed receded Class V margins, and mouth-taped every night.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="Sarah J."
+										data-role="Patient &bull; 3 Years with BMS"
+										data-location="Seattle, Washington"
+										data-avatar="/contributors/sarah-j.jpg"
+										data-bio="Mapped unilateral burning tongue symptoms directly to cold-sensitive receded cervical margins on her lower right molars before having them sealed with adhesive bonding."
+										data-better="Gluma albumin precipitation tubule sealing, micro-hybrid composite Class V margin bonding, mouth taping at night, SLS-free toothpaste."
+										data-worst="Abrasive whitening toothpaste, cold ice water touching receded gum collars, citrus vinaigrettes, mouth breathing."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 
 								<!-- Patient 3: Maria G. -->
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/maria-g.jpg" alt="Portrait of Maria G." width="90" height="90" loading="lazy" />
+											<img src="/contributors/maria-g.jpg" alt="Portrait of Maria G." width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">Maria G.</h4>
@@ -1753,27 +1902,43 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Madrid, Spain</span>
 									</div>
-									<span class="contributor-role-tag">Patient</span>
-									<span class="contributor-tenure">6 Years with BMS</span>
-									<p class="contributor-desc">Coordinated multi-country survey data across 140+ European BMS sufferers evaluating trigger frequencies and alpha-lipoic acid trials.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Particularities &amp; Triggers</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Strict alkaline hydration, chewing xylitol gum after meals, zinc</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Red wine, balsamic vinegar, hot paprika, commercial mint lozenges</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Patient</span>
+										<span class="tag-dot">&bull;</span>
+										<span>6 Years with BMS</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Switched to high-alkaline water (pH 8.5+), chewed xylitol gum after every meal to boost natural saliva bicarbonate, and corrected ferritin deficiency.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="Maria G."
+										data-role="Patient &bull; 6 Years with BMS"
+										data-location="Madrid, Spain"
+										data-avatar="/contributors/maria-g.jpg"
+										data-bio="Organized and synthesized symptom telemetry across 140+ European BMS sufferers, proving why unselected alpha-lipoic acid trials fail while targeted deficiency repletion works."
+										data-better="Strict alkaline hydration, post-meal xylitol mastication to trigger sublingual bicarbonate production, gentle non-foaming paste."
+										data-worst="Tannic red wine, aged balsamic vinegar, spicy paprika dishes, and commercial menthol breath fresheners."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 
 								<!-- Patient 4: David B. -->
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/david-b.jpg" alt="Portrait of David B." width="90" height="90" loading="lazy" />
+											<img src="/contributors/david-b.jpg" alt="Portrait of David B." width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">David B.</h4>
@@ -1784,20 +1949,36 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Austin, Texas</span>
 									</div>
-									<span class="contributor-role-tag">Patient</span>
-									<span class="contributor-tenure">2 Years with BMS</span>
-									<p class="contributor-desc">Validated the 3-day on/off acid delta protocol and proved focal crown margin microleakage using custom barrier tray isolation.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Particularities &amp; Triggers</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Custom nocturnal barrier tray, crown re-cementation, ribeye steak</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Morning black coffee, carbonated seltzers, mouth breathing</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Patient</span>
+										<span class="tag-dot">&bull;</span>
+										<span>2 Years with BMS</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Fabricated a custom barrier tray to isolate a suspected crown margin overnight, later confirming and re-cementing the leaking restoration.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="David B."
+										data-role="Patient &bull; 2 Years with BMS"
+										data-location="Austin, Texas"
+										data-avatar="/contributors/david-b.jpg"
+										data-bio="Inventor of the 3-day on/off acid delta protocol. Proved that covering tooth #19 with a physical vacuum tray eliminated 80% of his morning tongue burning."
+										data-better="Custom nocturnal barrier tray isolation, definitive crown removal and adhesive resin re-cementation, elimination of acidic coffees."
+										data-worst="High-acidity morning black roast, carbonated seltzer waters, open-mouth snoring."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 							</div>
 						</div>
@@ -1817,7 +1998,7 @@ import { SITE_TITLE } from '../consts';
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/dr-raphael-monte-alto.jpg" alt="Portrait of Dr. Raphael Monte Alto, DDS" width="90" height="90" loading="lazy" />
+											<img src="/contributors/dr-raphael-monte-alto.jpg" alt="Portrait of Dr. Raphael Monte Alto, DDS" width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">Dr. Raphael Monte Alto, DDS</h4>
@@ -1828,26 +2009,42 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Curitiba, Brazil</span>
 									</div>
-									<span class="contributor-role-tag">Dental Biomaterials Consultant</span>
-									<span class="contributor-tenure">22 Years Clinical Practice</span>
-									<p class="contributor-desc">Reviewed microscopic dentinal tubule fluid dynamics, Gluma albumin precipitation protocols, and adhesive resin sealing for exposed root collars.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Clinical Insights</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Hydrodynamic tubule occlusion, biomimetic resin hybrid layers</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Micro-leaking zinc phosphate cements, unbonded receded margins</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Biomaterials Consultant</span>
+										<span class="tag-dot">&bull;</span>
+										<span>22 Years Clinical Practice</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Immediate dentin sealing (IDS), dual-cure resin cements to stop microleakage, and cross-linking glutaraldehyde desensitization.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="Dr. Raphael Monte Alto, DDS"
+										data-role="Dental Biomaterials Specialist &bull; 22 Years Clinical Practice"
+										data-location="Curitiba, Brazil"
+										data-avatar="/contributors/dr-raphael-monte-alto.jpg"
+										data-bio="Professor and author in adhesive dentistry. Reviewed our microscopic dentinal tubule fluid dynamics chapters and validated immediate dentin sealing protocols."
+										data-better="Biomimetic resin hybrid layers, hydrodynamic tubule occlusion, adhesive margin rebonding with total-etch protocols."
+										data-worst="Dissolving water-based zinc phosphate cements, sub-micron crown margin washouts, unbonded receded root dentin."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/sarah-lindqvist.jpg" alt="Portrait of Sarah Lindqvist, RDH" width="90" height="90" loading="lazy" />
+											<img src="/contributors/sarah-lindqvist.jpg" alt="Portrait of Sarah Lindqvist, RDH" width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">Sarah Lindqvist, RDH</h4>
@@ -1858,20 +2055,36 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Toronto, Ontario</span>
 									</div>
-									<span class="contributor-role-tag">Periodontal Microbiology Specialist</span>
-									<span class="contributor-tenure">14 Years Hygiene Practice</span>
-									<p class="contributor-desc">Advised on subgingival biofilm lactic acid fermentation, sulcular pH shifts, and non-foaming SLS-free oral care standards.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Clinical Insights</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Gentle sulcular debridement, warm saline flushes, non-foaming paste</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Alcohol mouthwashes, aggressive ultrasonic scaling on roots</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Periodontal Specialist</span>
+										<span class="tag-dot">&bull;</span>
+										<span>14 Years Hygiene Practice</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Sulcular subgingival irrigation with isotonic saline, glycine powder air polishing, and switching patients off harsh detergent pastes.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="Sarah Lindqvist, RDH"
+										data-role="Periodontal Microbiology Specialist &bull; 14 Years Hygiene Practice"
+										data-location="Toronto, Ontario"
+										data-avatar="/contributors/sarah-lindqvist.jpg"
+										data-bio="Clinical hygienist specializing in complex biofilm dynamics and sulcular pH shifts in chronic burning and hypersensitivity cases."
+										data-better="Gentle sulcular debridement, warm saline irrigation, non-foaming SLS-free pastes, glycine powder subgingival airflow."
+										data-worst="Alcohol-based antiseptic mouthwashes, aggressive ultrasonic scaling on thin exposed root dentin."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 							</div>
 
@@ -1883,7 +2096,7 @@ import { SITE_TITLE } from '../consts';
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/dr-susan-kaufman.jpg" alt="Portrait of Dr. Susan Kaufman, MD" width="90" height="90" loading="lazy" />
+											<img src="/contributors/dr-susan-kaufman.jpg" alt="Portrait of Dr. Susan Kaufman, MD" width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">Dr. Susan Kaufman, MD</h4>
@@ -1894,26 +2107,42 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Boston, Massachusetts</span>
 									</div>
-									<span class="contributor-role-tag">Orofacial Neuroscience Reviewer</span>
-									<span class="contributor-tenure">18 Years Neurological Research</span>
-									<p class="contributor-desc">Provided clinical peer review on trigeminal central sensitization, spinal nucleus wind-up, and peripheral small fiber neuropathy parallels.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Clinical Insights</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Peripheral input removal, quiet neuro-recovery windows, ferritin &gt;50</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Continuous noxious proton exposure, high-dose anticholinergics</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Neurology Reviewer</span>
+										<span class="tag-dot">&bull;</span>
+										<span>18 Years Neurological Research</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Targeting the peripheral sensory driver rather than relying solely on central nervous volume dampers, while elevating ferritin above 50 ng/mL.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="Dr. Susan Kaufman, MD"
+										data-role="Orofacial Neuroscience Reviewer &bull; 18 Years Neurological Research"
+										data-location="Boston, Massachusetts"
+										data-avatar="/contributors/dr-susan-kaufman.jpg"
+										data-bio="Clinical researcher in trigeminal convergence and neuropathic pain mechanisms. Reviewed our chapters on brainstem central sensitization and small fiber neuropathy."
+										data-better="Peripheral hardware input removal, uninterrupted remyelination recovery windows, serum ferritin elevated over 50 ng/mL."
+										data-worst="Continuous peripheral proton bombardment, high-dose sedatives with anticholinergic dry mouth side effects."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/marcus-thorne.jpg" alt="Portrait of Marcus Thorne, RPSGT" width="90" height="90" loading="lazy" />
+											<img src="/contributors/marcus-thorne.jpg" alt="Portrait of Marcus Thorne, RPSGT" width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">Marcus Thorne, RPSGT</h4>
@@ -1924,20 +2153,36 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Denver, Colorado</span>
 									</div>
-									<span class="contributor-role-tag">Airway &amp; Nocturnal Saliva Analyst</span>
-									<span class="contributor-tenure">11 Years Sleep Physiology</span>
-									<p class="contributor-desc">Contributed data on mouth breathing mechanics, nocturnal salivary bicarbonate drops, and oral mucosa desiccation during sleep.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Clinical Insights</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Nasal breathing restore, gentle sleep taping, bedroom humidification</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Open-mouth snoring, dry air desiccation, late evening sugary snacks</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Airway Analyst</span>
+										<span class="tag-dot">&bull;</span>
+										<span>11 Years Sleep Physiology</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Restoring continuous nasal breathing via sleep tape, preventing nocturnal oral mucosa drying, and maintaining 45% bedroom humidity.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="Marcus Thorne, RPSGT"
+										data-role="Airway &amp; Nocturnal Saliva Analyst &bull; 11 Years Sleep Physiology"
+										data-location="Denver, Colorado"
+										data-avatar="/contributors/marcus-thorne.jpg"
+										data-bio="Sleep physiologist examining how mouth breathing during REM sleep shuts off salivary gland output, precipitating overnight pH drops below the critical 5.5 threshold."
+										data-better="Nasal breathing restore, gentle hypoallergenic mouth taping, bedroom ultrasonic humidification, sleeping on left side."
+										data-worst="Open-mouth snoring, dry forced-air heating, alcohol before bed, late night sugary fermentable snacks."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 							</div>
 
@@ -1949,7 +2194,7 @@ import { SITE_TITLE } from '../consts';
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/dr-julian-priestley.jpg" alt="Portrait of Dr. Julian Priestley, PhD" width="90" height="90" loading="lazy" />
+											<img src="/contributors/dr-julian-priestley.jpg" alt="Portrait of Dr. Julian Priestley, PhD" width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">Dr. Julian Priestley, PhD</h4>
@@ -1960,26 +2205,42 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Oxford, United Kingdom</span>
 									</div>
-									<span class="contributor-role-tag">Electrophysiology Research Analyst</span>
-									<span class="contributor-tenure">15 Years Ion Channel Research</span>
-									<p class="contributor-desc">Reviewed biophysical gating kinetics of ASIC1 and TRPV1 proton channels under dynamic salivary pH shifts and calcium gradients.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Scientific Insights</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Salivary neutral pH &gt;6.8, extracellular calcium buffering</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Transient drops below pH 6.0, sustained proton channel activation</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Electrophysiologist</span>
+										<span class="tag-dot">&bull;</span>
+										<span>15 Years Ion Channel Research</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Buffer oral micro-environments above pH 6.8 to prevent proton gating of ASIC1a and TRPV1 nociceptors on unmyelinated C-fibers.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="Dr. Julian Priestley, PhD"
+										data-role="Electrophysiology Research Analyst &bull; 15 Years Ion Channel Research"
+										data-location="Oxford, United Kingdom"
+										data-avatar="/contributors/dr-julian-priestley.jpg"
+										data-bio="Electrophysiologist investigating the biophysical gating of acid-sensing ion channels (ASIC1, ASIC3) and capsaicin-sensitive TRPV1 channels in mucosal nerve endings."
+										data-better="Salivary pH maintained strictly &gt;6.8, extracellular calcium and magnesium buffering, disarming the local electrochemical gradient."
+										data-worst="Transient local micro-acid drops below pH 6.0, sustained proton channel activation, hyperosmolar rinses."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 
 								<div class="contributor-card">
 									<div class="contributor-avatar-wrap">
 										<div class="contributor-avatar">
-											<img src="/contributors/claire-mercier.jpg" alt="Portrait of Claire Mercier, MSc" width="90" height="90" loading="lazy" />
+											<img src="/contributors/claire-mercier.jpg" alt="Portrait of Claire Mercier, MSc" width="172" height="172" loading="lazy" />
 										</div>
 									</div>
 									<h4 class="contributor-name">Claire Mercier, MSc</h4>
@@ -1990,20 +2251,36 @@ import { SITE_TITLE } from '../consts';
 										</svg>
 										<span>Lyon, France</span>
 									</div>
-									<span class="contributor-role-tag">Oral Biochemistry Researcher</span>
-									<span class="contributor-tenure">9 Years Salivary Proteomics</span>
-									<p class="contributor-desc">Analyzed mucin layer dissolution rates against commercial surfactant detergents and low-pH dietary challenges.</p>
-									<div class="contributor-particulars">
-										<span class="particulars-title">Scientific Insights</span>
-										<div class="particulars-row">
-											<span class="particulars-label-better">Better:</span>
-											<span class="particulars-val">Intact salivary pellicle, lubricating high molecular weight mucins</span>
-										</div>
-										<div class="particulars-row">
-											<span class="particulars-label-worst">Worst:</span>
-											<span class="particulars-val">Sodium lauryl sulfate detergents, frequent low-pH acidic drinks</span>
-										</div>
+									<div class="contributor-combined-tag">
+										<span class="tag-highlight">Oral Biochemist</span>
+										<span class="tag-dot">&bull;</span>
+										<span>9 Years Salivary Proteomics</span>
 									</div>
+									<div class="contributor-better-summary">
+										<div class="better-summary-title">
+											<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+												<polyline points="20 6 9 17 4 12"></polyline>
+											</svg>
+											<span>What Made It Better</span>
+										</div>
+										<p class="better-summary-text">Preserving the natural salivary mucin layer by banning sodium lauryl sulfate, synthetic detergents, and abrasive tooth powders.</p>
+									</div>
+									<button 
+										class="contributor-read-more-btn" 
+										type="button"
+										data-name="Claire Mercier, MSc"
+										data-role="Oral Biochemistry Researcher &bull; 9 Years Salivary Proteomics"
+										data-location="Lyon, France"
+										data-avatar="/contributors/claire-mercier.jpg"
+										data-bio="Biochemical analyst measuring the protective breakdown of high-molecular-weight salivary mucins (MUC5B and MUC7) under chronic dietary acid and detergent assault."
+										data-better="Intact mucosal mucin pellicle, non-ionic surfactant oral gels, lubricating mucin-preserving rinses."
+										data-worst="Sodium lauryl sulfate (SLS) foaming agents, acidic sparkling waters, frequent citrus snacking."
+									>
+										<span>Read Full Case &amp; Particulars</span>
+										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
 								</div>
 							</div>
 						</div>
