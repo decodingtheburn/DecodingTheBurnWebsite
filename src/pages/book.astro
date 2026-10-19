@@ -2339,6 +2339,123 @@ import { SITE_TITLE } from '../consts';
 				}
 			}
 
+			
+			/* 0 to 10 Pain Scale Clinical Visual */
+			.pain-scale-graphic-container {
+				margin: 1.4rem auto 1.6rem;
+				background: #ffffff;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 12px;
+				padding: 1.25rem 1.15rem 1.1rem;
+				box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+			}
+
+			.pain-scale-header-block {
+				text-align: center;
+				margin-bottom: 1.1rem;
+			}
+
+			.pain-scale-main-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.05rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.25rem;
+			}
+
+			.pain-scale-sub-label {
+				font-size: 0.8rem;
+				color: #64748b;
+				margin: 0;
+			}
+
+			.pain-scale-gradient-bar {
+				display: grid;
+				grid-template-columns: repeat(11, 1fr);
+				gap: 3px;
+				margin: 0.85rem 0 0.5rem;
+				border-radius: 6px;
+				overflow: hidden;
+			}
+
+			.pain-scale-step {
+				padding: 0.55rem 0.2rem 0.45rem;
+				text-align: center;
+				color: #ffffff;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+			}
+
+			.pain-scale-num {
+				font-size: 0.92rem;
+				font-weight: 800;
+				line-height: 1;
+			}
+
+			.pain-scale-desc {
+				font-size: 0.62rem;
+				font-weight: 600;
+				opacity: 0.95;
+				margin-top: 0.2rem;
+				white-space: nowrap;
+			}
+
+			.pain-scale-callout-marker {
+				border: 2px solid #000000;
+				transform: scale(1.04);
+				z-index: 2;
+				border-radius: 4px;
+				box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+			}
+
+			.pain-scale-tiers-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 0.65rem;
+				margin-top: 0.85rem;
+				padding-top: 0.85rem;
+				border-top: 1px solid #f1f5f9;
+			}
+
+			.pain-scale-tier-card {
+				background: #f8fafc;
+				border-radius: 8px;
+				padding: 0.65rem 0.75rem;
+				border-left: 3px solid #cbd5e1;
+			}
+
+			.pain-scale-tier-card.tier-mild { border-left-color: #22c55e; }
+			.pain-scale-tier-card.tier-moderate { border-left-color: #eab308; }
+			.pain-scale-tier-card.tier-severe { border-left-color: #dc2626; background: #fff1f2; }
+
+			.tier-card-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.78rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.2rem;
+			}
+
+			.tier-card-desc {
+				font-size: 0.73rem;
+				line-height: 1.45;
+				color: #475569;
+				margin: 0;
+			}
+
+			@media (max-width: 640px) {
+				.pain-scale-desc {
+					display: none;
+				}
+				.pain-scale-tiers-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
 			/* Book Figures / Diagrams */
 			.book-figure {
 				margin: 1.6rem auto 1.75rem;
@@ -2480,7 +2597,7 @@ import { SITE_TITLE } from '../consts';
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part II: Dentists &amp; Doctors Don't Know</div>
 								<a href="#page-6"><span>Ch 3: The Institutional Blind Spot</span><span class="menu-num">p. 6</span></a>
-								<a href="#page-8"><span>Ch 4: The Supplement Graveyard</span><span class="menu-num">p. 8</span></a>
+								<a href="#page-8"><span>Ch 4: The Supplement Trial</span><span class="menu-num">p. 8</span></a>
 								<a href="#page-11"><span>Ch 5: The B12 Blind Spot</span><span class="menu-num">p. 11</span></a>
 							</div>
 						</div>
@@ -2765,7 +2882,7 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-8" class="toc-link" title="Chapter 4: The Supplement Graveyard">Chapter 4: The Supplement Graveyard</a>
+								<a href="#page-8" class="toc-link" title="Chapter 4: The Supplement Trial">Chapter 4: The Supplement Trial</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">8</span>
 							</div>
@@ -3394,7 +3511,7 @@ import { SITE_TITLE } from '../consts';
 
 							<div class="overview-chapter-row">
 								<div class="overview-main">
-									<h4 class="overview-item-title"><a href="#page-8">Chapter 4: The Supplement Graveyard</a></h4>
+									<h4 class="overview-item-title"><a href="#page-8">Chapter 4: The Supplement Trial</a></h4>
 									<p class="overview-sentence">Every BMS patient goes through the cabinet-filling supplement phase, spending small fortunes on alpha-lipoic acid, zinc, iron, and high-dose B-complex&nbsp;vitamins.</p>
 									<p class="overview-sentence">Unless lab work shows a genuine clinical deficiency, medical trials show nutritional supplements help fewer than 15% of patients; in my own trial, fifty different bottles did not lower my score by a single&nbsp;point.</p>
 									<p class="overview-sentence">You cannot out-supplement a physical breach in your tooth hardware or a localized acid leak that is constantly exciting open nerve&nbsp;pipes.</p>
@@ -3402,7 +3519,7 @@ import { SITE_TITLE } from '../consts';
 								<div class="overview-subtopics">
 									<div class="overview-subtopics-header">Core Subtopics</div>
 									<ol>
-										<li>The 50+ supplement experiment graveyard: what the science really says (&lt;15% unselected response)</li>
+										<li>The 50+ supplement experiment trial: what the science really says (&lt;15% unselected response)</li>
 										<li>The laboratory trap: why spotless venous blood panels miss local subgingival acid</li>
 										<li>Why swallowing systemic pills cannot seal exposed microscopic dentin tubules</li>
 									</ol>
@@ -4040,7 +4157,8 @@ import { SITE_TITLE } from '../consts';
 						<p>They offered central nerve-dulling medications: gabapentin, pregabalin, tricyclic antidepressants. Drugs designed to muffle the volume inside the spinal cord and brain so you care a little bit less about&nbsp;the&nbsp;alarm.</p>
 						<p>Sitting in my car in the clinic parking lot with my mouth burning at a relentless ten out of ten, I refused to accept&nbsp;that&nbsp;conclusion.</p>
 						<p>My day job is computer programming. In software engineering, hardware and electrical circuits do not execute high-voltage error loops in a total vacuum. If a sensor is tripping an unceasing, maximum-threshold alarm, something physical or chemical is actively breaching&nbsp;the&nbsp;circuit.</p>
-
+						<p>Sensory nerve fibers do not possess imagination. They are biological telemetry cables. They report what the transducers at their terminal&nbsp;tips&nbsp;detect.</p>
+						<p>I realized that if I wanted to survive this, I had to stop acting like a passive patient waiting for an easy answer and start acting like an investigator debugging a broken system. If standard medicine declared that everything was invisible, it simply meant they were looking with the wrong instruments, at the wrong scale, and asking the&nbsp;wrong&nbsp;questions.</p>
 					</div>
 				</div>
 
@@ -4058,16 +4176,54 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="chapter-content">
-						<p>Sensory nerve fibers do not possess imagination. They are biological telemetry cables. They report what the transducers at their terminal&nbsp;tips&nbsp;detect.</p>
-						<p>I realized that if I wanted to survive this, I had to stop acting like a passive patient waiting for an easy answer and start acting like an investigator debugging a broken system. If standard medicine declared that everything was invisible, it simply meant they were looking with the wrong instruments, at the wrong scale, and asking the&nbsp;wrong&nbsp;questions.</p>
-						<p>The fire was real. The alarm was screaming. My mission was to track down the exact fuel feeding&nbsp;the&nbsp;blaze.</p>
-						<figure class="book-figure">
-							<img src="/mcgill-pain-index-scale-comparison.jpg" alt="McGill Pain Index comparison showing Burning Mouth Syndrome ranking near acute non-terminal cancer pain" loading="lazy" />
-							<figcaption class="book-figure-caption">
-								<strong>Figure 1: McGill Pain Index Comparison.</strong> Burning Mouth Syndrome ranks near acute non-terminal cancer pain, yet clinical exams consistently report healthy pink&nbsp;tissue.
-							</figcaption>
-						</figure>
-						<div class="book-callout" style="margin-top: 1.5rem;">
+						<h3>Decoding the 0-to-10 Pain Scale in the Clinic</h3>
+						<p>Every time you sit in a doctor's examination room or triage bay, someone asks the universal question: "On a scale from 0 to 10, with 0 being no pain and 10 being the worst pain imaginable, what is your number?"</p>
+						<p>Most patients throw out a number without understanding how clinicians actually interpret it. In clinical medicine, the 0-to-10 system (known as the Numeric Rating Scale or NRS) is divided into three critical functional tiers:</p>
+						<p><strong>0 to 3 is Mild Pain:</strong> Noticeable in the background, but does not disrupt work, conversations, or sleep.</p>
+						<p><strong>4 to 6 is Moderate Pain:</strong> Demands active mental effort to ignore. It impairs focus, causes irritability, and forces you to alter daily activities.</p>
+						<p><strong>7 to 10 is Severe Pain:</strong> Completely disables normal executive function. Sleep becomes fractured, social engagement collapses, and autonomic stress responses (elevated heart rate, cortisol spikes) lock in permanently.</p>
+						<p>In clinical trials, doctors consider a <strong>2-point reduction</strong> on the 10-point scale to be the threshold for "minimally clinically important difference" (MCID). If an intervention takes you from an 8 down to a 6, that is a medically meaningful win. When I brought my own baseline from a constant 10 down to a 0, it was not a slight subjective shift; it was a total biological deactivation of the alarm.</p>
+
+						<!-- Standalone Custom Clinical 0-to-10 Graphic -->
+						<div class="pain-scale-graphic-container">
+							<div class="pain-scale-header-block">
+								<h4 class="pain-scale-main-title">Figure 1: The Clinical 0-to-10 Numerical Rating Scale (NRS)</h4>
+								<p class="pain-scale-sub-label">Standard Medical Scoring vs. Active Burning Mouth Syndrome Range</p>
+							</div>
+
+							<div class="pain-scale-gradient-bar">
+								<div class="pain-scale-step" style="background: #16a34a;"><span class="pain-scale-num">0</span><span class="pain-scale-desc">Zero Pain</span></div>
+								<div class="pain-scale-step" style="background: #22c55e;"><span class="pain-scale-num">1</span><span class="pain-scale-desc">Faint</span></div>
+								<div class="pain-scale-step" style="background: #4ade80; color: #0f172a;"><span class="pain-scale-num">2</span><span class="pain-scale-desc">Mild</span></div>
+								<div class="pain-scale-step" style="background: #a3e635; color: #0f172a;"><span class="pain-scale-num">3</span><span class="pain-scale-desc">Noticeable</span></div>
+								<div class="pain-scale-step" style="background: #facc15; color: #0f172a;"><span class="pain-scale-num">4</span><span class="pain-scale-desc">Moderate</span></div>
+								<div class="pain-scale-step" style="background: #eab308; color: #0f172a;"><span class="pain-scale-num">5</span><span class="pain-scale-desc">Distracting</span></div>
+								<div class="pain-scale-step" style="background: #f97316;"><span class="pain-scale-num">6</span><span class="pain-scale-desc">Disruptive</span></div>
+								<div class="pain-scale-step pain-scale-callout-marker" style="background: #ea580c;"><span class="pain-scale-num">7</span><span class="pain-scale-desc">Severe</span></div>
+								<div class="pain-scale-step pain-scale-callout-marker" style="background: #dc2626;"><span class="pain-scale-num">8</span><span class="pain-scale-desc">Very Intense</span></div>
+								<div class="pain-scale-step pain-scale-callout-marker" style="background: #b91c1c;"><span class="pain-scale-num">9</span><span class="pain-scale-desc">Excruciating</span></div>
+								<div class="pain-scale-step pain-scale-callout-marker" style="background: #7f1d1d;"><span class="pain-scale-num">10</span><span class="pain-scale-desc">Maximal</span></div>
+							</div>
+
+							<div class="pain-scale-tiers-grid">
+								<div class="pain-scale-tier-card tier-mild">
+									<div class="tier-card-title">0 to 3: Mild Baseline</div>
+									<p class="tier-card-desc">Tolerable background noise. Does not interrupt sleep, work, or speech.</p>
+								</div>
+								<div class="pain-scale-tier-card tier-moderate">
+									<div class="tier-card-title">4 to 6: Moderate Impairment</div>
+									<p class="tier-card-desc">Requires conscious coping effort. Work focus and social patience degrade.</p>
+								</div>
+								<div class="pain-scale-tier-card tier-severe">
+									<div class="tier-card-title">7 to 10: Severe BMS Zone</div>
+									<p class="tier-card-desc">Small-fiber trigeminal saturation. Clinical target for anti-acid and tubule intervention.</p>
+								</div>
+							</div>
+						</div>
+
+						<p>Why do pain research scientists often use the 50-point McGill Pain Index alongside the 10-point scale? Because a flat number between 0 and 10 does not capture the qualitative torture of a thermal burn. The McGill scale (scored from 0 to 50) factors in sensory words like scalding, searing, and exhausting. In published McGill studies, BMS patients consistently score between <strong>30 and 42 out of 50</strong>: ranking right alongside kidney stones and non-terminal cancer pain, yet far exceeding an ordinary acute toothache (19 out of 50). This explains why telling a patient with an 8-out-of-10 scalding burn that "everything looks fine" feels like medical gaslighting.</p>
+
+						<div class="book-callout" style="margin-top: 1.25rem;">
 							<span class="book-callout-icon" aria-hidden="true">
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
 									<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -4223,16 +4379,16 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 4: The Supplement Graveyard (Page 1 of 3) -->
+			<!-- Chapter 4: The Supplement Trial (Page 1 of 3) -->
 
 			<section class="book-page" id="page-8">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 4: The Supplement Graveyard</span>
+						<span class="chapter-header-label">Chapter 4: The Supplement Trial</span>
 						<span class="page-count-label">Page 8</span>
 					</div>
 
-					<h2 class="chapter-title">Chapter 4: The&nbsp;Supplement&nbsp;Graveyard</h2>
+					<h2 class="chapter-title">Chapter 4: The&nbsp;Supplement&nbsp;Trial</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Once the specialists closed their doors and slapped me with the label of idiopathic neuropathy, I fell into the exact same trap that ensnares nearly every desperate chronic&nbsp;pain&nbsp;patient.</p>
@@ -4251,12 +4407,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 4: The Supplement Graveyard (Page 2 of 3) -->
+			<!-- Chapter 4: The Supplement Trial (Page 2 of 3) -->
 
 			<section class="book-page" id="page-9">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 4: The Supplement Graveyard</span>
+						<span class="chapter-header-label">Chapter 4: The Supplement Trial</span>
 						<span class="page-count-label">Page 9</span>
 					</div>
 
@@ -4281,12 +4437,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 4: The Supplement Graveyard (Page 3 of 3) -->
+			<!-- Chapter 4: The Supplement Trial (Page 3 of 3) -->
 
 			<section class="book-page" id="page-10">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 4: The Supplement Graveyard</span>
+						<span class="chapter-header-label">Chapter 4: The Supplement Trial</span>
 						<span class="page-count-label">Page 10</span>
 					</div>
 
@@ -4297,7 +4453,7 @@ import { SITE_TITLE } from '../consts';
 						<p>What they fail to understand is that your blood chemistry measures what is floating through your general circulation. It does not measure the microscopic extracellular pH inside a four-millimeter gum pocket. It does not measure the direct protons washing over twenty thousand exposed dentinal tubules on a&nbsp;lower&nbsp;molar.</p>
 						<p>A person can have pristine, textbook blood chemistry and still have a raging, localized electrical fire in their jaw because physical hardware&nbsp;has&nbsp;failed.</p>
 						<p>Swallowing pills was easy because it fit the conventional medical model: take something in a bottle to make the&nbsp;symptom&nbsp;disappear.</p>
-						<p>Walking away from that supplement graveyard forced me to abandon the search for an external pill. It forced me to look inside the physical architecture of the oral cavity itself, where biological barriers were being quietly&nbsp;stripped&nbsp;away.</p>
+						<p>Walking away from that failed supplement trial forced me to abandon the search for an external pill. It forced me to look inside the physical architecture of the oral cavity itself, where biological barriers were being quietly&nbsp;stripped&nbsp;away.</p>
 
 					</div>
 				</div>
