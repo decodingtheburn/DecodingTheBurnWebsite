@@ -47,8 +47,9 @@ import { SITE_TITLE } from '../consts';
 
 			/* Book Secondary Sticky Navigation Bar (Clean, 1-Line High with Dropdowns) */
 			.reading-toolbar {
+				position: -webkit-sticky;
 				position: sticky;
-				top: 0;
+				top: 70px;
 				z-index: 950;
 				display: flex;
 				justify-content: center;
@@ -58,8 +59,9 @@ import { SITE_TITLE } from '../consts';
 				-webkit-backdrop-filter: blur(16px);
 				padding: 0 1.25rem;
 				height: 48px;
-				border-bottom: 1px solid rgba(168, 85, 247, 0.28);
-				box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.65);
+				border: 1px solid rgba(168, 85, 247, 0.28);
+				border-top: none;
+				box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.75);
 				margin: 0 auto 3rem;
 				font-family: 'Plus Jakarta Sans', sans-serif;
 				width: 100%;
@@ -1693,7 +1695,26 @@ import { SITE_TITLE } from '../consts';
 				box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
 			}
 
+			@media (max-width: 1280px) and (min-width: 769px), (orientation: portrait) and (min-width: 769px) {
+				.reading-toolbar {
+					top: 64px;
+				}
+			}
+
 			@media (max-width: 768px) {
+				.reading-toolbar {
+					top: 58px;
+					padding: 0 0.75rem;
+					height: 44px;
+				}
+				.toolbar-trigger {
+					padding: 0.3rem 0.45rem;
+					font-size: 0.76rem;
+				}
+				.toolbar-start-btn {
+					padding: 0.32rem 0.65rem;
+					font-size: 0.74rem;
+				}
 				.book-viewport {
 					padding: 0 1rem;
 					margin-top: 2rem;
