@@ -30,6 +30,13 @@ import { SITE_TITLE } from '../consts';
 				--brand-rose-subtle: #fb7185;
 			}
 
+			/* On the book reader page, the main site header scrolls away naturally */
+			:global(.navbar) {
+				position: relative !important;
+				top: auto !important;
+				margin: 6px auto 0 !important;
+			}
+
 			html,
 			body {
 				overflow-x: clip !important;
@@ -47,16 +54,26 @@ import { SITE_TITLE } from '../consts';
 
 			.book-viewport {
 				max-width: 880px;
-				margin: 3rem auto 7rem;
+				margin: 1.5rem auto 7rem;
 				padding: 0 1.5rem;
+			}
+
+			/* Sticky Reader Ribbon Wrapper (Locks to top: 0 as the always-on sticky menu) */
+			.reading-toolbar-wrapper {
+				position: -webkit-sticky;
+				position: sticky;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 1000;
+				display: flex;
+				justify-content: center;
+				pointer-events: none; /* Let clicks pass through empty wrapper margins */
 			}
 
 			/* Book Secondary Sticky Navigation Bar (Clean, 1-Line High with Dropdowns) */
 			.reading-toolbar {
-				position: -webkit-sticky;
-				position: sticky;
-				top: 70px;
-				z-index: 950;
+				pointer-events: auto; /* Re-enable pointer events for the bar */
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -68,9 +85,10 @@ import { SITE_TITLE } from '../consts';
 				border: 1px solid rgba(168, 85, 247, 0.28);
 				border-top: none;
 				box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.75);
-				margin: 0 auto 3rem;
+				margin: 0 auto;
 				font-family: 'Plus Jakarta Sans', sans-serif;
 				width: 100%;
+				max-width: 880px;
 				box-sizing: border-box;
 				border-radius: 0 0 12px 12px;
 			}
@@ -1701,15 +1719,8 @@ import { SITE_TITLE } from '../consts';
 				box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
 			}
 
-			@media (max-width: 1280px) and (min-width: 769px), (orientation: portrait) and (min-width: 769px) {
-				.reading-toolbar {
-					top: 64px;
-				}
-			}
-
 			@media (max-width: 768px) {
 				.reading-toolbar {
-					top: 58px;
 					padding: 0 0.75rem;
 					height: 44px;
 				}
@@ -1756,8 +1767,8 @@ import { SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		
-		<div class="book-viewport">
-			<!-- Sticky Reader Navigation Toolbar (1-Line High with Dropdowns) -->
+		<!-- Top-Level Sticky Reader Navigation Ribbon (Sticky at top: 0 always) -->
+		<div class="reading-toolbar-wrapper">
 			<nav class="reading-toolbar" aria-label="Book Reader Navigation">
 				<div class="toolbar-actions">
 					<div class="toolbar-nav-group">
@@ -1860,7 +1871,9 @@ import { SITE_TITLE } from '../consts';
 					</div>
 				</div>
 			</nav>
+		</div>
 
+		<div class="book-viewport">
 			<!-- BOOK COVER -->
 			<div class="book-cover-container">
 				<div class="book-cover">
