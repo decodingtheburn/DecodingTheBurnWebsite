@@ -2303,6 +2303,108 @@ import { SITE_TITLE } from '../consts';
 					min-height: auto;
 				}
 			}
+
+			/* Book Figures / Diagrams */
+			.book-figure {
+				margin: 1.6rem auto 1.75rem;
+				max-width: 100%;
+				text-align: center;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 8px;
+				padding: 0.85rem;
+				box-sizing: border-box;
+				box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+			}
+
+			.book-figure img {
+				display: block;
+				max-width: 100%;
+				height: auto;
+				max-height: 380px;
+				margin: 0 auto;
+				border-radius: 6px;
+				object-fit: contain;
+			}
+
+			.book-figure-caption {
+				margin-top: 0.75rem;
+				font-size: 0.82rem;
+				color: #475569;
+				line-height: 1.5;
+				text-align: center;
+				font-style: italic;
+				padding: 0 0.5rem;
+			}
+
+			.book-figure-caption strong {
+				color: #1e293b;
+				font-style: normal;
+				font-weight: 700;
+			}
+
+			/* Vertical Margin Feedback & Share Tabs */
+			.book-margin-actions {
+				position: fixed;
+				right: 1.25rem;
+				top: 50%;
+				transform: translateY(-50%);
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+				z-index: 99;
+			}
+
+			.book-margin-tab {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.85rem 0.6rem;
+				background: #0f172a;
+				color: #f8fafc;
+				border: 1px solid rgba(168, 85, 247, 0.4);
+				border-radius: 8px;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.76rem;
+				font-weight: 700;
+				text-decoration: none;
+				cursor: pointer;
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+				transition: all 0.2s ease;
+				writing-mode: vertical-rl;
+				text-orientation: mixed;
+				letter-spacing: 0.05em;
+			}
+
+			.book-margin-tab svg {
+				transform: rotate(90deg);
+				color: #c084fc;
+				flex-shrink: 0;
+			}
+
+			.book-margin-tab:hover {
+				background: #1e1b4b;
+				border-color: #a855f7;
+				color: #ffffff;
+				transform: translateX(-3px);
+				box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+			}
+
+			.book-margin-tab.tab-share {
+				background: #18181b;
+				border-color: #52525b;
+			}
+
+			.book-margin-tab.tab-share:hover {
+				background: #27272a;
+				border-color: #a1a1aa;
+			}
+
+			@media (max-width: 1040px) {
+				.book-margin-actions {
+					display: none;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -2414,6 +2516,26 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</nav>
 		</div>
+
+		<!-- Vertical Margin Feedback & Share Tabs (Desktop Margin) -->
+		<aside class="book-margin-actions" aria-label="Reader Feedback & Sharing">
+			<button id="book-margin-feedback-btn" class="book-margin-tab" type="button" title="Send Feedback or Comments">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+				</svg>
+				<span>Send Feedback</span>
+			</button>
+			<a href="/share" class="book-margin-tab tab-share" title="Share Your BMS Story">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<circle cx="18" cy="5" r="3"></circle>
+					<circle cx="6" cy="12" r="3"></circle>
+					<circle cx="18" cy="19" r="3"></circle>
+					<line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+					<line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+				</svg>
+				<span>Share Story</span>
+			</a>
+		</aside>
 
 		<div class="book-viewport">
 			<!-- Text-to-Speech / Read Aloud Feature -->
@@ -3845,7 +3967,17 @@ import { SITE_TITLE } from '../consts';
 						<p>Sensory nerve fibers do not possess imagination. They are biological telemetry cables. They report what the transducers at their terminal&nbsp;tips&nbsp;detect.</p>
 						<p>I realized that if I wanted to survive this, I had to stop acting like a passive patient waiting for an easy answer and start acting like an investigator debugging a broken system. If standard medicine declared that everything was invisible, it simply meant they were looking with the wrong instruments, at the wrong scale, and asking the&nbsp;wrong&nbsp;questions.</p>
 						<p>The fire was real. The alarm was screaming. My mission was to track down the exact fuel feeding&nbsp;the&nbsp;blaze.</p>
-
+						<div class="book-callout" style="margin-top: 1.5rem;">
+							<span class="book-callout-icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+									<polyline points="22,6 12,13 2,6"></polyline>
+								</svg>
+							</span>
+							<div class="book-callout-text">
+								<p><strong>Share Your Story:</strong> Everyone will be different and I am very interested to know your story. If you want to share your experience, please reach out to me online or visit <a href="/share" style="color: #7c3aed; font-weight: 700; text-decoration: underline;">decodingtheburn.com/share</a>.</p>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -3906,6 +4038,12 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<p>Because nobody sits at the exact intersection where dental hardware meets fluid chemistry and nerve electrophysiology, Burning Mouth Syndrome is routinely declared an incurable,&nbsp;idiopathic&nbsp;mystery.</p>
+						<figure class="book-figure">
+							<img src="/defective-crown-margin-xray.png" alt="Microscopic gap and cement dissolution beneath dental crown margin" loading="lazy" />
+							<figcaption class="book-figure-caption">
+								<strong>Figure 1: Hardware Interface Breakdown.</strong> Standard 2D X-rays miss sub-micron cement washouts and open cervical tubules where bacterial acids continuously excite underlying pulpal&nbsp;receptors.
+							</figcaption>
+						</figure>
 						<div class="book-callout">
 							<span class="book-callout-icon" aria-hidden="true">
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -4174,8 +4312,18 @@ import { SITE_TITLE } from '../consts';
 						<span class="page-count-label">Page 14</span>
 					</div>
 
-					<div class="part-break-banner">
-						<p class="part-break-title">Part III: The First Principles of Mouth Burning Pain</p>
+					<!-- Major Part III Hero Block (~1/3 of the page, centered, large & stylish) -->
+					<div class="part-hero-block">
+						<div class="part-hero-ornament">
+							<span class="part-hero-ornament-line"></span>
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+							</svg>
+							<span class="part-hero-ornament-line right"></span>
+						</div>
+						<div class="part-hero-num">Part III</div>
+						<h1 class="part-hero-title">The First Principles of Mouth Burning Pain</h1>
+						<p class="part-hero-desc">Decoding the biological hardware: how dentinal tubule fluid dynamics, ASIC proton receptors, and trigeminal crosstalk generate unceasing&nbsp;signals.</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 6: The&nbsp;Slow&nbsp;Fuse</h2>
@@ -4332,6 +4480,12 @@ import { SITE_TITLE } from '../consts';
 						<p>Multiply that area by the baseline density of dentinal tubules. That tiny three-millimeter patch contains between 60,000 and 135,000 microscopic tunnels plunging straight from the oral cavity into the living pulp chamber <a href="#src-7" class="cite-ref">[7]</a>.</p>
 						<p>Now consider that recession rarely happens on just one tooth.</p>
 						<p>Across an entire dental arch with multiple receded margins, worn cervical abfractions, and chipped enamel collars, a mouth can easily expose millions of microscopic conduits to the oral environment.</p>
+						<figure class="book-figure">
+							<img src="/dentinal-tubules-sem-micrograph.jpg" alt="Scanning electron microscope view of open dentinal tubules" loading="lazy" />
+							<figcaption class="book-figure-caption">
+								<strong>Figure 2: Dentinal Micro-Pipes (SEM).</strong> Up to 45,000 open hollow cylinders per mm² expose pulpal nerve terminals directly to oral acids once the smear layer dissolves.
+							</figcaption>
+						</figure>
 						<p>Under normal physiological conditions, your body attempts to cap these pipes. A microscopic layer of cut mineral and protein debris - called the smear layer - acts like natural corks plugging the tubule openings. Resting saliva constantly bathes these plugs in calcium and phosphate, keeping them sealed.</p>
 						<p>The crisis begins when ambient oral pH drops.</p>
 						<p>Enamel is extraordinarily durable; it resists dissolving until acidity reaches pH 5.5. But root cementum and dentin are far softer and far more vulnerable. They begin demineralizing at pH 6.2 to 6.7 <a href="#src-14" class="cite-ref">[14]</a> - a threshold crossed by ordinary tea, coffee, salad dressing, or the lactic acid produced by everyday oral bacteria.</p>
@@ -4639,8 +4793,18 @@ import { SITE_TITLE } from '../consts';
 						<span class="page-count-label">Page 30</span>
 					</div>
 
-					<div class="part-break-banner">
-						<p class="part-break-title">Part IV: Taking Charge of Your Own Investigation</p>
+					<!-- Major Part IV Hero Block (~1/3 of the page, centered, large & stylish) -->
+					<div class="part-hero-block">
+						<div class="part-hero-ornament">
+							<span class="part-hero-ornament-line"></span>
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+							</svg>
+							<span class="part-hero-ornament-line right"></span>
+						</div>
+						<div class="part-hero-num">Part IV</div>
+						<h1 class="part-hero-title">Taking Charge of Your Own Investigation</h1>
+						<p class="part-hero-desc">The actionable diagnostic roadmap: starving the fire, calculating personal time lags, mechanical shields, and clinical partnership&nbsp;playbooks.</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 10: Starving&nbsp;the&nbsp;Fire</h2>
@@ -4715,6 +4879,12 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<p>Sweeteners: If an absolute craving hits, use only 100% pure stevia extract powder or drops. You must verify that it contains zero bulking agents like maltodextrin or erythritol, which can alter osmotic pressure or feed&nbsp;bacterial&nbsp;fermentation.</p>
+						<figure class="book-figure">
+							<img src="/ph-scale-tooth-critical-threshold.png" alt="Critical pH threshold scale for enamel, dentin, and cementum" loading="lazy" />
+							<figcaption class="book-figure-caption">
+								<strong>Figure 3: Critical Acid Dissolution Thresholds.</strong> While enamel dissolves below pH 5.5, receded root dentin and cementum begin dissolving at pH 6.2 to 6.7, gating ASIC proton receptors.
+							</figcaption>
+						</figure>
 						<h3>The Core&nbsp;Mindset</h3>
 						<p>Do not mistake this elimination baseline for a permanent nutritional philosophy or an&nbsp;ideological&nbsp;lifestyle.</p>
 						<p>It is a diagnostic and therapeutic reset tool. It proves that your pain is driven by real, measurable chemical inputs, gives your frayed mucosal tissues an environment of continuous rest, and establishes the quiet baseline you need to methodically inspect and repair your&nbsp;dental&nbsp;hardware.</p>
@@ -5061,8 +5231,18 @@ import { SITE_TITLE } from '../consts';
 						<span class="page-count-label">Page 41</span>
 					</div>
 
-					<div class="part-break-banner">
-						<p class="part-break-title">Part V: Models for BMS & Moving Forward</p>
+					<!-- Major Part V Hero Block (~1/3 of the page, centered, large & stylish) -->
+					<div class="part-hero-block">
+						<div class="part-hero-ornament">
+							<span class="part-hero-ornament-line"></span>
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+							</svg>
+							<span class="part-hero-ornament-line right"></span>
+						</div>
+						<div class="part-hero-num">Part V</div>
+						<h1 class="part-hero-title">Models for BMS &amp; Moving Forward</h1>
+						<p class="part-hero-desc">Connecting the broader picture: diabetic neuropathy models, systemic metabolic health, patient-led citizen science, and the horizon of&nbsp;remission.</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 14: The&nbsp;Diabetic&nbsp;Parallel</h2>
@@ -6142,6 +6322,38 @@ import { SITE_TITLE } from '../consts';
 
 					if (modal) modal.style.display = 'flex';
 					if (triggerBtn) triggerBtn.style.display = 'none';
+					setTimeout(() => commentInput?.focus(), 80);
+				});
+
+				// Margin Feedback Button (can be clicked anytime, even without text selected)
+				const marginFeedbackBtn = document.getElementById('book-margin-feedback-btn');
+				marginFeedbackBtn?.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const sel = window.getSelection();
+					const text = sel ? sel.toString().trim() : '';
+
+					if (text && text.length >= 5) {
+						currentSelectedQuote = text;
+						if (quoteDisplay) {
+							quoteDisplay.textContent = `"${currentSelectedQuote}"`;
+							quoteDisplay.style.display = 'block';
+						}
+					} else {
+						currentSelectedQuote = 'Overall Book / General Feedback';
+						if (quoteDisplay) {
+							quoteDisplay.textContent = '💡 Tip: You can also highlight any sentence in the book, then click "Send Feedback" to quote that exact passage.';
+							quoteDisplay.style.display = 'block';
+						}
+					}
+
+					if (commentInput) commentInput.value = '';
+					if (emailInput) emailInput.value = '';
+
+					if (step1) step1.style.display = 'block';
+					if (step2) step2.style.display = 'none';
+					if (stepSuccess) stepSuccess.style.display = 'none';
+
+					if (modal) modal.style.display = 'flex';
 					setTimeout(() => commentInput?.focus(), 80);
 				});
 
