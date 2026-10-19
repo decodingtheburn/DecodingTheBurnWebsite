@@ -255,33 +255,35 @@ import { SITE_TITLE } from '../consts';
 				transform: translateY(-1px);
 			}
 
-			/* Book Cover (Proportional 1:1.5 Aspect Ratio) */
+			/* Book Cover (Full Page Dimensions Matching .book-page) */
 			.book-cover-container {
 				display: flex;
 				justify-content: center;
 				margin-bottom: 4rem;
+				width: 100%;
 			}
 
 			.book-cover {
 				position: relative;
 				width: 100%;
-				max-width: 540px;
-				aspect-ratio: 1 / 1.52; /* Standard 6"x9" book cover proportion */
+				max-width: 100%;
+				min-height: 1050px;
+				height: auto;
 				background: radial-gradient(circle at 50% 25%, #240b3b 0%, #150726 55%, #080310 100%);
 				color: #ffffff;
-				border-radius: 10px 18px 18px 10px;
+				border-radius: 8px;
 				box-shadow: 
 					0 30px 70px -15px rgba(0, 0, 0, 0.75),
 					0 10px 30px rgba(42, 8, 69, 0.45),
 					0 0 0 1px rgba(168, 85, 247, 0.2),
-					inset 14px 0 24px rgba(0, 0, 0, 0.85);
+					inset 16px 0 26px rgba(0, 0, 0, 0.85);
 				text-align: center;
 				overflow: hidden;
-				border-left: 20px solid #06020c;
+				border-left: 22px solid #06020c;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				padding: 3rem 2.25rem 2.5rem;
+				padding: 4.25rem 4.75rem 4rem;
 				box-sizing: border-box;
 			}
 
@@ -301,12 +303,13 @@ import { SITE_TITLE } from '../consts';
 			.cover-gold-border {
 				border: 1.5px solid rgba(168, 85, 247, 0.35);
 				border-radius: 8px;
-				padding: 2.25rem 1.75rem;
+				padding: 3rem 2.5rem;
 				position: relative;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 				height: 100%;
+				min-height: 940px;
 				box-sizing: border-box;
 				background: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.08) 0%, transparent 80%);
 			}
@@ -364,7 +367,7 @@ import { SITE_TITLE } from '../consts';
 			.cover-tooth-img {
 				position: relative;
 				z-index: 2;
-				max-height: 190px;
+				max-height: 240px;
 				width: auto;
 				object-fit: contain;
 				filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
@@ -763,33 +766,35 @@ import { SITE_TITLE } from '../consts';
 				color: #64748b;
 			}
 
-			/* Book Back Cover */
+			/* Book Back Cover (Full Page Dimensions Matching .book-page) */
 			.book-backcover-container {
 				display: flex;
 				justify-content: center;
 				margin-top: 2rem;
 				margin-bottom: 4rem;
+				width: 100%;
 			}
 
 			.book-backcover {
 				position: relative;
 				width: 100%;
-				max-width: 540px;
-				aspect-ratio: 1 / 1.52;
+				max-width: 100%;
+				min-height: 1050px;
+				height: auto;
 				background: radial-gradient(circle at 50% 25%, #240b3b 0%, #150726 55%, #080310 100%);
 				color: #ffffff;
-				border-radius: 18px 10px 10px 18px;
+				border-radius: 8px;
 				box-shadow: 
 					0 30px 70px -15px rgba(0, 0, 0, 0.75),
 					0 10px 30px rgba(42, 8, 69, 0.45),
 					0 0 0 1px rgba(168, 85, 247, 0.2),
-					inset -14px 0 24px rgba(0, 0, 0, 0.85);
+					inset -16px 0 26px rgba(0, 0, 0, 0.85);
 				overflow: hidden;
-				border-right: 20px solid #06020c;
+				border-right: 22px solid #06020c;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				padding: 3rem 2.25rem 2.5rem;
+				padding: 4.25rem 4.75rem 4rem;
 				box-sizing: border-box;
 				text-align: left;
 			}
@@ -809,12 +814,13 @@ import { SITE_TITLE } from '../consts';
 			.backcover-gold-border {
 				border: 1.5px solid rgba(168, 85, 247, 0.35);
 				border-radius: 8px;
-				padding: 2.25rem 1.75rem;
+				padding: 3rem 2.75rem;
 				position: relative;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 				height: 100%;
+				min-height: 940px;
 				box-sizing: border-box;
 				background: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.08) 0%, transparent 80%);
 			}
@@ -2179,11 +2185,16 @@ import { SITE_TITLE } from '../consts';
 					max-width: 100%;
 					white-space: normal;
 				}
-				.book-cover {
+				.book-cover,
+				.book-backcover {
 					padding: 3rem 1.5rem 2.25rem;
+					min-height: auto;
+					border-radius: 6px;
 				}
-				.cover-gold-border {
+				.cover-gold-border,
+				.backcover-gold-border {
 					padding: 1.75rem 1.15rem;
+					min-height: auto;
 				}
 			}
 		</style>
@@ -2332,13 +2343,6 @@ import { SITE_TITLE } from '../consts';
 					</div>
 				</div>
 			</div>
-
-			<!-- BLANK WHITE FLYLEAF (Page F-1) -->
-			<section class="book-page-blank" id="flyleaf-front">
-				<div class="flyleaf-subtle">
-					<span>Calm Your Burning&nbsp;Mouth</span>
-				</div>
-			</section>
 
 			<!-- INTERIOR TITLE PAGE (Page F-2) -->
 			<section class="book-page" id="title-page">
