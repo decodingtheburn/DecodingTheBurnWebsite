@@ -527,6 +527,85 @@ import { SITE_TITLE } from '../consts';
 				margin: 0;
 			}
 
+			/* Major Part Hero Header (Takes ~1/3 of the page, centered, large & stylish) */
+			.part-hero-block {
+				min-height: 280px;
+				background: radial-gradient(circle at 50% 40%, #faf5ff 0%, #ffffff 85%);
+				border: 1.5px solid #ede9fe;
+				border-radius: 14px;
+				padding: 2.75rem 2rem 2.25rem;
+				margin-bottom: 2.75rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+				box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.08);
+				box-sizing: border-box;
+			}
+
+			.part-hero-block::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, #c084fc 0%, #7c3aed 50%, #c084fc 100%);
+			}
+
+			.part-hero-ornament {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				margin-bottom: 1rem;
+				color: #a855f7;
+			}
+
+			.part-hero-ornament-line {
+				width: 48px;
+				height: 1px;
+				background: linear-gradient(90deg, transparent, #c4b5fd);
+			}
+
+			.part-hero-ornament-line.right {
+				background: linear-gradient(90deg, #c4b5fd, transparent);
+			}
+
+			.part-hero-num {
+				font-family: 'Cinzel', serif;
+				font-size: 1.25rem;
+				font-weight: 800;
+				letter-spacing: 0.28em;
+				text-transform: uppercase;
+				color: #7c3aed;
+				margin-bottom: 0.75rem;
+			}
+
+			.part-hero-title {
+				font-family: 'Cinzel', serif;
+				font-size: clamp(1.85rem, 3.8vw, 2.65rem);
+				font-weight: 800;
+				color: #0f172a;
+				line-height: 1.22;
+				max-width: 680px;
+				margin: 0 0 1rem;
+				text-wrap: balance;
+			}
+
+			.part-hero-desc {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 1.02rem;
+				font-style: italic;
+				line-height: 1.62;
+				color: #475569;
+				max-width: 580px;
+				margin: 0;
+				text-wrap: balance;
+			}
+
 			.chapter-title {
 				font-family: 'Lora', Georgia, serif;
 				font-size: clamp(1.6rem, 3vw, 2.1rem);
@@ -990,13 +1069,38 @@ import { SITE_TITLE } from '../consts';
 
 			/* Callout / Pull quote inside book */
 			.book-callout {
-				margin: 1.25rem 0;
-				padding: 1rem 1.35rem;
+				margin: 1.5rem 0;
+				padding: 1.15rem 1.35rem 1.15rem 1.25rem;
 				background: #f8fafc;
-				border-left: 3px solid #7c3aed;
+				border-left: 3.5px solid #7c3aed;
 				font-style: italic;
 				color: #334155;
-				border-radius: 0 6px 6px 0;
+				border-radius: 0 8px 8px 0;
+				display: flex;
+				align-items: flex-start;
+				gap: 0.85rem;
+				box-sizing: border-box;
+			}
+
+			.book-callout-icon {
+				flex-shrink: 0;
+				width: 20px;
+				height: 20px;
+				color: #7c3aed;
+				margin-top: 0.15rem;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.book-callout-text {
+				flex: 1;
+				margin: 0;
+			}
+
+			.book-callout p {
+				margin: 0 !important;
+				line-height: 1.65;
 			}
 
 			/* 2-Column Single-Page Table of Contents */
@@ -1760,7 +1864,7 @@ import { SITE_TITLE } from '../consts';
 
 			.contributor-category-title {
 				font-family: 'Cinzel', Georgia, serif;
-				font-size: 2.85rem; /* 2x bigger */
+				font-size: 3.25rem; /* 2x bigger */
 				font-weight: 800;
 				color: #000000;
 				letter-spacing: -0.02em;
@@ -1770,12 +1874,12 @@ import { SITE_TITLE } from '../consts';
 
 			.contributor-subgroup-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.35rem;
+				font-size: 0.9rem; /* 1.5x smaller, refined */
 				font-weight: 800;
 				color: #000000;
 				text-transform: uppercase;
-				letter-spacing: 0.06em;
-				margin: 5rem 0 4.5rem;
+				letter-spacing: 0.08em;
+				margin: 4rem 0 3.5rem;
 				display: flex;
 				align-items: center;
 				gap: 0.75rem;
@@ -2450,7 +2554,7 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<div class="toc-item">
-								<a href="#expectation" class="toc-link" title="Setting the Right Expectation">Setting the Right Expectation</a>
+								<a href="#expectation" class="toc-link" title="Read Before Chapter One">Read Before Chapter One</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">iv</span>
 							</div>
@@ -2672,11 +2776,20 @@ import { SITE_TITLE } from '../consts';
 							<em>Decoding the Burn</em> documents an independent, self-directed citizen research investigation into Burning Mouth Syndrome. The author is a computer programmer and systems researcher, not a licensed medical doctor, dentist, oral surgeon, or neurologist.
 						</p>
 
-						<div class="book-callout" style="margin: 1.25rem 0;">
-							<p style="font-style: normal; font-weight: 600; color: #1e293b; margin-bottom: 0.25rem;">Important Notice for Readers</p>
-							<p style="font-size: 0.9rem; line-height: 1.6; color: #475569; margin: 0;">
-								The models, observations, dietary protocols, and tooth margin audits presented in this volume are shared exclusively for educational, investigative, and informational purposes. They are intended to assist patients in framing informed, constructive discussions with qualified clinicians.
-							</p>
+						<div class="book-callout">
+							<span class="book-callout-icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+									<line x1="12" y1="9" x2="12" y2="13"></line>
+									<line x1="12" y1="17" x2="12.01" y2="17"></line>
+								</svg>
+							</span>
+							<div class="book-callout-text">
+								<p style="font-style: normal; font-weight: 700; color: #1e293b; margin-bottom: 0.35rem !important;">Important Notice for Readers</p>
+								<p style="font-size: 0.9rem; line-height: 1.6; color: #475569;">
+									The models, observations, dietary protocols, and tooth margin audits presented in this volume are shared exclusively for educational, investigative, and informational purposes. They are intended to assist patients in framing informed, constructive discussions with qualified clinicians.
+								</p>
+							</div>
 						</div>
 
 						<p style="font-size: 0.95rem; line-height: 1.7; color: #1e293b; margin-bottom: 1rem;">
@@ -2698,7 +2811,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- PRE-BOOK MENTION: SETTING THE RIGHT EXPECTATION (Page iv) -->
+			<!-- PRE-BOOK MENTION: READ BEFORE CHAPTER ONE (Page iv) -->
 			<section class="book-page" id="expectation">
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -2707,20 +2820,18 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Pre-Book Orientation &bull; Read Before Chapter 1</p>
+						<p class="part-break-title">Pre-Book Orientation</p>
 					</div>
 
-					<h2 class="chapter-title">Setting the Right&nbsp;Expectation</h2>
+					<h2 class="chapter-title">Read Before Chapter&nbsp;One</h2>
 
 					<div class="chapter-content is-first-page">
-						<p>Let's set the expectations straight from sentence one: this book documents my specific journey, and yours will not be an exact&nbsp;carbon&nbsp;copy.</p>
-						<p>In chronic oral pain, no two nervous systems or dental arches are identical. You might share some of my exact clues, or your triggers might occur along completely different margins. What we share is not a universal prescription; what we share is&nbsp;a&nbsp;method.</p>
-						<h3>What This Book Is: and What&nbsp;It&nbsp;Isn't</h3>
-						<p>This is an investigator's field log, not a promise of an overnight cure. If you came here hoping for a magic pill, a single miracle herb, or a guarantee that copying my exact plate will instantly resolve your burning, you will&nbsp;be&nbsp;disappointed.</p>
-						<p>This is a framework for debugging an erratic physical system. In computer programming, when a complex network crashes or an error code trips continuously, we do not throw up our hands, label the bug "idiopathic," and walk away. We isolate the variables. We check the physical interfaces. We track the&nbsp;incoming&nbsp;data.</p>
-						<p>Your mouth is biological hardware running on real electrochemical sensors. If those sensors are firing an unceasing alarm, an input is actively&nbsp;tripping&nbsp;them.</p>
-						<p>Before I discovered that my lower molar crown had three cavities hidden beneath its metal margin, I had to abandon the search for an immediate single cause and start tracking what made the pain slightly worse and what made it&nbsp;slightly&nbsp;better.</p>
-						<p>Observe your baseline, audit your dental margins, and test the variables systematically. You do not have to spend four years guessing in&nbsp;the&nbsp;dark.</p>
+						<p>Depending on where you are in your journey, you might have high expectations or very low expectations, and both of them are very&nbsp;normal.</p>
+						<p>The reality is that every case is different, and this book can only serve or should be viewed as a case study of one person from which you possibly can learn something. You might find ways to reduce your pain, but it is very possible that what I have discovered does not apply to&nbsp;everyone.</p>
+						<p>I get what you are going through. I have lived through the acute panic, the sleepless nights, the medical runaround of doctors telling you that everything looks completely fine while your mouth is screaming in fire, and the sheer mental exhaustion of having no clear answers. I have been in those shoes, and I know how deeply isolating this condition&nbsp;feels.</p>
+						<p>Early on throughout my BMS journey, I knew that there was some stuff making my pain worse and some stuff making my pain better. So that is the essence of this book: it is not about promising an instant cure or complete healing, but about finding practical ways to minimize the pain at the&nbsp;minimum.</p>
+						<p>Sometimes that means changing our daily habits. It means changing what we eat, what we drink, how we brush our teeth, the specialists we seek out, and how we approach dental visits. It might also mean investing in consultations with specific specialists who understand hardware margins, nerve pathways, or tissue biochemistry. I understand that all of this is costly, both financially and emotionally. There is an enormous expenditure of energy, effort, and vulnerability involved, and I completely respect&nbsp;that.</p>
+						<p>What I want is to advance the research and share what I have uncovered in the hope that, first, it will directly help some people find relief. And for those for whom my exact findings do not fully work, I hope these observations can serve as the seed for new discoveries that eventually help even the people for whom this initial framework falls short. At the very least, by the time you finish this book, you will have eliminated key variables and gained a much clearer understanding of your personal triggers: what makes your pain better, and what makes it&nbsp;worse.</p>
 					</div>
 				</div>
 
@@ -2738,20 +2849,20 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="part-break-banner">
-						<p class="part-break-title">Citizen Science &bull; Research Partners Peer Reviewers</p>
+						<p class="part-break-title">Citizen Science</p>
 					</div>
 
-					<h2 class="chapter-title">Contributors Reviewers</h2>
+					<h2 class="chapter-title">Contributors</h2>
 
 					<div class="chapter-content">
 						<p style="font-size: 0.96rem; line-height: 1.68; color: #000000; margin-bottom: 1.25rem;">
 							<em>Decoding the Burn</em> is built on open citizen science: patient symptom ledgers, empirical testing logs, and interdisciplinary peer reviews across dentistry, neuroscience, and nutrition. Every breakthrough in this guide was tested or reviewed by individuals who refused to accept "idiopathic" as a final&nbsp;answer.
 						</p>
 
-						<!-- CATEGORY 1: PATIENT RESEARCHERS -->
+						<!-- CATEGORY 1: PATIENTS -->
 						<div class="contributor-category-block">
 							<div class="contributor-category-header">
-								<h3 class="contributor-category-title">1. Patient Researchers</h3>
+								<h3 class="contributor-category-title">Patients</h3>
 							</div>
 
 							<div class="contributor-grid">
@@ -2787,117 +2898,18 @@ import { SITE_TITLE } from '../consts';
 										<span class="btn-arrow" aria-hidden="true">&gt;</span>
 									</button>
 								</div>
-
-								<!-- Patient 2: Sarah Jenkins -->
-								<div class="contributor-card">
-									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar">
-											<img src="/contributors/sarah-j.jpg" alt="Portrait of Sarah Jenkins" width="160" height="160" loading="lazy" />
-										</div>
-									</div>
-									<h4 class="contributor-name">Sarah Jenkins</h4>
-									<div class="contributor-location">
-										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-											<circle cx="12" cy="10" r="3"></circle>
-										</svg>
-										<span>Seattle, Washington</span>
-									</div>
-									<div class="contributor-role-line">3 Year BMS Patient</div>
-									<p class="contributor-relief-summary">Gluma albumin precipitation tubule sealing, micro-hybrid composite Class V margin bonding, mouth taping at night, SLS-free toothpaste.</p>
-									<button 
-										class="contributor-read-more-btn" 
-										type="button"
-										data-name="Sarah Jenkins"
-										data-role="3 Year BMS Patient"
-										data-location="Seattle, Washington"
-										data-avatar="/contributors/sarah-j.jpg"
-										data-bio="Mapped unilateral burning tongue symptoms directly to cold-sensitive receded cervical margins on her lower right molars before having them sealed with adhesive bonding."
-										data-better="Gluma albumin precipitation tubule sealing, micro-hybrid composite Class V margin bonding, mouth taping at night, SLS-free toothpaste."
-										data-worst="Abrasive whitening toothpaste, cold ice water touching receded gum collars, citrus vinaigrettes, mouth breathing."
-									>
-										<span>Learn More</span>
-										<span class="btn-arrow" aria-hidden="true">&gt;</span>
-									</button>
-								</div>
-
-								<!-- Patient 3: Maria Gonzalez -->
-								<div class="contributor-card">
-									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar">
-											<img src="/contributors/maria-g.jpg" alt="Portrait of Maria Gonzalez" width="160" height="160" loading="lazy" />
-										</div>
-									</div>
-									<h4 class="contributor-name">Maria Gonzalez</h4>
-									<div class="contributor-location">
-										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-											<circle cx="12" cy="10" r="3"></circle>
-										</svg>
-										<span>Madrid, Spain</span>
-									</div>
-									<div class="contributor-role-line">6 Year BMS Patient</div>
-									<p class="contributor-relief-summary">Strict alkaline hydration, post-meal xylitol mastication to trigger sublingual bicarbonate production, gentle non-foaming paste.</p>
-									<button 
-										class="contributor-read-more-btn" 
-										type="button"
-										data-name="Maria Gonzalez"
-										data-role="6 Year BMS Patient"
-										data-location="Madrid, Spain"
-										data-avatar="/contributors/maria-g.jpg"
-										data-bio="Organized and synthesized symptom telemetry across 140+ European BMS sufferers, proving why unselected alpha-lipoic acid trials fail while targeted deficiency repletion works."
-										data-better="Strict alkaline hydration, post-meal xylitol mastication to trigger sublingual bicarbonate production, gentle non-foaming paste."
-										data-worst="Tannic red wine, aged balsamic vinegar, spicy paprika dishes, and commercial menthol breath fresheners."
-									>
-										<span>Learn More</span>
-										<span class="btn-arrow" aria-hidden="true">&gt;</span>
-									</button>
-								</div>
-
-								<!-- Patient 4: David Becker -->
-								<div class="contributor-card">
-									<div class="contributor-avatar-wrap">
-										<div class="contributor-avatar">
-											<img src="/contributors/david-b.jpg" alt="Portrait of David Becker" width="160" height="160" loading="lazy" />
-										</div>
-									</div>
-									<h4 class="contributor-name">David Becker</h4>
-									<div class="contributor-location">
-										<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-											<circle cx="12" cy="10" r="3"></circle>
-										</svg>
-										<span>Austin, Texas</span>
-									</div>
-									<div class="contributor-role-line">2 Year BMS Patient</div>
-									<p class="contributor-relief-summary">Custom nocturnal barrier tray isolation, definitive crown removal and adhesive resin re-cementation, elimination of acidic coffees.</p>
-									<button 
-										class="contributor-read-more-btn" 
-										type="button"
-										data-name="David Becker"
-										data-role="2 Year BMS Patient"
-										data-location="Austin, Texas"
-										data-avatar="/contributors/david-b.jpg"
-										data-bio="Inventor of the 3-day on/off acid delta protocol. Proved that covering tooth #19 with a physical vacuum tray eliminated 80% of his morning tongue burning."
-										data-better="Custom nocturnal barrier tray isolation, definitive crown removal and adhesive resin re-cementation, elimination of acidic coffees."
-										data-worst="High-acidity morning black roast, carbonated seltzer waters, open-mouth snoring."
-									>
-										<span>Learn More</span>
-										<span class="btn-arrow" aria-hidden="true">&gt;</span>
-									</button>
-								</div>
 							</div>
 						</div>
 
 						<!-- CATEGORY 2: PROFESSIONALS -->
 						<div class="contributor-category-block">
 							<div class="contributor-category-header">
-								<h3 class="contributor-category-title">2. Professionals</h3>
+								<h3 class="contributor-category-title">Professionals</h3>
 							</div>
 
-							<!-- Subgroup: Dentistry and Biomaterials -->
+							<!-- Subgroup: Dentistry -->
 							<div class="contributor-subgroup-title">
-								<span>Dentistry and Biomaterials</span>
+								<span>Dentistry</span>
 							</div>
 							<div class="contributor-grid">
 								<!-- Professional 1: Dr. Raphael Monte Alto -->
@@ -2967,9 +2979,9 @@ import { SITE_TITLE } from '../consts';
 								</div>
 							</div>
 
-							<!-- Subgroup: Medicine and Clinical Specialists -->
+							<!-- Subgroup: Medical -->
 							<div class="contributor-subgroup-title">
-								<span>Medicine and Clinical Specialists</span>
+								<span>Medical</span>
 							</div>
 							<div class="contributor-grid">
 								<!-- Professional 3: Dr. Susan Kaufman -->
@@ -3039,9 +3051,9 @@ import { SITE_TITLE } from '../consts';
 								</div>
 							</div>
 
-							<!-- Subgroup: Scientific Research and Physiology -->
+							<!-- Subgroup: Researcher -->
 							<div class="contributor-subgroup-title">
-								<span>Scientific Research and Physiology</span>
+								<span>Researcher</span>
 							</div>
 							<div class="contributor-grid">
 								<!-- Professional 5: Dr. Julian Priestley -->
@@ -3761,8 +3773,18 @@ import { SITE_TITLE } from '../consts';
 						<span class="page-count-label">Page 1</span>
 					</div>
 
-					<div class="part-break-banner">
-						<p class="part-break-title">Part I: The Pain of BMS</p>
+					<!-- Major Part I Hero Block (~1/3 of the page, centered, large & stylish) -->
+					<div class="part-hero-block">
+						<div class="part-hero-ornament">
+							<span class="part-hero-ornament-line"></span>
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+							</svg>
+							<span class="part-hero-ornament-line right"></span>
+						</div>
+						<div class="part-hero-num">Part I</div>
+						<h1 class="part-hero-title">The Pain of BMS</h1>
+						<p class="part-hero-desc">Immediate emotional validation: the scalding reality, the isolation, and the daily suffering of living with invisible&nbsp;pain.</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 1: The Day the&nbsp;Fire&nbsp;Started</h2>
@@ -3772,7 +3794,7 @@ import { SITE_TITLE } from '../consts';
 						<p>Imagine taking a sip of boiling soup or drinking hot coffee straight out of the pot, blistering the entire roof of your mouth, the tip of your tongue, and your gums. You know that raw, agonizing sting that throbs for ten minutes after&nbsp;a&nbsp;scald?</p>
 						<p>Now imagine that sensation locking in permanently. It does not fade after twenty minutes. It does not calm down when you drink cold water. It sits at a blinding ten out of ten, day after day, week after week, without a single second&nbsp;of&nbsp;silence.</p>
 						<p>Your immediate instinct, like anyone else, is to trust the healthcare system. You assume there must be an obvious infection, an ulcer, an inflamed nerve, or an abscess that a trained professional can spot in&nbsp;thirty&nbsp;seconds.</p>
-						<p>So began the&nbsp;specialist&nbsp;gauntlet.</p>
+						<p>So began the specialist cycle of appointments.</p>
 						<p>I booked an appointment with my dentist. He leaned me back in the chair, adjusted the overhead spotlight, took an explorer, and tapped around my teeth. He looked at my tongue, my cheeks, and my palate. Then he sat me up, took off his gloves, and said the words that almost every burning mouth&nbsp;sufferer&nbsp;hears:</p>
 						<p>"Everything looks completely normal. Your gums look healthy, your tissue is pink, and your teeth&nbsp;look&nbsp;fine."</p>
 
@@ -3841,8 +3863,18 @@ import { SITE_TITLE } from '../consts';
 						<span class="page-count-label">Page 4</span>
 					</div>
 
-					<div class="part-break-banner">
-						<p class="part-break-title">Part II: The Pain of Dentists and Doctors Not Knowing</p>
+					<!-- Major Part II Hero Block (~1/3 of the page, centered, large & stylish) -->
+					<div class="part-hero-block">
+						<div class="part-hero-ornament">
+							<span class="part-hero-ornament-line"></span>
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+							</svg>
+							<span class="part-hero-ornament-line right"></span>
+						</div>
+						<div class="part-hero-num">Part II</div>
+						<h1 class="part-hero-title">The Pain of Realizing Dentists and Doctors Don't Know</h1>
+						<p class="part-hero-desc">Exonerating the patient: why disconnected healthcare silos and 2D dental X-rays fail to see the physical realities of the&nbsp;circuit.</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 2: Going to the Dentist and&nbsp;Doctor</h2>
@@ -3850,7 +3882,7 @@ import { SITE_TITLE } from '../consts';
 					<div class="chapter-content is-first-page">
 						<p>After we discover our pain and realize that we have Burning Mouth Syndrome, we quickly find that we have fallen into the cracks between disconnected professions. None of them are trained to look across&nbsp;the&nbsp;hallway.</p>
 						<p>When your mouth burns relentlessly, you naturally turn to the medical system. Yet as you cycle through offices, you notice a recurring blind spot: every specialist evaluates your mouth through the narrow lens of their own specialty, leaving the root cause&nbsp;untouched.</p>
-						<h3>The Specialist Gauntlet We Typically&nbsp;Walk</h3>
+						<h3>The Specialist Runaround We Typically&nbsp;Face</h3>
 						<p><strong>1. The Dentist:</strong> Evaluates teeth purely as macroscopic hardware, drilling visible cavities and checking bone levels. They rarely learn why generalized burning occurs. In the traditional dental pain model, pain is localized to an individual tooth; if it is generalized, many simply do not know. Solid crowns cast opaque shadows on X-rays that can hide sub-micron cement washouts, and standard training does not consider that an acid leak on a single tooth can refer blinding burning across the tongue or roof of&nbsp;the&nbsp;mouth.</p>
 						<p><strong>2. The Orofacial Pain Specialist:</strong> When dentists run out of answers, they refer us into the medical world. The specialist often prescribes central nerve-dulling medications without ordering high-resolution scans of the physical margins or exploring local&nbsp;chemical&nbsp;triggers.</p>
 						<p><strong>3. The Neurologist:</strong> Understands the brainstem switchboard and facial nerve wiring, but has zero training in dental anatomy or biomaterials. They do not examine how an exposed root neck contains tens of thousands of open fluid tubules per square millimeter, or how chewing everyday bread turns into lactic acid right at&nbsp;the&nbsp;gumline.</p>
@@ -3875,7 +3907,16 @@ import { SITE_TITLE } from '../consts';
 					<div class="chapter-content">
 						<p>Because nobody sits at the exact intersection where dental hardware meets fluid chemistry and nerve electrophysiology, Burning Mouth Syndrome is routinely declared an incurable,&nbsp;idiopathic&nbsp;mystery.</p>
 						<div class="book-callout">
-							<p>When you fall between their worlds, you have to stop trusting administrative labels and look at the physical realities of&nbsp;the&nbsp;circuit.</p>
+							<span class="book-callout-icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="12" cy="12" r="10"></circle>
+									<line x1="12" y1="16" x2="12" y2="12"></line>
+									<line x1="12" y1="8" x2="12.01" y2="8"></line>
+								</svg>
+							</span>
+							<div class="book-callout-text">
+								<p>When you fall between their worlds, you have to stop trusting administrative labels and look at the physical realities of the&nbsp;circuit.</p>
+							</div>
 						</div>
 						<p>Once dentists and doctors run out of options, we cannot simply assume the pain is a phantom. It was not a phantom for me, and it is not a phantom&nbsp;for&nbsp;you.</p>
 						<h3>Solving It From First Principles</h3>
@@ -4709,7 +4750,15 @@ import { SITE_TITLE } from '../consts';
 						<p><strong>2. The Microbial Fermentation Phase (Hour 12 to 36):</strong> Microscopic food starches and fermentable carbohydrates remain trapped inside subgingival pockets and porous dentin tubules. Anaerobic oral bacteria feast on these residues, continuously manufacturing concentrated lactic acid right at the nerve&nbsp;threshold.</p>
 						<p><strong>3. The ASIC Receptor Wind-Up (Hour 36 to 72):</strong> The local tissue pH steadily declines below 6.5. Acid-Sensing Ion Channels (ASIC1 and ASIC3) lock wide open, causing a massive influx of sodium and calcium ions. Sensory C-fibers depolarize relentlessly, triggering central sensitization in the spinal trigeminal nucleus. By Wednesday afternoon, your tongue scalds at an 8 out&nbsp;of&nbsp;10.</p>
 						<div class="book-callout">
-							<p>The Psychological Trap: Because your mouth suddenly bursts into flames on Wednesday evening, you look at what you just ate for dinner - plain chicken and steamed carrots - and falsely conclude that carrots are your enemy. Meanwhile, the actual acidic fuel you ingested forty-eight hours earlier escapes completely&nbsp;unnoticed.</p>
+							<span class="book-callout-icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="12" cy="12" r="10"></circle>
+									<polyline points="12 6 12 12 16 14"></polyline>
+								</svg>
+							</span>
+							<div class="book-callout-text">
+								<p><strong>The Psychological Trap:</strong> Because your mouth suddenly bursts into flames on Wednesday evening, you look at what you just ate for dinner - plain chicken and steamed carrots - and falsely conclude that carrots are your enemy. Meanwhile, the actual acidic fuel you ingested forty-eight hours earlier escapes completely&nbsp;unnoticed.</p>
+							</div>
 						</div>
 					</div>
 				</div>
