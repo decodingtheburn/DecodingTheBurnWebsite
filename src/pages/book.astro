@@ -1370,6 +1370,15 @@ import { SITE_TITLE } from '../consts';
 				background-color: #fafbfd;
 			}
 
+			
+			.intervention-mechanism-desc {
+				font-size: 0.76rem;
+				line-height: 1.4;
+				color: #64748b;
+				margin-top: 0.35rem;
+				font-weight: 500;
+			}
+
 			.rate-val {
 				font-weight: 700;
 				font-size: 0.88rem;
@@ -3766,20 +3775,21 @@ import { SITE_TITLE } from '../consts';
 							<table class="research-table">
 								<thead>
 									<tr>
-										<th style="width: 24%;">Intervention / Factor</th>
-										<th style="width: 26%;">Target Mechanism</th>
-										<th style="width: 24%;">Reported Success &amp; Relief</th>
-										<th style="width: 26%;">Clinical Reality</th>
+										<th style="width: 36%;">Intervention</th>
+										<th style="width: 28%;">Reported Success &amp; Relief</th>
+										<th style="width: 36%;">Clinical Reality</th>
 									</tr>
 								</thead>
 								<tbody>
 									<!-- CATEGORY 1: PHARMACEUTICALS -->
 									<tr class="research-category-row">
-										<td colspan="4">Prescription Pharmaceuticals (Central Nervous Volume Controls)</td>
+										<td colspan="3">Prescription Pharmaceuticals (Central Nervous Volume Controls)</td>
 									</tr>
 									<tr>
-										<td><strong>Gabapentin / Pregabalin</strong></td>
-										<td>Central alpha-2-delta calcium channel subunit inhibitor</td>
+										<td>
+											<strong>Gabapentin / Pregabalin</strong>
+											<div class="intervention-mechanism-desc">Central alpha-2-delta calcium channel subunit inhibitor</div>
+										</td>
 										<td>
 											<span class="rate-val rate-low">20% - 30% success</span>
 											<span class="rate-tag">Partial response</span>
@@ -3789,8 +3799,10 @@ import { SITE_TITLE } from '../consts';
 										<td>Over 70% experience zero relief or discontinue due to severe cognitive fog and fatigue. Fails to stop peripheral acid firing at the tooth margin.</td>
 									</tr>
 									<tr>
-										<td><strong>Clonazepam (Topical rinse)</strong></td>
-										<td>Peripheral GABA-A receptor activation on mucosal nerve tips</td>
+										<td>
+											<strong>Clonazepam (Topical rinse)</strong>
+											<div class="intervention-mechanism-desc">Peripheral GABA-A receptor activation on mucosal nerve tips</div>
+										</td>
 										<td>
 											<span class="rate-val rate-moderate">35% - 45% success</span>
 											<span class="rate-tag">Temporary relief (1-2 hrs)</span>
@@ -3800,8 +3812,10 @@ import { SITE_TITLE } from '../consts';
 										<td>Topical swish-and-spit avoids systemic sedation. Dampens surface hyperalgesia for 1-2 hours, but burning returns as soon as the rinse clears.</td>
 									</tr>
 									<tr>
-										<td><strong>Tricyclics (Amitriptyline)</strong></td>
-										<td>Serotonin/norepinephrine reuptake inhibitor and sodium blocker</td>
+										<td>
+											<strong>Tricyclics (Amitriptyline)</strong>
+											<div class="intervention-mechanism-desc">Serotonin/norepinephrine reuptake inhibitor and sodium blocker</div>
+										</td>
 										<td>
 											<span class="rate-val rate-low">25% - 35% success</span>
 											<span class="rate-tag">Partial response</span>
@@ -3813,11 +3827,13 @@ import { SITE_TITLE } from '../consts';
 
 									<!-- CATEGORY 2: SUPPLEMENTS -->
 									<tr class="research-category-row">
-										<td colspan="4">Nutritional Supplements (Systemic Chemical Trials)</td>
+										<td colspan="3">Nutritional Supplements (Systemic Chemical Trials)</td>
 									</tr>
 									<tr>
-										<td><strong>Alpha-Lipoic Acid (ALA)</strong></td>
-										<td>Antioxidant and mitochondrial neuroprotective cofactor</td>
+										<td>
+											<strong>Alpha-Lipoic Acid (ALA)</strong>
+											<div class="intervention-mechanism-desc">Antioxidant and mitochondrial neuroprotective cofactor</div>
+										</td>
 										<td>
 											<span class="rate-val rate-low">15% - 25% success</span>
 											<span class="rate-tag">Mild / temporary relief</span>
@@ -3827,8 +3843,10 @@ import { SITE_TITLE } from '../consts';
 										<td>Small open-label Italian trials suggested benefit, but large blinded replications show minimal difference over placebo. Cannot seal structural leaks.</td>
 									</tr>
 									<tr>
-										<td><strong>B12, Folate, and Ferritin</strong></td>
-										<td>Myelin sheath synthesis and mucosal epithelial turnover</td>
+										<td>
+											<strong>B12, Folate, and Ferritin</strong>
+											<div class="intervention-mechanism-desc">Myelin sheath synthesis and mucosal epithelial turnover</div>
+										</td>
 										<td>
 											<span class="rate-val rate-low">&lt;15% unselected</span>
 											<span class="rate-tag">85%+ if lab deficient</span>
@@ -3838,8 +3856,10 @@ import { SITE_TITLE } from '../consts';
 										<td>Highly successful if confirmed lab deficiency exists (e.g. ferritin &lt;50 ng/mL, active B12 deficit). Completely ineffective if baseline levels are normal.</td>
 									</tr>
 									<tr>
-										<td><strong>Broad Supplement Stacks</strong></td>
-										<td>50+ anti-inflammatory herbs, zinc, PEA, and adaptogens</td>
+										<td>
+											<strong>Broad Supplement Stacks</strong>
+											<div class="intervention-mechanism-desc">50+ anti-inflammatory herbs, zinc, PEA, and adaptogens</div>
+										</td>
 										<td>
 											<span class="rate-val rate-low">&lt;5% lasting</span>
 											<span class="rate-tag">Negligible relief</span>
@@ -3851,11 +3871,13 @@ import { SITE_TITLE } from '../consts';
 
 									<!-- CATEGORY 3: HARDWARE SEALS -->
 									<tr class="research-category-row">
-										<td colspan="4">Physical and Hardware Interventions (Mechanical Barrier Shielding)</td>
+										<td colspan="3">Physical and Hardware Interventions (Mechanical Barrier Shielding)</td>
 									</tr>
 									<tr>
-										<td><strong>Gluma / Tubule Desensitizers</strong></td>
-										<td>Precipitates albumin inside open tubules; blocks fluid shift</td>
+										<td>
+											<strong>Gluma / Tubule Desensitizers</strong>
+											<div class="intervention-mechanism-desc">Precipitates albumin inside open tubules; blocks fluid shift</div>
+										</td>
 										<td>
 											<span class="rate-val rate-high">70% - 80% success</span>
 											<span class="rate-tag">Focal margin relief</span>
@@ -3865,8 +3887,10 @@ import { SITE_TITLE } from '../consts';
 										<td>Immediate relief when burning is driven by exposed root collars or abfractions. Stops fluid hydraulic motion and mechanoreceptor firing.</td>
 									</tr>
 									<tr>
-										<td><strong>Crown Margin Re-Sealing</strong></td>
-										<td>Removes defective cement line; bonds resin to soft root dentin</td>
+										<td>
+											<strong>Crown Margin Re-Sealing</strong>
+											<div class="intervention-mechanism-desc">Removes defective cement line; bonds resin to soft root dentin</div>
+										</td>
 										<td>
 											<span class="rate-val rate-high">65% - 75% success</span>
 											<span class="rate-tag">Focal resolution</span>
@@ -3876,8 +3900,10 @@ import { SITE_TITLE } from '../consts';
 										<td>Eliminates the hidden sub-micron pocket where anaerobic bacteria ferment lactic acid. Standard 2D bitewings cannot see through opaque crowns.</td>
 									</tr>
 									<tr>
-										<td><strong>Custom Barrier Night Trays</strong></td>
-										<td>Physically isolates margins from resting nocturnal oral acids</td>
+										<td>
+											<strong>Custom Barrier Night Trays</strong>
+											<div class="intervention-mechanism-desc">Physically isolates margins from resting nocturnal oral acids</div>
+										</td>
 										<td>
 											<span class="rate-val rate-moderate">55% - 65% success</span>
 											<span class="rate-tag">Morning relief</span>
@@ -3889,11 +3915,13 @@ import { SITE_TITLE } from '../consts';
 
 									<!-- CATEGORY 4: ELIMINATION -->
 									<tr class="research-category-row">
-										<td colspan="4">Elimination Protocols (Extinguishing Electrochemical Inputs)</td>
+										<td colspan="3">Elimination Protocols (Extinguishing Electrochemical Inputs)</td>
 									</tr>
 									<tr>
-										<td><strong>Strict Zero-Acid Diet (2 Weeks)</strong></td>
-										<td>Eliminates exogenous H+ ions gating ASIC1, ASIC3, and TRPV1</td>
+										<td>
+											<strong>Strict Zero-Acid Diet (2 Weeks)</strong>
+											<div class="intervention-mechanism-desc">Eliminates exogenous H+ ions gating ASIC1, ASIC3, and TRPV1</div>
+										</td>
 										<td>
 											<span class="rate-val rate-high">70% - 75% success</span>
 											<span class="rate-tag">Significant calm</span>
@@ -3903,8 +3931,10 @@ import { SITE_TITLE } from '../consts';
 										<td>Substantial drop in baseline burning within 7 to 14 days. Provides indisputable first-principles proof that acidity is fueling the circuit.</td>
 									</tr>
 									<tr>
-										<td><strong>Zero-Starch / Low-Carb Shift</strong></td>
-										<td>Starves subgingival Streptococcus mutans of fermentable fuel</td>
+										<td>
+											<strong>Zero-Starch / Low-Carb Shift</strong>
+											<div class="intervention-mechanism-desc">Starves subgingival Streptococcus mutans of fermentable fuel</div>
+										</td>
 										<td>
 											<span class="rate-val rate-high">60% - 70% success</span>
 											<span class="rate-tag">Delayed fuse calm</span>
@@ -3914,8 +3944,10 @@ import { SITE_TITLE } from '../consts';
 										<td>Eliminates resting lactic acid production at the gumline. Disarms the confusing 48-72 hour delayed burning spike.</td>
 									</tr>
 									<tr>
-										<td><strong>SLS-Free Toothpaste Shift</strong></td>
-										<td>Removes sodium lauryl sulfate detergents that strip mucin</td>
+										<td>
+											<strong>SLS-Free Toothpaste Shift</strong>
+											<div class="intervention-mechanism-desc">Removes sodium lauryl sulfate detergents that strip mucin</div>
+										</td>
 										<td>
 											<span class="rate-val rate-moderate">50% - 55% success</span>
 											<span class="rate-tag">Mucosal soothing</span>
@@ -3927,11 +3959,13 @@ import { SITE_TITLE } from '../consts';
 
 									<!-- CATEGORY 5: TRIGGERS -->
 									<tr class="research-category-row">
-										<td colspan="4">Most Prevalent Community Triggers (Aggravation Frequencies)</td>
+										<td colspan="3">Most Prevalent Community Triggers (Aggravation Frequencies)</td>
 									</tr>
 									<tr>
-										<td><strong>Dietary Acidity (Coffee, Citrus, Soda)</strong></td>
-										<td>Direct electrochemical gating of ASIC proton pain channels</td>
+										<td>
+											<strong>Dietary Acidity (Coffee, Citrus, Soda)</strong>
+											<div class="intervention-mechanism-desc">Direct electrochemical gating of ASIC proton pain channels</div>
+										</td>
 										<td>
 											<span class="rate-val rate-trigger">75% report flare</span>
 											<span class="rate-tag">Primary trigger</span>
@@ -3941,8 +3975,10 @@ import { SITE_TITLE } from '../consts';
 										<td>The single most ubiquitous trigger. Worsening frequently peaks 24 to 72 hours post-ingestion due to delayed bacterial fermentation.</td>
 									</tr>
 									<tr>
-										<td><strong>Spicy Foods and Capsaicin</strong></td>
-										<td>Direct activation of heat-sensitive TRPV1 receptors</td>
+										<td>
+											<strong>Spicy Foods and Capsaicin</strong>
+											<div class="intervention-mechanism-desc">Direct activation of heat-sensitive TRPV1 receptors</div>
+										</td>
 										<td>
 											<span class="rate-val rate-trigger">58% report flare</span>
 											<span class="rate-tag">Thermal trigger</span>
@@ -3952,8 +3988,10 @@ import { SITE_TITLE } from '../consts';
 										<td>Produces immediate intense stinging and prolonged lingual hyperalgesia across already-sensitized unmyelinated C-fibers.</td>
 									</tr>
 									<tr>
-										<td><strong>Fermentable Starches (Bread, Crackers)</strong></td>
-										<td>Feeds subgingival bacterial biofilm, producing lactic acid</td>
+										<td>
+											<strong>Fermentable Starches (Bread, Crackers)</strong>
+											<div class="intervention-mechanism-desc">Feeds subgingival bacterial biofilm, producing lactic acid</div>
+										</td>
 										<td>
 											<span class="rate-val rate-trigger">46% report flare</span>
 											<span class="rate-tag">Slow-fuse trigger</span>
