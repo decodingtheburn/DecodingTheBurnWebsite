@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import AudioReader from '../components/AudioReader.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
@@ -554,8 +555,8 @@ import { SITE_TITLE } from '../consts';
 				font-size: 3.75rem;
 				float: left;
 				line-height: 0.82;
-				padding-right: calc(0.65rem + 5px);
-				padding-top: 0.15rem;
+				padding-right: 0.55rem;
+				padding-top: calc(0.15rem + 10px);
 				color: #09060f;
 				font-weight: 700;
 			}
@@ -2311,6 +2312,14 @@ import { SITE_TITLE } from '../consts';
 		</div>
 
 		<div class="book-viewport">
+			<!-- Text-to-Speech / Read Aloud Feature -->
+			<div class="book-tts-header-container" style="margin-bottom: 2rem;">
+				<AudioReader 
+					title="Calm Your Burning Mouth" 
+					contentSelector=".book-viewport"
+				/>
+			</div>
+
 			<!-- BOOK COVER -->
 			<div class="book-cover-container">
 				<div class="book-cover">

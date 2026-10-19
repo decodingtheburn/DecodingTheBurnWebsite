@@ -5,9 +5,10 @@
 interface Props {
 	title?: string;
 	headings?: { depth: number; slug: string; text: string }[];
+	contentSelector?: string;
 }
 
-const { title = 'this article', headings = [] } = Astro.props;
+const { title = 'this article', headings = [], contentSelector = '.post-content' } = Astro.props;
 
 // Curated sections or mapped headings
 const defaultNavItems = [
@@ -35,7 +36,7 @@ if (headings && headings.length > 0) {
 }
 ---
 
-<div class="tts-reader-wrapper" id="tts-reader-root" data-article-title={title}>
+<div class="tts-reader-wrapper" id="tts-reader-root" data-article-title={title} data-content-selector={contentSelector}>
 	<!-- Top Player Card (Sits above blog content) -->
 	<div class="tts-card" id="tts-top-card">
 		<!-- 1. Sleek Compact Bar (Small and minimal by default) -->
@@ -1361,7 +1362,9 @@ if (headings && headings.length > 0) {
 
 		// 2. Tokenize Article DOM (Non-destructive)
 		function tokenizeContent() {
-			const contentContainer = document.querySelector('.post-content');
+			const rootEl = document.getElementById('tts-reader-root');
+			const selector = rootEl?.getAttribute('data-content-selector') || '.post-content';
+			const contentContainer = document.querySelector(selector);
 			if (!contentContainer) return;
 
 			// Gather eligible text blocks, skipping non-readable elements
