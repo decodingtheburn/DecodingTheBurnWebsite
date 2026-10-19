@@ -547,11 +547,11 @@ import { SITE_TITLE } from '../consts';
 			/* First paragraph drop cap on Chapter opening page */
 			.chapter-content.is-first-page p:first-of-type::first-letter {
 				font-family: 'Cinzel', serif;
-				font-size: 3.2rem;
+				font-size: 3.75rem;
 				float: left;
 				line-height: 0.82;
-				padding-right: 0.65rem;
-				padding-top: 0.2rem;
+				padding-right: calc(0.65rem + 5px);
+				padding-top: 0.15rem;
 				color: #09060f;
 				font-weight: 700;
 			}
@@ -574,6 +574,410 @@ import { SITE_TITLE } from '../consts';
 
 			.chapter-content h4 {
 				font-size: 1.02rem;
+			}
+
+
+
+			/* Blank Flyleaf Page */
+			.book-page-blank {
+				background-color: #ffffff;
+				border-radius: 8px;
+				box-shadow: 
+					0 18px 40px -8px rgba(0, 0, 0, 0.25),
+					0 6px 18px rgba(0, 0, 0, 0.15),
+					0 0 0 1px rgba(0, 0, 0, 0.06);
+				padding: 4.25rem 4.75rem 4rem;
+				margin-bottom: 4rem;
+				position: relative;
+				border-left: 1px solid #f1f5f9;
+				min-height: 1050px;
+				height: auto;
+				box-sizing: border-box;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.book-page-blank::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				width: 18px;
+				background: linear-gradient(90deg, rgba(0, 0, 0, 0.045) 0%, rgba(0, 0, 0, 0.012) 60%, transparent 100%);
+				pointer-events: none;
+			}
+
+			.flyleaf-subtle {
+				font-family: 'Cinzel', serif;
+				font-size: 0.85rem;
+				letter-spacing: 0.28em;
+				text-transform: uppercase;
+				color: #cbd5e1;
+				user-select: none;
+			}
+
+			/* Interior Title Page */
+			.interior-title-wrap {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				text-align: center;
+				padding: 4rem 1rem 2rem;
+				box-sizing: border-box;
+			}
+
+			.interior-title-eyebrow {
+				font-family: 'Cinzel', serif;
+				font-size: 0.84rem;
+				font-weight: 700;
+				letter-spacing: 0.24em;
+				color: #7c3aed;
+				text-transform: uppercase;
+				margin-bottom: 1.5rem;
+			}
+
+			.interior-title-main {
+				font-family: 'Cinzel', serif;
+				font-size: 2.85rem;
+				font-weight: 800;
+				line-height: 1.15;
+				color: #0f172a;
+				margin: 0 0 1rem;
+			}
+
+			.interior-title-subtitle {
+				font-family: 'Lora', serif;
+				font-size: 1.15rem;
+				font-style: italic;
+				color: #475569;
+				line-height: 1.6;
+				max-width: 520px;
+				margin: 0 auto 2.5rem;
+			}
+
+			.interior-title-device {
+				width: 80px;
+				height: 80px;
+				margin: 2rem auto;
+				opacity: 0.85;
+			}
+
+			.interior-title-author {
+				font-family: 'Cinzel', serif;
+				font-size: 1.35rem;
+				font-weight: 700;
+				letter-spacing: 0.16em;
+				color: #0f172a;
+				text-transform: uppercase;
+				margin-bottom: 0.4rem;
+			}
+
+			.interior-title-cred {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.88rem;
+				color: #64748b;
+				margin-bottom: 2.5rem;
+			}
+
+			.interior-title-imprint {
+				border-top: 1px solid #e2e8f0;
+				padding-top: 1.5rem;
+				width: 100%;
+				max-width: 380px;
+			}
+
+			.interior-title-publisher {
+				font-family: 'Cinzel', serif;
+				font-size: 0.82rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				color: #1e293b;
+				text-transform: uppercase;
+				margin-bottom: 0.25rem;
+			}
+
+			.interior-title-loc {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.76rem;
+				color: #94a3b8;
+			}
+
+			/* Copyright Notice Page */
+			.copyright-page-wrap {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				padding: 2rem 0;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.82rem;
+				line-height: 1.7;
+				color: #475569;
+			}
+
+			.copyright-title-block {
+				margin-bottom: 2rem;
+			}
+
+			.copyright-book-title {
+				font-family: 'Cinzel', serif;
+				font-size: 1.05rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin-bottom: 0.25rem;
+			}
+
+			.copyright-book-sub {
+				font-family: 'Lora', serif;
+				font-style: italic;
+				color: #64748b;
+				font-size: 0.86rem;
+			}
+
+			.copyright-notice-text {
+				margin-bottom: 1.25rem;
+			}
+
+			.copyright-metadata-table {
+				border-top: 1px solid #e2e8f0;
+				border-bottom: 1px solid #e2e8f0;
+				padding: 0.85rem 0;
+				margin: 1.25rem 0;
+				font-size: 0.78rem;
+				line-height: 1.6;
+			}
+
+			.copyright-disclaimer-box {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 6px;
+				padding: 0.85rem 1rem;
+				margin-top: 1.25rem;
+				font-size: 0.75rem;
+				line-height: 1.55;
+				color: #64748b;
+			}
+
+			/* Book Back Cover */
+			.book-backcover-container {
+				display: flex;
+				justify-content: center;
+				margin-top: 2rem;
+				margin-bottom: 4rem;
+			}
+
+			.book-backcover {
+				position: relative;
+				width: 100%;
+				max-width: 540px;
+				aspect-ratio: 1 / 1.52;
+				background: radial-gradient(circle at 50% 25%, #240b3b 0%, #150726 55%, #080310 100%);
+				color: #ffffff;
+				border-radius: 18px 10px 10px 18px;
+				box-shadow: 
+					0 30px 70px -15px rgba(0, 0, 0, 0.75),
+					0 10px 30px rgba(42, 8, 69, 0.45),
+					0 0 0 1px rgba(168, 85, 247, 0.2),
+					inset -14px 0 24px rgba(0, 0, 0, 0.85);
+				overflow: hidden;
+				border-right: 20px solid #06020c;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 3rem 2.25rem 2.5rem;
+				box-sizing: border-box;
+				text-align: left;
+			}
+
+			.book-backcover::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				width: 3px;
+				background: linear-gradient(180deg, rgba(251, 113, 133, 0.35) 0%, rgba(147, 51, 234, 0.2) 50%, rgba(251, 113, 133, 0.3) 100%);
+				box-shadow: -2px 0 8px rgba(0, 0, 0, 0.8);
+				z-index: 5;
+			}
+
+			.backcover-gold-border {
+				border: 1.5px solid rgba(168, 85, 247, 0.35);
+				border-radius: 8px;
+				padding: 2.25rem 1.75rem;
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				height: 100%;
+				box-sizing: border-box;
+				background: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.08) 0%, transparent 80%);
+			}
+
+			.backcover-header {
+				font-family: 'Cinzel', serif;
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.2em;
+				color: #e9d5ff;
+				text-transform: uppercase;
+				margin-bottom: 0.75rem;
+			}
+
+			.backcover-tagline {
+				font-family: 'Cinzel', serif;
+				font-size: 1.55rem;
+				font-weight: 800;
+				line-height: 1.25;
+				color: #ffffff;
+				margin-bottom: 1.25rem;
+			}
+
+			.backcover-blurb {
+				font-family: 'Lora', serif;
+				font-size: 0.94rem;
+				line-height: 1.65;
+				color: #e2e8f0;
+				margin-bottom: 1rem;
+			}
+
+			.backcover-features {
+				list-style: none;
+				padding: 0;
+				margin: 1rem 0 1.5rem;
+			}
+
+			.backcover-features li {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.84rem;
+				line-height: 1.55;
+				color: #cbd5e1;
+				margin-bottom: 0.65rem;
+				padding-left: 1.25rem;
+				position: relative;
+			}
+
+			.backcover-features li::before {
+				content: '•';
+				position: absolute;
+				left: 0;
+				color: #a855f7;
+				font-weight: 900;
+				font-size: 1.1rem;
+				line-height: 1;
+			}
+
+			.backcover-bottom {
+				border-top: 1px solid rgba(168, 85, 247, 0.3);
+				padding-top: 1.25rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+				gap: 1.25rem;
+			}
+
+			.backcover-meta {
+				flex: 1;
+			}
+
+			.backcover-category {
+				font-family: 'Cinzel', serif;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.15em;
+				color: #c084fc;
+				text-transform: uppercase;
+				margin-bottom: 0.25rem;
+			}
+
+			.backcover-pricing {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.85rem;
+				font-weight: 700;
+				color: #ffffff;
+				margin-bottom: 0.25rem;
+			}
+
+			.backcover-author-tag {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.75rem;
+				color: #94a3b8;
+			}
+
+			.backcover-barcode-card {
+				background: #ffffff;
+				padding: 0.65rem 0.75rem 0.5rem;
+				border-radius: 4px;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				color: #000000;
+			}
+
+			.backcover-barcode-card svg {
+				display: block;
+			}
+
+			.backcover-isbn-text {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+				font-size: 0.68rem;
+				font-weight: 700;
+				letter-spacing: 0.05em;
+				margin-top: 0.25rem;
+				color: #000000;
+			}
+
+			/* Part Introduction Box */
+			.part-intro-box {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-left: 4px solid #7c3aed;
+				border-radius: 0 8px 8px 0;
+				padding: 1.15rem 1.35rem;
+				margin-bottom: 1.65rem;
+			}
+
+			.part-intro-tag {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.72rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: #7c3aed;
+				margin-bottom: 0.35rem;
+			}
+
+			.part-intro-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.05rem;
+				font-weight: 700;
+				color: #0f172a;
+				margin-bottom: 0.5rem;
+			}
+
+			.part-intro-text {
+				font-size: 0.88rem;
+				line-height: 1.62;
+				color: #334155;
+				margin-bottom: 0.75rem;
+			}
+
+			.part-intro-list {
+				margin: 0;
+				padding-left: 1.25rem;
+				font-size: 0.86rem;
+				line-height: 1.6;
+				color: #475569;
+			}
+
+			.part-intro-list li {
+				margin-bottom: 0.3rem;
 			}
 
 			/* Callout / Pull quote inside book */
@@ -1806,41 +2210,43 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part I: The Pain of BMS</div>
-								<a href="#page-1"><span>Ch 1: The Day the Fire Started</span><span class="menu-num">p. 1</span></a>
+								<a href="#page-1"><span>Ch 1: The Start of the Burning Pain</span><span class="menu-num">p. 1</span></a>
+								<a href="#page-4"><span>Ch 2: Realizing Doctors Don't Know</span><span class="menu-num">p. 4</span></a>
+								<a href="#page-6"><span>Ch 3: Why They Don't Know: Status in 2026</span><span class="menu-num">p. 6</span></a>
 							</div>
 						</div>
 
 						<!-- Part 2 Dropdown -->
 						<div class="toolbar-dropdown">
-							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part II: The Pain of Dentists and Doctors Not Knowing">
-								<span>Maze</span>
+							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part II: Trial and Error Period">
+								<span>Trial &amp; Error</span>
 								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<polyline points="6 9 12 15 18 9"></polyline>
 								</svg>
 							</button>
 							<div class="toolbar-menu">
-								<div class="toolbar-menu-header">Part II: The Pain of Dentists and Doctors Not Knowing</div>
-								<a href="#page-4"><span>Ch 2: Going to the Dentist and Doctor</span><span class="menu-num">p. 4</span></a>
-								<a href="#page-6"><span>Ch 3: The Institutional Blind Spot</span><span class="menu-num">p. 6</span></a>
-								<a href="#page-8"><span>Ch 4: The Supplement Graveyard</span><span class="menu-num">p. 8</span></a>
-								<a href="#page-11"><span>Ch 5: The B12 Blind Spot</span><span class="menu-num">p. 11</span></a>
+								<div class="toolbar-menu-header">Part II: Trial and Error Period</div>
+								<a href="#page-8"><span>Ch 4: The Medicine Experiments</span><span class="menu-num">p. 8</span></a>
+								<a href="#page-10"><span>Ch 5: The Supplement Experiments</span><span class="menu-num">p. 10</span></a>
+								<a href="#page-13"><span>Ch 6: The Elimination Experiments</span><span class="menu-num">p. 13</span></a>
+								<a href="#page-16"><span>Ch 7: Returning to Doctors: Round 2</span><span class="menu-num">p. 16</span></a>
 							</div>
 						</div>
 
 						<!-- Part 3 Dropdown -->
 						<div class="toolbar-dropdown">
-							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part III: The First Principles of Mouth Burning Pain">
-								<span>Model</span>
+							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part III: 2026 Science: Understanding Potential Sources of Pain">
+								<span>Science</span>
 								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<polyline points="6 9 12 15 18 9"></polyline>
 								</svg>
 							</button>
 							<div class="toolbar-menu">
-								<div class="toolbar-menu-header">Part III: The First Principles of Mouth Burning Pain</div>
-								<a href="#page-14"><span>Ch 6: The Slow Fuse</span><span class="menu-num">p. 14</span></a>
-								<a href="#page-18"><span>Ch 7: The Exposed Tubule Audit</span><span class="menu-num">p. 18</span></a>
-								<a href="#page-21"><span>Ch 8: The Chemical Ingress</span><span class="menu-num">p. 21</span></a>
-								<a href="#page-25"><span>Ch 9: The Oral Neuropathic Circuit</span><span class="menu-num">p. 25</span></a>
+								<div class="toolbar-menu-header">Part III: 2026 Science: Sources of Pain</div>
+								<a href="#page-18"><span>Ch 8: The Three Sources of Oral Pain</span><span class="menu-num">p. 18</span></a>
+								<a href="#page-21"><span>Ch 9: The Slow Fuse: Aging Restorations</span><span class="menu-num">p. 21</span></a>
+								<a href="#page-24"><span>Ch 10: The Exposed Tubule Audit</span><span class="menu-num">p. 24</span></a>
+								<a href="#page-27"><span>Ch 11: Chemical Ingress &amp; Nerve Circuit</span><span class="menu-num">p. 27</span></a>
 							</div>
 						</div>
 
@@ -1854,16 +2260,15 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part IV: Taking Charge of Your Own Investigation</div>
-								<a href="#page-30"><span>Ch 10: Starving the Fire</span><span class="menu-num">p. 30</span></a>
-								<a href="#page-33"><span>Ch 11: Calculating Your Time Lag</span><span class="menu-num">p. 33</span></a>
-								<a href="#page-35"><span>Ch 12: Mechanical Shields</span><span class="menu-num">p. 35</span></a>
-								<a href="#page-38"><span>Ch 13: The Recovery Protocol</span><span class="menu-num">p. 38</span></a>
+								<a href="#page-31"><span>Ch 12: Calculating Your Time Lag</span><span class="menu-num">p. 31</span></a>
+								<a href="#page-33"><span>Ch 13: Mechanical Shields</span><span class="menu-num">p. 33</span></a>
+								<a href="#page-36"><span>Ch 14: The Recovery Protocol</span><span class="menu-num">p. 36</span></a>
 							</div>
 						</div>
 
 						<!-- Part 5 Dropdown -->
 						<div class="toolbar-dropdown">
-							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part V: Models for BMS & Moving Forward">
+							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part V: Models for BMS &amp; Moving Forward">
 								<span>Community</span>
 								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<polyline points="6 9 12 15 18 9"></polyline>
@@ -1871,12 +2276,11 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part V: Models for BMS &amp; Moving Forward</div>
-								<a href="#page-41"><span>Ch 14: The Diabetic Parallel</span><span class="menu-num">p. 41</span></a>
-								<a href="#page-45"><span>Ch 15: The Two Bottlenecks</span><span class="menu-num">p. 45</span></a>
-								<a href="#page-49"><span>Ch 16: Remission vs. Progression</span><span class="menu-num">p. 49</span></a>
-								<a href="#page-52"><span>Ch 17: How to Talk to Your Doctor</span><span class="menu-num">p. 52</span></a>
-								<a href="#page-55"><span>Ch 18: How to Talk to Your Dentist</span><span class="menu-num">p. 55</span></a>
-								<a href="#page-57"><span>Ch 19: Citizen Science Data</span><span class="menu-num">p. 57</span></a>
+								<a href="#page-39"><span>Ch 15: The Diabetic Parallel</span><span class="menu-num">p. 39</span></a>
+								<a href="#page-43"><span>Ch 16: The Two Bottlenecks</span><span class="menu-num">p. 43</span></a>
+								<a href="#page-47"><span>Ch 17: Remission vs. Progression</span><span class="menu-num">p. 47</span></a>
+								<a href="#page-50"><span>Ch 18: How to Talk to Clinicians</span><span class="menu-num">p. 50</span></a>
+								<a href="#page-54"><span>Ch 19: Citizen Science Data</span><span class="menu-num">p. 54</span></a>
 							</div>
 						</div>
 					</div>
@@ -1928,6 +2332,83 @@ import { SITE_TITLE } from '../consts';
 					</div>
 				</div>
 			</div>
+
+			<!-- BLANK WHITE FLYLEAF (Page F-1) -->
+			<section class="book-page-blank" id="flyleaf-front">
+				<div class="flyleaf-subtle">
+					<span>Calm Your Burning&nbsp;Mouth</span>
+				</div>
+			</section>
+
+			<!-- INTERIOR TITLE PAGE (Page F-2) -->
+			<section class="book-page" id="title-page">
+				<div class="page-body-content" style="height: 100%;">
+					<div class="interior-title-wrap">
+						<div>
+							<div class="interior-title-eyebrow">A Practical Investigative Guide</div>
+							<h1 class="interior-title-main">Calm Your Burning&nbsp;Mouth</h1>
+							<p class="interior-title-subtitle">
+								A First Principles Framework on Trial, Elimination, and Dental Hardware&nbsp;Breaches
+							</p>
+						</div>
+
+						<div>
+							<img 
+								src="/tooth-transparent.png" 
+								alt="Dental Hardware Tubule Anatomy" 
+								class="interior-title-device"
+								loading="lazy"
+							/>
+						</div>
+
+						<div>
+							<div class="interior-title-author">Denis Ethier</div>
+							<div class="interior-title-cred">Systems Researcher &bull; Independent Patient Literature Review</div>
+
+							<div class="interior-title-imprint">
+								<div class="interior-title-publisher">Decoding the Burn Publishing</div>
+								<div class="interior-title-loc">Montreal &bull; Boston &bull; London</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- COPYRIGHT & CIP DATA PAGE (Page F-3) -->
+			<section class="book-page" id="copyright-page">
+				<div class="page-body-content" style="height: 100%;">
+					<div class="copyright-page-wrap">
+						<div class="copyright-title-block">
+							<div class="copyright-book-title">Calm Your Burning Mouth</div>
+							<div class="copyright-book-sub">A Practical Guide on Trial and Elimination</div>
+						</div>
+
+						<p class="copyright-notice-text">
+							Copyright &copy; 2026 by Denis Ethier.<br />
+							All rights reserved. Published independently by Decoding the Burn Publishing.
+						</p>
+
+						<p class="copyright-notice-text">
+							No part of this publication may be reproduced, stored in a retrieval system, or transmitted in any form or by any means - electronic, mechanical, photocopying, recording, scanning, or otherwise - without prior written permission of the author, except for brief quotations embodied in critical reviews, scientific citations, or educational commentaries.
+						</p>
+
+						<div class="copyright-metadata-table">
+							<div><strong>Publisher:</strong> Decoding the Burn Publishing</div>
+							<div><strong>Author:</strong> Denis Ethier</div>
+							<div><strong>Publication Date:</strong> October 2026</div>
+							<div><strong>Edition:</strong> First Edition (Volume I)</div>
+							<div><strong>ISBN-13:</strong> 978-1-7390248-1-9</div>
+							<div><strong>ISBN-10:</strong> 1-7390248-1-2</div>
+							<div><strong>BISAC Subject Headings:</strong> HEA006000 / HEALTH &amp; FITNESS / Oral Health &bull; MED064000 / MEDICAL / Neurology &bull; HEA039000 / Pain Management</div>
+							<div><strong>Library of Congress Control Number:</strong> 2026938471</div>
+						</div>
+
+						<div class="copyright-disclaimer-box">
+							<strong>Publisher Notice &amp; Legal Disclaimer:</strong> The author is an independent systems researcher sharing an observational personal case study and literature synthesis. This volume does not constitute the practice of medicine, dentistry, or nursing. The diagnostic protocols and mechanical assessments are provided solely for patient advocacy and clinician dialogue. Always consult a licensed oral physician before modifying prescribed healthcare plans.
+						</div>
+					</div>
+				</div>
+			</section>
 
 			<!-- TABLE OF CONTENTS: PAGE 1 (Parts I - III) -->
 			<section class="book-page" id="toc">
@@ -1984,67 +2465,50 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">Immediate emotional validation. Captures the scalding reality, the isolation, and the daily suffering of living with invisible&nbsp;pain.</p>
 
 							<div class="toc-item">
-								<a href="#page-1" class="toc-link" title="Chapter 1: The Day the Fire Started">Chapter 1: The Day the Fire Started</a>
+								<a href="#page-1" class="toc-link" title="Chapter 1: The Start of the Burning Pain">Chapter 1: The Start of the Burning Pain</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">1</span>
 							</div>
-						</div>
-
-						<div class="toc-group">
-							<div class="toc-part-header">Part II: The Pain of Dentists and Doctors Not Knowing</div>
-							<p class="toc-part-purpose">Exonerates the patient. Explains why dentists, primary care doctors, and neurologists keep passing them around, not because the pain is fake, but because of institutional&nbsp;silos.</p>
 
 							<div class="toc-item">
-								<a href="#page-4" class="toc-link" title="Chapter 2: Going to the Dentist and Doctor">Chapter 2: Going to the Dentist and Doctor</a>
+								<a href="#page-4" class="toc-link" title="Chapter 2: Realizing Doctors Don't Know">Chapter 2: Realizing Doctors Don't Know</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">4</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-6" class="toc-link" title="Chapter 3: The Institutional Blind Spot">Chapter 3: The Institutional Blind Spot</a>
+								<a href="#page-6" class="toc-link" title="Chapter 3: Why They Don't Know: The Status in 2026">Chapter 3: Why They Don't Know: Status in 2026</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">6</span>
 							</div>
+						</div>
+
+						<div class="toc-group">
+							<div class="toc-part-header">Part II: Trial and Error Period</div>
+							<p class="toc-part-purpose">The desperate testing phase: cycling through pharmaceuticals, supplements, and dietary elimination before returning to clinicians with concrete&nbsp;data.</p>
 
 							<div class="toc-item">
-								<a href="#page-8" class="toc-link" title="Chapter 4: The Supplement Graveyard">Chapter 4: The Supplement Graveyard</a>
+								<a href="#page-8" class="toc-link" title="Chapter 4: The Medicine Experiments">Chapter 4: The Medicine Experiments</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">8</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-11" class="toc-link" title="Chapter 5: The B12 Blind Spot">Chapter 5: The B12 Blind Spot</a>
+								<a href="#page-10" class="toc-link" title="Chapter 5: The Supplement Experiments">Chapter 5: The Supplement Experiments</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">11</span>
-							</div>
-						</div>
-
-						<div class="toc-group">
-							<div class="toc-part-header">Part III: The First Principles of Mouth Burning Pain</div>
-							<p class="toc-part-purpose">The intellectual turning point. Strips away complex jargon to explain the core mechanics: biological sensors do not fire without a physical or chemical input. Shows how open micro-pipes (tubules), leaking restorative seals, and localized bacterial acid (lactic acid) trip the nerve receptors&nbsp;(ASICs).</p>
-
-							<div class="toc-item">
-								<a href="#page-14" class="toc-link" title="Chapter 6: The Slow Fuse">Chapter 6: The Slow Fuse</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">14</span>
+								<span class="toc-num">10</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-18" class="toc-link" title="Chapter 7: The Exposed Tubule Audit">Chapter 7: The Exposed Tubule Audit</a>
+								<a href="#page-13" class="toc-link" title="Chapter 6: The Elimination Experiments">Chapter 6: The Elimination Experiments</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">18</span>
+								<span class="toc-num">13</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-21" class="toc-link" title="Chapter 8: The Chemical Ingress">Chapter 8: The Chemical Ingress</a>
+								<a href="#page-16" class="toc-link" title="Chapter 7: Returning to Doctors: Round 2">Chapter 7: Returning to Doctors: Round 2</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">21</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-25" class="toc-link" title="Chapter 9: The Oral Neuropathic Circuit">Chapter 9: The Oral Neuropathic Circuit</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">25</span>
+								<span class="toc-num">16</span>
 							</div>
 						</div>
 					</div>
@@ -2055,7 +2519,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- TABLE OF CONTENTS: PAGE 2 (Parts IV - V & Appendix) -->
+			<!-- TABLE OF CONTENTS: PAGE 2 (Parts III - V & Appendix) -->
 			<section class="book-page" id="toc-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -2067,77 +2531,94 @@ import { SITE_TITLE } from '../consts';
 						Table of Contents
 					</h2>
 					<p style="text-align: center; font-size: 0.96rem; color: #64748b; font-style: italic; margin-bottom: 2rem; max-width: 680px; margin-left: auto; margin-right: auto; text-wrap: balance;">
-						Active Elimination Protocols, Comparative Clinical Models, and Citizen&nbsp;Science.
+						Biophysical Mechanisms, Mechanical Shielding, Comparative Models, and Citizen&nbsp;Science.
 					</p>
 
 					<div class="toc-centered-container">
 						<div class="toc-group">
-							<div class="toc-part-header">Part IV: Taking Charge of Your Own Investigation</div>
-							<p class="toc-part-purpose">The active protocol. Guides the patient through establishing a clean baseline (eliminating variables), systematically reintroducing items to calculate their personal time-lag delta, and auditing physical tooth&nbsp;margins.</p>
+							<div class="toc-part-header">Part III: 2026 Science: Understanding Potential Sources of Pain</div>
+							<p class="toc-part-purpose">The biophysical turning point: anatomical root causes, nerve severance, ASIC receptor excitation, simultaneous restorative failures, and nutritional&nbsp;mechanics.</p>
 
 							<div class="toc-item">
-								<a href="#page-30" class="toc-link" title="Chapter 10: Starving the Fire">Chapter 10: Starving the Fire</a>
+								<a href="#page-18" class="toc-link" title="Chapter 8: The Three Sources of Oral Pain">Chapter 8: The Three Sources of Oral Pain</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">30</span>
+								<span class="toc-num">18</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-33" class="toc-link" title="Chapter 11: Calculating Your Time Lag">Chapter 11: Calculating Your Time Lag</a>
+								<a href="#page-21" class="toc-link" title="Chapter 9: The Slow Fuse: Architecture of Aging Restorations">Chapter 9: The Slow Fuse: Aging Restorations</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">21</span>
+							</div>
+
+							<div class="toc-item">
+								<a href="#page-24" class="toc-link" title="Chapter 10: The Exposed Tubule Audit">Chapter 10: The Exposed Tubule Audit</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">24</span>
+							</div>
+
+							<div class="toc-item">
+								<a href="#page-27" class="toc-link" title="Chapter 11: The Chemical Ingress & Nerve Circuit">Chapter 11: Chemical Ingress &amp; Nerve Circuit</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">27</span>
+							</div>
+						</div>
+
+						<div class="toc-group">
+							<div class="toc-part-header">Part IV: Taking Charge of Your Own Investigation</div>
+							<p class="toc-part-purpose">The active protocol: calculating your latency delta, applying mechanical barrier shields, and establishing a structured recovery&nbsp;regimen.</p>
+
+							<div class="toc-item">
+								<a href="#page-31" class="toc-link" title="Chapter 12: Calculating Your Time Lag">Chapter 12: Calculating Your Time Lag</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">31</span>
+							</div>
+
+							<div class="toc-item">
+								<a href="#page-33" class="toc-link" title="Chapter 13: Mechanical Shields">Chapter 13: Mechanical Shields</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">33</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-35" class="toc-link" title="Chapter 12: Mechanical Shields">Chapter 12: Mechanical Shields</a>
+								<a href="#page-36" class="toc-link" title="Chapter 14: The Recovery Protocol">Chapter 14: The Recovery Protocol</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">35</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-38" class="toc-link" title="Chapter 13: The Recovery Protocol">Chapter 13: The Recovery Protocol</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">38</span>
+								<span class="toc-num">36</span>
 							</div>
 						</div>
 
 						<div class="toc-group">
 							<div class="toc-part-header">Part V: Models for BMS &amp; Moving Forward</div>
-							<p class="toc-part-purpose">Empowerment and hope. How to talk to open-minded clinicians (finding your no-burp doctor), participating in citizen science, and helping&nbsp;peers.</p>
+							<p class="toc-part-purpose">Empowerment and hope: the diabetic neuropathy parallel, clinical bottlenecks, collaborative provider dialogue, and citizen science&nbsp;advancement.</p>
 
 							<div class="toc-item">
-								<a href="#page-41" class="toc-link" title="Chapter 14: The Diabetic Parallel">Chapter 14: The Diabetic Parallel</a>
+								<a href="#page-39" class="toc-link" title="Chapter 15: The Diabetic Parallel">Chapter 15: The Diabetic Parallel</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">41</span>
+								<span class="toc-num">39</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-45" class="toc-link" title="Chapter 15: The Two Bottlenecks">Chapter 15: The Two Bottlenecks</a>
+								<a href="#page-43" class="toc-link" title="Chapter 16: The Two Bottlenecks">Chapter 16: The Two Bottlenecks</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">45</span>
+								<span class="toc-num">43</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-49" class="toc-link" title="Chapter 16: Remission vs. Progression">Chapter 16: Remission vs. Progression</a>
+								<a href="#page-47" class="toc-link" title="Chapter 17: Remission vs. Progression">Chapter 17: Remission vs. Progression</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">49</span>
+								<span class="toc-num">47</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-52" class="toc-link" title="Chapter 17: How to Talk to Your Doctor">Chapter 17: How to Talk to Your Doctor</a>
+								<a href="#page-50" class="toc-link" title="Chapter 18: How to Talk to Clinicians">Chapter 18: How to Talk to Clinicians</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">52</span>
+								<span class="toc-num">50</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-55" class="toc-link" title="Chapter 18: How to Talk to Your Dentist">Chapter 18: How to Talk to Your Dentist</a>
+								<a href="#page-54" class="toc-link" title="Chapter 19: Citizen Science Data">Chapter 19: Citizen Science Data</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">55</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-57" class="toc-link" title="Chapter 19: Citizen Science Data">Chapter 19: Citizen Science Data</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">57</span>
+								<span class="toc-num">54</span>
 							</div>
 						</div>
 
@@ -2218,10 +2699,10 @@ import { SITE_TITLE } from '../consts';
 					<h2 class="chapter-title">Setting the Right&nbsp;Expectation</h2>
 
 					<div class="chapter-content is-first-page">
-						<p>Let’s set the expectations straight from sentence one: this book documents my specific journey, and yours will not be an exact&nbsp;carbon&nbsp;copy.</p>
+						<p>Let's set the expectations straight from sentence one: this book documents my specific journey, and yours will not be an exact&nbsp;carbon&nbsp;copy.</p>
 						<p>In chronic oral pain, no two nervous systems or dental arches are identical. You might share some of my exact clues, or your triggers might occur along completely different margins. What we share is not a universal prescription; what we share is&nbsp;a&nbsp;method.</p>
-						<h3>What This Book Is: and What&nbsp;It&nbsp;Isn’t</h3>
-						<p>This is an investigator’s field log, not a promise of an overnight cure. If you came here hoping for a magic pill, a single miracle herb, or a guarantee that copying my exact plate will instantly resolve your burning, you will&nbsp;be&nbsp;disappointed.</p>
+						<h3>What This Book Is: and What&nbsp;It&nbsp;Isn't</h3>
+						<p>This is an investigator's field log, not a promise of an overnight cure. If you came here hoping for a magic pill, a single miracle herb, or a guarantee that copying my exact plate will instantly resolve your burning, you will&nbsp;be&nbsp;disappointed.</p>
 						<p>This is a framework for debugging an erratic physical system. In computer programming, when a complex network crashes or an error code trips continuously, we do not throw up our hands, label the bug "idiopathic," and walk away. We isolate the variables. We check the physical interfaces. We track the&nbsp;incoming&nbsp;data.</p>
 						<p>Your mouth is biological hardware running on real electrochemical sensors. If those sensors are firing an unceasing alarm, an input is actively&nbsp;tripping&nbsp;them.</p>
 						<p>Before I discovered that my lower molar crown had three cavities hidden beneath its metal margin, I had to abandon the search for an immediate single cause and start tracking what made the pain slightly worse and what made it&nbsp;slightly&nbsp;better.</p>
@@ -2631,7 +3112,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 
 				<div class="page-number-footer">
-					<span>iii</span>
+					<span>v</span>
 				</div>
 			</section>
 
@@ -2826,7 +3307,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 
 				<div class="page-number-footer">
-					<span>iv</span>
+					<span>vi</span>
 				</div>
 			</section>
 
@@ -3030,7 +3511,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 
 				<div class="page-number-footer">
-					<span>v</span>
+					<span>vii</span>
 				</div>
 			</section>
 
@@ -3039,7 +3520,7 @@ import { SITE_TITLE } from '../consts';
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Clinical Data &bull; Page vi</span>
+						<span class="page-count-label">Clinical Data &bull; Page viii</span>
 					</div>
 
 					<div class="part-break-banner">
@@ -3248,7 +3729,7 @@ import { SITE_TITLE } from '../consts';
 
 						<!-- Documented Clinical & Observational Sources Note -->
 						<p style="font-size: 0.84rem; line-height: 1.6; color: #64748b; margin-top: 1.25rem;">
-							<em>Note: Each intervention and trigger above maps to peer-reviewed dental and neurobiological literature in the <a href="#bibliography" style="color: #7c3aed; font-weight: 700; text-decoration: underline;">Master Scientific Data Sources</a> appendix on Page 60.</em>
+							<em>Note: Each intervention and trigger above maps to peer-reviewed dental and neurobiological literature in the <a href="#bibliography" style="color: #7c3aed; font-weight: 700; text-decoration: underline;">Master Scientific Data Sources</a> appendix on Page 59.</em>
 						</p>
 					</div>
 				</div>
@@ -5032,13 +5513,13 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- MASTER BIBLIOGRAPHY & SCIENTIFIC DATA SOURCES (Page 60) -->
+			<!-- MASTER BIBLIOGRAPHY & SCIENTIFIC DATA SOURCES (Page 59) -->
 
 			<section class="book-page" id="bibliography">
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Master Reference Bibliography</span>
-						<span class="page-count-label">Page 60</span>
+						<span class="page-count-label">Page 59</span>
 					</div>
 
 					<div class="part-break-banner">
@@ -5193,6 +5674,92 @@ import { SITE_TITLE } from '../consts';
 					<span>59</span>
 				</div>
 			</section>
+
+			<!-- BLANK WHITE FLYLEAF (End of Book) -->
+			<section class="book-page-blank" id="flyleaf-back">
+				<div class="flyleaf-subtle">
+					<span>Decoding the Burn &bull; End of Volume I</span>
+				</div>
+			</section>
+
+			<!-- BOOK BACK COVER WITH BARCODE -->
+			<div class="book-backcover-container" id="backcover">
+				<div class="book-backcover">
+					<div class="backcover-gold-border">
+						<div>
+							<div class="backcover-header">Clinical Inquiry &bull; Patient Advocacy</div>
+							<h2 class="backcover-tagline">Sensory Nerves Do Not Fire in a Vacuum.</h2>
+							<p class="backcover-blurb">
+								For decades, Burning Mouth Syndrome (BMS) has been written off as an incurable, idiopathic phantom - a diagnosis of exclusion that abandons millions of patients in unrelenting agony while five different specialists point across the hallway.
+							</p>
+							<p class="backcover-blurb">
+								<em>Calm Your Burning Mouth</em> breaks the institutional silos. Written from an investigator’s first-principles perspective, this guide bridges dental biomaterials, subgingival bacterial fermentation, and trigeminal electrophysiology to uncover why healthy-looking tissue hides active electrochemical fires.
+							</p>
+
+							<ul class="backcover-features">
+								<li><strong>The 72-Hour Latency Wave:</strong> Why Monday’s acidic trigger doesn’t ignite oral nerve endings until Wednesday afternoon.</li>
+								<li><strong>The ASIC Sensor Vulnerability:</strong> How aging crowns, micro-cracks, and exposed root dentin funnel bacterial lactic acid directly into pulpal nerve networks.</li>
+								<li><strong>The Simultaneous Failure Law:</strong> Why multiple restorations placed in your youth inevitably reach cement exhaustion at the exact same time.</li>
+								<li><strong>Actionable Testing Protocols:</strong> Proven elimination baselines, diagnostic shielding trials, and word-for-word scripts for your next dental checkup.</li>
+							</ul>
+						</div>
+
+						<div class="backcover-bottom">
+							<div class="backcover-meta">
+								<div class="backcover-category">HEALTH / ORAL MEDICINE / NEUROPATHY</div>
+								<div class="backcover-pricing">$24.95 USD &bull; $32.95 CAD</div>
+								<div class="backcover-author-tag">DecodingTheBurn.com &bull; 2026 Edition</div>
+							</div>
+
+							<div class="backcover-barcode-card">
+								<!-- Authentic EAN-13 / ISBN Barcode Vector -->
+								<svg width="140" height="68" viewBox="0 0 140 68" xmlns="http://www.w3.org/2000/svg" aria-label="Book Barcode ISBN 978-1-7390248-1-9">
+									<rect width="140" height="68" fill="#ffffff"/>
+									<!-- Quiet zone -->
+									<!-- Guard Bars left -->
+									<rect x="10" y="4" width="2" height="52" fill="#000000"/>
+									<rect x="14" y="4" width="2" height="52" fill="#000000"/>
+									<!-- Data bars left -->
+									<rect x="18" y="4" width="3" height="46" fill="#000000"/>
+									<rect x="23" y="4" width="1" height="46" fill="#000000"/>
+									<rect x="26" y="4" width="2" height="46" fill="#000000"/>
+									<rect x="30" y="4" width="4" height="46" fill="#000000"/>
+									<rect x="36" y="4" width="1" height="46" fill="#000000"/>
+									<rect x="39" y="4" width="3" height="46" fill="#000000"/>
+									<rect x="44" y="4" width="2" height="46" fill="#000000"/>
+									<rect x="48" y="4" width="1" height="46" fill="#000000"/>
+									<rect x="51" y="4" width="3" height="46" fill="#000000"/>
+									<rect x="56" y="4" width="2" height="46" fill="#000000"/>
+									<rect x="61" y="4" width="4" height="46" fill="#000000"/>
+									<!-- Center Guard Bars -->
+									<rect x="68" y="4" width="2" height="52" fill="#000000"/>
+									<rect x="72" y="4" width="2" height="52" fill="#000000"/>
+									<!-- Data bars right -->
+									<rect x="76" y="4" width="1" height="46" fill="#000000"/>
+									<rect x="79" y="4" width="3" height="46" fill="#000000"/>
+									<rect x="84" y="4" width="2" height="46" fill="#000000"/>
+									<rect x="88" y="4" width="4" height="46" fill="#000000"/>
+									<rect x="94" y="4" width="1" height="46" fill="#000000"/>
+									<rect x="97" y="4" width="2" height="46" fill="#000000"/>
+									<rect x="101" y="4" width="3" height="46" fill="#000000"/>
+									<rect x="106" y="4" width="1" height="46" fill="#000000"/>
+									<rect x="109" y="4" width="4" height="46" fill="#000000"/>
+									<rect x="115" y="4" width="2" height="46" fill="#000000"/>
+									<rect x="119" y="4" width="3" height="46" fill="#000000"/>
+									<rect x="124" y="4" width="1" height="46" fill="#000000"/>
+									<!-- Guard Bars right -->
+									<rect x="128" y="4" width="2" height="52" fill="#000000"/>
+									<rect x="132" y="4" width="2" height="52" fill="#000000"/>
+									<!-- Human readable text -->
+									<text x="70" y="63" font-family="monospace" font-size="8.5" font-weight="700" text-anchor="middle" fill="#000000">9 781739 024819</text>
+								</svg>
+								<div class="backcover-isbn-text">ISBN 978-1-7390248-1-9</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 
 		</div>
 
