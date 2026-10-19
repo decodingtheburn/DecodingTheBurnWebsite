@@ -2340,122 +2340,6 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			
-			/* 0 to 10 Pain Scale Clinical Visual */
-			.pain-scale-graphic-container {
-				margin: 1.4rem auto 1.6rem;
-				background: #ffffff;
-				border: 1.5px solid #e2e8f0;
-				border-radius: 12px;
-				padding: 1.25rem 1.15rem 1.1rem;
-				box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
-			}
-
-			.pain-scale-header-block {
-				text-align: center;
-				margin-bottom: 1.1rem;
-			}
-
-			.pain-scale-main-title {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.05rem;
-				font-weight: 800;
-				color: #0f172a;
-				margin: 0 0 0.25rem;
-			}
-
-			.pain-scale-sub-label {
-				font-size: 0.8rem;
-				color: #64748b;
-				margin: 0;
-			}
-
-			.pain-scale-gradient-bar {
-				display: grid;
-				grid-template-columns: repeat(11, 1fr);
-				gap: 3px;
-				margin: 0.85rem 0 0.5rem;
-				border-radius: 6px;
-				overflow: hidden;
-			}
-
-			.pain-scale-step {
-				padding: 0.55rem 0.2rem 0.45rem;
-				text-align: center;
-				color: #ffffff;
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				position: relative;
-			}
-
-			.pain-scale-num {
-				font-size: 0.92rem;
-				font-weight: 800;
-				line-height: 1;
-			}
-
-			.pain-scale-desc {
-				font-size: 0.62rem;
-				font-weight: 600;
-				opacity: 0.95;
-				margin-top: 0.2rem;
-				white-space: nowrap;
-			}
-
-			.pain-scale-callout-marker {
-				border: 2px solid #000000;
-				transform: scale(1.04);
-				z-index: 2;
-				border-radius: 4px;
-				box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-			}
-
-			.pain-scale-tiers-grid {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 0.65rem;
-				margin-top: 0.85rem;
-				padding-top: 0.85rem;
-				border-top: 1px solid #f1f5f9;
-			}
-
-			.pain-scale-tier-card {
-				background: #f8fafc;
-				border-radius: 8px;
-				padding: 0.65rem 0.75rem;
-				border-left: 3px solid #cbd5e1;
-			}
-
-			.pain-scale-tier-card.tier-mild { border-left-color: #22c55e; }
-			.pain-scale-tier-card.tier-moderate { border-left-color: #eab308; }
-			.pain-scale-tier-card.tier-severe { border-left-color: #dc2626; background: #fff1f2; }
-
-			.tier-card-title {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.78rem;
-				font-weight: 800;
-				color: #0f172a;
-				margin: 0 0 0.2rem;
-			}
-
-			.tier-card-desc {
-				font-size: 0.73rem;
-				line-height: 1.45;
-				color: #475569;
-				margin: 0;
-			}
-
-			@media (max-width: 640px) {
-				.pain-scale-desc {
-					display: none;
-				}
-				.pain-scale-tiers-grid {
-					grid-template-columns: 1fr;
-				}
-			}
-
 			/* Book Figures / Diagrams */
 			.book-figure {
 				margin: 1.6rem auto 1.75rem;
@@ -4184,42 +4068,12 @@ import { SITE_TITLE } from '../consts';
 						<p><strong>7 to 10 is Severe Pain:</strong> Completely disables normal executive function. Sleep becomes fractured, social engagement collapses, and autonomic stress responses (elevated heart rate, cortisol spikes) lock in permanently.</p>
 						<p>In clinical trials, doctors consider a <strong>2-point reduction</strong> on the 10-point scale to be the threshold for "minimally clinically important difference" (MCID). If an intervention takes you from an 8 down to a 6, that is a medically meaningful win. When I brought my own baseline from a constant 10 down to a 0, it was not a slight subjective shift; it was a total biological deactivation of the alarm.</p>
 
-						<!-- Standalone Custom Clinical 0-to-10 Graphic -->
-						<div class="pain-scale-graphic-container">
-							<div class="pain-scale-header-block">
-								<h4 class="pain-scale-main-title">Figure 1: The Clinical 0-to-10 Numerical Rating Scale (NRS)</h4>
-								<p class="pain-scale-sub-label">Standard Medical Scoring vs. Active Burning Mouth Syndrome Range</p>
-							</div>
-
-							<div class="pain-scale-gradient-bar">
-								<div class="pain-scale-step" style="background: #16a34a;"><span class="pain-scale-num">0</span><span class="pain-scale-desc">Zero Pain</span></div>
-								<div class="pain-scale-step" style="background: #22c55e;"><span class="pain-scale-num">1</span><span class="pain-scale-desc">Faint</span></div>
-								<div class="pain-scale-step" style="background: #4ade80; color: #0f172a;"><span class="pain-scale-num">2</span><span class="pain-scale-desc">Mild</span></div>
-								<div class="pain-scale-step" style="background: #a3e635; color: #0f172a;"><span class="pain-scale-num">3</span><span class="pain-scale-desc">Noticeable</span></div>
-								<div class="pain-scale-step" style="background: #facc15; color: #0f172a;"><span class="pain-scale-num">4</span><span class="pain-scale-desc">Moderate</span></div>
-								<div class="pain-scale-step" style="background: #eab308; color: #0f172a;"><span class="pain-scale-num">5</span><span class="pain-scale-desc">Distracting</span></div>
-								<div class="pain-scale-step" style="background: #f97316;"><span class="pain-scale-num">6</span><span class="pain-scale-desc">Disruptive</span></div>
-								<div class="pain-scale-step pain-scale-callout-marker" style="background: #ea580c;"><span class="pain-scale-num">7</span><span class="pain-scale-desc">Severe</span></div>
-								<div class="pain-scale-step pain-scale-callout-marker" style="background: #dc2626;"><span class="pain-scale-num">8</span><span class="pain-scale-desc">Very Intense</span></div>
-								<div class="pain-scale-step pain-scale-callout-marker" style="background: #b91c1c;"><span class="pain-scale-num">9</span><span class="pain-scale-desc">Excruciating</span></div>
-								<div class="pain-scale-step pain-scale-callout-marker" style="background: #7f1d1d;"><span class="pain-scale-num">10</span><span class="pain-scale-desc">Maximal</span></div>
-							</div>
-
-							<div class="pain-scale-tiers-grid">
-								<div class="pain-scale-tier-card tier-mild">
-									<div class="tier-card-title">0 to 3: Mild Baseline</div>
-									<p class="tier-card-desc">Tolerable background noise. Does not interrupt sleep, work, or speech.</p>
-								</div>
-								<div class="pain-scale-tier-card tier-moderate">
-									<div class="tier-card-title">4 to 6: Moderate Impairment</div>
-									<p class="tier-card-desc">Requires conscious coping effort. Work focus and social patience degrade.</p>
-								</div>
-								<div class="pain-scale-tier-card tier-severe">
-									<div class="tier-card-title">7 to 10: Severe BMS Zone</div>
-									<p class="tier-card-desc">Small-fiber trigeminal saturation. Clinical target for anti-acid and tubule intervention.</p>
-								</div>
-							</div>
-						</div>
+						<figure class="book-figure">
+							<img src="/clinical-pain-scale-0-10-bms.svg" alt="Figure 1: The Clinical 0-to-10 Numerical Rating Scale (NRS) showing where Burning Mouth Syndrome ranks" loading="lazy" />
+							<figcaption class="book-figure-caption">
+								<strong>Figure 1: The Clinical 0-to-10 Numerical Rating Scale (NRS).</strong> Active Burning Mouth Syndrome sits in the severe 7 to 10 bracket, far exceeding tolerable baseline noise and demanding immediate small-fiber circuit&nbsp;deactivation.
+							</figcaption>
+						</figure>
 
 						<p>Why do pain research scientists often use the 50-point McGill Pain Index alongside the 10-point scale? Because a flat number between 0 and 10 does not capture the qualitative torture of a thermal burn. The McGill scale (scored from 0 to 50) factors in sensory words like scalding, searing, and exhausting. In published McGill studies, BMS patients consistently score between <strong>30 and 42 out of 50</strong>: ranking right alongside kidney stones and non-terminal cancer pain, yet far exceeding an ordinary acute toothache (19 out of 50). This explains why telling a patient with an 8-out-of-10 scalding burn that "everything looks fine" feels like medical gaslighting.</p>
 

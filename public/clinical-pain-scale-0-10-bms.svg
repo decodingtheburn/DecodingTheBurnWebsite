@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="100%" height="auto" style="background: #090d16; border-radius: 16px; font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+    <linearGradient id="barGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="25%" stop-color="#84cc16" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="70%" stop-color="#f97316" />
+      <stop offset="85%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="640" rx="16" fill="url(#bgGradient)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g transform="translate(50, 48)">
+    <text x="0" y="0" fill="#a78bfa" font-size="12" font-weight="800" letter-spacing="2">CLINICAL PAIN TELEMETRY</text>
+    <text x="0" y="32" fill="#ffffff" font-size="24" font-weight="800" letter-spacing="-0.5">The Clinical 0-to-10 Numerical Rating Scale (NRS)</text>
+    <text x="0" y="58" fill="#94a3b8" font-size="14" font-weight="500">How Doctors Gauge Pain Intensity vs. Where Burning Mouth Syndrome Lives</text>
+  </g>
+
+  <!-- Continuous Gradient Spectrum Bar -->
+  <g transform="translate(50, 150)">
+    <!-- Active BMS Range Bracket on Top -->
+    <path d="M 570,-12 L 570,-26 L 890,-26 L 890,-12" fill="none" stroke="#ef4444" stroke-width="2" />
+    <polygon points="730,-16 724,-28 736,-28" fill="#ef4444" />
+    <rect x="625" y="-50" width="210" height="28" rx="6" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.5" />
+    <text x="730" y="-31" fill="#ffffff" font-size="11.5" font-weight="800" text-anchor="middle" letter-spacing="0.5">ACTIVE BMS ZONE (7 to 10)</text>
+
+    <!-- Bar Glow & Base -->
+    <rect x="0" y="16" width="900" height="20" rx="10" fill="url(#barGradient)" filter="url(#glow)" opacity="0.45" />
+    <rect x="0" y="16" width="900" height="20" rx="10" fill="url(#barGradient)" />
+
+    <!-- Markers 0 to 10 -->
+    <!-- 0 -->
+    <g transform="translate(10, 0)">
+      <circle cx="0" cy="26" r="16" fill="#0f172a" stroke="#10b981" stroke-width="3" />
+      <text x="0" y="31" fill="#10b981" font-size="14" font-weight="800" text-anchor="middle">0</text>
+      <text x="0" y="64" fill="#10b981" font-size="12" font-weight="700" text-anchor="middle">Zero</text>
+    </g>
+    <!-- 1 -->
+    <g transform="translate(98, 0)">
+      <circle cx="0" cy="26" r="14" fill="#0f172a" stroke="#22c55e" stroke-width="2.5" />
+      <text x="0" y="31" fill="#22c55e" font-size="13" font-weight="800" text-anchor="middle">1</text>
+      <text x="0" y="64" fill="#94a3b8" font-size="12" font-weight="600" text-anchor="middle">Faint</text>
+    </g>
+    <!-- 2 -->
+    <g transform="translate(186, 0)">
+      <circle cx="0" cy="26" r="14" fill="#0f172a" stroke="#4ade80" stroke-width="2.5" />
+      <text x="0" y="31" fill="#4ade80" font-size="13" font-weight="800" text-anchor="middle">2</text>
+      <text x="0" y="64" fill="#94a3b8" font-size="12" font-weight="600" text-anchor="middle">Mild</text>
+    </g>
+    <!-- 3 -->
+    <g transform="translate(274, 0)">
+      <circle cx="0" cy="26" r="14" fill="#0f172a" stroke="#84cc16" stroke-width="2.5" />
+      <text x="0" y="31" fill="#84cc16" font-size="13" font-weight="800" text-anchor="middle">3</text>
+      <text x="0" y="64" fill="#94a3b8" font-size="12" font-weight="600" text-anchor="middle">Noticeable</text>
+    </g>
+    <!-- 4 -->
+    <g transform="translate(362, 0)">
+      <circle cx="0" cy="26" r="14" fill="#0f172a" stroke="#eab308" stroke-width="2.5" />
+      <text x="0" y="31" fill="#eab308" font-size="13" font-weight="800" text-anchor="middle">4</text>
+      <text x="0" y="64" fill="#94a3b8" font-size="12" font-weight="600" text-anchor="middle">Moderate</text>
+    </g>
+    <!-- 5 -->
+    <g transform="translate(450, 0)">
+      <circle cx="0" cy="26" r="14" fill="#0f172a" stroke="#f59e0b" stroke-width="2.5" />
+      <text x="0" y="31" fill="#f59e0b" font-size="13" font-weight="800" text-anchor="middle">5</text>
+      <text x="0" y="64" fill="#94a3b8" font-size="12" font-weight="600" text-anchor="middle">Distracting</text>
+    </g>
+    <!-- 6 -->
+    <g transform="translate(538, 0)">
+      <circle cx="0" cy="26" r="14" fill="#0f172a" stroke="#f97316" stroke-width="2.5" />
+      <text x="0" y="31" fill="#f97316" font-size="13" font-weight="800" text-anchor="middle">6</text>
+      <text x="0" y="64" fill="#94a3b8" font-size="12" font-weight="600" text-anchor="middle">Disruptive</text>
+    </g>
+    <!-- 7 (Severe BMS zone begins) -->
+    <g transform="translate(626, 0)">
+      <circle cx="0" cy="26" r="16" fill="#0f172a" stroke="#ea580c" stroke-width="3.5" />
+      <text x="0" y="31" fill="#ea580c" font-size="14" font-weight="800" text-anchor="middle">7</text>
+      <text x="0" y="64" fill="#fb923c" font-size="12" font-weight="700" text-anchor="middle">Severe</text>
+    </g>
+    <!-- 8 -->
+    <g transform="translate(714, 0)">
+      <circle cx="0" cy="26" r="16" fill="#0f172a" stroke="#ef4444" stroke-width="3.5" />
+      <text x="0" y="31" fill="#ef4444" font-size="14" font-weight="800" text-anchor="middle">8</text>
+      <text x="0" y="64" fill="#f87171" font-size="12" font-weight="700" text-anchor="middle">Intense</text>
+    </g>
+    <!-- 9 -->
+    <g transform="translate(802, 0)">
+      <circle cx="0" cy="26" r="16" fill="#0f172a" stroke="#dc2626" stroke-width="3.5" />
+      <text x="0" y="31" fill="#dc2626" font-size="14" font-weight="800" text-anchor="middle">9</text>
+      <text x="0" y="64" fill="#f87171" font-size="12" font-weight="700" text-anchor="middle">Agonizing</text>
+    </g>
+    <!-- 10 -->
+    <g transform="translate(890, 0)">
+      <circle cx="0" cy="26" r="17" fill="#0f172a" stroke="#b91c1c" stroke-width="4" />
+      <text x="0" y="32" fill="#ef4444" font-size="14" font-weight="900" text-anchor="middle">10</text>
+      <text x="0" y="64" fill="#ef4444" font-size="12" font-weight="800" text-anchor="middle">Maximal</text>
+    </g>
+  </g>
+
+  <!-- 3 Clinical Functional Tier Cards -->
+  <g transform="translate(50, 260)">
+    <!-- Card 1: Mild -->
+    <g transform="translate(0, 0)">
+      <rect width="280" height="185" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1.5" />
+      <rect x="0" y="0" width="280" height="6" rx="3" fill="#10b981" />
+      <text x="20" y="34" fill="#10b981" font-size="15" font-weight="800">Score 0 to 3: Mild</text>
+      <text x="20" y="58" fill="#e2e8f0" font-size="13" font-weight="700">Background Sensation</text>
+      <text x="20" y="90" fill="#94a3b8" font-size="12" font-weight="500">
+        <tspan x="20" dy="0">• Tolerable background sensation.</tspan>
+        <tspan x="20" dy="22">• Does not wake patient from sleep.</tspan>
+        <tspan x="20" dy="22">• Work, focus, and speech unaffected.</tspan>
+        <tspan x="20" dy="22">• Core goal of clinical remission.</tspan>
+      </text>
+    </g>
+
+    <!-- Card 2: Moderate -->
+    <g transform="translate(310, 0)">
+      <rect width="280" height="185" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(234, 179, 8, 0.4)" stroke-width="1.5" />
+      <rect x="0" y="0" width="280" height="6" rx="3" fill="#eab308" />
+      <text x="20" y="34" fill="#eab308" font-size="15" font-weight="800">Score 4 to 6: Moderate</text>
+      <text x="20" y="58" fill="#e2e8f0" font-size="13" font-weight="700">Cognitive Interference</text>
+      <text x="20" y="90" fill="#94a3b8" font-size="12" font-weight="500">
+        <tspan x="20" dy="0">• Demands conscious coping effort.</tspan>
+        <tspan x="20" dy="22">• Disrupts eating, chewing, or talking.</tspan>
+        <tspan x="20" dy="22">• Work focus and patience degrade.</tspan>
+        <tspan x="20" dy="22">• Typical partial relief baseline.</tspan>
+      </text>
+    </g>
+
+    <!-- Card 3: Severe BMS -->
+    <g transform="translate(620, 0)">
+      <rect width="280" height="185" rx="12" fill="rgba(127, 29, 29, 0.35)" stroke="rgba(239, 68, 68, 0.6)" stroke-width="2" />
+      <rect x="0" y="0" width="280" height="6" rx="3" fill="#ef4444" />
+      <text x="20" y="34" fill="#f87171" font-size="15" font-weight="800">Score 7 to 10: Severe</text>
+      <text x="20" y="58" fill="#ffffff" font-size="13" font-weight="700">Small-Fiber Circuit Crisis</text>
+      <text x="20" y="90" fill="#fca5a5" font-size="12" font-weight="500">
+        <tspan x="20" dy="0">• Constant scalding thermal agony.</tspan>
+        <tspan x="20" dy="22">• Sleep fragmentation and exhaustion.</tspan>
+        <tspan x="20" dy="22">• Trigeminal C-fiber overload.</tspan>
+        <tspan x="20" dy="22">• McGill equivalent: 30 to 42 out of 50.</tspan>
+      </text>
+    </g>
+  </g>
+
+  <!-- Bottom Medical Rule Callout: The 2-Point MCID -->
+  <g transform="translate(50, 475)">
+    <rect width="900" height="125" rx="12" fill="rgba(30, 41, 59, 0.85)" stroke="rgba(168, 85, 247, 0.5)" stroke-width="1.5" />
+    <g transform="translate(24, 28)">
+      <circle cx="16" cy="16" r="16" fill="#7c3aed" />
+      <text x="16" y="22" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">!</text>
+      <text x="48" y="14" fill="#c084fc" font-size="13" font-weight="800" letter-spacing="1">THE 2-POINT CLINICAL IMPERATIVE (MCID)</text>
+      <text x="48" y="36" fill="#e2e8f0" font-size="13.5" font-weight="600">Doctors define a 2-point reduction on the 0-to-10 scale as the benchmark for real clinical progress.</text>
+      <text x="48" y="58" fill="#94a3b8" font-size="12.5">A drop from 8/10 to 6/10 is medical success. Bringing a constant 10/10 down to 0/10 is complete biological deactivation of the circuit.</text>
+    </g>
+  </g>
+</svg>
