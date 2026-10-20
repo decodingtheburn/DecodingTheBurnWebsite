@@ -2451,6 +2451,116 @@ import { SITE_TITLE } from '../consts';
 					display: none;
 				}
 			}
+		
+			/* ==========================================================================
+			   Print Media Architecture: Clean Page Breaks & Crisp Printable Dossier
+			   ========================================================================== */
+			@media print {
+				/* Hide web navigation, headers, footers, toolbars, and floating tabs */
+				header,
+				footer,
+				.reading-toolbar-wrapper,
+				.book-margin-actions,
+				.site-header,
+				.site-footer,
+				#bms_print_btn,
+				#bms_clear_btn,
+				#bms_persist_status {
+					display: none !important;
+				}
+
+				/* Reset body and page wrappers for pure print canvas */
+				html, body {
+					background: #ffffff !important;
+					color: #000000 !important;
+					font-size: 11pt !important;
+					line-height: 1.45 !important;
+					margin: 0 !important;
+					padding: 0 !important;
+				}
+
+				.book-layout,
+				.book-container {
+					max-width: 100% !important;
+					width: 100% !important;
+					margin: 0 !important;
+					padding: 0 !important;
+				}
+
+				/* Enforce clean page break at the end of each physical book page */
+				.book-page,
+				.book-page-toc,
+				.book-page-frontmatter,
+				.book-cover {
+					page-break-after: always !important;
+					break-after: page !important;
+					min-height: auto !important;
+					height: auto !important;
+					box-shadow: none !important;
+					border: none !important;
+					border-radius: 0 !important;
+					padding: 1.5cm 1.8cm !important;
+					margin: 0 !important;
+					page-break-inside: avoid !important;
+					break-inside: avoid !important;
+				}
+
+				/* Preserve form checkmarks and radio states */
+				input[type="checkbox"],
+				input[type="radio"] {
+					print-color-adjust: exact !important;
+					-webkit-print-color-adjust: exact !important;
+				}
+
+				/* Avoid splitting cards across pages */
+				.quiz-book-card {
+					page-break-inside: avoid !important;
+					break-inside: avoid !important;
+					border: 1px solid #cbd5e1 !important;
+					box-shadow: none !important;
+				}
+			}
+
+			/* Three-Column Diagnostic Checkbox Grid & Top-Aligned Custom Checkbox */
+			.bms-grid-3col {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 0.65rem 1rem;
+			}
+
+			@media (max-width: 900px) {
+				.bms-grid-3col {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+			}
+
+			@media (max-width: 600px) {
+				.bms-grid-3col {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			.bms-check-label {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.5rem;
+				font-size: 0.81rem;
+				line-height: 1.35;
+				color: #1e293b;
+				cursor: pointer;
+				text-wrap: pretty;
+			}
+
+			.bms-check-label input[type="checkbox"],
+			.bms-check-label input[type="radio"] {
+				margin-top: 0.15rem;
+				flex-shrink: 0;
+				width: 14px;
+				height: 14px;
+				accent-color: #2563eb;
+				cursor: pointer;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -4384,24 +4494,30 @@ import { SITE_TITLE } from '../consts';
 
 							<div style="margin-bottom: 0.85rem;">
 								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">What does your sensation feel like? (Select all that apply)</label>
-								<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.45rem;">
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="checkbox" name="bms_sensation_scald" class="bms-input-persist" /> Scalded tongue / hot coffee burn
+								<div class="bms-grid-3col">
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_scald" class="bms-input-persist" />
+										<span>Scalded tongue or hot coffee&nbsp;burn</span>
 									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="checkbox" name="bms_sensation_sandpaper" class="bms-input-persist" /> Raw sandpaper / scraped tissue
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_sandpaper" class="bms-input-persist" />
+										<span>Raw sandpaper or scraped&nbsp;tissue</span>
 									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="checkbox" name="bms_sensation_acid" class="bms-input-persist" /> Acidic / battery chemical sting
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_acid" class="bms-input-persist" />
+										<span>Acidic or battery chemical&nbsp;sting</span>
 									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="checkbox" name="bms_sensation_metallic" class="bms-input-persist" /> Metallic or salty altered taste
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_metallic" class="bms-input-persist" />
+										<span>Metallic or salty altered&nbsp;taste</span>
 									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="checkbox" name="bms_sensation_electric" class="bms-input-persist" /> Tingling / electric prickling
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_electric" class="bms-input-persist" />
+										<span>Tingling or electric prickling&nbsp;sparks</span>
 									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="checkbox" name="bms_sensation_numb" class="bms-input-persist" /> Partial numbness / swollen feeling
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_numb" class="bms-input-persist" />
+										<span>Partial numbness or swollen&nbsp;feeling</span>
 									</label>
 								</div>
 							</div>
@@ -4427,24 +4543,30 @@ import { SITE_TITLE } from '../consts';
 								<span>3. Anatomical Burning Location</span>
 							</h3>
 
-							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_loc_tip" class="bms-input-persist" /> Tip of the tongue
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_tip" class="bms-input-persist" />
+									<span>Tip of the tongue</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_loc_sides" class="bms-input-persist" /> Lateral sides / borders of tongue
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_sides" class="bms-input-persist" />
+									<span>Lateral tongue borders</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_loc_palate" class="bms-input-persist" /> Hard palate (roof of the mouth)
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_palate" class="bms-input-persist" />
+									<span>Hard palate (roof of&nbsp;mouth)</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_loc_lips" class="bms-input-persist" /> Inner lips / vermilion border
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_lips" class="bms-input-persist" />
+									<span>Inner lips &amp; vermilion&nbsp;border</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_loc_gums" class="bms-input-persist" /> Gingiva / gumlines around teeth
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_gums" class="bms-input-persist" />
+									<span>Gums &amp; cervical tooth&nbsp;collars</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_loc_throat" class="bms-input-persist" /> Pharynx / posterior throat
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_throat" class="bms-input-persist" />
+									<span>Pharynx &amp; posterior&nbsp;throat</span>
 								</label>
 							</div>
 
@@ -4519,30 +4641,42 @@ import { SITE_TITLE } from '../consts';
 								<span>5. Chemical &amp; Dietary Sensory Triggers</span>
 							</h3>
 
-							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.65rem;">
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_trig_citrus" class="bms-input-persist" /> Acidic foods (tomatoes, citrus fruits, vinegar)
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_citrus" class="bms-input-persist" />
+									<span>Acidic foods (tomatoes, citrus,&nbsp;vinegar)</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_trig_coffee" class="bms-input-persist" /> Coffee, sodas, or carbonated water
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_coffee" class="bms-input-persist" />
+									<span>Coffee, tea, sodas, or carbonated&nbsp;water</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_trig_spicy" class="bms-input-persist" /> Spicy spices (capsaicin, black pepper, cinnamon)
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_spicy" class="bms-input-persist" />
+									<span>Spices (capsaicin, black pepper,&nbsp;chili)</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_trig_mint" class="bms-input-persist" /> Mint, menthol, or cinnamon toothpaste / rinses
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_mint" class="bms-input-persist" />
+									<span>Mint, menthol, or cinnamon oral&nbsp;care</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_trig_sugar" class="bms-input-persist" /> Refined sugars, honey, syrups, or pastries
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_sugar" class="bms-input-persist" />
+									<span>Refined sugars, honey, syrups, or&nbsp;carbs</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_trig_alcohol" class="bms-input-persist" /> Alcoholic beverages or alcohol-based rinses
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_alcohol" class="bms-input-persist" />
+									<span>Alcoholic drinks or alcohol mouth&nbsp;rinses</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_trig_temp" class="bms-input-persist" /> Extreme hot liquids or ice cold drinks
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_temp" class="bms-input-persist" />
+									<span>Boiling liquids or ice cold&nbsp;beverages</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_trig_eating_relief" class="bms-input-persist" /> Temporary relief WHILE eating food or chewing gum
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_eating_relief" class="bms-input-persist" />
+									<span>Temporary relief WHILE actively&nbsp;eating</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_dry_air" class="bms-input-persist" />
+									<span>Dry indoor air or mouth breathing&nbsp;spikes</span>
 								</label>
 							</div>
 						</div>
@@ -4597,18 +4731,30 @@ import { SITE_TITLE } from '../consts';
 								<span>7. Jaw Mechanics, Grinding, &amp; Tongue Bracing</span>
 							</h3>
 
-							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.65rem;">
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_jaw_sore" class="bms-input-persist" /> Morning jaw soreness or masseter muscle tightness
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_sore" class="bms-input-persist" />
+									<span>Morning jaw soreness or masseter&nbsp;tightness</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_jaw_brace" class="bms-input-persist" /> Conscious tongue thrusting against front teeth or palate
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_brace" class="bms-input-persist" />
+									<span>Tongue bracing against front teeth or&nbsp;palate</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_jaw_click" class="bms-input-persist" /> TMJ clicking, popping, or limited mouth opening
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_click" class="bms-input-persist" />
+									<span>TMJ clicking, popping, or limited&nbsp;opening</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_jaw_scallop" class="bms-input-persist" /> Scalloped tongue edges (wavy indentations from teeth)
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_scallop" class="bms-input-persist" />
+									<span>Scalloped tongue edges with dental&nbsp;marks</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_grind" class="bms-input-persist" />
+									<span>Known nighttime clenching or sleep&nbsp;bruxism</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_tension" class="bms-input-persist" />
+									<span>Neck and shoulder stiffness alongside&nbsp;burning</span>
 								</label>
 							</div>
 						</div>
@@ -4619,18 +4765,30 @@ import { SITE_TITLE } from '../consts';
 								<span>8. Saliva Flow &amp; Barrier Hydration</span>
 							</h3>
 
-							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.65rem;">
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_saliva_dry" class="bms-input-persist" /> Dry or sticky oral sensation despite drinking plenty of water
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_dry" class="bms-input-persist" />
+									<span>Dry or sticky mouth despite abundant&nbsp;water</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_saliva_thick" class="bms-input-persist" /> Thick, ropey, or foaming saliva
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_thick" class="bms-input-persist" />
+									<span>Thick, stringy, or foaming reduced&nbsp;saliva</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_saliva_taste" class="bms-input-persist" /> Constant salty, bitter, or metallic taste (dysgeusia)
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_taste" class="bms-input-persist" />
+									<span>Altered salty, metallic, or bitter&nbsp;taste</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_saliva_eyes" class="bms-input-persist" /> Gritty dry eyes or Sjögren's-like dry mucous membranes
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_eyes" class="bms-input-persist" />
+									<span>Gritty dry eyes or dry mucous&nbsp;membranes</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_thirst" class="bms-input-persist" />
+									<span>Frequent nocturnal water sips to swallow&nbsp;easily</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_cracking" class="bms-input-persist" />
+									<span>Chapped lip corners or angular&nbsp;cheilitis</span>
 								</label>
 							</div>
 						</div>
@@ -4641,24 +4799,30 @@ import { SITE_TITLE } from '../consts';
 								<span>9. Dental Restorations &amp; Exposed Tubules</span>
 							</h3>
 
-							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.65rem;">
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_dent_onset" class="bms-input-persist" /> Burning began immediately after a dental appointment
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_onset" class="bms-input-persist" />
+									<span>Onset triggered following dental&nbsp;procedure</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_dent_recession" class="bms-input-persist" /> Visible gum recession / exposed root collars (cervical notches)
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_recession" class="bms-input-persist" />
+									<span>Visible root recession or cervical&nbsp;notches</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_dent_crowns" class="bms-input-persist" /> Existing dental crowns, porcelain veneers, or deep fillings
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_crowns" class="bms-input-persist" />
+									<span>Crowns, porcelain veneers, or deep&nbsp;fillings</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_dent_bleach" class="bms-input-persist" /> History of aggressive tooth whitening or whitening strips
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_bleach" class="bms-input-persist" />
+									<span>Aggressive peroxide bleaching or&nbsp;strips</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_dent_desensitizer" class="bms-input-persist" /> Fluoride varnish / Gluma desensitizer gave brief relief
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_desensitizer" class="bms-input-persist" />
+									<span>Fluoride varnish or Gluma gave brief&nbsp;respite</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_dent_pockets" class="bms-input-persist" /> Known deep gum pockets (4mm or deeper) on probing
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_pockets" class="bms-input-persist" />
+									<span>Periodontal gum pockets of 4mm or&nbsp;deeper</span>
 								</label>
 							</div>
 						</div>
@@ -4687,24 +4851,30 @@ import { SITE_TITLE } from '../consts';
 								<span>10. Systemic Factors, Medications, &amp; Reflux</span>
 							</h3>
 
-							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.65rem;">
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_sys_reflux" class="bms-input-persist" /> Frequent heartburn, GERD, or silent LPR acid reflux
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_reflux" class="bms-input-persist" />
+									<span>Frequent heartburn, GERD, or silent LPR&nbsp;reflux</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_sys_throat_clear" class="bms-input-persist" /> Chronic morning throat clearing, post-nasal drip, or hoarseness
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_throat_clear" class="bms-input-persist" />
+									<span>Morning throat clearing, post-nasal drip, or&nbsp;hoarseness</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_sys_ace" class="bms-input-persist" /> Blood pressure medications (ACE inhibitors, ARBs, diuretics)
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_ace" class="bms-input-persist" />
+									<span>Antihypertensives (ACE inhibitors, ARBs, or&nbsp;diuretics)</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_sys_b12_normal" class="bms-input-persist" /> Normal blood tests for B12/Iron but high MMA or homocysteine
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_b12_normal" class="bms-input-persist" />
+									<span>Normal B12 serum but elevated MMA or&nbsp;homocysteine</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_sys_thyroid" class="bms-input-persist" /> History of Hashimoto's thyroiditis or autoimmune illness
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_thyroid" class="bms-input-persist" />
+									<span>Thyroiditis, diabetes, or autoimmune systemic&nbsp;history</span>
 								</label>
-								<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-									<input type="checkbox" name="bms_sys_stress" class="bms-input-persist" /> Severe life stress or physical trauma preceding symptom onset
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_stress" class="bms-input-persist" />
+									<span>Severe acute stress or viral illness before&nbsp;onset</span>
 								</label>
 							</div>
 						</div>
