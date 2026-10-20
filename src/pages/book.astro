@@ -4681,10 +4681,101 @@ import { SITE_TITLE } from '../consts';
 							</div>
 						</div>
 
-						<!-- Section F: 24-Hour Food & Liquid Recall Log -->
-						<div class="quiz-book-card" style="padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>6. 24-Hour Food &amp; Beverage Intake Log</span>
+						<!-- Section F: Daily Fluid & Continuous Sipping Habits -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>6. Daily Fluid Intake &amp; All-Day Sipping Habits</span>
+							</h3>
+							
+							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; margin-bottom: 0.75rem;">
+								<div>
+									<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">How often do you sip liquids throughout the day?</label>
+									<div style="display: flex; flex-direction: column; gap: 0.35rem;">
+										<label class="bms-check-label">
+											<input type="radio" name="bms_sip_frequency" value="constant-sipping" class="bms-input-persist" />
+											<span>Continuous sipping all day (every 5&ndash;15 minutes to moisten&nbsp;mouth)</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_sip_frequency" value="regular-hourly" class="bms-input-persist" />
+											<span>Regular sips every 1&ndash;2&nbsp;hours</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_sip_frequency" value="meals-only" class="bms-input-persist" />
+											<span>Drink mostly with meals&nbsp;only</span>
+										</label>
+									</div>
+								</div>
+
+								<div>
+									<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Total Estimated Daily Fluid Volume</label>
+									<div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
+										<label class="bms-check-label">
+											<input type="radio" name="bms_fluid_volume" value="under-1L" class="bms-input-persist" />
+											<span>Under 1 liter (&lt;4&nbsp;cups)</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_fluid_volume" value="1L-2L" class="bms-input-persist" />
+											<span>1 to 2 liters (4&ndash;8&nbsp;cups)</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_fluid_volume" value="2L-3L" class="bms-input-persist" />
+											<span>2 to 3 liters (8&ndash;12&nbsp;cups)</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_fluid_volume" value="over-3L" class="bms-input-persist" />
+											<span>3+ liters (heavy hydration)</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div>
+								<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">What specific liquids do you sip throughout the day? (Select all that apply)</label>
+								<div class="bms-grid-3col">
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_tap_water" class="bms-input-persist" />
+										<span>Plain tap or bottled spring&nbsp;water</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_ro_distilled" class="bms-input-persist" />
+										<span>Reverse osmosis (RO) or distilled&nbsp;water</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_sparkling" class="bms-input-persist" />
+										<span>Sparkling or carbonated mineral&nbsp;water</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_coffee" class="bms-input-persist" />
+										<span>Coffee (black, with milk, or&nbsp;iced)</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_tea" class="bms-input-persist" />
+										<span>Black, green, or herbal&nbsp;teas</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_lemon_water" class="bms-input-persist" />
+										<span>Water with lemon, lime, or fruit&nbsp;drops</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_sodas" class="bms-input-persist" />
+										<span>Regular or diet sodas / energy&nbsp;drinks</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_bicarb" class="bms-input-persist" />
+										<span>Baking soda (bicarbonate)&nbsp;water</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_electrolytes" class="bms-input-persist" />
+										<span>Electrolyte powders or sports&nbsp;drinks</span>
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<!-- Section G: 24-Hour Food & Beverage Intake Log -->
+						<div class="quiz-book-card" style="padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>7. 24-Hour Food &amp; Beverage Intake Log</span>
 							</h3>
 							
 							<p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.65rem;">
