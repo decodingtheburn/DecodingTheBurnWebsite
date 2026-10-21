@@ -504,7 +504,7 @@ import { SITE_TITLE } from '../consts';
 				text-transform: uppercase;
 				border-bottom: 1px solid #e2e8f0;
 				padding-bottom: 0.85rem;
-				margin-bottom: 2.25rem;
+				margin-bottom: 40px;
 			}
 
 			.page-running-head .chapter-header-label {
@@ -649,16 +649,8 @@ import { SITE_TITLE } from '../consts';
 				text-wrap: pretty;
 			}
 
-			/* First paragraph drop cap on Chapter opening page */
-			.chapter-content.is-first-page > p:first-of-type::first-letter {
-				font-family: 'Cinzel', serif;
-				font-size: 3.75rem;
-				float: left;
-				line-height: 0.82;
-				padding-right: 0.55rem;
-				padding-top: calc(0.15rem + 10px);
-				color: #09060f;
-				font-weight: 700;
+			.chapter-content > p {
+				text-indent: 1.5em;
 			}
 
 			.chapter-content h3, 
@@ -945,30 +937,49 @@ import { SITE_TITLE } from '../consts';
 				line-height: 1.2;
 				color: #ffffff;
 				margin-bottom: 1.5rem;
+				text-wrap: balance;
 			}
 
 			.backcover-blurb {
 				font-family: 'Lora', serif;
-				font-size: 1.08rem;
+				font-size: 1.05rem;
 				line-height: 1.72;
 				color: #e2e8f0;
-				margin-bottom: 1.25rem;
+				margin-bottom: 1.35rem;
+				text-wrap: pretty;
+			}
+
+			.backcover-figure {
+				margin: 1.5rem 0;
+				border: 1px solid rgba(168, 85, 247, 0.35);
+				border-radius: 8px;
+				overflow: hidden;
+				background: rgba(8, 3, 16, 0.75);
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+			}
+
+			.backcover-figure img {
+				display: block;
+				width: 100%;
+				max-height: 215px;
+				object-fit: cover;
 			}
 
 			.backcover-features {
 				list-style: none;
 				padding: 0;
-				margin: 1.5rem 0 2rem;
+				margin: 1.5rem 0 1.75rem;
 			}
 
 			.backcover-features li {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.98rem;
-				line-height: 1.65;
+				font-size: 0.96rem;
+				line-height: 1.6;
 				color: #cbd5e1;
-				margin-bottom: 0.95rem;
+				margin-bottom: 0.85rem;
 				padding-left: 1.65rem;
 				position: relative;
+				text-wrap: pretty;
 			}
 
 			.backcover-features li::before {
@@ -1282,6 +1293,7 @@ import { SITE_TITLE } from '../consts';
 				line-height: 1.5;
 				color: #000000;
 				margin: 0 !important;
+				text-indent: 0 !important;
 				text-wrap: pretty;
 			}
 
@@ -1403,6 +1415,7 @@ import { SITE_TITLE } from '../consts';
 				line-height: 1.75 !important;
 				color: #000000 !important;
 				margin: 0 0 1.25rem !important;
+				text-indent: 0 !important;
 				text-wrap: pretty;
 			}
 
@@ -1413,84 +1426,47 @@ import { SITE_TITLE } from '../consts';
 				color: #000000;
 			}
 
-			/* Chapter 2 Dedicated Patient Voices Layout (Ultra-Professional Black & White Editorial) */
+			/* Chapter 2 Dedicated Patient Voices Layout (2 Pages, 3 Short Centered Quotes Per Page) */
 			.voice-showcase-wrap {
-				min-height: 680px;
+				min-height: 720px;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				max-width: 600px;
+				align-items: center;
+				gap: 4.5rem;
+				max-width: 420px;
 				margin: 0 auto;
 				padding: 2rem 0;
 				color: #000000;
+				text-align: center;
 			}
 
-			.voice-page-eyebrow {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.9rem;
-				font-weight: 600;
-				color: #000000;
-				margin-bottom: 0.5rem;
+			.voice-short-item {
+				width: 100%;
+				max-width: 400px;
+				margin: 0 auto;
+				text-align: center;
 			}
 
-			.voice-page-title {
-				font-family: 'Cinzel', Georgia, serif;
-				font-size: 2rem;
-				font-weight: 700;
-				color: #000000;
-				line-height: 1.22;
-				margin: 0 0 1.75rem;
-				padding-bottom: 1rem;
-				border-bottom: 2px solid #000000;
-			}
-
-			.voice-quote-box {
-				border-left: 4px solid #000000;
-				padding: 0.35rem 0 0.35rem 1.5rem;
-				margin: 0 0 2rem;
-			}
-
-			.voice-quote-text {
+			.voice-short-quote {
 				font-family: 'Lora', Georgia, serif;
-				font-size: 1.28rem !important;
-				line-height: 1.78 !important;
+				font-size: 1.18rem !important;
+				line-height: 1.65 !important;
 				font-style: italic;
 				color: #000000 !important;
-				margin: 0 0 1.1rem !important;
-				text-wrap: pretty;
+				margin: 0 0 0.65rem !important;
+				text-indent: 0 !important;
+				text-align: center;
+				text-wrap: balance;
 			}
 
-			.voice-quote-cite {
-				display: block;
+			.voice-short-name {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.94rem;
+				font-size: 0.92rem;
 				font-weight: 700;
-				font-style: normal;
 				color: #000000;
-			}
-
-			.voice-clinical-note {
-				background: #f8fafc;
-				border: 1.5px solid #000000;
-				border-radius: 6px;
-				padding: 1.15rem 1.35rem;
-			}
-
-			.voice-clinical-label {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.86rem;
-				font-weight: 800;
-				color: #000000;
-				margin-bottom: 0.35rem;
-			}
-
-			.voice-clinical-text {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 1.05rem !important;
-				line-height: 1.65 !important;
-				color: #000000 !important;
-				margin: 0 !important;
-				text-wrap: pretty;
+				margin: 0;
+				text-align: center;
 			}
 
 			/* Research Data Sources Block */
@@ -2827,7 +2803,7 @@ import { SITE_TITLE } from '../consts';
 						<div>
 							<div class="cover-divider"></div>
 							<div class="cover-author">Denis Ethier</div>
-							<div class="cover-author-sub">N=1 Patient-Lead Research</div>
+							<div class="cover-author-sub">Patient-Lead Research (N=1)</div>
 							<div>
 								<span class="cover-edition-tag">2026 First Edition</span>
 							</div>
@@ -2862,7 +2838,7 @@ import { SITE_TITLE } from '../consts';
 
 						<div>
 							<div class="interior-title-author">Denis Ethier</div>
-							<div class="interior-title-cred">N=1 Patient-Lead Research</div>
+							<div class="interior-title-cred">Patient-Lead Research (N=1)</div>
 
 							<div class="interior-title-imprint">
 								<div class="interior-title-publisher">decoding the burn</div>
@@ -3407,7 +3383,7 @@ import { SITE_TITLE } from '../consts';
 								</div>
 								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-2">Chapter 2: Voices From the Fire</a></h4>
-									<p class="overview-sentence">Five direct patient testimonies capturing the daily agony and medical isolation of living with an invisible oral&nbsp;burn.</p>
+									<p class="overview-sentence">Six concise patient quotes capturing the daily agony and isolation of living with an invisible oral&nbsp;burn.</p>
 								</div>
 								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-7">Chapter 3: The BMS Diagnostic Questionnaire</a></h4>
@@ -3814,7 +3790,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 1 of 10</div>
 							<div class="stat-page-number">1.73%</div>
 							<h2 class="stat-page-title">Worldwide General Population Prevalence (Over 80 Million&nbsp;People)</h2>
 							<p class="stat-page-desc">
@@ -3842,7 +3817,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 2 of 10</div>
 							<div class="stat-page-number">7.72%</div>
 							<h2 class="stat-page-title">Prevalence in Clinical Dental and Hospital&nbsp;Populations</h2>
 							<p class="stat-page-desc">
@@ -3870,7 +3844,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 3 of 10</div>
 							<div class="stat-page-number">61.4 Years</div>
 							<h2 class="stat-page-title">Mean Age of Onset (Peak Window 50 to 79&nbsp;Years)</h2>
 							<p class="stat-page-desc">
@@ -3898,7 +3871,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 4 of 10</div>
 							<div class="stat-page-number">3:1 to 5:1</div>
 							<h2 class="stat-page-title">Female-to-Male Predominance&nbsp;Ratio</h2>
 							<p class="stat-page-desc">
@@ -3926,7 +3898,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 5 of 10</div>
 							<div class="stat-page-number">0%</div>
 							<h2 class="stat-page-title">Pediatric Primary BMS Cases (&lt;0.1%&nbsp;Incidence)</h2>
 							<p class="stat-page-desc">
@@ -3954,7 +3925,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 6 of 10</div>
 							<div class="stat-page-number">7.0 &ndash; 8.5 / 10</div>
 							<h2 class="stat-page-title">Average Daily Pain Severity on the Clinical&nbsp;Scale</h2>
 							<p class="stat-page-desc">
@@ -3982,7 +3952,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 7 of 10</div>
 							<div class="stat-page-number">3 to 5 Doctors</div>
 							<h2 class="stat-page-title">The Average 13-to-38-Month Diagnostic&nbsp;Odyssey</h2>
 							<p class="stat-page-desc">
@@ -4010,7 +3979,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 8 of 10</div>
 							<div class="stat-page-number">75%</div>
 							<h2 class="stat-page-title">Patients Reporting Acidic Drinks and Foods Worsen the&nbsp;Burn</h2>
 							<p class="stat-page-desc">
@@ -4038,7 +4006,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 9 of 10</div>
 							<div class="stat-page-number">20,000 &ndash; 45,000</div>
 							<h2 class="stat-page-title">Open Microscopic Dentinal Tubules per Square&nbsp;Millimeter</h2>
 							<p class="stat-page-desc">
@@ -4066,7 +4033,6 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="stat-showcase-wrap">
-							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 10 of 10</div>
 							<div class="stat-page-number">70% vs. 25%</div>
 							<h2 class="stat-page-title">Peripheral Hardware &amp; Acid Control vs. Central Nervous&nbsp;Pills</h2>
 							<p class="stat-page-desc">
@@ -4085,10 +4051,10 @@ import { SITE_TITLE } from '../consts';
 			</section>
 
 			<!-- ==========================================================================
-			     CHAPTER 2: VOICES FROM THE FIRE (5 DEDICATED PATIENT TESTIMONY PAGES)
+			     CHAPTER 2: VOICES FROM THE FIRE (2 PAGES, 3 SHORT QUOTES PER PAGE)
 			     ========================================================================== -->
 
-			<!-- Chapter 2: Voices From the Fire (Page 1 of 5: The Scalded Morning) -->
+			<!-- Chapter 2: Voices From the Fire (Page 1 of 2) -->
 			<section class="book-page" id="page-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -4098,23 +4064,25 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="voice-showcase-wrap">
-							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 1 of 5</div>
-							<h2 class="voice-page-title">The Scalded&nbsp;Morning</h2>
-
-							<blockquote class="voice-quote-box">
-								<p class="voice-quote-text">
-									&ldquo;It feels like I drank a scalding cup of boiling coffee every single morning of my life. My tongue feels like rough sandpaper, raw and completely scraped down to the flesh. But the blisters never form, and the pain never goes&nbsp;away.&rdquo;
+							<div class="voice-short-item">
+								<p class="voice-short-quote">
+									&ldquo;It feels like I drank a scalding cup of boiling coffee every morning, and the burn never goes&nbsp;away.&rdquo;
 								</p>
-								<cite class="voice-quote-cite">
-									Patient Clinical Log &bull; 4-Year Sufferer (Age&nbsp;58)
-								</cite>
-							</blockquote>
+								<div class="voice-short-name">Sarah M.</div>
+							</div>
 
-							<div class="voice-clinical-note">
-								<div class="voice-clinical-label">Clinical Reality</div>
-								<p class="voice-clinical-text">
-									This is the defining paradox of Burning Mouth Syndrome: the sensory system reports a catastrophic thermal trauma that leaves no visible mark on the oral&nbsp;tissue.
+							<div class="voice-short-item">
+								<p class="voice-short-quote">
+									&ldquo;Three specialists smiled and told me everything looked fine while I sat in the chair holding back&nbsp;tears.&rdquo;
 								</p>
+								<div class="voice-short-name">Claire D.</div>
+							</div>
+
+							<div class="voice-short-item">
+								<p class="voice-short-quote">
+									&ldquo;You are trapped with a blowtorch inside your mouth and no fire extinguisher in&nbsp;sight.&rdquo;
+								</p>
+								<div class="voice-short-name">Elena R.</div>
 							</div>
 						</div>
 					</div>
@@ -4125,7 +4093,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 2: Voices From the Fire (Page 2 of 5: The Invisible Agony) -->
+			<!-- Chapter 2: Voices From the Fire (Page 2 of 2) -->
 			<section class="book-page" id="page-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -4135,23 +4103,25 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content">
 						<div class="voice-showcase-wrap">
-							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 2 of 5</div>
-							<h2 class="voice-page-title">The Invisible&nbsp;Agony</h2>
-
-							<blockquote class="voice-quote-box">
-								<p class="voice-quote-text">
-									&ldquo;The hardest part is not even the burning. It is having three different specialists look into my mouth, smile politely, and tell me that everything looks completely fine while I sit in the exam chair holding back&nbsp;tears.&rdquo;
+							<div class="voice-short-item">
+								<p class="voice-short-quote">
+									&ldquo;My tongue feels like raw sandpaper scraped down to the flesh, yet there is not a single blister in the&nbsp;mirror.&rdquo;
 								</p>
-								<cite class="voice-quote-cite">
-									Community Member &bull; Toronto, Canada (Age&nbsp;64)
-								</cite>
-							</blockquote>
+								<div class="voice-short-name">Diane K.</div>
+							</div>
 
-							<div class="voice-clinical-note">
-								<div class="voice-clinical-label">Clinical Reality</div>
-								<p class="voice-clinical-text">
-									Medical invalidation creates a profound psychological wound. When expert eyes see healthy pink tissue, the burden of proof unfairly falls back upon the person in unrelenting&nbsp;pain.
+							<div class="voice-short-item">
+								<p class="voice-short-quote">
+									&ldquo;I spent thousands redoing fillings and root canals, and the fire burned just as hot as&nbsp;before.&rdquo;
 								</p>
+								<div class="voice-short-name">Marie L.</div>
+							</div>
+
+							<div class="voice-short-item">
+								<p class="voice-short-quote">
+									&ldquo;They told me to learn to live with it. That was the day I decided to become my own&nbsp;investigator.&rdquo;
+								</p>
+								<div class="voice-short-name">Rachel T.</div>
 							</div>
 						</div>
 					</div>
@@ -4159,117 +4129,6 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-number-footer">
 					<span>12</span>
-				</div>
-			</section>
-
-			<!-- Chapter 2: Voices From the Fire (Page 3 of 5: The Unceasing Blowtorch) -->
-			<section class="book-page" id="page-4">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
-						<span class="page-count-label">Page 13</span>
-					</div>
-
-					<div class="chapter-content">
-						<div class="voice-showcase-wrap">
-							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 3 of 5</div>
-							<h2 class="voice-page-title">The Unceasing&nbsp;Blowtorch</h2>
-
-							<blockquote class="voice-quote-box">
-								<p class="voice-quote-text">
-									&ldquo;You lose the simple joy of eating dinner with family. You lose the ability to hold a conversation without your tongue throbbing. You lose the ability to sleep through the night. You are trapped with a blowtorch inside your mouth and no fire extinguisher in&nbsp;sight.&rdquo;
-								</p>
-								<cite class="voice-quote-cite">
-									Support Group Survey Response &bull; Ohio (Age&nbsp;52)
-								</cite>
-							</blockquote>
-
-							<div class="voice-clinical-note">
-								<div class="voice-clinical-label">Clinical Reality</div>
-								<p class="voice-clinical-text">
-									Chronic trigeminal sensory fire erodes every basic function of daily life: speaking, eating, swallowing, and restorative&nbsp;sleep.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>13</span>
-				</div>
-			</section>
-
-			<!-- Chapter 2: Voices From the Fire (Page 4 of 5: The Dental Carousel) -->
-			<section class="book-page" id="page-5">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
-						<span class="page-count-label">Page 14</span>
-					</div>
-
-					<div class="chapter-content">
-						<div class="voice-showcase-wrap">
-							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 4 of 5</div>
-							<h2 class="voice-page-title">The Dental&nbsp;Carousel</h2>
-
-							<blockquote class="voice-quote-box">
-								<p class="voice-quote-text">
-									&ldquo;I spent thousands of dollars chasing phantom dental fixes. I had two root canals redone, old fillings replaced, and crowns polished because the burning felt like it was radiating straight from my gums. Every single procedure left the fire burning exactly as hot as&nbsp;before.&rdquo;
-								</p>
-								<cite class="voice-quote-cite">
-									Patient Journey Log &bull; Arizona (Age&nbsp;59)
-								</cite>
-							</blockquote>
-
-							<div class="voice-clinical-note">
-								<div class="voice-clinical-label">Clinical Reality</div>
-								<p class="voice-clinical-text">
-									Without understanding exposed dentinal tubules and microscopic subgingival acid fermentation, patients are subjected to irreversible restorative procedures that never touch the underlying&nbsp;circuit.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>14</span>
-				</div>
-			</section>
-
-			<!-- Chapter 2: Voices From the Fire (Page 5 of 5: Refusing Idiopathic) -->
-			<section class="book-page" id="page-6">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
-						<span class="page-count-label">Page 15</span>
-					</div>
-
-					<div class="chapter-content">
-						<div class="voice-showcase-wrap">
-							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 5 of 5</div>
-							<h2 class="voice-page-title">Refusing&nbsp;Idiopathic</h2>
-
-							<blockquote class="voice-quote-box">
-								<p class="voice-quote-text">
-									&ldquo;They told me to learn to live with it and handed me an antidepressant prescription. That was the day I realized no one was coming to save me. I had to become my own investigator, understand the biology of my mouth, and decode the circuit if I ever wanted my life&nbsp;back.&rdquo;
-								</p>
-								<cite class="voice-quote-cite">
-									Online Peer Forum Participant &bull; Melbourne, Australia (Age&nbsp;61)
-								</cite>
-							</blockquote>
-
-							<div class="voice-clinical-note">
-								<div class="voice-clinical-label">Clinical Reality</div>
-								<p class="voice-clinical-text">
-									Remission begins the moment a sufferer stops accepting that biological nerves fire without a physical trigger. The turning point is treating the oral cavity like a mechanical&nbsp;system.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>15</span>
 				</div>
 			</section>
 
@@ -7963,19 +7822,22 @@ import { SITE_TITLE } from '../consts';
 					<div class="backcover-gold-border">
 						<div>
 							<div class="backcover-header">Clinical Inquiry &bull; Patient Advocacy</div>
-							<h2 class="backcover-tagline">Acidity Is the Fuel. Your Nerves Are the Alarm.</h2>
+							<h2 class="backcover-tagline">What If Acidity Is Your Main&nbsp;Trigger?</h2>
 							<p class="backcover-blurb">
-								When 77 patients with Burning Mouth Syndrome were surveyed in our community research poll, an overwhelming 70% reported that acidic food and drinks directly trigger or intensify their burning pain. This is not a coincidence: it is the primary biophysical discovery behind <em>Calm Your Burning&nbsp;Mouth</em>.
+								In our community poll of 77 Burning Mouth Syndrome patients, 70% reported that acidic food and drinks directly trigger or worsen their burning pain. That single clue is the foundation of this&nbsp;book.
 							</p>
 							<p class="backcover-blurb">
-								Conventional medicine labels BMS an incurable idiopathic mystery because the mucosal surface looks pink and healthy. But when you track ambient oral chemistry, a clear mechanism emerges: direct dietary acids and localized bacterial lactic acid pool against compromised tooth margins and exposed dentinal tubules, tripping Acid-Sensing Ion Channels (ASIC) and flooding the brainstem with persistent pain&nbsp;signals.
+								Even when oral tissue looks pink and healthy, dietary acids and bacterial lactic acid can seep through microscopic tooth defects and exposed root tubules, tripping Acid-Sensing Ion Channels (ASIC) into a continuous pain&nbsp;alarm.
 							</p>
 
+							<div class="backcover-figure">
+								<img src="/acid-sensing-ion-channels-asic-nerve.jpg" alt="Technical diagram of Acid-Sensing Ion Channels (ASIC) transducing acid protons into trigeminal burning pain signals" loading="eager" />
+							</div>
+
 							<ul class="backcover-features">
-								<li><strong>The 70% Acidity Benchmark:</strong> Real community data showing why tomatoes, citrus, vinegars, coffee, and sodas repeatedly provoke severe symptom spikes.</li>
-								<li><strong>The 72-Hour Fermentation Clock:</strong> Why Monday's fermentable starches brew subgingival lactic acid that peaks in an agonizing flare on Wednesday afternoon.</li>
-								<li><strong>Microscopic Dental Hardware Leaks:</strong> How aging crown cement washouts, craze lines, and exposed root dentin act as open funnels pouring acids onto pulpal nerves.</li>
-								<li><strong>Actionable Elimination Protocols:</strong> How establishing a strict zero-acid baseline starves the fire, dropping pain from 10/10 down to manageable levels within days.</li>
+								<li><strong>The 70% Acidity Benchmark:</strong> Why tomatoes, citrus, vinegars, coffee, and sodas repeatedly provoke severe symptom&nbsp;spikes.</li>
+								<li><strong>The 72-Hour Fermentation Clock:</strong> Why Monday's fermentable starches brew subgingival lactic acid that peaks in a flare on Wednesday&nbsp;afternoon.</li>
+								<li><strong>Microscopic Dental Hardware Leaks:</strong> How aging crown cement washouts, craze lines, and exposed root dentin act as open funnels pouring acids onto pulpal&nbsp;nerves.</li>
 							</ul>
 						</div>
 

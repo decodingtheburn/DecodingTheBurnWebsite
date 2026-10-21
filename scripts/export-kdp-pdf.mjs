@@ -202,7 +202,7 @@ export const KDP_7X10_BASE_CSS = `
 	html body .book-viewport .page-running-head {
 		font-size: 0.64rem !important;
 		padding-bottom: 0.35rem !important;
-		margin-bottom: 0.72rem !important;
+		margin-bottom: 40px !important;
 		border-bottom: 1px solid #cbd5e1 !important;
 	}
 
@@ -224,10 +224,8 @@ export const KDP_7X10_BASE_CSS = `
 		margin-bottom: 0.65rem !important;
 	}
 
-	html body .book-viewport .chapter-content.is-first-page > p:first-of-type::first-letter {
-		font-size: 2.6rem !important;
-		line-height: 0.85 !important;
-		padding-right: 0.35rem !important;
+	html body .book-viewport .chapter-content > p {
+		text-indent: 1.5em !important;
 	}
 
 	html body .book-viewport .chapter-content h3 {
@@ -562,8 +560,7 @@ export const KDP_7X10_BASE_CSS = `
 		font-size: 0.76rem !important;
 	}
 
-	html body .book-viewport .stat-showcase-wrap,
-	html body .book-viewport .voice-showcase-wrap {
+	html body .book-viewport .stat-showcase-wrap {
 		min-height: 700px !important;
 		padding: 1rem 0 !important;
 		max-width: 520px !important;
@@ -587,25 +584,45 @@ export const KDP_7X10_BASE_CSS = `
 		font-size: 1.05rem !important;
 		line-height: 1.65 !important;
 		color: #000000 !important;
+		text-indent: 0 !important;
 	}
 
-	html body .book-viewport .voice-page-title {
-		font-size: 1.65rem !important;
-		margin-bottom: 1.35rem !important;
-		padding-bottom: 0.75rem !important;
-		color: #000000 !important;
+	html body .book-viewport .voice-showcase-wrap {
+		min-height: 700px !important;
+		display: flex !important;
+		flex-direction: column !important;
+		justify-content: center !important;
+		align-items: center !important;
+		gap: 3.8rem !important;
+		max-width: 340px !important;
+		margin: 0 auto !important;
+		padding: 1rem 0 !important;
+		text-align: center !important;
 	}
 
-	html body .book-viewport .voice-quote-text {
-		font-size: 1.12rem !important;
-		line-height: 1.68 !important;
-		color: #000000 !important;
+	html body .book-viewport .voice-short-item {
+		width: 100% !important;
+		max-width: 340px !important;
+		margin: 0 auto !important;
+		text-align: center !important;
 	}
 
-	html body .book-viewport .voice-clinical-text {
-		font-size: 0.94rem !important;
+	html body .book-viewport .voice-short-quote {
+		font-size: 1.04rem !important;
 		line-height: 1.55 !important;
+		font-style: italic !important;
 		color: #000000 !important;
+		margin: 0 0 0.5rem !important;
+		text-indent: 0 !important;
+		text-align: center !important;
+	}
+
+	html body .book-viewport .voice-short-name {
+		font-size: 0.85rem !important;
+		font-weight: 700 !important;
+		color: #000000 !important;
+		margin: 0 !important;
+		text-align: center !important;
 	}
 
 	html body .book-viewport .research-table td ul li {
@@ -779,6 +796,39 @@ const READER_EDITION_CSS = `
 
 	.cover-tooth-img {
 		max-height: 200px !important;
+	}
+
+	.backcover-tagline {
+		font-size: 1.55rem !important;
+		line-height: 1.2 !important;
+		margin-bottom: 0.65rem !important;
+	}
+
+	.backcover-blurb {
+		font-size: 0.88rem !important;
+		line-height: 1.52 !important;
+		margin-bottom: 0.65rem !important;
+	}
+
+	.backcover-figure {
+		margin: 0.75rem 0 !important;
+		border-radius: 6px !important;
+	}
+
+	.backcover-figure img {
+		max-height: 145px !important;
+		width: 100% !important;
+		object-fit: cover !important;
+	}
+
+	.backcover-features {
+		margin: 0.75rem 0 0.85rem !important;
+	}
+
+	.backcover-features li {
+		font-size: 0.82rem !important;
+		line-height: 1.45 !important;
+		margin-bottom: 0.45rem !important;
 	}
 `;
 
@@ -1268,6 +1318,33 @@ async function main() {
 				}
 				.cover-tooth-img {
 					max-height: 200px !important;
+				}
+				.backcover-tagline {
+					font-size: 1.55rem !important;
+					line-height: 1.2 !important;
+					margin-bottom: 0.65rem !important;
+				}
+				.backcover-blurb {
+					font-size: 0.88rem !important;
+					line-height: 1.52 !important;
+					margin-bottom: 0.65rem !important;
+				}
+				.backcover-figure {
+					margin: 0.75rem 0 !important;
+					border-radius: 6px !important;
+				}
+				.backcover-figure img {
+					max-height: 145px !important;
+					width: 100% !important;
+					object-fit: cover !important;
+				}
+				.backcover-features {
+					margin: 0.75rem 0 0.85rem !important;
+				}
+				.backcover-features li {
+					font-size: 0.82rem !important;
+					line-height: 1.45 !important;
+					margin-bottom: 0.45rem !important;
 				}
 			`,
 		});

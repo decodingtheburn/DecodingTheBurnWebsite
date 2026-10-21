@@ -5,7 +5,7 @@ pubDate: 2026-10-18
 category: "Practical Protocols"
 tags: ["Burning Mouth Syndrome", "Doctor Checklist", "Dentist Checklist", "Triggers", "Elimination"]
 heroImage: "/tooth-transparent.png"
-draft: false
+draft: true
 readyDraft: true
 ---
 
