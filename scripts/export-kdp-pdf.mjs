@@ -491,71 +491,125 @@ export const KDP_7X10_BASE_CSS = `
 		margin-bottom: 0 !important;
 	}
 
-	/* Overview & Research Tables Calibration */
+	/* Overview Cards, Research Tables, Chapter 1 Stats & Chapter 2 Voices Calibration */
 	html body .book-viewport .overview-part-block {
-		margin-bottom: 0.45rem !important;
+		margin-bottom: 0.55rem !important;
 	}
 
 	html body .book-viewport .chapter-content h3.overview-part-title {
-		font-size: 0.84rem !important;
-		margin-top: 0.3rem !important;
-		margin-bottom: 0.15rem !important;
-		padding-bottom: 0.12rem !important;
+		font-size: 0.82rem !important;
+		margin-top: 0.25rem !important;
+		margin-bottom: 0.35rem !important;
+		padding-bottom: 0.15rem !important;
+		color: #000000 !important;
+		border-bottom: 1.5px solid #000000 !important;
 	}
 
-	html body .book-viewport .chapter-content p.overview-part-purpose {
-		font-size: 0.69rem !important;
-		line-height: 1.28 !important;
-		margin-bottom: 0.32rem !important;
+	html body .book-viewport .overview-cards-grid {
+		display: grid !important;
+		grid-template-columns: 1fr 1fr !important;
+		gap: 0.42rem !important;
+		margin-bottom: 0.55rem !important;
 	}
 
-	html body .book-viewport .overview-chapter-row {
-		padding: 0.34rem 0.52rem !important;
-		margin-bottom: 0.34rem !important;
-		gap: 0.55rem !important;
+	html body .book-viewport .overview-chapter-card {
+		padding: 0.42rem 0.58rem !important;
+		border: 1px solid #94a3b8 !important;
+		border-radius: 6px !important;
+		background: #ffffff !important;
+		gap: 0.15rem !important;
 	}
 
 	html body .book-viewport .chapter-content h4.overview-item-title {
 		font-size: 0.76rem !important;
-		margin-top: 0 !important;
-		margin-bottom: 0.14rem !important;
+		margin: 0 !important;
+		line-height: 1.24 !important;
+		color: #000000 !important;
 	}
 
 	html body .book-viewport .chapter-content p.overview-sentence {
-		font-size: 0.66rem !important;
-		line-height: 1.26 !important;
-		margin-bottom: 0.14rem !important;
+		font-size: 0.7rem !important;
+		line-height: 1.3 !important;
+		margin: 0 !important;
+		color: #000000 !important;
 	}
 
-	html body .book-viewport .overview-subtopics {
-		padding-left: 0.5rem !important;
+	html body .book-viewport .research-table th {
+		background: #000000 !important;
+		color: #ffffff !important;
+		padding: 0.4rem 0.55rem !important;
+		font-size: 0.76rem !important;
+		line-height: 1.3 !important;
 	}
 
-	html body .book-viewport .overview-subtopics-header {
-		font-size: 0.62rem !important;
-		margin-bottom: 0.12rem !important;
-	}
-
-	html body .book-viewport .chapter-content .overview-subtopics ol {
-		margin-bottom: 0 !important;
-		padding-left: 0.95rem !important;
-	}
-
-	html body .book-viewport .chapter-content .overview-subtopics li {
-		font-size: 0.63rem !important;
-		line-height: 1.22 !important;
-		margin-bottom: 0.08rem !important;
-	}
-
-	html body .book-viewport .research-table th,
 	html body .book-viewport .research-table td {
-		padding: 0.28rem 0.4rem !important;
-		font-size: 0.68rem !important;
-		line-height: 1.26 !important;
+		padding: 0.38rem 0.55rem !important;
+		font-size: 0.76rem !important;
+		line-height: 1.36 !important;
+		color: #000000 !important;
+	}
+
+	html body .book-viewport .research-category-row td {
+		background: #f4f4f5 !important;
+		color: #000000 !important;
+		font-weight: 700 !important;
+		font-size: 0.76rem !important;
+		padding: 0.32rem 0.55rem !important;
+	}
+
+	html body .book-viewport .table-src-link {
+		color: #000000 !important;
+		font-size: 0.76rem !important;
+	}
+
+	html body .book-viewport .stat-showcase-wrap,
+	html body .book-viewport .voice-showcase-wrap {
+		min-height: 700px !important;
+		padding: 1rem 0 !important;
+		max-width: 520px !important;
+		margin: 0 auto !important;
+	}
+
+	html body .book-viewport .stat-page-number {
+		font-size: 3.4rem !important;
+		margin-bottom: 0.65rem !important;
+		color: #000000 !important;
+	}
+
+	html body .book-viewport .stat-page-title {
+		font-size: 1.32rem !important;
+		margin-bottom: 1rem !important;
+		padding-bottom: 0.75rem !important;
+		color: #000000 !important;
+	}
+
+	html body .book-viewport .stat-page-desc {
+		font-size: 1.05rem !important;
+		line-height: 1.65 !important;
+		color: #000000 !important;
+	}
+
+	html body .book-viewport .voice-page-title {
+		font-size: 1.65rem !important;
+		margin-bottom: 1.35rem !important;
+		padding-bottom: 0.75rem !important;
+		color: #000000 !important;
+	}
+
+	html body .book-viewport .voice-quote-text {
+		font-size: 1.12rem !important;
+		line-height: 1.68 !important;
+		color: #000000 !important;
+	}
+
+	html body .book-viewport .voice-clinical-text {
+		font-size: 0.94rem !important;
+		line-height: 1.55 !important;
+		color: #000000 !important;
 	}
 
 	html body .book-viewport .research-table td ul li {
-		font-size: 0.65rem !important;
+		font-size: 0.68rem !important;
 		line-height: 1.24 !important;
 		margin-bottom: 0.1rem !important;
 	}
@@ -625,9 +679,13 @@ const KDP_BW_INTERIOR_CSS = `
 	.toc-link,
 	.toc-num,
 	.overview-item-title a,
-	.research-table th,
 	.research-table td {
 		color: #000000 !important;
+	}
+
+	.research-table th {
+		background: #000000 !important;
+		color: #ffffff !important;
 	}
 
 	.page-running-head,
@@ -1103,7 +1161,7 @@ async function main() {
 				<div class="kdp-cover-spread">
 					<div class="kdp-back-panel">${backCover.innerHTML}</div>
 					<div class="kdp-spine-panel">
-						<span>CALM YOUR BURNING MOUTH &bull; DENIS ETHIER</span>
+						<span>DECODING THE BURN &bull; DENIS ETHIER</span>
 					</div>
 					<div class="kdp-front-panel">${frontCover.innerHTML}</div>
 				</div>

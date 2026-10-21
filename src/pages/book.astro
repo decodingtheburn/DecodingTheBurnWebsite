@@ -650,7 +650,7 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			/* First paragraph drop cap on Chapter opening page */
-			.chapter-content.is-first-page p:first-of-type::first-letter {
+			.chapter-content.is-first-page > p:first-of-type::first-letter {
 				font-family: 'Cinzel', serif;
 				font-size: 3.75rem;
 				float: left;
@@ -1226,245 +1226,271 @@ import { SITE_TITLE } from '../consts';
 				color: #64748b;
 			}
 
-			/* Book Overview Typography (Grouped by Part) */
+			/* Book Overview Typography (Clean Cards Grouped by Part) */
 			.overview-part-block {
-				margin-bottom: 2.25rem;
+				margin-bottom: 1.5rem;
 			}
 
 			.overview-part-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.88rem;
+				font-size: 0.9rem;
 				font-weight: 800;
-				text-transform: uppercase;
-				letter-spacing: 0.08em;
-				color: #7c3aed;
-				margin-bottom: 0.4rem;
-				border-bottom: 1.5px solid #e2e8f0;
-				padding-bottom: 0.4rem;
+				color: #000000;
+				margin-top: 0;
+				margin-bottom: 0.65rem;
+				border-bottom: 1.5px solid #000000;
+				padding-bottom: 0.35rem;
 			}
 
-			.overview-part-purpose {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 0.92rem;
-				font-style: italic;
-				line-height: 1.58;
-				color: #475569;
-				margin: 0 0 1.25rem;
-				text-wrap: pretty;
-			}
-
-			.overview-chapter-row {
+			.overview-cards-grid {
 				display: grid;
-				grid-template-columns: 1.55fr 1fr;
-				gap: 1.75rem;
-				align-items: center;
-				margin-bottom: 1.85rem;
-				padding-bottom: 1.35rem;
-				border-bottom: 1px dashed #e2e8f0;
+				grid-template-columns: 1fr 1fr;
+				gap: 0.75rem;
 			}
 
-			.overview-chapter-row:last-child {
-				border-bottom: none;
-				margin-bottom: 0.5rem;
-				padding-bottom: 0;
-			}
-
-			.overview-main {
-				flex: 1;
+			.overview-chapter-card {
+				background: #ffffff;
+				border: 1px solid #cbd5e1;
+				border-radius: 8px;
+				padding: 0.85rem 1rem;
+				display: flex;
+				flex-direction: column;
+				gap: 0.3rem;
 			}
 
 			.overview-item-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.98rem;
+				font-size: 0.94rem;
 				font-weight: 700;
-				color: #0f172a;
-				margin-top: 0;
-				margin-bottom: 0.45rem;
+				color: #000000;
+				margin: 0;
+				line-height: 1.3;
 			}
 
 			.overview-item-title a {
-				color: #0f172a;
+				color: #000000;
 				text-decoration: none;
-				transition: color 0.15s ease;
 			}
 
 			.overview-item-title a:hover {
-				color: #7c3aed;
+				text-decoration: underline;
 			}
 
 			.overview-sentence {
 				font-family: 'Lora', Georgia, serif;
-				font-size: 0.98rem;
-				line-height: 1.72;
-				color: #27272a;
-				margin-bottom: 0.55rem;
+				font-size: 0.9rem;
+				line-height: 1.5;
+				color: #000000;
+				margin: 0 !important;
 				text-wrap: pretty;
 			}
 
-			.overview-subtopics {
-				background: #f8fafc;
-				border: 1px solid #e2e8f0;
-				border-left: 3.5px solid #7c3aed;
-				border-radius: 0 8px 8px 0;
-				padding: 0.95rem 1.15rem 0.95rem 1.25rem;
-			}
-
-			.overview-subtopics-header {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.72rem;
-				font-weight: 800;
-				text-transform: uppercase;
-				letter-spacing: 0.08em;
-				color: #7c3aed;
-				margin-bottom: 0.6rem;
-			}
-
-			.overview-subtopics ol {
-				margin: 0;
-				padding-left: 1.25rem;
-			}
-
-			.overview-subtopics li {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.82rem;
-				line-height: 1.5;
-				color: #334155;
-				margin-bottom: 0.45rem;
-			}
-
-			.overview-subtopics li:last-child {
-				margin-bottom: 0;
-			}
-
-			/* Reported Interventions & Triggers Research Table */
+			/* Reported Interventions & Triggers Research Table (2-Column, Pure Black Typography) */
 			.research-table-wrapper {
-				margin: 1.5rem 0 1.75rem;
-				border: 1px solid #e2e8f0;
-				border-radius: 8px;
+				margin: 1.25rem 0 1.5rem;
+				border: 1.5px solid #000000;
+				border-radius: 6px;
 				overflow-x: auto;
 				background: #ffffff;
-				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 			}
 
 			.research-table {
 				width: 100%;
 				border-collapse: collapse;
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.84rem;
+				font-size: 0.9rem;
 				text-align: left;
+				color: #000000;
 			}
 
 			.research-table th {
-				background: #0f172a;
+				background: #000000;
 				color: #ffffff;
-				padding: 0.85rem 1rem;
-				font-size: 0.74rem;
+				padding: 0.75rem 1rem;
+				font-size: 0.84rem;
 				font-weight: 700;
-				text-transform: uppercase;
-				letter-spacing: 0.06em;
 			}
 
 			.research-table td {
-				padding: 0.8rem 1rem;
-				border-bottom: 1px solid #f1f5f9;
-				color: #334155;
-				line-height: 1.48;
+				padding: 0.75rem 1rem;
+				border-bottom: 1px solid #cbd5e1;
+				color: #000000;
+				line-height: 1.5;
 				vertical-align: top;
+				font-size: 0.9rem;
 			}
 
 			.research-category-row td {
-				background: #f8fafc;
+				background: #f4f4f5;
 				font-weight: 700;
-				color: #0f172a;
-				font-size: 0.78rem;
-				text-transform: uppercase;
-				letter-spacing: 0.06em;
-				padding: 0.65rem 1rem;
-				border-top: 1.5px solid #cbd5e1;
-				border-bottom: 1px solid #cbd5e1;
+				color: #000000;
+				font-size: 0.86rem;
+				padding: 0.55rem 1rem;
+				border-top: 1.5px solid #000000;
+				border-bottom: 1.5px solid #000000;
 			}
 
 			.research-table tr:last-child td {
 				border-bottom: none;
 			}
 
-			.research-table tr:hover {
-				background-color: #fafbfd;
-			}
-
-			
-			.intervention-mechanism-desc {
-				font-size: 0.76rem;
-				line-height: 1.4;
-				color: #64748b;
-				margin-top: 0.35rem;
-				font-weight: 500;
-			}
-
-			.rate-val {
+			.table-item-title {
 				font-weight: 700;
-				font-size: 0.88rem;
-				display: block;
-				white-space: nowrap;
+				color: #000000;
+				margin-bottom: 0.2rem;
 			}
 
-			.rate-val.rate-high {
-				color: #047857;
+			.table-item-desc {
+				font-weight: 400;
+				color: #000000;
 			}
 
-			.rate-val.rate-moderate {
-				color: #1d4ed8;
+			.table-rate-main {
+				font-weight: 700;
+				color: #000000;
+				margin-bottom: 0.2rem;
 			}
 
-			.rate-val.rate-low {
-				color: #b91c1c;
+			.table-rate-sub {
+				font-weight: 400;
+				color: #000000;
 			}
 
-			.rate-val.rate-trigger {
-				color: #c2410c;
+			/* Chapter 1 Dedicated Full-Page Statistics Layout (10 Stats Over 10 Pages) */
+			.stat-showcase-wrap {
+				min-height: 680px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				max-width: 600px;
+				margin: 0 auto;
+				padding: 2rem 0;
+				color: #000000;
 			}
 
-			.rate-tag {
-				font-size: 0.72rem;
+			.stat-page-eyebrow {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.9rem;
 				font-weight: 600;
-				color: #64748b;
-				display: block;
-				margin-top: 0.15rem;
+				color: #000000;
+				margin-bottom: 0.85rem;
 			}
 
-			.rate-pain-delta {
-				font-size: 0.75rem;
-				font-weight: 700;
-				display: inline-block;
-				margin-top: 0.25rem;
-				padding: 0.15rem 0.45rem;
-				border-radius: 4px;
+			.stat-page-number {
+				font-family: 'Cinzel', Georgia, serif;
+				font-size: 4rem;
+				font-weight: 800;
+				color: #000000;
+				line-height: 1.08;
+				margin-bottom: 0.85rem;
+			}
+
+			.stat-page-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.5rem;
+				font-weight: 800;
+				color: #000000;
 				line-height: 1.3;
-				white-space: nowrap;
+				margin: 0 0 1.35rem;
+				padding-bottom: 1rem;
+				border-bottom: 2px solid #000000;
+				text-wrap: balance;
 			}
 
-			.rate-pain-delta.delta-drop {
-				background: #ecfdf5;
-				color: #065f46;
-				border: 1px solid #a7f3d0;
+			.stat-page-desc {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 1.18rem !important;
+				line-height: 1.75 !important;
+				color: #000000 !important;
+				margin: 0 0 1.25rem !important;
+				text-wrap: pretty;
 			}
 
-			.rate-pain-delta.delta-partial {
-				background: #eff6ff;
-				color: #1e40af;
-				border: 1px solid #bfdbfe;
+			.stat-page-source {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: #000000;
 			}
 
-			.rate-pain-delta.delta-minimal {
-				background: #fef2f2;
-				color: #991b1b;
-				border: 1px solid #fecaca;
+			/* Chapter 2 Dedicated Patient Voices Layout (Ultra-Professional Black & White Editorial) */
+			.voice-showcase-wrap {
+				min-height: 680px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				max-width: 600px;
+				margin: 0 auto;
+				padding: 2rem 0;
+				color: #000000;
 			}
 
-			.rate-pain-delta.delta-spike {
-				background: #fff7ed;
-				color: #9a3412;
-				border: 1px solid #fed7aa;
+			.voice-page-eyebrow {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: #000000;
+				margin-bottom: 0.5rem;
+			}
+
+			.voice-page-title {
+				font-family: 'Cinzel', Georgia, serif;
+				font-size: 2rem;
+				font-weight: 700;
+				color: #000000;
+				line-height: 1.22;
+				margin: 0 0 1.75rem;
+				padding-bottom: 1rem;
+				border-bottom: 2px solid #000000;
+			}
+
+			.voice-quote-box {
+				border-left: 4px solid #000000;
+				padding: 0.35rem 0 0.35rem 1.5rem;
+				margin: 0 0 2rem;
+			}
+
+			.voice-quote-text {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 1.28rem !important;
+				line-height: 1.78 !important;
+				font-style: italic;
+				color: #000000 !important;
+				margin: 0 0 1.1rem !important;
+				text-wrap: pretty;
+			}
+
+			.voice-quote-cite {
+				display: block;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.94rem;
+				font-weight: 700;
+				font-style: normal;
+				color: #000000;
+			}
+
+			.voice-clinical-note {
+				background: #f8fafc;
+				border: 1.5px solid #000000;
+				border-radius: 6px;
+				padding: 1.15rem 1.35rem;
+			}
+
+			.voice-clinical-label {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.86rem;
+				font-weight: 800;
+				color: #000000;
+				margin-bottom: 0.35rem;
+			}
+
+			.voice-clinical-text {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 1.05rem !important;
+				line-height: 1.65 !important;
+				color: #000000 !important;
+				margin: 0 !important;
+				text-wrap: pretty;
 			}
 
 			/* Research Data Sources Block */
@@ -1600,22 +1626,21 @@ import { SITE_TITLE } from '../consts';
 				margin-right: 0.35rem;
 			}
 
-			/* In-Table Source Link (clean text link, left-aligned, no pill) */
+			/* In-Table Source Link (clean black text link, uniform font size) */
 			.table-src-link {
-				font-size: 0.72rem;
+				font-size: inherit;
 				font-weight: 600;
-				color: #7c3aed;
+				color: #000000;
 				text-decoration: underline;
 				text-underline-offset: 2px;
-				margin-top: 0.35rem;
-				display: block;
+				margin-top: 0.25rem;
+				display: inline-block;
 				text-align: left;
-				transition: color 0.15s ease;
 				line-height: 1.3;
 			}
 
 			.table-src-link:hover {
-				color: #5b21b6;
+				color: #000000;
 				text-decoration: underline;
 			}
 
@@ -2349,9 +2374,9 @@ import { SITE_TITLE } from '../consts';
 					grid-template-columns: 1fr;
 					gap: 1.25rem;
 				}
-				.overview-chapter-row {
+				.overview-cards-grid {
 					grid-template-columns: 1fr;
-					gap: 1rem;
+					gap: 0.75rem;
 				}
 				.toc-link {
 					max-width: 100%;
@@ -3224,46 +3249,9 @@ import { SITE_TITLE } from '../consts';
 						<span class="page-count-label">Preliminary &bull; Page iv</span>
 					</div>
 
-					<div class="part-break-banner">
-						<p class="part-break-title">Pre-Book Orientation</p>
-					</div>
-
-					<h2 class="chapter-title">Read Before Chapter&nbsp;One</h2>
+					<h2 class="chapter-title" style="margin-top: 1rem;">Read Before Chapter&nbsp;One</h2>
 
 					<div class="chapter-content is-first-page">
-						<!-- Critical Global BMS Epidemiology & Hard Facts -->
-						<div class="book-callout" style="border-left: 4px solid #7c3aed; background: #faf5ff; margin-bottom: 1.35rem; padding: 1.1rem 1.25rem;">
-							<span class="book-callout-icon" aria-hidden="true" style="color: #7c3aed;">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-									<circle cx="12" cy="12" r="10"></circle>
-									<line x1="12" y1="16" x2="12" y2="12"></line>
-									<line x1="12" y1="8" x2="12.01" y2="8"></line>
-								</svg>
-							</span>
-							<div class="book-callout-text">
-								<p style="font-weight: 700; color: #4c1d95; font-size: 1rem; margin-bottom: 0.35rem !important;">
-									The Hard Facts: You Are Not Alone in the Fire
-								</p>
-								<p style="font-size: 0.92rem; line-height: 1.65; color: #1e1b4b; margin-bottom: 0.75rem;">
-									When doctors tell you your mouth looks completely normal, it is easy to feel as if you are suffering from a phantom affliction that nobody else understands. The epidemiological data proves the exact opposite:
-								</p>
-								<ul style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; line-height: 1.6; color: #334155;">
-									<li style="margin-bottom: 0.4rem;">
-										<strong>1.73% Global Population Prevalence (Over 80 Million People):</strong> A landmark worldwide meta-analysis published in <em>Oral Diseases</em> (Wu et al., 2022, analyzing 18 global cohorts) established that Burning Mouth Syndrome affects approximately <strong>1.73% of the world's population</strong> <a href="#src-22" class="cite-ref">[22]</a>. In clinical outpatient and dental settings, that rate jumps to <strong>7.72%</strong>. Across a global population of 8 billion, this represents more than <strong>80 to 130 million individuals</strong> battling chronic oral burning.
-									</li>
-									<li style="margin-bottom: 0.4rem;">
-										<strong>3:1 to 5:1 Female-to-Male Predominance:</strong> Population studies from the Mayo Clinic's Rochester Epidemiology Project (Kohorst et al., 2014) confirm that females experience an annual incidence of <strong>19.8 per 100,000 person-years</strong> compared to <strong>4.3 per 100,000 in males</strong> <a href="#src-23" class="cite-ref">[23]</a>. Post-menopausal neuro-hormonal shifts, coupled with reduced salivary epidermal growth factor, drastically sensitize mucosal small nerve fibers.
-									</li>
-									<li style="margin-bottom: 0.4rem;">
-										<strong>Mean Age of Onset is 61.4 Years (Peak Window 50 to 79):</strong> BMS is not a random genetic defect. Incidence explodes from <strong>40.4 per 100,000</strong> in patients under 50 to <strong>378.7 per 100,000</strong> in those aged 70 to 79 <a href="#src-23" class="cite-ref">[23]</a>, perfectly mirroring the 15 to 20-year dissolution lifecycle of dental crown cements and cumulative enamel acid wear.
-									</li>
-									<li>
-										<strong>0% Pediatric Primary BMS:</strong> Primary BMS virtually does not exist in children (&lt;0.1%) <a href="#src-23" class="cite-ref">[23]</a>. Pediatric tissues have not endured decades of chemical acid erosion, gum recession, or dissolving dental cement micro-gaps. In children, oral burning is strictly secondary.
-									</li>
-								</ul>
-							</div>
-						</div>
-
 						<p>Depending on where you are in your journey, you might have high expectations or very low expectations, and both of them are very&nbsp;normal.</p>
 						<p>The reality is that every case is different, and this book can only serve or should be viewed as a case study of one person from which you possibly can learn something. You might find ways to reduce your pain, but it is very possible that what I have discovered does not apply to&nbsp;everyone.</p>
 						<p>I get what you are going through. I have lived through the acute panic, the sleepless nights, the medical runaround of doctors telling you that everything looks completely fine while your mouth is screaming in fire, and the sheer mental exhaustion of having no clear answers. I have been in those shoes, and I know how deeply isolating this condition&nbsp;feels.</p>
@@ -3398,7 +3386,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- CHAPTER OVERVIEW: PART 1 (Page iv) -->
+			<!-- CHAPTER OVERVIEW: PART 1 (Page vi) -->
 			<section class="book-page" id="overview-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -3406,106 +3394,32 @@ import { SITE_TITLE } from '../consts';
 						<span class="page-count-label">Overview &bull; Parts I - III</span>
 					</div>
 
-					<div class="part-break-banner">
-						<p class="part-break-title">Chapter Roadmap &bull; Parts I to III</p>
-					</div>
-
-					<h2 class="chapter-title">Chapter Summaries</h2>
+					<h2 class="chapter-title" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">Chapter Summaries (Parts I &ndash;&nbsp;III)</h2>
 
 					<div class="chapter-content">
 						<!-- PART I -->
 						<div class="overview-part-block">
 							<h3 class="overview-part-title">Part I: The Pain of BMS</h3>
-							<p class="overview-part-purpose">Immediate emotional validation: global statistics, real sufferer voices, the sudden scalding onset, and the daily agony of living with invisible&nbsp;pain.</p>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+							<div class="overview-cards-grid">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-1">Chapter 1: The Numbers of the Fire</a></h4>
-									<p class="overview-sentence">A worldwide meta-analysis confirms that over eighty million people suffer from Burning Mouth Syndrome globally, enduring an average daily pain score of 7.0 to 8.5 out of ten.</p>
-									<p class="overview-sentence">Patients endure an average diagnostic odyssey of three to five distinct clinicians over thirteen to thirty-eight months of fruitless appointments.</p>
-									<p class="overview-sentence">Zero pediatric primary cases exist, proving that BMS is not a random genetic lottery but a cumulative hardware and micro-environmental breakdown.</p>
+									<p class="overview-sentence">Ten core epidemiological and clinical statistics establishing the global scale and biophysical reality of Burning Mouth&nbsp;Syndrome.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The global scale: 1.73% prevalence across 80M+ people (Wu et al., 2022)</li>
-										<li>The 7.0 to 8.5/10 severity ranking alongside kidney stones on the McGill Index</li>
-										<li>The 5:1 female ratio and post-50 demographic spike (Kohorst et al., 2014)</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-2">Chapter 2: Voices From the Fire</a></h4>
-									<p class="overview-sentence">Direct quotes and clinical narratives capturing the psychological isolation of living with an unceasing blowtorch inside the mouth.</p>
-									<p class="overview-sentence">The devastating emotional toll of hearing clinicians smile and declare that everything looks pink and healthy while the patient holds back tears.</p>
-									<p class="overview-sentence">Why personal logs and peer validation are the first decisive step in moving from passive despair to active self-investigation.</p>
+									<p class="overview-sentence">Five direct patient testimonies capturing the daily agony and medical isolation of living with an invisible oral&nbsp;burn.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>Real patient reflections on the daily burning coffee and blowtorch sensation</li>
-										<li>The psychological pain of medical invalidation and psychiatric referrals</li>
-										<li>Refusing to accept "idiopathic" as a final answer to take charge of recovery</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-7">Chapter 3: The BMS Diagnostic Questionnaire</a></h4>
-									<p class="overview-sentence">A comprehensive four-page clinical questionnaire covering demographics, sensory pain descriptors, anatomical mapping, and diurnal escalation curves.</p>
-									<p class="overview-sentence">Systematically audits 24-hour dietary intake, chemical sensory triggers, clenching habits, dry mouth symptoms, and exposed dental hardware.</p>
-									<p class="overview-sentence">Enables patients to document a reproducible diagnostic record and symptom dossier to share directly with doctors and dentists.</p>
+									<p class="overview-sentence">A structured clinical intake questionnaire mapping sensory pain descriptors, diurnal curves, dietary triggers, and dental&nbsp;hardware.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The 11-category diagnostic audit spanning demographics to cervical root margins</li>
-										<li>Interactive browser persistence and instant printable clinical dossier generation</li>
-										<li>Differentiating neuropathic stinging from localized masticatory and reflux triggers</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-15">Chapter 4: The Day the Fire Started</a></h4>
-									<p class="overview-sentence">It starts out of nowhere: your tongue scalds like battery acid, your gums sting, and you look in the mirror expecting blisters, but the tissue looks completely pink and&nbsp;innocent.</p>
-									<p class="overview-sentence">Your dentist tells you everything looks textbook perfect, leaving you wondering if you are slowly losing your mind while the pain steadily&nbsp;climbs.</p>
-									<p class="overview-sentence">Nerves do not scream unceasingly without an input: the alarm is real, the fire is biological, and something physical is tripping the&nbsp;switch.</p>
+									<p class="overview-sentence">How a scalding oral fire erupts inside visually normal tissue and why sensory nerves never scream without a physical&nbsp;input.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The sudden scalding onset with completely normal-looking oral tissue</li>
-										<li>The psychological toll of hearing "everything looks healthy" from five doctors</li>
-										<li>The 2-point Minimally Clinically Important Difference (MCID) trial benchmark</li>
-									</ol>
-								</div>
-							</div>
-						</div>
-
-						<!-- PART II -->
-						<div class="overview-part-block">
-							<h3 class="overview-part-title">Part II: The Pain of Dentists and Doctors Not Knowing</h3>
-							<p class="overview-part-purpose">Exonerates the patient. Explains why dentists, primary care doctors, and neurologists keep passing them around, not because the pain is fake, but because of institutional&nbsp;silos.</p>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-16">Chapter 5: Going to the Dentist</a></h4>
-									<p class="overview-sentence">When burning strikes, the dental chair is your first stop. The dentist checks for obvious decay, taps your teeth, inspects your gums, and declares that everything looks completely pink and&nbsp;healthy.</p>
-									<p class="overview-sentence">After hearing the top ten reassuring phrases that dentists tell BMS patients, you are referred out to endodontists, periodontists, and orofacial pain specialists who remain baffled by normal&nbsp;X-rays.</p>
-									<p class="overview-sentence">Standard 2D bitewings cannot visualize sub-micron cement washouts or open cervical root tubules where oral acids leak directly onto underlying pulpal&nbsp;receptors.</p>
-								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The Top 10 things dentists tell BMS patients ("everything looks healthy", "clean X-rays", "use Biotene")</li>
-										<li>The dental specialist referral carousel: endodontists, periodontists, prosthodontists, and pain clinics</li>
-										<li>The hardware blind spot: why 2D X-rays miss sub-micron cement washouts and open root tubules</li>
-									</ol>
+									<p class="overview-sentence">Why routine dental exams and 2D bitewing X-rays miss microscopic crown cement washouts and exposed root&nbsp;tubules.</p>
 								</div>
 							</div>
 						</div>
@@ -3513,73 +3427,22 @@ import { SITE_TITLE } from '../consts';
 						<!-- PART II -->
 						<div class="overview-part-block">
 							<h3 class="overview-part-title">Part II: The Pain of Dentists and Doctors Not Knowing</h3>
-							<p class="overview-part-purpose">Exonerates the patient. Explains why dentists, primary care doctors, and neurologists keep passing them around, not because the pain is fake, but because of institutional&nbsp;silos.</p>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+							<div class="overview-cards-grid">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-18">Chapter 6: Going to the Doctors</a></h4>
-									<p class="overview-sentence">When dentists run out of answers, you turn to primary care physicians and medical specialists who run exhaustive blood panels that come back stamped completely&nbsp;normal.</p>
-									<p class="overview-sentence">Spotless venous blood tests cannot detect a micro-chemical acid bath sitting inside a two-millimeter gum crevice, leading doctors to declare your condition incurable and&nbsp;idiopathic.</p>
-									<p class="overview-sentence">Instead of identifying local chemical triggers, physicians offer central nerve-dulling sedatives like gabapentin and tricyclics, bouncing you endlessly between medical&nbsp;departments.</p>
+									<p class="overview-sentence">Why spotless venous blood panels cannot detect localized subgingival acid and why central sedatives fail to stop peripheral&nbsp;triggers.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The spotless lab paradox: why normal B12, CBC, and metabolic panels miss oral micro-chemistry</li>
-										<li>The medical referral runaround: primary care, ENT, neurology, and rheumatology</li>
-										<li>Central sedatives vs. peripheral root causes: the limits of gabapentin and tricyclics</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-20">Chapter 7: The Institutional Blind Spot</a></h4>
-									<p class="overview-sentence">Modern medicine cut the human head into isolated territories: dentists handle teeth and bone, doctors handle blood and organs, and neurologists study the brain without looking inside the&nbsp;mouth.</p>
-									<p class="overview-sentence">Patients with Burning Mouth Syndrome fall directly into this institutional crevasse, suffering for years while specialists point fingers across the&nbsp;hallway.</p>
-									<p class="overview-sentence">Understanding this administrative failure exonerates you completely: your condition was never an imaginary phantom, it was simply an orphan of medical&nbsp;specialization.</p>
+									<p class="overview-sentence">How the historical separation between dentistry, general medicine, and neurology leaves oral neuropathic pain trapped between&nbsp;silos.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The historical divide between dental colleges, general medicine, and neurology</li>
-										<li>Why insurance billing codes favor "idiopathic" labels over cross-disciplinary investigation</li>
-										<li>Connecting the dots across the hallway where dental hardware meets nerve chemistry</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-22">Chapter 8: The Supplement Trial</a></h4>
-									<p class="overview-sentence">Every BMS patient goes through the cabinet-filling supplement phase, spending small fortunes on alpha-lipoic acid, zinc, iron, and high-dose B-complex&nbsp;vitamins.</p>
-									<p class="overview-sentence">Unless lab work shows a genuine clinical deficiency, medical trials show nutritional supplements help fewer than 15% of patients; in my own trial, fifty different bottles did not lower my score by a single&nbsp;point.</p>
-									<p class="overview-sentence">You cannot out-supplement a physical breach in your tooth hardware or a localized acid leak that is constantly exciting open nerve&nbsp;pipes.</p>
+									<p class="overview-sentence">Why unselected systemic supplements help fewer than 15% of patients and cannot physically seal porous dentinal&nbsp;tubules.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The 50+ supplement experiment trial: what the science really says (&lt;15% unselected response)</li>
-										<li>The laboratory trap: why spotless venous blood panels miss local subgingival acid</li>
-										<li>Why swallowing systemic pills cannot seal exposed microscopic dentin tubules</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-25">Chapter 9: The B12 Blind Spot</a></h4>
-									<p class="overview-sentence">When routine blood work checks Vitamin B12, any number above 200 pg/mL is stamped normal, even though peripheral myelin sheath degradation begins below 500&nbsp;pg/mL.</p>
-									<p class="overview-sentence">Common medications like metformin actively block B12 absorption in the gut, quietly stripping the insulation off sensory nerves while doctors blame progressive&nbsp;neuropathy.</p>
-									<p class="overview-sentence">Testing functional metabolic markers like Methylmalonic Acid (MMA) and Homocysteine exposes hidden cellular starvation that standard screening completely&nbsp;misses.</p>
-								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>Drug-induced nutrient depletion: how metformin strips peripheral myelin insulation</li>
-										<li>The North American (200 pg/mL) vs. Japanese (500 pg/mL) neurological B12 floor</li>
-										<li>Ordering Methylmalonic Acid (MMA) and Homocysteine to catch subclinical deficiency</li>
-									</ol>
+									<p class="overview-sentence">How borderline B12 levels and medications like metformin strip peripheral myelin insulation while standard blood work reads&nbsp;normal.</p>
 								</div>
 							</div>
 						</div>
@@ -3587,107 +3450,30 @@ import { SITE_TITLE } from '../consts';
 						<!-- PART III -->
 						<div class="overview-part-block">
 							<h3 class="overview-part-title">Part III: The First Principles of Mouth Burning Pain</h3>
-							<p class="overview-part-purpose">The intellectual turning point. Strips away complex jargon to explain the core mechanics: biological sensors do not fire without a physical or chemical input. Shows how community trigger data, oral pain receptors, five-decade erosion, and open micro-pipes (tubules) trip the nerve&nbsp;circuit.</p>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+							<div class="overview-cards-grid">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-28">Chapter 10: Identifying What Makes Pain Worse: Acid</a></h4>
-									<p class="overview-sentence">By systematically tracking every meal and drink, a clear first principle emerges: what makes the burning worse is acid, and what makes it better is removing that&nbsp;acid.</p>
-									<p class="overview-sentence">A live poll of 77 Burning Mouth Syndrome patients in our Facebook community revealed that 75% (58 participants) confirmed acidic foods and beverages directly worsen their&nbsp;burn.</p>
-									<p class="overview-sentence">Recognizing both immediate direct acids and the 48-to-72-hour bacterial fermentation of carbohydrates proves you are not alone and points to a shared physical&nbsp;mechanism.</p>
+									<p class="overview-sentence">Community polling and personal elimination data proving that exogenous and fermented oral acids directly drive the&nbsp;burn.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The Facebook Community Poll (77 participants): 75% confirm acidity worsens oral burning</li>
-										<li>Direct acidic triggers (citrus, wine, coffee, soda, tomatoes) vs. fermentable starches</li>
-										<li>How eliminating all acids and fermentable sugars brought my 10/10 burn down to 0/10</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-31">Chapter 11: The Receptors of Pain in the Mouth</a></h4>
-									<p class="overview-sentence">The human mouth does not have thousands of mysterious pain sensors; it relies on a finite master suite of roughly 35 to 45 specialized functional receptors and ion&nbsp;channels.</p>
-									<p class="overview-sentence">During an active trigeminal flare, sensory bandwidth is dominated by TRPV1 (40 to 45% heat and acid), TRPM8 (20 to 25% icy menthol), TRPA1 (15 to 20% chemical sting), and ASIC3 proton&nbsp;gates.</p>
-									<p class="overview-sentence">Because inflammation drops TRPV1's activation threshold below normal body temperature (37&deg;C), your own resting mouth heat continuously triggers the alarm until you stop the acid&nbsp;fuel.</p>
+									<p class="overview-sentence">A breakdown of the finite suite of oral pain channels (TRPV1, TRPA1, TRPM8, and ASIC3) and how acidity drops their firing&nbsp;threshold.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The finite 35 to 45 oral receptor matrix: separating taste buds from trigeminal nociceptors</li>
-										<li>TRP channel bandwidth breakdown: TRPV1 (40-45%), TRPM8 (20-25%), TRPA1 (15-20%), TRPV4 (10%)</li>
-										<li>Hydrodynamic mechanoreceptors (Piezo1) and ASIC3 proton detectors inside exposed dentin</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-34">Chapter 12: The Slow Fuse</a></h4>
-									<p class="overview-sentence">The fire that erupts in a burning mouth did not materialize out of thin air; it is the culmination of five decades of gradual mechanical and chemical erosion.</p>
-									<p class="overview-sentence">From childhood mouth breathing and teenage fillings to twenties gumline recession and thirties crown cement fatigue, the protective armor is stripped away millimeter by&nbsp;millimeter.</p>
-									<p class="overview-sentence">Tracing this fifty-year timeline shows why the breach suddenly reaches critical mass in midlife and how to reverse the structural&nbsp;cascade.</p>
+									<p class="overview-sentence">Tracing the five-decade cascade of enamel wear, gumline recession, and crown fatigue that culminates in a sudden midlife&nbsp;breach.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>Decades 0 to 30: Childhood mouth breathing, nocturnal dryness, and early gumline retreat</li>
-										<li>Decades 30 to 50: Dental crown cement washouts and cumulative cervical root exposure</li>
-										<li>How decades of silent margin erosion set the stage for a sudden 10/10 electrical alarm</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-38">Chapter 13: The Exposed Tubule Audit</a></h4>
-									<p class="overview-sentence">Your teeth are not solid marble stones: underneath the enamel sits dentin, packed with 20,000 to 45,000 microscopic open fluid pipes per square&nbsp;millimeter.</p>
-									<p class="overview-sentence">When gums recede by even a single millimeter or crown cement washes out, hundreds of thousands of open fluid conduits connect the oral cavity straight to living pulpal&nbsp;nerves.</p>
-									<p class="overview-sentence">Because 2D X-rays cannot resolve sub-micron tubules or see through metal and zirconia crowns, standard dental checkups miss these hardware breaches&nbsp;completely.</p>
+									<p class="overview-sentence">How 20,000 to 45,000 microscopic fluid pipes per square millimeter connect receded tooth roots straight to living pulpal&nbsp;nerves.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The 20,000 to 45,000 micro-pipes per mm²: how dentinal fluid shear triggers nerve pain</li>
-										<li>Why protective smear plugs dissolve as soon as ambient pH drops below 6.2</li>
-										<li>Calculating cumulative exposed root surface area across an entire dental arch</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-41">Chapter 14: The Chemical Ingress</a></h4>
-									<p class="overview-sentence">While intact crown enamel resists acid down to pH 5.5, exposed root dentin dissolves at a near-neutral pH of 6.2 to 6.7, making everyday coffee, tea, and sparkling water actively&nbsp;corrosive.</p>
-									<p class="overview-sentence">Worse still is the 48-to-72-hour fermentation clock: oral bacteria digest trapped dietary starches from bread, rice, or root vegetables and brew concentrated lactic acid right against unsealed&nbsp;roots.</p>
-									<p class="overview-sentence">Whether delivered immediately by an acidic sip or brewed over three days by bacterial biofilm, free hydrogen protons flood straight down the open dentinal&nbsp;pipes.</p>
+									<p class="overview-sentence">How direct dietary acids and the 48-to-72-hour bacterial fermentation of carbohydrates flood open root tubules with&nbsp;protons.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>Enamel (pH 5.5) vs. Root Dentin (pH 6.2-6.7): the critical dissolution threshold</li>
-										<li>Clock 1 (immediate acid sting) vs. Clock 2 (48-72 hour bacterial starch fermentation)</li>
-										<li>The Vegetable Paradox: how healthy root starches feed subgingival lactic acid production</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-45">Chapter 15: The Oral Neuropathic Circuit</a></h4>
-									<p class="overview-sentence">When protons flood down open tubules, they bind to Acid-Sensing Ion Channels (ASIC1 and ASIC3) and Na<sub>v</sub>1.7 sodium gates, firing high-frequency electrical alarms up the Trigeminal&nbsp;Nerve.</p>
-									<p class="overview-sentence">Inside the brainstem's Subnucleus Caudalis, this continuous barrage causes central wind-up and signal bleed-over, making your entire tongue and palate feel scalded from a single leaking&nbsp;molar.</p>
-									<p class="overview-sentence">Once you stop the peripheral proton flood and seal the hardware leak, the central switchboard stops overflowing and the widespread fire settles back to&nbsp;zero.</p>
-								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>ASIC1, ASIC3, and Na<sub>v</sub>1.7 gating: the digital proton tripwires inside dental pulp</li>
-										<li>The Trigeminal Bus (V<sub>1</sub>, V<sub>2</sub>, V<sub>3</sub>) and central wind-up in the Subnucleus Caudalis</li>
-										<li>How localized molar microleakage refers widespread 10/10 burning across the tongue</li>
-									</ol>
+									<p class="overview-sentence">How localized proton firing inside a single leaking tooth causes central trigeminal wind-up that scalds the entire&nbsp;tongue.</p>
 								</div>
 							</div>
 						</div>
@@ -3699,40 +3485,24 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- CHAPTER OVERVIEW: PART 2 (Page v) -->
+			<!-- CHAPTER OVERVIEW: PART 2 (Page vii) -->
 			<section class="book-page" id="overview-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Overview &bull; Parts IV - V</span>
+						<span class="page-count-label">Overview &bull; Parts IV - VI</span>
 					</div>
 
-					<div class="part-break-banner">
-						<p class="part-break-title">Chapter Roadmap &bull; Parts IV to VI</p>
-					</div>
-
-					<h2 class="chapter-title">Chapter Summaries</h2>
+					<h2 class="chapter-title" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">Chapter Summaries (Parts IV &ndash;&nbsp;VI)</h2>
 
 					<div class="chapter-content">
-												<!-- PART IV -->
+						<!-- PART IV -->
 						<div class="overview-part-block">
 							<h3 class="overview-part-title">Part IV: The BMS Standard Diagnosis Model</h3>
-							<p class="overview-part-purpose">The clinical benchmark. Details the official criteria of inclusion and exclusion defined by the International Headache Society (ICHD-3) and International Classification of Orofacial Pain (ICOP), showing why normal tests validate neuropathic pain rather than disproving&nbsp;it.</p>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+							<div class="overview-cards-grid">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-50">Chapter 16: The Standard Diagnosis Model</a></h4>
-									<p class="overview-sentence">According to international clinical guidelines (ICHD-3 code 13.11 and ICOP 6.1.1), BMS is officially defined by specific positive criteria of inclusion: burning sensation recurring daily for greater than two hours per day over at least three months without clinically evident mucosal&nbsp;lesions.</p>
-									<p class="overview-sentence">Rather than guessing, clinicians systematically run lab panels, fungal swabs, autoimmune markers, and sialometry to exclude secondary mimics like oral thrush, Sjögren's, and gross anemia.</p>
-									<p class="overview-sentence">When every standard lab test returns spotless, it does not mean your pain is imaginary: it is the official diagnostic confirmation that your condition is peripheral small-fiber&nbsp;neuropathy.</p>
-								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The official ICOP and ICHD-3 criteria of inclusion: the 2-hour daily / 3-month threshold</li>
-										<li>Primary (idiopathic neuropathic) vs. Secondary (correctable metabolic/mucosal) BMS</li>
-										<li>The complete exclusion battery: blood panels, fungal cultures, sialometry, and patch testing</li>
-									</ol>
+									<p class="overview-sentence">The official ICHD-3 and ICOP diagnostic criteria of inclusion and exclusion that confirm peripheral small-fiber&nbsp;neuropathy.</p>
 								</div>
 							</div>
 						</div>
@@ -3740,73 +3510,22 @@ import { SITE_TITLE } from '../consts';
 						<!-- PART V -->
 						<div class="overview-part-block">
 							<h3 class="overview-part-title">Part V: Taking Charge of Your Own Investigation</h3>
-							<p class="overview-part-purpose">The active protocol. Guides the patient through establishing a clean baseline (eliminating variables), systematically reintroducing items to calculate their personal time-lag delta, and auditing physical tooth&nbsp;margins.</p>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+							<div class="overview-cards-grid">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-52">Chapter 17: Starving the Fire</a></h4>
-									<p class="overview-sentence">Starving the fire means cutting off 100% of the chemical fuel supply to the anaerobic bacteria hiding in your gum margins that brew lactic acid out of everyday&nbsp;carbohydrates.</p>
-									<p class="overview-sentence">When you switch to a strict zero-acid, non-fermentable animal-based baseline, bacterial lactic acid production plunges toward zero within seventy-two&nbsp;hours.</p>
-									<p class="overview-sentence">Patients who run this diagnostic reset often watch their 10/10 burning drop to a manageable 2/10 or 3/10 within seven to ten&nbsp;days.</p>
+									<p class="overview-sentence">Establishing a clean zero-acid, non-fermentable baseline to shut down bacterial lactic acid production within seven&nbsp;days.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The Day 1 to Day 7 biochemical timeline as sulcus pH rebounds to neutral (7.0-7.4)</li>
-										<li>What goes on the Safe Plate: ruminant meats, seafood, eggs, clean fats, and neutral water</li>
-										<li>Seasoning discipline: eliminating hidden citric acid, vinegar powders, and maltodextrin</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-55">Chapter 18: Calculating Your Time Lag</a></h4>
-									<p class="overview-sentence">Because oral bacterial fermentation operates on a 48 to 72 hour delayed fuse, Monday's acidic coffee or starchy meal does not ignite your tongue until Wednesday&nbsp;afternoon.</p>
-									<p class="overview-sentence">Using the 3-Day Off / 3-Day On Delta Calculation Protocol, you can systematically reintroduce one suspect variable at a time and measure your exact personal latency&nbsp;curve.</p>
-									<p class="overview-sentence">Three alternative verification protocols let you isolate triggers over a single weekend or prove whether acid is entering through a specific unsealed&nbsp;tooth.</p>
+									<p class="overview-sentence">Step-by-step testing protocols to measure your personal 48-to-72-hour fermentation latency curve and isolate specific&nbsp;triggers.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The 3-stage biological clock: Ingress (0-6h), Fermentation (12-36h), and ASIC Wind-Up (36-72h)</li>
-										<li>The Lag Delta Formula (&Delta; &ge; +2.0) for proving electrochemical food and drink triggers</li>
-										<li>Alternative protocols: Single Pulse Spike, 12-Day Split A/B Block, and Mechanical Straw Test</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-57">Chapter 19: Mechanical Shields</a></h4>
-									<p class="overview-sentence">Dietary elimination extinguishes the chemical fire, but if you have open tooth tubules or leaking crown margins, you must place physical armor back over the&nbsp;nerves.</p>
-									<p class="overview-sentence">Temporary shields like stannous fluoride mineral precipitation and in-office Gluma protein coagulation plug open micro-pipes and stop hydrodynamic fluid&nbsp;shift.</p>
-									<p class="overview-sentence">Permanent dental hardware repair, including replacing crowns with cement washout and bonding Class V cervical notches, seals the breach for&nbsp;good.</p>
+									<p class="overview-sentence">Using stannous fluoride, in-office Gluma desensitizers, and permanent crown or composite restorations to seal open&nbsp;tubules.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>Temporary chemical armor: Stannous Fluoride (SnF<sub>2</sub>) crystal precipitation at bedtime</li>
-										<li>In-office desensitizers: Gluma albumin coagulation and micro-thin unfilled resin glazes</li>
-										<li>Permanent hardware restoration: replacing failing crowns (#36D) and Class V composite bonding</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-60">Chapter 20: The Recovery Protocol</a></h4>
-									<p class="overview-sentence">Even when you know your triggers, accidental exposures at restaurants or family gatherings will occasionally trip the alarm and spark a delayed&nbsp;flare.</p>
-									<p class="overview-sentence">Instead of panicking or throwing random supplements at the setback, you can execute the structured 6-Day Reset Protocol to neutralize surface acid and settle the&nbsp;brainstem.</p>
-									<p class="overview-sentence">Pairing this physical reset with Radical Acceptance replaces the exhausting mental loop of bargaining with lasting peace of&nbsp;mind.</p>
-								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The 6-Day Flare Protocol: strict neutral hydration, zero starch, and zero acidic seasonings</li>
-										<li>Using gentle sodium bicarbonate rinses and overnight stannous fluoride during flares</li>
-										<li>The psychology of Radical Acceptance: trading food bargaining for a stable 0/10 baseline</li>
-									</ol>
+									<p class="overview-sentence">A structured 6-Day Flare Reset Protocol to extinguish accidental dietary setbacks and maintain a calm baseline&nbsp;long-term.</p>
 								</div>
 							</div>
 						</div>
@@ -3814,124 +3533,34 @@ import { SITE_TITLE } from '../consts';
 						<!-- PART VI -->
 						<div class="overview-part-block">
 							<h3 class="overview-part-title">Part VI: Models for BMS &amp; Moving Forward</h3>
-							<p class="overview-part-purpose">Empowerment and hope. How to talk to open-minded clinicians (finding your no-burp doctor), participating in citizen science, and helping&nbsp;peers.</p>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+							<div class="overview-cards-grid">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-63">Chapter 21: The Diabetic Parallel</a></h4>
-									<p class="overview-sentence">While oral surgeons treat burning mouth as a bizarre phantom, endocrinologists see the exact same small-fiber burning every day in Diabetic Peripheral Neuropathy&nbsp;(DPN).</p>
-									<p class="overview-sentence">Both conditions share an identical sensory fingerprint of scalding heat and mechanical allodynia because both attack unmyelinated C-fibers and thinly myelinated A&delta;&nbsp;transducers.</p>
-									<p class="overview-sentence">Comparing BMS to diabetic neuropathy gives clinicians an established medical model showing how local chemical stress triggers Na<sub>v</sub>1.7, TRPV1, and ASIC&nbsp;receptors.</p>
+									<p class="overview-sentence">Comparing BMS to Diabetic Peripheral Neuropathy to give clinicians an established medical model of small-fiber&nbsp;burning.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The shared sensory fingerprint: scalding heat, sandpaper friction, and mechanical allodynia</li>
-										<li>Unmyelinated C-fibers and A&delta; fibers: why unarmored nerve tips fire under chemical stress</li>
-										<li>Why peripheral small-fiber firing never requires a visible macroscopic ulcer to cause agony</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-67">Chapter 22: The Two Bottlenecks</a></h4>
-									<p class="overview-sentence">Both diabetes and BMS end with lactic acid tripping peripheral ASIC channels, but the acid arrives through two completely different anatomical&nbsp;bottlenecks.</p>
-									<p class="overview-sentence">In diabetes, systemic hyperglycemia chokes off microscopic blood vessels from the inside out; in BMS ("Type 6 Diabetes"), oral bacteria pour lactic acid down open dentinal tubules from the outside&nbsp;in.</p>
-									<p class="overview-sentence">Understanding both bottlenecks explains why both patient groups get trapped in the exact same 72-hour carbohydrate flare and recovery&nbsp;loop.</p>
+									<p class="overview-sentence">Contrasting internal microvascular ischemia in diabetes against external dentinal tubule acid ingress in Burning Mouth&nbsp;Syndrome.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>The systemic bottleneck (vasa nervorum ischemia) vs. the local gateway (open dentinal tubules)</li>
-										<li>BMS as "Type 6 Diabetes": topical carbohydrate fermentation right at the nerve portal</li>
-										<li>Breaking the behavioral 72-hour amnesia and flare loop through comparative models</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-71">Chapter 23: Remission vs. Progression</a></h4>
-									<p class="overview-sentence">Conventional medicine treats both Type 2 diabetes and BMS as irreversible, one-way streets of chronic progression managed only by heavier&nbsp;medications.</p>
-									<p class="overview-sentence">In reality, a fire only burns while you feed it fuel: cutting off fermentable carbohydrates and dietary acids closes the ASIC proton gates and brings pain down to&nbsp;0/10.</p>
-									<p class="overview-sentence">Lasting freedom requires respecting the boundary between symptomatic remission and structural invulnerability while you repair the underlying&nbsp;hardware.</p>
+									<p class="overview-sentence">Why removing chemical fuel halts neuropathic firing and why dietary calm must be paired with physical hardware&nbsp;repair.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>Refuting the clinical dogma of inevitable neuropathic progression</li>
-										<li>Why removing the chemical fuel extinguishes both metabolic and oral burning</li>
-										<li>Why dietary remission must be paired with mechanical tubule sealing to prevent relapse</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-74">Chapter 24: How to Talk to Your Doctor</a></h4>
-									<p class="overview-sentence">Walking into a fifteen-minute medical visit and announcing an extreme permanent diet or challenging standard lab ranges will immediately trip a physician's defense&nbsp;mechanisms.</p>
-									<p class="overview-sentence">Instead, use conversational engineering: frame your zero-acid baseline as a brief, two-week observational N=1 trial and ask for their clinical&nbsp;blessing.</p>
-									<p class="overview-sentence">Use our exact word-for-word scripts to request functional cellular markers like Methylmalonic Acid (MMA), Homocysteine, and transferrin&nbsp;saturation.</p>
+									<p class="overview-sentence">Practical scripts for framing your 14-day observational trial and requesting functional B12, MMA, and iron transport&nbsp;panels.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>Framing your elimination diet as a structured 14-day observational diagnostic trial</li>
-										<li>Respecting clinical comfort zones so your doctor becomes an investigative ally</li>
-										<li>Word-for-word requisition scripts for MMA, Homocysteine, and full iron transport panels</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-77">Chapter 25: How to Talk to Your Dentist</a></h4>
-									<p class="overview-sentence">If you tell a dentist that your whole tongue is burning, their training forces them to look for visible ulcers or cavities and refer you out when bitewings look&nbsp;clean.</p>
-									<p class="overview-sentence">Take "Burning Mouth Syndrome" off the table completely and schedule a focused dental checkup for acid leaks and physical hardware&nbsp;integrity.</p>
-									<p class="overview-sentence">Hand your dentist our 4-Point Structural Inspection Checklist to test crown margins with a fine explorer, transilluminate craze lines, and run a diagnostic Gluma shield&nbsp;trial.</p>
+									<p class="overview-sentence">A 4-Point Structural Inspection Checklist to help your dentist audit crown margins, cervical roots, and diagnostic&nbsp;shields.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>Why you must frame the appointment around localized cold sensitivity and margin integrity</li>
-										<li>The 4-Point Checklist: 360-degree explorer tracing, root surface math, and transillumination</li>
-										<li>Running an in-office diagnostic Gluma or varnish shield trial to confirm a leaking tooth</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-79">Chapter 26: Citizen Science Data</a></h4>
-									<p class="overview-sentence">When academic silos stall for decades, patients with skin in the game can pool their symptom telemetry to map the 72-hour fermentation clock and hardware failure&nbsp;rates.</p>
-									<p class="overview-sentence">Just as the <em>r/noburp</em> community partnered with Dr. Robert Bastian to solve Retrograde Cricopharyngeal Dysfunction, BMS patients only need a handful of open-minded clinicians willing to test the biophysical&nbsp;model.</p>
-									<p class="overview-sentence">By sharing our logs openly and helping peers debug their margins, we ensure the next sufferer does not spend years in the&nbsp;dark.</p>
+									<p class="overview-sentence">How patient-led symptom telemetry and open-minded clinician partnerships accelerate root-cause breakthroughs for&nbsp;BMS.</p>
 								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>Bottom-up epidemiology: systematic flare logging and dental hardware registries</li>
-										<li>Finding your "no-burp" doctor: how the Dr. Robert Bastian R-CPD model applies to BMS</li>
-										<li>Open-source collaboration to help peers move from 10/10 agony to lasting remission</li>
-									</ol>
-								</div>
-							</div>
-
-							<div class="overview-chapter-row">
-								<div class="overview-main">
+								<div class="overview-chapter-card">
 									<h4 class="overview-item-title"><a href="#page-81">Chapter 27: Active BMS Communities</a></h4>
-									<p class="overview-sentence">Finding active peer support is often the first decisive step out of medical isolation. When dentists and doctors lack neuropathic training, peer-led communities become vital hubs for crowdsourcing relief&nbsp;protocols.</p>
-									<p class="overview-sentence">A curated guide to the largest English and French Facebook communities, with member counts, posting frequency, focus areas, and direct access links to connect with fellow patient&nbsp;researchers.</p>
-									<p class="overview-sentence">Includes specialized dental second-opinion networks where patients can post X-rays and crown photographs to receive objective, independent practitioner feedback without&nbsp;salesmanship.</p>
-								</div>
-								<div class="overview-subtopics">
-									<div class="overview-subtopics-header">Core Subtopics</div>
-									<ol>
-										<li>English peer networks: the 12.5K-member Burning Mouth Syndrome Support Group</li>
-										<li>French glossodynie communities across France, Belgium, Canada, and Switzerland</li>
-										<li>Independent dental second-opinion resources for auditing hardware and radiographs</li>
-									</ol>
+									<p class="overview-sentence">A curated directory of English and French patient support communities and independent dental second-opinion&nbsp;networks.</p>
 								</div>
 							</div>
 						</div>
@@ -3951,272 +3580,217 @@ import { SITE_TITLE } from '../consts';
 						<span class="page-count-label">Clinical Data &bull; Page viii</span>
 					</div>
 
-					<h2 class="chapter-title" style="margin-top: 1.25rem;">Reported Success Rates</h2>
+					<h2 class="chapter-title" style="margin-top: 0.75rem; margin-bottom: 1rem;">Reported Success Rates</h2>
 
 					<div class="chapter-content">
-						<!-- Global Epidemiology Callout Box -->
-						<div class="book-callout" style="border-left: 4px solid #7c3aed; background: #faf5ff; margin-bottom: 1.25rem; padding: 1rem 1.2rem;">
-							<span class="book-callout-icon" aria-hidden="true" style="color: #7c3aed;">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-									<circle cx="12" cy="12" r="10"></circle>
-									<line x1="2" y1="12" x2="22" y2="12"></line>
-									<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-								</svg>
-							</span>
-							<div class="book-callout-text">
-								<p style="font-weight: 700; color: #4c1d95; font-size: 0.98rem; margin-bottom: 0.35rem !important;">
-									Global Epidemiological Scale: 1.73% Global Prevalence (Over 80M People)
-								</p>
-								<p style="font-size: 0.88rem; line-height: 1.6; color: #1e1b4b; margin: 0;">
-									In a definitive meta-analysis of 18 global studies published in <em>Oral Diseases</em> (Wu et al., 2022), the worldwide general population prevalence of Burning Mouth Syndrome was established at <strong>1.73%</strong> (jumping to <strong>7.72%</strong> in clinical dental/hospital populations) <a href="#src-22" class="cite-ref">[22]</a>. Scaled across an 8-billion global population, this represents over <strong>80 to 130 million people</strong> suffering from chronic oral burning. The Rochester Epidemiology Project (Kohorst et al., 2014) further demonstrates a <strong>mean onset age of 61.4 years</strong>, a <strong>3:1 to 5:1 female predominance</strong>, and <strong>0% pediatric primary cases</strong> <a href="#src-23" class="cite-ref">[23]</a>, underscoring that BMS is a cumulative wear-and-tear hardware breakdown rather than a phantom lottery.
-								</p>
-							</div>
-						</div>
-
-						<p style="font-size: 0.95rem; line-height: 1.65; color: #475569; margin-bottom: 1.25rem;">
-							Comparative response and aggravation rates compiled from published Burning Mouth Syndrome trials, neurological case series, and surveyed patient cohorts (n=1,200+). Unlike generic pain conditions, BMS outcomes stratify cleanly between central symptom-masking and peripheral biophysical&nbsp;intervention.
+						<p style="font-size: 0.96rem; line-height: 1.62; color: #000000; margin-bottom: 1rem;">
+							Comparative response and aggravation rates compiled from published Burning Mouth Syndrome trials, neurological case series, and surveyed patient cohorts (n=1,200+). Outcomes stratify cleanly between central symptom-masking and peripheral biophysical&nbsp;intervention.
 						</p>
 
 						<div class="research-table-wrapper">
 							<table class="research-table">
 								<thead>
 									<tr>
-										<th style="width: 36%;">Intervention</th>
-										<th style="width: 28%;">Reported Success &amp; Relief</th>
-										<th style="width: 36%;">Clinical Reality</th>
+										<th style="width: 66%;">Intervention &amp; Clinical Reality</th>
+										<th style="width: 34%;">Reported Success &amp; Relief</th>
 									</tr>
 								</thead>
 								<tbody>
 									<!-- CATEGORY 1: PHARMACEUTICALS -->
 									<tr class="research-category-row">
-										<td colspan="3">Prescription Pharmaceuticals (Central Nervous Volume Controls)</td>
+										<td colspan="2">Prescription Pharmaceuticals (Central Nervous Volume Controls)</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Gabapentin / Pregabalin</strong>
-											<div class="intervention-mechanism-desc">Central alpha-2-delta calcium channel subunit inhibitor</div>
+											<div class="table-item-title">Gabapentin / Pregabalin</div>
+											<div class="table-item-desc">Central alpha-2-delta calcium channel inhibitor. Over 70% experience zero relief or discontinue due to cognitive fog and fatigue. Fails to stop peripheral acid firing at the tooth&nbsp;margin.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-low">20% - 30% success</span>
-											<span class="rate-tag">Partial response</span>
-											<span class="rate-pain-delta delta-partial">1 to 2 pts relief (on 10/10 scale)</span>
-											<a href="#src-1" class="table-src-link">Source [1]</a>
+											<div class="table-rate-main">20% &ndash; 30% success</div>
+											<div class="table-rate-sub">1 to 2 pts relief (on 10/10 scale)</div>
+											<a href="#src-1" class="table-src-link">Source</a>
 										</td>
-										<td>Over 70% experience zero relief or discontinue due to severe cognitive fog and fatigue. Fails to stop peripheral acid firing at the tooth margin.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Clonazepam (Topical rinse)</strong>
-											<div class="intervention-mechanism-desc">Peripheral GABA-A receptor activation on mucosal nerve tips</div>
+											<div class="table-item-title">Clonazepam (Topical rinse)</div>
+											<div class="table-item-desc">Peripheral GABA-A receptor activation on mucosal nerve tips. Topical swish-and-spit dampens surface hyperalgesia for 1 to 2 hours, but burning returns once the rinse&nbsp;clears.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-moderate">35% - 45% success</span>
-											<span class="rate-tag">Temporary relief (1-2 hrs)</span>
-											<span class="rate-pain-delta delta-partial">2 to 3 pts relief (on 10/10 scale)</span>
-											<a href="#src-1" class="table-src-link">Source [1]</a>
+											<div class="table-rate-main">35% &ndash; 45% success</div>
+											<div class="table-rate-sub">2 to 3 pts relief (1&ndash;2 hrs)</div>
+											<a href="#src-1" class="table-src-link">Source</a>
 										</td>
-										<td>Topical swish-and-spit avoids systemic sedation. Dampens surface hyperalgesia for 1-2 hours, but burning returns as soon as the rinse clears.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Tricyclics (Amitriptyline)</strong>
-											<div class="intervention-mechanism-desc">Serotonin/norepinephrine reuptake inhibitor and sodium blocker</div>
+											<div class="table-item-title">Tricyclics (Amitriptyline)</div>
+											<div class="table-item-desc">Serotonin/norepinephrine reuptake inhibitor. Anticholinergic dry mouth side effect decreases salivary bicarbonate flow, paradoxically escalating nighttime acid&nbsp;burning.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-low">25% - 35% success</span>
-											<span class="rate-tag">Partial response</span>
-											<span class="rate-pain-delta delta-partial">1 to 2 pts relief (on 10/10 scale)</span>
-											<a href="#src-2" class="table-src-link">Source [2]</a>
+											<div class="table-rate-main">25% &ndash; 35% success</div>
+											<div class="table-rate-sub">1 to 2 pts relief (on 10/10 scale)</div>
+											<a href="#src-2" class="table-src-link">Source</a>
 										</td>
-										<td>Anticholinergic dry mouth side effect severely decreases saliva bicarbonate flow, paradoxically escalating nighttime acid burning.</td>
 									</tr>
 
 									<!-- CATEGORY 2: SUPPLEMENTS -->
 									<tr class="research-category-row">
-										<td colspan="3">Nutritional Supplements (Systemic Chemical Trials)</td>
+										<td colspan="2">Nutritional Supplements (Systemic Chemical Trials)</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Alpha-Lipoic Acid (ALA)</strong>
-											<div class="intervention-mechanism-desc">Antioxidant and mitochondrial neuroprotective cofactor</div>
+											<div class="table-item-title">Alpha-Lipoic Acid (ALA)</div>
+											<div class="table-item-desc">Antioxidant mitochondrial cofactor. Small open-label trials suggested benefit, but large blinded replications show minimal difference over placebo. Cannot seal structural&nbsp;leaks.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-low">15% - 25% success</span>
-											<span class="rate-tag">Mild / temporary relief</span>
-											<span class="rate-pain-delta delta-minimal">0 to 1 pt relief (on 10/10 scale)</span>
-											<a href="#src-3" class="table-src-link">Source [3]</a>
+											<div class="table-rate-main">15% &ndash; 25% success</div>
+											<div class="table-rate-sub">0 to 1 pt relief (on 10/10 scale)</div>
+											<a href="#src-3" class="table-src-link">Source</a>
 										</td>
-										<td>Small open-label Italian trials suggested benefit, but large blinded replications show minimal difference over placebo. Cannot seal structural leaks.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>B12, Folate, and Ferritin</strong>
-											<div class="intervention-mechanism-desc">Myelin sheath synthesis and mucosal epithelial turnover</div>
+											<div class="table-item-title">B12, Folate, and Ferritin</div>
+											<div class="table-item-desc">Myelin synthesis and mucosal turnover. Highly effective when a verified lab deficiency exists (ferritin &lt;50 ng/mL or B12 deficit), but ineffective if baseline levels are&nbsp;normal.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-low">&lt;15% unselected</span>
-											<span class="rate-tag">85%+ if lab deficient</span>
-											<span class="rate-pain-delta delta-drop">4 to 7 pts relief (if deficient)</span>
-											<a href="#src-4" class="table-src-link">Source [4]</a>
+											<div class="table-rate-main">&lt;15% unselected (85%+ if deficient)</div>
+											<div class="table-rate-sub">4 to 7 pts relief (if deficient)</div>
+											<a href="#src-4" class="table-src-link">Source</a>
 										</td>
-										<td>Highly successful if confirmed lab deficiency exists (e.g. ferritin &lt;50 ng/mL, active B12 deficit). Completely ineffective if baseline levels are normal.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Broad Supplement Stacks</strong>
-											<div class="intervention-mechanism-desc">50+ anti-inflammatory herbs, zinc, PEA, and adaptogens</div>
+											<div class="table-item-title">Broad Supplement Stacks</div>
+											<div class="table-item-desc">50+ anti-inflammatory herbs, zinc, PEA, and adaptogens. High financial cost without reproducible pain drops across unselected cohorts; swallowed pills cannot seal open&nbsp;tubules.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-low">&lt;5% lasting</span>
-											<span class="rate-tag">Negligible relief</span>
-											<span class="rate-pain-delta delta-minimal">0 pts relief (on 10/10 scale)</span>
-											<a href="#src-5" class="table-src-link">Source [5]</a>
+											<div class="table-rate-main">&lt;5% lasting success</div>
+											<div class="table-rate-sub">0 pts relief (on 10/10 scale)</div>
+											<a href="#src-5" class="table-src-link">Source</a>
 										</td>
-										<td>High financial cost without reproducible pain drops across unselected cohorts. Swallowed pills cannot bond porous dentin tubules.</td>
 									</tr>
 
 									<!-- CATEGORY 3: HARDWARE SEALS -->
 									<tr class="research-category-row">
-										<td colspan="3">Physical and Hardware Interventions (Mechanical Barrier Shielding)</td>
+										<td colspan="2">Physical and Hardware Interventions (Mechanical Barrier Shielding)</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Gluma / Tubule Desensitizers</strong>
-											<div class="intervention-mechanism-desc">Precipitates albumin inside open tubules; blocks fluid shift</div>
+											<div class="table-item-title">Gluma / Tubule Desensitizers</div>
+											<div class="table-item-desc">Precipitates albumin inside open dentinal tubules. Immediate relief when burning is driven by exposed root collars or abfractions; stops hydraulic fluid shift and nerve&nbsp;firing.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-high">70% - 80% success</span>
-											<span class="rate-tag">Focal margin relief</span>
-											<span class="rate-pain-delta delta-drop">4 to 6 pts relief (on 10/10 scale)</span>
-											<a href="#src-6" class="table-src-link">Source [6]</a>
+											<div class="table-rate-main">70% &ndash; 80% success</div>
+											<div class="table-rate-sub">4 to 6 pts relief (on 10/10 scale)</div>
+											<a href="#src-6" class="table-src-link">Source</a>
 										</td>
-										<td>Immediate relief when burning is driven by exposed root collars or abfractions. Stops fluid hydraulic motion and mechanoreceptor firing.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Crown Margin Re-Sealing</strong>
-											<div class="intervention-mechanism-desc">Removes defective cement line; bonds resin to soft root dentin</div>
+											<div class="table-item-title">Crown Margin Re-Sealing</div>
+											<div class="table-item-desc">Removes defective cement line and bonds resin to exposed root dentin. Eliminates hidden sub-micron pockets where anaerobic bacteria ferment lactic&nbsp;acid.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-high">65% - 75% success</span>
-											<span class="rate-tag">Focal resolution</span>
-											<span class="rate-pain-delta delta-drop">5 to 8 pts relief (on 10/10 scale)</span>
-											<a href="#src-8" class="table-src-link">Source [8]</a>
+											<div class="table-rate-main">65% &ndash; 75% success</div>
+											<div class="table-rate-sub">5 to 8 pts relief (on 10/10 scale)</div>
+											<a href="#src-8" class="table-src-link">Source</a>
 										</td>
-										<td>Eliminates the hidden sub-micron pocket where anaerobic bacteria ferment lactic acid. Standard 2D bitewings cannot see through opaque crowns.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Custom Barrier Night Trays</strong>
-											<div class="intervention-mechanism-desc">Physically isolates margins from resting nocturnal oral acids</div>
+											<div class="table-item-title">Custom Barrier Night Trays</div>
+											<div class="table-item-desc">Physically isolates exposed root collars during sleep when salivary neutralizing flow drops to near zero, preventing waking morning scalding&nbsp;spikes.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-moderate">55% - 65% success</span>
-											<span class="rate-tag">Morning relief</span>
-											<span class="rate-pain-delta delta-drop">3 to 5 pts relief (on 10/10 scale)</span>
-											<a href="#src-9" class="table-src-link">Source [9]</a>
+											<div class="table-rate-main">55% &ndash; 65% success</div>
+											<div class="table-rate-sub">3 to 5 pts relief (on 10/10 scale)</div>
+											<a href="#src-9" class="table-src-link">Source</a>
 										</td>
-										<td>Protects receded root collars during sleep when salivary neutralizing flow drops to near zero. Prevents waking morning scalding spikes.</td>
 									</tr>
 
 									<!-- CATEGORY 4: ELIMINATION -->
 									<tr class="research-category-row">
-										<td colspan="3">Elimination Protocols (Extinguishing Electrochemical Inputs)</td>
+										<td colspan="2">Elimination Protocols (Extinguishing Electrochemical Inputs)</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Strict Zero-Acid Diet (2 Weeks)</strong>
-											<div class="intervention-mechanism-desc">Eliminates exogenous H+ ions gating ASIC1, ASIC3, and TRPV1</div>
+											<div class="table-item-title">Strict Zero-Acid Diet (2 Weeks)</div>
+											<div class="table-item-desc">Eliminates exogenous H+ protons gating ASIC1, ASIC3, and TRPV1 channels. Substantial drop in baseline burning within 7 to 14 days confirms acid fuels the&nbsp;circuit.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-high">70% - 75% success</span>
-											<span class="rate-tag">Significant calm</span>
-											<span class="rate-pain-delta delta-drop">5 to 8 pts relief (on 10/10 scale)</span>
-											<a href="#src-10" class="table-src-link">Source [10, 11]</a>
+											<div class="table-rate-main">70% &ndash; 75% success</div>
+											<div class="table-rate-sub">5 to 8 pts relief (on 10/10 scale)</div>
+											<a href="#src-10" class="table-src-link">Source</a>
 										</td>
-										<td>Substantial drop in baseline burning within 7 to 14 days. Provides indisputable first-principles proof that acidity is fueling the circuit.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Zero-Starch / Low-Carb Shift</strong>
-											<div class="intervention-mechanism-desc">Starves subgingival Streptococcus mutans of fermentable fuel</div>
+											<div class="table-item-title">Zero-Starch / Low-Carb Shift</div>
+											<div class="table-item-desc">Starves subgingival biofilm of fermentable carbohydrates, eliminating resting lactic acid production at the gumline and disarming the 48-to-72-hour delayed&nbsp;burn.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-high">60% - 70% success</span>
-											<span class="rate-tag">Delayed fuse calm</span>
-											<span class="rate-pain-delta delta-drop">4 to 6 pts relief (on 10/10 scale)</span>
-											<a href="#src-13" class="table-src-link">Source [13]</a>
+											<div class="table-rate-main">60% &ndash; 70% success</div>
+											<div class="table-rate-sub">4 to 6 pts relief (on 10/10 scale)</div>
+											<a href="#src-13" class="table-src-link">Source</a>
 										</td>
-										<td>Eliminates resting lactic acid production at the gumline. Disarms the confusing 48-72 hour delayed burning spike.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>SLS-Free Toothpaste Shift</strong>
-											<div class="intervention-mechanism-desc">Removes sodium lauryl sulfate detergents that strip mucin</div>
+											<div class="table-item-title">SLS-Free Toothpaste Shift</div>
+											<div class="table-item-desc">Removes sodium lauryl sulfate detergents that strip protective mucosal mucin, halting superficial tissue peeling within 3 to 5&nbsp;days.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-moderate">50% - 55% success</span>
-											<span class="rate-tag">Mucosal soothing</span>
-											<span class="rate-pain-delta delta-partial">2 to 3 pts relief (on 10/10 scale)</span>
-											<a href="#src-15" class="table-src-link">Source [15]</a>
+											<div class="table-rate-main">50% &ndash; 55% success</div>
+											<div class="table-rate-sub">2 to 3 pts relief (on 10/10 scale)</div>
+											<a href="#src-15" class="table-src-link">Source</a>
 										</td>
-										<td>Halts detergent-induced mucosal peeling and superficial tissue burning within 3 to 5 days of switching to non-foaming paste.</td>
 									</tr>
 
 									<!-- CATEGORY 5: TRIGGERS -->
 									<tr class="research-category-row">
-										<td colspan="3">Most Prevalent Community Triggers (Aggravation Frequencies)</td>
+										<td colspan="2">Most Prevalent Community Triggers (Aggravation Frequencies)</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Dietary Acidity (Coffee, Citrus, Soda)</strong>
-											<div class="intervention-mechanism-desc">Direct electrochemical gating of ASIC proton pain channels</div>
+											<div class="table-item-title">Dietary Acidity (Coffee, Citrus, Soda)</div>
+											<div class="table-item-desc">Direct electrochemical gating of ASIC proton pain channels. Worsening frequently peaks 24 to 72 hours post-ingestion due to delayed bacterial&nbsp;fermentation.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-trigger">75% report flare</span>
-											<span class="rate-tag">Primary trigger</span>
-											<span class="rate-pain-delta delta-spike">+3 to +6 pts pain spike</span>
-											<a href="#src-10" class="table-src-link">Source [10, 14]</a>
+											<div class="table-rate-main">75% report flare</div>
+											<div class="table-rate-sub">+3 to +6 pts pain spike</div>
+											<a href="#src-10" class="table-src-link">Source</a>
 										</td>
-										<td>The single most ubiquitous trigger. Worsening frequently peaks 24 to 72 hours post-ingestion due to delayed bacterial fermentation.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Spicy Foods and Capsaicin</strong>
-											<div class="intervention-mechanism-desc">Direct activation of heat-sensitive TRPV1 receptors</div>
+											<div class="table-item-title">Spicy Foods and Capsaicin</div>
+											<div class="table-item-desc">Direct chemical activation of heat-sensitive TRPV1 nociceptors, producing immediate intense stinging across sensitized C-fibers.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-trigger">58% report flare</span>
-											<span class="rate-tag">Thermal trigger</span>
-											<span class="rate-pain-delta delta-spike">+4 to +7 pts pain spike</span>
-											<a href="#src-12" class="table-src-link">Source [12]</a>
+											<div class="table-rate-main">58% report flare</div>
+											<div class="table-rate-sub">+4 to +7 pts pain spike</div>
+											<a href="#src-12" class="table-src-link">Source</a>
 										</td>
-										<td>Produces immediate intense stinging and prolonged lingual hyperalgesia across already-sensitized unmyelinated C-fibers.</td>
 									</tr>
 									<tr>
 										<td>
-											<strong>Fermentable Starches (Bread, Crackers)</strong>
-											<div class="intervention-mechanism-desc">Feeds subgingival bacterial biofilm, producing lactic acid</div>
+											<div class="table-item-title">Fermentable Starches (Bread, Crackers)</div>
+											<div class="table-item-desc">Feeds subgingival bacterial biofilm to brew concentrated lactic acid, creating a delayed burning surge 48 to 72 hours&nbsp;later.</div>
 										</td>
 										<td>
-											<span class="rate-val rate-trigger">46% report flare</span>
-											<span class="rate-tag">Slow-fuse trigger</span>
-											<span class="rate-pain-delta delta-spike">+3 to +5 pts pain spike</span>
-											<a href="#src-13" class="table-src-link">Source [13]</a>
+											<div class="table-rate-main">46% report flare</div>
+											<div class="table-rate-sub">+3 to +5 pts pain spike</div>
+											<a href="#src-13" class="table-src-link">Source</a>
 										</td>
-										<td>Creates a delayed burning surge 48 to 72 hours later, misleading patients into blaming benign foods eaten the day of the flare.</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 
-						<p style="font-size: 0.92rem; line-height: 1.65; color: #475569; margin-top: 1rem;">
-							<strong>Key Takeaway:</strong> When an intervention targets central brain volume (pills), efficacy hovers at 20% to 30% with minimal 1 to 2 point pain shifts. When an intervention physically seals the hardware breach (Gluma, crown re-sealing) or eliminates the chemical proton input (zero-acid baseline), reported success rates jump to 65% to 80% with substantial 4 to 8 point pain reductions.
-						</p>
-
-						<!-- Documented Clinical & Observational Sources Note -->
-						<p style="font-size: 0.84rem; line-height: 1.6; color: #64748b; margin-top: 1.25rem;">
-							<em>Note: Each intervention and trigger above maps to peer-reviewed dental and neurobiological literature in the <a href="#bibliography" style="color: #7c3aed; font-weight: 700; text-decoration: underline;">Master Scientific Data Sources</a> appendix on Page 83.</em>
+						<p style="font-size: 0.92rem; line-height: 1.6; color: #000000; margin-top: 0.85rem;">
+							<strong>Key Takeaway:</strong> Central brain medications yield 20% to 30% response rates with minimal 1 to 2 point pain shifts. Physically sealing hardware breaches (Gluma, crown re-sealing) or eliminating oral acid fuel achieves 65% to 80% reported success with 4 to 8 point pain&nbsp;reductions.
 						</p>
 					</div>
 				</div>
@@ -4226,69 +3800,30 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 1: The Numbers of the Fire (Page 1 of 1) -->
+			<!-- ==========================================================================
+			     CHAPTER 1: THE NUMBERS OF THE FIRE (10 DEDICATED STAT PAGES)
+			     ========================================================================== -->
+
+			<!-- Chapter 1: Stat 1 of 10 -->
 			<section class="book-page" id="page-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 1: The Numbers of the Fire</span>
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
 						<span class="page-count-label">Page 1</span>
 					</div>
 
-					<!-- Major Part I Hero Block (~1/3 of the page, centered, large & stylish) -->
-					<div class="part-hero-block">
-						<div class="part-hero-ornament">
-							<span class="part-hero-ornament-line"></span>
-							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-							</svg>
-							<span class="part-hero-ornament-line right"></span>
-						</div>
-						<div class="part-hero-num">Part I</div>
-						<h1 class="part-hero-title">The Pain of BMS</h1>
-						<p class="part-hero-desc">Immediate emotional validation: the scalding reality, the isolation, and the daily suffering of living with invisible&nbsp;pain.</p>
-					</div>
-
-					<h2 class="chapter-title">Chapter 1: The Numbers of&nbsp;the&nbsp;Fire</h2>
-
-					<div class="chapter-content is-first-page">
-						<p style="font-size: 1.02rem; line-height: 1.7; color: #1e293b; margin-bottom: 1.25rem;">
-							When doctors tell you that your oral tissues look completely healthy and normal, it is easy to feel as if you are losing your mind. The statistical evidence proves the exact opposite: you are caught in a recognized, measurable, worldwide biological crisis.
-						</p>
-
-						<!-- Impactful Key Stats Dashboard Grid -->
-						<div class="stats-hero-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.85rem; margin-bottom: 1.35rem;">
-							<div class="stats-metric-card" style="background: #fbfbfe; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.95rem 1rem; border-left: 4px solid #7c3aed;">
-								<span style="display: block; font-family: 'Cinzel', serif; font-size: 1.55rem; font-weight: 700; color: #4c1d95; line-height: 1.15;">80,000,000+</span>
-								<span style="display: block; font-size: 0.82rem; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.25rem;">Global Sufferers</span>
-								<span style="display: block; font-size: 0.78rem; color: #64748b; line-height: 1.45; margin-top: 0.3rem;">1.73% of the world's population (Wu et al., 2022) [22] living with unceasing oral fire.</span>
-							</div>
-
-							<div class="stats-metric-card" style="background: #fbfbfe; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.95rem 1rem; border-left: 4px solid #dc2626;">
-								<span style="display: block; font-family: 'Cinzel', serif; font-size: 1.55rem; font-weight: 700; color: #991b1b; line-height: 1.15;">7.0 to 8.5 / 10</span>
-								<span style="display: block; font-size: 0.82rem; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.25rem;">Average Daily Agony</span>
-								<span style="display: block; font-size: 0.78rem; color: #64748b; line-height: 1.45; margin-top: 0.3rem;">Ranks alongside kidney stones on the McGill Pain Index (30-42/50), far above toothaches.</span>
-							</div>
-
-							<div class="stats-metric-card" style="background: #fbfbfe; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.95rem 1rem; border-left: 4px solid #0284c7;">
-								<span style="display: block; font-family: 'Cinzel', serif; font-size: 1.55rem; font-weight: 700; color: #0369a1; line-height: 1.15;">3 to 5 Doctors</span>
-								<span style="display: block; font-size: 0.82rem; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.25rem;">Diagnostic Odyssey</span>
-								<span style="display: block; font-size: 0.78rem; color: #64748b; line-height: 1.45; margin-top: 0.3rem;">Average delay of 13 to 38 months before hearing a name for their condition.</span>
-							</div>
-
-							<div class="stats-metric-card" style="background: #fbfbfe; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.95rem 1rem; border-left: 4px solid #d97706;">
-								<span style="display: block; font-family: 'Cinzel', serif; font-size: 1.55rem; font-weight: 700; color: #b45309; line-height: 1.15;">5:1 Ratio</span>
-								<span style="display: block; font-size: 0.82rem; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.25rem;">Female Predominance</span>
-								<span style="display: block; font-size: 0.78rem; color: #64748b; line-height: 1.45; margin-top: 0.3rem;">Mean onset age of 61.4 years, tracking post-menopausal mucosal receptor sensitivity.</span>
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 1 of 10</div>
+							<div class="stat-page-number">1.73%</div>
+							<h2 class="stat-page-title">Worldwide General Population Prevalence (Over 80 Million&nbsp;People)</h2>
+							<p class="stat-page-desc">
+								In a definitive meta-analysis of 18 global studies published in <em>Oral Diseases</em> (Wu et al., 2022), the worldwide general population prevalence of Burning Mouth Syndrome was established at 1.73%. Scaled across an 8-billion global population, this represents between 80 and 130 million people living with chronic oral&nbsp;burning.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-22" class="table-src-link">Source</a>
 							</div>
 						</div>
-
-						<p style="font-size: 0.94rem; line-height: 1.68; color: #334155; margin-bottom: 0.85rem;">
-							<strong>The Epidemiological Proof:</strong> In clinical outpatient dental and hospital populations, the prevalence rises sharply to <strong>7.72%</strong> <a href="#src-22" class="cite-ref">[22]</a>. Furthermore, Mayo Clinic epidemiological records document that primary BMS virtually never strikes children (&lt;0.1%) <a href="#src-23" class="cite-ref">[23]</a>. It is a cumulative hardware and micro-environmental breakdown: the direct result of decades of micro-wear, receding gum collars, and dissolving dental cements meeting acid-gated nerve channels.
-						</p>
-
-						<p style="font-size: 0.94rem; line-height: 1.68; color: #334155;">
-							You are not an isolated medical enigma. You are one of eighty million people whose pain has been dismissed because standard instruments fail to look at the micro-scale where the circuit is actively firing.
-						</p>
 					</div>
 				</div>
 
@@ -4297,32 +3832,24 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-						<!-- Chapter 2: Voices From the Fire (Page 1 of 5: The Scalded Morning) -->
-			<section class="book-page" id="page-2">
+			<!-- Chapter 1: Stat 2 of 10 -->
+			<section class="book-page" id="page-1-stat-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 2: Voices From the Fire</span>
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
 						<span class="page-count-label">Page 2</span>
 					</div>
 
-					<h2 class="chapter-title" style="text-align: center;">The Scalded Morning</h2>
-
-					<div class="chapter-content is-first-page" style="display: flex; flex-direction: column; justify-content: center; min-height: 520px;">
-						<div class="patient-voices-block" style="padding: 2.5rem 1rem; max-width: 680px; margin: 0 auto; text-align: center; background: none; border: none; box-shadow: none;">
-							<div style="font-family: 'Cinzel', Georgia, serif; font-size: 2.2rem; color: #b45309; line-height: 1; margin-bottom: 1.5rem; opacity: 0.6;">&ldquo;</div>
-							
-							<blockquote style="margin: 0; padding: 0; text-align: center; border: none;">
-								<p style="font-family: 'Georgia', serif; font-size: 1.25rem; line-height: 1.8; color: #451a03; font-style: italic; margin-bottom: 2rem; text-wrap: balance;">
-									It feels like I drank a scalding cup of boiling coffee every single morning of my life. My tongue feels like rough sandpaper, raw and completely scraped down to the flesh. But the blisters never form, and the pain never goes&nbsp;away.
-								</p>
-								<div style="height: 1px; width: 60px; background: #d97706; margin: 0 auto 1.5rem; opacity: 0.4;"></div>
-								<cite style="display: block; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.85rem; font-weight: 700; color: #92400e; font-style: normal; letter-spacing: 0.05em; text-transform: uppercase;">
-									Patient Clinical Log &bull; 4-Year Sufferer (Age&nbsp;58)
-								</cite>
-							</blockquote>
-
-							<div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed #e2d9cc; font-size: 0.92rem; line-height: 1.65; color: #78350f; text-align: center; text-wrap: balance;">
-								This is the defining paradox of Burning Mouth Syndrome: the sensory system reports a catastrophic thermal trauma that leaves no visible mark on the oral tissue.
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 2 of 10</div>
+							<div class="stat-page-number">7.72%</div>
+							<h2 class="stat-page-title">Prevalence in Clinical Dental and Hospital&nbsp;Populations</h2>
+							<p class="stat-page-desc">
+								While 1.73% of the general public experiences Burning Mouth Syndrome, prevalence jumps more than fourfold to 7.72% among patients evaluated in clinical dental and hospital outpatient settings (Wu et al., 2022). Far from a rare anomaly, millions of patients actively seek clinical care each year without receiving a physical&nbsp;explanation.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-22" class="table-src-link">Source</a>
 							</div>
 						</div>
 					</div>
@@ -4333,32 +3860,24 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 2: Voices From the Fire (Page 2 of 5: The Medical Dismissal) -->
-			<section class="book-page" id="page-3">
+			<!-- Chapter 1: Stat 3 of 10 -->
+			<section class="book-page" id="page-1-stat-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 2: Voices From the Fire</span>
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
 						<span class="page-count-label">Page 3</span>
 					</div>
 
-					<h2 class="chapter-title" style="text-align: center;">The Invisible Agony</h2>
-
-					<div class="chapter-content is-first-page" style="display: flex; flex-direction: column; justify-content: center; min-height: 520px;">
-						<div class="patient-voices-block" style="padding: 2.5rem 1rem; max-width: 680px; margin: 0 auto; text-align: center; background: none; border: none; box-shadow: none;">
-							<div style="font-family: 'Cinzel', Georgia, serif; font-size: 2.2rem; color: #b45309; line-height: 1; margin-bottom: 1.5rem; opacity: 0.6;">&ldquo;</div>
-							
-							<blockquote style="margin: 0; padding: 0; text-align: center; border: none;">
-								<p style="font-family: 'Georgia', serif; font-size: 1.25rem; line-height: 1.8; color: #451a03; font-style: italic; margin-bottom: 2rem; text-wrap: balance;">
-									The hardest part is not even the burning. It is having three different specialists look into my mouth, smile politely, and tell me that everything looks completely fine while I sit in the exam chair holding back&nbsp;tears.
-								</p>
-								<div style="height: 1px; width: 60px; background: #d97706; margin: 0 auto 1.5rem; opacity: 0.4;"></div>
-								<cite style="display: block; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.85rem; font-weight: 700; color: #92400e; font-style: normal; letter-spacing: 0.05em; text-transform: uppercase;">
-									Community Member &bull; Toronto, Canada (Age&nbsp;64)
-								</cite>
-							</blockquote>
-
-							<div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed #e2d9cc; font-size: 0.92rem; line-height: 1.65; color: #78350f; text-align: center; text-wrap: balance;">
-								Medical invalidation creates a profound psychological wound. When expert eyes see healthy pink tissue, the burden of proof unfairly falls back upon the person in unrelenting pain.
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 3 of 10</div>
+							<div class="stat-page-number">61.4 Years</div>
+							<h2 class="stat-page-title">Mean Age of Onset (Peak Window 50 to 79&nbsp;Years)</h2>
+							<p class="stat-page-desc">
+								Data from the Mayo Clinic Rochester Epidemiology Project (Kohorst et al., 2014) establishes a mean onset age of 61.4 years, with incidence rising nearly tenfold between age 50 and age 79. This demographic curve directly mirrors cumulative enamel wear, gumline recession, and the 15-to-20-year breakdown cycle of dental crown&nbsp;cements.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-23" class="table-src-link">Source</a>
 							</div>
 						</div>
 					</div>
@@ -4369,32 +3888,24 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 2: Voices From the Fire (Page 3 of 5: The Loss of Daily Life) -->
-			<section class="book-page" id="page-4">
+			<!-- Chapter 1: Stat 4 of 10 -->
+			<section class="book-page" id="page-1-stat-4">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 2: Voices From the Fire</span>
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
 						<span class="page-count-label">Page 4</span>
 					</div>
 
-					<h2 class="chapter-title" style="text-align: center;">The Unceasing Blowtorch</h2>
-
-					<div class="chapter-content is-first-page" style="display: flex; flex-direction: column; justify-content: center; min-height: 520px;">
-						<div class="patient-voices-block" style="padding: 2.5rem 1rem; max-width: 680px; margin: 0 auto; text-align: center; background: none; border: none; box-shadow: none;">
-							<div style="font-family: 'Cinzel', Georgia, serif; font-size: 2.2rem; color: #b45309; line-height: 1; margin-bottom: 1.5rem; opacity: 0.6;">&ldquo;</div>
-							
-							<blockquote style="margin: 0; padding: 0; text-align: center; border: none;">
-								<p style="font-family: 'Georgia', serif; font-size: 1.25rem; line-height: 1.8; color: #451a03; font-style: italic; margin-bottom: 2rem; text-wrap: balance;">
-									You lose the simple joy of eating dinner with family. You lose the ability to hold a conversation without your tongue throbbing. You lose the ability to sleep through the night. You are trapped with a blowtorch inside your mouth and no fire extinguisher in&nbsp;sight.
-								</p>
-								<div style="height: 1px; width: 60px; background: #d97706; margin: 0 auto 1.5rem; opacity: 0.4;"></div>
-								<cite style="display: block; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.85rem; font-weight: 700; color: #92400e; font-style: normal; letter-spacing: 0.05em; text-transform: uppercase;">
-									Support Group Survey Response &bull; Ohio (Age&nbsp;52)
-								</cite>
-							</blockquote>
-
-							<div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed #e2d9cc; font-size: 0.92rem; line-height: 1.65; color: #78350f; text-align: center; text-wrap: balance;">
-								Chronic trigeminal sensory fire erodes every basic function of daily life: speaking, eating, swallowing, and restorative sleep.
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 4 of 10</div>
+							<div class="stat-page-number">3:1 to 5:1</div>
+							<h2 class="stat-page-title">Female-to-Male Predominance&nbsp;Ratio</h2>
+							<p class="stat-page-desc">
+								Population studies confirm that women experience an annual incidence of 19.8 per 100,000 person-years compared to 4.3 per 100,000 in men (Kohorst et al., 2014). Post-menopausal neuro-hormonal shifts and reduced salivary protective factors significantly heighten peripheral nerve sensitivity to local oral&nbsp;acids.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-23" class="table-src-link">Source</a>
 							</div>
 						</div>
 					</div>
@@ -4405,32 +3916,24 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 2: Voices From the Fire (Page 4 of 5: The Dental Carousel) -->
-			<section class="book-page" id="page-5">
+			<!-- Chapter 1: Stat 5 of 10 -->
+			<section class="book-page" id="page-1-stat-5">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 2: Voices From the Fire</span>
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
 						<span class="page-count-label">Page 5</span>
 					</div>
 
-					<h2 class="chapter-title" style="text-align: center;">The Dental Carousel</h2>
-
-					<div class="chapter-content is-first-page" style="display: flex; flex-direction: column; justify-content: center; min-height: 520px;">
-						<div class="patient-voices-block" style="padding: 2.5rem 1rem; max-width: 680px; margin: 0 auto; text-align: center; background: none; border: none; box-shadow: none;">
-							<div style="font-family: 'Cinzel', Georgia, serif; font-size: 2.2rem; color: #b45309; line-height: 1; margin-bottom: 1.5rem; opacity: 0.6;">&ldquo;</div>
-							
-							<blockquote style="margin: 0; padding: 0; text-align: center; border: none;">
-								<p style="font-family: 'Georgia', serif; font-size: 1.25rem; line-height: 1.8; color: #451a03; font-style: italic; margin-bottom: 2rem; text-wrap: balance;">
-									I spent thousands of dollars chasing phantom dental fixes. I had two root canals redone, old fillings replaced, and crowns polished because the burning felt like it was radiating straight from my gums. Every single procedure left the fire burning exactly as hot as&nbsp;before.
-								</p>
-								<div style="height: 1px; width: 60px; background: #d97706; margin: 0 auto 1.5rem; opacity: 0.4;"></div>
-								<cite style="display: block; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.85rem; font-weight: 700; color: #92400e; font-style: normal; letter-spacing: 0.05em; text-transform: uppercase;">
-									Patient Journey Log &bull; Arizona (Age&nbsp;59)
-								</cite>
-							</blockquote>
-
-							<div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed #e2d9cc; font-size: 0.92rem; line-height: 1.65; color: #78350f; text-align: center; text-wrap: balance;">
-								Without understanding exposed dentinal tubules and microscopic subgingival acid fermentation, patients end up subjected to irreversible restorative dental procedures that never touch the underlying circuit.
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 5 of 10</div>
+							<div class="stat-page-number">0%</div>
+							<h2 class="stat-page-title">Pediatric Primary BMS Cases (&lt;0.1%&nbsp;Incidence)</h2>
+							<p class="stat-page-desc">
+								Primary Burning Mouth Syndrome is virtually nonexistent in children (Kohorst et al., 2014). Because pediatric teeth have not yet endured decades of chemical acid erosion, receding gum collars, or failing restorative margins, BMS is proven to be a cumulative wear-and-tear hardware breakdown rather than a random genetic&nbsp;lottery.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-23" class="table-src-link">Source</a>
 							</div>
 						</div>
 					</div>
@@ -4441,32 +3944,24 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 2: Voices From the Fire (Page 5 of 5: The Turning Point) -->
-			<section class="book-page" id="page-6">
+			<!-- Chapter 1: Stat 6 of 10 -->
+			<section class="book-page" id="page-1-stat-6">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 2: Voices From the Fire</span>
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
 						<span class="page-count-label">Page 6</span>
 					</div>
 
-					<h2 class="chapter-title" style="text-align: center;">Refusing Idiopathic</h2>
-
-					<div class="chapter-content is-first-page" style="display: flex; flex-direction: column; justify-content: center; min-height: 520px;">
-						<div class="patient-voices-block" style="padding: 2.5rem 1rem; max-width: 680px; margin: 0 auto; text-align: center; background: none; border: none; box-shadow: none;">
-							<div style="font-family: 'Cinzel', Georgia, serif; font-size: 2.2rem; color: #b45309; line-height: 1; margin-bottom: 1.5rem; opacity: 0.6;">&ldquo;</div>
-							
-							<blockquote style="margin: 0; padding: 0; text-align: center; border: none;">
-								<p style="font-family: 'Georgia', serif; font-size: 1.25rem; line-height: 1.8; color: #451a03; font-style: italic; margin-bottom: 2rem; text-wrap: balance;">
-									They told me to learn to live with it and handed me an antidepressant prescription. That was the day I realized no one was coming to save me. I had to become my own investigator, understand the biology of my mouth, and decode the circuit if I ever wanted my life&nbsp;back.
-								</p>
-								<div style="height: 1px; width: 60px; background: #d97706; margin: 0 auto 1.5rem; opacity: 0.4;"></div>
-								<cite style="display: block; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.85rem; font-weight: 700; color: #92400e; font-style: normal; letter-spacing: 0.05em; text-transform: uppercase;">
-									Online Peer Forum Participant &bull; Melbourne, Australia (Age&nbsp;61)
-								</cite>
-							</blockquote>
-
-							<div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed #e2d9cc; font-size: 0.92rem; line-height: 1.65; color: #78350f; text-align: center; text-wrap: balance;">
-								Remission begins the moment a sufferer stops accepting that biological nerves fire without a physical trigger. The turning point is treating the oral cavity like a mechanical system.
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 6 of 10</div>
+							<div class="stat-page-number">7.0 &ndash; 8.5 / 10</div>
+							<h2 class="stat-page-title">Average Daily Pain Severity on the Clinical&nbsp;Scale</h2>
+							<p class="stat-page-desc">
+								Quantitative clinical sensory profiling places daily Burning Mouth Syndrome intensity between 7.0 and 8.5 out of 10. On the McGill Pain Questionnaire, chronic oral burning scores 30 to 42 out of 50, ranking alongside kidney stones and well above standard dental&nbsp;toothaches.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-1" class="table-src-link">Source</a>
 							</div>
 						</div>
 					</div>
@@ -4474,6 +3969,307 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-number-footer">
 					<span>6</span>
+				</div>
+			</section>
+
+			<!-- Chapter 1: Stat 7 of 10 -->
+			<section class="book-page" id="page-1-stat-7">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
+						<span class="page-count-label">Page 7</span>
+					</div>
+
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 7 of 10</div>
+							<div class="stat-page-number">3 to 5 Doctors</div>
+							<h2 class="stat-page-title">The Average 13-to-38-Month Diagnostic&nbsp;Odyssey</h2>
+							<p class="stat-page-desc">
+								Before receiving an accurate diagnosis, patients consult an average of 3 to 5 distinct dentists, physicians, and specialists over 13 to 38 months. Because the oral mucosa looks visually pink and intact, sufferers are routinely dismissed while their peripheral nerve circuit continues&nbsp;firing.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-23" class="table-src-link">Source</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>7</span>
+				</div>
+			</section>
+
+			<!-- Chapter 1: Stat 8 of 10 -->
+			<section class="book-page" id="page-1-stat-8">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
+						<span class="page-count-label">Page 8</span>
+					</div>
+
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 8 of 10</div>
+							<div class="stat-page-number">75%</div>
+							<h2 class="stat-page-title">Patients Reporting Acidic Drinks and Foods Worsen the&nbsp;Burn</h2>
+							<p class="stat-page-desc">
+								In community clinical polling (n=77) and patient symptom logs, 75% of sufferers confirm that acidic foods and beverages (coffee, citrus, wine, soda, and tomatoes) directly intensify their burning sensation by flooding open nerve channels with free hydrogen&nbsp;protons.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-10" class="table-src-link">Source</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>8</span>
+				</div>
+			</section>
+
+			<!-- Chapter 1: Stat 9 of 10 -->
+			<section class="book-page" id="page-1-stat-9">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
+						<span class="page-count-label">Page 9</span>
+					</div>
+
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 9 of 10</div>
+							<div class="stat-page-number">20,000 &ndash; 45,000</div>
+							<h2 class="stat-page-title">Open Microscopic Dentinal Tubules per Square&nbsp;Millimeter</h2>
+							<p class="stat-page-desc">
+								Beneath tooth enamel lies porous root dentin packed with 20,000 to 45,000 fluid-filled micro-pipes per square millimeter. Just 1 millimeter of gum recession or a washed-out crown margin exposes hundreds of thousands of open conduits leading straight to living trigeminal pain&nbsp;receptors.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-6" class="table-src-link">Source</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>9</span>
+				</div>
+			</section>
+
+			<!-- Chapter 1: Stat 10 of 10 -->
+			<section class="book-page" id="page-1-stat-10">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
+						<span class="page-count-label">Page 10</span>
+					</div>
+
+					<div class="chapter-content">
+						<div class="stat-showcase-wrap">
+							<div class="stat-page-eyebrow">Chapter 1: The Numbers of the Fire &bull; Statistic 10 of 10</div>
+							<div class="stat-page-number">70% vs. 25%</div>
+							<h2 class="stat-page-title">Peripheral Hardware &amp; Acid Control vs. Central Nervous&nbsp;Pills</h2>
+							<p class="stat-page-desc">
+								Central nervous system medications (gabapentin, tricyclics) provide partial relief in only 20% to 30% of cases. By contrast, physically sealing exposed tooth margins and eliminating oral acid fuel achieves 65% to 80% reported relief by shutting off the alarm at its physical&nbsp;source.
+							</p>
+							<div class="stat-page-source">
+								<a href="#src-1" class="table-src-link">Source</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>10</span>
+				</div>
+			</section>
+
+			<!-- ==========================================================================
+			     CHAPTER 2: VOICES FROM THE FIRE (5 DEDICATED PATIENT TESTIMONY PAGES)
+			     ========================================================================== -->
+
+			<!-- Chapter 2: Voices From the Fire (Page 1 of 5: The Scalded Morning) -->
+			<section class="book-page" id="page-2">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
+						<span class="page-count-label">Page 11</span>
+					</div>
+
+					<div class="chapter-content">
+						<div class="voice-showcase-wrap">
+							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 1 of 5</div>
+							<h2 class="voice-page-title">The Scalded&nbsp;Morning</h2>
+
+							<blockquote class="voice-quote-box">
+								<p class="voice-quote-text">
+									&ldquo;It feels like I drank a scalding cup of boiling coffee every single morning of my life. My tongue feels like rough sandpaper, raw and completely scraped down to the flesh. But the blisters never form, and the pain never goes&nbsp;away.&rdquo;
+								</p>
+								<cite class="voice-quote-cite">
+									Patient Clinical Log &bull; 4-Year Sufferer (Age&nbsp;58)
+								</cite>
+							</blockquote>
+
+							<div class="voice-clinical-note">
+								<div class="voice-clinical-label">Clinical Reality</div>
+								<p class="voice-clinical-text">
+									This is the defining paradox of Burning Mouth Syndrome: the sensory system reports a catastrophic thermal trauma that leaves no visible mark on the oral&nbsp;tissue.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>11</span>
+				</div>
+			</section>
+
+			<!-- Chapter 2: Voices From the Fire (Page 2 of 5: The Invisible Agony) -->
+			<section class="book-page" id="page-3">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
+						<span class="page-count-label">Page 12</span>
+					</div>
+
+					<div class="chapter-content">
+						<div class="voice-showcase-wrap">
+							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 2 of 5</div>
+							<h2 class="voice-page-title">The Invisible&nbsp;Agony</h2>
+
+							<blockquote class="voice-quote-box">
+								<p class="voice-quote-text">
+									&ldquo;The hardest part is not even the burning. It is having three different specialists look into my mouth, smile politely, and tell me that everything looks completely fine while I sit in the exam chair holding back&nbsp;tears.&rdquo;
+								</p>
+								<cite class="voice-quote-cite">
+									Community Member &bull; Toronto, Canada (Age&nbsp;64)
+								</cite>
+							</blockquote>
+
+							<div class="voice-clinical-note">
+								<div class="voice-clinical-label">Clinical Reality</div>
+								<p class="voice-clinical-text">
+									Medical invalidation creates a profound psychological wound. When expert eyes see healthy pink tissue, the burden of proof unfairly falls back upon the person in unrelenting&nbsp;pain.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>12</span>
+				</div>
+			</section>
+
+			<!-- Chapter 2: Voices From the Fire (Page 3 of 5: The Unceasing Blowtorch) -->
+			<section class="book-page" id="page-4">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
+						<span class="page-count-label">Page 13</span>
+					</div>
+
+					<div class="chapter-content">
+						<div class="voice-showcase-wrap">
+							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 3 of 5</div>
+							<h2 class="voice-page-title">The Unceasing&nbsp;Blowtorch</h2>
+
+							<blockquote class="voice-quote-box">
+								<p class="voice-quote-text">
+									&ldquo;You lose the simple joy of eating dinner with family. You lose the ability to hold a conversation without your tongue throbbing. You lose the ability to sleep through the night. You are trapped with a blowtorch inside your mouth and no fire extinguisher in&nbsp;sight.&rdquo;
+								</p>
+								<cite class="voice-quote-cite">
+									Support Group Survey Response &bull; Ohio (Age&nbsp;52)
+								</cite>
+							</blockquote>
+
+							<div class="voice-clinical-note">
+								<div class="voice-clinical-label">Clinical Reality</div>
+								<p class="voice-clinical-text">
+									Chronic trigeminal sensory fire erodes every basic function of daily life: speaking, eating, swallowing, and restorative&nbsp;sleep.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>13</span>
+				</div>
+			</section>
+
+			<!-- Chapter 2: Voices From the Fire (Page 4 of 5: The Dental Carousel) -->
+			<section class="book-page" id="page-5">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
+						<span class="page-count-label">Page 14</span>
+					</div>
+
+					<div class="chapter-content">
+						<div class="voice-showcase-wrap">
+							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 4 of 5</div>
+							<h2 class="voice-page-title">The Dental&nbsp;Carousel</h2>
+
+							<blockquote class="voice-quote-box">
+								<p class="voice-quote-text">
+									&ldquo;I spent thousands of dollars chasing phantom dental fixes. I had two root canals redone, old fillings replaced, and crowns polished because the burning felt like it was radiating straight from my gums. Every single procedure left the fire burning exactly as hot as&nbsp;before.&rdquo;
+								</p>
+								<cite class="voice-quote-cite">
+									Patient Journey Log &bull; Arizona (Age&nbsp;59)
+								</cite>
+							</blockquote>
+
+							<div class="voice-clinical-note">
+								<div class="voice-clinical-label">Clinical Reality</div>
+								<p class="voice-clinical-text">
+									Without understanding exposed dentinal tubules and microscopic subgingival acid fermentation, patients are subjected to irreversible restorative procedures that never touch the underlying&nbsp;circuit.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>14</span>
+				</div>
+			</section>
+
+			<!-- Chapter 2: Voices From the Fire (Page 5 of 5: Refusing Idiopathic) -->
+			<section class="book-page" id="page-6">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
+						<span class="page-count-label">Page 15</span>
+					</div>
+
+					<div class="chapter-content">
+						<div class="voice-showcase-wrap">
+							<div class="voice-page-eyebrow">Chapter 2: Voices From the Fire &bull; Patient Testimony 5 of 5</div>
+							<h2 class="voice-page-title">Refusing&nbsp;Idiopathic</h2>
+
+							<blockquote class="voice-quote-box">
+								<p class="voice-quote-text">
+									&ldquo;They told me to learn to live with it and handed me an antidepressant prescription. That was the day I realized no one was coming to save me. I had to become my own investigator, understand the biology of my mouth, and decode the circuit if I ever wanted my life&nbsp;back.&rdquo;
+								</p>
+								<cite class="voice-quote-cite">
+									Online Peer Forum Participant &bull; Melbourne, Australia (Age&nbsp;61)
+								</cite>
+							</blockquote>
+
+							<div class="voice-clinical-note">
+								<div class="voice-clinical-label">Clinical Reality</div>
+								<p class="voice-clinical-text">
+									Remission begins the moment a sufferer stops accepting that biological nerves fire without a physical trigger. The turning point is treating the oral cavity like a mechanical&nbsp;system.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>15</span>
 				</div>
 			</section>
 
@@ -8961,6 +8757,42 @@ import { SITE_TITLE } from '../consts';
         }
       });
     }
+
+    // Automatically synchronize sequential Arabic page numbers and TOC/menu references across all book pages
+    const allBookPages = Array.from(document.querySelectorAll('.book-viewport > .book-page'));
+    let inMain = false;
+    let mainPageNum = 0;
+    const pageMap = {};
+    allBookPages.forEach((sec) => {
+      if (sec.id === 'page-1') inMain = true;
+      if (!inMain) return;
+      mainPageNum++;
+      const numStr = String(mainPageNum);
+      pageMap[sec.id] = numStr;
+      const footerSpan = sec.querySelector('.page-number-footer span');
+      if (footerSpan) footerSpan.textContent = numStr;
+      const countLbl = sec.querySelector('.page-running-head .page-count-label');
+      if (countLbl) countLbl.textContent = 'Page ' + numStr;
+    });
+
+    document.querySelectorAll('#toc .toc-item, #toc-2 .toc-item').forEach((item) => {
+      const link = item.querySelector('a.toc-link');
+      const numSpan = item.querySelector('.toc-num');
+      if (!link || !numSpan) return;
+      const href = link.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+      let tid = href.slice(1);
+      if (tid === 'bibliography') tid = 'page-83';
+      if (pageMap[tid]) numSpan.textContent = pageMap[tid];
+    });
+
+    document.querySelectorAll('.toolbar-menu a').forEach((link) => {
+      const href = link.getAttribute('href');
+      const numSpan = link.querySelector('.menu-num');
+      if (!href || !href.startsWith('#') || !numSpan) return;
+      const tid = href.slice(1);
+      if (pageMap[tid]) numSpan.textContent = 'p. ' + pageMap[tid];
+    });
   });
 </script>
 
