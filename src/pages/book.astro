@@ -1237,63 +1237,73 @@ import { SITE_TITLE } from '../consts';
 				color: #64748b;
 			}
 
-			/* Book Overview Typography (Clean Cards Grouped by Part) */
-			.overview-part-block {
-				margin-bottom: 1.5rem;
-			}
-
-			.overview-part-title {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.9rem;
-				font-weight: 800;
-				color: #000000;
-				margin-top: 0;
-				margin-bottom: 0.65rem;
-				border-bottom: 1.5px solid #000000;
-				padding-bottom: 0.35rem;
-			}
-
-			.overview-cards-grid {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 0.75rem;
-			}
-
-			.overview-chapter-card {
-				background: #ffffff;
-				border: 1px solid #cbd5e1;
-				border-radius: 8px;
-				padding: 0.85rem 1rem;
+			/* Executive Summary 2-Page Layout */
+			.exec-summary-wrap {
 				display: flex;
 				flex-direction: column;
-				gap: 0.3rem;
+				gap: 1.35rem;
+				color: #000000;
 			}
 
-			.overview-item-title {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.94rem;
-				font-weight: 700;
-				color: #000000;
+			.exec-lead-paragraph {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 1.14rem;
+				line-height: 1.72;
+				color: #18181b;
 				margin: 0;
+				text-wrap: pretty;
+			}
+
+			.exec-section-card {
+				background: #ffffff;
+				border: 1.5px solid #e2e8f0;
+				border-left: 4px solid #000000;
+				border-radius: 0 8px 8px 0;
+				padding: 1.15rem 1.35rem;
+			}
+
+			.exec-card-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.05rem;
+				font-weight: 800;
+				color: #000000;
+				margin: 0 0 0.45rem 0;
 				line-height: 1.3;
 			}
 
-			.overview-item-title a {
-				color: #000000;
-				text-decoration: none;
-			}
-
-			.overview-item-title a:hover {
-				text-decoration: underline;
-			}
-
-			.overview-sentence {
+			.exec-card-text {
 				font-family: 'Lora', Georgia, serif;
-				font-size: 0.9rem;
-				line-height: 1.5;
+				font-size: 0.98rem;
+				line-height: 1.62;
+				color: #27272a;
+				margin: 0;
+				text-wrap: pretty;
+			}
+
+			.exec-takeaway-box {
+				background: #f8fafc;
+				border: 1.5px solid #000000;
+				border-radius: 8px;
+				padding: 1.25rem 1.45rem;
+				margin-top: 0.5rem;
+			}
+
+			.exec-takeaway-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.95rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
 				color: #000000;
-				margin: 0 !important;
-				text-indent: 0 !important;
+				margin: 0 0 0.45rem 0;
+			}
+
+			.exec-takeaway-text {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 1.02rem;
+				line-height: 1.65;
+				color: #000000;
+				margin: 0;
 				text-wrap: pretty;
 			}
 
@@ -2923,7 +2933,7 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<div class="toc-item">
-								<a href="#overview-1" class="toc-link" title="Chapter Roadmap">Chapter Roadmap</a>
+								<a href="#overview-1" class="toc-link" title="Executive Summary">Executive Summary</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">vi</span>
 							</div>
@@ -3362,95 +3372,34 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- CHAPTER OVERVIEW: PART 1 (Page vi) -->
+			<!-- EXECUTIVE SUMMARY: PAGE 1 (Page vi) -->
 			<section class="book-page" id="overview-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Overview &bull; Parts I - III</span>
+						<span class="page-count-label">Executive Summary &bull; Page 1 of 2</span>
 					</div>
 
-					<h2 class="chapter-title" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">Chapter Summaries (Parts I &ndash;&nbsp;III)</h2>
+					<h2 class="chapter-title" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">Executive Summary: The Core Principles</h2>
 
 					<div class="chapter-content">
-						<!-- PART I -->
-						<div class="overview-part-block">
-							<h3 class="overview-part-title">Part I: The Pain of BMS</h3>
-							<div class="overview-cards-grid">
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-1">Chapter 1: The Numbers of the Fire</a></h4>
-									<p class="overview-sentence">Ten core epidemiological and clinical statistics establishing the global scale and biophysical reality of Burning Mouth&nbsp;Syndrome.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-2">Chapter 2: Voices From the Fire</a></h4>
-									<p class="overview-sentence">Six concise patient quotes capturing the daily agony and isolation of living with an invisible oral&nbsp;burn.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-7">Chapter 3: The BMS Diagnostic Questionnaire</a></h4>
-									<p class="overview-sentence">A structured clinical intake questionnaire mapping sensory pain descriptors, diurnal curves, dietary triggers, and dental&nbsp;hardware.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-15">Chapter 4: The Day the Fire Started</a></h4>
-									<p class="overview-sentence">How a scalding oral fire erupts inside visually normal tissue and why sensory nerves never scream without a physical&nbsp;input.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-16">Chapter 5: Going to the Dentist</a></h4>
-									<p class="overview-sentence">Why routine dental exams and 2D bitewing X-rays miss microscopic crown cement washouts and exposed root&nbsp;tubules.</p>
-								</div>
-							</div>
-						</div>
+						<div class="exec-summary-wrap">
+							<p class="exec-lead-paragraph">
+								Burning Mouth Syndrome (BMS) is widely misdiagnosed as an untreatable mystery because standard mucosal examinations appear completely normal. This book demonstrates that chronic oral burning is not an idiopathic phantom, but a rational biophysical response driven by microscopic hardware breaches and ambient chemical&nbsp;irritation.
+							</p>
 
-						<!-- PART II -->
-						<div class="overview-part-block">
-							<h3 class="overview-part-title">Part II: The Pain of Dentists and Doctors Not Knowing</h3>
-							<div class="overview-cards-grid">
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-18">Chapter 6: Going to the Doctors</a></h4>
-									<p class="overview-sentence">Why spotless venous blood panels cannot detect localized subgingival acid and why central sedatives fail to stop peripheral&nbsp;triggers.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-20">Chapter 7: The Institutional Blind Spot</a></h4>
-									<p class="overview-sentence">How the historical separation between dentistry, general medicine, and neurology leaves oral neuropathic pain trapped between&nbsp;silos.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-22">Chapter 8: The Supplement Trial</a></h4>
-									<p class="overview-sentence">Why unselected systemic supplements help fewer than 15% of patients and cannot physically seal porous dentinal&nbsp;tubules.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-25">Chapter 9: The B12 Blind Spot</a></h4>
-									<p class="overview-sentence">How borderline B12 levels and medications like metformin strip peripheral myelin insulation while standard blood work reads&nbsp;normal.</p>
-								</div>
+							<div class="exec-section-card">
+								<h3 class="exec-card-title">Part I &amp; II: The Diagnostic Fog and the 70% Acidity Signal</h3>
+								<p class="exec-card-text">
+									While blood tests and routine visual exams return spotless results, patient telemetry reveals a striking pattern: over 70% of sufferers confirm that dietary acids (citrus, tomatoes, coffee, vinegars) immediately spike their pain. Conventional symptom-masking sedatives and unguided supplements consistently fail because they ignore the peripheral physical triggers occurring directly inside the oral&nbsp;cavity.
+								</p>
 							</div>
-						</div>
 
-						<!-- PART III -->
-						<div class="overview-part-block">
-							<h3 class="overview-part-title">Part III: The First Principles of Mouth Burning Pain</h3>
-							<div class="overview-cards-grid">
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-28">Chapter 10: Identifying What Makes Pain Worse: Acid</a></h4>
-									<p class="overview-sentence">Community polling and personal elimination data proving that exogenous and fermented oral acids directly drive the&nbsp;burn.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-31">Chapter 11: The Receptors of Pain in the Mouth</a></h4>
-									<p class="overview-sentence">A breakdown of the finite suite of oral pain channels (TRPV1, TRPA1, TRPM8, and ASIC3) and how acidity drops their firing&nbsp;threshold.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-34">Chapter 12: The Slow Fuse</a></h4>
-									<p class="overview-sentence">Tracing the five-decade cascade of enamel wear, gumline recession, and crown fatigue that culminates in a sudden midlife&nbsp;breach.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-38">Chapter 13: The Exposed Tubule Audit</a></h4>
-									<p class="overview-sentence">How 20,000 to 45,000 microscopic fluid pipes per square millimeter connect receded tooth roots straight to living pulpal&nbsp;nerves.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-41">Chapter 14: The Chemical Ingress</a></h4>
-									<p class="overview-sentence">How direct dietary acids and the 48-to-72-hour bacterial fermentation of carbohydrates flood open root tubules with&nbsp;protons.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-45">Chapter 15: The Oral Neuropathic Circuit</a></h4>
-									<p class="overview-sentence">How localized proton firing inside a single leaking tooth causes central trigeminal wind-up that scalds the entire&nbsp;tongue.</p>
-								</div>
+							<div class="exec-section-card">
+								<h3 class="exec-card-title">Part III: The Exposed Tubule and Acid Ingress Mechanism</h3>
+								<p class="exec-card-text">
+									Decades of subtle wear, gumline recession, and microscopic cement washouts beneath dental crowns strip away the tooth's enamel seal. This leaves tens of thousands of dentinal tubules per square millimeter wide open. Ambient dietary acids and subgingival lactic acid pool against these portals, triggering Acid-Sensing Ion Channels (ASIC) and flooding the trigeminal nerve with unrelenting pain&nbsp;signals.
+								</p>
 							</div>
 						</div>
 					</div>
@@ -3461,83 +3410,37 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- CHAPTER OVERVIEW: PART 2 (Page vii) -->
+			<!-- EXECUTIVE SUMMARY: PAGE 2 (Page vii) -->
 			<section class="book-page" id="overview-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Overview &bull; Parts IV - VI</span>
+						<span class="page-count-label">Executive Summary &bull; Page 2 of 2</span>
 					</div>
 
-					<h2 class="chapter-title" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">Chapter Summaries (Parts IV &ndash;&nbsp;VI)</h2>
+					<h2 class="chapter-title" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">Executive Summary: Action &amp; Recovery</h2>
 
 					<div class="chapter-content">
-						<!-- PART IV -->
-						<div class="overview-part-block">
-							<h3 class="overview-part-title">Part IV: The BMS Standard Diagnosis Model</h3>
-							<div class="overview-cards-grid">
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-50">Chapter 16: The Standard Diagnosis Model</a></h4>
-									<p class="overview-sentence">The official ICHD-3 and ICOP diagnostic criteria of inclusion and exclusion that confirm peripheral small-fiber&nbsp;neuropathy.</p>
-								</div>
+						<div class="exec-summary-wrap">
+							<div class="exec-section-card">
+								<h3 class="exec-card-title">Part IV &amp; V: The Two-Pillar Solution (Starve the Fuel, Seal the Leak)</h3>
+								<p class="exec-card-text">
+									Lasting relief requires a coordinated two-phase approach. First, establish a strict zero-acid baseline to halt active chemical irritation and map your individual 48-to-72-hour fermentation time lag. Second, work with your dentist to place physical shields: cervical composite patches over exposed root dentin, in-office Gluma protein coagulation, and precision refitting of leaking crown&nbsp;margins.
+								</p>
 							</div>
-						</div>
 
-						<!-- PART V -->
-						<div class="overview-part-block">
-							<h3 class="overview-part-title">Part V: Taking Charge of Your Own Investigation</h3>
-							<div class="overview-cards-grid">
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-52">Chapter 17: Starving the Fire</a></h4>
-									<p class="overview-sentence">Establishing a clean zero-acid, non-fermentable baseline to shut down bacterial lactic acid production within seven&nbsp;days.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-55">Chapter 18: Calculating Your Time Lag</a></h4>
-									<p class="overview-sentence">Step-by-step testing protocols to measure your personal 48-to-72-hour fermentation latency curve and isolate specific&nbsp;triggers.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-57">Chapter 19: Mechanical Shields</a></h4>
-									<p class="overview-sentence">Using stannous fluoride, in-office Gluma desensitizers, and permanent crown or composite restorations to seal open&nbsp;tubules.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-60">Chapter 20: The Recovery Protocol</a></h4>
-									<p class="overview-sentence">A structured 6-Day Flare Reset Protocol to extinguish accidental dietary setbacks and maintain a calm baseline&nbsp;long-term.</p>
-								</div>
+							<div class="exec-section-card">
+								<h3 class="exec-card-title">Part VI: The Clinical Roadmap and Collaborative Advocacy</h3>
+								<p class="exec-card-text">
+									By understanding BMS through the medical model of small-fiber neuropathy, patients can stop cycling through unhelpful treatments. Using structured clinical checklists and objective time-series observations, you can partner productively with doctors and dentists to eliminate the root causes and achieve enduring&nbsp;remission.
+								</p>
 							</div>
-						</div>
 
-						<!-- PART VI -->
-						<div class="overview-part-block">
-							<h3 class="overview-part-title">Part VI: Models for BMS &amp; Moving Forward</h3>
-							<div class="overview-cards-grid">
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-63">Chapter 21: The Diabetic Parallel</a></h4>
-									<p class="overview-sentence">Comparing BMS to Diabetic Peripheral Neuropathy to give clinicians an established medical model of small-fiber&nbsp;burning.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-67">Chapter 22: The Two Bottlenecks</a></h4>
-									<p class="overview-sentence">Contrasting internal microvascular ischemia in diabetes against external dentinal tubule acid ingress in Burning Mouth&nbsp;Syndrome.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-71">Chapter 23: Remission vs. Progression</a></h4>
-									<p class="overview-sentence">Why removing chemical fuel halts neuropathic firing and why dietary calm must be paired with physical hardware&nbsp;repair.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-74">Chapter 24: How to Talk to Your Doctor</a></h4>
-									<p class="overview-sentence">Practical scripts for framing your 14-day observational trial and requesting functional B12, MMA, and iron transport&nbsp;panels.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-77">Chapter 25: How to Talk to Your Dentist</a></h4>
-									<p class="overview-sentence">A 4-Point Structural Inspection Checklist to help your dentist audit crown margins, cervical roots, and diagnostic&nbsp;shields.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-79">Chapter 26: Citizen Science Data</a></h4>
-									<p class="overview-sentence">How patient-led symptom telemetry and open-minded clinician partnerships accelerate root-cause breakthroughs for&nbsp;BMS.</p>
-								</div>
-								<div class="overview-chapter-card">
-									<h4 class="overview-item-title"><a href="#page-81">Chapter 27: Active BMS Communities</a></h4>
-									<p class="overview-sentence">A curated directory of English and French patient support communities and independent dental second-opinion&nbsp;networks.</p>
-								</div>
+							<div class="exec-takeaway-box">
+								<div class="exec-takeaway-title">The Master Takeaway</div>
+								<p class="exec-takeaway-text">
+									Your nerves are the alarm, but ambient acidity is the fuel and compromised dental hardware is the door. When you cut the chemical fuel and physically seal the microscopic breaches, the persistent burn&nbsp;subsides.
+								</p>
 							</div>
 						</div>
 					</div>

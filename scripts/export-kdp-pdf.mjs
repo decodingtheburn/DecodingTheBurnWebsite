@@ -489,7 +489,56 @@ export const KDP_7X10_BASE_CSS = `
 		margin-bottom: 0 !important;
 	}
 
-	/* Overview Cards, Research Tables, Chapter 1 Stats & Chapter 2 Voices Calibration */
+	/* Executive Summary, Overview Cards, Research Tables, Chapter 1 Stats & Chapter 2 Voices Calibration */
+	html body .book-viewport .exec-summary-wrap {
+		gap: 0.65rem !important;
+	}
+
+	html body .book-viewport .exec-lead-paragraph {
+		font-size: 0.88rem !important;
+		line-height: 1.48 !important;
+		margin-bottom: 0.35rem !important;
+	}
+
+	html body .book-viewport .exec-section-card {
+		padding: 0.55rem 0.75rem !important;
+		border: 1px solid #cbd5e1 !important;
+		border-left: 3px solid #000000 !important;
+		border-radius: 0 6px 6px 0 !important;
+		background: #ffffff !important;
+	}
+
+	html body .book-viewport .exec-card-title {
+		font-size: 0.82rem !important;
+		margin-bottom: 0.2rem !important;
+		color: #000000 !important;
+	}
+
+	html body .book-viewport .exec-card-text {
+		font-size: 0.76rem !important;
+		line-height: 1.38 !important;
+		color: #000000 !important;
+	}
+
+	html body .book-viewport .exec-takeaway-box {
+		padding: 0.65rem 0.85rem !important;
+		margin-top: 0.35rem !important;
+		border: 1.5px solid #000000 !important;
+		background: #f4f4f5 !important;
+	}
+
+	html body .book-viewport .exec-takeaway-title {
+		font-size: 0.76rem !important;
+		margin-bottom: 0.2rem !important;
+		color: #000000 !important;
+	}
+
+	html body .book-viewport .exec-takeaway-text {
+		font-size: 0.78rem !important;
+		line-height: 1.4 !important;
+		color: #000000 !important;
+	}
+
 	html body .book-viewport .overview-part-block {
 		margin-bottom: 0.55rem !important;
 	}
