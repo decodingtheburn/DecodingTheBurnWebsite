@@ -1,5 +1,4 @@
 import { chromium } from 'playwright';
-import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import http from 'http';
@@ -78,7 +77,6 @@ async function launchBrowser() {
 
 async function waitForAllImagesAndFonts(page) {
 	await page.evaluate(async () => {
-		// Force all lazy images to eager
 		document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
 			img.setAttribute('loading', 'eager');
 		});
@@ -99,8 +97,8 @@ async function waitForAllImagesAndFonts(page) {
 	await page.waitForTimeout(800);
 }
 
-// Common KDP 7" x 10" Page Calibration CSS
-const KDP_7X10_BASE_CSS = `
+// Common KDP 7" x 10" Page Calibration CSS (High specificity `html body` to beat Astro scoped attributes)
+export const KDP_7X10_BASE_CSS = `
 	@page {
 		size: 7in 10in;
 		margin: 0 !important;
@@ -131,27 +129,29 @@ const KDP_7X10_BASE_CSS = `
 	#bms_clear_btn,
 	#bms_clear_btn_p14,
 	button[onclick*="window.print"],
-	.contributor-read-more-btn {
+	.contributor-read-more-btn,
+	.contributor-apply-btn {
 		display: none !important;
 	}
 
-	.book-viewport {
+	html body .book-viewport {
 		max-width: 7in !important;
 		width: 7in !important;
 		margin: 0 !important;
 		padding: 0 !important;
 	}
 
-	/* Lock every book page to exact 7" x 10" sheet */
-	.book-page,
-	.book-page-toc,
-	.book-page-blank {
+	/* Lock every book page to exact 7" x 10" sheet with bottom-pinned footer */
+	html body .book-viewport .book-page,
+	html body .book-viewport .book-page-toc,
+	html body .book-viewport .book-page-blank {
+		position: relative !important;
 		width: 7in !important;
 		height: 10in !important;
 		min-height: 10in !important;
 		max-height: 10in !important;
 		margin: 0 !important;
-		padding: 0.52in 0.6in 0.45in 0.65in !important;
+		padding: 0.45in 0.58in 0.68in 0.62in !important;
 		border: none !important;
 		border-radius: 0 !important;
 		box-shadow: none !important;
@@ -161,152 +161,463 @@ const KDP_7X10_BASE_CSS = `
 		break-after: page !important;
 		page-break-inside: avoid !important;
 		break-inside: avoid !important;
-		display: flex !important;
-		flex-direction: column !important;
-		justify-content: space-between !important;
+		display: block !important;
 		background: #ffffff !important;
 	}
 
-	.book-page::before,
-	.book-page-toc::before,
-	.book-page-blank::before {
+	html body .book-viewport .book-page::before,
+	html body .book-viewport .book-page-toc::before,
+	html body .book-viewport .book-page-blank::before {
 		display: none !important;
 	}
 
+	html body .book-viewport .page-body-content {
+		height: auto !important;
+	}
+
+	html body .book-viewport #title-page .page-body-content,
+	html body .book-viewport #copyright-page .page-body-content {
+		height: 8.8in !important;
+	}
+
+	/* Pin footer line & page number to the exact bottom footer zone on every page */
+	html body .book-viewport .page-number-footer {
+		position: absolute !important;
+		bottom: 0.3in !important;
+		left: 0.62in !important;
+		right: 0.58in !important;
+		margin: 0 !important;
+		padding-top: 0.32rem !important;
+		border-top: 1px solid #cbd5e1 !important;
+		background: #ffffff !important;
+		display: flex !important;
+		justify-content: center !important;
+		align-items: center !important;
+		font-size: 0.78rem !important;
+		line-height: 1 !important;
+		z-index: 10 !important;
+	}
+
 	/* Calibrate typography to fit 7" x 10" cleanly without overflow */
-	.page-running-head {
-		font-size: 0.66rem !important;
-		padding-bottom: 0.45rem !important;
-		margin-bottom: 0.9rem !important;
-	}
-
-	.part-break-banner {
-		padding: 0.45rem 0.85rem !important;
-		margin-bottom: 0.85rem !important;
-	}
-
-	.part-hero-block {
-		min-height: 175px !important;
-		padding: 1.35rem 1.25rem !important;
-		margin-bottom: 1.25rem !important;
-	}
-
-	.part-hero-title {
-		font-size: 1.55rem !important;
-	}
-
-	.chapter-title {
-		font-size: 1.38rem !important;
-		margin-bottom: 0.85rem !important;
-	}
-
-	.chapter-content p {
-		font-size: 0.84rem !important;
-		line-height: 1.52 !important;
+	html body .book-viewport .page-running-head {
+		font-size: 0.64rem !important;
+		padding-bottom: 0.35rem !important;
 		margin-bottom: 0.72rem !important;
+		border-bottom: 1px solid #cbd5e1 !important;
 	}
 
-	.chapter-content h3 {
-		font-size: 0.98rem !important;
-		margin-top: 0.85rem !important;
-		margin-bottom: 0.45rem !important;
+	html body .book-viewport .part-break-banner {
+		padding: 0.35rem 0.75rem !important;
+		margin-bottom: 0.65rem !important;
 	}
 
-	.chapter-content h4 {
-		font-size: 0.88rem !important;
-		margin-top: 0.65rem !important;
-		margin-bottom: 0.35rem !important;
+	html body .book-viewport .part-break-title {
+		font-size: 0.7rem !important;
 	}
 
-	.chapter-content ul,
-	.chapter-content ol {
-		font-size: 0.82rem !important;
-		line-height: 1.48 !important;
-		margin-bottom: 0.7rem !important;
-	}
-
-	.book-callout {
-		padding: 0.65rem 0.85rem !important;
-		margin-bottom: 0.8rem !important;
-	}
-
-	.book-callout p {
-		font-size: 0.79rem !important;
-		line-height: 1.45 !important;
-	}
-
-	.page-number-footer {
-		margin-top: 0.5rem !important;
-		padding-top: 0.5rem !important;
-		font-size: 0.78rem !important;
-	}
-
-	/* Questionnaire Cards calibration for 7x10 */
-	.quiz-book-card {
-		padding: 0.62rem 0.82rem !important;
-		margin-bottom: 0.62rem !important;
-		box-shadow: none !important;
-	}
-
-	.quiz-book-card h3 {
-		font-size: 0.86rem !important;
-		margin-bottom: 0.45rem !important;
-	}
-
-	.bms-check-label {
-		font-size: 0.71rem !important;
-		line-height: 1.25 !important;
-		gap: 0.35rem !important;
-	}
-
-	.bms-check-label input[type="checkbox"],
-	.bms-check-label input[type="radio"] {
-		width: 11px !important;
-		height: 11px !important;
-		margin-top: 0.1rem !important;
-	}
-
-	.bms-grid-3col {
-		gap: 0.38rem 0.65rem !important;
-	}
-
-	/* TOC & Overview Calibration */
-	.toc-item {
-		padding: 0.18rem 0 !important;
-		font-size: 0.78rem !important;
-	}
-
-	.toc-group {
+	html body .book-viewport .part-hero-block {
+		min-height: 105px !important;
+		padding: 0.75rem 1rem !important;
 		margin-bottom: 0.75rem !important;
 	}
 
-	.overview-chapter-row {
+	html body .book-viewport .part-hero-ornament {
+		margin-bottom: 0.25rem !important;
+	}
+
+	html body .book-viewport .part-hero-num {
+		font-size: 0.68rem !important;
+		margin-bottom: 0.15rem !important;
+	}
+
+	html body .book-viewport .part-hero-title {
+		font-size: 1.28rem !important;
+		margin-bottom: 0.25rem !important;
+	}
+
+	html body .book-viewport .part-hero-desc {
+		font-size: 0.76rem !important;
+		line-height: 1.38 !important;
+	}
+
+	html body .book-viewport .chapter-title {
+		font-size: 1.26rem !important;
+		margin-top: 0 !important;
+		margin-bottom: 0.65rem !important;
+		line-height: 1.2 !important;
+	}
+
+	html body .book-viewport .chapter-content p {
+		font-size: 0.81rem !important;
+		line-height: 1.46 !important;
+		margin-top: 0 !important;
+		margin-bottom: 0.56rem !important;
+	}
+
+	html body .book-viewport .chapter-content.is-first-page > p:first-of-type::first-letter {
+		font-size: 2.3rem !important;
+		line-height: 0.85 !important;
+		padding-right: 0.35rem !important;
+	}
+
+	html body .book-viewport .chapter-content h3 {
+		font-size: 0.92rem !important;
+		margin-top: 0.68rem !important;
+		margin-bottom: 0.35rem !important;
+		padding-bottom: 0.2rem !important;
+	}
+
+	html body .book-viewport .chapter-content h4 {
+		font-size: 0.84rem !important;
+		margin-top: 0.55rem !important;
+		margin-bottom: 0.28rem !important;
+	}
+
+	html body .book-viewport .chapter-content ul,
+	html body .book-viewport .chapter-content ol {
+		font-size: 0.79rem !important;
+		line-height: 1.42 !important;
+		margin-top: 0.25rem !important;
+		margin-bottom: 0.55rem !important;
+		padding-left: 1.15rem !important;
+	}
+
+	html body .book-viewport .chapter-content li {
+		margin-bottom: 0.25rem !important;
+	}
+
+	html body .book-viewport .book-callout {
+		padding: 0.55rem 0.75rem !important;
+		margin-top: 0.45rem !important;
+		margin-bottom: 0.65rem !important;
+	}
+
+	html body .book-viewport .chapter-content .book-callout p {
+		font-size: 0.76rem !important;
+		line-height: 1.38 !important;
+		margin-bottom: 0.3rem !important;
+	}
+
+	html body .book-viewport .chapter-content .book-callout ul li {
+		font-size: 0.74rem !important;
+		line-height: 1.36 !important;
+		margin-bottom: 0.22rem !important;
+	}
+
+	/* Keep #expectation and #page-50 cleanly on single pages */
+	html body .book-viewport #expectation .book-callout {
 		padding: 0.45rem 0.65rem !important;
 		margin-bottom: 0.45rem !important;
 	}
 
-	.overview-sentence {
-		font-size: 0.72rem !important;
+	html body .book-viewport #expectation .chapter-content p {
+		font-size: 0.75rem !important;
+		line-height: 1.36 !important;
+		margin-bottom: 0.4rem !important;
+	}
+
+	html body .book-viewport #expectation .chapter-content .book-callout ul li {
+		font-size: 0.71rem !important;
+		line-height: 1.3 !important;
+		margin-bottom: 0.16rem !important;
+	}
+
+	html body .book-viewport #page-50 .part-hero-block {
+		min-height: 82px !important;
+		padding: 0.5rem 0.85rem !important;
+		margin-bottom: 0.5rem !important;
+	}
+
+	html body .book-viewport #page-50 .chapter-content p {
+		font-size: 0.76rem !important;
+		line-height: 1.38 !important;
+		margin-bottom: 0.4rem !important;
+	}
+
+	html body .book-viewport #page-51 .chapter-content p,
+	html body .book-viewport section[id^="page-51"] .chapter-content p {
+		font-size: 0.75rem !important;
 		line-height: 1.35 !important;
+		margin-bottom: 0.36rem !important;
+	}
+
+	html body .book-viewport #page-51 .research-table th,
+	html body .book-viewport #page-51 .research-table td,
+	html body .book-viewport section[id^="page-51"] .research-table th,
+	html body .book-viewport section[id^="page-51"] .research-table td {
+		padding: 0.2rem 0.34rem !important;
+		font-size: 0.64rem !important;
+		line-height: 1.2 !important;
+	}
+
+	html body .book-viewport #page-51 .research-table td ul li,
+	html body .book-viewport section[id^="page-51"] .research-table td ul li {
+		font-size: 0.61rem !important;
+		line-height: 1.18 !important;
+		margin-bottom: 0.05rem !important;
+	}
+
+	html body .book-viewport .book-figure {
+		margin: 0.55rem 0 !important;
+		padding: 0.45rem !important;
+	}
+
+	html body .book-viewport .book-figure img {
+		max-height: 185px !important;
+		width: auto !important;
+		margin: 0 auto !important;
+	}
+
+	html body .book-viewport .book-figure-caption {
+		font-size: 0.7rem !important;
+		line-height: 1.32 !important;
+		margin-top: 0.35rem !important;
+	}
+
+	/* Questionnaire Cards calibration for 7x10 (Pages 7-14) */
+	html body .book-viewport .quiz-book-card {
+		padding: 0.48rem 0.68rem !important;
+		margin-bottom: 0.48rem !important;
+		box-shadow: none !important;
+	}
+
+	html body .book-viewport .quiz-book-card h3 {
+		font-size: 0.82rem !important;
+		margin-top: 0 !important;
+		margin-bottom: 0.35rem !important;
+		padding-bottom: 0.15rem !important;
+	}
+
+	html body .book-viewport .bms-check-label {
+		font-size: 0.68rem !important;
+		line-height: 1.22 !important;
+		gap: 0.3rem !important;
+	}
+
+	html body .book-viewport .bms-check-label input[type="checkbox"],
+	html body .book-viewport .bms-check-label input[type="radio"] {
+		width: 10px !important;
+		height: 10px !important;
+		margin-top: 0.08rem !important;
+	}
+
+	html body .book-viewport .bms-grid-3col {
+		gap: 0.28rem 0.55rem !important;
+	}
+
+	/* TOC Calibration (#toc & #toc-2) */
+	html body .book-viewport #toc h2,
+	html body .book-viewport #toc-2 h2 {
+		font-size: 1.5rem !important;
+		margin-top: 0.25rem !important;
 		margin-bottom: 0.2rem !important;
 	}
 
-	.overview-subtopics li {
-		font-size: 0.68rem !important;
-		line-height: 1.3 !important;
+	html body .book-viewport #toc .page-body-content > p,
+	html body .book-viewport #toc-2 .page-body-content > p {
+		font-size: 0.78rem !important;
+		margin-bottom: 0.65rem !important;
 	}
 
-	.research-table th,
-	.research-table td {
-		padding: 0.32rem 0.45rem !important;
-		font-size: 0.7rem !important;
-		line-height: 1.3 !important;
+	html body .book-viewport .toc-group {
+		margin-bottom: 0.5rem !important;
 	}
 
-	.master-bib-item {
+	html body .book-viewport .toc-part-header {
+		font-size: 0.72rem !important;
+		margin-bottom: 0.15rem !important;
+		padding-bottom: 0.12rem !important;
+	}
+
+	html body .book-viewport .toc-part-purpose {
 		font-size: 0.68rem !important;
-		line-height: 1.32 !important;
+		line-height: 1.28 !important;
+		margin-bottom: 0.25rem !important;
+	}
+
+	html body .book-viewport .toc-item {
+		padding: 0.1rem 0 !important;
+		font-size: 0.73rem !important;
+		line-height: 1.25 !important;
+	}
+
+	/* Contributors Page Calibration (#contributors) */
+	html body .book-viewport .contributor-category-block {
+		margin-bottom: 0.65rem !important;
+	}
+
+	html body .book-viewport .contributor-category-header {
+		margin-bottom: 0.45rem !important;
+		padding-bottom: 0.25rem !important;
+	}
+
+	html body .book-viewport .contributor-category-title {
+		font-size: 1.15rem !important;
+	}
+
+	html body .book-viewport .contributor-grid {
+		gap: 0.65rem !important;
+		margin-bottom: 0.5rem !important;
+	}
+
+	html body .book-viewport .contributor-card {
+		padding: 0.65rem 0.9rem !important;
+		border: 1px solid #cbd5e1 !important;
+		box-shadow: none !important;
+		border-radius: 8px !important;
+	}
+
+	html body .book-viewport .contributor-avatar-wrap {
+		margin-top: 0 !important;
+		margin-bottom: 0.35rem !important;
+	}
+
+	html body .book-viewport .contributor-avatar {
+		width: 44px !important;
+		height: 44px !important;
+		border-radius: 8px !important;
+		box-shadow: none !important;
+	}
+
+	html body .book-viewport .contributor-avatar svg {
+		width: 24px !important;
+		height: 24px !important;
+	}
+
+	html body .book-viewport .contributor-name {
+		font-size: 0.95rem !important;
+		margin-bottom: 0.15rem !important;
+	}
+
+	html body .book-viewport .contributor-location {
+		font-size: 0.72rem !important;
+		margin-bottom: 0.2rem !important;
+	}
+
+	html body .book-viewport .contributor-role-line {
+		font-size: 0.72rem !important;
+		margin-bottom: 0.25rem !important;
+	}
+
+	html body .book-viewport .contributor-relief-summary {
+		font-size: 0.75rem !important;
+		line-height: 1.35 !important;
+		margin-bottom: 0 !important;
+	}
+
+	html body .book-viewport .contributor-apply-box {
+		padding: 0.65rem 0.85rem !important;
+		margin-top: 0.5rem !important;
+	}
+
+	html body .book-viewport .contributor-apply-title {
+		font-size: 0.9rem !important;
+		margin-bottom: 0.25rem !important;
+	}
+
+	html body .book-viewport .contributor-apply-text {
+		font-size: 0.74rem !important;
+		line-height: 1.35 !important;
+		margin-bottom: 0 !important;
+	}
+
+	/* Overview & Research Tables Calibration */
+	html body .book-viewport .overview-part-block {
+		margin-bottom: 0.45rem !important;
+	}
+
+	html body .book-viewport .chapter-content h3.overview-part-title {
+		font-size: 0.84rem !important;
+		margin-top: 0.3rem !important;
+		margin-bottom: 0.15rem !important;
+		padding-bottom: 0.12rem !important;
+	}
+
+	html body .book-viewport .chapter-content p.overview-part-purpose {
+		font-size: 0.69rem !important;
+		line-height: 1.28 !important;
 		margin-bottom: 0.32rem !important;
+	}
+
+	html body .book-viewport .overview-chapter-row {
+		padding: 0.34rem 0.52rem !important;
+		margin-bottom: 0.34rem !important;
+		gap: 0.55rem !important;
+	}
+
+	html body .book-viewport .chapter-content h4.overview-item-title {
+		font-size: 0.76rem !important;
+		margin-top: 0 !important;
+		margin-bottom: 0.14rem !important;
+	}
+
+	html body .book-viewport .chapter-content p.overview-sentence {
+		font-size: 0.66rem !important;
+		line-height: 1.26 !important;
+		margin-bottom: 0.14rem !important;
+	}
+
+	html body .book-viewport .overview-subtopics {
+		padding-left: 0.5rem !important;
+	}
+
+	html body .book-viewport .overview-subtopics-header {
+		font-size: 0.62rem !important;
+		margin-bottom: 0.12rem !important;
+	}
+
+	html body .book-viewport .chapter-content .overview-subtopics ol {
+		margin-bottom: 0 !important;
+		padding-left: 0.95rem !important;
+	}
+
+	html body .book-viewport .chapter-content .overview-subtopics li {
+		font-size: 0.63rem !important;
+		line-height: 1.22 !important;
+		margin-bottom: 0.08rem !important;
+	}
+
+	html body .book-viewport .research-table th,
+	html body .book-viewport .research-table td {
+		padding: 0.28rem 0.4rem !important;
+		font-size: 0.68rem !important;
+		line-height: 1.26 !important;
+	}
+
+	html body .book-viewport .research-table td ul li {
+		font-size: 0.65rem !important;
+		line-height: 1.24 !important;
+		margin-bottom: 0.1rem !important;
+	}
+
+	html body .book-viewport .timelag-box {
+		padding: 0.65rem 0.85rem !important;
+		margin: 0.55rem 0 !important;
+	}
+
+	html body .book-viewport .timelag-table th,
+	html body .book-viewport .timelag-table td {
+		padding: 0.32rem 0.45rem !important;
+		font-size: 0.72rem !important;
+		line-height: 1.28 !important;
+	}
+
+	html body .book-viewport .alt-protocol-card {
+		padding: 0.6rem 0.8rem !important;
+		margin-bottom: 0.55rem !important;
+	}
+
+	html body .book-viewport .alt-protocol-title {
+		font-size: 0.82rem !important;
+		margin-bottom: 0.22rem !important;
+	}
+
+	html body .book-viewport .master-bib-item {
+		font-size: 0.7rem !important;
+		line-height: 1.32 !important;
+		margin-bottom: 0.38rem !important;
+		padding-bottom: 0.28rem !important;
+		border-bottom: 1px dashed #e2e8f0 !important;
 	}
 `;
 
@@ -315,9 +626,9 @@ const KDP_BW_INTERIOR_CSS = `
 	${KDP_7X10_BASE_CSS}
 
 	/* Remove Front & Back Cover from KDP Interior Manuscript */
-	.book-cover-container,
-	.book-backcover-container,
-	#flyleaf-back {
+	html body .book-viewport .book-cover-container,
+	html body .book-viewport .book-backcover-container,
+	html body .book-viewport #flyleaf-back {
 		display: none !important;
 	}
 
@@ -372,7 +683,6 @@ const KDP_BW_INTERIOR_CSS = `
 		background: #18181b !important;
 	}
 
-	/* Replace range sliders with clean printable 0-10 scale lines in KDP print */
 	input[type="range"],
 	input[type="checkbox"],
 	input[type="radio"] {
@@ -426,25 +736,284 @@ const READER_EDITION_CSS = `
 const QUESTIONNAIRE_ONLY_CSS = `
 	${KDP_7X10_BASE_CSS}
 
-	.book-cover-container,
-	.book-backcover-container,
-	.book-page,
-	.book-page-toc,
-	.book-page-blank {
+	html body .book-viewport .book-cover-container,
+	html body .book-viewport .book-backcover-container,
+	html body .book-viewport .book-page,
+	html body .book-viewport .book-page-toc,
+	html body .book-viewport .book-page-blank {
 		display: none !important;
 	}
 
-	#page-7,
-	#page-8,
-	#page-9,
-	#page-10,
-	#page-11,
-	#page-12,
-	#page-13,
-	#page-14 {
-		display: flex !important;
+	html body .book-viewport #page-7,
+	html body .book-viewport #page-8,
+	html body .book-viewport #page-9,
+	html body .book-viewport #page-10,
+	html body .book-viewport #page-11,
+	html body .book-viewport #page-12,
+	html body .book-viewport #page-13,
+	html body .book-viewport #page-14 {
+		display: block !important;
 	}
 `;
+
+/**
+ * Automatically splits any `.book-page` whose `.page-body-content` exceeds the safe footer boundary (885px from page top)
+ * into clean continuation `.book-page` sheets, and updates sequential page numbers and TOC entries.
+ */
+export async function paginateOverflowingBookPages(page) {
+	await page.evaluate(() => {
+		const MAX_BODY_BOTTOM_PX = 885; // Leaves 75px at bottom of 960px sheet for footer & breathing room
+
+		// 1. Pre-normalize multi-item wrappers so their inner blocks are direct children of .chapter-content
+		// a) Flatten .overview-part-block inside #overview-1 and #overview-2
+		document.querySelectorAll('#overview-1 .overview-part-block, #overview-2 .overview-part-block').forEach((block) => {
+			const parent = block.parentElement;
+			while (block.firstChild) {
+				parent.insertBefore(block.firstChild, block);
+			}
+			block.remove();
+		});
+
+		// b) Unwrap ol.master-bibliography-list into direct splittable div.master-bib-item children
+		document.querySelectorAll('ol.master-bibliography-list').forEach((list) => {
+			const chapterContent = list.closest('.chapter-content');
+			if (chapterContent) {
+				const items = Array.from(list.querySelectorAll('li.master-bib-item'));
+				items.forEach((li) => {
+					const div = document.createElement('div');
+					div.className = 'master-bib-item';
+					if (li.id) div.id = li.id;
+					div.innerHTML = li.innerHTML;
+					chapterContent.insertBefore(div, list);
+				});
+				list.remove();
+			}
+		});
+
+		function getBodyBottom(pageEl) {
+			const pRect = pageEl.getBoundingClientRect();
+			const body = pageEl.querySelector('.page-body-content');
+			if (!body) return 0;
+			const children = Array.from(body.children);
+			if (children.length === 0) return 0;
+			const lastChild = children[children.length - 1];
+			// Also check last element inside .chapter-content if present
+			const cc = body.querySelector('.chapter-content');
+			if (cc && cc.children.length > 0) {
+				const lastCC = cc.children[cc.children.length - 1];
+				return Math.max(
+					lastChild.getBoundingClientRect().bottom - pRect.top,
+					lastCC.getBoundingClientRect().bottom - pRect.top
+				);
+			}
+			return lastChild.getBoundingClientRect().bottom - pRect.top;
+		}
+
+		const contCounts = {};
+		function createContinuationPage(sourcePageEl) {
+			const baseId = sourcePageEl.id.replace(/-cont-\d+$/, '');
+			contCounts[baseId] = (contCounts[baseId] || 0) + 1;
+			const newPage = document.createElement('section');
+			newPage.className = sourcePageEl.className;
+			newPage.id = `${baseId}-cont-${contCounts[baseId]}`;
+
+			const bodyContent = document.createElement('div');
+			bodyContent.className = 'page-body-content';
+
+			const runningHead = sourcePageEl.querySelector('.page-running-head');
+			if (runningHead) {
+				bodyContent.appendChild(runningHead.cloneNode(true));
+			}
+
+			const newCC = document.createElement('div');
+			newCC.className = 'chapter-content';
+			bodyContent.appendChild(newCC);
+			newPage.appendChild(bodyContent);
+
+			const footer = sourcePageEl.querySelector('.page-number-footer');
+			if (footer) {
+				newPage.appendChild(footer.cloneNode(true));
+			}
+
+			sourcePageEl.insertAdjacentElement('afterend', newPage);
+			return { newPage, newCC };
+		}
+
+		// 2. Iterate through all .book-page sections in document order (splitting as needed)
+		let allPages = Array.from(document.querySelectorAll('.book-viewport > .book-page'));
+		for (let i = 0; i < allPages.length; i++) {
+			const pageEl = allPages[i];
+			if (pageEl.id === 'title-page' || pageEl.id === 'copyright-page') continue;
+
+			const bodyBottom = getBodyBottom(pageEl);
+			if (bodyBottom <= MAX_BODY_BOTTOM_PX) continue;
+
+			const cc = pageEl.querySelector('.chapter-content');
+			if (!cc) continue;
+
+			// Check if this page contains a large .research-table-wrapper that itself needs row-level splitting
+			const tableWrapper = cc.querySelector('.research-table-wrapper');
+			if (tableWrapper) {
+				const table = tableWrapper.querySelector('table.research-table');
+				const tbody = table ? table.querySelector('tbody') : null;
+				const rows = tbody ? Array.from(tbody.querySelectorAll('tr')) : [];
+
+				if (rows.length > 1) {
+					// First move any elements AFTER tableWrapper to a continuation page
+					const afterElements = [];
+					let sibling = tableWrapper.nextElementSibling;
+					while (sibling) {
+						afterElements.push(sibling);
+						sibling = sibling.nextElementSibling;
+					}
+
+					const { newPage, newCC } = createContinuationPage(pageEl, 1);
+
+					// Check which rows of tbody overflow MAX_BODY_BOTTOM_PX
+					const pRect = pageEl.getBoundingClientRect();
+					const overflowRows = [];
+					for (let rIdx = 0; rIdx < rows.length; rIdx++) {
+						const rowBottom = rows[rIdx].getBoundingClientRect().bottom - pRect.top;
+						if (rowBottom > MAX_BODY_BOTTOM_PX) {
+							overflowRows.push(...rows.slice(rIdx));
+							break;
+						}
+					}
+
+					if (overflowRows.length === rows.length) {
+						// Even the first row of the table overflows (e.g. #page-51 where Phase 2 text takes up the top half)
+						// Move the entire tableWrapper (and preceding heading if it's an H3 right before the table) to newCC
+						const prev1 = tableWrapper.previousElementSibling;
+						const prev2 = prev1 ? prev1.previousElementSibling : null;
+						if (prev2 && prev2.tagName === 'H3') {
+							newCC.appendChild(prev2);
+						}
+						if (prev1 && (prev1.tagName === 'P' || prev1.tagName === 'H3')) {
+							newCC.appendChild(prev1);
+						}
+						newCC.appendChild(tableWrapper);
+					} else if (overflowRows.length > 0) {
+						// Keep fitting rows on current page, clone table structure for overflowRows on newCC
+						const clonedWrapper = tableWrapper.cloneNode(false);
+						const clonedTable = table.cloneNode(false);
+						const thead = table.querySelector('thead');
+						if (thead) clonedTable.appendChild(thead.cloneNode(true));
+						const clonedTbody = document.createElement('tbody');
+						overflowRows.forEach((r) => clonedTbody.appendChild(r));
+						clonedTable.appendChild(clonedTbody);
+						clonedWrapper.appendChild(clonedTable);
+						newCC.appendChild(clonedWrapper);
+					}
+
+					afterElements.forEach((el) => newCC.appendChild(el));
+					allPages = Array.from(document.querySelectorAll('.book-viewport > .book-page'));
+					continue;
+				}
+			}
+
+			// Standard element-level split for .chapter-content children
+			const children = Array.from(cc.children);
+			if (children.length <= 1) continue;
+
+			const pRect = pageEl.getBoundingClientRect();
+			let splitIdx = -1;
+			for (let cIdx = 0; cIdx < children.length; cIdx++) {
+				const elBottom = children[cIdx].getBoundingClientRect().bottom - pRect.top;
+				if (elBottom > MAX_BODY_BOTTOM_PX) {
+					splitIdx = cIdx;
+					break;
+				}
+			}
+
+			if (splitIdx <= 0) splitIdx = 1; // Ensure at least 1 element stays to guarantee progress
+
+			// Avoid leaving a stranded heading (H2, H3, H4) or part-title at the very bottom of the page
+			while (
+				splitIdx > 1 &&
+				(['H2', 'H3', 'H4'].includes(children[splitIdx - 1].tagName) ||
+					children[splitIdx - 1].classList.contains('overview-part-purpose'))
+			) {
+				splitIdx--;
+			}
+
+			const { newPage, newCC } = createContinuationPage(pageEl, 1);
+			for (let cIdx = splitIdx; cIdx < children.length; cIdx++) {
+				newCC.appendChild(children[cIdx]);
+			}
+
+			// Refresh allPages array so newPage will also be checked and split if it still overflows
+			allPages = Array.from(document.querySelectorAll('.book-viewport > .book-page'));
+		}
+
+		// 3. Re-number frontmatter (Roman numerals) and main chapters (Arabic integers) sequentially,
+		//    and synchronize all Table of Contents (.toc-num) links automatically!
+		function toRoman(num) {
+			const map = [
+				[10, 'x'],
+				[9, 'ix'],
+				[5, 'v'],
+				[4, 'iv'],
+				[1, 'i'],
+			];
+			let res = '';
+			for (const [val, sym] of map) {
+				while (num >= val) {
+					res += sym;
+					num -= val;
+				}
+			}
+			return res;
+		}
+
+		const finalPages = Array.from(document.querySelectorAll('.book-viewport > .book-page'));
+		let romanCount = 0;
+		let arabicCount = 0;
+		let inMainBook = false;
+		const idToPageLabel = {};
+
+		for (const p of finalPages) {
+			if (p.id === 'title-page' || p.id === 'copyright-page') continue;
+			if (p.id === 'page-1') {
+				inMainBook = true;
+			}
+
+			const footerSpan = p.querySelector('.page-number-footer span');
+			const countLabel = p.querySelector('.page-running-head .page-count-label');
+
+			if (!inMainBook) {
+				romanCount++;
+				const rStr = toRoman(romanCount);
+				if (footerSpan) footerSpan.textContent = rStr;
+				if (countLabel && countLabel.textContent.includes('Page ')) {
+					countLabel.textContent = countLabel.textContent.replace(/Page\s+[ivxlcdm]+/i, `Page ${rStr}`);
+				}
+				idToPageLabel[p.id] = rStr;
+			} else {
+				arabicCount++;
+				const aStr = String(arabicCount);
+				if (footerSpan) footerSpan.textContent = aStr;
+				if (countLabel) {
+					countLabel.textContent = `Page ${aStr}`;
+				}
+				idToPageLabel[p.id] = aStr;
+			}
+		}
+
+		// Update TOC numbers to match exact paginated positions
+		document.querySelectorAll('#toc .toc-item, #toc-2 .toc-item').forEach((item) => {
+			const link = item.querySelector('a.toc-link');
+			const numSpan = item.querySelector('.toc-num');
+			if (!link || !numSpan) return;
+			const href = link.getAttribute('href');
+			if (!href || !href.startsWith('#')) return;
+			let targetId = href.slice(1);
+			if (targetId === 'bibliography') targetId = 'page-83';
+			if (idToPageLabel[targetId]) {
+				numSpan.textContent = idToPageLabel[targetId];
+			}
+		});
+	});
+}
 
 async function main() {
 	console.log('Starting Amazon KDP 7" x 10" PDF Export Pipeline...');
@@ -460,11 +1029,12 @@ async function main() {
 
 	try {
 		const page = await browser.newPage();
-		await page.setViewportSize({ width: 1000, height: 1400 });
+		await page.setViewportSize({ width: 672, height: 960 });
 
 		// 1. Export KDP 7" x 10" Black & White Interior Manuscript (No Cover)
 		console.log('1/4 Generating KDP 7" x 10" Black & White Interior Manuscript PDF...');
 		await page.goto(baseUrl, { waitUntil: 'networkidle' });
+		await page.emulateMedia({ media: 'print' });
 		await waitForAllImagesAndFonts(page);
 
 		// Hide saved status bar on page 10 & 14 for clean workbook printing
@@ -480,7 +1050,11 @@ async function main() {
 		});
 
 		const kdpInteriorTag = await page.addStyleTag({ content: KDP_BW_INTERIOR_CSS });
-		await page.waitForTimeout(400);
+		await page.waitForTimeout(300);
+
+		// Run automatic DOM pagination so zero pages overflow 960px
+		await paginateOverflowingBookPages(page);
+		await page.waitForTimeout(300);
 
 		const kdpInteriorPath = path.join(publicDir, 'decoding-the-burn-kdp-interior-7x10-bw.pdf');
 		await page.pdf({
@@ -496,7 +1070,7 @@ async function main() {
 		console.log('2/4 Generating Full Reader Edition PDF (with Front & Back Covers)...');
 		await kdpInteriorTag.evaluate((el) => el.remove());
 		const readerTag = await page.addStyleTag({ content: READER_EDITION_CSS });
-		await page.waitForTimeout(400);
+		await page.waitForTimeout(300);
 
 		const readerPdfPath = path.join(publicDir, 'decoding-the-burn-full-book.pdf');
 		await page.pdf({
@@ -525,10 +1099,7 @@ async function main() {
 		console.log('   -> Saved:', quizPdfPath);
 
 		// 4. Export Separate KDP Full-Wrap Cover Spread PDF (Back Cover + Spine + Front Cover)
-		// For 92 pages on KDP White Paper:
-		// Width = 0.125" + 7" + (92 * 0.002252" = 0.207") + 7" + 0.125" = 14.457"
-		// Height = 0.125" + 10" + 0.125" = 10.25"
-		console.log('4/4 Generating Separate Amazon KDP Full-Wrap Cover PDF (14.457" x 10.25")...');
+		console.log('4/4 Generating Separate Amazon KDP Full-Wrap Cover PDF (14.480" x 10.25")...');
 		await quizTag.evaluate((el) => el.remove());
 
 		await page.evaluate(() => {
@@ -550,13 +1121,13 @@ async function main() {
 		await page.addStyleTag({
 			content: `
 				@page {
-					size: 14.457in 10.25in;
+					size: 14.48in 10.25in;
 					margin: 0 !important;
 				}
 				html, body {
 					margin: 0 !important;
 					padding: 0 !important;
-					width: 14.457in !important;
+					width: 14.48in !important;
 					height: 10.25in !important;
 					overflow: hidden !important;
 					background: #080310 !important;
@@ -564,7 +1135,7 @@ async function main() {
 					print-color-adjust: exact !important;
 				}
 				.kdp-cover-spread {
-					width: 14.457in;
+					width: 14.48in;
 					height: 10.25in;
 					display: flex;
 					flex-direction: row;
@@ -573,7 +1144,7 @@ async function main() {
 					background: radial-gradient(circle at 50% 25%, #240b3b 0%, #150726 55%, #080310 100%);
 					color: #ffffff;
 					box-sizing: border-box;
-					padding: 0.125in; /* KDP 0.125" outer bleed */
+					padding: 0.125in;
 				}
 				.kdp-back-panel,
 				.kdp-front-panel {
@@ -592,7 +1163,7 @@ async function main() {
 					text-align: left;
 				}
 				.kdp-spine-panel {
-					width: 0.207in;
+					width: 0.23in;
 					height: 10in;
 					background: #06020c;
 					border-left: 1px solid rgba(168, 85, 247, 0.3);
@@ -635,14 +1206,14 @@ async function main() {
 		const kdpCoverPath = path.join(publicDir, 'decoding-the-burn-kdp-cover-7x10.pdf');
 		await page.pdf({
 			path: kdpCoverPath,
-			width: '14.457in',
+			width: '14.48in',
 			height: '10.25in',
 			printBackground: true,
 			margin: { top: '0in', right: '0in', bottom: '0in', left: '0in' },
 		});
 		console.log('   -> Saved:', kdpCoverPath);
 
-		// Also copy the generated PDFs into dist/ so they are immediately available if previewing dist
+		// Also copy the generated PDFs into dist/
 		for (const file of [
 			'decoding-the-burn-kdp-interior-7x10-bw.pdf',
 			'decoding-the-burn-full-book.pdf',
@@ -659,7 +1230,9 @@ async function main() {
 	}
 }
 
-main().catch((err) => {
-	console.error('KDP Export failed:', err);
-	process.exit(1);
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+	main().catch((err) => {
+		console.error('KDP Export failed:', err);
+		process.exit(1);
+	});
+}
