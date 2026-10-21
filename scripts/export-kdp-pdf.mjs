@@ -207,119 +207,89 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .part-break-banner {
-		padding: 0.35rem 0.75rem !important;
-		margin-bottom: 0.65rem !important;
-	}
-
-	html body .book-viewport .part-break-title {
-		font-size: 0.7rem !important;
-	}
-
-	html body .book-viewport .part-hero-block {
-		min-height: 105px !important;
-		padding: 0.75rem 1rem !important;
-		margin-bottom: 0.75rem !important;
-	}
-
-	html body .book-viewport .part-hero-ornament {
-		margin-bottom: 0.25rem !important;
-	}
-
-	html body .book-viewport .part-hero-num {
-		font-size: 0.68rem !important;
-		margin-bottom: 0.15rem !important;
-	}
-
-	html body .book-viewport .part-hero-title {
-		font-size: 1.28rem !important;
-		margin-bottom: 0.25rem !important;
-	}
-
-	html body .book-viewport .part-hero-desc {
-		font-size: 0.76rem !important;
-		line-height: 1.38 !important;
+		display: none !important;
 	}
 
 	html body .book-viewport .chapter-title {
-		font-size: 1.26rem !important;
-		margin-top: 0 !important;
-		margin-bottom: 0.65rem !important;
-		line-height: 1.2 !important;
+		font-size: 1.35rem !important;
+		margin-top: 0.35rem !important;
+		margin-bottom: 0.75rem !important;
+		line-height: 1.25 !important;
 	}
 
 	html body .book-viewport .chapter-content p {
-		font-size: 0.81rem !important;
-		line-height: 1.46 !important;
+		font-size: 0.96rem !important;
+		line-height: 1.52 !important;
 		margin-top: 0 !important;
-		margin-bottom: 0.56rem !important;
+		margin-bottom: 0.65rem !important;
 	}
 
 	html body .book-viewport .chapter-content.is-first-page > p:first-of-type::first-letter {
-		font-size: 2.3rem !important;
+		font-size: 2.6rem !important;
 		line-height: 0.85 !important;
 		padding-right: 0.35rem !important;
 	}
 
 	html body .book-viewport .chapter-content h3 {
-		font-size: 0.92rem !important;
-		margin-top: 0.68rem !important;
-		margin-bottom: 0.35rem !important;
+		font-size: 1.08rem !important;
+		margin-top: 0.8rem !important;
+		margin-bottom: 0.4rem !important;
 		padding-bottom: 0.2rem !important;
 	}
 
 	html body .book-viewport .chapter-content h4 {
-		font-size: 0.84rem !important;
-		margin-top: 0.55rem !important;
-		margin-bottom: 0.28rem !important;
+		font-size: 0.98rem !important;
+		margin-top: 0.65rem !important;
+		margin-bottom: 0.32rem !important;
 	}
 
 	html body .book-viewport .chapter-content ul,
 	html body .book-viewport .chapter-content ol {
-		font-size: 0.79rem !important;
-		line-height: 1.42 !important;
-		margin-top: 0.25rem !important;
-		margin-bottom: 0.55rem !important;
-		padding-left: 1.15rem !important;
+		font-size: 0.92rem !important;
+		line-height: 1.48 !important;
+		margin-top: 0.3rem !important;
+		margin-bottom: 0.65rem !important;
+		padding-left: 1.25rem !important;
 	}
 
 	html body .book-viewport .chapter-content li {
-		margin-bottom: 0.25rem !important;
+		margin-bottom: 0.28rem !important;
 	}
 
 	html body .book-viewport .book-callout {
-		padding: 0.55rem 0.75rem !important;
-		margin-top: 0.45rem !important;
-		margin-bottom: 0.65rem !important;
+		padding: 0.65rem 0.85rem !important;
+		margin-top: 0.5rem !important;
+		margin-bottom: 0.75rem !important;
 	}
 
 	html body .book-viewport .chapter-content .book-callout p {
-		font-size: 0.76rem !important;
-		line-height: 1.38 !important;
-		margin-bottom: 0.3rem !important;
+		font-size: 0.9rem !important;
+		line-height: 1.45 !important;
+		margin-bottom: 0.35rem !important;
 	}
 
 	html body .book-viewport .chapter-content .book-callout ul li {
-		font-size: 0.74rem !important;
-		line-height: 1.36 !important;
-		margin-bottom: 0.22rem !important;
+		font-size: 0.86rem !important;
+		line-height: 1.42 !important;
+		margin-bottom: 0.25rem !important;
 	}
 
 	/* Keep #expectation and #page-50 cleanly on single pages */
 	html body .book-viewport #expectation .book-callout {
-		padding: 0.45rem 0.65rem !important;
-		margin-bottom: 0.45rem !important;
+		padding: 0.48rem 0.7rem !important;
+		margin-bottom: 0.48rem !important;
 	}
 
 	html body .book-viewport #expectation .chapter-content p {
-		font-size: 0.75rem !important;
-		line-height: 1.36 !important;
-		margin-bottom: 0.4rem !important;
+		font-size: 0.82rem !important;
+		line-height: 1.4 !important;
+		margin-bottom: 0.42rem !important;
 	}
 
 	html body .book-viewport #expectation .chapter-content .book-callout ul li {
-		font-size: 0.71rem !important;
-		line-height: 1.3 !important;
-		margin-bottom: 0.16rem !important;
+		font-size: 0.78rem !important;
+		line-height: 1.34 !important;
+		margin-bottom: 0.18rem !important;
 	}
 
 	html body .book-viewport #page-50 .part-hero-block {
@@ -329,32 +299,32 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport #page-50 .chapter-content p {
-		font-size: 0.76rem !important;
-		line-height: 1.38 !important;
-		margin-bottom: 0.4rem !important;
+		font-size: 0.85rem !important;
+		line-height: 1.42 !important;
+		margin-bottom: 0.42rem !important;
 	}
 
 	html body .book-viewport #page-51 .chapter-content p,
 	html body .book-viewport section[id^="page-51"] .chapter-content p {
-		font-size: 0.75rem !important;
-		line-height: 1.35 !important;
-		margin-bottom: 0.36rem !important;
+		font-size: 0.84rem !important;
+		line-height: 1.4 !important;
+		margin-bottom: 0.38rem !important;
 	}
 
 	html body .book-viewport #page-51 .research-table th,
 	html body .book-viewport #page-51 .research-table td,
 	html body .book-viewport section[id^="page-51"] .research-table th,
 	html body .book-viewport section[id^="page-51"] .research-table td {
-		padding: 0.2rem 0.34rem !important;
-		font-size: 0.64rem !important;
-		line-height: 1.2 !important;
+		padding: 0.22rem 0.36rem !important;
+		font-size: 0.72rem !important;
+		line-height: 1.25 !important;
 	}
 
 	html body .book-viewport #page-51 .research-table td ul li,
 	html body .book-viewport section[id^="page-51"] .research-table td ul li {
-		font-size: 0.61rem !important;
-		line-height: 1.18 !important;
-		margin-bottom: 0.05rem !important;
+		font-size: 0.68rem !important;
+		line-height: 1.22 !important;
+		margin-bottom: 0.06rem !important;
 	}
 
 	html body .book-viewport .book-figure {
