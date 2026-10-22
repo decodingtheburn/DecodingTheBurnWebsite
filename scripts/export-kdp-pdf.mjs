@@ -818,13 +818,35 @@ const READER_EDITION_CSS = `
 	}
 
 	.cover-title {
-		font-size: 2.15rem !important;
-		line-height: 1.15 !important;
-		display: block !important;
-		text-align: center !important;
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: center !important;
+		justify-content: center !important;
 		width: 100% !important;
-		max-width: 5.2in !important;
 		margin: 0 auto 0.65rem !important;
+	}
+
+	.cover-title-line-1 {
+		display: block !important;
+		font-size: 2.25rem !important;
+		font-weight: 800 !important;
+		letter-spacing: 0.12em !important;
+		line-height: 1.05 !important;
+		width: 90% !important;
+		text-align: center !important;
+		margin: 0 auto !important;
+		white-space: nowrap !important;
+	}
+
+	.cover-title-line-2 {
+		display: block !important;
+		font-size: 3.25rem !important;
+		font-weight: 900 !important;
+		letter-spacing: 0.08em !important;
+		line-height: 1.02 !important;
+		width: 90% !important;
+		text-align: center !important;
+		margin: 0.15rem auto 0 !important;
 		white-space: nowrap !important;
 	}
 
@@ -1335,13 +1357,33 @@ async function main() {
 					justify-content: space-between !important;
 				}
 				.cover-title {
-					font-size: 2.15rem !important;
-					line-height: 1.15 !important;
-					display: block !important;
-					text-align: center !important;
+					display: flex !important;
+					flex-direction: column !important;
+					align-items: center !important;
+					justify-content: center !important;
 					width: 100% !important;
-					max-width: 5.2in !important;
 					margin: 0 auto 0.65rem !important;
+				}
+				.cover-title-line-1 {
+					display: block !important;
+					font-size: 2.25rem !important;
+					font-weight: 800 !important;
+					letter-spacing: 0.12em !important;
+					line-height: 1.05 !important;
+					width: 90% !important;
+					text-align: center !important;
+					margin: 0 auto !important;
+					white-space: nowrap !important;
+				}
+				.cover-title-line-2 {
+					display: block !important;
+					font-size: 3.25rem !important;
+					font-weight: 900 !important;
+					letter-spacing: 0.08em !important;
+					line-height: 1.02 !important;
+					width: 90% !important;
+					text-align: center !important;
+					margin: 0.15rem auto 0 !important;
 					white-space: nowrap !important;
 				}
 				.cover-subtitle {
