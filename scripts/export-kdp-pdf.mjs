@@ -818,8 +818,8 @@ const READER_EDITION_CSS = `
 	}
 
 	.cover-title {
-		font-size: 2.85rem !important;
-		line-height: 1.15 !important;
+		font-size: 3.15rem !important;
+		line-height: 1.12 !important;
 		display: flex !important;
 		flex-direction: column !important;
 		align-items: center !important;
@@ -830,7 +830,7 @@ const READER_EDITION_CSS = `
 	.cover-title-line-1,
 	.cover-title-line-2 {
 		display: block !important;
-		width: 70% !important;
+		width: 80% !important;
 		text-align: center !important;
 		margin: 0 auto !important;
 		white-space: nowrap !important;
@@ -1343,8 +1343,8 @@ async function main() {
 					justify-content: space-between !important;
 				}
 				.cover-title {
-					font-size: 2.85rem !important;
-					line-height: 1.15 !important;
+					font-size: 3.15rem !important;
+					line-height: 1.12 !important;
 					display: flex !important;
 					flex-direction: column !important;
 					align-items: center !important;
@@ -1354,7 +1354,7 @@ async function main() {
 				.cover-title-line-1,
 				.cover-title-line-2 {
 					display: block !important;
-					width: 70% !important;
+					width: 80% !important;
 					text-align: center !important;
 					margin: 0 auto !important;
 					white-space: nowrap !important;
