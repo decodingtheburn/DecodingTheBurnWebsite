@@ -831,6 +831,7 @@ const READER_EDITION_CSS = `
 		font-size: 2.25rem !important;
 		font-weight: 800 !important;
 		letter-spacing: 0.12em !important;
+		text-indent: 0.12em !important;
 		line-height: 1.05 !important;
 		width: 90% !important;
 		text-align: center !important;
@@ -843,6 +844,7 @@ const READER_EDITION_CSS = `
 		font-size: 3.25rem !important;
 		font-weight: 900 !important;
 		letter-spacing: 0.08em !important;
+		text-indent: 0.08em !important;
 		line-height: 1.02 !important;
 		width: 90% !important;
 		text-align: center !important;
@@ -1369,6 +1371,7 @@ async function main() {
 					font-size: 2.25rem !important;
 					font-weight: 800 !important;
 					letter-spacing: 0.12em !important;
+					text-indent: 0.12em !important;
 					line-height: 1.05 !important;
 					width: 90% !important;
 					text-align: center !important;
@@ -1380,6 +1383,7 @@ async function main() {
 					font-size: 3.25rem !important;
 					font-weight: 900 !important;
 					letter-spacing: 0.08em !important;
+					text-indent: 0.08em !important;
 					line-height: 1.02 !important;
 					width: 90% !important;
 					text-align: center !important;
