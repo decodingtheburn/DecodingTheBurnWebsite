@@ -827,26 +827,26 @@ const READER_EDITION_CSS = `
 	}
 
 	.cover-title-line-1 {
-		display: block !important;
-		font-size: 2.25rem !important;
+		display: inline-block !important;
+		font-size: 2.48rem !important;
 		font-weight: 800 !important;
-		letter-spacing: 0.12em !important;
-		text-indent: 0.12em !important;
+		letter-spacing: 0.18em !important;
+		text-indent: 0.18em !important;
 		line-height: 1.05 !important;
-		width: 90% !important;
+		width: auto !important;
 		text-align: center !important;
 		margin: 0 auto !important;
 		white-space: nowrap !important;
 	}
 
 	.cover-title-line-2 {
-		display: block !important;
-		font-size: 3.25rem !important;
+		display: inline-block !important;
+		font-size: 3.02rem !important;
 		font-weight: 900 !important;
-		letter-spacing: 0.08em !important;
-		text-indent: 0.08em !important;
+		letter-spacing: 0.06em !important;
+		text-indent: 0.06em !important;
 		line-height: 1.02 !important;
-		width: 90% !important;
+		width: auto !important;
 		text-align: center !important;
 		margin: 0.15rem auto 0 !important;
 		white-space: nowrap !important;
@@ -1367,25 +1367,25 @@ async function main() {
 					margin: 0 auto 0.65rem !important;
 				}
 				.cover-title-line-1 {
-					display: block !important;
-					font-size: 2.25rem !important;
+					display: inline-block !important;
+					font-size: 2.48rem !important;
 					font-weight: 800 !important;
-					letter-spacing: 0.12em !important;
-					text-indent: 0.12em !important;
+					letter-spacing: 0.18em !important;
+					text-indent: 0.18em !important;
 					line-height: 1.05 !important;
-					width: 90% !important;
+					width: auto !important;
 					text-align: center !important;
 					margin: 0 auto !important;
 					white-space: nowrap !important;
 				}
 				.cover-title-line-2 {
-					display: block !important;
-					font-size: 3.25rem !important;
+					display: inline-block !important;
+					font-size: 3.02rem !important;
 					font-weight: 900 !important;
-					letter-spacing: 0.08em !important;
-					text-indent: 0.08em !important;
+					letter-spacing: 0.06em !important;
+					text-indent: 0.06em !important;
 					line-height: 1.02 !important;
-					width: 90% !important;
+					width: auto !important;
 					text-align: center !important;
 					margin: 0.15rem auto 0 !important;
 					white-space: nowrap !important;
