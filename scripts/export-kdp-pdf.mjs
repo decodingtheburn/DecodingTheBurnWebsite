@@ -818,21 +818,13 @@ const READER_EDITION_CSS = `
 	}
 
 	.cover-title {
-		font-size: 3.15rem !important;
-		line-height: 1.12 !important;
-		display: flex !important;
-		flex-direction: column !important;
-		align-items: center !important;
-		justify-content: center !important;
-		width: 100% !important;
-	}
-
-	.cover-title-line-1,
-	.cover-title-line-2 {
+		font-size: 2.15rem !important;
+		line-height: 1.15 !important;
 		display: block !important;
-		width: 80% !important;
 		text-align: center !important;
-		margin: 0 auto !important;
+		width: 100% !important;
+		max-width: 5.2in !important;
+		margin: 0 auto 0.65rem !important;
 		white-space: nowrap !important;
 	}
 
@@ -1343,20 +1335,13 @@ async function main() {
 					justify-content: space-between !important;
 				}
 				.cover-title {
-					font-size: 3.15rem !important;
-					line-height: 1.12 !important;
-					display: flex !important;
-					flex-direction: column !important;
-					align-items: center !important;
-					justify-content: center !important;
-					width: 100% !important;
-				}
-				.cover-title-line-1,
-				.cover-title-line-2 {
+					font-size: 2.15rem !important;
+					line-height: 1.15 !important;
 					display: block !important;
-					width: 80% !important;
 					text-align: center !important;
-					margin: 0 auto !important;
+					width: 100% !important;
+					max-width: 5.2in !important;
+					margin: 0 auto 0.65rem !important;
 					white-space: nowrap !important;
 				}
 				.cover-subtitle {
