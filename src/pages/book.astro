@@ -2779,25 +2779,25 @@ import { SITE_TITLE } from '../consts';
 				display: inline !important;
 			}
 
-			/* Master Table of Contents: All Purple Palette, Sans-Serif, No Italics, Ultra-Compact */
+			/* Master Table of Contents: Dark Purple Palette, Full Chapter Labels, Aligned Sub-Blocks */
 			.toc-part-header {
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-size: 0.82rem !important;
 				font-weight: 800 !important;
 				text-transform: uppercase !important;
 				letter-spacing: 0.08em !important;
-				color: #3b0764 !important; /* Darker purple for Parts */
+				color: #3b0764 !important; /* Dark purple */
 				margin-bottom: 0.35rem !important;
-				border-bottom: 1.5px solid #d8b4fe !important; /* Soft purple border */
+				border-bottom: 1.5px solid #d8b4fe !important;
 				padding-bottom: 0.25rem !important;
 			}
 			.toc-part-purpose {
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-size: 0.78rem !important;
-				font-style: normal !important; /* No italics */
+				font-style: normal !important;
 				font-weight: 400 !important;
 				line-height: 1.4 !important;
-				color: #581c87 !important; /* Purple palette */
+				color: #3b0764 !important; /* Dark purple */
 				margin: 0 0 0.55rem !important;
 				text-wrap: pretty;
 			}
@@ -2805,7 +2805,7 @@ import { SITE_TITLE } from '../consts';
 				display: flex !important;
 				justify-content: space-between !important;
 				align-items: baseline !important;
-				padding: 0.24rem 0 0.08rem !important;
+				padding: 0.22rem 0 0.08rem !important;
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
 			}
 			.toc-link {
@@ -2824,80 +2824,79 @@ import { SITE_TITLE } from '../consts';
 				opacity: 0.85 !important;
 			}
 			.toc-ch-prefix {
-				font-family: 'Plus Jakarta Sans', sans-serif !important; /* Same font */
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-size: 0.88rem !important;
 				font-weight: 500 !important;
-				color: #7c3aed !important; /* Lighter purple */
+				color: #3b0764 !important; /* Dark purple */
+				min-width: 5.6rem !important; /* Fixed tab stop so title aligns */
+				display: inline-block !important;
+				flex-shrink: 0 !important;
 				letter-spacing: -0.01em !important;
 			}
 			.toc-ch-title {
-				font-family: 'Plus Jakarta Sans', sans-serif !important; /* Same font */
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-size: 0.88rem !important;
-				font-weight: 600 !important;
-				color: #7c3aed !important; /* Lighter purple */
+				font-weight: 700 !important;
+				color: #3b0764 !important; /* Dark purple, entire line in dark purple */
 			}
 			.toc-dots {
 				flex-grow: 1 !important;
-				border-bottom: 1px dotted #d8b4fe !important; /* Soft purple dotted line */
+				border-bottom: 1px dotted #c4b5fd !important; /* Soft purple dots */
 				margin: 0 0.4rem !important;
 				height: 1px !important;
 			}
 			.toc-num {
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-size: 0.78rem !important;
-				font-weight: 600 !important;
-				color: #7c3aed !important; /* Lighter purple */
+				font-weight: 700 !important;
+				color: #3b0764 !important; /* Dark purple */
 			}
 			.toc-subsections-clean {
 				list-style: none !important;
 				padding: 0 !important;
-				margin: 0.08rem 0 0.45rem 1.6rem !important; /* Cleanly indented */
+				margin: 0.12rem 0 0.55rem 5.6rem !important; /* Aligned with title above at 5.6rem */
 				border: none !important;
-				border-left: none !important; /* NO LINE ON LEFT */
+				border-left: none !important;
 			}
 			.toc-sub-row {
-				display: flex !important;
-				flex-direction: row !important;
-				align-items: baseline !important;
-				gap: 0.22rem !important; /* Tight bullet spacing */
-				margin-bottom: 0.12rem !important;
-				font-size: 0.58rem !important; /* 1.3x smaller */
-				line-height: 1.35 !important;
-				white-space: nowrap !important;
-				overflow: hidden !important;
-				text-overflow: ellipsis !important;
+				display: block !important; /* Just put block */
+				margin-bottom: 0.18rem !important;
+				font-size: 0.76rem !important; /* 1.3x bigger */
+				line-height: 1.42 !important;
+				white-space: normal !important; /* Wraps naturally as block */
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-style: normal !important;
+				color: #3b0764 !important; /* Dark purple, NO grey color */
 			}
 			.toc-sub-bullet {
-				font-family: 'Plus Jakarta Sans', sans-serif !important; /* Same font */
-				color: #581c87 !important; /* Same purple color as sub section title */
-				font-size: 0.52rem !important;
-				line-height: 1 !important;
-				flex-shrink: 0 !important;
-				user-select: none !important;
-				margin-right: 0.05rem !important;
-				font-style: normal !important; /* No italics */
+				display: none !important; /* Remove bullet */
 			}
 			.toc-sub-term {
-				font-family: 'Plus Jakarta Sans', sans-serif !important; /* Same font */
-				font-size: 0.58rem !important; /* 1.3x smaller */
-				font-weight: 600 !important;
-				color: #581c87 !important; /* Same purple color */
-				flex-shrink: 0 !important;
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-size: 0.76rem !important; /* 1.3x bigger */
+				font-weight: 700 !important;
+				color: #3b0764 !important; /* Dark purple, NO grey color */
+				font-style: normal !important;
 				display: inline !important;
-				font-style: normal !important; /* No italics */
+				margin-right: 0.28rem !important;
 			}
 			.toc-sub-desc {
-				font-family: 'Plus Jakarta Sans', sans-serif !important; /* Same font */
-				font-size: 0.56rem !important; /* 1.3x smaller */
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-size: 0.75rem !important; /* 1.3x bigger */
 				font-weight: 400 !important;
-				color: #581c87 !important; /* SAME color as sub section title */
-				font-style: normal !important; /* NO ITALICS */
-				overflow: hidden !important;
-				text-overflow: ellipsis !important;
-				white-space: nowrap !important;
+				color: #3b0764 !important; /* Dark purple, NO grey color */
+				font-style: normal !important;
 				display: inline !important;
+				white-space: normal !important;
+			}
+			@media (max-width: 640px) {
+				.toc-ch-prefix {
+					min-width: auto !important;
+					margin-right: 0.35rem !important;
+				}
+				.toc-subsections-clean {
+					margin-left: 1.2rem !important;
+				}
 			}
 </style>
 	</head>
@@ -2923,11 +2922,11 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part I: The Pain of BMS</div>
-								<a href="#page-1"><span>Ch 1: The Numbers of the Fire</span><span class="menu-num">p. 1</span></a>
-								<a href="#page-2"><span>Ch 2: Voices From the Fire</span><span class="menu-num">p. 2</span></a>
-								<a href="#page-7"><span>Ch 3: Diagnostic Questionnaire</span><span class="menu-num">p. 7</span></a>
-								<a href="#page-15"><span>Ch 4: The First Day of the Pain</span><span class="menu-num">p. 15</span></a>
-								<a href="#page-16"><span>Ch 5: Going to the Dentist</span><span class="menu-num">p. 16</span></a>
+								<a href="#page-1"><span>Chapter 1: The Numbers of the Fire</span><span class="menu-num">p. 1</span></a>
+								<a href="#page-2"><span>Chapter 2: Voices From the Fire</span><span class="menu-num">p. 2</span></a>
+								<a href="#page-7"><span>Chapter 3: Diagnostic Questionnaire</span><span class="menu-num">p. 7</span></a>
+								<a href="#page-15"><span>Chapter 4: The First Day of the Pain</span><span class="menu-num">p. 15</span></a>
+								<a href="#page-16"><span>Chapter 5: Going to the Dentist</span><span class="menu-num">p. 16</span></a>
 							</div>
 						</div>
 
@@ -2941,10 +2940,10 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part II: Dentists &amp; Doctors Don't Know</div>
-								<a href="#page-18"><span>Ch 6: Going to the Doctors</span><span class="menu-num">p. 18</span></a>
-								<a href="#page-20"><span>Ch 7: The Institutional Blind Spot</span><span class="menu-num">p. 20</span></a>
-								<a href="#page-22"><span>Ch 8: The Supplement Trial</span><span class="menu-num">p. 22</span></a>
-								<a href="#page-25"><span>Ch 9: The B12 Blind Spot</span><span class="menu-num">p. 25</span></a>
+								<a href="#page-18"><span>Chapter 6: Going to the Doctors</span><span class="menu-num">p. 18</span></a>
+								<a href="#page-20"><span>Chapter 7: The Institutional Blind Spot</span><span class="menu-num">p. 20</span></a>
+								<a href="#page-22"><span>Chapter 8: The Supplement Trial</span><span class="menu-num">p. 22</span></a>
+								<a href="#page-25"><span>Chapter 9: The B12 Blind Spot</span><span class="menu-num">p. 25</span></a>
 							</div>
 						</div>
 
@@ -2958,15 +2957,15 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part III: First Principles of Pain</div>
-								<a href="#page-28"><span>Ch 10: Identifying What Makes Pain Worse: Acid</span><span class="menu-num">p. 28</span></a>
-								<a href="#page-30b"><span>Ch 11: The Three Burn Zones &amp; Acid Sources</span><span class="menu-num">p. 31</span></a>
-								<a href="#page-31"><span>Ch 12: The Receptors of Pain in the Mouth</span><span class="menu-num">p. 33</span></a>
-								<a href="#page-33b"><span>Ch 13: When Acid Triggers Through Oral Mucosa</span><span class="menu-num">p. 36</span></a>
-								<a href="#page-41"><span>Ch 14: When Acid Triggers Through Leaking Fillings</span><span class="menu-num">p. 38</span></a>
-								<a href="#page-38"><span>Ch 15: When Acid Triggers Through Recession &amp; Tubules</span><span class="menu-num">p. 42</span></a>
-								<a href="#page-34"><span>Ch 16: Why BMS Starts at Around 50 Years Old</span><span class="menu-num">p. 45</span></a>
-								<a href="#page-37b"><span>Ch 17: Why BMS Is More Prevalent in Women</span><span class="menu-num">p. 49</span></a>
-								<a href="#page-45"><span>Ch 18: The Oral Neuropathic Circuit</span><span class="menu-num">p. 51</span></a>
+								<a href="#page-28"><span>Chapter 10: Identifying What Makes Pain Worse: Acid</span><span class="menu-num">p. 28</span></a>
+								<a href="#page-30b"><span>Chapter 11: The Three Burn Zones &amp; Acid Sources</span><span class="menu-num">p. 31</span></a>
+								<a href="#page-31"><span>Chapter 12: The Receptors of Pain in the Mouth</span><span class="menu-num">p. 33</span></a>
+								<a href="#page-33b"><span>Chapter 13: When Acid Triggers Through Oral Mucosa</span><span class="menu-num">p. 36</span></a>
+								<a href="#page-41"><span>Chapter 14: When Acid Triggers Through Leaking Fillings</span><span class="menu-num">p. 38</span></a>
+								<a href="#page-38"><span>Chapter 15: When Acid Triggers Through Recession &amp; Tubules</span><span class="menu-num">p. 42</span></a>
+								<a href="#page-34"><span>Chapter 16: Why BMS Starts at Around 50 Years Old</span><span class="menu-num">p. 45</span></a>
+								<a href="#page-37b"><span>Chapter 17: Why BMS Is More Prevalent in Women</span><span class="menu-num">p. 49</span></a>
+								<a href="#page-45"><span>Chapter 18: The Oral Neuropathic Circuit</span><span class="menu-num">p. 51</span></a>
 							</div>
 						</div>
 
@@ -2980,12 +2979,12 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Standard Medical Diagnosis</div>
-								<a href="#page-50"><span>Ch 20: The BMS Diagnostic History &amp; the 2026 Update</span><span class="menu-num">p. 56</span></a>
+								<a href="#page-50"><span>Chapter 20: The BMS Diagnostic History &amp; the 2026 Update</span><span class="menu-num">p. 56</span></a>
 								<div class="toolbar-menu-header" style="margin-top: 0.5rem;">Actionable Recovery Protocol</div>
-								<a href="#page-52"><span>Ch 20: Starving the Fire</span><span class="menu-num">p. 58</span></a>
-								<a href="#page-55"><span>Ch 21: Calculating Your Time Lag</span><span class="menu-num">p. 61</span></a>
-								<a href="#page-57"><span>Ch 22: Mechanical Shields</span><span class="menu-num">p. 63</span></a>
-								<a href="#page-60"><span>Ch 23: The Recovery Protocol</span><span class="menu-num">p. 66</span></a>
+								<a href="#page-52"><span>Chapter 20: Starving the Fire</span><span class="menu-num">p. 58</span></a>
+								<a href="#page-55"><span>Chapter 21: Calculating Your Time Lag</span><span class="menu-num">p. 61</span></a>
+								<a href="#page-57"><span>Chapter 22: Mechanical Shields</span><span class="menu-num">p. 63</span></a>
+								<a href="#page-60"><span>Chapter 23: The Recovery Protocol</span><span class="menu-num">p. 66</span></a>
 							</div>
 						</div>
 
@@ -2999,13 +2998,13 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part VI: Models for BMS &amp; Moving Forward</div>
-								<a href="#page-63"><span>Ch 24: The Diabetic Parallel</span><span class="menu-num">p. 69</span></a>
-								<a href="#page-67"><span>Ch 25: The Two Bottlenecks</span><span class="menu-num">p. 73</span></a>
-								<a href="#page-71"><span>Ch 26: Remission vs. Progression</span><span class="menu-num">p. 77</span></a>
-								<a href="#page-74"><span>Ch 27: How to Talk to Your Doctor</span><span class="menu-num">p. 80</span></a>
-								<a href="#page-77"><span>Ch 28: How to Talk to Your Dentist</span><span class="menu-num">p. 83</span></a>
-								<a href="#page-79"><span>Ch 29: Citizen Science Data</span><span class="menu-num">p. 85</span></a>
-								<a href="#page-81"><span>Ch 30: Active BMS Communities</span><span class="menu-num">p. 87</span></a>
+								<a href="#page-63"><span>Chapter 24: The Diabetic Parallel</span><span class="menu-num">p. 69</span></a>
+								<a href="#page-67"><span>Chapter 25: The Two Bottlenecks</span><span class="menu-num">p. 73</span></a>
+								<a href="#page-71"><span>Chapter 26: Remission vs. Progression</span><span class="menu-num">p. 77</span></a>
+								<a href="#page-74"><span>Chapter 27: How to Talk to Your Doctor</span><span class="menu-num">p. 80</span></a>
+								<a href="#page-77"><span>Chapter 28: How to Talk to Your Dentist</span><span class="menu-num">p. 83</span></a>
+								<a href="#page-79"><span>Chapter 29: Citizen Science Data</span><span class="menu-num">p. 85</span></a>
+								<a href="#page-81"><span>Chapter 30: Active BMS Communities</span><span class="menu-num">p. 87</span></a>
 							</div>
 						</div>
 					</div>
@@ -3258,8 +3257,8 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">Clinical reality, epidemiology, daily symptoms, the human toll, and decoupling triggers from biological&nbsp;breaches.</p>
 
 							<div class="toc-item">
-								<a href="#page-1" class="toc-link" title="Ch 1: How Many Are Affected by Burning Mouth">
-									<span class="toc-ch-prefix">Ch 1:</span>
+								<a href="#page-1" class="toc-link" title="Chapter 1: How Many Are Affected by Burning Mouth">
+									<span class="toc-ch-prefix">Chapter 1:</span>
 									<span class="toc-ch-title">How Many Are Affected by Burning Mouth</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3267,30 +3266,26 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Global Prevalence:</strong>
 									<span class="toc-sub-desc">1.7% to 3.7% worldwide (over 80 million people affected).</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">High-Risk Demographics:</strong>
 									<span class="toc-sub-desc">12% to 15% in postmenopausal women with a 3:1 to 5:1 female ratio.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Diagnostic Odyssey:</strong>
 									<span class="toc-sub-desc">Average of 3 to 5 doctors visited over 13 to 38 months.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The Invisible Illness:</strong>
 									<span class="toc-sub-desc">Normal-looking pink mucosa masking small-fiber hyperexcitability.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-2" class="toc-link" title="Ch 2: What Sufferers Experience: Symptoms and Realities">
-									<span class="toc-ch-prefix">Ch 2:</span>
+								<a href="#page-2" class="toc-link" title="Chapter 2: What Sufferers Experience: Symptoms and Realities">
+									<span class="toc-ch-prefix">Chapter 2:</span>
 									<span class="toc-ch-title">What Sufferers Experience: Symptoms &amp; Realities</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3298,30 +3293,26 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Core Symptom Triad:</strong>
 									<span class="toc-sub-desc">Bilateral burning scald, metallic dysgeusia, and dry mouth.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Primary Locations:</strong>
 									<span class="toc-sub-desc">Anterior tongue tip, lateral borders, hard palate, and lower lip.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Diurnal Crescendo:</strong>
 									<span class="toc-sub-desc">Mild upon waking; steadily peaks by late afternoon and evening.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The Eating Paradox:</strong>
 									<span class="toc-sub-desc">Temporary relief while chewing via bicarbonate saliva wash.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-3" class="toc-link" title="Ch 3: Why We Need to Do Research: The Hidden Human Toll">
-									<span class="toc-ch-prefix">Ch 3:</span>
+								<a href="#page-3" class="toc-link" title="Chapter 3: Why We Need to Do Research: The Hidden Human Toll">
+									<span class="toc-ch-prefix">Chapter 3:</span>
 									<span class="toc-ch-title">Why We Need to Do Research: The Human Toll</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3329,30 +3320,26 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Inability to Work:</strong>
 									<span class="toc-sub-desc">Loss of productive focus, chronic fatigue, and cognitive drain.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Depression &amp; Isolation:</strong>
 									<span class="toc-sub-desc">Severe anxiety when told "nothing is wrong" and avoiding dining out.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Travel Limitations:</strong>
 									<span class="toc-sub-desc">Fear of debilitating flare-ups away from home and cabin air drying.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Patient-Led Mandate:</strong>
 									<span class="toc-sub-desc">Why citizen science must bridge the gap between dental and medical silos.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-15b" class="toc-link" title="Ch 4: Finding the Real Cause of Your BMS">
-									<span class="toc-ch-prefix">Ch 4:</span>
+								<a href="#page-15b" class="toc-link" title="Chapter 4: Finding the Real Cause of Your BMS">
+									<span class="toc-ch-prefix">Chapter 4:</span>
 									<span class="toc-ch-title">Finding the Real Cause of Your BMS</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3360,17 +3347,14 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Apparent Catalysts:</strong>
 									<span class="toc-sub-desc">Post-extraction deafferentation, trauma, and sudden acid exposures.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Misattribution Trap:</strong>
 									<span class="toc-sub-desc">Why the event that unmasked the pain is not the engine keeping it alive.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The Biological Breach:</strong>
 									<span class="toc-sub-desc">Decoupling triggers from bare tubules, aging crowns, and thin saliva.</span>
 								</li>
@@ -3398,8 +3382,8 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">A software engineer's chronological journey from sudden 10/10 agony to systematic investigation and permanent 0/10&nbsp;remission.</p>
 
 							<div class="toc-item">
-								<a href="#page-15" class="toc-link" title="Ch 5: How It Started for Me">
-									<span class="toc-ch-prefix">Ch 5:</span>
+								<a href="#page-15" class="toc-link" title="Chapter 5: How It Started for Me">
+									<span class="toc-ch-prefix">Chapter 5:</span>
 									<span class="toc-ch-title">How It Started for Me</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3407,20 +3391,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The Sudden Scald:</strong>
 									<span class="toc-sub-desc">Waking to a 10/10 burn feeling like boiling soup in the mouth.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Engineer's Mindset:</strong>
 									<span class="toc-sub-desc">Circuits do not fire without input; refusing "idiopathic".</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-16" class="toc-link" title="Ch 6: Going to the Dentist">
-									<span class="toc-ch-prefix">Ch 6:</span>
+								<a href="#page-16" class="toc-link" title="Chapter 6: Going to the Dentist">
+									<span class="toc-ch-prefix">Chapter 6:</span>
 									<span class="toc-ch-title">Going to the Dentist</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3428,20 +3410,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The Clean Checkup:</strong>
 									<span class="toc-sub-desc">Pink gums, intact teeth, and clean bitewings while in severe agony.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The 2D Blind Spot:</strong>
 									<span class="toc-sub-desc">Why X-rays cannot see through crowns or detect 2-micron gaps.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-18" class="toc-link" title="Ch 7: Going to the Doctors">
-									<span class="toc-ch-prefix">Ch 7:</span>
+								<a href="#page-18" class="toc-link" title="Chapter 7: Going to the Doctors">
+									<span class="toc-ch-prefix">Chapter 7:</span>
 									<span class="toc-ch-title">Going to the Doctors</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3449,20 +3429,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Clean Blood Panels:</strong>
 									<span class="toc-sub-desc">Normal B12, ferritin, folate, thyroid, and metabolic profiles.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Prescription Trap:</strong>
 									<span class="toc-sub-desc">Refusing brain-dullers (gabapentin/clonazepam) that muffle symptoms.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-22" class="toc-link" title="Ch 8: Trying Supplements">
-									<span class="toc-ch-prefix">Ch 8:</span>
+								<a href="#page-22" class="toc-link" title="Chapter 8: Trying Supplements">
+									<span class="toc-ch-prefix">Chapter 8:</span>
 									<span class="toc-ch-title">Trying Supplements</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3470,20 +3448,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Exhaustive Trial:</strong>
 									<span class="toc-sub-desc">Testing ALA, mega B-complex, zinc, magnesium, and rinses.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Physical Reality:</strong>
 									<span class="toc-sub-desc">Biochemical supplements cannot patch an active mechanical leak.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-20" class="toc-link" title="Ch 9: The Curricular Void Between Specialties">
-									<span class="toc-ch-prefix">Ch 9:</span>
+								<a href="#page-20" class="toc-link" title="Chapter 9: The Curricular Void Between Specialties">
+									<span class="toc-ch-prefix">Chapter 9:</span>
 									<span class="toc-ch-title">The Curricular Void Between Specialties</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3491,20 +3467,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The Medical Split:</strong>
 									<span class="toc-sub-desc">Dentistry stops at decay; neurology stops at brain receptors.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The Unmapped Void:</strong>
 									<span class="toc-sub-desc">Where 15-year cement wear meets acid and trigeminal convergence.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-25" class="toc-link" title="Ch 10: Trying the Carnivore Diet">
-									<span class="toc-ch-prefix">Ch 10:</span>
+								<a href="#page-25" class="toc-link" title="Chapter 10: Trying the Carnivore Diet">
+									<span class="toc-ch-prefix">Chapter 10:</span>
 									<span class="toc-ch-title">Trying the Carnivore Diet</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3512,20 +3486,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Elimination Test:</strong>
 									<span class="toc-sub-desc">Zero plants, carbs, or acids: pain collapses from 10 to 2 in 72 hours.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The Lingering Two:</strong>
 									<span class="toc-sub-desc">Diet starved the chemical fire, but a physical leak remained.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-28" class="toc-link" title="Ch 11: My Crown: Pinpointing and Sealing the Hardware Leak">
-									<span class="toc-ch-prefix">Ch 11:</span>
+								<a href="#page-28" class="toc-link" title="Chapter 11: My Crown: Pinpointing and Sealing the Hardware Leak">
+									<span class="toc-ch-prefix">Chapter 11:</span>
 									<span class="toc-ch-title">My Crown: Pinpointing and Sealing the Leak</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3533,17 +3505,14 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Isolating the Tooth:</strong>
 									<span class="toc-sub-desc">Telling the dentist: "I am sensitive and painful on acid only."</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Physical Discovery:</strong>
 									<span class="toc-sub-desc">Popping the crown to uncover chalky cement and open tubules.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">0/10 Remission:</strong>
 									<span class="toc-sub-desc">Resealing the dentin: the fire stops permanently and durably.</span>
 								</li>
@@ -3571,8 +3540,8 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">Biophysics, receptor physiology, exposed dentinal tubule conduits, and trigeminal convergence in the&nbsp;brainstem.</p>
 
 							<div class="toc-item">
-								<a href="#page-30b" class="toc-link" title="Ch 12: The Three Burn Zones and Where Acid Enters">
-									<span class="toc-ch-prefix">Ch 12:</span>
+								<a href="#page-30b" class="toc-link" title="Chapter 12: The Three Burn Zones and Where Acid Enters">
+									<span class="toc-ch-prefix">Chapter 12:</span>
 									<span class="toc-ch-title">The Three Burn Zones &amp; Where Acid Enters</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3580,20 +3549,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Mucosal Absorption:</strong>
 									<span class="toc-sub-desc">Direct chemical contact on dorsal tongue, palate, and labial tissue.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Hardware &amp; Roots:</strong>
 									<span class="toc-sub-desc">Leaking crown margins and bare dentin exposed by gum recession.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-31" class="toc-link" title="Ch 13: The Oral Pain Receptors: ASICs, TRPV1, and TRPA1">
-									<span class="toc-ch-prefix">Ch 13:</span>
+								<a href="#page-31" class="toc-link" title="Chapter 13: The Oral Pain Receptors: ASICs, TRPV1, and TRPA1">
+									<span class="toc-ch-prefix">Chapter 13:</span>
 									<span class="toc-ch-title">The Oral Pain Receptors: ASICs &amp; TRPV1</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3601,20 +3568,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">ASIC Channels:</strong>
 									<span class="toc-sub-desc">Oral acid sensors that stay locked open under continuous acidity.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">TRPV1 Channels:</strong>
 									<span class="toc-sub-desc">Heat-sensing receptors whose firing threshold drops in low pH.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-33b" class="toc-link" title="Ch 14: When Acid Triggers Through the Oral Mucosa">
-									<span class="toc-ch-prefix">Ch 14:</span>
+								<a href="#page-33b" class="toc-link" title="Chapter 14: When Acid Triggers Through the Oral Mucosa">
+									<span class="toc-ch-prefix">Chapter 14:</span>
 									<span class="toc-ch-title">When Acid Triggers Through the Mucosa</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3622,15 +3587,14 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Mucosal Barrier:</strong>
 									<span class="toc-sub-desc">Thinning mucin barriers and low saliva allowing direct acid entry.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-41" class="toc-link" title="Ch 15: When Acid Triggers Through Leaking Restorations">
-									<span class="toc-ch-prefix">Ch 15:</span>
+								<a href="#page-41" class="toc-link" title="Chapter 15: When Acid Triggers Through Leaking Restorations">
+									<span class="toc-ch-prefix">Chapter 15:</span>
 									<span class="toc-ch-title">When Acid Triggers Through Restorations</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3638,20 +3602,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Material Lifespan:</strong>
 									<span class="toc-sub-desc">10-to-15-year hydrolytic resin cement breakdown under chewing.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Capillary Suction:</strong>
 									<span class="toc-sub-desc">Microscopic fluid dynamics drawing acid into pulpal C-fibers.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-38" class="toc-link" title="Ch 16: When Acid Triggers Through Gum Recession &amp; Exposed Tubules">
-									<span class="toc-ch-prefix">Ch 16:</span>
+								<a href="#page-38" class="toc-link" title="Chapter 16: When Acid Triggers Through Gum Recession &amp; Exposed Tubules">
+									<span class="toc-ch-prefix">Chapter 16:</span>
 									<span class="toc-ch-title">When Acid Triggers Through Exposed Tubules</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3659,20 +3621,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Bare Dentin Pipes:</strong>
 									<span class="toc-sub-desc">20,000 to 45,000 tubules/mm² dissolving rapidly at pH 6.2 to 6.7.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Cervical Wear:</strong>
 									<span class="toc-sub-desc">Mechanical tooth flexure micro-chipping enamel collars at the gum.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-45" class="toc-link" title="Ch 17: The Oral Neuropathic Circuit: Brainstem Convergence">
-									<span class="toc-ch-prefix">Ch 17:</span>
+								<a href="#page-45" class="toc-link" title="Chapter 17: The Oral Neuropathic Circuit: Brainstem Convergence">
+									<span class="toc-ch-prefix">Chapter 17:</span>
 									<span class="toc-ch-title">The Oral Neuropathic Circuit</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3680,12 +3640,10 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Subnucleus Caudalis:</strong>
 									<span class="toc-sub-desc">Pulpal and lingual fibers converging onto shared WDR neurons.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Volume Transmission:</strong>
 									<span class="toc-sub-desc">Astrocytic pump exhaustion spilling neurotransmitters onto tongue.</span>
 								</li>
@@ -3697,8 +3655,8 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">From psychiatric stigma to histological proof, the 2020 ICOP consensus, and the landmark 2026 diagnostic algorithm&nbsp;validation.</p>
 
 							<div class="toc-item">
-								<a href="#page-50" class="toc-link" title="Ch 18: The BMS Diagnostic History and the 2026 Update">
-									<span class="toc-ch-prefix">Ch 18:</span>
+								<a href="#page-50" class="toc-link" title="Chapter 18: The BMS Diagnostic History and the 2026 Update">
+									<span class="toc-ch-prefix">Chapter 18:</span>
 									<span class="toc-ch-title">The BMS Diagnostic History &amp; 2026 Update</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3706,17 +3664,14 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Histological Proof:</strong>
 									<span class="toc-sub-desc">Lauria et al. (PAIN 2005) proving small-fiber trigeminal neuropathy.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">2020 ICOP (Code 6.1):</strong>
 									<span class="toc-sub-desc">First international formalization of Burning Mouth criteria.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">2026 ICOP-AL Tree:</strong>
 									<span class="toc-sub-desc">Shakeri et al. (PAIN 2026) flowchart validation and its Step 1 blind spot.</span>
 								</li>
@@ -3744,8 +3699,8 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">Practical citizen science protocols: triage, testing triggers, starving the fire, measuring latency, applying barrier shields, and managing&nbsp;flares.</p>
 
 							<div class="toc-item">
-								<a href="#page-7" class="toc-link" title="Ch 19: The BMS Self-Assessment Quiz &amp; Symptom Mapping">
-									<span class="toc-ch-prefix">Ch 19:</span>
+								<a href="#page-7" class="toc-link" title="Chapter 19: The BMS Self-Assessment Quiz &amp; Symptom Mapping">
+									<span class="toc-ch-prefix">Chapter 19:</span>
 									<span class="toc-ch-title">The BMS Self-Assessment &amp; Symptom Mapping</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3753,20 +3708,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Red Flag Screen:</strong>
 									<span class="toc-sub-desc">Ruling out unilateral pain, non-healing sores, and dysphagia.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Pain Baseline &amp; Map:</strong>
 									<span class="toc-sub-desc">Documenting 0-10 severity, circadian curves, and charting affected zones.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-52" class="toc-link" title="Ch 20: Identifying What Makes It Better and Worse">
-									<span class="toc-ch-prefix">Ch 20:</span>
+								<a href="#page-52" class="toc-link" title="Chapter 20: Identifying What Makes It Better and Worse">
+									<span class="toc-ch-prefix">Chapter 20:</span>
 									<span class="toc-ch-title">Identifying What Makes It Better &amp; Worse</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3774,20 +3727,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Better vs Worse:</strong>
 									<span class="toc-sub-desc">Low-pH drinks, SLS pastes, bicarbonate swishes, and chewing relief.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Saliva pH Strips:</strong>
 									<span class="toc-sub-desc">Using at-home test strips to measure resting vs stimulated buffer power.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-55" class="toc-link" title="Ch 21: Starving the Fire: Elimination Trials">
-									<span class="toc-ch-prefix">Ch 21:</span>
+								<a href="#page-55" class="toc-link" title="Chapter 21: Starving the Fire: Elimination Trials">
+									<span class="toc-ch-prefix">Chapter 21:</span>
 									<span class="toc-ch-title">Starving the Fire: Elimination Trials</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3795,20 +3746,18 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Low-Acid Baseline:</strong>
 									<span class="toc-sub-desc">14-day protocol eliminating citrus, vinegar, sodas, and sauces.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">5-Day Carnivore:</strong>
 									<span class="toc-sub-desc">Halting bacterial lactic acid by cutting fermentable carbs in 72 hours.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-57" class="toc-link" title="Ch 22: Calculating Your Time Lag: Latency Delta">
-									<span class="toc-ch-prefix">Ch 22:</span>
+								<a href="#page-57" class="toc-link" title="Chapter 22: Calculating Your Time Lag: Latency Delta">
+									<span class="toc-ch-prefix">Chapter 22:</span>
 									<span class="toc-ch-title">Calculating Your Time Lag: Latency Delta</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3816,15 +3765,14 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The Latency Window:</strong>
 									<span class="toc-sub-desc">Tracking 30-to-90-minute delays between ingestion and peak burn.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-60" class="toc-link" title="Ch 23: Mechanical Shields &amp; Tubule Sealers">
-									<span class="toc-ch-prefix">Ch 23:</span>
+								<a href="#page-60" class="toc-link" title="Chapter 23: Mechanical Shields &amp; Tubule Sealers">
+									<span class="toc-ch-prefix">Chapter 23:</span>
 									<span class="toc-ch-title">Mechanical Shields &amp; Tubule Sealers</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3832,15 +3780,14 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Physical Barriers:</strong>
 									<span class="toc-sub-desc">Topical protective gels, night guards, and airway mouth taping.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-62" class="toc-link" title="Ch 24: How to Handle Flares: The 6-Day Reset Protocol">
-									<span class="toc-ch-prefix">Ch 24:</span>
+								<a href="#page-62" class="toc-link" title="Chapter 24: How to Handle Flares: The 6-Day Reset Protocol">
+									<span class="toc-ch-prefix">Chapter 24:</span>
 									<span class="toc-ch-title">How to Handle Flares: The 6-Day Reset</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3848,12 +3795,10 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Emergency Quieting:</strong>
 									<span class="toc-sub-desc">Days 1 to 3: zero acid, baking soda rinses, and ultra-soft brushing.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Neurological Settling:</strong>
 									<span class="toc-sub-desc">Days 4 to 6: ASIC channels close and brainstem glutamate clears.</span>
 								</li>
@@ -3865,8 +3810,8 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">The diabetic parallel, clinical bottlenecks, collaborative provider dialogue, top FAQs, and citizen science&nbsp;advancement.</p>
 
 							<div class="toc-item">
-								<a href="#page-63" class="toc-link" title="Ch 25: The Diabetic Parallel: How Neuropathies Heal">
-									<span class="toc-ch-prefix">Ch 25:</span>
+								<a href="#page-63" class="toc-link" title="Chapter 25: The Diabetic Parallel: How Neuropathies Heal">
+									<span class="toc-ch-prefix">Chapter 25:</span>
 									<span class="toc-ch-title">The Diabetic Parallel: How Nerves Heal</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3874,15 +3819,14 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Small-Fiber Dynamics:</strong>
 									<span class="toc-sub-desc">Glucose control vs acid control; 1 to 2 mm/month nerve regeneration.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-67" class="toc-link" title="Ch 26: The Two Bottlenecks: Sizing &amp; Insurance">
-									<span class="toc-ch-prefix">Ch 26:</span>
+								<a href="#page-67" class="toc-link" title="Chapter 26: The Two Bottlenecks: Sizing &amp; Insurance">
+									<span class="toc-ch-prefix">Chapter 26:</span>
 									<span class="toc-ch-title">The Two Bottlenecks: Sizing &amp; Insurance</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3890,15 +3834,14 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Structural Roadblocks:</strong>
 									<span class="toc-sub-desc">15-minute chair limits and zero insurance billing codes for tubule seals.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-71" class="toc-link" title="Ch 27: Remission vs. Progression: Preventing Relapse">
-									<span class="toc-ch-prefix">Ch 27:</span>
+								<a href="#page-71" class="toc-link" title="Chapter 27: Remission vs. Progression: Preventing Relapse">
+									<span class="toc-ch-prefix">Chapter 27:</span>
 									<span class="toc-ch-title">Remission vs. Progression</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3906,8 +3849,8 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-74" class="toc-link" title="Ch 28: How to Talk to Your Doctor: Biochemical Diplomacy">
-									<span class="toc-ch-prefix">Ch 28:</span>
+								<a href="#page-74" class="toc-link" title="Chapter 28: How to Talk to Your Doctor: Biochemical Diplomacy">
+									<span class="toc-ch-prefix">Chapter 28:</span>
 									<span class="toc-ch-title">How to Talk to Your Doctor</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3915,8 +3858,8 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-77" class="toc-link" title="Ch 29: How to Talk to Your Dentist: Non-Fault Maintenance">
-									<span class="toc-ch-prefix">Ch 29:</span>
+								<a href="#page-77" class="toc-link" title="Chapter 29: How to Talk to Your Dentist: Non-Fault Maintenance">
+									<span class="toc-ch-prefix">Chapter 29:</span>
 									<span class="toc-ch-title">How to Talk to Your Dentist</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3924,15 +3867,14 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Non-Fault Framing:</strong>
 									<span class="toc-sub-desc">Opening with 10-15 year material lifespans to disarm liability fears.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-78b" class="toc-link" title="Ch 30: The Top Questions &amp; Answers on BMS (FAQ)">
-									<span class="toc-ch-prefix">Ch 30:</span>
+								<a href="#page-78b" class="toc-link" title="Chapter 30: The Top Questions &amp; Answers on BMS (FAQ)">
+									<span class="toc-ch-prefix">Chapter 30:</span>
 									<span class="toc-ch-title">Top Questions &amp; Answers on BMS (FAQ)</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3940,25 +3882,22 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">The 50-Year Curve:</strong>
 									<span class="toc-sub-desc">Aging restorations converging with declining postmenopausal saliva.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Gender Disparity:</strong>
 									<span class="toc-sub-desc">Perimenopausal estrogen shifts and non-hormonal triggers in men.</span>
 								</li>
 								<li class="toc-sub-row">
-									<span class="toc-sub-bullet">&bull;</span>
 									<strong class="toc-sub-term">Extraction &amp; Referral:</strong>
 									<span class="toc-sub-desc">Why pulling teeth unshields roots and how molars refer to the tongue.</span>
 								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-79" class="toc-link" title="Ch 31: Citizen Science Data &amp; Patient Communities">
-									<span class="toc-ch-prefix">Ch 31:</span>
+								<a href="#page-79" class="toc-link" title="Chapter 31: Citizen Science Data &amp; Patient Communities">
+									<span class="toc-ch-prefix">Chapter 31:</span>
 									<span class="toc-ch-title">Citizen Science Data &amp; Communities</span>
 								</a>
 								<span class="toc-dots"></span>
