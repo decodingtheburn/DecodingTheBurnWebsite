@@ -2811,7 +2811,7 @@ import { SITE_TITLE } from '../consts';
 			.toc-link {
 				display: inline-flex !important;
 				align-items: baseline !important;
-				gap: 0.35rem !important;
+				gap: 0.25rem !important; /* Tight spacing between chapter number and title */
 				text-decoration: none !important;
 				white-space: nowrap !important;
 				overflow: hidden !important;
@@ -2828,16 +2828,16 @@ import { SITE_TITLE } from '../consts';
 				font-size: 0.88rem !important;
 				font-weight: 500 !important;
 				color: #3b0764 !important; /* Dark purple */
-				min-width: 5.6rem !important; /* Fixed tab stop so title aligns */
-				display: inline-block !important;
+				display: inline !important;
 				flex-shrink: 0 !important;
 				letter-spacing: -0.01em !important;
+				margin-right: 0.2rem !important;
 			}
 			.toc-ch-title {
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-size: 0.88rem !important;
 				font-weight: 700 !important;
-				color: #3b0764 !important; /* Dark purple, entire line in dark purple */
+				color: #3b0764 !important; /* Dark purple, whole line in color */
 			}
 			.toc-dots {
 				flex-grow: 1 !important;
@@ -2854,7 +2854,7 @@ import { SITE_TITLE } from '../consts';
 			.toc-subsections-clean {
 				list-style: none !important;
 				padding: 0 !important;
-				margin: 0.12rem 0 0.55rem 5.6rem !important; /* Aligned with title above at 5.6rem */
+				margin: 0.15rem 0 0.55rem 1.5rem !important; /* Clean indent under chapter */
 				border: none !important;
 				border-left: none !important;
 			}
@@ -2866,7 +2866,7 @@ import { SITE_TITLE } from '../consts';
 				white-space: normal !important; /* Wraps naturally as block */
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-style: normal !important;
-				color: #3b0764 !important; /* Dark purple, NO grey color */
+				color: #0f172a !important; /* Solid black */
 			}
 			.toc-sub-bullet {
 				display: none !important; /* Remove bullet */
@@ -2875,7 +2875,7 @@ import { SITE_TITLE } from '../consts';
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-size: 0.76rem !important; /* 1.3x bigger */
 				font-weight: 700 !important;
-				color: #3b0764 !important; /* Dark purple, NO grey color */
+				color: #0f172a !important; /* Solid black */
 				font-style: normal !important;
 				display: inline !important;
 				margin-right: 0.28rem !important;
@@ -2884,18 +2884,14 @@ import { SITE_TITLE } from '../consts';
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-size: 0.75rem !important; /* 1.3x bigger */
 				font-weight: 400 !important;
-				color: #3b0764 !important; /* Dark purple, NO grey color */
+				color: #0f172a !important; /* Solid black */
 				font-style: normal !important;
 				display: inline !important;
 				white-space: normal !important;
 			}
 			@media (max-width: 640px) {
-				.toc-ch-prefix {
-					min-width: auto !important;
-					margin-right: 0.35rem !important;
-				}
 				.toc-subsections-clean {
-					margin-left: 1.2rem !important;
+					margin-left: 1rem !important;
 				}
 			}
 </style>
