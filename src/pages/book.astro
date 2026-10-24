@@ -2614,7 +2614,39 @@ import { SITE_TITLE } from '../consts';
 				cursor: pointer;
 			}
 
-		</style>
+		
+			/* Expanded Subsections in Table of Contents */
+			.toc-subsections-list {
+				list-style: none;
+				padding-left: 0.85rem;
+				margin: 0.35rem 0 0.75rem 0.5rem;
+				border-left: 2px solid #e9d5ff;
+			}
+			.toc-subsection-item {
+				margin-bottom: 0.4rem;
+				position: relative;
+			}
+			.toc-subsection-item:last-child {
+				margin-bottom: 0.15rem;
+			}
+			.toc-subsection-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.76rem;
+				font-weight: 700;
+				color: #5b21b6;
+				display: block;
+				line-height: 1.3;
+			}
+			.toc-subsection-desc {
+				font-family: 'Lora', Georgia, serif;
+				font-size: 0.73rem;
+				color: #475569;
+				display: block;
+				line-height: 1.35;
+				margin-top: 0.05rem;
+				text-wrap: pretty;
+			}
+</style>
 	</head>
 	<body>
 		<Header />
@@ -2905,26 +2937,27 @@ import { SITE_TITLE } from '../consts';
 			</section>
 
 			<!-- TABLE OF CONTENTS: PAGE 1 (Parts I - III) -->
+						<!-- Table of Contents (Page 1 of 4: Preliminaries & Part I) -->
 			<section class="book-page" id="toc">
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Contents &bull; Volume I</span>
+						<span class="page-count-label">Contents &bull; Part I</span>
 					</div>
 
-					<h2 style="font-family: 'Cinzel', serif; font-size: 2.15rem; font-weight: 700; text-align: center; margin-top: 1.25rem; margin-bottom: 0.5rem; color: #0f172a;">
+					<h2 style="font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; text-align: center; margin-top: 0.75rem; margin-bottom: 0.35rem; color: #0f172a;">
 						Table of Contents
 					</h2>
-					<p style="text-align: center; font-size: 0.96rem; color: #64748b; font-style: italic; margin-bottom: 2rem; max-width: 680px; margin-left: auto; margin-right: auto; text-wrap: balance;">
+					<p style="text-align: center; font-size: 0.88rem; color: #64748b; font-style: italic; margin-bottom: 1.25rem; max-width: 680px; margin-left: auto; margin-right: auto; text-wrap: balance;">
 						A first principles roadmap from biochemical discovery to lasting oral&nbsp;remission.
 					</p>
 
-					<div class="toc-centered-container">
-						<div class="toc-group">
+					<div class="toc-centered-container" style="margin-top: 0.5rem;">
+						<div class="toc-group" style="margin-bottom: 1.15rem;">
 							<div class="toc-part-header">Preliminary Materials</div>
 
 							<div class="toc-item">
-								<a href="#disclaimer" class="toc-link" title="Medical & Educational Disclaimer">Medical &amp; Educational Disclaimer</a>
+								<a href="#disclaimer" class="toc-link" title="Medical &amp; Educational Disclaimer">Medical &amp; Educational Disclaimer</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">iii</span>
 							</div>
@@ -2954,258 +2987,556 @@ import { SITE_TITLE } from '../consts';
 							</div>
 						</div>
 
-						<div class="toc-group">
-							<div class="toc-part-header">Part I: The Pain of BMS</div>
-							<p class="toc-part-purpose">Immediate emotional validation. Captures the scalding reality, the isolation, and the daily suffering of living with invisible&nbsp;pain.</p>
+						<div class="toc-group" style="margin-bottom: 0.5rem;">
+							<div class="toc-part-header">Part I: Understanding Burning Mouth Syndrome</div>
+							<p class="toc-part-purpose">Captures the clinical reality, epidemiology, daily symptoms, and the crucial distinction between triggers and biological&nbsp;breaches.</p>
 
 							<div class="toc-item">
-								<a href="#page-1" class="toc-link" title="Chapter 1: The Numbers of the Fire">Chapter 1: The Numbers of the Fire</a>
+								<a href="#page-1" class="toc-link" title="Chapter 1: How Many Are Affected by Burning Mouth">Chapter 1: How Many Are Affected by Burning Mouth</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">1</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Global Prevalence Numbers</span>
+									<span class="toc-subsection-desc">1.7% to 3.7% worldwide (over 80M people), climbing to 7.7% in clinical cohorts.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">High-Risk Demographics</span>
+									<span class="toc-subsection-desc">Rates jump to 12% to 15% in postmenopausal women with a 3:1 to 5:1 female ratio.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Diagnostic Odyssey</span>
+									<span class="toc-subsection-desc">Patients average 3 to 5 doctors over 13 to 38 months before receiving a diagnosis.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Invisible Illness</span>
+									<span class="toc-subsection-desc">Healthy-looking pink mucosa masks severe small-fiber hyperexcitability.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-2" class="toc-link" title="Chapter 2: Voices From the Fire">Chapter 2: Voices From the Fire</a>
+								<a href="#page-2" class="toc-link" title="Chapter 2: What Sufferers Experience: Symptoms and Realities">Chapter 2: What Sufferers Experience: Symptoms &amp; Realities</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">2</span>
+								<span class="toc-num">11</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Core Symptom Triad</span>
+									<span class="toc-subsection-desc">Bilateral burning scald, altered taste (dysgeusia), and subjective dry mouth.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Primary Anatomical Locations</span>
+									<span class="toc-subsection-desc">Mapping the burn across the tongue tip, lateral borders, palate, and lower lip.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Diurnal Crescendo</span>
+									<span class="toc-subsection-desc">Pain is minimal upon waking, steadily climbing to peak agony by evening.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Eating Paradox</span>
+									<span class="toc-subsection-desc">Chewing temporarily soothes the scald via stimulated bicarbonate saliva wash.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-7" class="toc-link" title="Chapter 3: The BMS Diagnostic Questionnaire">Chapter 3: The BMS Diagnostic Questionnaire</a>
+								<a href="#page-7" class="toc-link" title="Chapter 3: The BMS Self-Assessment Quiz">Chapter 3: The BMS Self-Assessment Quiz</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">7</span>
+								<span class="toc-num">13</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Red Flags Safety Check</span>
+									<span class="toc-subsection-desc">Ruling out unilateral pain, non-healing ulcers, numbness, and dysphagia.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Visual Inspection &amp; Daily Metrics</span>
+									<span class="toc-subsection-desc">Documenting lesion-free pink tissue, 0-10 pain baseline, and meal responses.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-15" class="toc-link" title="Chapter 4: The First Day of the Pain">Chapter 4: The First Day of the Pain</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">15</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-15b" class="toc-link" title="Chapter 5: The Start of Your BMS: Trigger Events vs. The Real Cause">Chapter 5: The Start of Your BMS</a>
+								<a href="#page-15b" class="toc-link" title="Chapter 4: Finding the Real Cause of Your BMS">Chapter 4: Finding the Real Cause of Your BMS</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">16</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Common Apparent Catalysts</span>
+									<span class="toc-subsection-desc">Post-extraction deafferentation, accidental trauma, and sudden acid exposures.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Misattribution Trap</span>
+									<span class="toc-subsection-desc">Why the event that unmasked the pain is rarely the biological engine keeping it alive.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The True Biological Breach</span>
+									<span class="toc-subsection-desc">Decoupling triggers from bare dentin tubules, aging crowns, and thin saliva.</span>
+								</li>
+							</ul>
 						</div>
+					</div>
+				</div>
 
+				<div class="page-number-footer">
+					<span>Contents &bull; 1</span>
+				</div>
+			</section>
+
+			<!-- Table of Contents (Page 2 of 4: Part II My Story) -->
+			<section class="book-page" id="toc-2">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="page-count-label">Contents &bull; Part II</span>
+					</div>
+
+					<div class="toc-centered-container" style="margin-top: 1rem;">
 						<div class="toc-group">
-							<div class="toc-part-header">Part II: The Pain of Realizing Dentists and Doctors Don't Know</div>
-							<p class="toc-part-purpose">Exonerating the patient: why disconnected healthcare silos, standard supplements, and routine blood panels miss the physical realities of the&nbsp;circuit.</p>
+							<div class="toc-part-header">Part II: My Story (An N=1 Investigation)</div>
+							<p class="toc-part-purpose">A software engineer's chronological journey from sudden 10/10 agony to systematic investigation and permanent 0/10&nbsp;remission.</p>
+
+							<div class="toc-item">
+								<a href="#page-15" class="toc-link" title="Chapter 5: How It Started for Me">Chapter 5: How It Started for Me</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">17</span>
+							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Sudden Scald</span>
+									<span class="toc-subsection-desc">Waking to a blinding 10/10 burn feeling like boiling soup had scalded the mouth.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Engineer's Mindset</span>
+									<span class="toc-subsection-desc">Circuits do not fire in a vacuum; refusing the unhelpful "idiopathic" label.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
 								<a href="#page-16" class="toc-link" title="Chapter 6: Going to the Dentist">Chapter 6: Going to the Dentist</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">18</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Spotless Clean Bill of Health</span>
+									<span class="toc-subsection-desc">Pink gums, intact teeth, and clean bitewings while in blinding pain.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The 2D Radiographic Blind Spot</span>
+									<span class="toc-subsection-desc">Why X-rays cannot see through crowns and explorers cannot feel 2-micron gaps.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
 								<a href="#page-18" class="toc-link" title="Chapter 7: Going to the Doctors">Chapter 7: Going to the Doctors</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">20</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Spotless Blood Work Panels</span>
+									<span class="toc-subsection-desc">Normal B12, ferritin, folate, thyroid, and complete metabolic profiles.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Neurologist's Prescription Trap</span>
+									<span class="toc-subsection-desc">Refusing brain-dullers (gabapentin/clonazepam) that muffle pain without fixing leaks.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-20" class="toc-link" title="Chapter 8: The Institutional Blind Spot">Chapter 8: The Institutional Blind Spot</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">22</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-22" class="toc-link" title="Chapter 9: The Supplement Trial">Chapter 9: The Supplement Trial</a>
+								<a href="#page-22" class="toc-link" title="Chapter 8: Trying Supplements">Chapter 8: Trying Supplements</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">24</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Exhaustive Trial</span>
+									<span class="toc-subsection-desc">Testing alpha-lipoic acid, mega-dose B-complex, zinc, magnesium, and oral rinses.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Physical Reality</span>
+									<span class="toc-subsection-desc">Proving that biochemical supplements cannot patch an active mechanical leak.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-25" class="toc-link" title="Chapter 10: The B12 Blind Spot">Chapter 10: The B12 Blind Spot</a>
+								<a href="#page-20" class="toc-link" title="Chapter 9: The Curricular Void Between Specialties">Chapter 9: The Curricular Void Between Specialties</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">22</span>
+							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Institutional Split</span>
+									<span class="toc-subsection-desc">Dentistry stops at gross decay; neurology stops at brainstem receptors.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Unmapped Middle</span>
+									<span class="toc-subsection-desc">Where 15-year cement wear meets oral acid and trigeminal convergence.</span>
+								</li>
+							</ul>
+
+							<div class="toc-item">
+								<a href="#page-25" class="toc-link" title="Chapter 10: Trying the Carnivore Diet">Chapter 10: Trying the Carnivore Diet</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">27</span>
 							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>i</span>
-				</div>
-			</section>
-
-			<!-- TABLE OF CONTENTS: PAGE 2 (Parts III - V & Appendix) -->
-			<section class="book-page" id="toc-2">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Contents &bull; Continued</span>
-					</div>
-
-					<div class="toc-centered-container" style="margin-top: 1.25rem;">
-						<div class="toc-group">
-							<div class="toc-part-header">Part III: The First Principles of Mouth Burning Pain</div>
-							<p class="toc-part-purpose">The biophysical turning point: community trigger data, oral pain receptors, five-decade structural degradation, open dentinal tubules, and trigeminal signal&nbsp;crosstalk.</p>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Elimination Breakthrough</span>
+									<span class="toc-subsection-desc">Zero plants, carbs, or acids: pain collapses from 10/10 to 2/10 in 72 hours.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Lingering Two</span>
+									<span class="toc-subsection-desc">Diet starved the chemical fire, but an underlying hardware breach remained.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-28" class="toc-link" title="Chapter 11: Identifying What Makes Pain Worse: Acid">Chapter 11: Identifying What Makes Pain Worse: Acid</a>
+								<a href="#page-28" class="toc-link" title="Chapter 11: My Crown: Pinpointing and Sealing the Hardware Leak">Chapter 11: My Crown: Pinpointing and Sealing the Leak</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">30</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Isolating the Leaking Tooth</span>
+									<span class="toc-subsection-desc">Telling the dentist: "I am sensitive and painful on acid liquids only."</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Physical Discovery</span>
+									<span class="toc-subsection-desc">Popping the crown to uncover chalky hydrolyzed cement and open tubules.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Permanent 0/10 Remission</span>
+									<span class="toc-subsection-desc">Resealing the dentin with bonding glaze: the fire stops completely and durably.</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>Contents &bull; 2</span>
+				</div>
+			</section>
+
+			<!-- Table of Contents (Page 3 of 4: Parts III & IV) -->
+			<section class="book-page" id="toc-3">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="page-count-label">Contents &bull; Parts III &amp; IV</span>
+					</div>
+
+					<div class="toc-centered-container" style="margin-top: 1rem;">
+						<div class="toc-group" style="margin-bottom: 1.15rem;">
+							<div class="toc-part-header">Part III: The First Principles of Oral Burning Pain</div>
+							<p class="toc-part-purpose">Biophysics, receptor physiology, exposed dentinal tubule conduits, and trigeminal convergence in the&nbsp;brainstem.</p>
 
 							<div class="toc-item">
-								<a href="#page-30b" class="toc-link" title="Chapter 12: The Three Burn Zones &amp; Where Acid Comes From">Chapter 12: The Three Burn Zones &amp; Where Acid Comes From</a>
+								<a href="#page-30b" class="toc-link" title="Chapter 12: The Three Burn Zones and Where Acid Enters">Chapter 12: The Three Burn Zones &amp; Where Acid Enters</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">33</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Mucosal Absorption</span>
+									<span class="toc-subsection-desc">Direct chemical contact on the dorsal tongue, palate, and labial mucosa.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Leaking Hardware &amp; Root Collars</span>
+									<span class="toc-subsection-desc">Micro-margins on older crowns and bare cementum exposed by gum recession.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-31" class="toc-link" title="Chapter 13: The Receptors of Pain in the Mouth">Chapter 13: The Receptors of Pain in the Mouth</a>
+								<a href="#page-31" class="toc-link" title="Chapter 13: The Oral Pain Receptors: ASICs, TRPV1, and TRPA1">Chapter 13: The Oral Pain Receptors: ASICs &amp; TRPV1</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">35</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Acid-Sensing Ion Channels (ASICs)</span>
+									<span class="toc-subsection-desc">Biophysics of proton channels that stay locked open under continuous acidity.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">TRPV1 Heat &amp; Acid Receptors</span>
+									<span class="toc-subsection-desc">Heat channels whose activation threshold drops to room temperature in low pH.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-33b" class="toc-link" title="Chapter 14: When Acid Triggers Through the Oral Mucosa">Chapter 14: When Acid Triggers Through the Oral Mucosa</a>
+								<a href="#page-33b" class="toc-link" title="Chapter 14: When Acid Triggers Through the Oral Mucosa">Chapter 14: When Acid Triggers Through the Mucosa</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">38</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Epithelial Permeability &amp; Dryness</span>
+									<span class="toc-subsection-desc">How thinning mucin barriers and low saliva allow acid to penetrate subepithelial nerves.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-41" class="toc-link" title="Chapter 15: When Acid Triggers Through Leaking Fillings &amp; Hardware">Chapter 15: When Acid Triggers Through Leaking Fillings &amp; Hardware</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">40</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-38" class="toc-link" title="Chapter 16: When Acid Triggers Through Gum Recession &amp; Exposed Tubules">Chapter 16: When Acid Triggers Through Gum Recession &amp; Exposed Tubules</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">44</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-34" class="toc-link" title="Chapter 17: Why BMS Starts at Around 50 Years Old">Chapter 17: Why BMS Starts at Around 50 Years Old</a>
+								<a href="#page-41" class="toc-link" title="Chapter 15: When Acid Triggers Through Leaking Restorations">Chapter 15: When Acid Triggers Through Restorations</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">47</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The 10-to-15-Year Service Life</span>
+									<span class="toc-subsection-desc">Hydrolytic resin degradation under masticatory flexure and thermal cycling.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Capillary Acid Ingress</span>
+									<span class="toc-subsection-desc">Microscopic fluid suction drawing acids directly into living pulpal C-fibers.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-37b" class="toc-link" title="Chapter 18: Why BMS Is More Prevalent in Women">Chapter 18: Why BMS Is More Prevalent in Women</a>
+								<a href="#page-38" class="toc-link" title="Chapter 16: When Acid Triggers Through Gum Recession &amp; Exposed Tubules">Chapter 16: When Acid Triggers Through Exposed Tubules</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">51</span>
+								<span class="toc-num">44</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Bare Dentin Micro-Architecture</span>
+									<span class="toc-subsection-desc">20,000 to 45,000 fluid-filled tubules/mm² dissolving rapidly at pH 6.2 to 6.7.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Cervical Abfraction &amp; Recession</span>
+									<span class="toc-subsection-desc">Mechanical flexure and tooth wear unshielding nerve gateways at the gumline.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-45" class="toc-link" title="Chapter 19: The Oral Neuropathic Circuit">Chapter 19: The Oral Neuropathic Circuit</a>
+								<a href="#page-45" class="toc-link" title="Chapter 17: The Oral Neuropathic Circuit: Brainstem Convergence">Chapter 17: The Oral Neuropathic Circuit</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">53</span>
+								<span class="toc-num">52</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Trigeminal Somatotopy &amp; Subnucleus Caudalis</span>
+									<span class="toc-subsection-desc">Pulpal and lingual fibers converging onto shared Wide Dynamic Range neurons.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Volume Transmission</span>
+									<span class="toc-subsection-desc">Astrocytic pump exhaustion causing neurotransmitter spillover onto tongue maps.</span>
+								</li>
+							</ul>
 						</div>
 
 						<div class="toc-group">
-							<div class="toc-part-header">Part IV: The BMS Standard Diagnosis Model</div>
-							<p class="toc-part-purpose">The clinical rulebook: from historical stigma to the 2020 ICOP classification and the landmark 2026 diagnostic&nbsp;revision.</p>
+							<div class="toc-part-header">Part IV: The BMS Diagnostic History</div>
+							<p class="toc-part-purpose">From psychiatric stigma to histological proof, the 2020 ICOP consensus, and the landmark 2026 diagnostic algorithm&nbsp;validation.</p>
 
 							<div class="toc-item">
-								<a href="#page-50" class="toc-link" title="Chapter 20: The BMS Diagnostic History &amp; the 2026 Update">Chapter 20: The BMS Diagnostic History &amp; the 2026 Update</a>
+								<a href="#page-50" class="toc-link" title="Chapter 18: The BMS Diagnostic History and the 2026 Update">Chapter 18: The BMS Diagnostic History &amp; 2026 Update</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">58</span>
+								<span class="toc-num">56</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">From Stigma to Histological Proof</span>
+									<span class="toc-subsection-desc">Lauria et al. (PAIN 2005) proving small-fiber trigeminal neuropathy.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The 2020 ICOP Consensus (Code 6.1)</span>
+									<span class="toc-subsection-desc">First international formalization of Burning Mouth Syndrome criteria.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The 2026 Validated ICOP-AL Decision Tree</span>
+									<span class="toc-subsection-desc">Shakeri et al. (PAIN 2026) algorithm validation (&kappa; = 0.688) &amp; its Step 1 blind spot.</span>
+								</li>
+							</ul>
 						</div>
+					</div>
+				</div>
 
-						<div class="toc-group">
-							<div class="toc-part-header">Part V: Taking Charge of Your Own Investigation</div>
-							<p class="toc-part-purpose">The active protocol: starving the fire, calculating your latency delta, applying mechanical barrier shields, and establishing a structured recovery&nbsp;regimen.</p>
+				<div class="page-number-footer">
+					<span>Contents &bull; 3</span>
+				</div>
+			</section>
+
+			<!-- Table of Contents (Page 4 of 4: Parts V & VI) -->
+			<section class="book-page" id="toc-4">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="page-count-label">Contents &bull; Parts V &amp; VI</span>
+					</div>
+
+					<div class="toc-centered-container" style="margin-top: 0.75rem;">
+						<div class="toc-group" style="margin-bottom: 1rem;">
+							<div class="toc-part-header">Part V: Taking Charge of Our Own Investigation</div>
+							<p class="toc-part-purpose">Practical citizen science protocols: testing triggers, starving the fire, measuring latency, applying barrier shields, and managing&nbsp;flares.</p>
 
 							<div class="toc-item">
-								<a href="#page-52" class="toc-link" title="Chapter 21: Starving the Fire">Chapter 21: Starving the Fire</a>
+								<a href="#page-52" class="toc-link" title="Chapter 19: Identifying What Makes It Better and Worse">Chapter 19: Identifying What Makes It Better &amp; Worse</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">60</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The Better vs. Worse Inventory</span>
+									<span class="toc-subsection-desc">Cataloging low-pH drinks, SLS pastes, bicarbonate swishes, and chewing relief.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Baseline Saliva pH Diagnostics</span>
+									<span class="toc-subsection-desc">Using at-home test strips to measure resting vs stimulated buffering power.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-55" class="toc-link" title="Chapter 22: Calculating Your Time Lag">Chapter 22: Calculating Your Time Lag</a>
+								<a href="#page-55" class="toc-link" title="Chapter 20: Starving the Fire: Elimination Trials">Chapter 20: Starving the Fire: Elimination Trials</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">64</span>
+								<span class="toc-num">63</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The 14-Day Low-Acid Baseline</span>
+									<span class="toc-subsection-desc">Eliminating citrus, vinegar, sodas, and fermented sauces to quiet nerve firing.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The 5-Day Carnivore Challenge</span>
+									<span class="toc-subsection-desc">Removing all fermentable carbs to halt bacterial lactic acid production in 72 hours.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-57" class="toc-link" title="Chapter 23: Mechanical Shields">Chapter 23: Mechanical Shields</a>
+								<a href="#page-57" class="toc-link" title="Chapter 21: Calculating Your Time Lag: Latency Delta">Chapter 21: Calculating Your Time Lag: Latency Delta</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">66</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The 30-to-90-Minute Latency Gap</span>
+									<span class="toc-subsection-desc">Tracking hydrodynamic dentinal fluid travel to connect meals to peak burns.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-60" class="toc-link" title="Chapter 24: The Recovery Protocol">Chapter 24: The Recovery Protocol</a>
+								<a href="#page-60" class="toc-link" title="Chapter 22: Mechanical Shields &amp; Tubule Sealers">Chapter 22: Mechanical Shields &amp; Tubule Sealers</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">69</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Topical Barriers &amp; Night Guards</span>
+									<span class="toc-subsection-desc">Protecting exposed cervical collars and halting nighttime tongue thrusting.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Mouth Taping</span>
+									<span class="toc-subsection-desc">Preventing overnight airway drying to preserve continuous salivary protection.</span>
+								</li>
+							</ul>
+
+							<div class="toc-item">
+								<a href="#page-62" class="toc-link" title="Chapter 23: How to Handle Flares: The 6-Day Reset Protocol">Chapter 23: How to Handle Flares: The 6-Day Reset</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">71</span>
+							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Days 1 to 3 (Emergency Quieting)</span>
+									<span class="toc-subsection-desc">Zero-acid diet, baking soda washes, and ultra-soft brushing to stop the flare.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Days 4 to 6 (Neurological Settling)</span>
+									<span class="toc-subsection-desc">Allowing ASIC channels to close and subnucleus caudalis glutamate to drain.</span>
+								</li>
+							</ul>
 						</div>
 
 						<div class="toc-group">
-							<div class="toc-part-header">Part VI: Models for BMS &amp; Moving Forward</div>
-							<p class="toc-part-purpose">Empowerment and hope: the diabetic neuropathy parallel, clinical bottlenecks, collaborative provider dialogue, top FAQs, and citizen science&nbsp;advancement.</p>
+							<div class="toc-part-header">Part VI: Models for BMS, Healthcare Dialogue &amp; Citizen Science</div>
+							<p class="toc-part-purpose">The diabetic parallel, clinical bottlenecks, collaborative provider dialogue, top FAQs, and citizen science&nbsp;advancement.</p>
 
 							<div class="toc-item">
-								<a href="#page-63" class="toc-link" title="Chapter 25: The Diabetic Parallel">Chapter 25: The Diabetic Parallel</a>
+								<a href="#page-63" class="toc-link" title="Chapter 24: The Diabetic Parallel: How Neuropathies Heal">Chapter 24: The Diabetic Parallel: How Nerves Heal</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">72</span>
+								<span class="toc-num">73</span>
+							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Glucose Control vs. Acid Control</span>
+									<span class="toc-subsection-desc">Comparing small-fiber nerve regeneration timelines (1 to 2 mm per month).</span>
+								</li>
+							</ul>
+
+							<div class="toc-item">
+								<a href="#page-67" class="toc-link" title="Chapter 25: The Two Bottlenecks: Sizing &amp; Insurance">Chapter 25: The Two Bottlenecks: Sizing &amp; Insurance</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">77</span>
+							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">The 15-Minute Chair Limit</span>
+									<span class="toc-subsection-desc">Why insurance codes incentivize extractions but offer zero pay for tubule sealing.</span>
+								</li>
+							</ul>
+
+							<div class="toc-item">
+								<a href="#page-71" class="toc-link" title="Chapter 26: Remission vs. Progression: Preventing Relapse">Chapter 26: Remission vs. Progression</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">81</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-67" class="toc-link" title="Chapter 26: The Two Bottlenecks">Chapter 26: The Two Bottlenecks</a>
+								<a href="#page-74" class="toc-link" title="Chapter 27: How to Talk to Your Doctor: Biochemical Diplomacy">Chapter 27: How to Talk to Your Doctor</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">76</span>
+								<span class="toc-num">84</span>
 							</div>
 
 							<div class="toc-item">
-								<a href="#page-71" class="toc-link" title="Chapter 27: Remission vs. Progression">Chapter 27: Remission vs. Progression</a>
+								<a href="#page-77" class="toc-link" title="Chapter 28: How to Talk to Your Dentist: Non-Fault Maintenance">Chapter 28: How to Talk to Your Dentist</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">80</span>
+								<span class="toc-num">87</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Disarming Legal Liability</span>
+									<span class="toc-subsection-desc">Opening with: "I know you did great work, but materials have a 10-15 year lifespan."</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-74" class="toc-link" title="Chapter 28: How to Talk to Your Doctor">Chapter 28: How to Talk to Your Doctor</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">83</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-77" class="toc-link" title="Chapter 29: How to Talk to Your Dentist">Chapter 29: How to Talk to Your Dentist</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">86</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-78b" class="toc-link" title="Chapter 30: The Top Questions &amp; Answers on Burning Mouth Syndrome">Chapter 30: The Top Questions &amp; Answers</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">88</span>
-							</div>
-
-							<div class="toc-item">
-								<a href="#page-79" class="toc-link" title="Chapter 31: Citizen Science Data">Chapter 31: Citizen Science Data</a>
+								<a href="#page-78b" class="toc-link" title="Chapter 29: The Top Questions &amp; Answers on BMS (FAQ)">Chapter 29: Top Questions &amp; Answers on BMS (FAQ)</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">90</span>
 							</div>
+							<ul class="toc-subsections-list">
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Why BMS Starts Around 50 Years Old</span>
+									<span class="toc-subsection-desc">The 50-year convergence curve of aging restorations and declining saliva.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Why More Women Have It (and Why Men Get It Too)</span>
+									<span class="toc-subsection-desc">Perimenopausal estrogen shifts and non-hormonal triggers in men.</span>
+								</li>
+								<li class="toc-subsection-item">
+									<span class="toc-subsection-title">Extraction Onset &amp; Spatial Convergence</span>
+									<span class="toc-subsection-desc">Why pulling a tooth unshields adjacent roots and how back molars burn the tongue.</span>
+								</li>
+							</ul>
 
 							<div class="toc-item">
-								<a href="#page-81" class="toc-link" title="Chapter 32: Active BMS Communities">Chapter 32: Active BMS Communities</a>
+								<a href="#page-79" class="toc-link" title="Chapter 30: Citizen Science Data &amp; Patient Communities">Chapter 30: Citizen Science Data &amp; Communities</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">92</span>
+								<span class="toc-num">94</span>
 							</div>
-						</div>
 
-						<div class="toc-group">
-							<div class="toc-part-header">Appendix: Peer-Reviewed Clinical Literature</div>
-
-							<div class="toc-item">
+							<div class="toc-item" style="margin-top: 0.5rem; border-top: 1px solid #e2e8f0; padding-top: 0.4rem;">
 								<a href="#bibliography" class="toc-link" title="Master Scientific Data Sources">Master Scientific Data Sources</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">83</span>
+								<span class="toc-num">98</span>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="page-number-footer">
-					<span>ii</span>
+					<span>Contents &bull; 4</span>
 				</div>
 			</section>
 
