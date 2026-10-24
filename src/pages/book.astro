@@ -2727,7 +2727,17 @@ import { SITE_TITLE } from '../consts';
 				font-weight: 700 !important;
 				color: #e11d48 !important; /* brand pink / rose */
 			}
-			.toc-subsections-clean {
+						.toc-sub-link {
+				text-decoration: none !important;
+				color: inherit !important;
+				display: block !important;
+				cursor: pointer;
+				transition: color 0.15s ease;
+			}
+			.toc-sub-link:hover .toc-sub-term {
+				color: #7c3aed !important;
+			}
+.toc-subsections-clean {
 				list-style: none !important;
 				padding: 0 !important;
 				margin: 0.15rem 0 0.5rem 1.75rem !important; /* cleanly indented */
@@ -3205,7 +3215,7 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="toc-centered-container" style="margin-top: 0.35rem;">
 						<div class="toc-group" style="margin-bottom: 0.85rem;">
-							<div class="toc-part-header">Preliminary Materials</div>
+							<div class="toc-part-header">Before You Begin</div>
 
 							<div class="toc-item">
 								<a href="#disclaimer" class="toc-link" title="Medical &amp; Educational Disclaimer">
@@ -3280,7 +3290,7 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-2" class="toc-link" title="Chapter 2: What Sufferers Experience: Symptoms and Realities">
+								<a href="#page-2" class="toc-link" title="Chapter 2: What Sufferers Experience: Symptoms &amp; Realities">
 									<span class="toc-ch-prefix">Chapter 2:</span>
 									<span class="toc-ch-title">What Sufferers Experience: Symptoms &amp; Realities</span>
 								</a>
@@ -3289,20 +3299,22 @@ import { SITE_TITLE } from '../consts';
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
-									<strong class="toc-sub-term">Core Symptom Triad:</strong>
-									<span class="toc-sub-desc">Bilateral burning scald, metallic dysgeusia, and dry mouth.</span>
+									<a href="#ch2-symptoms" class="toc-sub-link">
+										<strong class="toc-sub-term">Symptoms:</strong>
+										<span class="toc-sub-desc">Bilateral burning scald, metallic dysgeusia, and dry mouth sensation.</span>
+									</a>
 								</li>
 								<li class="toc-sub-row">
-									<strong class="toc-sub-term">Primary Locations:</strong>
-									<span class="toc-sub-desc">Anterior tongue tip, lateral borders, hard palate, and lower lip.</span>
+									<a href="#ch2-where" class="toc-sub-link">
+										<strong class="toc-sub-term">Where It Hurts:</strong>
+										<span class="toc-sub-desc">Anterior tongue tip, lateral borders, hard palate, and lower lip.</span>
+									</a>
 								</li>
 								<li class="toc-sub-row">
-									<strong class="toc-sub-term">Diurnal Crescendo:</strong>
-									<span class="toc-sub-desc">Mild upon waking; steadily peaks by late afternoon and evening.</span>
-								</li>
-								<li class="toc-sub-row">
-									<strong class="toc-sub-term">The Eating Paradox:</strong>
-									<span class="toc-sub-desc">Temporary relief while chewing via bicarbonate saliva wash.</span>
+									<a href="#ch2-when" class="toc-sub-link">
+										<strong class="toc-sub-term">When It Hurts:</strong>
+										<span class="toc-sub-desc">Mild upon waking; steadily peaks by late afternoon with temporary chewing relief.</span>
+									</a>
 								</li>
 							</ul>
 
@@ -3332,29 +3344,6 @@ import { SITE_TITLE } from '../consts';
 									<span class="toc-sub-desc">Why citizen science must bridge the gap between dental and medical silos.</span>
 								</li>
 							</ul>
-
-							<div class="toc-item">
-								<a href="#page-15b" class="toc-link" title="Chapter 4: Finding the Real Cause of Your BMS">
-									<span class="toc-ch-prefix">Chapter 4:</span>
-									<span class="toc-ch-title">Finding the Real Cause of Your BMS</span>
-								</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">15</span>
-							</div>
-							<ul class="toc-subsections-clean">
-								<li class="toc-sub-row">
-									<strong class="toc-sub-term">Apparent Catalysts:</strong>
-									<span class="toc-sub-desc">Post-extraction deafferentation, trauma, and sudden acid exposures.</span>
-								</li>
-								<li class="toc-sub-row">
-									<strong class="toc-sub-term">Misattribution Trap:</strong>
-									<span class="toc-sub-desc">Why the event that unmasked the pain is not the engine keeping it alive.</span>
-								</li>
-								<li class="toc-sub-row">
-									<strong class="toc-sub-term">The Biological Breach:</strong>
-									<span class="toc-sub-desc">Decoupling triggers from bare tubules, aging crowns, and thin saliva.</span>
-								</li>
-							</ul>
 						</div>
 					</div>
 				</div>
@@ -3378,8 +3367,8 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">A software engineer's chronological journey from sudden 10/10 agony to systematic investigation and permanent 0/10&nbsp;remission.</p>
 
 							<div class="toc-item">
-								<a href="#page-15" class="toc-link" title="Chapter 5: How It Started for Me">
-									<span class="toc-ch-prefix">Chapter 5:</span>
+								<a href="#page-15" class="toc-link" title="Chapter 4: How It Started for Me">
+									<span class="toc-ch-prefix">Chapter 4:</span>
 									<span class="toc-ch-title">How It Started for Me</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3397,8 +3386,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-16" class="toc-link" title="Chapter 6: Going to the Dentist">
-									<span class="toc-ch-prefix">Chapter 6:</span>
+								<a href="#page-16" class="toc-link" title="Chapter 5: Going to the Dentist">
+									<span class="toc-ch-prefix">Chapter 5:</span>
 									<span class="toc-ch-title">Going to the Dentist</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3416,8 +3405,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-18" class="toc-link" title="Chapter 7: Going to the Doctors">
-									<span class="toc-ch-prefix">Chapter 7:</span>
+								<a href="#page-18" class="toc-link" title="Chapter 6: Going to the Doctors">
+									<span class="toc-ch-prefix">Chapter 6:</span>
 									<span class="toc-ch-title">Going to the Doctors</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3435,8 +3424,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-22" class="toc-link" title="Chapter 8: Trying Supplements">
-									<span class="toc-ch-prefix">Chapter 8:</span>
+								<a href="#page-22" class="toc-link" title="Chapter 7: Trying Supplements">
+									<span class="toc-ch-prefix">Chapter 7:</span>
 									<span class="toc-ch-title">Trying Supplements</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3454,8 +3443,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-20" class="toc-link" title="Chapter 9: The Curricular Void Between Specialties">
-									<span class="toc-ch-prefix">Chapter 9:</span>
+								<a href="#page-20" class="toc-link" title="Chapter 8: The Curricular Void Between Specialties">
+									<span class="toc-ch-prefix">Chapter 8:</span>
 									<span class="toc-ch-title">The Curricular Void Between Specialties</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3473,8 +3462,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-25" class="toc-link" title="Chapter 10: Trying the Carnivore Diet">
-									<span class="toc-ch-prefix">Chapter 10:</span>
+								<a href="#page-25" class="toc-link" title="Chapter 9: Trying the Carnivore Diet">
+									<span class="toc-ch-prefix">Chapter 9:</span>
 									<span class="toc-ch-title">Trying the Carnivore Diet</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3492,8 +3481,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-28" class="toc-link" title="Chapter 11: My Crown: Pinpointing and Sealing the Hardware Leak">
-									<span class="toc-ch-prefix">Chapter 11:</span>
+								<a href="#page-28" class="toc-link" title="Chapter 10: My Crown: Pinpointing and Sealing the Hardware Leak">
+									<span class="toc-ch-prefix">Chapter 10:</span>
 									<span class="toc-ch-title">My Crown: Pinpointing and Sealing the Leak</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3536,8 +3525,8 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">Biophysics, receptor physiology, exposed dentinal tubule conduits, and trigeminal convergence in the&nbsp;brainstem.</p>
 
 							<div class="toc-item">
-								<a href="#page-30b" class="toc-link" title="Chapter 12: The Three Burn Zones and Where Acid Enters">
-									<span class="toc-ch-prefix">Chapter 12:</span>
+								<a href="#page-30b" class="toc-link" title="Chapter 11: The Three Burn Zones and Where Acid Enters">
+									<span class="toc-ch-prefix">Chapter 11:</span>
 									<span class="toc-ch-title">The Three Burn Zones &amp; Where Acid Enters</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3555,8 +3544,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-31" class="toc-link" title="Chapter 13: The Oral Pain Receptors: ASICs, TRPV1, and TRPA1">
-									<span class="toc-ch-prefix">Chapter 13:</span>
+								<a href="#page-31" class="toc-link" title="Chapter 12: The Oral Pain Receptors: ASICs, TRPV1, and TRPA1">
+									<span class="toc-ch-prefix">Chapter 12:</span>
 									<span class="toc-ch-title">The Oral Pain Receptors: ASICs &amp; TRPV1</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3574,8 +3563,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-33b" class="toc-link" title="Chapter 14: When Acid Triggers Through the Oral Mucosa">
-									<span class="toc-ch-prefix">Chapter 14:</span>
+								<a href="#page-33b" class="toc-link" title="Chapter 13: When Acid Triggers Through the Oral Mucosa">
+									<span class="toc-ch-prefix">Chapter 13:</span>
 									<span class="toc-ch-title">When Acid Triggers Through the Mucosa</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3589,8 +3578,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-41" class="toc-link" title="Chapter 15: When Acid Triggers Through Leaking Restorations">
-									<span class="toc-ch-prefix">Chapter 15:</span>
+								<a href="#page-41" class="toc-link" title="Chapter 14: When Acid Triggers Through Leaking Restorations">
+									<span class="toc-ch-prefix">Chapter 14:</span>
 									<span class="toc-ch-title">When Acid Triggers Through Restorations</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3608,8 +3597,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-38" class="toc-link" title="Chapter 16: When Acid Triggers Through Gum Recession &amp; Exposed Tubules">
-									<span class="toc-ch-prefix">Chapter 16:</span>
+								<a href="#page-38" class="toc-link" title="Chapter 15: When Acid Triggers Through Gum Recession &amp; Exposed Tubules">
+									<span class="toc-ch-prefix">Chapter 15:</span>
 									<span class="toc-ch-title">When Acid Triggers Through Exposed Tubules</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3627,8 +3616,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-45" class="toc-link" title="Chapter 17: The Oral Neuropathic Circuit: Brainstem Convergence">
-									<span class="toc-ch-prefix">Chapter 17:</span>
+								<a href="#page-45" class="toc-link" title="Chapter 16: The Oral Neuropathic Circuit: Brainstem Convergence">
+									<span class="toc-ch-prefix">Chapter 16:</span>
 									<span class="toc-ch-title">The Oral Neuropathic Circuit</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3651,8 +3640,8 @@ import { SITE_TITLE } from '../consts';
 							<p class="toc-part-purpose">From psychiatric stigma to histological proof, the 2020 ICOP consensus, and the landmark 2026 diagnostic algorithm&nbsp;validation.</p>
 
 							<div class="toc-item">
-								<a href="#page-50" class="toc-link" title="Chapter 18: The BMS Diagnostic History and the 2026 Update">
-									<span class="toc-ch-prefix">Chapter 18:</span>
+								<a href="#page-50" class="toc-link" title="Chapter 17: The BMS Diagnostic History and the 2026 Update">
+									<span class="toc-ch-prefix">Chapter 17:</span>
 									<span class="toc-ch-title">The BMS Diagnostic History &amp; 2026 Update</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -3694,6 +3683,30 @@ import { SITE_TITLE } from '../consts';
 							<div class="toc-part-header">Part V: Taking Charge of Our Own Investigation</div>
 							<p class="toc-part-purpose">Practical citizen science protocols: triage, testing triggers, starving the fire, measuring latency, applying barrier shields, and managing&nbsp;flares.</p>
 
+
+							<div class="toc-item">
+								<a href="#page-15b" class="toc-link" title="Chapter 18: Finding the Real Cause of Your BMS">
+									<span class="toc-ch-prefix">Chapter 18:</span>
+									<span class="toc-ch-title">Finding the Real Cause of Your BMS</span>
+								</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">56</span>
+							</div>
+							<ul class="toc-subsections-clean">
+								<li class="toc-sub-row">
+									<strong class="toc-sub-term">Apparent Catalysts:</strong>
+									<span class="toc-sub-desc">Post-extraction deafferentation, trauma, and sudden acid exposures.</span>
+								</li>
+								<li class="toc-sub-row">
+									<strong class="toc-sub-term">Misattribution Trap:</strong>
+									<span class="toc-sub-desc">Why the event that unmasked the pain is not the engine keeping it alive.</span>
+								</li>
+								<li class="toc-sub-row">
+									<strong class="toc-sub-term">The Biological Breach:</strong>
+									<span class="toc-sub-desc">Decoupling triggers from bare tubules, aging crowns, and thin saliva.</span>
+								</li>
+							</ul>
+
 							<div class="toc-item">
 								<a href="#page-7" class="toc-link" title="Chapter 19: The BMS Self-Assessment Quiz &amp; Symptom Mapping">
 									<span class="toc-ch-prefix">Chapter 19:</span>
@@ -3714,7 +3727,7 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#page-52" class="toc-link" title="Chapter 20: Identifying What Makes It Better and Worse">
+								<a href="#page-28" class="toc-link" title="Chapter 20: Identifying What Makes It Better and Worse">
 									<span class="toc-ch-prefix">Chapter 20:</span>
 									<span class="toc-ch-title">Identifying What Makes It Better &amp; Worse</span>
 								</a>
@@ -3901,7 +3914,7 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<div class="toc-item" style="margin-top: 0.5rem; border-top: 1px solid #e2e8f0; padding-top: 0.4rem;">
-								<a href="#bibliography" class="toc-link" title="Master Scientific Data Sources">
+								<a href="#page-83" class="toc-link" title="Master Scientific Data Sources">
 									<span class="toc-ch-prefix">Master Scientific Data Sources</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -4700,12 +4713,29 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
+						<span class="chapter-header-label">Part I &bull; Chapter 2: Symptoms &amp; Realities</span>
 						<span class="page-count-label">Page 11</span>
 					</div>
 
-					<div class="chapter-content">
-						<div class="voice-showcase-wrap">
+					<h2 class="chapter-title">Chapter 2: What Sufferers Experience: Symptoms &amp; Realities</h2>
+
+					<div class="chapter-content is-first-page">
+						<div id="ch2-symptoms" style="scroll-margin-top: 5rem; margin-bottom: 1.5rem;">
+							<h3 style="font-size: 1.15rem; font-weight: 700; color: #3b0764; margin-bottom: 0.4rem;">Symptoms</h3>
+							<p>Burning Mouth Syndrome presents with a relentless clinical triad. The predominant symptom is a bilateral, continuous scalding sensation across the oral mucosal surface, frequently accompanied by phantom metallic or bitter taste disturbances (dysgeusia) and subjective dry mouth (xerostomia) despite normal salivary flow. Crucially, the oral mucosa appears completely healthy and pink under examination, leaving clinicians baffled while small-fiber nerve endings fire continuously.</p>
+						</div>
+
+						<div id="ch2-where" style="scroll-margin-top: 5rem; margin-bottom: 1.5rem;">
+							<h3 style="font-size: 1.15rem; font-weight: 700; color: #3b0764; margin-bottom: 0.4rem;">Where It Hurts</h3>
+							<p>The pain maps strictly to sensory pathways of the trigeminal nerve (V3 and V2 branches). The anterior two-thirds and tip of the tongue are affected in over 85% of cases via the lingual nerve. The lateral tongue borders, anterior hard palate, and mucosal surface of the lower lip are secondary hot zones. Notably, the floor of the mouth and buccal mucosa are typically spared, reflecting specific receptor densities and hardware contact areas.</p>
+						</div>
+
+						<div id="ch2-when" style="scroll-margin-top: 5rem; margin-bottom: 1.5rem;">
+							<h3 style="font-size: 1.15rem; font-weight: 700; color: #3b0764; margin-bottom: 0.4rem;">When It Hurts</h3>
+							<p>The pain follows a characteristic diurnal crescendo: patients wake with mild or nonexistent discomfort, but burning steadily intensifies through late morning, reaching peak agony in late afternoon and evening. Strikingly, sufferers report temporary relief while eating or chewing, because mastication stimulates bicarbonate-rich salivary flow that temporarily washes protons away from mucosal acid sensors.</p>
+						</div>
+
+						<div class="voice-showcase-wrap" style="margin-top: 1.5rem;">
 							<div class="voice-short-item">
 								<p class="voice-short-quote">
 									&ldquo;It feels like I drank a scalding cup of boiling coffee every morning, and the burn never goes&nbsp;away.&rdquo;
@@ -4718,13 +4748,6 @@ import { SITE_TITLE } from '../consts';
 									&ldquo;Three specialists smiled and told me everything looked fine while I sat in the chair holding back&nbsp;tears.&rdquo;
 								</p>
 								<div class="voice-short-name">Claire D.</div>
-							</div>
-
-							<div class="voice-short-item">
-								<p class="voice-short-quote">
-									&ldquo;You are trapped with a blowtorch inside your mouth and no fire extinguisher in&nbsp;sight.&rdquo;
-								</p>
-								<div class="voice-short-name">Elena R.</div>
 							</div>
 						</div>
 					</div>
@@ -4739,32 +4762,36 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Part I &bull; Chapter 2: Voices From the Fire</span>
+						<span class="chapter-header-label">Part I &bull; Chapter 3: Why We Need to Do Research</span>
 						<span class="page-count-label">Page 12</span>
 					</div>
 
-					<div class="chapter-content">
-						<div class="voice-showcase-wrap">
-							<div class="voice-short-item">
-								<p class="voice-short-quote">
-									&ldquo;My tongue feels like raw sandpaper scraped down to the flesh, yet there is not a single blister in the&nbsp;mirror.&rdquo;
-								</p>
-								<div class="voice-short-name">Diane K.</div>
-							</div>
+					<h2 class="chapter-title">Chapter 3: Why We Need to Do Research: The Hidden Human&nbsp;Toll</h2>
 
-							<div class="voice-short-item">
-								<p class="voice-short-quote">
-									&ldquo;I spent thousands redoing fillings and root canals, and the fire burned just as hot as&nbsp;before.&rdquo;
-								</p>
-								<div class="voice-short-name">Marie L.</div>
-							</div>
+					<div class="chapter-content is-first-page">
+						<div style="margin-bottom: 1.25rem;">
+							<h3 style="font-size: 1.1rem; font-weight: 700; color: #3b0764; margin-bottom: 0.35rem;">Inability to Work</h3>
+							<p>The sensory storm of chronic burning mouth shatters executive function. Sufferers face debilitating brain fog, persistent fatigue from continuous pain signaling, and an inability to concentrate on complex tasks or meetings. Productive careers are derailed simply because remaining functional in the workplace while dealing with 8/10 facial pain requires immense, unsustainable energy.</p>
+						</div>
 
-							<div class="voice-short-item">
-								<p class="voice-short-quote">
-									&ldquo;They told me to learn to live with it. That was the day I decided to become my own&nbsp;investigator.&rdquo;
-								</p>
-								<div class="voice-short-name">Rachel T.</div>
-							</div>
+						<div style="margin-bottom: 1.25rem;">
+							<h3 style="font-size: 1.1rem; font-weight: 700; color: #3b0764; margin-bottom: 0.35rem;">Depression and Despair</h3>
+							<p>Repeatedly hearing <em>"your mouth looks completely healthy, there is nothing wrong"</em> inflicts severe psychological trauma. This chronic medical invalidation, paired with relentless physical suffering, drives clinical anxiety and severe depression. Sufferers are left feeling abandoned by healthcare systems that mistake small-fiber nerve excitation for psychosomatic complaints.</p>
+						</div>
+
+						<div style="margin-bottom: 1.25rem;">
+							<h3 style="font-size: 1.1rem; font-weight: 700; color: #3b0764; margin-bottom: 0.35rem;">Social Isolation</h3>
+							<p>Everyday social connection becomes a minefield. Speaking for more than five minutes aggravates mucosal friction against teeth, escalating pain. Dining out is virtually impossible due to hidden vinegar, citrus, sauces, and spices. Sufferers retreat from family dinners and social gatherings, trapped in forced silence.</p>
+						</div>
+
+						<div style="margin-bottom: 1.25rem;">
+							<h3 style="font-size: 1.1rem; font-weight: 700; color: #3b0764; margin-bottom: 0.35rem;">Travel Limitations</h3>
+							<p>Leaving home carries extreme risk. Low-humidity cabin air in commercial airplanes rapidly dehydrates oral mucosa, collapsing salivary buffer capacity and supercharging proton sensors. The fear of being stranded in a foreign city during a debilitating flare-up keeps patients homebound and isolated.</p>
+						</div>
+
+						<div>
+							<h3 style="font-size: 1.1rem; font-weight: 700; color: #3b0764; margin-bottom: 0.35rem;">The Patient-Led Mandate</h3>
+							<p>Because dentists focus on teeth and physicians focus on systemic diseases, chronic oral neuropathies fall into an institutional void where neither specialty takes ownership. Sufferers cannot wait decades for medical training curricula to catch up. Citizen science, open patient data, and rigorous N=1 investigative protocols are essential to uncover the true biological mechanisms of Burning Mouth Syndrome.</p>
 						</div>
 					</div>
 				</div>
@@ -4775,1123 +4802,7 @@ import { SITE_TITLE } from '../consts';
 			</section>
 
 			<!-- Chapter 3: The BMS Diagnostic Questionnaire (Page 1 of 4: Demographics, Sensation, & Location) -->
-			<section class="book-page" id="page-7">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3: The BMS Diagnostic Questionnaire</span>
-						<span class="page-count-label">Page 7</span>
-					</div>
-
-					<h2 class="chapter-title">Chapter 3: The BMS Diagnostic&nbsp;Questionnaire</h2>
-
-					<div class="chapter-content is-first-page">
-						<p style="font-size: 0.94rem; line-height: 1.68; color: #334155; margin-bottom: 1.25rem; text-wrap: pretty;">
-							Use this comprehensive clinical diagnostic questionnaire to map your symptom profile, identify triggers, and establish an actionable record. You can select your answers directly on this page; your entries are preserved locally and can be printed or shared with your dental and medical&nbsp;providers.
-						</p>
-
-												<!-- Section A0: Clinical Safety Triage (Red-Flag Screener) -->
-						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #fff5f5; border: 1.5px solid #feb2b2; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #991b1b; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>Initial Clinical Safety Triage (Red-Flag Warning Signs)</span>
-							</h3>
-							<p style="font-size: 0.82rem; color: #7f1d1d; line-height: 1.55; margin-bottom: 0.75rem;">
-								These specific clinical signs do not fit typical Primary Burning Mouth Syndrome. If any apply, they require prompt professional evaluation by an oral surgeon, ENT specialist, or physician before pursuing at-home self-management:
-							</p>
-							<div class="bms-grid-2col" style="font-size: 0.82rem; color: #1e293b;">
-								<label class="bms-check-label"><input type="checkbox" name="redflag_unilateral" class="bms-input-persist" /> <span>Burning or pain strictly on one side of the mouth</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_ulcer_3w" class="bms-input-persist" /> <span>A sore, ulcer, lump, or tissue patch unhealed after 3 weeks</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_weight_loss" class="bms-input-persist" /> <span>Unexplained, rapid weight loss or loss of appetite</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_dysphagia" class="bms-input-persist" /> <span>Persistent difficulty or pain when swallowing</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_taste_unilateral" class="bms-input-persist" /> <span>Loss of taste sensation on one side of the tongue only</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_neck_lump" class="bms-input-persist" /> <span>A palpable lump or swollen gland in the neck or jaw</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_numbness" class="bms-input-persist" /> <span>Persistent numbness of the lip, chin, or tongue</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_trismus" class="bms-input-persist" /> <span>Difficulty opening the mouth fully (trismus)</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_swelling" class="bms-input-persist" /> <span>Unexplained swelling of the face, cheek, or jaw</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_bleeding" class="bms-input-persist" /> <span>Unexplained bleeding from the gums or oral tissue</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_radiation" class="bms-input-persist" /> <span>History of head/neck cancer or radiation to the jaw</span></label>
-								<label class="bms-check-label"><input type="checkbox" name="redflag_fever" class="bms-input-persist" /> <span>High fever occurring alongside mouth symptoms</span></label>
-								<label class="bms-check-label" style="grid-column: 1 / -1; font-weight: 600; color: #166534;"><input type="checkbox" name="redflag_none" class="bms-input-persist" /> <span>None of these warning signs apply (Classic BMS clinical presentation)</span></label>
-							</div>
-						</div>
-
-						<!-- Section A: Demographics & Onset -->
-						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>1. Patient Demographics &amp; Chronology</span>
-							</h3>
-							
-							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
-								<div>
-									<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Biological Sex</label>
-									<div style="display: flex; gap: 0.75rem;">
-										<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.84rem; color: #1e293b; cursor: pointer;">
-											<input type="radio" name="bms_q_sex" value="female" class="bms-input-persist" /> Female
-										</label>
-										<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.84rem; color: #1e293b; cursor: pointer;">
-											<input type="radio" name="bms_q_sex" value="male" class="bms-input-persist" /> Male
-										</label>
-										<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.84rem; color: #1e293b; cursor: pointer;">
-											<input type="radio" name="bms_q_sex" value="other" class="bms-input-persist" /> Other
-										</label>
-									</div>
-								</div>
-
-								<div>
-									<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Age Bracket</label>
-									<div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-											<input type="radio" name="bms_q_age" value="under-40" class="bms-input-persist" /> &lt;40
-										</label>
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-											<input type="radio" name="bms_q_age" value="40-49" class="bms-input-persist" /> 40&ndash;49
-										</label>
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-											<input type="radio" name="bms_q_age" value="50-59" class="bms-input-persist" /> 50&ndash;59
-										</label>
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-											<input type="radio" name="bms_q_age" value="60-69" class="bms-input-persist" /> 60&ndash;69
-										</label>
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-											<input type="radio" name="bms_q_age" value="70+" class="bms-input-persist" /> 70+
-										</label>
-									</div>
-								</div>
-							</div>
-
-							<div style="margin-top: 0.85rem;">
-								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">How long have you experienced this burning sensation?</label>
-								<div style="display: flex; flex-wrap: wrap; gap: 0.85rem;">
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_duration" value="lt-6m" class="bms-input-persist" /> Under 6 months
-									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_duration" value="6m-2y" class="bms-input-persist" /> 6 months to 2 years
-									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_duration" value="2y-5y" class="bms-input-persist" /> 2 to 5 years
-									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_duration" value="gt-5y" class="bms-input-persist" /> 5+ years
-									</label>
-								</div>
-							</div>
-						</div>
-
-						<!-- Section B: Pain Quality & Intensity -->
-						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>2. Primary Pain Sensation &amp; Intensity</span>
-							</h3>
-
-							<div style="margin-bottom: 0.85rem;">
-								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">What does your sensation feel like? (Select all that apply)</label>
-								<div class="bms-grid-3col">
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sensation_scald" class="bms-input-persist" />
-										<span>Scalded tongue or hot coffee&nbsp;burn</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sensation_sandpaper" class="bms-input-persist" />
-										<span>Raw sandpaper or scraped&nbsp;tissue</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sensation_acid" class="bms-input-persist" />
-										<span>Acidic or battery chemical&nbsp;sting</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sensation_metallic" class="bms-input-persist" />
-										<span>Metallic or salty altered&nbsp;taste</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sensation_electric" class="bms-input-persist" />
-										<span>Tingling or electric prickling&nbsp;sparks</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sensation_numb" class="bms-input-persist" />
-										<span>Partial numbness or swollen&nbsp;feeling</span>
-									</label>
-								</div>
-							</div>
-
-							<div>
-								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-									<label style="font-size: 0.82rem; font-weight: 600; color: #475569;">Average Daily Pain Intensity (0 to 10 Scale)</label>
-									<span id="bms_pain_val_display" style="font-size: 0.9rem; font-weight: 700; color: #dc2626;">7 / 10</span>
-								</div>
-								<input type="range" name="bms_pain_scale" min="0" max="10" value="7" style="width: 100%; accent-color: #dc2626; cursor: pointer;" class="bms-input-persist" id="bms_pain_slider" />
-								<div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #64748b; margin-top: 0.2rem;">
-									<span>0: No Pain</span>
-									<span>3: Mild Sting</span>
-									<span>7: Severe Distress</span>
-									<span>10: Unbearable Emergency</span>
-								</div>
-							</div>
-						</div>
-
-						<!-- Section C: Anatomical Location -->
-						<div class="quiz-book-card" style="padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>3. Anatomical Burning Location</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_loc_tip" class="bms-input-persist" />
-									<span>Tip of the tongue</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_loc_sides" class="bms-input-persist" />
-									<span>Lateral tongue borders</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_loc_palate" class="bms-input-persist" />
-									<span>Hard palate (roof of&nbsp;mouth)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_loc_lips" class="bms-input-persist" />
-									<span>Inner lips &amp; vermilion&nbsp;border</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_loc_gums" class="bms-input-persist" />
-									<span>Gums &amp; cervical tooth&nbsp;collars</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_loc_throat" class="bms-input-persist" />
-									<span>Pharynx &amp; posterior&nbsp;throat</span>
-								</label>
-							</div>
-
-							<div style="margin-top: 0.85rem;">
-								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Is the burning bilateral or unilateral?</label>
-								<div style="display: flex; gap: 1.25rem;">
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_symmetry" value="bilateral" class="bms-input-persist" /> Bilateral (both sides symmetrically)
-									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_symmetry" value="unilateral" class="bms-input-persist" /> Unilateral (confined strictly to one side)
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>7</span>
-				</div>
-			</section>
-
-			<!-- Chapter 3: The BMS Diagnostic Questionnaire (Page 2 of 4: Triggers, Mechanical, & Diet Recall) -->
-			<section class="book-page" id="page-8">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3: The BMS Diagnostic Questionnaire</span>
-						<span class="page-count-label">Page 8</span>
-					</div>
-
-					<h2 class="chapter-title">Symptom Dynamics &amp; Food&nbsp;Triggers</h2>
-
-					<div class="chapter-content is-first-page">
-						<!-- Section D: Diurnal Pattern & Sleep -->
-						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>4. Diurnal Fluctuation &amp; Sleep Dynamics</span>
-							</h3>
-
-							<div style="margin-bottom: 0.85rem;">
-								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Does your burning escalate progressively as the day unfolds?</label>
-								<div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_diurnal" value="yes-crescendo" class="bms-input-persist" /> Yes: Minimal in morning, peaks by late afternoon/evening
-									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_diurnal" value="constant" class="bms-input-persist" /> Constant: Exactly the same morning, day, and night
-									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_diurnal" value="morning-worst" class="bms-input-persist" /> Opposite: Most severe upon waking up
-									</label>
-								</div>
-							</div>
-
-							<div>
-								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Does the burning wake you up from a dead sleep at night?</label>
-								<div style="display: flex; gap: 1.25rem;">
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_sleep" value="rarely" class="bms-input-persist" /> Rarely / Never (sleep provides temporary respite)
-									</label>
-									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
-										<input type="radio" name="bms_q_sleep" value="frequently" class="bms-input-persist" /> Yes, frequently wakes me in pain
-									</label>
-								</div>
-							</div>
-						</div>
-
-						<!-- Section E: Thermal & Chemical Food Triggers -->
-						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>5. Chemical &amp; Dietary Sensory Triggers</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_trig_citrus" class="bms-input-persist" />
-									<span>Acidic foods (tomatoes, citrus,&nbsp;vinegar)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_trig_coffee" class="bms-input-persist" />
-									<span>Coffee, tea, sodas, or carbonated&nbsp;water</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_trig_spicy" class="bms-input-persist" />
-									<span>Spices (capsaicin, black pepper,&nbsp;chili)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_trig_mint" class="bms-input-persist" />
-									<span>Mint, menthol, or cinnamon oral&nbsp;care</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_trig_sugar" class="bms-input-persist" />
-									<span>Refined sugars, honey, syrups, or&nbsp;carbs</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_trig_alcohol" class="bms-input-persist" />
-									<span>Alcoholic drinks or alcohol mouth&nbsp;rinses</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_trig_temp" class="bms-input-persist" />
-									<span>Boiling liquids or ice cold&nbsp;beverages</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_trig_eating_relief" class="bms-input-persist" />
-									<span>Temporary relief WHILE actively&nbsp;eating</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_trig_dry_air" class="bms-input-persist" />
-									<span>Dry indoor air or mouth breathing&nbsp;spikes</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Section F: Daily Fluid & Continuous Sipping Habits -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>6. Daily Fluid Intake &amp; All-Day Sipping Habits</span>
-							</h3>
-							
-							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; margin-bottom: 0.75rem;">
-								<div>
-									<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">How often do you sip liquids throughout the day?</label>
-									<div style="display: flex; flex-direction: column; gap: 0.35rem;">
-										<label class="bms-check-label">
-											<input type="radio" name="bms_sip_frequency" value="constant-sipping" class="bms-input-persist" />
-											<span>Continuous sipping all day (every 5&ndash;15 minutes to moisten&nbsp;mouth)</span>
-										</label>
-										<label class="bms-check-label">
-											<input type="radio" name="bms_sip_frequency" value="regular-hourly" class="bms-input-persist" />
-											<span>Regular sips every 1&ndash;2&nbsp;hours</span>
-										</label>
-										<label class="bms-check-label">
-											<input type="radio" name="bms_sip_frequency" value="meals-only" class="bms-input-persist" />
-											<span>Drink mostly with meals&nbsp;only</span>
-										</label>
-									</div>
-								</div>
-
-								<div>
-									<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Total Estimated Daily Fluid Volume</label>
-									<div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
-										<label class="bms-check-label">
-											<input type="radio" name="bms_fluid_volume" value="under-1L" class="bms-input-persist" />
-											<span>Under 1 liter (&lt;4&nbsp;cups)</span>
-										</label>
-										<label class="bms-check-label">
-											<input type="radio" name="bms_fluid_volume" value="1L-2L" class="bms-input-persist" />
-											<span>1 to 2 liters (4&ndash;8&nbsp;cups)</span>
-										</label>
-										<label class="bms-check-label">
-											<input type="radio" name="bms_fluid_volume" value="2L-3L" class="bms-input-persist" />
-											<span>2 to 3 liters (8&ndash;12&nbsp;cups)</span>
-										</label>
-										<label class="bms-check-label">
-											<input type="radio" name="bms_fluid_volume" value="over-3L" class="bms-input-persist" />
-											<span>3+ liters (heavy hydration)</span>
-										</label>
-									</div>
-								</div>
-							</div>
-
-							<div>
-								<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">What specific liquids do you sip throughout the day? (Select all that apply)</label>
-								<div class="bms-grid-3col">
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sip_tap_water" class="bms-input-persist" />
-										<span>Plain tap or bottled spring&nbsp;water</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sip_ro_distilled" class="bms-input-persist" />
-										<span>Reverse osmosis (RO) or distilled&nbsp;water</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sip_sparkling" class="bms-input-persist" />
-										<span>Sparkling or carbonated mineral&nbsp;water</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sip_coffee" class="bms-input-persist" />
-										<span>Coffee (black, with milk, or&nbsp;iced)</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sip_tea" class="bms-input-persist" />
-										<span>Black, green, or herbal&nbsp;teas</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sip_lemon_water" class="bms-input-persist" />
-										<span>Water with lemon, lime, or fruit&nbsp;drops</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sip_sodas" class="bms-input-persist" />
-										<span>Regular or diet sodas / energy&nbsp;drinks</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sip_bicarb" class="bms-input-persist" />
-										<span>Baking soda (bicarbonate)&nbsp;water</span>
-									</label>
-									<label class="bms-check-label">
-										<input type="checkbox" name="bms_sip_electrolytes" class="bms-input-persist" />
-										<span>Electrolyte powders or sports&nbsp;drinks</span>
-									</label>
-								</div>
-							</div>
-						</div>
-
-						<!-- Section G: 24-Hour Food & Beverage Intake Log -->
-						<div class="quiz-book-card" style="padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>7. 24-Hour Food &amp; Beverage Intake Log</span>
-							</h3>
-							
-							<p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.65rem;">
-								Document your last 3 meals and drinks to detect delayed acidic fermentation patterns:
-							</p>
-
-							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem;">
-								<div>
-									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Meal #1 (Most Recent)</label>
-									<input type="text" name="bms_diet_m1" placeholder="e.g., eggs, black coffee, sourdough" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
-								</div>
-								<div>
-									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Meal #2 (Previous Meal)</label>
-									<input type="text" name="bms_diet_m2" placeholder="e.g., salad with vinaigrette, chicken" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
-								</div>
-								<div>
-									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Meal #3 (Third Meal Back)</label>
-									<input type="text" name="bms_diet_m3" placeholder="e.g., pasta with tomato sauce, red wine" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>8</span>
-				</div>
-			</section>
-
-			<!-- Chapter 3: The BMS Diagnostic Questionnaire (Page 3 of 4: Jaw Clenching, Dry Mouth, & Dental Audit) -->
-			<section class="book-page" id="page-9">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3: The BMS Diagnostic Questionnaire</span>
-						<span class="page-count-label">Page 9</span>
-					</div>
-
-					<h2 class="chapter-title">Dental Hardware &amp; Salivary&nbsp;Audit</h2>
-
-					<div class="chapter-content is-first-page">
-						<!-- Section G: Jaw Clenching & Mechanical Bracing -->
-						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>7. Jaw Mechanics, Grinding, &amp; Tongue Bracing</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_jaw_sore" class="bms-input-persist" />
-									<span>Morning jaw soreness or masseter&nbsp;tightness</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_jaw_brace" class="bms-input-persist" />
-									<span>Tongue bracing against front teeth or&nbsp;palate</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_jaw_click" class="bms-input-persist" />
-									<span>TMJ clicking, popping, or limited&nbsp;opening</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_jaw_scallop" class="bms-input-persist" />
-									<span>Scalloped tongue edges with dental&nbsp;marks</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_jaw_grind" class="bms-input-persist" />
-									<span>Known nighttime clenching or sleep&nbsp;bruxism</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_jaw_tension" class="bms-input-persist" />
-									<span>Neck and shoulder stiffness alongside&nbsp;burning</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Section H: Salivary Flow & Mucosal Barrier -->
-						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>8. Saliva Flow &amp; Barrier Hydration</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_saliva_dry" class="bms-input-persist" />
-									<span>Dry or sticky mouth despite abundant&nbsp;water</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_saliva_thick" class="bms-input-persist" />
-									<span>Thick, stringy, or foaming reduced&nbsp;saliva</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_saliva_taste" class="bms-input-persist" />
-									<span>Altered salty, metallic, or bitter&nbsp;taste</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_saliva_eyes" class="bms-input-persist" />
-									<span>Gritty dry eyes or dry mucous&nbsp;membranes</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_saliva_thirst" class="bms-input-persist" />
-									<span>Frequent nocturnal water sips to swallow&nbsp;easily</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_saliva_cracking" class="bms-input-persist" />
-									<span>Chapped lip corners or angular&nbsp;cheilitis</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Section I: Dental Hardware History -->
-						<div class="quiz-book-card" style="padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>9. Dental Restorations &amp; Exposed Tubules</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_dent_onset" class="bms-input-persist" />
-									<span>Onset triggered following dental&nbsp;procedure</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_dent_recession" class="bms-input-persist" />
-									<span>Visible root recession or cervical&nbsp;notches</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_dent_crowns" class="bms-input-persist" />
-									<span>Crowns, porcelain veneers, or deep&nbsp;fillings</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_dent_bleach" class="bms-input-persist" />
-									<span>Aggressive peroxide bleaching or&nbsp;strips</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_dent_desensitizer" class="bms-input-persist" />
-									<span>Fluoride varnish or Gluma gave brief&nbsp;respite</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_dent_pockets" class="bms-input-persist" />
-									<span>Periodontal gum pockets of 4mm or&nbsp;deeper</span>
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>9</span>
-				</div>
-			</section>
-
-			<!-- Chapter 3: The BMS Diagnostic Questionnaire (Page 4 of 4: Systemic Reflux, Medications, & Action Summary) -->
-			<section class="book-page" id="page-10">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3: The BMS Diagnostic Questionnaire</span>
-						<span class="page-count-label">Page 10</span>
-					</div>
-
-					<h2 class="chapter-title">Systemic Factors &amp; Clinical&nbsp;Report</h2>
-
-					<div class="chapter-content is-first-page">
-						<!-- Section J: Systemic Reflux & Medications -->
-						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>10. Systemic Factors, Medications, &amp; Reflux</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_sys_reflux" class="bms-input-persist" />
-									<span>Frequent heartburn, GERD, or silent LPR&nbsp;reflux</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_sys_throat_clear" class="bms-input-persist" />
-									<span>Morning throat clearing, post-nasal drip, or&nbsp;hoarseness</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_sys_ace" class="bms-input-persist" />
-									<span>Antihypertensives (ACE inhibitors, ARBs, or&nbsp;diuretics)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_sys_b12_normal" class="bms-input-persist" />
-									<span>Normal B12 serum but elevated MMA or&nbsp;homocysteine</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_sys_thyroid" class="bms-input-persist" />
-									<span>Thyroiditis, diabetes, or autoimmune systemic&nbsp;history</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_sys_stress" class="bms-input-persist" />
-									<span>Severe acute stress or viral illness before&nbsp;onset</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Section K: Patient Clinical Action Notes -->
-						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-								<span>11. Personal Symptom Notes for Your Next Doctor Visit</span>
-							</h3>
-							
-							<textarea name="bms_patient_notes" class="bms-input-persist" placeholder="Record specific dates, dental procedures, medications trialed, and questions you want to ask your clinician..." style="width: 100%; height: 95px; font-size: 0.82rem; line-height: 1.5; padding: 0.5rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; resize: vertical;"></textarea>
-						</div>
-
-						<!-- Actions: Print / Clear / Save Status -->
-						<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
-							<div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.35rem;">
-								<span style="display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></span>
-								<span id="bms_persist_status">Answers saved automatically in this browser.</span>
-							</div>
-
-							<div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-								<a href="/bms-clinical-intake-questionnaire.pdf" download="BMS-Clinical-Intake-Questionnaire.pdf" style="font-size: 0.8rem; font-weight: 600; color: #ffffff; background: #2563eb; padding: 0.45rem 0.9rem; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem;">
-									<span>Download Questionnaire PDF</span>
-								</a>
-								<button type="button" id="bms_print_btn" style="font-size: 0.8rem; font-weight: 600; color: #1e293b; background: #e2e8f0; padding: 0.45rem 0.8rem; border: none; border-radius: 6px; cursor: pointer;">
-									Print Filled Answers
-								</button>
-								<button type="button" id="bms_clear_btn" style="font-size: 0.8rem; font-weight: 600; color: #64748b; background: #f1f5f9; padding: 0.45rem 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;">
-									Reset Fields
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>10</span>
-				</div>
-			</section>
-
-
-			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 5 of 8 / Book Page 11) -->
-			<section class="book-page" id="page-11">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3: Comprehensive Clinical Health Intake (Part B)</span>
-						<span class="page-count-label">Page 11</span>
-					</div>
-
-					<h2 class="chapter-title">Comprehensive Medical &amp; Systemic&nbsp;History</h2>
-
-					<div class="chapter-content is-first-page">
-						<p style="font-size: 0.94rem; line-height: 1.68; color: #334155; margin-bottom: 1.15rem; text-wrap: pretty;">
-							Standard dental clinics utilize extensive multi-page medical questionnaires to rule out systemic contraindications and metabolic neuropathies. Complete this clinical audit to document cardiovascular status, endocrine markers, and gastrointestinal reflux patterns before your dental consult.
-						</p>
-
-						<!-- Section 1: Cardiovascular & Blood Pressure Health -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
-								<span>1. Cardiovascular Health, Hypertension, &amp; Blood Flow</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_htn" class="bms-input-persist" />
-									<span>High blood pressure (hypertension)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_angina" class="bms-input-persist" />
-									<span>Angina, chest pain, or shortness of&nbsp;breath</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_heart_attack" class="bms-input-persist" />
-									<span>History of heart attack or cardiac&nbsp;stents</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_murmur" class="bms-input-persist" />
-									<span>Heart murmur or mitral valve&nbsp;prolapse</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_pacemaker" class="bms-input-persist" />
-									<span>Pacemaker or artificial heart&nbsp;valve</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_stroke" class="bms-input-persist" />
-									<span>History of stroke or transient ischemic&nbsp;attack</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_blood_thinners" class="bms-input-persist" />
-									<span>Taking blood thinners (Eliquis, Plavix,&nbsp;Aspirin)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_bleeding_disorder" class="bms-input-persist" />
-									<span>Bleeding disorder, easy bruising, or&nbsp;anemia</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_fainting" class="bms-input-persist" />
-									<span>Frequent dizziness, fainting, or orthostatic&nbsp;drops</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Section 2: Endocrine, Metabolic, & Diabetes Screening -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
-								<span>2. Endocrine, Diabetes, &amp; Metabolic Profile</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_type2_dm" class="bms-input-persist" />
-									<span>Diagnosed Type 2 diabetes or&nbsp;pre-diabetes</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_type1_dm" class="bms-input-persist" />
-									<span>Diagnosed Type 1 insulin-dependent&nbsp;diabetes</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_thyroid_hypo" class="bms-input-persist" />
-									<span>Hypothyroidism or Hashimoto's&nbsp;thyroiditis</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_thyroid_hyper" class="bms-input-persist" />
-									<span>Hyperthyroidism or Graves'&nbsp;disease</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_kidney" class="bms-input-persist" />
-									<span>Chronic kidney disease or&nbsp;dialysis</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_liver" class="bms-input-persist" />
-									<span>Hepatitis or liver function&nbsp;abnormalities</span>
-								</label>
-							</div>
-
-							<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px dashed #e2e8f0;">
-								<div>
-									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Most Recent HbA1c Level (if diabetic)</label>
-									<input type="text" name="bms_val_hba1c" placeholder="e.g., 5.6% (normal) or 7.2%" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.35rem 0.55rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
-								</div>
-								<div>
-									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Last Blood Pressure Reading</label>
-									<input type="text" name="bms_val_bp" placeholder="e.g., 122 / 78 mmHg" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.35rem 0.55rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
-								</div>
-							</div>
-						</div>
-
-						<!-- Section 3: Gastrointestinal & Reflux Ingress -->
-						<div class="quiz-book-card" style="padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
-								<span>3. Gastrointestinal, GERD, &amp; Acid Reflux Audit</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_gerd" class="bms-input-persist" />
-									<span>Active gastroesophageal reflux disease (GERD)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_silent_reflux" class="bms-input-persist" />
-									<span>Silent LPR reflux (sour throat waking&nbsp;up)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_hiatal_hernia" class="bms-input-persist" />
-									<span>Diagnosed hiatal hernia or stomach&nbsp;ulcer</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_ibs" class="bms-input-persist" />
-									<span>Irritable bowel syndrome (IBS) or&nbsp;SIBO</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_celiac" class="bms-input-persist" />
-									<span>Celiac disease or severe gluten&nbsp;intolerance</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_med_ppi_use" class="bms-input-persist" />
-									<span>Daily acid blockers (Omeprazole, Pepcid,&nbsp;Tums)</span>
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>11</span>
-				</div>
-			</section>
-
-			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 6 of 8 / Book Page 12) -->
-			<section class="book-page" id="page-12">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3: Comprehensive Clinical Health Intake (Part B)</span>
-						<span class="page-count-label">Page 12</span>
-					</div>
-
-					<h2 class="chapter-title">Dental Procedures, Restorations, &amp; Periodontics</h2>
-
-					<div class="chapter-content is-first-page">
-						<!-- Section 4: Periodontal Status & Gum Health -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
-								<span>4. Periodontal Health, Deep Cleanings, &amp; Gum Pockets</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_perio_bleeding" class="bms-input-persist" />
-									<span>Bleeding on brushing or flossing&nbsp;(BOP)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_perio_srp" class="bms-input-persist" />
-									<span>Past deep cleaning (scaling and root&nbsp;planing)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_perio_pockets_4mm" class="bms-input-persist" />
-									<span>Measured gum pockets of 4mm or deeper</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_perio_loose" class="bms-input-persist" />
-									<span>Loose, mobile, or shifting teeth</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_perio_graft" class="bms-input-persist" />
-									<span>Past gum tissue graft or flap&nbsp;surgery</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_perio_halitosis" class="bms-input-persist" />
-									<span>Persistent bad breath or localized foul&nbsp;taste</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Section 5: Restorations & Dental Work History -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
-								<span>5. Dental Hardware, Crowns, Fillings, &amp; Implants</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_rest_crowns" class="bms-input-persist" />
-									<span>Porcelain, zirconia, or metal dental&nbsp;crowns</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_rest_veneers" class="bms-input-persist" />
-									<span>Porcelain veneers or cosmetic&nbsp;bonding</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_rest_amalgams" class="bms-input-persist" />
-									<span>Silver mercury amalgam fillings&nbsp;present</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_rest_composites" class="bms-input-persist" />
-									<span>Tooth-colored composite resin fillings</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_rest_root_canals" class="bms-input-persist" />
-									<span>Endodontically treated teeth (root&nbsp;canals)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_rest_implants" class="bms-input-persist" />
-									<span>Titanium or ceramic dental&nbsp;implants</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_rest_food_trap" class="bms-input-persist" />
-									<span>Restorations that constantly trap&nbsp;food</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_rest_bridges" class="bms-input-persist" />
-									<span>Fixed bridgework or removable partials</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_rest_recent_work" class="bms-input-persist" />
-									<span>Dental work completed in last 6&nbsp;months</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Section 6: Oral Hygiene Protocol & Daily Care -->
-						<div class="quiz-book-card" style="padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
-								<span>6. Daily Home Care, Toothpaste, &amp; Oral Devices</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_care_electric_brush" class="bms-input-persist" />
-									<span>Electric toothbrush (Sonicare,&nbsp;Oral-B)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_care_manual_hard" class="bms-input-persist" />
-									<span>Manual medium/hard bristle toothbrush</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_care_sls_paste" class="bms-input-persist" />
-									<span>Standard foaming toothpaste with&nbsp;SLS</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_care_whitening_paste" class="bms-input-persist" />
-									<span>Abrasive whitening or tartar-control&nbsp;paste</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_care_water_flosser" class="bms-input-persist" />
-									<span>Water flosser / subgingival pocket&nbsp;tip</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_care_alcohol_rinse" class="bms-input-persist" />
-									<span>Commercial alcohol-based antiseptic&nbsp;rinse</span>
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>12</span>
-				</div>
-			</section>
-
-			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 7 of 8 / Book Page 13) -->
-			<section class="book-page" id="page-13">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3: Comprehensive Clinical Health Intake (Part B)</span>
-						<span class="page-count-label">Page 13</span>
-					</div>
-
-					<h2 class="chapter-title">Airway, Bone Density, &amp; Pharmacology</h2>
-
-					<div class="chapter-content is-first-page">
-						<!-- Section 7: Airway, Mouth Breathing, & Sleep Apnea -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
-								<span>7. Airway Dynamics, Sleep Apnea, &amp; Mouth Breathing</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_air_mouth_breathing" class="bms-input-persist" />
-									<span>Chronic mouth breathing during the&nbsp;day</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_air_open_mouth_sleep" class="bms-input-persist" />
-									<span>Wake up with mouth wide open and tongue bone-dry</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_air_snoring" class="bms-input-persist" />
-									<span>Loud snoring or witnessed breathing pauses</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_air_sleep_apnea" class="bms-input-persist" />
-									<span>Diagnosed Obstructive Sleep Apnea (OSA)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_air_cpap" class="bms-input-persist" />
-									<span>CPAP user or oral mandibular advancement device</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_air_nasal_obstruction" class="bms-input-persist" />
-									<span>Deviated septum, chronic sinusitis, or nasal obstruction</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Section 8: Bone Health & Bisphosphonate Safety Screening -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
-								<span>8. Bone Density &amp; Bisphosphonate Safety Audit</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_bone_osteoporosis" class="bms-input-persist" />
-									<span>Diagnosed osteoporosis or osteopenia</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_bone_oral_bisphosphonate" class="bms-input-persist" />
-									<span>Oral bisphosphonates (Fosamax, Actonel, Boniva)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_bone_iv_bisphosphonate" class="bms-input-persist" />
-									<span>IV bone medications (Reclast, Zometa, Prolia)</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_bone_radiation" class="bms-input-persist" />
-									<span>Head or neck radiation therapy in the&nbsp;past</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_bone_jaw_pain" class="bms-input-persist" />
-									<span>Deep jaw bone aching or delayed post-extraction healing</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_bone_steroids" class="bms-input-persist" />
-									<span>Long-term corticosteroid use (Prednisone)</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Section 9: Allergies, Anesthetics, & Material Sensitivities -->
-						<div class="quiz-book-card" style="padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
-								<span>9. Allergies, Local Anesthetics, &amp; Dental Materials</span>
-							</h3>
-
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_alg_penicillin" class="bms-input-persist" />
-									<span>Allergy to Penicillin or Amoxicillin</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_alg_sulfa" class="bms-input-persist" />
-									<span>Allergy to Sulfa drugs or Clindamycin</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_alg_epinephrine" class="bms-input-persist" />
-									<span>Heart palpitations / sensitivity to Epinephrine</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_alg_anesthetic" class="bms-input-persist" />
-									<span>Adverse reaction to Lidocaine or Novocaine</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_alg_latex" class="bms-input-persist" />
-									<span>Latex rubber glove sensitivity</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_alg_metals" class="bms-input-persist" />
-									<span>Metal allergies (nickel, cobalt, chrome,&nbsp;gold)</span>
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>13</span>
-				</div>
-			</section>
-
-			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 8 of 8 / Book Page 14) -->
-			<section class="book-page" id="page-14">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3: Comprehensive Clinical Health Intake (Part B)</span>
-						<span class="page-count-label">Page 14</span>
-					</div>
-
-					<h2 class="chapter-title">Complete Medication &amp; Surgical Consultation&nbsp;Dossier</h2>
-
-					<div class="chapter-content is-first-page">
-						<!-- Section 10: Master Prescription & Supplement Roster -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem;">
-								<span>10. Current Prescription Medications &amp; Daily Supplements</span>
-							</h3>
-							<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">
-								List all medications, daily vitamins, pain relievers, and supplements currently taken (include dosage if known):
-							</p>
-							<textarea name="bms_master_medication_list" class="bms-input-persist" placeholder="e.g., Lisinopril 20mg (morning), Omeprazole 40mg (before dinner), Vitamin B12 1000mcg sublingual, Calcium + Vitamin D, Multivitamin, Ibuprofen as needed..." style="width: 100%; height: 80px; font-size: 0.82rem; line-height: 1.5; padding: 0.45rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; resize: vertical;"></textarea>
-						</div>
-
-						<!-- Section 11: Past Surgeries, Hospitalizations, & Trauma -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem;">
-								<span>11. Surgical History, Oral Trauma, &amp; Dental Complications</span>
-							</h3>
-							<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">
-								Document major surgeries, intubation history, facial trauma, difficult extractions, or anesthesia complications:
-							</p>
-							<textarea name="bms_surgical_trauma_history" class="bms-input-persist" placeholder="e.g., Difficult wisdom tooth extraction in lower right with lingering numbness in 2021. Endotracheal intubation during knee surgery in 2024 with subsequent throat and palate irritation..." style="width: 100%; height: 75px; font-size: 0.82rem; line-height: 1.5; padding: 0.45rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; resize: vertical;"></textarea>
-						</div>
-
-						<!-- Section 12: Comprehensive Clinical Inquiries for Next Dental/Medical Visit -->
-						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem;">
-								<span>12. Specific Dental Diagnostics Requested for Today's Visit</span>
-							</h3>
-							<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">
-								Check the specific diagnostic tests you are requesting your dentist perform during this evaluation:
-							</p>
-							<div class="bms-grid-3col">
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_req_perio_chart" class="bms-input-persist" />
-									<span>Full 6-point periodontal pocket probing chart</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_req_cold_air" class="bms-input-persist" />
-									<span>Cold-air blast test on receded cervical collars</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_req_loupes" class="bms-input-persist" />
-									<span>High-magnification loupe inspection of crown margins</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_req_bite_stick" class="bms-input-persist" />
-									<span>Tooth Slooth bite-stick test for composite flexure</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_req_gluma_test" class="bms-input-persist" />
-									<span>In-office desensitizer trial on exposed roots</span>
-								</label>
-								<label class="bms-check-label">
-									<input type="checkbox" name="bms_req_anesthetic_block" class="bms-input-persist" />
-									<span>Diagnostic local anesthetic block on suspect tooth</span>
-								</label>
-							</div>
-						</div>
-
-						<!-- Actions: Print / Clear / Save Status -->
-						<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
-							<div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.35rem;">
-								<span style="display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></span>
-								<span id="bms_persist_status_p14">Complete clinical dossier saved in browser.</span>
-							</div>
-
-							<div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-								<a href="/bms-clinical-intake-questionnaire.pdf" download="BMS-Clinical-Intake-Questionnaire.pdf" style="font-size: 0.8rem; font-weight: 600; color: #ffffff; background: #2563eb; padding: 0.45rem 0.9rem; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem;">
-									<span>Download Complete Intake PDF</span>
-								</a>
-								<button type="button" onclick="window.print()" style="font-size: 0.8rem; font-weight: 600; color: #1e293b; background: #e2e8f0; padding: 0.45rem 0.8rem; border: none; border-radius: 6px; cursor: pointer;">
-									Print Filled Dossier
-								</button>
-								<button type="button" id="bms_clear_btn_p14" style="font-size: 0.8rem; font-weight: 600; color: #64748b; background: #f1f5f9; padding: 0.45rem 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;">
-									Reset Fields
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>14</span>
-				</div>
-			</section>
+			
 
 
 
@@ -5937,81 +4848,7 @@ import { SITE_TITLE } from '../consts';
 
 						<!-- Chapter 5: The Start of Your BMS: Trigger Events vs. The Real Cause (Page 1 of 2) -->
 
-			<section class="book-page" id="page-15b">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 5: The Start of Your BMS</span>
-						<span class="page-count-label">Page 16</span>
-					</div>
-
-					<h2 class="chapter-title">Chapter 5: The Start of Your BMS: Trigger Events vs. The Real&nbsp;Cause</h2>
-
-					<div class="chapter-content is-first-page">
-						<p>Ask ten people with Burning Mouth Syndrome when their nightmare began, and nine will name a specific calendar date: <em>"It started three days after my lower molar was pulled,"</em> or <em>"It hit the week after my car accident,"</em> or <em>"I drank an acidic green juice cleanse and my tongue never stopped&nbsp;burning."</em></p>
-						<p>The human brain is wired for immediate cause-and-effect narratives. When a violent, ten-out-of-ten fire erupts in your mouth, you naturally blame the last physical event that occurred before the pain. In modern medicine, however, that immediate trigger is almost never the foundational cause. It is merely the match that lit an architectural fuse fifty years in the&nbsp;making.</p>
-
-						<h3>The Illusion of the First Episode: The Match vs. The Dry Forest</h3>
-						<p>Imagine a wooden house whose structural beams have been silently hollowed out by termites for thirty years, while the basement floorboards are soaked in gasoline. If someone accidentally drops a lit match in the hallway, the entire structure erupts in an instant inferno.</p>
-						<p>Did the single match burn down the house? Technically, yes, it supplied the initial spark. But focusing entirely on the match misses the biological reality: the catastrophe was only possible because decades of microscopic hardware leaks, exposed dentinal tubules, and salivary buffer depletion had loaded the system to 99% of its firing&nbsp;threshold.</p>
-						<p>Across patient histories, the initial spark almost always falls into one of three common trigger&nbsp;categories:</p>
-
-						<h3>Scenario 1: After a Tooth Extraction or Dental Surgery</h3>
-						<p>A staggering percentage of BMS sufferers trace their first symptoms directly to a routine tooth extraction, dental implant placement, or deep root canal. When they return to the clinic in agony, the dentist inspects the socket, sees healthy pink tissue over healed bone, and insists: <em>"The socket looks beautiful. That tooth is gone; it is physically impossible for it to cause your tongue or palate to burn."</em></p>
-						<p>The patient feels gaslit. But sensory neurobiology reveals that pulling a tooth is not an isolated event:</p>
-						<p><strong>1. Mechanical Rupture of Apical Nerve Bundles:</strong> During an extraction, a surgeon does not cleanly slice a nerve with a scalpel. Forceps and elevators rock the tooth back and forth to expand the alveolar bone socket. As the root moves upward, the microscopic terminal neurovascular fibrils entering the apical foramen are violently stretched, sheared, and ripped apart at the socket floor.</p>
-						<p><strong>2. Traumatic Neuroma Formation:</strong> When severed nerve stumps attempt to regenerate in healing bone, they sprout chaotic axonal growth cones. Trapped in dense fibrous scar tissue, these sprouts form a traumatic neuroma, clustering voltage-gated sodium channels (Na<sub>v</sub>1.7, Na<sub>v</sub>1.8) that fire spontaneous ectopic electrical bursts into the jawbone.</p>
-						<p><strong>3. Collateral Damage to Neighboring Teeth:</strong> Ripping a tooth out strips the shared blood supply from adjacent alveolar bone walls. As the socket remodels, the gumline recedes off neighboring teeth, unshielding 20,000 to 45,000 microscopic dentinal tubules per square millimeter right beside the surgical wound. Everyday food acids now flood into these newly exposed pipes, pouring fuel into an already kindled trigeminal relay.</p>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>16</span>
-				</div>
-			</section>
-
-			<!-- Chapter 5: The Start of Your BMS: Trigger Events vs. The Real Cause (Page 2 of 2) -->
-
-			<section class="book-page" id="page-15c">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 5: The Start of Your BMS</span>
-						<span class="page-count-label">Page 17</span>
-					</div>
-
-					<div class="chapter-content">
-						<h3>Scenario 2: After an Accident, Physical Trauma, or Intubation</h3>
-						<p>Another major subset of sufferers trace their burning to a motor vehicle accident, a fall, or a routine medical procedure requiring general anesthesia:</p>
-						<p><strong>Cervical Whiplash and Jaw Strain:</strong> Rapid acceleration-deceleration forces hyperextend the cervical spine and temporomandibular joint (TMJ). Because upper cervical sensory roots (C1-C3) share second-order interneurons with the Trigeminal Subnucleus Caudalis in the brainstem, acute neck trauma can dramatically lower the central pain-gating threshold for the entire oral vault.</p>
-						<p><strong>Endotracheal Intubation Trauma:</strong> During general surgery, anesthesiologists insert rigid laryngoscope blades and plastic endotracheal tubes past the tongue, palate, and vocal cords. In an oral cavity already compromised by subclinical dry mouth or mucosal thinning, this mechanical shearing strips the protective mucin gel and physically traumatizes superficial unmyelinated C-fibers, kicking open dormant pain receptors.</p>
-
-						<h3>Scenario 3: After an Acute Acidic Ingress or Caustic Exposure</h3>
-						<p>For others, the start was chemical: starting a high-potency apple cider vinegar routine, drinking raw lemon juice cleanses, or using harsh alcohol-based mouthwashes or prescription chlorhexidine rinses.</p>
-						<p>A mouth with intact enamel and robust resting saliva can easily neutralize occasional acidic exposures. But if five decades of life have already leached crown cements and unshielded root collars, a sudden concentrated acid wash acts like battery acid poured into open machinery: it dissolves the microscopic smear plugs capping exposed dentinal tubules and triggers massive, synchronized depolarization of Acid-Sensing Ion Channels (ASIC1 and ASIC3).</p>
-
-						<h3>When the "Reason" Is a False Culprit</h3>
-						<p>The tragedy of fixating on the extraction, the accident, or the acidic drink is that it leads patients down exhausting, dead-end treatment paths. Sufferers spend months suing dentists, demanding repeat exploratory surgeries, or cycling through endless antibiotics to treat a phantom infection.</p>
-						<p>You cannot undo the tooth extraction, and you cannot un-ring the bell of an accident. But when you realize that the event was merely the trigger that exposed a pre-existing structural vulnerability, your focus shifts to what is actually actionable: sealing the unshielded root tubules on adjacent teeth, neutralizing bacterial lactic acid, restoring the salivary buffer, and breaking the central pain loop.</p>
-
-						<div class="book-callout">
-							<span class="book-callout-icon" aria-hidden="true">
-								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-									<circle cx="12" cy="12" r="10"></circle>
-									<line x1="12" y1="16" x2="12" y2="12"></line>
-									<line x1="12" y1="8" x2="12.01" y2="8"></line>
-								</svg>
-							</span>
-							<div class="book-callout-text">
-								<p><strong>The First Principle of BMS Onset:</strong> The event that seemed to cause your burning mouth was the final drop that made the bucket overflow. The bucket itself was filled over decades of cement fatigue, gum recession, and salivary decline. Next, in Chapter 6, we examine what happens when you visit your dentist seeking answers for this unexplained fire.</p>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>17</span>
-				</div>
-			</section>
+			
 
 <!-- Chapter 6: Going to the Dentist (Page 1 of 2) -->
 
@@ -7465,6 +6302,1202 @@ import { SITE_TITLE } from '../consts';
 					<span>52</span>
 				</div>
 			</section>
+
+			<!-- Part V: Chapter 18 (Finding Real Cause) & Chapter 19 (Questionnaire) -->
+			<section class="book-page" id="page-15b">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 18: Finding the Real Cause of Your BMS</span>
+						<span class="page-count-label">Page 16</span>
+					</div>
+
+					<h2 class="chapter-title">Chapter 18: Finding the Real Cause of Your BMS: Trigger Events vs. The Real&nbsp;Cause</h2>
+
+					<div class="chapter-content is-first-page">
+						<p>Ask ten people with Burning Mouth Syndrome when their nightmare began, and nine will name a specific calendar date: <em>"It started three days after my lower molar was pulled,"</em> or <em>"It hit the week after my car accident,"</em> or <em>"I drank an acidic green juice cleanse and my tongue never stopped&nbsp;burning."</em></p>
+						<p>The human brain is wired for immediate cause-and-effect narratives. When a violent, ten-out-of-ten fire erupts in your mouth, you naturally blame the last physical event that occurred before the pain. In modern medicine, however, that immediate trigger is almost never the foundational cause. It is merely the match that lit an architectural fuse fifty years in the&nbsp;making.</p>
+
+						<h3>The Illusion of the First Episode: The Match vs. The Dry Forest</h3>
+						<p>Imagine a wooden house whose structural beams have been silently hollowed out by termites for thirty years, while the basement floorboards are soaked in gasoline. If someone accidentally drops a lit match in the hallway, the entire structure erupts in an instant inferno.</p>
+						<p>Did the single match burn down the house? Technically, yes, it supplied the initial spark. But focusing entirely on the match misses the biological reality: the catastrophe was only possible because decades of microscopic hardware leaks, exposed dentinal tubules, and salivary buffer depletion had loaded the system to 99% of its firing&nbsp;threshold.</p>
+						<p>Across patient histories, the initial spark almost always falls into one of three common trigger&nbsp;categories:</p>
+
+						<h3>Scenario 1: After a Tooth Extraction or Dental Surgery</h3>
+						<p>A staggering percentage of BMS sufferers trace their first symptoms directly to a routine tooth extraction, dental implant placement, or deep root canal. When they return to the clinic in agony, the dentist inspects the socket, sees healthy pink tissue over healed bone, and insists: <em>"The socket looks beautiful. That tooth is gone; it is physically impossible for it to cause your tongue or palate to burn."</em></p>
+						<p>The patient feels gaslit. But sensory neurobiology reveals that pulling a tooth is not an isolated event:</p>
+						<p><strong>1. Mechanical Rupture of Apical Nerve Bundles:</strong> During an extraction, a surgeon does not cleanly slice a nerve with a scalpel. Forceps and elevators rock the tooth back and forth to expand the alveolar bone socket. As the root moves upward, the microscopic terminal neurovascular fibrils entering the apical foramen are violently stretched, sheared, and ripped apart at the socket floor.</p>
+						<p><strong>2. Traumatic Neuroma Formation:</strong> When severed nerve stumps attempt to regenerate in healing bone, they sprout chaotic axonal growth cones. Trapped in dense fibrous scar tissue, these sprouts form a traumatic neuroma, clustering voltage-gated sodium channels (Na<sub>v</sub>1.7, Na<sub>v</sub>1.8) that fire spontaneous ectopic electrical bursts into the jawbone.</p>
+						<p><strong>3. Collateral Damage to Neighboring Teeth:</strong> Ripping a tooth out strips the shared blood supply from adjacent alveolar bone walls. As the socket remodels, the gumline recedes off neighboring teeth, unshielding 20,000 to 45,000 microscopic dentinal tubules per square millimeter right beside the surgical wound. Everyday food acids now flood into these newly exposed pipes, pouring fuel into an already kindled trigeminal relay.</p>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>16</span>
+				</div>
+			</section>
+
+			<!-- Chapter 18: Finding the Real Cause of Your BMS: Trigger Events vs. The Real Cause (Page 2 of 2) -->
+
+			<section class="book-page" id="page-15c">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 18: Finding the Real Cause of Your BMS</span>
+						<span class="page-count-label">Page 17</span>
+					</div>
+
+					<div class="chapter-content">
+						<h3>Scenario 2: After an Accident, Physical Trauma, or Intubation</h3>
+						<p>Another major subset of sufferers trace their burning to a motor vehicle accident, a fall, or a routine medical procedure requiring general anesthesia:</p>
+						<p><strong>Cervical Whiplash and Jaw Strain:</strong> Rapid acceleration-deceleration forces hyperextend the cervical spine and temporomandibular joint (TMJ). Because upper cervical sensory roots (C1-C3) share second-order interneurons with the Trigeminal Subnucleus Caudalis in the brainstem, acute neck trauma can dramatically lower the central pain-gating threshold for the entire oral vault.</p>
+						<p><strong>Endotracheal Intubation Trauma:</strong> During general surgery, anesthesiologists insert rigid laryngoscope blades and plastic endotracheal tubes past the tongue, palate, and vocal cords. In an oral cavity already compromised by subclinical dry mouth or mucosal thinning, this mechanical shearing strips the protective mucin gel and physically traumatizes superficial unmyelinated C-fibers, kicking open dormant pain receptors.</p>
+
+						<h3>Scenario 3: After an Acute Acidic Ingress or Caustic Exposure</h3>
+						<p>For others, the start was chemical: starting a high-potency apple cider vinegar routine, drinking raw lemon juice cleanses, or using harsh alcohol-based mouthwashes or prescription chlorhexidine rinses.</p>
+						<p>A mouth with intact enamel and robust resting saliva can easily neutralize occasional acidic exposures. But if five decades of life have already leached crown cements and unshielded root collars, a sudden concentrated acid wash acts like battery acid poured into open machinery: it dissolves the microscopic smear plugs capping exposed dentinal tubules and triggers massive, synchronized depolarization of Acid-Sensing Ion Channels (ASIC1 and ASIC3).</p>
+
+						<h3>When the "Reason" Is a False Culprit</h3>
+						<p>The tragedy of fixating on the extraction, the accident, or the acidic drink is that it leads patients down exhausting, dead-end treatment paths. Sufferers spend months suing dentists, demanding repeat exploratory surgeries, or cycling through endless antibiotics to treat a phantom infection.</p>
+						<p>You cannot undo the tooth extraction, and you cannot un-ring the bell of an accident. But when you realize that the event was merely the trigger that exposed a pre-existing structural vulnerability, your focus shifts to what is actually actionable: sealing the unshielded root tubules on adjacent teeth, neutralizing bacterial lactic acid, restoring the salivary buffer, and breaking the central pain loop.</p>
+
+						<div class="book-callout">
+							<span class="book-callout-icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="12" cy="12" r="10"></circle>
+									<line x1="12" y1="16" x2="12" y2="12"></line>
+									<line x1="12" y1="8" x2="12.01" y2="8"></line>
+								</svg>
+							</span>
+							<div class="book-callout-text">
+								<p><strong>The First Principle of BMS Onset:</strong> The event that seemed to cause your burning mouth was the final drop that made the bucket overflow. The bucket itself was filled over decades of cement fatigue, gum recession, and salivary decline. Next, in Chapter 6, we examine what happens when you visit your dentist seeking answers for this unexplained fire.</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>17</span>
+				</div>
+			</section>
+
+			<section class="book-page" id="page-7">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 3: The BMS Diagnostic Questionnaire</span>
+						<span class="page-count-label">Page 7</span>
+					</div>
+
+					<h2 class="chapter-title">Chapter 19: The BMS Diagnostic&nbsp;Questionnaire &amp; Self-Assessment</h2>
+
+					<div class="chapter-content is-first-page">
+						<p style="font-size: 0.94rem; line-height: 1.68; color: #334155; margin-bottom: 1.25rem; text-wrap: pretty;">
+							Use this comprehensive clinical diagnostic questionnaire to map your symptom profile, identify triggers, and establish an actionable record. You can select your answers directly on this page; your entries are preserved locally and can be printed or shared with your dental and medical&nbsp;providers.
+						</p>
+
+												<!-- Section A0: Clinical Safety Triage (Red-Flag Screener) -->
+						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #fff5f5; border: 1.5px solid #feb2b2; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #991b1b; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>Initial Clinical Safety Triage (Red-Flag Warning Signs)</span>
+							</h3>
+							<p style="font-size: 0.82rem; color: #7f1d1d; line-height: 1.55; margin-bottom: 0.75rem;">
+								These specific clinical signs do not fit typical Primary Burning Mouth Syndrome. If any apply, they require prompt professional evaluation by an oral surgeon, ENT specialist, or physician before pursuing at-home self-management:
+							</p>
+							<div class="bms-grid-2col" style="font-size: 0.82rem; color: #1e293b;">
+								<label class="bms-check-label"><input type="checkbox" name="redflag_unilateral" class="bms-input-persist" /> <span>Burning or pain strictly on one side of the mouth</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_ulcer_3w" class="bms-input-persist" /> <span>A sore, ulcer, lump, or tissue patch unhealed after 3 weeks</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_weight_loss" class="bms-input-persist" /> <span>Unexplained, rapid weight loss or loss of appetite</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_dysphagia" class="bms-input-persist" /> <span>Persistent difficulty or pain when swallowing</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_taste_unilateral" class="bms-input-persist" /> <span>Loss of taste sensation on one side of the tongue only</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_neck_lump" class="bms-input-persist" /> <span>A palpable lump or swollen gland in the neck or jaw</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_numbness" class="bms-input-persist" /> <span>Persistent numbness of the lip, chin, or tongue</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_trismus" class="bms-input-persist" /> <span>Difficulty opening the mouth fully (trismus)</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_swelling" class="bms-input-persist" /> <span>Unexplained swelling of the face, cheek, or jaw</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_bleeding" class="bms-input-persist" /> <span>Unexplained bleeding from the gums or oral tissue</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_radiation" class="bms-input-persist" /> <span>History of head/neck cancer or radiation to the jaw</span></label>
+								<label class="bms-check-label"><input type="checkbox" name="redflag_fever" class="bms-input-persist" /> <span>High fever occurring alongside mouth symptoms</span></label>
+								<label class="bms-check-label" style="grid-column: 1 / -1; font-weight: 600; color: #166534;"><input type="checkbox" name="redflag_none" class="bms-input-persist" /> <span>None of these warning signs apply (Classic BMS clinical presentation)</span></label>
+							</div>
+						</div>
+
+						<!-- Section A: Demographics & Onset -->
+						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>1. Patient Demographics &amp; Chronology</span>
+							</h3>
+							
+							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+								<div>
+									<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Biological Sex</label>
+									<div style="display: flex; gap: 0.75rem;">
+										<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.84rem; color: #1e293b; cursor: pointer;">
+											<input type="radio" name="bms_q_sex" value="female" class="bms-input-persist" /> Female
+										</label>
+										<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.84rem; color: #1e293b; cursor: pointer;">
+											<input type="radio" name="bms_q_sex" value="male" class="bms-input-persist" /> Male
+										</label>
+										<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.84rem; color: #1e293b; cursor: pointer;">
+											<input type="radio" name="bms_q_sex" value="other" class="bms-input-persist" /> Other
+										</label>
+									</div>
+								</div>
+
+								<div>
+									<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Age Bracket</label>
+									<div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+											<input type="radio" name="bms_q_age" value="under-40" class="bms-input-persist" /> &lt;40
+										</label>
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+											<input type="radio" name="bms_q_age" value="40-49" class="bms-input-persist" /> 40&ndash;49
+										</label>
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+											<input type="radio" name="bms_q_age" value="50-59" class="bms-input-persist" /> 50&ndash;59
+										</label>
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+											<input type="radio" name="bms_q_age" value="60-69" class="bms-input-persist" /> 60&ndash;69
+										</label>
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+											<input type="radio" name="bms_q_age" value="70+" class="bms-input-persist" /> 70+
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div style="margin-top: 0.85rem;">
+								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">How long have you experienced this burning sensation?</label>
+								<div style="display: flex; flex-wrap: wrap; gap: 0.85rem;">
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_duration" value="lt-6m" class="bms-input-persist" /> Under 6 months
+									</label>
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_duration" value="6m-2y" class="bms-input-persist" /> 6 months to 2 years
+									</label>
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_duration" value="2y-5y" class="bms-input-persist" /> 2 to 5 years
+									</label>
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_duration" value="gt-5y" class="bms-input-persist" /> 5+ years
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<!-- Section B: Pain Quality & Intensity -->
+						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>2. Primary Pain Sensation &amp; Intensity</span>
+							</h3>
+
+							<div style="margin-bottom: 0.85rem;">
+								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">What does your sensation feel like? (Select all that apply)</label>
+								<div class="bms-grid-3col">
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_scald" class="bms-input-persist" />
+										<span>Scalded tongue or hot coffee&nbsp;burn</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_sandpaper" class="bms-input-persist" />
+										<span>Raw sandpaper or scraped&nbsp;tissue</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_acid" class="bms-input-persist" />
+										<span>Acidic or battery chemical&nbsp;sting</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_metallic" class="bms-input-persist" />
+										<span>Metallic or salty altered&nbsp;taste</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_electric" class="bms-input-persist" />
+										<span>Tingling or electric prickling&nbsp;sparks</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sensation_numb" class="bms-input-persist" />
+										<span>Partial numbness or swollen&nbsp;feeling</span>
+									</label>
+								</div>
+							</div>
+
+							<div>
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+									<label style="font-size: 0.82rem; font-weight: 600; color: #475569;">Average Daily Pain Intensity (0 to 10 Scale)</label>
+									<span id="bms_pain_val_display" style="font-size: 0.9rem; font-weight: 700; color: #dc2626;">7 / 10</span>
+								</div>
+								<input type="range" name="bms_pain_scale" min="0" max="10" value="7" style="width: 100%; accent-color: #dc2626; cursor: pointer;" class="bms-input-persist" id="bms_pain_slider" />
+								<div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #64748b; margin-top: 0.2rem;">
+									<span>0: No Pain</span>
+									<span>3: Mild Sting</span>
+									<span>7: Severe Distress</span>
+									<span>10: Unbearable Emergency</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Section C: Anatomical Location -->
+						<div class="quiz-book-card" style="padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>3. Anatomical Burning Location</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_tip" class="bms-input-persist" />
+									<span>Tip of the tongue</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_sides" class="bms-input-persist" />
+									<span>Lateral tongue borders</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_palate" class="bms-input-persist" />
+									<span>Hard palate (roof of&nbsp;mouth)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_lips" class="bms-input-persist" />
+									<span>Inner lips &amp; vermilion&nbsp;border</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_gums" class="bms-input-persist" />
+									<span>Gums &amp; cervical tooth&nbsp;collars</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_loc_throat" class="bms-input-persist" />
+									<span>Pharynx &amp; posterior&nbsp;throat</span>
+								</label>
+							</div>
+
+							<div style="margin-top: 0.85rem;">
+								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Is the burning bilateral or unilateral?</label>
+								<div style="display: flex; gap: 1.25rem;">
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_symmetry" value="bilateral" class="bms-input-persist" /> Bilateral (both sides symmetrically)
+									</label>
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_symmetry" value="unilateral" class="bms-input-persist" /> Unilateral (confined strictly to one side)
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>7</span>
+				</div>
+			</section>
+
+			<!-- Chapter 3: The BMS Diagnostic Questionnaire (Page 2 of 4: Triggers, Mechanical, & Diet Recall) -->
+			<section class="book-page" id="page-8">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 3: The BMS Diagnostic Questionnaire</span>
+						<span class="page-count-label">Page 8</span>
+					</div>
+
+					<h2 class="chapter-title">Symptom Dynamics &amp; Food&nbsp;Triggers</h2>
+
+					<div class="chapter-content is-first-page">
+						<!-- Section D: Diurnal Pattern & Sleep -->
+						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>4. Diurnal Fluctuation &amp; Sleep Dynamics</span>
+							</h3>
+
+							<div style="margin-bottom: 0.85rem;">
+								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Does your burning escalate progressively as the day unfolds?</label>
+								<div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_diurnal" value="yes-crescendo" class="bms-input-persist" /> Yes: Minimal in morning, peaks by late afternoon/evening
+									</label>
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_diurnal" value="constant" class="bms-input-persist" /> Constant: Exactly the same morning, day, and night
+									</label>
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_diurnal" value="morning-worst" class="bms-input-persist" /> Opposite: Most severe upon waking up
+									</label>
+								</div>
+							</div>
+
+							<div>
+								<label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">Does the burning wake you up from a dead sleep at night?</label>
+								<div style="display: flex; gap: 1.25rem;">
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_sleep" value="rarely" class="bms-input-persist" /> Rarely / Never (sleep provides temporary respite)
+									</label>
+									<label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<input type="radio" name="bms_q_sleep" value="frequently" class="bms-input-persist" /> Yes, frequently wakes me in pain
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<!-- Section E: Thermal & Chemical Food Triggers -->
+						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>5. Chemical &amp; Dietary Sensory Triggers</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_citrus" class="bms-input-persist" />
+									<span>Acidic foods (tomatoes, citrus,&nbsp;vinegar)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_coffee" class="bms-input-persist" />
+									<span>Coffee, tea, sodas, or carbonated&nbsp;water</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_spicy" class="bms-input-persist" />
+									<span>Spices (capsaicin, black pepper,&nbsp;chili)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_mint" class="bms-input-persist" />
+									<span>Mint, menthol, or cinnamon oral&nbsp;care</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_sugar" class="bms-input-persist" />
+									<span>Refined sugars, honey, syrups, or&nbsp;carbs</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_alcohol" class="bms-input-persist" />
+									<span>Alcoholic drinks or alcohol mouth&nbsp;rinses</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_temp" class="bms-input-persist" />
+									<span>Boiling liquids or ice cold&nbsp;beverages</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_eating_relief" class="bms-input-persist" />
+									<span>Temporary relief WHILE actively&nbsp;eating</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_trig_dry_air" class="bms-input-persist" />
+									<span>Dry indoor air or mouth breathing&nbsp;spikes</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Section F: Daily Fluid & Continuous Sipping Habits -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>6. Daily Fluid Intake &amp; All-Day Sipping Habits</span>
+							</h3>
+							
+							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; margin-bottom: 0.75rem;">
+								<div>
+									<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">How often do you sip liquids throughout the day?</label>
+									<div style="display: flex; flex-direction: column; gap: 0.35rem;">
+										<label class="bms-check-label">
+											<input type="radio" name="bms_sip_frequency" value="constant-sipping" class="bms-input-persist" />
+											<span>Continuous sipping all day (every 5&ndash;15 minutes to moisten&nbsp;mouth)</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_sip_frequency" value="regular-hourly" class="bms-input-persist" />
+											<span>Regular sips every 1&ndash;2&nbsp;hours</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_sip_frequency" value="meals-only" class="bms-input-persist" />
+											<span>Drink mostly with meals&nbsp;only</span>
+										</label>
+									</div>
+								</div>
+
+								<div>
+									<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Total Estimated Daily Fluid Volume</label>
+									<div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
+										<label class="bms-check-label">
+											<input type="radio" name="bms_fluid_volume" value="under-1L" class="bms-input-persist" />
+											<span>Under 1 liter (&lt;4&nbsp;cups)</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_fluid_volume" value="1L-2L" class="bms-input-persist" />
+											<span>1 to 2 liters (4&ndash;8&nbsp;cups)</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_fluid_volume" value="2L-3L" class="bms-input-persist" />
+											<span>2 to 3 liters (8&ndash;12&nbsp;cups)</span>
+										</label>
+										<label class="bms-check-label">
+											<input type="radio" name="bms_fluid_volume" value="over-3L" class="bms-input-persist" />
+											<span>3+ liters (heavy hydration)</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div>
+								<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">What specific liquids do you sip throughout the day? (Select all that apply)</label>
+								<div class="bms-grid-3col">
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_tap_water" class="bms-input-persist" />
+										<span>Plain tap or bottled spring&nbsp;water</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_ro_distilled" class="bms-input-persist" />
+										<span>Reverse osmosis (RO) or distilled&nbsp;water</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_sparkling" class="bms-input-persist" />
+										<span>Sparkling or carbonated mineral&nbsp;water</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_coffee" class="bms-input-persist" />
+										<span>Coffee (black, with milk, or&nbsp;iced)</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_tea" class="bms-input-persist" />
+										<span>Black, green, or herbal&nbsp;teas</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_lemon_water" class="bms-input-persist" />
+										<span>Water with lemon, lime, or fruit&nbsp;drops</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_sodas" class="bms-input-persist" />
+										<span>Regular or diet sodas / energy&nbsp;drinks</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_bicarb" class="bms-input-persist" />
+										<span>Baking soda (bicarbonate)&nbsp;water</span>
+									</label>
+									<label class="bms-check-label">
+										<input type="checkbox" name="bms_sip_electrolytes" class="bms-input-persist" />
+										<span>Electrolyte powders or sports&nbsp;drinks</span>
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<!-- Section G: 24-Hour Food & Beverage Intake Log -->
+						<div class="quiz-book-card" style="padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>7. 24-Hour Food &amp; Beverage Intake Log</span>
+							</h3>
+							
+							<p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.65rem;">
+								Document your last 3 meals and drinks to detect delayed acidic fermentation patterns:
+							</p>
+
+							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem;">
+								<div>
+									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Meal #1 (Most Recent)</label>
+									<input type="text" name="bms_diet_m1" placeholder="e.g., eggs, black coffee, sourdough" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
+								</div>
+								<div>
+									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Meal #2 (Previous Meal)</label>
+									<input type="text" name="bms_diet_m2" placeholder="e.g., salad with vinaigrette, chicken" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
+								</div>
+								<div>
+									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Meal #3 (Third Meal Back)</label>
+									<input type="text" name="bms_diet_m3" placeholder="e.g., pasta with tomato sauce, red wine" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>8</span>
+				</div>
+			</section>
+
+			<!-- Chapter 3: The BMS Diagnostic Questionnaire (Page 3 of 4: Jaw Clenching, Dry Mouth, & Dental Audit) -->
+			<section class="book-page" id="page-9">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 3: The BMS Diagnostic Questionnaire</span>
+						<span class="page-count-label">Page 9</span>
+					</div>
+
+					<h2 class="chapter-title">Dental Hardware &amp; Salivary&nbsp;Audit</h2>
+
+					<div class="chapter-content is-first-page">
+						<!-- Section G: Jaw Clenching & Mechanical Bracing -->
+						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>7. Jaw Mechanics, Grinding, &amp; Tongue Bracing</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_sore" class="bms-input-persist" />
+									<span>Morning jaw soreness or masseter&nbsp;tightness</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_brace" class="bms-input-persist" />
+									<span>Tongue bracing against front teeth or&nbsp;palate</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_click" class="bms-input-persist" />
+									<span>TMJ clicking, popping, or limited&nbsp;opening</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_scallop" class="bms-input-persist" />
+									<span>Scalloped tongue edges with dental&nbsp;marks</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_grind" class="bms-input-persist" />
+									<span>Known nighttime clenching or sleep&nbsp;bruxism</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_jaw_tension" class="bms-input-persist" />
+									<span>Neck and shoulder stiffness alongside&nbsp;burning</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Section H: Salivary Flow & Mucosal Barrier -->
+						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>8. Saliva Flow &amp; Barrier Hydration</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_dry" class="bms-input-persist" />
+									<span>Dry or sticky mouth despite abundant&nbsp;water</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_thick" class="bms-input-persist" />
+									<span>Thick, stringy, or foaming reduced&nbsp;saliva</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_taste" class="bms-input-persist" />
+									<span>Altered salty, metallic, or bitter&nbsp;taste</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_eyes" class="bms-input-persist" />
+									<span>Gritty dry eyes or dry mucous&nbsp;membranes</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_thirst" class="bms-input-persist" />
+									<span>Frequent nocturnal water sips to swallow&nbsp;easily</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_saliva_cracking" class="bms-input-persist" />
+									<span>Chapped lip corners or angular&nbsp;cheilitis</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Section I: Dental Hardware History -->
+						<div class="quiz-book-card" style="padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>9. Dental Restorations &amp; Exposed Tubules</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_onset" class="bms-input-persist" />
+									<span>Onset triggered following dental&nbsp;procedure</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_recession" class="bms-input-persist" />
+									<span>Visible root recession or cervical&nbsp;notches</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_crowns" class="bms-input-persist" />
+									<span>Crowns, porcelain veneers, or deep&nbsp;fillings</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_bleach" class="bms-input-persist" />
+									<span>Aggressive peroxide bleaching or&nbsp;strips</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_desensitizer" class="bms-input-persist" />
+									<span>Fluoride varnish or Gluma gave brief&nbsp;respite</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_dent_pockets" class="bms-input-persist" />
+									<span>Periodontal gum pockets of 4mm or&nbsp;deeper</span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>9</span>
+				</div>
+			</section>
+
+			<!-- Chapter 3: The BMS Diagnostic Questionnaire (Page 4 of 4: Systemic Reflux, Medications, & Action Summary) -->
+			<section class="book-page" id="page-10">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 3: The BMS Diagnostic Questionnaire</span>
+						<span class="page-count-label">Page 10</span>
+					</div>
+
+					<h2 class="chapter-title">Systemic Factors &amp; Clinical&nbsp;Report</h2>
+
+					<div class="chapter-content is-first-page">
+						<!-- Section J: Systemic Reflux & Medications -->
+						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>10. Systemic Factors, Medications, &amp; Reflux</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_reflux" class="bms-input-persist" />
+									<span>Frequent heartburn, GERD, or silent LPR&nbsp;reflux</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_throat_clear" class="bms-input-persist" />
+									<span>Morning throat clearing, post-nasal drip, or&nbsp;hoarseness</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_ace" class="bms-input-persist" />
+									<span>Antihypertensives (ACE inhibitors, ARBs, or&nbsp;diuretics)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_b12_normal" class="bms-input-persist" />
+									<span>Normal B12 serum but elevated MMA or&nbsp;homocysteine</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_thyroid" class="bms-input-persist" />
+									<span>Thyroiditis, diabetes, or autoimmune systemic&nbsp;history</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_sys_stress" class="bms-input-persist" />
+									<span>Severe acute stress or viral illness before&nbsp;onset</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Section K: Patient Clinical Action Notes -->
+						<div class="quiz-book-card" style="margin-bottom: 1.25rem; padding: 1.15rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+								<span>11. Personal Symptom Notes for Your Next Doctor Visit</span>
+							</h3>
+							
+							<textarea name="bms_patient_notes" class="bms-input-persist" placeholder="Record specific dates, dental procedures, medications trialed, and questions you want to ask your clinician..." style="width: 100%; height: 95px; font-size: 0.82rem; line-height: 1.5; padding: 0.5rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; resize: vertical;"></textarea>
+						</div>
+
+						<!-- Actions: Print / Clear / Save Status -->
+						<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
+							<div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.35rem;">
+								<span style="display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></span>
+								<span id="bms_persist_status">Answers saved automatically in this browser.</span>
+							</div>
+
+							<div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+								<a href="/bms-clinical-intake-questionnaire.pdf" download="BMS-Clinical-Intake-Questionnaire.pdf" style="font-size: 0.8rem; font-weight: 600; color: #ffffff; background: #2563eb; padding: 0.45rem 0.9rem; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem;">
+									<span>Download Questionnaire PDF</span>
+								</a>
+								<button type="button" id="bms_print_btn" style="font-size: 0.8rem; font-weight: 600; color: #1e293b; background: #e2e8f0; padding: 0.45rem 0.8rem; border: none; border-radius: 6px; cursor: pointer;">
+									Print Filled Answers
+								</button>
+								<button type="button" id="bms_clear_btn" style="font-size: 0.8rem; font-weight: 600; color: #64748b; background: #f1f5f9; padding: 0.45rem 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;">
+									Reset Fields
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>10</span>
+				</div>
+			</section>
+
+
+			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 5 of 8 / Book Page 11) -->
+			<section class="book-page" id="page-11">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 3: Comprehensive Clinical Health Intake (Part B)</span>
+						<span class="page-count-label">Page 11</span>
+					</div>
+
+					<h2 class="chapter-title">Comprehensive Medical &amp; Systemic&nbsp;History</h2>
+
+					<div class="chapter-content is-first-page">
+						<p style="font-size: 0.94rem; line-height: 1.68; color: #334155; margin-bottom: 1.15rem; text-wrap: pretty;">
+							Standard dental clinics utilize extensive multi-page medical questionnaires to rule out systemic contraindications and metabolic neuropathies. Complete this clinical audit to document cardiovascular status, endocrine markers, and gastrointestinal reflux patterns before your dental consult.
+						</p>
+
+						<!-- Section 1: Cardiovascular & Blood Pressure Health -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
+								<span>1. Cardiovascular Health, Hypertension, &amp; Blood Flow</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_htn" class="bms-input-persist" />
+									<span>High blood pressure (hypertension)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_angina" class="bms-input-persist" />
+									<span>Angina, chest pain, or shortness of&nbsp;breath</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_heart_attack" class="bms-input-persist" />
+									<span>History of heart attack or cardiac&nbsp;stents</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_murmur" class="bms-input-persist" />
+									<span>Heart murmur or mitral valve&nbsp;prolapse</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_pacemaker" class="bms-input-persist" />
+									<span>Pacemaker or artificial heart&nbsp;valve</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_stroke" class="bms-input-persist" />
+									<span>History of stroke or transient ischemic&nbsp;attack</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_blood_thinners" class="bms-input-persist" />
+									<span>Taking blood thinners (Eliquis, Plavix,&nbsp;Aspirin)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_bleeding_disorder" class="bms-input-persist" />
+									<span>Bleeding disorder, easy bruising, or&nbsp;anemia</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_fainting" class="bms-input-persist" />
+									<span>Frequent dizziness, fainting, or orthostatic&nbsp;drops</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Section 2: Endocrine, Metabolic, & Diabetes Screening -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
+								<span>2. Endocrine, Diabetes, &amp; Metabolic Profile</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_type2_dm" class="bms-input-persist" />
+									<span>Diagnosed Type 2 diabetes or&nbsp;pre-diabetes</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_type1_dm" class="bms-input-persist" />
+									<span>Diagnosed Type 1 insulin-dependent&nbsp;diabetes</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_thyroid_hypo" class="bms-input-persist" />
+									<span>Hypothyroidism or Hashimoto's&nbsp;thyroiditis</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_thyroid_hyper" class="bms-input-persist" />
+									<span>Hyperthyroidism or Graves'&nbsp;disease</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_kidney" class="bms-input-persist" />
+									<span>Chronic kidney disease or&nbsp;dialysis</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_liver" class="bms-input-persist" />
+									<span>Hepatitis or liver function&nbsp;abnormalities</span>
+								</label>
+							</div>
+
+							<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px dashed #e2e8f0;">
+								<div>
+									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Most Recent HbA1c Level (if diabetic)</label>
+									<input type="text" name="bms_val_hba1c" placeholder="e.g., 5.6% (normal) or 7.2%" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.35rem 0.55rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
+								</div>
+								<div>
+									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Last Blood Pressure Reading</label>
+									<input type="text" name="bms_val_bp" placeholder="e.g., 122 / 78 mmHg" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.35rem 0.55rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
+								</div>
+							</div>
+						</div>
+
+						<!-- Section 3: Gastrointestinal & Reflux Ingress -->
+						<div class="quiz-book-card" style="padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
+								<span>3. Gastrointestinal, GERD, &amp; Acid Reflux Audit</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_gerd" class="bms-input-persist" />
+									<span>Active gastroesophageal reflux disease (GERD)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_silent_reflux" class="bms-input-persist" />
+									<span>Silent LPR reflux (sour throat waking&nbsp;up)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_hiatal_hernia" class="bms-input-persist" />
+									<span>Diagnosed hiatal hernia or stomach&nbsp;ulcer</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_ibs" class="bms-input-persist" />
+									<span>Irritable bowel syndrome (IBS) or&nbsp;SIBO</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_celiac" class="bms-input-persist" />
+									<span>Celiac disease or severe gluten&nbsp;intolerance</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_med_ppi_use" class="bms-input-persist" />
+									<span>Daily acid blockers (Omeprazole, Pepcid,&nbsp;Tums)</span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>11</span>
+				</div>
+			</section>
+
+			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 6 of 8 / Book Page 12) -->
+			<section class="book-page" id="page-12">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 3: Comprehensive Clinical Health Intake (Part B)</span>
+						<span class="page-count-label">Page 12</span>
+					</div>
+
+					<h2 class="chapter-title">Dental Procedures, Restorations, &amp; Periodontics</h2>
+
+					<div class="chapter-content is-first-page">
+						<!-- Section 4: Periodontal Status & Gum Health -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
+								<span>4. Periodontal Health, Deep Cleanings, &amp; Gum Pockets</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_perio_bleeding" class="bms-input-persist" />
+									<span>Bleeding on brushing or flossing&nbsp;(BOP)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_perio_srp" class="bms-input-persist" />
+									<span>Past deep cleaning (scaling and root&nbsp;planing)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_perio_pockets_4mm" class="bms-input-persist" />
+									<span>Measured gum pockets of 4mm or deeper</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_perio_loose" class="bms-input-persist" />
+									<span>Loose, mobile, or shifting teeth</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_perio_graft" class="bms-input-persist" />
+									<span>Past gum tissue graft or flap&nbsp;surgery</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_perio_halitosis" class="bms-input-persist" />
+									<span>Persistent bad breath or localized foul&nbsp;taste</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Section 5: Restorations & Dental Work History -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
+								<span>5. Dental Hardware, Crowns, Fillings, &amp; Implants</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_rest_crowns" class="bms-input-persist" />
+									<span>Porcelain, zirconia, or metal dental&nbsp;crowns</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_rest_veneers" class="bms-input-persist" />
+									<span>Porcelain veneers or cosmetic&nbsp;bonding</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_rest_amalgams" class="bms-input-persist" />
+									<span>Silver mercury amalgam fillings&nbsp;present</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_rest_composites" class="bms-input-persist" />
+									<span>Tooth-colored composite resin fillings</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_rest_root_canals" class="bms-input-persist" />
+									<span>Endodontically treated teeth (root&nbsp;canals)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_rest_implants" class="bms-input-persist" />
+									<span>Titanium or ceramic dental&nbsp;implants</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_rest_food_trap" class="bms-input-persist" />
+									<span>Restorations that constantly trap&nbsp;food</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_rest_bridges" class="bms-input-persist" />
+									<span>Fixed bridgework or removable partials</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_rest_recent_work" class="bms-input-persist" />
+									<span>Dental work completed in last 6&nbsp;months</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Section 6: Oral Hygiene Protocol & Daily Care -->
+						<div class="quiz-book-card" style="padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
+								<span>6. Daily Home Care, Toothpaste, &amp; Oral Devices</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_care_electric_brush" class="bms-input-persist" />
+									<span>Electric toothbrush (Sonicare,&nbsp;Oral-B)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_care_manual_hard" class="bms-input-persist" />
+									<span>Manual medium/hard bristle toothbrush</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_care_sls_paste" class="bms-input-persist" />
+									<span>Standard foaming toothpaste with&nbsp;SLS</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_care_whitening_paste" class="bms-input-persist" />
+									<span>Abrasive whitening or tartar-control&nbsp;paste</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_care_water_flosser" class="bms-input-persist" />
+									<span>Water flosser / subgingival pocket&nbsp;tip</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_care_alcohol_rinse" class="bms-input-persist" />
+									<span>Commercial alcohol-based antiseptic&nbsp;rinse</span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>12</span>
+				</div>
+			</section>
+
+			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 7 of 8 / Book Page 13) -->
+			<section class="book-page" id="page-13">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 3: Comprehensive Clinical Health Intake (Part B)</span>
+						<span class="page-count-label">Page 13</span>
+					</div>
+
+					<h2 class="chapter-title">Airway, Bone Density, &amp; Pharmacology</h2>
+
+					<div class="chapter-content is-first-page">
+						<!-- Section 7: Airway, Mouth Breathing, & Sleep Apnea -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
+								<span>7. Airway Dynamics, Sleep Apnea, &amp; Mouth Breathing</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_air_mouth_breathing" class="bms-input-persist" />
+									<span>Chronic mouth breathing during the&nbsp;day</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_air_open_mouth_sleep" class="bms-input-persist" />
+									<span>Wake up with mouth wide open and tongue bone-dry</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_air_snoring" class="bms-input-persist" />
+									<span>Loud snoring or witnessed breathing pauses</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_air_sleep_apnea" class="bms-input-persist" />
+									<span>Diagnosed Obstructive Sleep Apnea (OSA)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_air_cpap" class="bms-input-persist" />
+									<span>CPAP user or oral mandibular advancement device</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_air_nasal_obstruction" class="bms-input-persist" />
+									<span>Deviated septum, chronic sinusitis, or nasal obstruction</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Section 8: Bone Health & Bisphosphonate Safety Screening -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
+								<span>8. Bone Density &amp; Bisphosphonate Safety Audit</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_bone_osteoporosis" class="bms-input-persist" />
+									<span>Diagnosed osteoporosis or osteopenia</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_bone_oral_bisphosphonate" class="bms-input-persist" />
+									<span>Oral bisphosphonates (Fosamax, Actonel, Boniva)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_bone_iv_bisphosphonate" class="bms-input-persist" />
+									<span>IV bone medications (Reclast, Zometa, Prolia)</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_bone_radiation" class="bms-input-persist" />
+									<span>Head or neck radiation therapy in the&nbsp;past</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_bone_jaw_pain" class="bms-input-persist" />
+									<span>Deep jaw bone aching or delayed post-extraction healing</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_bone_steroids" class="bms-input-persist" />
+									<span>Long-term corticosteroid use (Prednisone)</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Section 9: Allergies, Anesthetics, & Material Sensitivities -->
+						<div class="quiz-book-card" style="padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.8rem;">
+								<span>9. Allergies, Local Anesthetics, &amp; Dental Materials</span>
+							</h3>
+
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_alg_penicillin" class="bms-input-persist" />
+									<span>Allergy to Penicillin or Amoxicillin</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_alg_sulfa" class="bms-input-persist" />
+									<span>Allergy to Sulfa drugs or Clindamycin</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_alg_epinephrine" class="bms-input-persist" />
+									<span>Heart palpitations / sensitivity to Epinephrine</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_alg_anesthetic" class="bms-input-persist" />
+									<span>Adverse reaction to Lidocaine or Novocaine</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_alg_latex" class="bms-input-persist" />
+									<span>Latex rubber glove sensitivity</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_alg_metals" class="bms-input-persist" />
+									<span>Metal allergies (nickel, cobalt, chrome,&nbsp;gold)</span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>13</span>
+				</div>
+			</section>
+
+			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 8 of 8 / Book Page 14) -->
+			<section class="book-page" id="page-14">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 3: Comprehensive Clinical Health Intake (Part B)</span>
+						<span class="page-count-label">Page 14</span>
+					</div>
+
+					<h2 class="chapter-title">Complete Medication &amp; Surgical Consultation&nbsp;Dossier</h2>
+
+					<div class="chapter-content is-first-page">
+						<!-- Section 10: Master Prescription & Supplement Roster -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem;">
+								<span>10. Current Prescription Medications &amp; Daily Supplements</span>
+							</h3>
+							<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">
+								List all medications, daily vitamins, pain relievers, and supplements currently taken (include dosage if known):
+							</p>
+							<textarea name="bms_master_medication_list" class="bms-input-persist" placeholder="e.g., Lisinopril 20mg (morning), Omeprazole 40mg (before dinner), Vitamin B12 1000mcg sublingual, Calcium + Vitamin D, Multivitamin, Ibuprofen as needed..." style="width: 100%; height: 80px; font-size: 0.82rem; line-height: 1.5; padding: 0.45rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; resize: vertical;"></textarea>
+						</div>
+
+						<!-- Section 11: Past Surgeries, Hospitalizations, & Trauma -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem;">
+								<span>11. Surgical History, Oral Trauma, &amp; Dental Complications</span>
+							</h3>
+							<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">
+								Document major surgeries, intubation history, facial trauma, difficult extractions, or anesthesia complications:
+							</p>
+							<textarea name="bms_surgical_trauma_history" class="bms-input-persist" placeholder="e.g., Difficult wisdom tooth extraction in lower right with lingering numbness in 2021. Endotracheal intubation during knee surgery in 2024 with subsequent throat and palate irritation..." style="width: 100%; height: 75px; font-size: 0.82rem; line-height: 1.5; padding: 0.45rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; resize: vertical;"></textarea>
+						</div>
+
+						<!-- Section 12: Comprehensive Clinical Inquiries for Next Dental/Medical Visit -->
+						<div class="quiz-book-card" style="margin-bottom: 1.15rem; padding: 1.1rem 1.35rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
+							<h3 style="font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem;">
+								<span>12. Specific Dental Diagnostics Requested for Today's Visit</span>
+							</h3>
+							<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">
+								Check the specific diagnostic tests you are requesting your dentist perform during this evaluation:
+							</p>
+							<div class="bms-grid-3col">
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_req_perio_chart" class="bms-input-persist" />
+									<span>Full 6-point periodontal pocket probing chart</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_req_cold_air" class="bms-input-persist" />
+									<span>Cold-air blast test on receded cervical collars</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_req_loupes" class="bms-input-persist" />
+									<span>High-magnification loupe inspection of crown margins</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_req_bite_stick" class="bms-input-persist" />
+									<span>Tooth Slooth bite-stick test for composite flexure</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_req_gluma_test" class="bms-input-persist" />
+									<span>In-office desensitizer trial on exposed roots</span>
+								</label>
+								<label class="bms-check-label">
+									<input type="checkbox" name="bms_req_anesthetic_block" class="bms-input-persist" />
+									<span>Diagnostic local anesthetic block on suspect tooth</span>
+								</label>
+							</div>
+						</div>
+
+						<!-- Actions: Print / Clear / Save Status -->
+						<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
+							<div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.35rem;">
+								<span style="display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></span>
+								<span id="bms_persist_status_p14">Complete clinical dossier saved in browser.</span>
+							</div>
+
+							<div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+								<a href="/bms-clinical-intake-questionnaire.pdf" download="BMS-Clinical-Intake-Questionnaire.pdf" style="font-size: 0.8rem; font-weight: 600; color: #ffffff; background: #2563eb; padding: 0.45rem 0.9rem; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem;">
+									<span>Download Complete Intake PDF</span>
+								</a>
+								<button type="button" onclick="window.print()" style="font-size: 0.8rem; font-weight: 600; color: #1e293b; background: #e2e8f0; padding: 0.45rem 0.8rem; border: none; border-radius: 6px; cursor: pointer;">
+									Print Filled Dossier
+								</button>
+								<button type="button" id="bms_clear_btn_p14" style="font-size: 0.8rem; font-weight: 600; color: #64748b; background: #f1f5f9; padding: 0.45rem 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer;">
+									Reset Fields
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>14</span>
+				</div>
+			</section>
+
 
 <!-- Chapter 21: Starving the Fire (Page 1 of 4) -->
 
