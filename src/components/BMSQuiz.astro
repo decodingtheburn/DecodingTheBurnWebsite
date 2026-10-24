@@ -12,15 +12,13 @@
 		</p>
 	</div>
 
-	<div id="bms-quiz-container" class="quiz-container">
-		<!-- Participant Demographics -->
+	<div id="bms-quiz-container" class="quiz-container">		<!-- Participant Demographics -->
 		<div class="quiz-category-card">
 			<h3 class="category-title">Participant Demographics</h3>
-			
 			<div class="quiz-item" data-qid="q0_sex">
 				<div class="question-emoji" aria-hidden="true">👤</div>
 				<p class="quiz-question">What is your biological&nbsp;sex?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Biological sex">
+				<div class="quiz-options-list" role="radiogroup" aria-label="What is your biological sex?">
 					<button type="button" class="quiz-option-btn" data-val="female">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
@@ -61,7 +59,7 @@
 			<div class="quiz-item" data-qid="q0_age">
 				<div class="question-emoji" aria-hidden="true">🎂</div>
 				<p class="quiz-question">What is your age&nbsp;bracket?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Age bracket">
+				<div class="quiz-options-list" role="radiogroup" aria-label="What is your age bracket?">
 					<button type="button" class="quiz-option-btn" data-val="under-40">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
@@ -85,7 +83,7 @@
 					<button type="button" class="quiz-option-btn" data-val="50-59">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">50 to 59 years&nbsp;old</span>
+							<span class="option-label">50 to 59 years old (peak onset&nbsp;window)</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -105,7 +103,7 @@
 					<button type="button" class="quiz-option-btn" data-val="70-plus">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">70 years or&nbsp;older</span>
+							<span class="option-label">70 years old or&nbsp;older</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -120,15 +118,313 @@
 			</div>
 		</div>
 
-		<!-- Category 1 -->
+		<!-- 1. Clinical Safety & Visual Check -->
 		<div class="quiz-category-card">
-			<h3 class="category-title">1. Pain Sensation</h3>
-			
+			<h3 class="category-title">1. Clinical Safety &amp; Visual&nbsp;Check</h3>
+			<div class="quiz-item" data-qid="q_safety_screener" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">🛡️</div>
+				<p class="quiz-question">Do you experience any of these clinical red-flag&nbsp;symptoms?</p>
+				<p class="multiselect-hint">Select all that apply, or choose "None of these"</p>
+				<div class="quiz-options-list" role="group" aria-label="Do you experience any of these clinical red-flag symptoms?">
+					<button type="button" class="quiz-option-btn" data-val="unilateral">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Burning or pain restricted to one side of the mouth&nbsp;only</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="unhealed-sore">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">A sore, ulcer, lump, or tissue patch unhealed after three&nbsp;weeks</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="weight-loss">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Unexplained or involuntary weight&nbsp;loss</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="swallowing">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Difficulty or sharp pain when swallowing (dysphagia)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="unilateral-taste">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Loss of taste sensation on only one side of the&nbsp;tongue</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="neck-lump">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">A persistent lump or swollen gland in the&nbsp;neck</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="numbness">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Ongoing numbness in the lip, chin, or&nbsp;tongue</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="jaw-opening">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Difficulty opening the mouth fully (restricted jaw mobility)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="face-swelling">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Unexplained swelling of the face, cheek, or&nbsp;jaw</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="unexplained-bleeding">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Spontaneous bleeding from the gums or oral&nbsp;tissue</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="cancer-history">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Prior history of head or neck radiation or&nbsp;cancer</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="fever">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Systemic fever accompanied by oral pain&nbsp;symptoms</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="none">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">None of these red-flag symptoms apply to&nbsp;me</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
+
+			<div class="quiz-item" data-qid="q_visual_appearance">
+				<div class="question-emoji" aria-hidden="true">🔍</div>
+				<p class="quiz-question">When checking your mouth in direct light, how does the tissue&nbsp;look?</p>
+				<p class="multiselect-hint">Inspect your tongue, cheeks, roof, and gums under bright light</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="When checking your mouth in direct light, how does the tissue look?">
+					<button type="button" class="quiz-option-btn" data-val="normal">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Completely normal and healthy pink (the typical BMS presentation)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="white-patches">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Noticeable white patches, plaques, or persistent&nbsp;coating</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="red-raw">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Distinct areas that appear bright red, eroded, or&nbsp;raw</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="open-ulcer">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">An active ulcer, canker sore, or tissue&nbsp;breakdown</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="smooth-shiny">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Tongue appears completely smooth, glossy, or&nbsp;depapillated</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="geographic-grooves">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Deep grooves, fissures, or shifting map-like&nbsp;patterns</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="uncertain">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Uncertain or difficult to evaluate visually</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
+		</div>
+
+		<!-- 2. Pain Sensation & Behavior -->
+		<div class="quiz-category-card">
+			<h3 class="category-title">2. Pain Sensation &amp;&nbsp;Behavior</h3>
+			<div class="quiz-item" data-qid="q_duration">
+				<div class="question-emoji" aria-hidden="true">⏳</div>
+				<p class="quiz-question">How long have you experienced this persistent burning&nbsp;discomfort?</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="How long have you experienced this persistent burning discomfort?">
+					<button type="button" class="quiz-option-btn" data-val="under-1mo">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Under 1 month (recent or acute onset)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="1-to-3mo">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">1 to 3 months</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="3-to-6mo">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">3 to 6 months (meeting formal BMS chronicity criteria)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="6-to-12mo">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">6 to 12 months</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="1-to-3yr">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">1 to 3 years</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="over-3yr">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">More than 3 years of continuous symptoms</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
+
 			<div class="quiz-item" data-qid="q1_sensation" data-multiselect="true">
 				<div class="question-emoji" aria-hidden="true">🔥</div>
 				<p class="quiz-question">What does the burning sensation feel&nbsp;like?</p>
 				<p class="multiselect-hint">Select all that apply</p>
-				<div class="quiz-options-list" role="group" aria-label="Sensation feeling">
+				<div class="quiz-options-list" role="group" aria-label="What does the burning sensation feel like?">
 					<button type="button" class="quiz-option-btn" data-val="scalding">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
@@ -149,30 +445,40 @@
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="dull-ache">
+					<button type="button" class="quiz-option-btn" data-val="peppery">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Dull Constant&nbsp;Ache</span>
+							<span class="option-label">Raw Hot Pepper or Acid&nbsp;Sting</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="raw-hypersensitivity">
+					<button type="button" class="quiz-option-btn" data-val="sandpaper">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Raw Sandpaper&nbsp;Hypersensitivity</span>
+							<span class="option-label">Dry Sandpaper or Gritty&nbsp;Chafing</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="mixed">
+					<button type="button" class="quiz-option-btn" data-val="tingling">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Mixed or Fluctuating&nbsp;Sensations</span>
+							<span class="option-label">Pins and Needles or Numbing&nbsp;Buzz</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="metallic">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Metallic, Bitter, or Salty Dysgeusia</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -188,42 +494,103 @@
 
 			<div class="quiz-item" data-qid="q2_daily_cycle">
 				<div class="question-emoji" aria-hidden="true">⏰</div>
-				<p class="quiz-question">Does your pain get worse as the day goes&nbsp;on?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Daily pain cycle">
+				<p class="quiz-question">How does the burning behave through the course of the&nbsp;day?</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="How does the burning behave through the course of the day?">
 					<button type="button" class="quiz-option-btn" data-val="builds-evening">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. It starts mild and builds toward&nbsp;evening.</span>
+							<span class="option-label">Absent or mild upon waking, worsening steadily through the afternoon and&nbsp;evening</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="worse-morning">
+					<button type="button" class="quiz-option-btn" data-val="worst-evening">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. It is worse upon waking in the&nbsp;morning.</span>
+							<span class="option-label">Reaches its peak agony late in the evening before&nbsp;bed</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="constant">
+					<button type="button" class="quiz-option-btn" data-val="constant-waking">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. It is constant intensity all day&nbsp;long.</span>
+							<span class="option-label">Present the second I wake up and stays constant all day&nbsp;long</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="unpredictable">
+					<button type="button" class="quiz-option-btn" data-val="disturbs-sleep">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Random or unpredictable&nbsp;flares.</span>
+							<span class="option-label">Intense enough to disturb sleep or wake me during the&nbsp;night</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="intermittent">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Comes and goes unpredictably, with occasional clear&nbsp;days</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
+
+			<div class="quiz-item" data-qid="q_eating_effect">
+				<div class="question-emoji" aria-hidden="true">🍽️</div>
+				<p class="quiz-question">How does eating or chewing food affect your mouth&nbsp;burning?</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="How does eating or chewing food affect your mouth burning?">
+					<button type="button" class="quiz-option-btn" data-val="relieves-temp">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Chewing food provides temporary relief or numbing while eating</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="no-effect">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Eating has no noticeable effect on the burning</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="worsens-immediate">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Food contact makes the pain sharper or stings immediately</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="delayed-flare">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Triggers a delayed burning flare several hours later</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -240,7 +607,7 @@
 			<div class="quiz-item" data-qid="q3_night_waking">
 				<div class="question-emoji" aria-hidden="true">🌙</div>
 				<p class="quiz-question">Does the burning wake you up from&nbsp;sleep?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Nighttime waking">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Does the burning wake you up from sleep?">
 					<button type="button" class="quiz-option-btn" data-val="day-only">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
@@ -280,42 +647,43 @@
 
 			<div class="quiz-item" data-qid="q4_intensity">
 				<div class="question-emoji" aria-hidden="true">📊</div>
-				<p class="quiz-question">How intense is your pain on a 0 to 10&nbsp;scale?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Pain intensity">
-					<button type="button" class="quiz-option-btn" data-val="mild-spike">
+				<p class="quiz-question">On an intense flare day, how severe does your discomfort&nbsp;reach?</p>
+				<p class="multiselect-hint">Zero is no discomfort at all; ten is the worst pain imaginable</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="On an intense flare day, how severe does your discomfort reach?">
+					<button type="button" class="quiz-option-btn" data-val="1-to-3">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Mild. Baseline 1 to 3, spikes to 7-10 in&nbsp;flares.</span>
+							<span class="option-label">1 to 3: Noticeable baseline, but manageable</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="mod-spike">
+					<button type="button" class="quiz-option-btn" data-val="4-to-6">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Moderate. Baseline 4 to 6, spikes to&nbsp;8-10.</span>
+							<span class="option-label">4 to 6: Persistent burn that is hard to ignore</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="severe-constant">
+					<button type="button" class="quiz-option-btn" data-val="7-to-8">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Severe. Constant high pain (7 to&nbsp;10).</span>
+							<span class="option-label">7 to 8: Dominates the day and drains mental energy</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="variable">
+					<button type="button" class="quiz-option-btn" data-val="9-to-10">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Fluctuating. Varies with no clear&nbsp;baseline.</span>
+							<span class="option-label">9 to 10: Insupportable agony, as bad as it gets</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -330,38 +698,37 @@
 			</div>
 		</div>
 
-		<!-- Category 2 -->
+		<!-- 3. Pain Triggers & Oral Care -->
 		<div class="quiz-category-card">
-			<h3 class="category-title">2. Pain Triggers</h3>
-
+			<h3 class="category-title">3. Pain Triggers &amp; Oral&nbsp;Care</h3>
 			<div class="quiz-item" data-qid="q5_flossing_spike">
 				<div class="question-emoji" aria-hidden="true">🪥</div>
 				<p class="quiz-question">Does light brushing or flossing trigger sharp&nbsp;pain?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Flossing and brushing sensitivity">
-					<button type="button" class="quiz-option-btn" data-val="sharp-spike">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Does light brushing or flossing trigger sharp pain?">
+					<button type="button" class="quiz-option-btn" data-val="yes-sharp">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Sharp shooting pain at&nbsp;gumline.</span>
+							<span class="option-label">Yes. Brushing or flossing triggers electric sharp&nbsp;pain.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="mild-tender">
+					<button type="button" class="quiz-option-btn" data-val="no-floss">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Mild tender spot&nbsp;only.</span>
+							<span class="option-label">No. Brushing and flossing feel completely&nbsp;normal.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-spike">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-floss">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No pain from brushing or&nbsp;flossing.</span>
+							<span class="option-label">Sometimes. Only certain areas sting or flare&nbsp;up.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -375,35 +742,14 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q6_temp_triggers" data-multiselect="true">
+			<div class="quiz-item" data-qid="q6_temp_triggers">
 				<div class="question-emoji" aria-hidden="true">❄️</div>
 				<p class="quiz-question">Do temperature changes (ice, hot drinks, cold air)&nbsp;hurt?</p>
-				<p class="multiselect-hint">Select all that apply</p>
-				<div class="quiz-options-list" role="group" aria-label="Temperature triggers">
-					<button type="button" class="quiz-option-btn" data-val="sharp-cold">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Do temperature changes (ice, hot drinks, cold air) hurt?">
+					<button type="button" class="quiz-option-btn" data-val="yes-cold-hot">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Ice water or cold drinks trigger&nbsp;pain.</span>
-							<span class="option-pct"></span>
-						</div>
-						<div class="option-stat-bar">
-							<div class="option-stat-fill"></div>
-						</div>
-					</button>
-					<button type="button" class="quiz-option-btn" data-val="hot-liquids">
-						<div class="option-header">
-							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Hot liquids trigger intense&nbsp;burning.</span>
-							<span class="option-pct"></span>
-						</div>
-						<div class="option-stat-bar">
-							<div class="option-stat-fill"></div>
-						</div>
-					</button>
-					<button type="button" class="quiz-option-btn" data-val="cold-air">
-						<div class="option-header">
-							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Breathing cold air triggers&nbsp;pain.</span>
+							<span class="option-label">Yes. Cold water, ice, or hot tea triggers burning or&nbsp;zingers.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -413,7 +759,17 @@
 					<button type="button" class="quiz-option-btn" data-val="no-temp">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No temperature&nbsp;sensitivity.</span>
+							<span class="option-label">No. Temperature changes do not affect my mouth&nbsp;pain.</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="sometimes-temp">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Sometimes. Cold air or hot broth occasionally hurts.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -430,41 +786,31 @@
 			<div class="quiz-item" data-qid="q7_acid_triggers">
 				<div class="question-emoji" aria-hidden="true">🍋</div>
 				<p class="quiz-question">Do acidic foods, citrus, or coffee trigger&nbsp;burning?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Acid triggers">
-					<button type="button" class="quiz-option-btn" data-val="immediate">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Do acidic foods, citrus, or coffee trigger burning?">
+					<button type="button" class="quiz-option-btn" data-val="yes-acid-spikes">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Stings immediately upon&nbsp;contact.</span>
+							<span class="option-label">Yes. Tomatoes, citrus, vinegar, or coffee cause fiery&nbsp;flares.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="delayed">
+					<button type="button" class="quiz-option-btn" data-val="no-acid-spikes">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Delayed flare 24 to 72 hours&nbsp;later.</span>
+							<span class="option-label">No. Acidic foods have no noticeable effect on my&nbsp;symptoms.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="both">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-acid-spikes">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Both immediate stinging and delayed&nbsp;flares.</span>
-							<span class="option-pct"></span>
-						</div>
-						<div class="option-stat-bar">
-							<div class="option-stat-fill"></div>
-						</div>
-					</button>
-					<button type="button" class="quiz-option-btn" data-val="neither">
-						<div class="option-header">
-							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No reaction to acidic foods or&nbsp;drinks.</span>
+							<span class="option-label">Sometimes. Mild sensitivity depending on what I eat.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -479,33 +825,115 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q8_chewing_pain">
-				<div class="question-emoji" aria-hidden="true">🥩</div>
+				<div class="question-emoji" aria-hidden="true">🦷</div>
 				<p class="quiz-question">Does chewing or biting down firmly&nbsp;hurt?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Biting and chewing pain">
-					<button type="button" class="quiz-option-btn" data-val="yes-bite">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Does chewing or biting down firmly hurt?">
+					<button type="button" class="quiz-option-btn" data-val="yes-chewing">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Chewing or biting down&nbsp;hurts.</span>
+							<span class="option-label">Yes. Chewing firm food causes localized tooth or jaw&nbsp;ache.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="mild-bite">
+					<button type="button" class="quiz-option-btn" data-val="no-chewing">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Mild pressure ache when&nbsp;chewing.</span>
+							<span class="option-label">No. Biting down and chewing feel completely pain-free.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-bite">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-chewing">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No biting or chewing&nbsp;pain.</span>
+							<span class="option-label">Sometimes. Only hurts when chewing on one specific side.</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
+
+			<div class="quiz-item" data-qid="q_oral_hygiene_chemicals" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">🧼</div>
+				<p class="quiz-question">Which daily dental products or ingredients do you regularly&nbsp;use?</p>
+				<p class="multiselect-hint">Select all that apply</p>
+				<div class="quiz-options-list" role="group" aria-label="Which daily dental products or ingredients do you regularly use?">
+					<button type="button" class="quiz-option-btn" data-val="sls-toothpaste">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Standard foaming toothpaste with Sodium Lauryl Sulfate (SLS)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="whitening-peroxide">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Whitening or tartar-control toothpaste with abrasives or peroxides</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="alcohol-mouthwash">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Commercial alcohol-based or antibacterial mouthwash</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="cinnamon-mint">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Strong cinnamon, peppermint, or intense herbal flavoring</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="acidic-rinses">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Acidic tonics, apple cider vinegar rinses, or lemon water</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="sls-free-gentle">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Mild, unflavored, or SLS-free enzymatic toothpaste</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="none">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">None of these chemical irritants</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -520,9 +948,8 @@
 			</div>
 		</div>
 
-		<!-- Category 3: Recent 24-Hour Food & Drink Recall -->
-		<div class="quiz-category-card">
-			<h3 class="category-title">3. Recent 24-Hour Food &amp; Drink&nbsp;Recall</h3>
+<div class="quiz-category-card">
+			<h3 class="category-title">4. Recent 24-Hour Food &amp; Drink&nbsp;Recall</h3>
 			<p class="category-subtitle" style="text-align: center; color: #e9d5ff; font-size: clamp(1rem, 1.4vw, 1.15rem); margin: -30px auto 40px auto; max-width: 820px; line-height: 1.6; text-wrap: balance;">
 				To uncover immediate acid triggers versus delayed starch fermentation, note what you ate and drank over the last 24&nbsp;hours. Your answers save automatically as you&nbsp;type.
 			</p>
@@ -619,13 +1046,107 @@
 		</div>
 
 		<!-- Category 4 -->
+		
+
+		<!-- 5. Burning Location & Spread -->
 		<div class="quiz-category-card">
-			<h3 class="category-title">4. Burning Location</h3>
+			<h3 class="category-title">5. Burning Location &amp;&nbsp;Spread</h3>
+			<div class="quiz-item" data-qid="q_location_zones" data-multiselect="true">
+				<div class="question-emoji" aria-hidden="true">🎯</div>
+				<p class="quiz-question">Where in your mouth does the burning occur? Select all that&nbsp;apply:</p>
+				<p class="multiselect-hint">Tick every anatomical area that experiences discomfort</p>
+				<div class="quiz-options-list" role="group" aria-label="Where in your mouth does the burning occur? Select all that apply:">
+					<button type="button" class="quiz-option-btn" data-val="tongue-tip">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Tip of the tongue</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="tongue-sides">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Sides and lateral borders of the tongue</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="tongue-top">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Dorsum (top surface) of the tongue</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="lips">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Lips and inner lip lining</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="palate">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Roof of the mouth (hard or soft palate)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="cheeks">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Inside of the cheeks (buccal mucosa)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="throat">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Back of the throat or pharynx</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="all-over">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Entire mouth and gums simultaneously (diffuse burning)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
 
 			<div class="quiz-item" data-qid="q9_point_spread">
 				<div class="question-emoji" aria-hidden="true">📍</div>
 				<p class="quiz-question">Can you point to one tooth, or does it&nbsp;spread?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Location spread">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Can you point to one tooth, or does it spread?">
 					<button type="button" class="quiz-option-btn" data-val="quadrant-spread">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
@@ -663,35 +1184,34 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q10_radiation" data-multiselect="true">
-				<div class="question-emoji" aria-hidden="true">👂</div>
+			<div class="quiz-item" data-qid="q10_radiation">
+				<div class="question-emoji" aria-hidden="true">📡</div>
 				<p class="quiz-question">Does the burning spread into cheeks, nose, or&nbsp;ears?</p>
-				<p class="multiselect-hint">Select all that apply</p>
-				<div class="quiz-options-list" role="group" aria-label="Pain radiation">
-					<button type="button" class="quiz-option-btn" data-val="radiates-deep">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Does the burning spread into cheeks, nose, or ears?">
+					<button type="button" class="quiz-option-btn" data-val="radiates-widely">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Radiates to ear, cheek, or&nbsp;nose.</span>
+							<span class="option-label">Yes. Radiates up into my ears, jaw, temples, or&nbsp;sinuses.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="mild-radiation">
+					<button type="button" class="quiz-option-btn" data-val="mouth-only">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Occasionally radiates&nbsp;outward.</span>
+							<span class="option-label">No. Confined strictly inside my oral cavity.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-radiation">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-radiates">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. Stays strictly inside the&nbsp;mouth.</span>
+							<span class="option-label">Sometimes. Only radiates during intense, prolonged flares.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -708,21 +1228,31 @@
 			<div class="quiz-item" data-qid="q11_symmetry">
 				<div class="question-emoji" aria-hidden="true">⚖️</div>
 				<p class="quiz-question">Is the burning on one side only, or both&nbsp;sides?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Symmetry">
-					<button type="button" class="quiz-option-btn" data-val="unilateral">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Is the burning on one side only, or both sides?">
+					<button type="button" class="quiz-option-btn" data-val="bilateral">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">One side only&nbsp;(unilateral).</span>
+							<span class="option-label">Bilateral. Both sides burn equally (classic BMS).</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="bilateral">
+					<button type="button" class="quiz-option-btn" data-val="unilateral">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Both sides across the&nbsp;midline.</span>
+							<span class="option-label">Unilateral. Confined to one side of my jaw or&nbsp;mouth.</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="shifts-sides">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Sometimes. Starts on one side then crosses over.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -737,38 +1267,37 @@
 			</div>
 		</div>
 
-		<!-- Category 5 -->
+		<!-- 6. Jaw Mechanics & Muscle Tension -->
 		<div class="quiz-category-card">
-			<h3 class="category-title">5. Jaw Clenching</h3>
-
+			<h3 class="category-title">6. Jaw Mechanics &amp; Muscle&nbsp;Tension</h3>
 			<div class="quiz-item" data-qid="q12_jaw_tightness">
-				<div class="question-emoji" aria-hidden="true">🥱</div>
+				<div class="question-emoji" aria-hidden="true">😬</div>
 				<p class="quiz-question">Do you wake up with tight or sore jaw&nbsp;muscles?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Morning jaw stiffness">
-					<button type="button" class="quiz-option-btn" data-val="yes-tightness">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Do you wake up with tight or sore jaw muscles?">
+					<button type="button" class="quiz-option-btn" data-val="tight-jaw-morning">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Morning jaw tightness or muscle&nbsp;fatigue.</span>
+							<span class="option-label">Yes. My jaw, temples, or neck feel stiff every&nbsp;morning.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="sometimes-tight">
+					<button type="button" class="quiz-option-btn" data-val="no-jaw-tightness">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Mild morning&nbsp;stiffness.</span>
+							<span class="option-label">No. My jaw muscles feel relaxed when I wake&nbsp;up.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-tightness">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-tight-jaw">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No jaw tightness or morning&nbsp;stiffness.</span>
+							<span class="option-label">Sometimes. Only after stressful days or poor sleep.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -782,35 +1311,34 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q13_clenching_bruxism" data-multiselect="true">
+			<div class="quiz-item" data-qid="q13_clenching_bruxism">
 				<div class="question-emoji" aria-hidden="true">🦷</div>
 				<p class="quiz-question">Do you clench your teeth, grind at night, or brace your&nbsp;tongue?</p>
-				<p class="multiselect-hint">Select all that apply</p>
-				<div class="quiz-options-list" role="group" aria-label="Bruxism habits">
-					<button type="button" class="quiz-option-btn" data-val="yes-bruxism">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Do you clench your teeth, grind at night, or brace your tongue?">
+					<button type="button" class="quiz-option-btn" data-val="clenching-grinding">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Clenching, night grinding, or tongue&nbsp;bracing.</span>
+							<span class="option-label">Yes. I catch myself clenching or pressing my tongue into&nbsp;teeth.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="unaware">
+					<button type="button" class="quiz-option-btn" data-val="no-clenching">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Not sure, but likely clenching during&nbsp;sleep.</span>
+							<span class="option-label">No. I keep my teeth apart and jaw relaxed all&nbsp;day.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-bruxism">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-clenching">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No teeth grinding or tongue&nbsp;bracing.</span>
+							<span class="option-label">Sometimes. I clench under intense focus or mental&nbsp;stress.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -825,33 +1353,33 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q14_tmj_clicking">
-				<div class="question-emoji" aria-hidden="true">💥</div>
+				<div class="question-emoji" aria-hidden="true">👂</div>
 				<p class="quiz-question">Does your jaw joint (TMJ) click or pop when&nbsp;chewing?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="TMJ clicking">
-					<button type="button" class="quiz-option-btn" data-val="yes-clicking">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Does your jaw joint (TMJ) click or pop when chewing?">
+					<button type="button" class="quiz-option-btn" data-val="tmj-clicks">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Clicking, popping, or jaw&nbsp;catching.</span>
+							<span class="option-label">Yes. Audible clicking, popping, or grating in my jaw&nbsp;joint.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="mild-click">
+					<button type="button" class="quiz-option-btn" data-val="no-tmj-click">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Occasional slight&nbsp;clicking.</span>
+							<span class="option-label">No. Smooth, quiet, and pain-free jaw movement.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-clicking">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-tmj-clicks">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No jaw clicking or&nbsp;popping.</span>
+							<span class="option-label">Sometimes. Occasional light popping without joint pain.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -866,38 +1394,78 @@
 			</div>
 		</div>
 
-		<!-- Category 6 -->
+		<!-- 7. Salivary Flow & Taste Alterations -->
 		<div class="quiz-category-card">
-			<h3 class="category-title">6. Dry Mouth</h3>
-
+			<h3 class="category-title">7. Salivary Flow &amp; Taste&nbsp;Alterations</h3>
 			<div class="quiz-item" data-qid="q15_dry_sandpaper">
-				<div class="question-emoji" aria-hidden="true">🏜️</div>
+				<div class="question-emoji" aria-hidden="true">🌵</div>
 				<p class="quiz-question">Does your mouth feel dry or sticky despite drinking&nbsp;water?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Mouth dryness">
-					<button type="button" class="quiz-option-btn" data-val="very-dry">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Does your mouth feel dry or sticky despite drinking water?">
+					<button type="button" class="quiz-option-btn" data-val="yes-desert-dry">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Very dry, sticky, or feels like&nbsp;sandpaper.</span>
+							<span class="option-label">Yes. Constant dry, sticky, or sandpaper texture in my&nbsp;mouth.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="mild-dry">
+					<button type="button" class="quiz-option-btn" data-val="no-plenty-saliva">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Mild dryness or thick&nbsp;saliva.</span>
+							<span class="option-label">No. Normal moist saliva flow and hydration.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="normal-saliva">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-dry">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. Normal moist saliva&nbsp;flow.</span>
+							<span class="option-label">Sometimes. Drier in the afternoon, evening, or upon waking.</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
+
+			<div class="quiz-item" data-qid="q_functional_swallowing">
+				<div class="question-emoji" aria-hidden="true">💧</div>
+				<p class="quiz-question">Do you experience functional dryness when swallowing dry&nbsp;foods?</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="Do you experience functional dryness when swallowing dry foods?">
+					<button type="button" class="quiz-option-btn" data-val="needs-fluid">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Yes, I must sip water or liquids to swallow bread, crackers, or dry foods</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="adequate-flow">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">No, I produce enough saliva to chew and swallow dry foods without difficulty</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="occasional-dryness">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Sometimes, particularly in the late afternoon, evening, or during prolonged speaking</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -914,21 +1482,11 @@
 			<div class="quiz-item" data-qid="q16_taste_dysgeusia">
 				<div class="question-emoji" aria-hidden="true">👅</div>
 				<p class="quiz-question">Have you noticed an altered, metallic, or salty&nbsp;taste?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Taste dysgeusia">
-					<button type="button" class="quiz-option-btn" data-val="metallic-salty">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Have you noticed an altered, metallic, or salty taste?">
+					<button type="button" class="quiz-option-btn" data-val="metallic-bitter">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Persistent metallic or salty&nbsp;taste.</span>
-							<span class="option-pct"></span>
-						</div>
-						<div class="option-stat-bar">
-							<div class="option-stat-fill"></div>
-						</div>
-					</button>
-					<button type="button" class="quiz-option-btn" data-val="bitter-altered">
-						<div class="option-header">
-							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Bitter or altered taste&nbsp;(dysgeusia).</span>
+							<span class="option-label">Yes. Constant metallic, bitter, salty, or phantom&nbsp;taste.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -938,7 +1496,17 @@
 					<button type="button" class="quiz-option-btn" data-val="normal-taste">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. Normal sense of&nbsp;taste.</span>
+							<span class="option-label">No. Normal taste perception for all foods and drinks.</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="sometimes-altered-taste">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Sometimes. Taste changes flare during high burning episodes.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -952,35 +1520,34 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q17_sjogren_eyes_joints" data-multiselect="true">
+			<div class="quiz-item" data-qid="q17_sjogren_eyes_joints">
 				<div class="question-emoji" aria-hidden="true">👁️</div>
 				<p class="quiz-question">Do you experience gritty dry eyes, joint aches, or&nbsp;fatigue?</p>
-				<p class="multiselect-hint">Select all that apply</p>
-				<div class="quiz-options-list" role="group" aria-label="Systemic dry symptoms">
-					<button type="button" class="quiz-option-btn" data-val="yes-autoimmune">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Do you experience gritty dry eyes, joint aches, or fatigue?">
+					<button type="button" class="quiz-option-btn" data-val="sjogren-symptoms">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Dry eyes, joint aches, or chronic&nbsp;fatigue.</span>
+							<span class="option-label">Yes. Dry gritty eyes, stiff joints, and systemic&nbsp;fatigue.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="mild-systemic">
+					<button type="button" class="quiz-option-btn" data-val="no-sjogren">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Mild dry eyes or occasional joint&nbsp;aches.</span>
+							<span class="option-label">No. Eyes, joints, and systemic energy feel completely&nbsp;fine.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-systemic">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-dry-eyes">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No dry eyes or joint&nbsp;aches.</span>
+							<span class="option-label">Sometimes. Occasional mild dry eyes when using screens.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -995,38 +1562,67 @@
 			</div>
 		</div>
 
-		<!-- Category 7 -->
+		<!-- 8. Onset History & Dental Hardware -->
 		<div class="quiz-category-card">
-			<h3 class="category-title">7. Dental History</h3>
-
-			<div class="quiz-item" data-qid="q18_dental_onset">
-				<div class="question-emoji" aria-hidden="true">🏥</div>
-				<p class="quiz-question">Did the burning start or worsen after dental&nbsp;work?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Dental onset connection">
-					<button type="button" class="quiz-option-btn" data-val="yes-procedure">
+			<h3 class="category-title">8. Onset History &amp; Dental&nbsp;Hardware</h3>
+			<div class="quiz-item" data-qid="q_onset_catalyst">
+				<div class="question-emoji" aria-hidden="true">⚡</div>
+				<p class="quiz-question">What specific event occurred right before your first burning&nbsp;episode?</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="What specific event occurred right before your first burning episode?">
+					<button type="button" class="quiz-option-btn" data-val="extraction-dental">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Flared directly after dental&nbsp;procedure.</span>
+							<span class="option-label">A tooth extraction, dental implant, deep crown, or root canal surgery</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="uncertain-procedure">
+					<button type="button" class="quiz-option-btn" data-val="trauma-accident">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Not sure or&nbsp;uncorrelated.</span>
+							<span class="option-label">A motor vehicle accident, neck whiplash, or endotracheal intubation</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-procedure">
+					<button type="button" class="quiz-option-btn" data-val="acidic-ingress">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No connection to dental&nbsp;work.</span>
+							<span class="option-label">A concentrated acidic drink, lemon cleanse, or caustic oral rinse</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="infection-antibiotics">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">A viral illness, severe infection, or high-dose antibiotic regimen</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="extreme-stress">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">A prolonged period of severe psychological stress or physical exhaustion</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="gradual-spontaneous">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Started gradually with no single identifiable triggering event</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -1040,35 +1636,75 @@
 				</div>
 			</div>
 
-			<div class="quiz-item" data-qid="q19_crowns_recession" data-multiselect="true">
+			<div class="quiz-item" data-qid="q18_dental_onset">
+				<div class="question-emoji" aria-hidden="true">🦷</div>
+				<p class="quiz-question">Did the burning start or worsen after dental&nbsp;work?</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="Did the burning start or worsen after dental work?">
+					<button type="button" class="quiz-option-btn" data-val="dental-work-onset">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Yes. Began shortly after a crown, root canal, extraction, or deep cleaning.</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="no-dental-link">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">No. Started out of nowhere with no preceding dental&nbsp;work.</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="sometimes-worse-dental">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Sometimes. Dental visits consistently trigger major burning flares.</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
+
+			<div class="quiz-item" data-qid="q19_crowns_recession">
 				<div class="question-emoji" aria-hidden="true">👑</div>
 				<p class="quiz-question">Do you have crowns, fillings, or receded gums where it&nbsp;burns?</p>
-				<p class="multiselect-hint">Select all that apply</p>
-				<div class="quiz-options-list" role="group" aria-label="Restorations and receded gums">
-					<button type="button" class="quiz-option-btn" data-val="yes-restorations">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Do you have crowns, fillings, or receded gums where it burns?">
+					<button type="button" class="quiz-option-btn" data-val="multiple-restorations">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Crowns, fillings, or receded root&nbsp;margins.</span>
+							<span class="option-label">Yes. Multiple old crowns, fillings, or visible root recession collars.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="minor-recessions">
+					<button type="button" class="quiz-option-btn" data-val="healthy-teeth-gums">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Minor gumline recession&nbsp;only.</span>
+							<span class="option-label">No. Minimal dental work and fully intact, healthy&nbsp;gums.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-restorations">
+					<button type="button" class="quiz-option-btn" data-val="some-fillings">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. Natural intact teeth without&nbsp;restorations.</span>
+							<span class="option-label">Sometimes. A few routine composite fillings or minor receding gums.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -1085,31 +1721,31 @@
 			<div class="quiz-item" data-qid="q20_desensitizer_relief">
 				<div class="question-emoji" aria-hidden="true">🛡️</div>
 				<p class="quiz-question">Did a filling or dental desensitizer ever give temporary&nbsp;relief?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Desensitizer relief">
-					<button type="button" class="quiz-option-btn" data-val="yes-relief">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Did a filling or dental desensitizer ever give temporary relief?">
+					<button type="button" class="quiz-option-btn" data-val="temporary-numb-relief">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Provided temporary pain&nbsp;relief.</span>
+							<span class="option-label">Yes. Professional fluoride varnish, bonding, or numbing gel gave temporary calm.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="never-tried">
+					<button type="button" class="quiz-option-btn" data-val="never-tried-desensitizer">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. Never tried a dental&nbsp;desensitizer.</span>
+							<span class="option-label">No. Never tried desensitizers or they had zero noticeable effect.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-relief">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-slight-relief">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No relief noticed from&nbsp;treatments.</span>
+							<span class="option-label">Sometimes. Minor, brief relief for a few hours before burning returned.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -1124,39 +1760,98 @@
 			</div>
 		</div>
 
-		<!-- Category 8 -->
+		<!-- 9. Medications, Systemic Health, & Reflux -->
 		<div class="quiz-category-card">
-			<h3 class="category-title">8. Medications and Reflux</h3>
+			<h3 class="category-title">9. Medications, Systemic Health, &amp;&nbsp;Reflux</h3>
+			<div class="quiz-item" data-qid="q_medication_count">
+				<div class="question-emoji" aria-hidden="true">💊</div>
+				<p class="quiz-question">How many total prescription medications, OTC drugs, and supplements do you take&nbsp;daily?</p>
+				<div class="quiz-options-list" role="radiogroup" aria-label="How many total prescription medications, OTC drugs, and supplements do you take daily?">
+					<button type="button" class="quiz-option-btn" data-val="meds-zero">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">None at all</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="meds-1-to-2">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">1 or 2 daily medications or supplements</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="meds-3-to-5">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">3 to 5 daily medications</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="meds-6-to-10">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">6 to 10 daily medications</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="meds-over-10">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">More than 10 daily medications (significant polypharmacy load)</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+				</div>
+				<div class="quiz-item-feedback">
+					<span class="feedback-pulse"></span>
+					<span class="feedback-text"></span>
+				</div>
+			</div>
 
-			<div class="quiz-item" data-qid="q21_new_medications" data-multiselect="true">
+			<div class="quiz-item" data-qid="q21_new_medications">
 				<div class="question-emoji" aria-hidden="true">💊</div>
 				<p class="quiz-question">Did you start new blood pressure meds, inhalers, or&nbsp;antidepressants?</p>
-				<p class="multiselect-hint">Select all that apply</p>
-				<div class="quiz-options-list" role="group" aria-label="Medication onset">
-					<button type="button" class="quiz-option-btn" data-val="yes-meds">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Did you start new blood pressure meds, inhalers, or antidepressants?">
+					<button type="button" class="quiz-option-btn" data-val="started-new-meds">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Started new prescription around&nbsp;onset.</span>
+							<span class="option-label">Yes. Started ACE inhibitors, ARBs, diuretics, statins, or psychiatric meds.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="multiple-meds">
+					<button type="button" class="quiz-option-btn" data-val="no-new-meds">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Taking multiple long-term&nbsp;prescriptions.</span>
+							<span class="option-label">No. Medication regimen has remained unchanged for years.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="no-meds">
+					<button type="button" class="quiz-option-btn" data-val="sometimes-change-supps">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No new medications&nbsp;started.</span>
+							<span class="option-label">Sometimes. Occasional changes in over-the-counter supplements.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -1173,31 +1868,31 @@
 			<div class="quiz-item" data-qid="q22_nutrient_testing">
 				<div class="question-emoji" aria-hidden="true">🩸</div>
 				<p class="quiz-question">Have you had blood tests for low B12, folate, iron, or&nbsp;zinc?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Nutrient blood testing">
-					<button type="button" class="quiz-option-btn" data-val="yes-deficiencies">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Have you had blood tests for low B12, folate, iron, or zinc?">
+					<button type="button" class="quiz-option-btn" data-val="tested-low-nutrients">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Nutrient deficiencies were&nbsp;found.</span>
+							<span class="option-label">Yes. Tested and showed low B12, low ferritin, or vitamin D deficiency.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="tested-normal">
+					<button type="button" class="quiz-option-btn" data-val="normal-bloodwork">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. Tested and all levels were&nbsp;normal.</span>
+							<span class="option-label">No. Complete blood work and metabolic panels came back fully normal.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
 							<div class="option-stat-fill"></div>
 						</div>
 					</button>
-					<button type="button" class="quiz-option-btn" data-val="never-tested">
+					<button type="button" class="quiz-option-btn" data-val="never-tested-nutrients">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. Never had blood nutrient testing&nbsp;done.</span>
+							<span class="option-label">Never tested. Doctors have not ordered comprehensive nutrient lab panels.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -1212,23 +1907,13 @@
 			</div>
 
 			<div class="quiz-item" data-qid="q23_acid_reflux">
-				<div class="question-emoji" aria-hidden="true">🌋</div>
+				<div class="question-emoji" aria-hidden="true">🔥</div>
 				<p class="quiz-question">Do you have acid reflux, heartburn, or stomach&nbsp;issues?</p>
-				<div class="quiz-options-list" role="radiogroup" aria-label="Reflux or stomach issues">
-					<button type="button" class="quiz-option-btn" data-val="yes-reflux">
+				<div class="quiz-options-list" role="radiogroup" aria-label="Do you have acid reflux, heartburn, or stomach issues?">
+					<button type="button" class="quiz-option-btn" data-val="frequent-gerd-lpr">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Yes. Chronic reflux, heartburn, or&nbsp;GERD.</span>
-							<span class="option-pct"></span>
-						</div>
-						<div class="option-stat-bar">
-							<div class="option-stat-fill"></div>
-						</div>
-					</button>
-					<button type="button" class="quiz-option-btn" data-val="mild-reflux">
-						<div class="option-header">
-							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">Sometimes. Mild or occasional heartburn&nbsp;only.</span>
+							<span class="option-label">Yes. Frequent heartburn, acid regurgitation, sour taste, or silent reflux (LPR).</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -1238,7 +1923,17 @@
 					<button type="button" class="quiz-option-btn" data-val="no-reflux">
 						<div class="option-header">
 							<span class="your-answer-badge">Your Answer &rarr;</span>
-							<span class="option-label">No. No acid reflux or gut&nbsp;issues.</span>
+							<span class="option-label">No. Zero heartburn or gastrointestinal issues of any&nbsp;kind.</span>
+							<span class="option-pct"></span>
+						</div>
+						<div class="option-stat-bar">
+							<div class="option-stat-fill"></div>
+						</div>
+					</button>
+					<button type="button" class="quiz-option-btn" data-val="occasional-heartburn">
+						<div class="option-header">
+							<span class="your-answer-badge">Your Answer &rarr;</span>
+							<span class="option-label">Sometimes. Occasional mild reflux after heavy or spicy meals.</span>
 							<span class="option-pct"></span>
 						</div>
 						<div class="option-stat-bar">
@@ -1252,11 +1947,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="quiz-completion-banner">
-		<p class="completion-title">Thank You For Contributing To BMS Research</p>
-		<p class="completion-desc">Every response helps build the first real patient-driven map of Burning Mouth Syndrome subtypes, triggers, and clinical&nbsp;patterns.</p>
 	</div>
 </div>
 
