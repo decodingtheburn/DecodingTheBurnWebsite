@@ -443,6 +443,115 @@ import { SITE_TITLE } from '../consts';
 				box-shadow: 0 22px 50px rgba(0, 0, 0, 0.92), 0 0 42px rgba(168, 85, 247, 0.4);
 			}
 
+			/* ==========================================================================
+			   Dedicated Part Divider Pages (Clean, Standalone Full-Page Presentation)
+			   ========================================================================== */
+			.book-part-page {
+				background: #ffffff;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: stretch;
+				min-height: 1050px;
+				box-sizing: border-box;
+			}
+
+			.part-page-container {
+				min-height: 860px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				padding: 4.5rem 2rem 3.5rem;
+				box-sizing: border-box;
+				gap: 2.25rem;
+			}
+
+			.part-page-header-block {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 0.85rem;
+				width: 100%;
+			}
+
+			.part-page-num {
+				font-family: 'Cinzel', serif;
+				font-size: 1.15rem;
+				font-weight: 800;
+				letter-spacing: 0.32em;
+				text-indent: 0.32em;
+				color: #7c3aed;
+				text-transform: uppercase;
+				margin: 0;
+			}
+
+			.part-page-title {
+				font-family: 'Cinzel', serif;
+				font-size: clamp(2.3rem, 4.2vw, 3.2rem);
+				font-weight: 800;
+				line-height: 1.18;
+				letter-spacing: 0.04em;
+				color: #0f172a;
+				margin: 0.25rem auto 0;
+				max-width: 720px;
+				text-wrap: balance;
+			}
+
+			.part-page-divider {
+				width: 100px;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, #a855f7, transparent);
+				margin: 0.5rem auto 0;
+			}
+
+			.part-page-desc {
+				font-family: 'Lora', serif;
+				font-size: 1.18rem;
+				font-style: italic;
+				color: #475569;
+				line-height: 1.7;
+				max-width: 600px;
+				margin: 0 auto;
+				text-wrap: balance;
+			}
+
+			.part-page-emblem-block {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-top: 1rem;
+			}
+
+			.part-page-emblem-img {
+				width: 110px;
+				height: 110px;
+				object-fit: cover;
+				border-radius: 50%;
+				border: 2px solid #ede9fe;
+				box-shadow: 0 12px 28px -4px rgba(124, 58, 237, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.04);
+			}
+
+			.part-page-emblem-img.contain-emblem {
+				border-radius: 0;
+				border: none;
+				box-shadow: none;
+				object-fit: contain;
+				filter: drop-shadow(0 10px 20px rgba(124, 58, 237, 0.18));
+			}
+
+			.toc-part-link {
+				color: inherit;
+				text-decoration: none;
+				transition: color 0.2s ease;
+			}
+
+			.toc-part-link:hover {
+				color: #7c3aed;
+			}
+
 			.cover-divider {
 				width: 120px;
 				height: 2px;
@@ -2982,6 +3091,7 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part I: The Reality of BMS</div>
+								<a href="#part-1-page"><strong>Part 1: Understanding BMS</strong><span class="menu-num">p. 1</span></a>
 								<a href="#page-1"><span>Chapter 1: The Numbers of the Fire</span><span class="menu-num">p. 1</span></a>
 								<a href="#page-2"><span>Chapter 2: What Sufferers Experience</span><span class="menu-num">p. 2</span></a>
 								<a href="#page-3"><span>Chapter 3: Why We Need to Do Research</span><span class="menu-num">p. 3</span></a>
@@ -3000,6 +3110,7 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part II: An N=1 Investigation</div>
+								<a href="#part-2-page"><strong>Part 2: An N=1 Investigation</strong><span class="menu-num">p. 15</span></a>
 								<a href="#page-18"><span>Chapter 6: Going to the Doctors</span><span class="menu-num">p. 18</span></a>
 								<a href="#page-20"><span>Chapter 7: The Institutional Blind Spot</span><span class="menu-num">p. 20</span></a>
 								<a href="#page-22"><span>Chapter 8: The Supplement Trial</span><span class="menu-num">p. 22</span></a>
@@ -3018,6 +3129,7 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part III: First Principles of Pain</div>
+								<a href="#part-3-page"><strong>Part 3: First Principles of Pain</strong><span class="menu-num">p. 28</span></a>
 								<a href="#page-28"><span>Part III: Identifying What Makes Pain Worse</span><span class="menu-num">p. 28</span></a>
 								<a href="#page-30b"><span>Chapter 11: The Three Burn Zones &amp; Acid Sources</span><span class="menu-num">p. 31</span></a>
 								<a href="#page-31"><span>Chapter 12: The Receptors of Pain (ASICs &amp; TRPV1)</span><span class="menu-num">p. 33</span></a>
@@ -3040,8 +3152,10 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part IV: Diagnostic History</div>
+								<a href="#part-4-page"><strong>Part 4: Diagnostic History</strong><span class="menu-num">p. 50</span></a>
 								<a href="#page-50"><span>Chapter 17: BMS Diagnostic History &amp; 2026</span><span class="menu-num">p. 56</span></a>
 								<div class="toolbar-menu-header" style="margin-top: 0.5rem;">Part V: Taking Charge &amp; Recovery</div>
+								<a href="#part-5-page"><strong>Part 5: Taking Charge &amp; Recovery</strong><span class="menu-num">p. 53</span></a>
 								<a href="#page-15b"><span>Chapter 18: Finding the Real Cause of Your BMS</span><span class="menu-num">p. 15b</span></a>
 								<a href="#page-7"><span>Chapter 19: The BMS Diagnostic Questionnaire</span><span class="menu-num">p. 7</span></a>
 								<a href="#page-52"><span>Chapter 21: Starving the Fire: Elimination</span><span class="menu-num">p. 58</span></a>
@@ -3062,6 +3176,7 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part VI: Models &amp; Citizen Science</div>
+								<a href="#part-6-page"><strong>Part 6: Models &amp; Citizen Science</strong><span class="menu-num">p. 63</span></a>
 								<a href="#page-63"><span>Chapter 26: The Diabetic Parallel</span><span class="menu-num">p. 69</span></a>
 								<a href="#page-67"><span>Chapter 27: The Two Bottlenecks</span><span class="menu-num">p. 73</span></a>
 								<a href="#page-71"><span>Chapter 28: Remission vs. Progression</span><span class="menu-num">p. 77</span></a>
@@ -3323,7 +3438,7 @@ import { SITE_TITLE } from '../consts';
 						</div>
 
 						<div class="toc-group">
-							<div class="toc-part-header">Part I: Understanding Burning Mouth Syndrome</div>
+							<div class="toc-part-header"><a href="#part-1-page" class="toc-part-link">Part I: Understanding Burning Mouth Syndrome</a></div>
 							<p class="toc-part-purpose">Clinical reality, epidemiology, daily symptoms, the human toll, and decoding the 3-to-5-doctor odyssey.</p>
 
 							<div class="toc-item">
@@ -3443,7 +3558,7 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="toc-centered-container">
 						<div class="toc-group">
-							<div class="toc-part-header">Part II: My Story (An N=1 Investigation)</div>
+							<div class="toc-part-header"><a href="#part-2-page" class="toc-part-link">Part II: My Story (An N=1 Investigation)</a></div>
 							<p class="toc-part-purpose">A software engineer's chronological journey from sudden 10/10 agony to systematic self-tracking, hardware discovery, and complete&nbsp;remission.</p>
 
 							<div class="toc-item">
@@ -3631,7 +3746,7 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="toc-centered-container">
 						<div class="toc-group" style="margin-bottom: 0.75rem;">
-							<div class="toc-part-header">Part III: The First Principles of Oral Burning Pain</div>
+							<div class="toc-part-header"><a href="#part-3-page" class="toc-part-link">Part III: The First Principles of Oral Burning Pain</a></div>
 							<p class="toc-part-purpose">Biophysics, receptor physiology, exposed dentinal tubule conduits, and the multi-factor threshold model of mucosal fire.</p>
 
 							<div class="toc-item">
@@ -3786,7 +3901,7 @@ import { SITE_TITLE } from '../consts';
 						</div>
 
 						<div class="toc-group">
-							<div class="toc-part-header">Part IV: The BMS Diagnostic History</div>
+							<div class="toc-part-header"><a href="#part-4-page" class="toc-part-link">Part IV: The BMS Diagnostic History</a></div>
 							<p class="toc-part-purpose">From psychiatric stigma to histological proof, the 2020 ICOP consensus, and the latest 2026 clinical diagnostic algorithm.</p>
 
 							<div class="toc-item">
@@ -3842,7 +3957,7 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="toc-centered-container">
 						<div class="toc-group">
-							<div class="toc-part-header">Part V: Taking Charge of Our Own Investigation</div>
+							<div class="toc-part-header"><a href="#part-5-page" class="toc-part-link">Part V: Taking Charge of Our Own Investigation</a></div>
 							<p class="toc-part-purpose">Practical citizen science protocols: finding root causes, triage, testing triggers, starving the fire, measuring latency, applying barrier shields, and managing&nbsp;flares.</p>
 
 							<div class="toc-item">
@@ -4041,7 +4156,7 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="toc-centered-container">
 						<div class="toc-group">
-							<div class="toc-part-header">Part VI: Models for BMS, Healthcare Dialogue &amp; Citizen Science</div>
+							<div class="toc-part-header"><a href="#part-6-page" class="toc-part-link">Part VI: Models for BMS, Healthcare Dialogue &amp; Citizen Science</a></div>
 							<p class="toc-part-purpose">The diabetic parallel, clinical bottlenecks, collaborative provider dialogue, top FAQs, and citizen science&nbsp;advancement.</p>
 
 							<div class="toc-item">
@@ -4507,6 +4622,33 @@ import { SITE_TITLE } from '../consts';
 			     CHAPTER 1: THE NUMBERS OF THE FIRE (10 DEDICATED STAT PAGES)
 			     ========================================================================== -->
 
+			<!-- PART 1 DEDICATED FULL PAGE -->
+			<section class="book-page book-part-page" id="part-1-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+					<div class="part-page-container">
+						<div class="part-page-header-block">
+							<div class="part-page-num">Part 1</div>
+							<h1 class="part-page-title">Understanding Burning Mouth&nbsp;Syndrome</h1>
+							<div class="part-page-divider"></div>
+							<p class="part-page-desc">The statistical reality, daily symptoms, diagnostic vacuum, and why independent patient-led research is required to solve the&nbsp;condition.</p>
+						</div>
+
+						<div class="part-page-emblem-block">
+							<img 
+								src="/trigeminal-radiating-pain-10-10.jpg" 
+								alt="Part 1: Understanding Burning Mouth Pain" 
+								class="part-page-emblem-img"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>1</span>
+				</div>
+			</section>
+
 			<!-- Chapter 1: Stat 1 of 10 -->
 
 			<section class="book-page" id="page-1">
@@ -4924,6 +5066,33 @@ import { SITE_TITLE } from '../consts';
 			
 
 
+
+			<!-- PART 2 DEDICATED FULL PAGE -->
+			<section class="book-page book-part-page" id="part-2-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+					<div class="part-page-container">
+						<div class="part-page-header-block">
+							<div class="part-page-num">Part 2</div>
+							<h1 class="part-page-title">My Story: An N=1&nbsp;Investigation</h1>
+							<div class="part-page-divider"></div>
+							<p class="part-page-desc">From sudden 10/10 onset and dental specialist dead ends to the six-day reset: documenting eighteen months of self-experimentation and sustained&nbsp;remission.</p>
+						</div>
+
+						<div class="part-page-emblem-block">
+							<img 
+								src="/tooth-transparent.png" 
+								alt="Part 2: Dental Anatomy and Hardware Investigation" 
+								class="part-page-emblem-img contain-emblem"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>15</span>
+				</div>
+			</section>
 
 			<!-- Chapter 4: The First Day of the Pain (Page 1 of 1) -->
 			<section class="book-page" id="page-15">
@@ -5386,6 +5555,33 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
+			<!-- PART 3 DEDICATED FULL PAGE -->
+			<section class="book-page book-part-page" id="part-3-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+					<div class="part-page-container">
+						<div class="part-page-header-block">
+							<div class="part-page-num">Part 3</div>
+							<h1 class="part-page-title">The First Principles of Oral Burning&nbsp;Pain</h1>
+							<div class="part-page-divider"></div>
+							<p class="part-page-desc">Decoding the biological hardware: how dietary acid triggers, oral pain receptors, five-decade erosion, and open dentinal tubules generate unceasing pain&nbsp;signals.</p>
+						</div>
+
+						<div class="part-page-emblem-block">
+							<img 
+								src="/acid-sensing-ion-channels-asic-nerve.jpg" 
+								alt="Part 3: Receptors and Nerve Architecture" 
+								class="part-page-emblem-img"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>28</span>
+				</div>
+			</section>
+
 			<section class="book-page" id="page-28">
 				<div id="chapter-20" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch20-ph" style="scroll-margin-top: 5rem;"></div>
@@ -5395,20 +5591,6 @@ import { SITE_TITLE } from '../consts';
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Identifying What Makes Pain Worse: Acid</span>
 						<span class="page-count-label">Page 28</span>
-					</div>
-
-					<!-- Major Part III Hero Block (~1/3 of the page, centered, large & stylish) -->
-					<div class="part-hero-block">
-						<div class="part-hero-ornament">
-							<span class="part-hero-ornament-line"></span>
-							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-							</svg>
-							<span class="part-hero-ornament-line right"></span>
-						</div>
-						<div class="part-hero-num">Part III</div>
-						<h1 class="part-hero-title">The First Principles of Mouth Burning Pain</h1>
-						<p class="part-hero-desc">Decoding the biological hardware: how dietary acid triggers, oral pain receptors, five-decade erosion, and open dentinal tubules generate unceasing&nbsp;signals.</p>
 					</div>
 
 					<h2 class="chapter-title">Identifying What Makes Pain Worse:&nbsp;Acid</h2>
@@ -6378,6 +6560,33 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
+			<!-- PART 4 DEDICATED FULL PAGE -->
+			<section class="book-page book-part-page" id="part-4-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+					<div class="part-page-container">
+						<div class="part-page-header-block">
+							<div class="part-page-num">Part 4</div>
+							<h1 class="part-page-title">The BMS Diagnostic History &amp;&nbsp;Algorithm</h1>
+							<div class="part-page-divider"></div>
+							<p class="part-page-desc">Tracing seventy years of diagnostic confusion, the transition from psychiatric theories to neuropathic mapping, and the 2026 ICOP clinical&nbsp;algorithm.</p>
+						</div>
+
+						<div class="part-page-emblem-block">
+							<img 
+								src="/ph-scale-tooth-critical-threshold.png" 
+								alt="Part 4: Clinical Diagnostic Scale" 
+								class="part-page-emblem-img contain-emblem"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>50</span>
+				</div>
+			</section>
+
 						<!-- Chapter 20: The 2020 ICOP Consensus & the 2026 Update (Page 1 of 3) -->
 
 			<section class="book-page" id="page-50">
@@ -6391,20 +6600,6 @@ import { SITE_TITLE } from '../consts';
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 17: The BMS Diagnostic History &amp; the 2026 Update</span>
 						<span class="page-count-label">Page 50</span>
-					</div>
-
-					<!-- Major Part IV Hero Block (~1/3 of the page, centered, large & stylish) -->
-					<div class="part-hero-block">
-						<div class="part-hero-ornament">
-							<span class="part-hero-ornament-line"></span>
-							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-							</svg>
-							<span class="part-hero-ornament-line right"></span>
-						</div>
-						<div class="part-hero-num">Part IV</div>
-						<h1 class="part-hero-title">The Standard Medical Diagnosis</h1>
-						<p class="part-hero-desc">From historical stigma to formal classification: decoding the landmark 2020 ICOP consensus and the 2026 diagnostic&nbsp;revision.</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 17: The BMS Diagnostic History &amp; the 2026&nbsp;Update</h2>
@@ -6507,6 +6702,33 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-number-footer">
 					<span>52</span>
+				</div>
+			</section>
+
+			<!-- PART 5 DEDICATED FULL PAGE -->
+			<section class="book-page book-part-page" id="part-5-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+					<div class="part-page-container">
+						<div class="part-page-header-block">
+							<div class="part-page-num">Part 5</div>
+							<h1 class="part-page-title">Taking Charge of Our Own&nbsp;Investigation</h1>
+							<div class="part-page-divider"></div>
+							<p class="part-page-desc">The actionable diagnostic questionnaire, calculating your personal 72-hour acid latency wave, mechanical barrier shielding, and the six-day recovery&nbsp;protocol.</p>
+						</div>
+
+						<div class="part-page-emblem-block">
+							<img 
+								src="/recession_composite_patches_3d.jpg" 
+								alt="Part 5: Mechanical Barrier Shielding and Protocol" 
+								class="part-page-emblem-img"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>53</span>
 				</div>
 			</section>
 
@@ -7728,20 +7950,6 @@ import { SITE_TITLE } from '../consts';
 						<span class="page-count-label">Page 52</span>
 					</div>
 
-					<!-- Major Part V Hero Block (~1/3 of the page, centered, large & stylish) -->
-					<div class="part-hero-block">
-						<div class="part-hero-ornament">
-							<span class="part-hero-ornament-line"></span>
-							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-							</svg>
-							<span class="part-hero-ornament-line right"></span>
-						</div>
-						<div class="part-hero-num">Part V</div>
-						<h1 class="part-hero-title">Taking Charge of Your Own Investigation</h1>
-						<p class="part-hero-desc">The actionable diagnostic roadmap: starving the fire, calculating personal time lags, mechanical shields, and clinical partnership&nbsp;playbooks.</p>
-					</div>
-
 					<h2 class="chapter-title">Chapter 21: Starving the&nbsp;Fire</h2>
 
 					<div class="chapter-content is-first-page">
@@ -8486,6 +8694,33 @@ import { SITE_TITLE } from '../consts';
 			</section>
 
 
+			<!-- PART 6 DEDICATED FULL PAGE -->
+			<section class="book-page book-part-page" id="part-6-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+					<div class="part-page-container">
+						<div class="part-page-header-block">
+							<div class="part-page-num">Part 6</div>
+							<h1 class="part-page-title">Models for BMS, Healthcare Dialogue &amp; Citizen&nbsp;Science</h1>
+							<div class="part-page-divider"></div>
+							<p class="part-page-desc">Connecting the broader picture: diabetic neuropathy models, systemic metabolic health, patient-led citizen science, and the horizon of&nbsp;remission.</p>
+						</div>
+
+						<div class="part-page-emblem-block">
+							<img 
+								src="/nerve-terminal-transduction-nav17-circuit.png" 
+								alt="Part 6: Neuropathic Circuit Models and Citizen Science" 
+								class="part-page-emblem-img contain-emblem"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>63</span>
+				</div>
+			</section>
+
 			<!-- Chapter 26: The Diabetic Parallel (Page 1 of 4) -->
 
 			<section class="book-page" id="page-63">
@@ -8497,20 +8732,6 @@ import { SITE_TITLE } from '../consts';
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 26: The Diabetic Parallel</span>
 						<span class="page-count-label">Page 63</span>
-					</div>
-
-					<!-- Major Part VI Hero Block (~1/3 of the page, centered, large & stylish) -->
-					<div class="part-hero-block">
-						<div class="part-hero-ornament">
-							<span class="part-hero-ornament-line"></span>
-							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-							</svg>
-							<span class="part-hero-ornament-line right"></span>
-						</div>
-						<div class="part-hero-num">Part VI</div>
-						<h1 class="part-hero-title">Models for BMS &amp; Moving Forward</h1>
-						<p class="part-hero-desc">Connecting the broader picture: diabetic neuropathy models, systemic metabolic health, patient-led citizen science, and the horizon of&nbsp;remission.</p>
 					</div>
 
 					<h2 class="chapter-title">Chapter 26: The&nbsp;Diabetic&nbsp;Parallel</h2>
@@ -10323,7 +10544,7 @@ import { SITE_TITLE } from '../consts';
     let mainPageNum = 0;
     const pageMap = {};
     allBookPages.forEach((sec) => {
-      if (sec.id === 'page-1') inMain = true;
+      if (sec.id === 'part-1-page' || sec.id === 'page-1') inMain = true;
       if (!inMain) return;
       mainPageNum++;
       const numStr = String(mainPageNum);
