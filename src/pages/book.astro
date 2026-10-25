@@ -443,6 +443,21 @@ import { SITE_TITLE } from '../consts';
 				box-shadow: 0 22px 50px rgba(0, 0, 0, 0.92), 0 0 42px rgba(168, 85, 247, 0.4);
 			}
 
+			.cover-pain-head-img {
+				position: relative;
+				z-index: 2;
+				max-height: 330px;
+				width: auto;
+				object-fit: contain;
+				filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(244, 63, 94, 0.35));
+				transition: transform 0.4s ease, filter 0.4s ease;
+			}
+
+			.book-cover:hover .cover-pain-head-img {
+				transform: scale(1.03);
+				filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 45px rgba(244, 63, 94, 0.5));
+			}
+
 			/* ==========================================================================
 			   Dedicated Part Divider Pages (Clean, Standalone Full-Page Presentation)
 			   ========================================================================== */
@@ -1397,8 +1412,8 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.exec-lead-paragraph {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 1.14rem;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.08rem;
 				line-height: 1.72;
 				color: #18181b;
 				margin: 0;
@@ -1408,7 +1423,7 @@ import { SITE_TITLE } from '../consts';
 			.exec-section-card {
 				background: #ffffff;
 				border: 1.5px solid #e2e8f0;
-				border-left: 4px solid #000000;
+				border-left: 4px solid #7c3aed;
 				border-radius: 0 8px 8px 0;
 				padding: 1.15rem 1.35rem;
 			}
@@ -1423,9 +1438,9 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.exec-card-text {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 0.98rem;
-				line-height: 1.62;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.96rem;
+				line-height: 1.65;
 				color: #27272a;
 				margin: 0;
 				text-wrap: pretty;
@@ -1433,8 +1448,9 @@ import { SITE_TITLE } from '../consts';
 
 			.exec-takeaway-box {
 				background: #f8fafc;
-				border: 1.5px solid #000000;
-				border-radius: 8px;
+				border: 1.5px solid #ede9fe;
+				border-left: 4px solid #7c3aed;
+				border-radius: 0 8px 8px 0;
 				padding: 1.25rem 1.45rem;
 				margin-top: 0.5rem;
 			}
@@ -1445,14 +1461,14 @@ import { SITE_TITLE } from '../consts';
 				font-weight: 800;
 				text-transform: uppercase;
 				letter-spacing: 0.08em;
-				color: #000000;
+				color: #7c3aed;
 				margin: 0 0 0.45rem 0;
 			}
 
 			.exec-takeaway-text {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 1.02rem;
-				line-height: 1.65;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.98rem;
+				line-height: 1.68;
 				color: #000000;
 				margin: 0;
 				text-wrap: pretty;
@@ -1571,9 +1587,9 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.stat-page-desc {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 1.18rem !important;
-				line-height: 1.75 !important;
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-size: 1.12rem !important;
+				line-height: 1.72 !important;
 				color: #000000 !important;
 				margin: 0 0 1.25rem !important;
 				text-indent: 0 !important;
@@ -2212,15 +2228,29 @@ import { SITE_TITLE } from '../consts';
 
 			/* Simple centered description of what made their pain better (no label prefix) */
 			.contributor-relief-summary {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 0.95rem;
-				font-style: italic;
-				line-height: 1.6;
-				color: #000000;
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-size: 0.94rem !important;
+				font-style: normal !important;
+				line-height: 1.65 !important;
+				color: #1e293b !important;
 				text-align: center;
 				margin: 0 auto 1.35rem;
 				max-width: 380px;
 				text-wrap: pretty;
+			}
+
+			#disclaimer .chapter-content,
+			#disclaimer .chapter-content p,
+			#disclaimer .book-callout-text p {
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
+			}
+
+			#contributors .chapter-content,
+			#contributors .chapter-content p,
+			.contributor-apply-text,
+			.contributor-role-line,
+			.contributor-bio {
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
 			}
 
 			/* Learn More Button: Text button with purple greater-than sign */
@@ -3258,28 +3288,17 @@ import { SITE_TITLE } from '../consts';
 							</p>
 						</div>
 
-						<div class="cover-illustration-wrap" style="flex-direction: column; margin: 2rem 0;">
-							<div class="cover-tooth-glow" style="width: 440px; height: 320px;"></div>
+						<div class="cover-illustration-wrap" style="flex-direction: column; margin: 1.75rem 0 2rem;">
+							<div class="cover-tooth-glow" style="width: 380px; height: 380px;"></div>
 							<img 
-								src="/cover-asic-anatomy-fullface.jpg" 
-								alt="ASIC Acid-Sensing Ion Channel Density Map and Trigeminal Neural Pathways" 
-								class="cover-anatomy-img"
+								src="/bms-head-transparent-pain-map.png" 
+								alt="Trigeminal Pain Distribution Map" 
+								class="cover-pain-head-img"
 								loading="eager"
 							/>
-							<div class="cover-asic-legend" style="display: flex; align-items: center; justify-content: center; gap: 1.15rem; margin-top: 1.15rem; z-index: 3; position: relative;">
-								<span style="font-size: 0.82rem; font-weight: 600; color: #e9d5ff; letter-spacing: 0.02em;">ASIC Density:</span>
-								<span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: #fca5a5;">
-									<span style="width: 9px; height: 9px; background-color: #ef4444; border-radius: 2px; display: inline-block;"></span>
-									Very High
-								</span>
-								<span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: #fcd34d;">
-									<span style="width: 9px; height: 9px; background-color: #f59e0b; border-radius: 2px; display: inline-block;"></span>
-									Medium
-								</span>
-								<span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: #fef08a;">
-									<span style="width: 9px; height: 9px; background-color: #eab308; border-radius: 2px; display: inline-block;"></span>
-									Low
-								</span>
+							<div class="cover-pain-legend" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; margin-top: 1.25rem; z-index: 3; position: relative;">
+								<span style="width: 11px; height: 11px; background-color: #f43f5e; border-radius: 2px; display: inline-block; box-shadow: 0 0 10px rgba(244, 63, 94, 0.8);"></span>
+								<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.84rem; font-weight: 700; letter-spacing: 0.04em; color: #fda4af;">Pain Levels</span>
 							</div>
 						</div>
 						
