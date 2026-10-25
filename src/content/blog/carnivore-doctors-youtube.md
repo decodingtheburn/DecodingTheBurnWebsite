@@ -91,9 +91,9 @@ Known for his "Proper Human Diet" approach, Dr. Berry’s straightforward advice
 The author of *The Carnivore Diet*, Dr. Baker's focus on athletic performance and long-term health on a meat-based diet helped me realize this was sustainable.
 
 <div style="aspect-ratio: 16/9; margin: 2rem 0 0.5rem; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/u1nB62mb-CM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SgDiSbiQv9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
-<p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2rem;">source: <a href="https://www.youtube.com/watch?v=u1nB62mb-CM" target="_blank" style="color: var(--accent); border-bottom: none;">https://www.youtube.com/watch?v=u1nB62mb-CM</a></p>
+<p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2rem;">source: <a href="https://www.youtube.com/watch?v=SgDiSbiQv9A" target="_blank" style="color: var(--accent); border-bottom: none;">https://www.youtube.com/watch?v=SgDiSbiQv9A</a></p>
 
 <div style="background: rgba(var(--accent-rgb), 0.05); border-left: 4px solid var(--accent); padding: 1.5rem; margin-bottom: 3rem; border-radius: 0 12px 12px 0;">
     <h4 style="margin-top: 0; color: var(--accent);">Video Summary: Carnivore for Longevity</h4>
@@ -122,9 +122,9 @@ The author of *The Carnivore Diet*, Dr. Baker's focus on athletic performance an
 Dr. Chaffee’s deep dives into plant toxins and the biological necessity of meat helped me understand *why* my body was reacting so positively.
 
 <div style="aspect-ratio: 16/9; margin: 2rem 0 0.5rem; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/j1cqNDDG4aA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/V8ns1j28vhc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
-<p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2rem;">source: <a href="https://www.youtube.com/watch?v=j1cqNDDG4aA" target="_blank" style="color: var(--accent); border-bottom: none;">https://www.youtube.com/watch?v=j1cqNDDG4aA</a></p>
+<p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2rem;">source: <a href="https://www.youtube.com/watch?v=V8ns1j28vhc" target="_blank" style="color: var(--accent); border-bottom: none;">https://www.youtube.com/watch?v=V8ns1j28vhc</a></p>
 
 <div style="background: rgba(var(--accent-rgb), 0.05); border-left: 4px solid var(--accent); padding: 1.5rem; margin-bottom: 3rem; border-radius: 0 12px 12px 0;">
     <h4 style="margin-top: 0; color: var(--accent);">Video Summary: Plants Are Trying to Kill You</h4>
