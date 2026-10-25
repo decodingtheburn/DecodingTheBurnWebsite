@@ -175,9 +175,21 @@ import { SITE_TITLE } from '../consts';
 				gap: 0.2rem;
 				opacity: 0;
 				pointer-events: none;
-				transform: translateY(6px);
+				transform: translateY(4px);
 				transition: opacity 0.18s ease, transform 0.18s ease;
 				z-index: 1000;
+			}
+
+			/* Invisible hover bridge: bridges the gap when moving mouse from button into menu */
+			.toolbar-menu::before {
+				content: '';
+				position: absolute;
+				top: -14px;
+				left: 0;
+				right: 0;
+				height: 14px;
+				background: transparent;
+				pointer-events: auto;
 			}
 
 			.toolbar-dropdown:hover .toolbar-menu,
@@ -185,7 +197,7 @@ import { SITE_TITLE } from '../consts';
 			.toolbar-dropdown.is-open .toolbar-menu {
 				opacity: 1;
 				pointer-events: auto;
-				transform: translateY(2px);
+				transform: translateY(0px);
 			}
 
 			.toolbar-menu-header {
@@ -2944,17 +2956,17 @@ import { SITE_TITLE } from '../consts';
 
 						<!-- Part 1 Dropdown -->
 						<div class="toolbar-dropdown">
-							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part I: The Pain of BMS">
+							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part I: Understanding Burning Mouth Pain">
 								<span>Pain</span>
 								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<polyline points="6 9 12 15 18 9"></polyline>
 								</svg>
 							</button>
 							<div class="toolbar-menu">
-								<div class="toolbar-menu-header">Part I: The Pain of BMS</div>
+								<div class="toolbar-menu-header">Part I: The Reality of BMS</div>
 								<a href="#page-1"><span>Chapter 1: The Numbers of the Fire</span><span class="menu-num">p. 1</span></a>
-								<a href="#page-2"><span>Chapter 2: Voices From the Fire</span><span class="menu-num">p. 2</span></a>
-								<a href="#page-7"><span>Chapter 3: Diagnostic Questionnaire</span><span class="menu-num">p. 7</span></a>
+								<a href="#page-2"><span>Chapter 2: What Sufferers Experience</span><span class="menu-num">p. 2</span></a>
+								<a href="#page-3"><span>Chapter 3: Why We Need to Do Research</span><span class="menu-num">p. 3</span></a>
 								<a href="#page-15"><span>Chapter 4: The First Day of the Pain</span><span class="menu-num">p. 15</span></a>
 								<a href="#page-16"><span>Chapter 5: Going to the Dentist</span><span class="menu-num">p. 16</span></a>
 							</div>
@@ -2962,24 +2974,25 @@ import { SITE_TITLE } from '../consts';
 
 						<!-- Part 2 Dropdown -->
 						<div class="toolbar-dropdown">
-							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part II: The Pain of Realizing Dentists and Doctors Don't Know">
+							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part II: My Story (An N=1 Investigation)">
 								<span>Help</span>
 								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<polyline points="6 9 12 15 18 9"></polyline>
 								</svg>
 							</button>
 							<div class="toolbar-menu">
-								<div class="toolbar-menu-header">Part II: Dentists &amp; Doctors Don't Know</div>
+								<div class="toolbar-menu-header">Part II: An N=1 Investigation</div>
 								<a href="#page-18"><span>Chapter 6: Going to the Doctors</span><span class="menu-num">p. 18</span></a>
 								<a href="#page-20"><span>Chapter 7: The Institutional Blind Spot</span><span class="menu-num">p. 20</span></a>
 								<a href="#page-22"><span>Chapter 8: The Supplement Trial</span><span class="menu-num">p. 22</span></a>
-								<a href="#page-25"><span>Chapter 9: The B12 Blind Spot</span><span class="menu-num">p. 25</span></a>
+								<a href="#page-25"><span>Chapter 9: The B12 Blind Spot &amp; Carnivore</span><span class="menu-num">p. 25</span></a>
+								<a href="#chapter-10"><span>Chapter 10: My Crown: Sealing Leaks</span><span class="menu-num">p. 27</span></a>
 							</div>
 						</div>
 
 						<!-- Part 3 Dropdown -->
 						<div class="toolbar-dropdown">
-							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part III: The First Principles of Mouth Burning Pain">
+							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part III: The First Principles of Oral Burning Pain">
 								<span>Science</span>
 								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<polyline points="6 9 12 15 18 9"></polyline>
@@ -2987,15 +3000,15 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<div class="toolbar-menu-header">Part III: First Principles of Pain</div>
-								<a href="#page-28"><span>Chapter 10: Identifying What Makes Pain Worse: Acid</span><span class="menu-num">p. 28</span></a>
+								<a href="#page-28"><span>Part III: Identifying What Makes Pain Worse</span><span class="menu-num">p. 28</span></a>
 								<a href="#page-30b"><span>Chapter 11: The Three Burn Zones &amp; Acid Sources</span><span class="menu-num">p. 31</span></a>
-								<a href="#page-31"><span>Chapter 12: The Receptors of Pain in the Mouth</span><span class="menu-num">p. 33</span></a>
-								<a href="#page-33b"><span>Chapter 13: When Acid Triggers Through Oral Mucosa</span><span class="menu-num">p. 36</span></a>
-								<a href="#page-41"><span>Chapter 14: When Acid Triggers Through Leaking Fillings</span><span class="menu-num">p. 38</span></a>
-								<a href="#page-38"><span>Chapter 15: When Acid Triggers Through Recession &amp; Tubules</span><span class="menu-num">p. 42</span></a>
-								<a href="#page-34"><span>Chapter 16: Why BMS Starts at Around 50 Years Old</span><span class="menu-num">p. 45</span></a>
-								<a href="#page-37b"><span>Chapter 17: Why BMS Is More Prevalent in Women</span><span class="menu-num">p. 49</span></a>
-								<a href="#page-45"><span>Chapter 18: The Oral Neuropathic Circuit</span><span class="menu-num">p. 51</span></a>
+								<a href="#page-31"><span>Chapter 12: The Receptors of Pain (ASICs &amp; TRPV1)</span><span class="menu-num">p. 33</span></a>
+								<a href="#page-33b"><span>Chapter 13: When Acid Triggers Oral Mucosa</span><span class="menu-num">p. 36</span></a>
+								<a href="#page-41"><span>Chapter 14: When Acid Triggers Leaking Fillings</span><span class="menu-num">p. 38</span></a>
+								<a href="#page-38"><span>Chapter 15: When Acid Triggers Exposed Tubules</span><span class="menu-num">p. 42</span></a>
+								<a href="#page-34"><span>Clinical Focus: Why BMS Starts Around 50</span><span class="menu-num">p. 45</span></a>
+								<a href="#page-37b"><span>Clinical Focus: Why BMS Is More Prevalent in Women</span><span class="menu-num">p. 49</span></a>
+								<a href="#page-45"><span>Chapter 16: The Oral Neuropathic Circuit</span><span class="menu-num">p. 51</span></a>
 							</div>
 						</div>
 
@@ -3008,13 +3021,16 @@ import { SITE_TITLE } from '../consts';
 								</svg>
 							</button>
 							<div class="toolbar-menu">
-								<div class="toolbar-menu-header">Standard Medical Diagnosis</div>
-								<a href="#page-50"><span>Chapter 20: The BMS Diagnostic History &amp; the 2026 Update</span><span class="menu-num">p. 56</span></a>
-								<div class="toolbar-menu-header" style="margin-top: 0.5rem;">Actionable Recovery Protocol</div>
-								<a href="#page-52"><span>Chapter 20: Starving the Fire</span><span class="menu-num">p. 58</span></a>
-								<a href="#page-55"><span>Chapter 21: Calculating Your Time Lag</span><span class="menu-num">p. 61</span></a>
-								<a href="#page-57"><span>Chapter 22: Mechanical Shields</span><span class="menu-num">p. 63</span></a>
-								<a href="#page-60"><span>Chapter 23: The Recovery Protocol</span><span class="menu-num">p. 66</span></a>
+								<div class="toolbar-menu-header">Part IV: Diagnostic History</div>
+								<a href="#page-50"><span>Chapter 17: BMS Diagnostic History &amp; 2026</span><span class="menu-num">p. 56</span></a>
+								<div class="toolbar-menu-header" style="margin-top: 0.5rem;">Part V: Taking Charge &amp; Recovery</div>
+								<a href="#page-15b"><span>Chapter 18: Finding the Real Cause of Your BMS</span><span class="menu-num">p. 15b</span></a>
+								<a href="#page-7"><span>Chapter 19: The BMS Diagnostic Questionnaire</span><span class="menu-num">p. 7</span></a>
+								<a href="#page-52"><span>Chapter 21: Starving the Fire: Elimination</span><span class="menu-num">p. 58</span></a>
+								<a href="#page-55"><span>Chapter 22: Calculating Your Time Lag</span><span class="menu-num">p. 61</span></a>
+								<a href="#page-57"><span>Chapter 23: Mechanical Shields &amp; Sealers</span><span class="menu-num">p. 63</span></a>
+								<a href="#page-60"><span>Chapter 24: The Recovery Protocol (6-Day Reset)</span><span class="menu-num">p. 66</span></a>
+								<a href="#page-62b"><span>Chapter 25: What If Acid Isn't the Cause?</span><span class="menu-num">p. 68</span></a>
 							</div>
 						</div>
 
@@ -3027,14 +3043,15 @@ import { SITE_TITLE } from '../consts';
 								</svg>
 							</button>
 							<div class="toolbar-menu">
-								<div class="toolbar-menu-header">Part VI: Models for BMS &amp; Moving Forward</div>
+								<div class="toolbar-menu-header">Part VI: Models &amp; Citizen Science</div>
 								<a href="#page-63"><span>Chapter 26: The Diabetic Parallel</span><span class="menu-num">p. 69</span></a>
 								<a href="#page-67"><span>Chapter 27: The Two Bottlenecks</span><span class="menu-num">p. 73</span></a>
 								<a href="#page-71"><span>Chapter 28: Remission vs. Progression</span><span class="menu-num">p. 77</span></a>
 								<a href="#page-74"><span>Chapter 29: How to Talk to Your Doctor</span><span class="menu-num">p. 80</span></a>
 								<a href="#page-77"><span>Chapter 30: How to Talk to Your Dentist</span><span class="menu-num">p. 83</span></a>
-								<a href="#page-79"><span>Chapter 32: Citizen Science Data</span><span class="menu-num">p. 85</span></a>
-								<a href="#page-81"><span>Chapter 33: Active BMS Communities</span><span class="menu-num">p. 87</span></a>
+								<a href="#page-78b"><span>Chapter 31: Top Questions &amp; Answers (FAQ)</span><span class="menu-num">p. 85</span></a>
+								<a href="#page-79"><span>Chapter 32: Citizen Science Data</span><span class="menu-num">p. 87</span></a>
+								<a href="#page-81"><span>Chapter 33: Active BMS Communities</span><span class="menu-num">p. 89</span></a>
 							</div>
 						</div>
 					</div>
@@ -5343,7 +5360,7 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 11: Identifying What Makes Pain Worse: Acid</span>
+						<span class="chapter-header-label">Part III &bull; Identifying What Makes Pain Worse: Acid</span>
 						<span class="page-count-label">Page 28</span>
 					</div>
 
@@ -5361,7 +5378,7 @@ import { SITE_TITLE } from '../consts';
 						<p class="part-hero-desc">Decoding the biological hardware: how dietary acid triggers, oral pain receptors, five-decade erosion, and open dentinal tubules generate unceasing&nbsp;signals.</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 11: Identifying What Makes Pain Worse:&nbsp;Acid</h2>
+					<h2 class="chapter-title">Identifying What Makes Pain Worse:&nbsp;Acid</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When doctors and dentists tell you that your burning mouth has no identifiable cause, the only rational way forward is to treat your own body as a laboratory. In engineering, when a complex system throws a continuous fault alarm, you do not guess at the solution. You isolate the inputs and observe what makes the alarm louder and, by extension, what makes it&nbsp;quieter.</p>
@@ -5385,7 +5402,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-29">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 11: Identifying What Makes Pain Worse: Acid</span>
+						<span class="chapter-header-label">Part III &bull; Identifying What Makes Pain Worse: Acid</span>
 						<span class="page-count-label">Page 29</span>
 					</div>
 
@@ -5416,7 +5433,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-30">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 11: Identifying What Makes Pain Worse: Acid</span>
+						<span class="chapter-header-label">Part III &bull; Identifying What Makes Pain Worse: Acid</span>
 						<span class="page-count-label">Page 30</span>
 					</div>
 
@@ -5456,11 +5473,11 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 12: The Three Burn Zones &amp; Where Acid Comes From</span>
+						<span class="chapter-header-label">Chapter 11: The Three Burn Zones &amp; Where Acid Comes From</span>
 						<span class="page-count-label">Page 31</span>
 					</div>
 
-					<h2 class="chapter-title">Chapter 12: The Three Burn Zones &amp; Where Acid Comes&nbsp;From</h2>
+					<h2 class="chapter-title">Chapter 11: The Three Burn Zones &amp; Where Acid Comes&nbsp;From</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Once we recognize that acid is the primary chemical trigger behind oral flares, two fundamental architectural questions immediately follow: <strong>where exactly inside the mouth does that acid cause pain</strong>, and <strong>where does that acid come&nbsp;from?</strong></p>
@@ -5489,7 +5506,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-30c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 12: The Three Burn Zones &amp; Where Acid Comes From</span>
+						<span class="chapter-header-label">Chapter 11: The Three Burn Zones &amp; Where Acid Comes From</span>
 						<span class="page-count-label">Page 32</span>
 					</div>
 
@@ -5561,11 +5578,11 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 13: The Receptors of Pain in the Mouth</span>
+						<span class="chapter-header-label">Chapter 12: The Receptors of Pain in the Mouth</span>
 						<span class="page-count-label">Page 31</span>
 					</div>
 
-					<h2 class="chapter-title">Chapter 13: The Receptors of Pain in&nbsp;the&nbsp;Mouth</h2>
+					<h2 class="chapter-title">Chapter 12: The Receptors of Pain in&nbsp;the&nbsp;Mouth</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Once we establish that acid and chemical irritants consistently intensify oral burning across the majority of patients, we must look at the molecular hardware sitting inside the oral tissues. How does a sip of coffee, a breath of cool air, or a microscopic film of bacterial lactic acid translate into a blinding ten-out-of-ten sensation of scalding&nbsp;fire?</p>
@@ -5591,7 +5608,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-32">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 13: The Receptors of Pain in the Mouth</span>
+						<span class="chapter-header-label">Chapter 12: The Receptors of Pain in the Mouth</span>
 						<span class="page-count-label">Page 32</span>
 					</div>
 
@@ -5616,7 +5633,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-33">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 13: The Receptors of Pain in the Mouth</span>
+						<span class="chapter-header-label">Chapter 12: The Receptors of Pain in the Mouth</span>
 						<span class="page-count-label">Page 33</span>
 					</div>
 
@@ -5656,11 +5673,11 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 14: When Acid Triggers Through the Oral Mucosa</span>
+						<span class="chapter-header-label">Chapter 13: When Acid Triggers Through the Oral Mucosa</span>
 						<span class="page-count-label">Page 34</span>
 					</div>
 
-					<h2 class="chapter-title">Chapter 14: When Acid Triggers Through the Oral&nbsp;Mucosa</h2>
+					<h2 class="chapter-title">Chapter 13: When Acid Triggers Through the Oral&nbsp;Mucosa</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Your mouth is not lined with inert leather. It is shielded by a living, specialized cellular layer known as the oral mucosa. Covering the dorsal and lateral tongue, the vaulted hard palate, the inner cheeks, and the gingival tissues, this delicate membrane functions as your oral cavity's first line of&nbsp;defense.</p>
@@ -5686,7 +5703,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-33c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 14: When Acid Triggers Through the Oral Mucosa</span>
+						<span class="chapter-header-label">Chapter 13: When Acid Triggers Through the Oral Mucosa</span>
 						<span class="page-count-label">Page 35</span>
 					</div>
 
@@ -5939,11 +5956,11 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-34">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: Why BMS Starts at Around 50 Years Old</span>
+						<span class="chapter-header-label">Clinical Focus: Why BMS Starts at Around 50 Years Old</span>
 						<span class="page-count-label">Page 34</span>
 					</div>
 
-					<h2 class="chapter-title">Chapter 17: Why BMS Starts at Around 50 Years&nbsp;Old</h2>
+					<h2 class="chapter-title">Clinical Focus: Why BMS Starts at Around 50 Years&nbsp;Old</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>The fire that erupted in my mouth did not materialize out of thin air. It was a slow-motion mechanical and biological collapse fifty years in&nbsp;the&nbsp;making.</p>
@@ -5967,7 +5984,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-35">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: Why BMS Starts at Around 50 Years Old</span>
+						<span class="chapter-header-label">Clinical Focus: Why BMS Starts at Around 50 Years Old</span>
 						<span class="page-count-label">Page 35</span>
 					</div>
 
@@ -5995,7 +6012,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-36">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: Why BMS Starts at Around 50 Years Old</span>
+						<span class="chapter-header-label">Clinical Focus: Why BMS Starts at Around 50 Years Old</span>
 						<span class="page-count-label">Page 36</span>
 					</div>
 
@@ -6023,7 +6040,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-37">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: Why BMS Starts at Around 50 Years Old</span>
+						<span class="chapter-header-label">Clinical Focus: Why BMS Starts at Around 50 Years Old</span>
 						<span class="page-count-label">Page 37</span>
 					</div>
 
@@ -6054,11 +6071,11 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-37b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 18: Why BMS Is More Prevalent in Women</span>
+						<span class="chapter-header-label">Clinical Focus: Why BMS Is More Prevalent in Women</span>
 						<span class="page-count-label">Page 38</span>
 					</div>
 
-					<h2 class="chapter-title">Chapter 18: Why BMS Is More Prevalent in&nbsp;Women</h2>
+					<h2 class="chapter-title">Clinical Focus: Why BMS Is More Prevalent in&nbsp;Women</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Across epidemiological registries and clinical pain cohorts, one demographic pattern stands out with remarkable consistency: Burning Mouth Syndrome is predominantly diagnosed in women, with reported female-to-male ratios ranging from five-to-one to seven-to-one <a href="#src-22" class="cite-ref">[22]</a>, <a href="#src-23" class="cite-ref">[23]</a>. In specialized tertiary oral medicine practices, that ratio often climbs even&nbsp;higher.</p>
@@ -6091,7 +6108,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-37c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 18: Why BMS Is More Prevalent in Women</span>
+						<span class="chapter-header-label">Clinical Focus: Why BMS Is More Prevalent in Women</span>
 						<span class="page-count-label">Page 39</span>
 					</div>
 
@@ -6178,11 +6195,11 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 19: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 16: The Oral Neuropathic Circuit</span>
 						<span class="page-count-label">Page 45</span>
 					</div>
 
-					<h2 class="chapter-title">Chapter 19: The Oral&nbsp;Neuropathic&nbsp;Circuit</h2>
+					<h2 class="chapter-title">Chapter 16: The Oral&nbsp;Neuropathic&nbsp;Circuit</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>One of the most maddening paradoxes of Burning Mouth Syndrome is the sheer scale of&nbsp;the&nbsp;fire.</p>
@@ -6207,7 +6224,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-46">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 19: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 16: The Oral Neuropathic Circuit</span>
 						<span class="page-count-label">Page 46</span>
 					</div>
 
@@ -6237,7 +6254,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-47">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 19: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 16: The Oral Neuropathic Circuit</span>
 						<span class="page-count-label">Page 47</span>
 					</div>
 
@@ -6264,7 +6281,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-48">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 19: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 16: The Oral Neuropathic Circuit</span>
 						<span class="page-count-label">Page 48</span>
 					</div>
 
@@ -6292,7 +6309,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-49">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 19: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 16: The Oral Neuropathic Circuit</span>
 						<span class="page-count-label">Page 49</span>
 					</div>
 
@@ -6327,7 +6344,7 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 20: The BMS Diagnostic History &amp; the 2026 Update</span>
+						<span class="chapter-header-label">Chapter 17: The BMS Diagnostic History &amp; the 2026 Update</span>
 						<span class="page-count-label">Page 50</span>
 					</div>
 
@@ -6345,7 +6362,7 @@ import { SITE_TITLE } from '../consts';
 						<p class="part-hero-desc">From historical stigma to formal classification: decoding the landmark 2020 ICOP consensus and the 2026 diagnostic&nbsp;revision.</p>
 					</div>
 
-					<h2 class="chapter-title">Chapter 20: The BMS Diagnostic History &amp; the 2026&nbsp;Update</h2>
+					<h2 class="chapter-title">Chapter 17: The BMS Diagnostic History &amp; the 2026&nbsp;Update</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>To understand why modern clinicians struggle to diagnose Burning Mouth Syndrome, you have to understand the historical journey of the condition. For over a century, medicine treated oral burning not as a physical sensory disorder, but as a phantom complaint of the human&nbsp;mind.</p>
@@ -6375,7 +6392,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-51">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 20: The BMS Diagnostic History &amp; the 2026 Update</span>
+						<span class="chapter-header-label">Chapter 17: The BMS Diagnostic History &amp; the 2026 Update</span>
 						<span class="page-count-label">Page 51</span>
 					</div>
 
@@ -6410,7 +6427,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-51b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 20: The BMS Diagnostic History &amp; the 2026 Update</span>
+						<span class="chapter-header-label">Chapter 17: The BMS Diagnostic History &amp; the 2026 Update</span>
 						<span class="page-count-label">Page 52</span>
 					</div>
 
@@ -10082,11 +10099,33 @@ import { SITE_TITLE } from '../consts';
 				});
 			})();
 
-			// Sticky Reader Navigation Toolbar Dropdown click toggle
+			// Sticky Reader Navigation Toolbar Dropdown click toggle with hover intent
 			(function() {
 				const dropdowns = document.querySelectorAll('.toolbar-dropdown');
 				dropdowns.forEach(dd => {
 					const trigger = dd.querySelector('.toolbar-trigger');
+					let closeTimer = null;
+
+					// Smooth mouseover with 220ms grace window so cursor never drops menu
+					dd.addEventListener('mouseenter', () => {
+						if (closeTimer) clearTimeout(closeTimer);
+						dropdowns.forEach(d => {
+							if (d !== dd) {
+								d.classList.remove('is-open');
+								d.querySelector('.toolbar-trigger')?.setAttribute('aria-expanded', 'false');
+							}
+						});
+						dd.classList.add('is-open');
+						trigger?.setAttribute('aria-expanded', 'true');
+					});
+
+					dd.addEventListener('mouseleave', () => {
+						closeTimer = setTimeout(() => {
+							dd.classList.remove('is-open');
+							trigger?.setAttribute('aria-expanded', 'false');
+						}, 220);
+					});
+
 					trigger?.addEventListener('click', (e) => {
 						e.stopPropagation();
 						const isOpen = dd.classList.contains('is-open');
