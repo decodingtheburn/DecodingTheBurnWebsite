@@ -425,6 +425,24 @@ import { SITE_TITLE } from '../consts';
 				opacity: 0.98;
 			}
 
+			.cover-anatomy-img {
+				position: relative;
+				z-index: 2;
+				max-height: 330px;
+				width: 100%;
+				max-width: 580px;
+				object-fit: cover;
+				border-radius: 12px;
+				box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 30px rgba(168, 85, 247, 0.25);
+				border: 1px solid rgba(168, 85, 247, 0.3);
+				transition: transform 0.4s ease, box-shadow 0.4s ease;
+			}
+
+			.book-cover:hover .cover-anatomy-img {
+				transform: scale(1.02);
+				box-shadow: 0 22px 50px rgba(0, 0, 0, 0.92), 0 0 42px rgba(168, 85, 247, 0.4);
+			}
+
 			.cover-divider {
 				width: 120px;
 				height: 2px;
@@ -3144,14 +3162,29 @@ import { SITE_TITLE } from '../consts';
 							</p>
 						</div>
 
-						<div class="cover-illustration-wrap">
-							<div class="cover-tooth-glow"></div>
+						<div class="cover-illustration-wrap" style="flex-direction: column; margin: 2rem 0;">
+							<div class="cover-tooth-glow" style="width: 440px; height: 320px;"></div>
 							<img 
-								src="/tooth-transparent.png" 
-								alt="Dental Hardware Tubule Anatomy Illustration" 
-								class="cover-tooth-img"
+								src="/cover-asic-anatomy-fullface.jpg" 
+								alt="ASIC Acid-Sensing Ion Channel Density Map and Trigeminal Neural Pathways" 
+								class="cover-anatomy-img"
 								loading="eager"
 							/>
+							<div class="cover-asic-legend" style="display: flex; align-items: center; justify-content: center; gap: 1.15rem; margin-top: 1.15rem; z-index: 3; position: relative;">
+								<span style="font-size: 0.82rem; font-weight: 600; color: #e9d5ff; letter-spacing: 0.02em;">ASIC Density:</span>
+								<span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: #fca5a5;">
+									<span style="width: 9px; height: 9px; background-color: #ef4444; border-radius: 2px; display: inline-block;"></span>
+									Very High
+								</span>
+								<span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: #fcd34d;">
+									<span style="width: 9px; height: 9px; background-color: #f59e0b; border-radius: 2px; display: inline-block;"></span>
+									Medium
+								</span>
+								<span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: #fef08a;">
+									<span style="width: 9px; height: 9px; background-color: #eab308; border-radius: 2px; display: inline-block;"></span>
+									Low
+								</span>
+							</div>
 						</div>
 						
 						<div>
@@ -5480,8 +5513,20 @@ import { SITE_TITLE } from '../consts';
 					<h2 class="chapter-title">Chapter 11: The Three Burn Zones &amp; Where Acid Comes&nbsp;From</h2>
 
 					<div class="chapter-content is-first-page">
+						<figure class="book-figure" style="margin: 0.75rem auto 1.5rem;">
+							<img 
+								src="/three-burn-zones-tooth-diagram.png" 
+								alt="The Three Burn Zones Anatomical Cross-Section: Zone 1 Oral Mucosa, Zone 2 Restorations and Hardware, Zone 3 Exposed Dentinal Tubules" 
+								loading="eager"
+								style="max-height: 420px; width: 100%; object-fit: contain;"
+							/>
+							<figcaption class="book-figure-caption">
+								<strong>Figure 1: The Three Burn Zones.</strong> Where dietary and bacterial acids bypass protective barriers to stimulate sensory nerve endings across oral mucosa, restoration margins, and receded&nbsp;root&nbsp;tubules.
+							</figcaption>
+						</figure>
+
 						<p>Once we recognize that acid is the primary chemical trigger behind oral flares, two fundamental architectural questions immediately follow: <strong>where exactly inside the mouth does that acid cause pain</strong>, and <strong>where does that acid come&nbsp;from?</strong></p>
-						<p>Look closely at the three golden arrows on the front cover of this book. Those three arrows are not decorative. They point to the exact three anatomical zones where acid breaches your oral defenses and triggers a continuous trigeminal pain&nbsp;alarm.</p>
+						<p>Look closely at the three numbered callouts in the diagram above. Those three arrows point to the exact anatomical zones where acid breaches your oral defenses and triggers a continuous trigeminal pain&nbsp;alarm.</p>
 
 						<h3>Part 1: The Three Anatomical Zones Where Acid Meets Nerve&nbsp;Endings</h3>
 						<p>Although sufferers often perceive their oral cavity as engulfed in a single, diffuse firestorm, sensory neurobiology and dental materials science reveal that oral burning originates across three distinct physical entry&nbsp;points:</p>
