@@ -728,14 +728,16 @@ import { SITE_TITLE } from '../consts';
 
 			/* Interior Title Page */
 			.interior-title-wrap {
+				min-height: 960px;
 				height: 100%;
 				display: flex;
 				flex-direction: column;
-				justify-content: space-between;
+				justify-content: center;
 				align-items: center;
 				text-align: center;
-				padding: 4rem 1rem 2rem;
+				padding: 3.5rem 1.5rem;
 				box-sizing: border-box;
+				gap: 3.5rem;
 			}
 
 			.interior-title-eyebrow {
@@ -1153,6 +1155,21 @@ import { SITE_TITLE } from '../consts';
 				column-gap: 2.5rem;
 				row-gap: 1.5rem;
 				margin-top: 1.25rem;
+			}
+
+			.toc-main-title {
+				font-family: 'Cinzel', serif;
+				font-size: clamp(2.25rem, 4vw, 2.85rem);
+				font-weight: 800;
+				letter-spacing: 0.16em;
+				text-indent: 0.05em;
+				line-height: 1.15;
+				color: #0f172a;
+				text-transform: uppercase;
+				padding: 2.25rem 0 2rem 1.25rem;
+				margin: 0 0 2rem 0;
+				border-bottom: 2px solid #f1f5f9;
+				text-align: left;
 			}
 
 			.toc-centered-container {
@@ -3126,32 +3143,33 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- INTERIOR TITLE PAGE (Page F-2) -->
 			<section class="book-page" id="title-page">
-				<div class="page-body-content" style="height: 100%;">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
 					<div class="interior-title-wrap">
-						<div>
-							<h1 class="interior-title-main">
-								<span style="display: inline-block; font-size: 2.42rem; font-weight: 800; letter-spacing: 0.18em; text-indent: 0.18em; margin: 0 auto; white-space: nowrap;">DECODING</span>
-								<span style="display: inline-block; font-size: 3.02rem; font-weight: 900; letter-spacing: 0.06em; text-indent: 0.06em; margin: 0.25rem auto 0; white-space: nowrap;">THE BURN</span>
+						<div class="interior-title-header-block">
+							<h1 class="interior-title-main" style="margin: 0 0 1.5rem 0;">
+								<span style="display: block; font-family: 'Cinzel', serif; font-size: 2.65rem; font-weight: 800; letter-spacing: 0.14em; text-indent: 0.14em; line-height: 1.18; color: #0f172a; margin: 0 auto; white-space: nowrap;">DECODING</span>
+								<span style="display: block; font-family: 'Cinzel', serif; font-size: 2.65rem; font-weight: 800; letter-spacing: 0.14em; text-indent: 0.14em; line-height: 1.18; color: #0f172a; margin: 0.35rem auto 0; white-space: nowrap;">THE&nbsp;BURN</span>
 							</h1>
-							<p class="interior-title-subtitle">
-								<span style="display: block; margin-bottom: 0.35rem; font-weight: 600; color: #1e293b;">Solving Burning Mouth Syndrome from First&nbsp;Principles:</span>
-								<span style="display: block; font-size: 0.95rem; line-height: 1.55; color: #475569;">An ABAB Single-Case Experimental Design (SCED) on Acid Exposure, Dental Demineralization, and Calming the Trigeminal&nbsp;Nerve</span>
+							<p class="interior-title-subtitle" style="margin: 0 auto; max-width: 640px;">
+								<span style="display: block; margin-bottom: 0.45rem; font-weight: 600; color: #1e293b; font-size: 1.12rem;">Solving Burning Mouth Syndrome from First&nbsp;Principles:</span>
+								<span style="display: block; font-size: 0.96rem; line-height: 1.6; color: #475569;">An ABAB Single-Case Experimental Design (SCED) on Acid Exposure, Dental Demineralization, and Calming the Trigeminal&nbsp;Nerve</span>
 							</p>
 						</div>
 
-						<div>
+						<div class="interior-title-emblem-block">
 							<img 
 								src="/tooth-transparent.png" 
 								alt="Dental Hardware Tubule Anatomy" 
 								class="interior-title-device"
+								style="margin: 0 auto; width: 85px; height: 85px;"
 								loading="lazy"
 							/>
 						</div>
 
-						<div>
-							<div class="interior-title-author">Denis Ethier</div>
+						<div class="interior-title-meta-block">
+							<div class="interior-title-author" style="margin-bottom: 1.25rem;">Denis Ethier</div>
 
-							<div class="interior-title-imprint">
+							<div class="interior-title-imprint" style="margin: 0 auto;">
 								<div class="interior-title-publisher">VERSION 1.0 &bull; 2026 EDITION</div>
 								<div class="interior-title-loc">www.decodingtheburn.com</div>
 							</div>
@@ -3160,7 +3178,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- COPYRIGHT & CIP DATA PAGE (Page F-3) -->
+			<!-- COPYRIGHT & OPEN SCIENCE LICENSE PAGE (Page F-3) -->
 			<section class="book-page" id="copyright-page">
 				<div class="page-body-content" style="height: 100%;">
 					<div class="copyright-page-wrap">
@@ -3170,21 +3188,26 @@ import { SITE_TITLE } from '../consts';
 						</div>
 
 						<p class="copyright-notice-text">
+							<strong>Open Science &amp; Open Access Edition</strong><br />
 							Copyright &copy; 2026 by Denis Ethier.<br />
-							All rights reserved. Published independently.
+							Published under an Open-Access Creative Commons License (CC BY-NC 4.0).
 						</p>
 
 						<p class="copyright-notice-text">
-							No part of this publication may be reproduced, stored in a retrieval system, or transmitted in any form or by any means - electronic, mechanical, photocopying, recording, scanning, or otherwise - without prior written permission of the author, except for brief quotations embodied in critical reviews, scientific citations, or educational commentaries.
+							This work is published openly in the spirit of radical scientific transparency and patient advocacy. You are encouraged to share, copy, quote, adapt, and distribute this material freely for personal, educational, non-commercial, and clinical research purposes, provided attribution is given to Denis Ethier and <em>Decoding the Burn</em>.
+						</p>
+
+						<p class="copyright-notice-text">
+							<strong>Courtesy Citation Notice:</strong> If you quote, cite, or feature insights from this book in a clinical study, research paper, article, presentation, or podcast, please send a brief notification email to <a href="mailto:denis@denisethier.com" style="color: #7c3aed; text-decoration: underline; font-weight: 500;">denis@denisethier.com</a>. We actively track how open-source patient research is helping doctors, researchers, and sufferers worldwide.
 						</p>
 
 						<div class="copyright-metadata-table">
-							<div><strong>Publisher:</strong> Published independently</div>
-							<div><strong>Author:</strong> Denis Ethier</div>
+							<div><strong>Publisher:</strong> Open Science Citizen Initiative &bull; DecodingTheBurn.com</div>
+							<div><strong>Author &amp; Principal Investigator:</strong> Denis Ethier</div>
 							<div><strong>Publication Date:</strong> October 2026</div>
-							<div><strong>Edition:</strong> First Edition (Volume I)</div>
-							<div><strong>ISBN-13:</strong> XXXX</div>
-							<div><strong>ISBN-10:</strong> XXXX</div>
+							<div><strong>Edition:</strong> Version 1.0 (Open-Source Edition)</div>
+							<div><strong>Contact &amp; Quotes:</strong> denis@denisethier.com</div>
+							<div><strong>Open Access Repository:</strong> www.decodingtheburn.com</div>
 						</div>
 
 						<div class="copyright-disclaimer-box">
@@ -3204,6 +3227,8 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="toc-centered-container">
+						<h1 class="toc-main-title">Table of&nbsp;Contents</h1>
+
 						<div class="toc-group" style="margin-bottom: 0.65rem;">
 							<div class="toc-part-header">Before You Begin</div>
 
