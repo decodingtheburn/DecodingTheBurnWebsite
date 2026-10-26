@@ -206,6 +206,14 @@ export const KDP_7X10_BASE_CSS = `
 		border-bottom: 1px solid #cbd5e1 !important;
 	}
 
+	html body .book-viewport .page-running-head .chapter-header-label {
+		color: #94a3b8 !important;
+	}
+
+	html body .book-viewport .page-running-head .page-count-label {
+		display: none !important;
+	}
+
 	html body .book-viewport .part-break-banner {
 		display: none !important;
 	}
