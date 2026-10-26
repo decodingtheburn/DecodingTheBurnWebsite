@@ -134,7 +134,7 @@ Healing the initial short circuit is only half the victory; protecting your base
 
 ### Action Steps for Pillar #5
 * **Sclerotic Shield Maintenance:** Use Nano-Hydroxyapatite (nHAp) toothpastes and mineral rinses daily to promote natural intratubular dentin calcification, keeping tubules sealed.
-* **Salivary Flow Protection:** Stay optimally hydrated and manage stress to protect your saliva's natural bicarbonate ($HCO_3^-$) buffering capacity.
+* **Salivary Flow Protection:** Stay optimally hydrated and manage stress to protect your saliva's natural bicarbonate (HCO<sub>3</sub><sup>&minus;</sup>) buffering capacity.
 * **Time-Series Dental Audits:** Request annual comparative X-ray audits and 6-point periodontal probing to catch subtle bone loss or margin wear before it exposes new nerve pathways.
 * **Mastering Personal Micro-Anatomy:** Know your exact tooth geography, tongue resting position, and dietary tolerances, maintaining total confidence over your health.
 

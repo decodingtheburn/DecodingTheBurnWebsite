@@ -75,7 +75,7 @@ Over the last thirty years, dentistry transitioned completely to tooth-colored *
 ### C. The Polypharmacy & Xerostomia Crisis
 Over 60% of adults over fifty today take two or more daily prescription medications that cause **xerostomia (subclinical dry mouth)**:
 * Common blood pressure medications (beta-blockers, ACE-inhibitors), antidepressants (SSRIs, SNRIs), statins, antihistamines, and proton pump inhibitors (PPIs).
-* Reduced salivary flow causes a catastrophic drop in **salivary bicarbonate ($HCO_3^-$)**. An acid challenge that cleared in three minutes in a healthy mouth now lingers against exposed roots for thirty&nbsp;minutes.
+* Reduced salivary flow causes a catastrophic drop in **salivary bicarbonate (HCO<sub>3</sub><sup>&minus;</sup>)**. An acid challenge that cleared in three minutes in a healthy mouth now lingers against exposed roots for thirty&nbsp;minutes.
 
 ### D. The Abrasive Hygiene & Bleaching Boom
 The last few decades popularized commercial home-whitening kits (hydrogen peroxide bleaching gels), high-abrasion silica whitening toothpastes (RDA scores exceeding 120), and aggressive ultrasonic root scaling at frequent cleanings. 

@@ -26,7 +26,7 @@ The real biophysical explanation is far more concrete: you were not immune to ac
 Think about what half a century of modern eating looks like at the microscopic tooth&nbsp;surface:
 
 * **Over 54,000 Acid Exposures:** Drinking coffee twice a day, enjoying an occasional craft beer, having a vinaigrette salad, or eating fruit represents more than fifty thousand distinct chemical acid baths over fifty&nbsp;years.
-* **The Daily Micro-Deficit:** Every time oral pH plunges below neutral, hydrogen ions ($H^+$) strip calcium and phosphate minerals from the surface. In youth, robust saliva rushes in and rebuilds most of what was lost.
+* **The Daily Micro-Deficit:** Every time oral pH plunges below neutral, hydrogen ions (H<sup>+</sup>) strip calcium and phosphate minerals from the surface. In youth, robust saliva rushes in and rebuilds most of what was lost.
 * **The 40-Nanometer Deficit:** If daily acid destroys 1.0 micrometer of mineral, and saliva only manages to rebuild 0.96 micrometers, you run a net deficit of 40 nanometers every single&nbsp;day.
 
 Forty nanometers per day is utterly invisible. It cannot be detected with a dental explorer and casts zero shadow on a digital bitewing&nbsp;radiograph. 
@@ -99,7 +99,7 @@ Once that 2-micrometer plug is breached, the physics of the tooth change in a fr
 [Central Allodynia & Uncontrollable Burning Sensation]
 ```
 
-Hydrogen ions ($H^+$) diffuse down the open tubules and bind directly to **ASIC3 (Acid-Sensing Ion Channel 3)** and **TRPV1** receptors on unmyelinated C-fiber nerve endings.
+Hydrogen ions (H<sup>+</sup>) diffuse down the open tubules and bind directly to **ASIC3 (Acid-Sensing Ion Channel 3)** and **TRPV1** receptors on unmyelinated C-fiber nerve endings.
 
 The nerves fire violently, releasing **Substance P** and **Calcitonin Gene-Related Peptide (CGRP)** into surrounding tissue. Mast cells degranulate, blood vessels dilate, and the trigeminal nucleus caudalis locks into a persistent state of **hyperalgesic priming**.
 
