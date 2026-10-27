@@ -55,6 +55,19 @@ if (headings && headings.length > 0) {
 					</svg>
 				</button>
 
+								<!-- Go to Selected Text Button (Directly on Listen bar) -->
+				<button type="button" class="tts-expand-toggle tts-compact-locate-btn" id="tts-compact-locate" title="Go to selected text on the page" aria-label="Go to selected text on the page">
+					<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<circle cx="12" cy="12" r="7"></circle>
+						<line x1="12" y1="2" x2="12" y2="5"></line>
+						<line x1="12" y1="19" x2="12" y2="22"></line>
+						<line x1="2" y1="12" x2="5" y2="12"></line>
+						<line x1="19" y1="12" x2="22" y2="12"></line>
+						<circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+					</svg>
+					<span class="tts-expand-text">Selected Text</span>
+				</button>
+
 				<!-- Expand / Collapse Drawer Toggle (Options on the left of Listen) -->
 				<button type="button" class="tts-expand-toggle" id="tts-expand-btn" aria-expanded="false" title="Expand reading options and audio controls">
 					<span class="tts-expand-text">Options</span>
@@ -1122,9 +1135,11 @@ if (headings && headings.length > 0) {
 		}
 	}
 
-	.tts-locate-highlight {
-		animation: ttsLocateFlash 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-		border-radius: 4px;
+	:global(.tts-locate-highlight) {
+		animation: ttsLocateFlash 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+		border-radius: 6px !important;
+		outline: 2px solid rgba(220, 38, 38, 0.6) !important;
+		outline-offset: 4px !important;
 	}
 
 	.tts-sticky-progress-wrap {
@@ -1307,6 +1322,7 @@ if (headings && headings.length > 0) {
 		const stickyCounter = document.getElementById('tts-sticky-counter');
 		const stickyLocateBtn = document.getElementById('tts-sticky-locate');
 		const topLocateBtn = document.getElementById('tts-locate-btn');
+		const compactLocateBtn = document.getElementById('tts-compact-locate');
 
 		// Helper: Identify male voices across different OS & browser voice providers
 		function isMaleVoice(v: SpeechSynthesisVoice): boolean {
@@ -1441,7 +1457,10 @@ if (headings && headings.length > 0) {
 			rawBlocks.forEach((b) => {
 				const el = b as HTMLElement;
 				// Skip if inside interactive or ignored components
-				if (el.closest('.brushing-timer-container') || el.closest('pre') || el.closest('code') || el.closest('.tts-ignore')) {
+				if (el.closest('#tts-reader-root') || el.closest('.brushing-timer-container') || el.closest('pre') || el.closest('code') || el.closest('.tts-ignore')) {
+					return;
+				}
+				if (el.closest('#toc') || el.closest('#toc-2') || el.closest('#toc-3') || el.closest('#toc-4') || el.closest('#toc-5')) {
 					return;
 				}
 				blocks.push(el);
@@ -1949,10 +1968,10 @@ if (headings && headings.length > 0) {
 		});
 
 		function scrollToCurrentText() {
+			if (sentences.length === 0) return;
+
 			if (currentSentenceIdx < 0 || !sentences[currentSentenceIdx]) {
-				if (sentences.length > 0) {
-					jumpToSentence(0);
-				}
+				jumpToSentence(0);
 				return;
 			}
 
@@ -1961,13 +1980,14 @@ if (headings && headings.length > 0) {
 			if (targetWord) {
 				targetWord.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-				const parentBlock = targetWord.closest('p, h1, h2, h3, h4, h5, h6, li, blockquote, .episode-card, .chapter-content > div') || targetWord;
+				const parentBlock = targetWord.closest('p, h1, h2, h3, h4, h5, h6, li, blockquote, .episode-card, .chapter-content > div, .stat-showcase-wrap, .book-page') || targetWord;
 				parentBlock.classList.remove('tts-locate-highlight');
 				void (parentBlock as HTMLElement).offsetWidth;
 				parentBlock.classList.add('tts-locate-highlight');
+				targetWord.classList.add('is-speaking-word');
 				setTimeout(() => {
 					parentBlock.classList.remove('tts-locate-highlight');
-				}, 1900);
+				}, 2200);
 			}
 		}
 
@@ -1977,6 +1997,11 @@ if (headings && headings.length > 0) {
 		});
 
 		topLocateBtn?.addEventListener('click', (e) => {
+			e.stopPropagation();
+			scrollToCurrentText();
+		});
+
+		compactLocateBtn?.addEventListener('click', (e) => {
 			e.stopPropagation();
 			scrollToCurrentText();
 		});
