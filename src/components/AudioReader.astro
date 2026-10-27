@@ -114,6 +114,16 @@ if (headings && headings.length > 0) {
 								<line x1="19" y1="5" x2="19" y2="19"></line>
 							</svg>
 						</button>
+						<button type="button" class="tts-btn tts-btn-icon" id="tts-locate-btn" title="Go to selected text on page" aria-label="Go to selected text on page">
+							<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="7"></circle>
+								<line x1="12" y1="2" x2="12" y2="5"></line>
+								<line x1="12" y1="19" x2="12" y2="22"></line>
+								<line x1="2" y1="12" x2="5" y2="12"></line>
+								<line x1="19" y1="12" x2="22" y2="12"></line>
+								<circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+							</svg>
+						</button>
 						<button type="button" class="tts-btn tts-btn-icon tts-btn-stop" id="tts-stop-btn" title="Stop and reset" aria-label="Stop playback">
 							<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
 								<rect x="6" y="6" width="12" height="12" rx="2"></rect>
@@ -267,13 +277,25 @@ if (headings && headings.length > 0) {
 			</button>
 
 			<div class="tts-sticky-info">
-				<div class="tts-sticky-sentence" id="tts-sticky-sentence">Listening to post...</div>
+				<div class="tts-sticky-sentence" id="tts-sticky-sentence" role="button" tabindex="0" title="Click to go to this text on the page">Listening to post...</div>
 				<div class="tts-sticky-progress-wrap">
 					<div class="tts-sticky-progress-fill" id="tts-sticky-progress-fill"></div>
 				</div>
 			</div>
 
 			<div class="tts-sticky-counter" id="tts-sticky-counter">0 / 0</div>
+
+			<!-- Go to Selected Text on Page Button -->
+			<button type="button" class="tts-sticky-btn tts-sticky-locate-btn" id="tts-sticky-locate" title="Go to selected text on the page" aria-label="Go to selected text on the page">
+				<svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+					<circle cx="12" cy="12" r="7"></circle>
+					<line x1="12" y1="2" x2="12" y2="5"></line>
+					<line x1="12" y1="19" x2="12" y2="22"></line>
+					<line x1="2" y1="12" x2="5" y2="12"></line>
+					<line x1="19" y1="12" x2="22" y2="12"></line>
+					<circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+				</svg>
+			</button>
 
 			<!-- Sticky Bionic Reading Button -->
 			<button type="button" class="tts-sticky-btn tts-sticky-bionic-btn" id="tts-sticky-bionic" title="Toggle Bionic Reading Mode" aria-label="Toggle Bionic Reading Mode">
@@ -1060,6 +1082,49 @@ if (headings && headings.length > 0) {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		font-weight: 500;
+		cursor: pointer;
+		transition: color 0.16s ease;
+	}
+
+	.tts-sticky-sentence:hover {
+		color: #ffffff;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.tts-sticky-locate-btn {
+		color: #cbd5e1;
+		transition: all 0.16s ease;
+	}
+
+	.tts-sticky-locate-btn:hover {
+		background: rgba(255, 255, 255, 0.22);
+		color: #ffffff;
+		transform: scale(1.08);
+	}
+
+	.tts-sticky-locate-btn:active {
+		transform: scale(0.95);
+	}
+
+	@keyframes ttsLocateFlash {
+		0% {
+			background-color: rgba(200, 56, 44, 0.35);
+			box-shadow: 0 0 0 6px rgba(200, 56, 44, 0.4);
+		}
+		50% {
+			background-color: rgba(200, 56, 44, 0.18);
+			box-shadow: 0 0 0 10px rgba(200, 56, 44, 0);
+		}
+		100% {
+			background-color: transparent;
+			box-shadow: 0 0 0 0 rgba(200, 56, 44, 0);
+		}
+	}
+
+	.tts-locate-highlight {
+		animation: ttsLocateFlash 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+		border-radius: 4px;
 	}
 
 	.tts-sticky-progress-wrap {
@@ -1240,6 +1305,8 @@ if (headings && headings.length > 0) {
 		const stickySentenceEl = document.getElementById('tts-sticky-sentence');
 		const stickyProgressFill = document.getElementById('tts-sticky-progress-fill');
 		const stickyCounter = document.getElementById('tts-sticky-counter');
+		const stickyLocateBtn = document.getElementById('tts-sticky-locate');
+		const topLocateBtn = document.getElementById('tts-locate-btn');
 
 		// Helper: Identify male voices across different OS & browser voice providers
 		function isMaleVoice(v: SpeechSynthesisVoice): boolean {
@@ -1879,6 +1946,51 @@ if (headings && headings.length > 0) {
 		stickyNextBtn?.addEventListener('click', () => {
 			const target = Math.min(sentences.length - 1, currentSentenceIdx + 1);
 			jumpToSentence(target);
+		});
+
+		function scrollToCurrentText() {
+			if (currentSentenceIdx < 0 || !sentences[currentSentenceIdx]) {
+				if (sentences.length > 0) {
+					jumpToSentence(0);
+				}
+				return;
+			}
+
+			const s = sentences[currentSentenceIdx];
+			const targetWord = (currentWordIdx >= 0 && s.words[currentWordIdx]?.el) || s.words[0]?.el;
+			if (targetWord) {
+				targetWord.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+				const parentBlock = targetWord.closest('p, h1, h2, h3, h4, h5, h6, li, blockquote, .episode-card, .chapter-content > div') || targetWord;
+				parentBlock.classList.remove('tts-locate-highlight');
+				void (parentBlock as HTMLElement).offsetWidth;
+				parentBlock.classList.add('tts-locate-highlight');
+				setTimeout(() => {
+					parentBlock.classList.remove('tts-locate-highlight');
+				}, 1900);
+			}
+		}
+
+		stickyLocateBtn?.addEventListener('click', (e) => {
+			e.stopPropagation();
+			scrollToCurrentText();
+		});
+
+		topLocateBtn?.addEventListener('click', (e) => {
+			e.stopPropagation();
+			scrollToCurrentText();
+		});
+
+		stickySentenceEl?.addEventListener('click', (e) => {
+			e.stopPropagation();
+			scrollToCurrentText();
+		});
+
+		stickySentenceEl?.addEventListener('keydown', (e: KeyboardEvent) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				scrollToCurrentText();
+			}
 		});
 
 		stopBtn?.addEventListener('click', stopPlayback);
