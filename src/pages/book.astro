@@ -3130,7 +3130,37 @@ import { SITE_TITLE } from '../consts';
 					margin-left: 1rem !important;
 				}
 			}
-</style>
+			/* Academic Scientific Typography: Molecules, Mucins, Proteins & Chemical Formulas */
+			:global(.sci-molecule) {
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-weight: 700 !important;
+				letter-spacing: 0.02em !important;
+				color: #3b0764 !important; /* Deep academic purple */
+				font-variant-numeric: tabular-nums !important;
+				white-space: nowrap !important;
+			}
+			:global(.chem-formula) {
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-weight: 600 !important;
+				letter-spacing: 0.015em !important;
+				color: #1e1b4b !important; /* Deep scientific indigo */
+				white-space: nowrap !important;
+			}
+			:global(.chem-formula sub),
+			:global(.chem-formula sup) {
+				font-size: 0.72em !important;
+				line-height: 0 !important;
+				position: relative !important;
+				vertical-align: baseline !important;
+			}
+			:global(.chem-formula sub) {
+				bottom: -0.22em !important;
+			}
+			:global(.chem-formula sup) {
+				top: -0.38em !important;
+				font-weight: 700 !important;
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
@@ -3758,9 +3788,15 @@ import { SITE_TITLE } from '../consts';
 									</a>
 								</li>
 								<li class="toc-sub-row">
+									<a href="#ch11-why-acid" class="toc-sub-link">
+										<strong class="toc-sub-term">Why Acid Destroys Tissue:</strong>
+										<span class="toc-sub-desc">Protein denaturation, cellular burns, and the eye/wound parallel.</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
 									<a href="#ch11-density" class="toc-sub-link">
-										<strong class="toc-sub-term">Proton Gating:</strong>
-										<span class="toc-sub-desc">Extracellular hydrogen protons opening ASIC channel pores.</span>
+										<strong class="toc-sub-term">External &amp; Internal Acids:</strong>
+										<span class="toc-sub-desc">Direct acids, bacterial sugar fermentation, and gastric reflux.</span>
 									</a>
 								</li>
 							</ul>
@@ -5807,10 +5843,11 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<section class="book-page" id="page-30b">
+						<section class="book-page" id="page-30b">
 				<div id="chapter-11" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch11-receptors" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch11-density" style="scroll-margin-top: 5rem;"></div>
+				<div id="ch11-why-acid" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -5821,7 +5858,7 @@ import { SITE_TITLE } from '../consts';
 					<h2 class="chapter-title">Chapter 11: Where Are the Acid-Sensing Receptors in the&nbsp;Mouth?</h2>
 
 					<div class="chapter-content is-first-page">
-						<p>When sufferers describe burning mouth pain, clinicians frequently examine the oral tissues and find no macroscopic ulcers or erythema. This paradox leads many to mistakenly conclude that the pain lacks a physical basis. However, modern sensory neurobiology reveals that the human mouth is not a passive lining. It is an intensely wired sensor array packed with specialized <strong>Acid-Sensing Ion Channels (ASICs)</strong> that monitor biochemical changes in real&nbsp;time.</p>
+						<p>When sufferers describe burning mouth pain, clinicians frequently examine the oral tissues and find no macroscopic ulcers or redness. This paradox leads many to mistakenly conclude that the pain lacks a physical basis. However, modern sensory neurobiology reveals that the human mouth is not a passive lining. It is an intensely wired sensor array packed with specialized <strong>Acid-Sensing Ion Channels (ASICs)</strong> that monitor biochemical changes in real&nbsp;time.</p>
 
 						<figure class="book-figure">
 							<img src="/oral-cavity-asic-receptor-density-map.jpg" alt="3D Anatomical Map of Acid-Sensing Receptors in the Human Oral Cavity showing density in dental pulp, tongue, and palate" loading="lazy" />
@@ -5831,7 +5868,11 @@ import { SITE_TITLE } from '../consts';
 							</figcaption>
 						</figure>
 
-						<p>As mapped in Figure 1, the oral cavity possesses one of the highest concentrations of sensory nerve endings anywhere in the human body. The dental pulp alone contains over 1,000 nerve terminals per square millimeter, while the anterior tongue and hard palate carry 200 to 500 terminals per square millimeter. When microscopic acid breaches protective barriers, it does not encounter inert skin. It directly washes across millions of unmyelinated trigeminal nerve endings primed to trigger excruciating burning&nbsp;alarms.</p>
+						<h3>Why Is Acid a Problem for the Body? Why Do We Have Acid-Sensing&nbsp;Receptors?</h3>
+						<p>Why did nature equip human tissues with dense arrays of acid-sensing receptors in the first place? In cellular biology, life survives only within a razor-thin pH window between 7.35 and 7.45. Free hydrogen protons (H<sup>+</sup>) are chemically aggressive. When local pH drops, acid attacks cellular architecture, stripping molecular bonds, coagulating cellular proteins, and causing chemical burns. Receptors like ASICs and TRPV1 evolved as essential molecular fire alarms, warning the nervous system before irreversible chemical destruction&nbsp;occurs.</p>
+						<p>Consider what happens if you place a cut of raw meat into acid. Whether you submerge meat in lemon juice, vinegar, or gastric acid, the outcome is immediate: the acid denatures the proteins. It unravels tertiary peptide bonds, coagulates myofibrils, and chemically cooks and breaks down the tissue. Is our own living oral cavity not composed of the exact same biological material: proteins, collagen, cellular membranes, and living&nbsp;tissue?</p>
+						<p>What happens if you splash acidic lemon juice into your eyes, or pour vinegar onto an open cut or wound? It triggers instant, excruciating, blinding burning pain. Would it not make complete biological sense that when dietary acid or bacterial acid enters your exposed dentinal tubules and washes across thinned, unbuffered mucosal tissues in your mouth, that it would trigger that exact same intense burning&nbsp;pain?</p>
+						<p>And when a patient presents with receded gumlines across multiple teeth, microscopic hardware leaks under aging crowns, and a thinned mucosal shield on the tongue and palate all bathed in the same oral acid pool simultaneously, does it not make complete sense that the burning manifests across multiple oral sites at once? Why would we assume this is an inexplicable mystery, when exposed biological tissue bathed in acid creates the exact same burning response anywhere else in the human&nbsp;body?</p>
 					</div>
 				</div>
 
@@ -5840,7 +5881,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth? (Page 2 of 2) -->
+			<!-- Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth? (Page 2 of 3) -->
 
 			<section class="book-page" id="page-30c">
 				<div class="page-body-content">
@@ -5850,44 +5891,75 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="chapter-content">
+						<h3>The Three Anatomical Zones Where Acid Meets Nerve&nbsp;Endings</h3>
+						<p>Although sufferers often perceive their mouth as engulfed in a single, diffuse firestorm, sensory neurobiology and dental materials science reveal that oral burning originates across three distinct physical entry&nbsp;points:</p>
+
+						<p><strong>1. Exposed Soft Tissue and Oral Mucosa (Tongue, Palate, Cheeks, and Outer Gums):</strong> Your oral mucosa is a specialized living barrier lined with unmyelinated C-fiber nerve endings sitting mere micrometers beneath the surface. Under normal conditions, a continuous blanket of mucin-rich, bicarbonate-loaded saliva coats this tissue, buffering dietary acids and lubricating every tissue glide. When this mucosal shield becomes thinned, dehydrated, or stripped of its salivary film (xerostomia), free hydrogen protons (H<sup>+</sup>) make direct contact with superficial nerve endings across the palate, lateral tongue, and gingiva. Without resting salivary flow to dilute and buffer acids, even mild organic acids cling directly to unshielded tissue while normal mechanical tongue friction shears across sensitized&nbsp;receptors.</p>
+
+						<p><strong>2. Internal Dentinal Tubules at Restorative Hardware Interfaces:</strong> A healthy natural tooth crown is sealed by crystalline enamel, which contains zero nerves. Beneath that enamel sits dentin, perforated by 20,000 to 45,000 microscopic, fluid-filled channels (dentinal tubules) per square millimeter leading straight into the living dental pulp. Even in meticulously placed dentistry, all restorative materials are subject to thermal cycling, chewing fatigue, and cement hydrolysis over a 10 to 15 year service life. Sub-micron marginal micro-gaps can develop along the interface of aging fillings and crowns. Capillary action draws oral fluids and bacterial acids down these margins into open internal tubules, stimulating pulpal nociceptive fibers from the inside out, even when the tooth appears clinically intact on a standard 2D&nbsp;X-ray.</p>
+
+						<p><strong>3. Exposed Cervical Root Tubules and the Gingival Sulcus:</strong> Where the protective enamel crown terminates at the cervical margin, the tooth root is shielded only by a thin layer of cementum (20 to 50 microns thick). When gums recede by even 1 to 2 millimeters, or when mechanical friction and ambient acidity strip that fragile cementum away, tens of thousands of root tubules are left wide open to the oral environment. This exposure also extends inside the gingival sulcus and pocket gutters shielded from bulk saliva circulation. Here, anaerobic bacterial fermentation outpaces natural crevicular fluid clearance, bathing unarmored root dentin below its critical demineralization threshold (pH 6.2 to 6.7) and gating pulpal ASIC&nbsp;tripwires.</p>
+
 						<figure class="book-figure">
 							<img src="/acid-sensing-ion-channels-asic-nerve.jpg" alt="Acid-Sensing Ion Channel (ASIC) Molecular Receptor Mechanism in Oral Nerve Endings showing proton gating" loading="lazy" />
 							<figcaption class="book-figure-caption">
 								<strong>Figure 2: Molecular ASIC Gating Mechanism.</strong> In sensory C-fibers, Acid-Sensing Ion Channels (ASIC1 and ASIC3) remain closed at neutral salivary pH (7.0). When local extracellular pH drops below 6.8, hydrogen protons (H<sup>+</sup>) bind to the channel's acidic pocket, triggering an immediate conformational shift that opens the pore and generates rapid inward sodium (Na<sup>+</sup>) currents that depolarize the nerve and project burning pain to the&nbsp;brainstem.
 							</figcaption>
 						</figure>
+					</div>
+				</div>
 
-						<p>Where does the acid come from that triggers these dense receptors? In our clinical and engineering framework, oral acid reaches sensory receptors through four distinct&nbsp;pathways:</p>
+				<div class="page-number-footer">
+					<span>32</span>
+				</div>
+			</section>
 
-						<div class="research-table-wrapper" style="margin: 0.75rem 0 1rem;">
+			<!-- Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth? (Page 3 of 3) -->
+
+			<section class="book-page" id="page-30d">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part III &bull; Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth?</span>
+						<span class="page-count-label">Page 33</span>
+					</div>
+
+					<div class="chapter-content">
+						<h3>Where Does the Acid Come&nbsp;From?</h3>
+						<p>Where does the acid come from that triggers these dense receptor arrays and open dentinal tubules? In our engineering and biological framework, oral acid originates from two primary groups: external sources and internal&nbsp;sources:</p>
+
+						<p><strong>1. External Acid Sources:</strong> External acids enter the oral cavity from the outside world through two distinct mechanisms: direct acids and fermentable sugars. Direct acids arrive in beverages, citrus fruits, vinegars, coffee, wine, and acidic mouthwashes, immediately delivering free hydrogen protons upon contact. Even more pervasive, however, are fermentable sugars and refined carbohydrates (bread, pasta, sweets, fruit, and starchy vegetables). While carbohydrates do not taste acidic, resident oral bacteria (<em>Streptococcus mutans</em> and <em>Lactobacillus</em>) consume trapped sugar residues and transform them into concentrated lactic and acetic acids directly against tooth margins and gumlines for 48 to 72 hours after a single&nbsp;meal.</p>
+
+						<p><strong>2. Internal Acid Sources (From the Stomach):</strong> Internal acids rise upward from the digestive system. In Gastroesophageal Reflux Disease (GERD) and nocturnal Laryngopharyngeal Reflux (silent LPR), concentrated hydrochloric acid (pH 1.5 to 3.0) and proteolytic pepsin travel up the esophagus while sleeping flat. This nocturnal acid mist coats the posterior tongue, palate, and lingual molar margins, bathing vulnerable tissues in caustic stomach acid without necessarily causing classic chest&nbsp;heartburn.</p>
+
+						<div class="research-table-wrapper" style="margin: 0.65rem 0 0.9rem;">
 							<table class="research-table">
 								<thead>
 									<tr>
-										<th style="width: 24%;">Acid Source Category</th>
+										<th style="width: 24%;">Acid Origin Group</th>
 										<th style="width: 20%;">Typical pH Level</th>
 										<th style="width: 56%;">Mechanism &amp; Why Patients Miss It</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td><strong>1. External Dietary Acids</strong><div class="intervention-mechanism-desc">Direct acidic drinks, foods, &amp; oral care products</div></td>
+										<td><strong>External: Direct Dietary Acids</strong><div class="intervention-mechanism-desc">Direct drinks, foods, &amp; mouthwashes</div></td>
 										<td><span class="rate-val rate-high">pH 2.0 to 5.2</span><span class="rate-tag">Immediate Contact</span></td>
-										<td>Sodas, sparkling waters (carbonic acid), citrus, wine, coffee, vinegars, tomatoes, and acidic mouthwashes flood the mouth with free hydrogen protons (H<sup>+</sup>) on contact, instantly depolarizing exposed skin and open&nbsp;tubules.</td>
+										<td>Citrus, sodas, sparkling water (carbonic acid), coffee, wine, vinegars, and acidic mouthwashes flood the oral cavity with free hydrogen protons (H<sup>+</sup>) on contact, instantly depolarizing exposed mucosa and open&nbsp;tubules.</td>
 									</tr>
 									<tr>
-										<td><strong>2. Sugars &amp; Fermentable Carbs</strong><div class="intervention-mechanism-desc">Transformed into lactic acid by oral bacteria</div></td>
+										<td><strong>External: Sugars to Bacterial Acid</strong><div class="intervention-mechanism-desc">Transformed into lactic acid by oral bacteria</div></td>
 										<td><span class="rate-val rate-high">pH 3.8 to 4.8</span><span class="rate-tag">48 to 72 Hr Brew</span></td>
-										<td>Bread, pasta, rice, fruit, sweets, and starchy vegetables do not taste sour, so patients assume they are safe. However, biofilm bacteria inside gum pockets and filling margins digest these sugars and excrete concentrated <strong>lactic and acetic acids</strong> directly against root tubules for days after a single&nbsp;meal.</td>
+										<td>Bread, pasta, crackers, fruit, and sweets do not taste sour. However, biofilm bacteria in gum pockets and filling margins digest these sugars and excrete concentrated <strong>lactic and acetic acids</strong> directly against tubules for days.</td>
 									</tr>
 									<tr>
-										<td><strong>3. Gastric Reflux (GERD &amp; Silent LPR)</strong><div class="intervention-mechanism-desc">Stomach acid &amp; pepsin rising into the mouth</div></td>
-										<td><span class="rate-val rate-high">pH 1.5 to 3.0</span><span class="rate-tag">Nocturnal Micro-Mist</span></td>
-										<td>In Gastroesophageal Reflux Disease (GERD) and Laryngopharyngeal "Silent" Reflux (LPR), hydrochloric acid travels up the esophagus while sleeping flat, coating the tongue, palate, and inner molar surfaces without classic chest&nbsp;heartburn.</td>
+										<td><strong>Internal: Gastric Reflux (GERD &amp; LPR)</strong><div class="intervention-mechanism-desc">Hydrochloric stomach acid &amp; pepsin mist</div></td>
+										<td><span class="rate-val rate-high">pH 1.5 to 3.0</span><span class="rate-tag">Nocturnal Mist</span></td>
+										<td>Gastric acid and pepsin rise up the esophagus while sleeping flat, coating the tongue, palate, and inner molar margins without necessarily producing classic chest heartburn or esophageal&nbsp;symptoms.</td>
 									</tr>
 									<tr>
-										<td><strong>4. Loss of the Salivary Buffer Shield</strong><div class="intervention-mechanism-desc">Dry mouth, nocturnal drop, &amp; medications</div></td>
-										<td><span class="rate-val rate-moderate">pH Drops &lt; 5.8</span><span class="rate-tag">Unbuffered Acid</span></td>
-										<td>Healthy saliva contains bicarbonate ions that neutralize acid back to pH 7.0. When saliva flow drops (from mouth breathing, dehydration, aging, stress, or medications), the mouth loses its chemical fire extinguisher, allowing minor acids to stay concentrated against receptors&nbsp;indefinitely.</td>
+										<td><strong>Compounding Factor: Buffer Depletion</strong><div class="intervention-mechanism-desc">Salivary volume loss &amp; bicarbonate drop</div></td>
+										<td><span class="rate-val rate-moderate">pH Drops &lt; 5.8</span><span class="rate-tag">Unbuffered State</span></td>
+										<td>Healthy saliva supplies bicarbonate ions (HCO<sub>3</sub><sup>&minus;</sup>) to neutralize acids back to pH 7.0. When saliva flow drops from mouth breathing, stress, or medications, the mouth loses its buffer, leaving acids to linger&nbsp;indefinitely.</td>
 									</tr>
 								</tbody>
 							</table>
@@ -5902,14 +5974,14 @@ import { SITE_TITLE } from '../consts';
 								</svg>
 							</span>
 							<div class="book-callout-text">
-								<p><strong>The Core Neuropathic Insight:</strong> Oral burning occurs when <strong>at least one of the four acid sources</strong> contacts <strong>these ultra-dense receptor fields</strong>. In Chapter 12, we examine how sustained ASIC and TRPV1 activation drives central sensitization across the trigeminal&nbsp;circuit.</p>
+								<p><strong>The Core Neuropathic Insight:</strong> Oral burning occurs when <strong>external or internal acids</strong> make sustained contact with <strong>these ultra-dense receptor fields</strong>. In Chapter 12, we examine how sustained ASIC and TRPV1 activation drives central sensitization across the trigeminal&nbsp;circuit.</p>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="page-number-footer">
-					<span>32</span>
+					<span>33</span>
 				</div>
 			</section>
 
@@ -6025,7 +6097,7 @@ import { SITE_TITLE } from '../consts';
 					<div class="chapter-content is-first-page">
 						<p>Your mouth is not lined with inert leather. It is shielded by a living, specialized cellular layer known as the oral mucosa. Covering the dorsal and lateral tongue, the vaulted hard palate, the inner cheeks, and the gingival tissues, this delicate membrane functions as your oral cavity's first line of&nbsp;defense.</p>
 						<p>Unlike the epidermis covering your arms and legs, the oral mucosa has no thick, waxy stratum corneum. It is a thin, stratified squamous epithelium whose survival, lubrication, and nerve insulation depend completely on a continuous, microscopic blanket of resting&nbsp;saliva.</p>
-						<p>Under healthy physiological conditions, high-molecular-weight salivary mucins (MUC5B and MUC7) form a slippery, amphiphilic gel across this skin, while salivary bicarbonate (HCO<sub>3</sub><sup>&minus;</sup>) instantly buffers incoming acidic liquids back to neutral pH 7.0 <a href="#src-10" class="cite-ref">[10]</a>. Nociceptive nerve fibers sleep quietly beneath this chemical&nbsp;armor.</p>
+						<p>Under healthy physiological conditions, high-molecular-weight salivary mucins (<span class="sci-molecule">MUC5B</span> and <span class="sci-molecule">MUC7</span>) form a slippery, amphiphilic gel across this skin, while salivary bicarbonate (<span class="chem-formula">HCO<sub>3</sub><sup>&minus;</sup></span>) instantly buffers incoming acidic liquids back to neutral pH 7.0 <a href="#src-10" class="cite-ref">[10]</a>. Nociceptive nerve fibers sleep quietly beneath this chemical&nbsp;armor.</p>
 						<p>The tragedy of Burning Mouth Syndrome begins when that mucosal blanket fails, turning ordinary oral skin into an active, burning&nbsp;transducer.</p>
 
 						<h3>My Own Discovery: The Sandpaper Awakening and the Water Paradox</h3>
@@ -6434,8 +6506,8 @@ import { SITE_TITLE } from '../consts';
 						<p>The protective shield of the mouth does not end at the cellular wall. It depends entirely on the chemical composition of resting&nbsp;saliva.</p>
 						<p>Salivary gland acinar cells also express high levels of estrogen receptors. As hormone levels decline, salivary defense collapses along three critical fronts:</p>
 						<p><strong>Loss of Volume:</strong> Unstimulated resting salivary flow rate drops significantly, producing chronic, subclinical xerostomia (dry mouth).</p>
-						<p><strong>Degradation of Lubricating Mucins:</strong> High-molecular-weight salivary mucins (MUC5B and MUC7) provide the slippery lubricating film that coats the tongue and palate. When mucin synthesis declines, the oral coefficient of friction spikes. Every swallow, bite, and speech movement produces abrasive shear stress across fragile,&nbsp;thinned&nbsp;tissue.</p>
-						<p><strong>Depletion of the Bicarbonate Buffer:</strong> Healthy resting saliva contains bicarbonate ions (HCO<sub>3</sub><sup>&minus;</sup>) that neutralize incoming acids back to neutral pH 7.0. When salivary volume falls, bicarbonate concentrations collapse. The mouth loses its built-in chemical fire extinguisher, allowing acidic foods and bacterial lactic acid to bathe vulnerable nerve endings for hours rather than&nbsp;minutes.</p>
+						<p><strong>Degradation of Lubricating Mucins:</strong> High-molecular-weight salivary mucins (<span class="sci-molecule">MUC5B</span> and <span class="sci-molecule">MUC7</span>) provide the slippery lubricating film that coats the tongue and palate. When mucin synthesis declines, the oral coefficient of friction spikes. Every swallow, bite, and speech movement produces abrasive shear stress across fragile,&nbsp;thinned&nbsp;tissue.</p>
+						<p><strong>Depletion of the Bicarbonate Buffer:</strong> Healthy resting saliva contains bicarbonate ions (<span class="chem-formula">HCO<sub>3</sub><sup>&minus;</sup></span>) that neutralize incoming acids back to neutral pH 7.0. When salivary volume falls, bicarbonate concentrations collapse. The mouth loses its built-in chemical fire extinguisher, allowing acidic foods and bacterial lactic acid to bathe vulnerable nerve endings for hours rather than&nbsp;minutes.</p>
 
 					</div>
 				</div>
@@ -6481,13 +6553,13 @@ import { SITE_TITLE } from '../consts';
 									</tr>
 									<tr>
 										<td><strong>Salivary Buffer Capacity</strong></td>
-										<td>High resting flow rich in bicarbonate (HCO<sub>3</sub><sup>&minus;</sup>)</td>
+										<td>High resting flow rich in bicarbonate (<span class="chem-formula">HCO<sub>3</sub><sup>&minus;</sup></span>)</td>
 										<td>Volume drops; bicarbonate concentration collapses</td>
 										<td>Mouth loses its chemical fire extinguisher; dietary and bacterial acids linger&nbsp;unneutralized.</td>
 									</tr>
 									<tr>
 										<td><strong>Mucosal Lubrication</strong></td>
-										<td>Dense, slippery MUC5B and MUC7 mucin coating</td>
+										<td>Dense, slippery <span class="sci-molecule">MUC5B</span> and <span class="sci-molecule">MUC7</span> mucin coating</td>
 										<td>Thin, viscous, depleted salivary film</td>
 										<td>Abrasive shear forces during speech and swallowing inflame sensitized nerve&nbsp;endings.</td>
 									</tr>
