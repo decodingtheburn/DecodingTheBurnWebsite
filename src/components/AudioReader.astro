@@ -42,7 +42,7 @@ if (headings && headings.length > 0) {
 		<!-- 1. Sleek Compact Bar (Small and minimal by default) -->
 		<div class="tts-compact-bar" id="tts-compact-bar">
 			<div class="tts-compact-left">
-				<span class="tts-compact-title">Listen to this article</span>
+				<span class="tts-compact-title">Listen</span>
 			</div>
 
 			<div class="tts-compact-right">
@@ -55,8 +55,8 @@ if (headings && headings.length > 0) {
 					</svg>
 				</button>
 
-								<!-- Go to Selected Text Button (Directly on Listen bar) -->
-				<button type="button" class="tts-expand-toggle tts-compact-locate-btn" id="tts-compact-locate" title="Go to selected text on the page" aria-label="Go to selected text on the page">
+								<!-- Go to Active Reading Position (Icon Only) -->
+				<button type="button" class="tts-expand-toggle tts-compact-locate-btn" id="tts-compact-locate" title="Go to active text on page" aria-label="Go to active text on page">
 					<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<circle cx="12" cy="12" r="7"></circle>
 						<line x1="12" y1="2" x2="12" y2="5"></line>
@@ -65,7 +65,6 @@ if (headings && headings.length > 0) {
 						<line x1="19" y1="12" x2="22" y2="12"></line>
 						<circle cx="12" cy="12" r="2" fill="currentColor"></circle>
 					</svg>
-					<span class="tts-expand-text">Selected Text</span>
 				</button>
 
 				<!-- Expand / Collapse Drawer Toggle (Options on the left of Listen) -->
@@ -1873,6 +1872,58 @@ if (headings && headings.length > 0) {
 		function jumpToSentence(idx: number) {
 			playSentence(idx, true);
 		}
+
+		// Global hooks for text selection & right-click play triggers
+		(window as any).audioReaderPlayFromText = (selectedText: string, anchorNode?: Node | null) => {
+			if (!sentences || sentences.length === 0) return false;
+
+			// 1. If anchor node provided, check for closest .tts-word span
+			if (anchorNode) {
+				const el = (anchorNode.nodeType === Node.ELEMENT_NODE ? anchorNode : anchorNode.parentElement) as HTMLElement | null;
+				const wordSpan = el?.closest('.tts-word') as HTMLElement | null;
+				if (wordSpan && wordSpan.dataset.sentenceIdx) {
+					const sIdx = parseInt(wordSpan.dataset.sentenceIdx, 10);
+					if (!isNaN(sIdx) && sIdx >= 0 && sIdx < sentences.length) {
+						jumpToSentence(sIdx);
+						scrollToCurrentText();
+						return true;
+					}
+				}
+			}
+
+			// 2. Search sentences array for substring match
+			if (selectedText && selectedText.trim().length > 3) {
+				const cleanQuery = selectedText.trim().toLowerCase().slice(0, 45);
+				const foundIdx = sentences.findIndex((s) => s.text.toLowerCase().includes(cleanQuery));
+				if (foundIdx !== -1) {
+					jumpToSentence(foundIdx);
+					scrollToCurrentText();
+					return true;
+				}
+			}
+
+			// Fallback: start from beginning if stopped
+			if (playbackState === 'STOPPED' && sentences.length > 0) {
+				jumpToSentence(0);
+				scrollToCurrentText();
+				return true;
+			}
+
+			return false;
+		};
+
+		(window as any).audioReaderPlayFromElement = (el: HTMLElement) => {
+			const wordSpan = el.closest('.tts-word') as HTMLElement | null;
+			if (wordSpan && wordSpan.dataset.sentenceIdx) {
+				const sIdx = parseInt(wordSpan.dataset.sentenceIdx, 10);
+				if (!isNaN(sIdx) && sIdx >= 0 && sIdx < sentences.length) {
+					jumpToSentence(sIdx);
+					scrollToCurrentText();
+					return true;
+				}
+			}
+			return false;
+		};
 
 		function updateButtonStates() {
 			const isPlaying = playbackState === 'PLAYING';

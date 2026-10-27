@@ -1929,36 +1929,25 @@ import { SITE_TITLE } from '../consts';
 				margin-bottom: 0.4rem;
 			}
 
-			/* Inline Selection Feedback Trigger & Modal */
-			.selection-feedback-trigger {
+			/* Inline Selection Actions Toolbar & Modal (Play Audio & Send Feedback) */
+			.selection-floating-toolbar {
 				position: absolute;
 				display: none;
 				align-items: center;
-				gap: 0.45rem;
-				background: #1e112a;
-				color: #f5f3ff;
-				border: 1px solid #7c3aed;
-				padding: 0.42rem 0.85rem;
-				border-radius: 8px;
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.78rem;
-				font-weight: 700;
-				box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45), 0 0 14px rgba(124, 58, 237, 0.4);
-				cursor: pointer;
+				gap: 0.25rem;
+				background: #150924;
+				border: 1px solid rgba(168, 85, 247, 0.5);
+				padding: 0.28rem 0.35rem;
+				border-radius: 9999px;
+				box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.65), 0 0 18px rgba(124, 58, 237, 0.45);
 				z-index: 1000;
 				transform: translate(-50%, -100%);
 				margin-top: -10px;
-				transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+				transition: transform 0.15s ease, box-shadow 0.15s ease;
 				user-select: none;
 			}
 
-			.selection-feedback-trigger:hover {
-				background: #2e104b;
-				box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.5), 0 0 18px rgba(168, 85, 247, 0.55);
-				transform: translate(-50%, -100%) scale(1.03);
-			}
-
-			.selection-feedback-trigger::after {
+			.selection-floating-toolbar::after {
 				content: '';
 				position: absolute;
 				top: 100%;
@@ -1966,7 +1955,47 @@ import { SITE_TITLE } from '../consts';
 				transform: translateX(-50%);
 				border-width: 6px;
 				border-style: solid;
-				border-color: #1e112a transparent transparent transparent;
+				border-color: #150924 transparent transparent transparent;
+			}
+
+			.selection-action-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.38rem;
+				background: transparent;
+				border: none;
+				padding: 0.35rem 0.65rem;
+				border-radius: 9999px;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.76rem;
+				font-weight: 700;
+				cursor: pointer;
+				transition: all 0.15s ease;
+				color: #f5f3ff;
+			}
+
+			.selection-play-btn {
+				color: #38bdf8;
+			}
+
+			.selection-play-btn:hover {
+				background: rgba(56, 189, 248, 0.18);
+				color: #e0f2fe;
+			}
+
+			.selection-feedback-btn {
+				color: #e9d5ff;
+			}
+
+			.selection-feedback-btn:hover {
+				background: rgba(168, 85, 247, 0.25);
+				color: #ffffff;
+			}
+
+			.selection-toolbar-divider {
+				width: 1px;
+				height: 14px;
+				background: rgba(255, 255, 255, 0.2);
 			}
 
 			.feedback-modal-backdrop {
@@ -9859,13 +9888,22 @@ import { SITE_TITLE } from '../consts';
 
 		</div>
 
-		<!-- Floating Selection Trigger Button -->
-		<button id="selection-feedback-btn" class="selection-feedback-trigger" type="button" aria-label="Send Feedback on Selection">
-			<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-				<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-			</svg>
-			<span>Send Feedback / Comment</span>
-		</button>
+		<!-- Floating Selection Action Toolbar (Play Audio & Send Feedback) -->
+		<div id="selection-floating-toolbar" class="selection-floating-toolbar" role="toolbar" aria-label="Actions for selected text">
+			<button id="selection-play-btn" class="selection-action-btn selection-play-btn" type="button" title="Play audio from this selected passage">
+				<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+					<polygon points="6 3 20 12 6 21 6 3"></polygon>
+				</svg>
+				<span>Play from here</span>
+			</button>
+			<div class="selection-toolbar-divider" aria-hidden="true"></div>
+			<button id="selection-feedback-btn" class="selection-action-btn selection-feedback-btn" type="button" title="Send feedback or comment on this passage">
+				<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+				</svg>
+				<span>Send Feedback</span>
+			</button>
+		</div>
 
 		<!-- Feedback Modal Backdrop -->
 		<div id="feedback-modal" class="feedback-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="feedback-modal-title">
@@ -9974,7 +10012,9 @@ import { SITE_TITLE } from '../consts';
 
 		<script is:inline>
 			(() => {
-				// --- Selection Feedback Elements ---
+				// --- Selection Action Toolbar (Play Audio & Feedback) ---
+				const triggerToolbar = document.getElementById('selection-floating-toolbar');
+				const playBtn = document.getElementById('selection-play-btn');
 				const triggerBtn = document.getElementById('selection-feedback-btn');
 				const modal = document.getElementById('feedback-modal');
 				const closeBtn = document.getElementById('feedback-modal-close-btn');
@@ -10092,48 +10132,91 @@ import { SITE_TITLE } from '../consts';
 				});
 
 				let currentSelectedQuote = '';
+				let currentAnchorNode = null;
 				let userCommentText = '';
 
-				function updateTriggerPosition() {
+				function updateTriggerPosition(overrideX, overrideY) {
 					if (modal && modal.style.display === 'flex') return;
 
 					const selection = window.getSelection();
 					if (!selection || selection.isCollapsed) {
-						if (triggerBtn) triggerBtn.style.display = 'none';
+						if (triggerToolbar) triggerToolbar.style.display = 'none';
 						return;
 					}
 
 					const selectedText = selection.toString().trim();
-					if (selectedText.length < 5) {
-						if (triggerBtn) triggerBtn.style.display = 'none';
+					if (selectedText.length < 3) {
+						if (triggerToolbar) triggerToolbar.style.display = 'none';
 						return;
 					}
 
 					// Verify selection is within the book content
 					const anchorNode = selection.anchorNode;
 					if (!anchorNode || !anchorNode.parentElement?.closest('.book-viewport')) {
-						if (triggerBtn) triggerBtn.style.display = 'none';
+						if (triggerToolbar) triggerToolbar.style.display = 'none';
 						return;
 					}
 
 					try {
+						currentSelectedQuote = selectedText;
+						currentAnchorNode = anchorNode;
+
+						if (overrideX !== undefined && overrideY !== undefined) {
+							if (triggerToolbar) {
+								triggerToolbar.style.top = `${overrideY}px`;
+								triggerToolbar.style.left = `${overrideX}px`;
+								triggerToolbar.style.display = 'inline-flex';
+							}
+							return;
+						}
+
 						const range = selection.getRangeAt(0);
 						const rect = range.getBoundingClientRect();
 						if (rect && rect.width > 0) {
-							currentSelectedQuote = selectedText;
 							const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 							const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
 							
-							if (triggerBtn) {
-								triggerBtn.style.top = `${scrollY + rect.top}px`;
-								triggerBtn.style.left = `${scrollX + rect.left + (rect.width / 2)}px`;
-								triggerBtn.style.display = 'inline-flex';
+							if (triggerToolbar) {
+								triggerToolbar.style.top = `${scrollY + rect.top}px`;
+								triggerToolbar.style.left = `${scrollX + rect.left + (rect.width / 2)}px`;
+								triggerToolbar.style.display = 'inline-flex';
 							}
 						}
 					} catch (e) {
-						if (triggerBtn) triggerBtn.style.display = 'none';
+						if (triggerToolbar) triggerToolbar.style.display = 'none';
 					}
 				}
+
+				// Play Audio button click
+				playBtn?.addEventListener('click', (e) => {
+					e.stopPropagation();
+					if (!currentSelectedQuote) {
+						const sel = window.getSelection();
+						currentSelectedQuote = sel ? sel.toString().trim() : '';
+						currentAnchorNode = sel ? sel.anchorNode : null;
+					}
+					if (typeof window.audioReaderPlayFromText === 'function') {
+						const played = window.audioReaderPlayFromText(currentSelectedQuote, currentAnchorNode);
+						if (played && triggerToolbar) {
+							triggerToolbar.style.display = 'none';
+						}
+					}
+				});
+
+				// Right-click (contextmenu) on selected text trigger
+				document.addEventListener('contextmenu', (e) => {
+					const selection = window.getSelection();
+					if (selection && !selection.isCollapsed) {
+						const text = selection.toString().trim();
+						if (text.length >= 3) {
+							const anchor = selection.anchorNode;
+							if (anchor && anchor.parentElement?.closest('.book-viewport')) {
+								e.preventDefault();
+								updateTriggerPosition(e.pageX, e.pageY);
+							}
+						}
+					}
+				});
 
 				// Listen for selection events with debounce
 				let selTimeout;
@@ -10146,12 +10229,12 @@ import { SITE_TITLE } from '../consts';
 				document.addEventListener('touchend', handleSelectionChange);
 				document.addEventListener('selectionchange', handleSelectionChange);
 
-				// Hide trigger on document click if clicking outside
+				// Hide toolbar on document click if clicking outside
 				document.addEventListener('mousedown', (e) => {
-					if (triggerBtn && !triggerBtn.contains(e.target) && !modal?.contains(e.target)) {
+					if (triggerToolbar && !triggerToolbar.contains(e.target) && !modal?.contains(e.target)) {
 						const sel = window.getSelection();
 						if (!sel || sel.isCollapsed) {
-							triggerBtn.style.display = 'none';
+							triggerToolbar.style.display = 'none';
 						}
 					}
 				});
@@ -10181,7 +10264,7 @@ import { SITE_TITLE } from '../consts';
 					if (stepSuccess) stepSuccess.style.display = 'none';
 
 					if (modal) modal.style.display = 'flex';
-					if (triggerBtn) triggerBtn.style.display = 'none';
+					if (triggerToolbar) triggerToolbar.style.display = 'none';
 					setTimeout(() => commentInput?.focus(), 80);
 				});
 
