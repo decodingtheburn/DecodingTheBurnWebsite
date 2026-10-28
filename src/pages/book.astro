@@ -1147,6 +1147,40 @@ import { SITE_TITLE } from '../consts';
 				object-fit: cover;
 			}
 
+			.backcover-showcase {
+				display: flex;
+				align-items: center;
+				gap: 1.75rem;
+				margin: 1.6rem 0 1.75rem;
+			}
+
+			.backcover-showcase-media {
+				flex: 0 0 35%;
+				max-width: 35%;
+				border: 1px solid rgba(168, 85, 247, 0.35);
+				border-radius: 8px;
+				overflow: hidden;
+				background: rgba(8, 3, 16, 0.75);
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+			}
+
+			.backcover-showcase-media img {
+				display: block;
+				width: 100%;
+				height: auto;
+				max-height: 310px;
+				object-fit: cover;
+			}
+
+			.backcover-showcase-content {
+				flex: 0 0 calc(65% - 1.75rem);
+				max-width: calc(65% - 1.75rem);
+			}
+
+			.backcover-showcase-content .backcover-features {
+				margin: 0;
+			}
+
 			.backcover-features {
 				list-style: none;
 				padding: 0;
@@ -2641,6 +2675,21 @@ import { SITE_TITLE } from '../consts';
 				.backcover-gold-border {
 					padding: 1.75rem 1.15rem;
 					min-height: auto;
+				}
+				.backcover-showcase {
+					flex-direction: column;
+					gap: 1.25rem;
+				}
+				.backcover-showcase-media {
+					flex: 0 0 100%;
+					max-width: 100%;
+				}
+				.backcover-showcase-media img {
+					max-height: 260px;
+				}
+				.backcover-showcase-content {
+					flex: 0 0 100%;
+					max-width: 100%;
 				}
 			}
 
@@ -10244,15 +10293,18 @@ import { SITE_TITLE } from '../consts';
 								Could this molecular mechanism explain why 75% of our community survey respondents confirm that acidic foods and beverages directly make their symptoms&nbsp;worse?
 							</p>
 
-							<div class="backcover-figure">
-								<img src="/acid-sensing-ion-channels-asic-nerve.jpg" alt="Technical diagram of Acid-Sensing Ion Channels (ASIC) transducing acid protons into trigeminal burning pain signals based on 2004 pulpal mapping and 2014 crystal structure" loading="eager" />
-							</div>
-
-							<ul class="backcover-features">
+							<div class="backcover-showcase">
+								<div class="backcover-showcase-media">
+									<img src="/asic-pain-receptor-discovery-2024.jpg" alt="Scientific 3D visualization of the 2024 Pain Receptor Discovery: Extracellular protons docking into the ASIC ion channel, opening the pore to flood sodium into the Trigeminal sensory nerve fiber" loading="eager" />
+								</div>
+								<div class="backcover-showcase-content">
+									<ul class="backcover-features">
 								<li><strong>Groundbreaking Receptor Science:</strong> How 2024 pain receptor discoveries prove that acid protons physically gate open Trigeminal pain&nbsp;channels.</li>
 								<li><strong>The 72-Hour Fermentation Clock:</strong> Why Monday's fermentable starches brew subgingival lactic acid that peaks in a flare on Wednesday&nbsp;afternoon.</li>
 								<li><strong>Microscopic Dental Hardware Leaks:</strong> How aging crown cement washouts, craze lines, and exposed root dentin act as open funnels pouring acids onto pulpal&nbsp;nerves.</li>
 							</ul>
+								</div>
+							</div>
 						</div>
 
 						<div class="backcover-bottom">
