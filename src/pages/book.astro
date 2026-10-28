@@ -159,6 +159,41 @@ import { SITE_TITLE } from '../consts';
 				transform: rotate(180deg);
 			}
 
+			.toolbar-nav-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.35rem 0.55rem;
+				color: #cbd5e1;
+				background: transparent;
+				border: none;
+				border-radius: 6px;
+				text-decoration: none;
+				cursor: pointer;
+				transition: color 0.15s ease, background 0.15s ease;
+			}
+
+			.toolbar-nav-icon svg {
+				stroke: #94a3b8;
+				transition: stroke 0.15s ease, transform 0.15s ease;
+				display: block;
+			}
+
+			.toolbar-nav-icon:hover {
+				color: #ffffff;
+				background: rgba(168, 85, 247, 0.22);
+			}
+
+			.toolbar-nav-icon:hover svg {
+				stroke: #c084fc;
+				transform: scale(1.12);
+			}
+
+			#cover,
+			#backcover {
+				scroll-margin-top: 56px;
+			}
+
 			/* Dropdown Menu Container (Single-Line Items Guaranteed) */
 			.toolbar-menu {
 				position: absolute;
@@ -3309,6 +3344,14 @@ import { SITE_TITLE } from '../consts';
 			<nav class="reading-toolbar" aria-label="Book Reader Navigation">
 				<div class="toolbar-actions">
 					<div class="toolbar-nav-group">
+						<!-- Home Icon (Front Cover) -->
+						<a href="#cover" class="toolbar-nav-icon" title="Go to Front Cover" aria-label="Front Cover">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+								<polyline points="9 22 9 12 15 12 15 22"></polyline>
+							</svg>
+						</a>
+
 						<a href="#toc" class="toolbar-trigger" title="Jump to Table of Contents">
 							<span>TOC</span>
 						</a>
@@ -3449,6 +3492,14 @@ import { SITE_TITLE } from '../consts';
 								</a>
 							</div>
 						</div>
+
+						<!-- Back Cover Icon -->
+						<a href="#backcover" class="toolbar-nav-icon" title="Go to Back Cover" aria-label="Back Cover">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+								<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+							</svg>
+						</a>
 					</div>
 				</div>
 			</nav>
@@ -3484,7 +3535,7 @@ import { SITE_TITLE } from '../consts';
 			</div>
 
 			<!-- BOOK COVER -->
-			<div class="book-cover-container">
+			<div class="book-cover-container" id="cover">
 				<div class="book-cover">
 					<div class="cover-gold-border">
 						<div>
@@ -10298,7 +10349,7 @@ import { SITE_TITLE } from '../consts';
 									<ul class="backcover-features">
 								<li><strong>Groundbreaking Receptor Science:</strong> How 2024 pain receptor discoveries prove that acid protons physically gate open Trigeminal pain&nbsp;channels.</li>
 								<li><strong>The 72-Hour Fermentation Clock:</strong> Why Monday's fermentable starches brew subgingival lactic acid that peaks in a flare on Wednesday&nbsp;afternoon.</li>
-								<li><strong>The Power of Simple Dental Repair:</strong> How routine margin resealing, tubule occlusion, and conservative chairside restorations directly eliminate underlying acid triggers to resolve chronic oral&nbsp;burning.</li>
+								<li><strong>Targeted Chairside Diagnostics:</strong> How noninvasive tubule occlusion and diagnostic margin sealing allow clinicians to pinpoint the exact peripheral leak point driving generalized oral burning without&nbsp;drilling.</li>
 							</ul>
 								</div>
 							</div>
