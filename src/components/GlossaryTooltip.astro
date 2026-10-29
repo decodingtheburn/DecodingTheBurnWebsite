@@ -85,10 +85,15 @@ const glossaryJson = JSON.stringify(GLOSSARY_TERMS);
 						while (parent && parent !== container) {
 							if (
 								forbiddenTags.has(parent.tagName) || 
+								parent.tagName.toLowerCase() === 'svg' ||
+								parent.tagName.toLowerCase() === 'text' ||
+								parent.tagName.toLowerCase() === 'tspan' ||
+								parent.closest('svg') ||
 								parent.classList.contains('glossary-term') || 
 								parent.classList.contains('tts-ignore') ||
 								parent.classList.contains('interactive-progression-container') ||
-								parent.closest('.interactive-progression-container')
+								parent.closest('.interactive-progression-container') ||
+								parent.closest('.v3-animation-container')
 							) {
 								return NodeFilter.FILTER_REJECT;
 							}
