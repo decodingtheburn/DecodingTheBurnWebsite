@@ -1443,11 +1443,10 @@ async function main() {
 					font-size: 4.75rem !important;
 					font-weight: 800 !important;
 					letter-spacing: 0.14em !important;
-					margin-right: -0.14em !important;
 					line-height: 1.02 !important;
 					width: 100% !important;
 					text-align: center !important;
-					margin-left: auto !important;
+					margin: 0 auto !important;
 					white-space: nowrap !important;
 				}
 				.cover-title-line-2 {
@@ -1455,12 +1454,10 @@ async function main() {
 					font-size: 5.75rem !important;
 					font-weight: 900 !important;
 					letter-spacing: 0.05em !important;
-					margin-right: -0.05em !important;
 					line-height: 1.0 !important;
 					width: 100% !important;
 					text-align: center !important;
-					margin-top: 0.25rem !important;
-					margin-left: auto !important;
+					margin: 0.25rem auto 0 !important;
 					white-space: nowrap !important;
 				}
 				.cover-subtitle {
@@ -1468,6 +1465,21 @@ async function main() {
 					line-height: 1.45 !important;
 					max-width: 5.8in !important;
 					margin: 0.45rem auto 0 !important;
+				}
+				.cover-subtitle-lead {
+					font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+					font-size: 1.08rem !important;
+					font-weight: 700 !important;
+					letter-spacing: 0.02em !important;
+					color: #f3e8ff !important;
+					margin-bottom: 0.4rem !important;
+					display: block !important;
+				}
+				.cover-subtitle-rest {
+					font-family: 'Lora', Georgia, serif !important;
+					font-size: 0.92rem !important;
+					line-height: 1.45 !important;
+					display: block !important;
 				}
 				.cover-illustration-wrap {
 					margin: 0.45rem auto 0.55rem !important;
