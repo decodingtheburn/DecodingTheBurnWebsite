@@ -313,16 +313,41 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .chapter-content ul,
-	html body .book-viewport .chapter-content ol {
-		font-size: 0.92rem !important;
-		line-height: 1.48 !important;
+	html body .book-viewport .chapter-content ol,
+	html body .book-viewport .chapter-list {
+		font-family: 'Plus Jakarta Sans', sans-serif !important;
+		font-size: 0.96rem !important; /* Exact match with paragraph font size */
+		line-height: 1.46 !important;
 		margin-top: 0.3rem !important;
-		margin-bottom: 0.65rem !important;
-		padding-left: 1.25rem !important;
+		margin-bottom: 0.45rem !important;
+		padding-left: 1.65rem !important; /* Proper rightward indent from the left margin */
+		list-style-position: outside !important;
 	}
 
-	html body .book-viewport .chapter-content li {
-		margin-bottom: 0.28rem !important;
+	html body .book-viewport .chapter-content ul,
+	html body .book-viewport ul.chapter-list {
+		list-style-type: disc !important;
+	}
+
+	html body .book-viewport .chapter-content ol,
+	html body .book-viewport ol.chapter-list {
+		list-style-type: decimal !important;
+	}
+
+	html body .book-viewport .chapter-content li,
+	html body .book-viewport .chapter-list li {
+		font-family: 'Plus Jakarta Sans', sans-serif !important;
+		font-size: 0.96rem !important; /* Exact match with paragraph font size */
+		line-height: 1.46 !important;
+		color: #000000 !important;
+		margin-bottom: 0.22rem !important;
+		padding-left: 0.2rem !important;
+	}
+
+	html body .book-viewport .chapter-content li strong,
+	html body .book-viewport .chapter-list li strong {
+		color: #000000 !important;
+		font-weight: 700 !important;
 	}
 
 	html body .book-viewport .book-callout {
