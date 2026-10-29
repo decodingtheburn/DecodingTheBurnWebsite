@@ -1419,6 +1419,7 @@ async function main() {
 					justify-content: space-between !important;
 				}
 				.backcover-gold-border {
+					border: none !important;
 					min-height: 8.7in !important;
 					height: 100% !important;
 					padding: 1.75rem 1.5rem !important;
