@@ -761,6 +761,16 @@ export const KDP_7X10_BASE_CSS = `
 		color: #000000 !important;
 	}
 
+	html body .book-viewport .stat-full-title,
+	html body .book-viewport h1.stat-full-title {
+		font-size: 2.15rem !important;
+		line-height: 1.15 !important;
+		margin-bottom: 0.65rem !important;
+		padding-bottom: 0.45rem !important;
+		border-bottom: 2px solid #000000 !important;
+		text-wrap: balance !important;
+	}
+
 	html body .book-viewport .stat-page-title {
 		font-size: 1.32rem !important;
 		margin-bottom: 1rem !important;
