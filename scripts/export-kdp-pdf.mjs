@@ -1375,7 +1375,7 @@ async function main() {
 				.kdp-front-panel {
 					width: 7in;
 					height: 10in;
-					padding: 0.55in 0.5in;
+					padding: 0.75in 0.45in 0.55in 0.45in !important;
 					box-sizing: border-box;
 					display: flex;
 					flex-direction: column;
@@ -1410,9 +1410,10 @@ async function main() {
 				}
 				.cover-gold-border {
 					border: none !important;
-					min-height: 8.7in !important;
+					min-height: 0 !important;
 					height: 100% !important;
-					padding: 1.75rem 1.5rem !important;
+					padding: 0 !important;
+					margin: 0 !important;
 					box-sizing: border-box !important;
 					display: flex !important;
 					flex-direction: column !important;
@@ -1434,15 +1435,16 @@ async function main() {
 					align-items: center !important;
 					justify-content: center !important;
 					width: 100% !important;
-					margin: 0 auto 0.65rem !important;
+					margin: 0 auto 0.45rem !important;
+					padding-top: 0 !important;
 				}
 				.cover-title-line-1 {
 					display: block !important;
-					font-size: 2.45rem !important;
+					font-size: 4.75rem !important;
 					font-weight: 800 !important;
-					letter-spacing: 0.12em !important;
-					margin-right: -0.12em !important;
-					line-height: 1.08 !important;
+					letter-spacing: 0.14em !important;
+					margin-right: -0.14em !important;
+					line-height: 1.02 !important;
 					width: 100% !important;
 					text-align: center !important;
 					margin-left: auto !important;
@@ -1450,11 +1452,11 @@ async function main() {
 				}
 				.cover-title-line-2 {
 					display: block !important;
-					font-size: 3.05rem !important;
+					font-size: 5.75rem !important;
 					font-weight: 900 !important;
-					letter-spacing: 0.04em !important;
-					margin-right: -0.04em !important;
-					line-height: 1.05 !important;
+					letter-spacing: 0.05em !important;
+					margin-right: -0.05em !important;
+					line-height: 1.0 !important;
 					width: 100% !important;
 					text-align: center !important;
 					margin-top: 0.25rem !important;
@@ -1464,11 +1466,23 @@ async function main() {
 				.cover-subtitle {
 					font-size: 0.95rem !important;
 					line-height: 1.45 !important;
-					max-width: 5.2in !important;
-					margin: 0.35rem auto 0 !important;
+					max-width: 5.8in !important;
+					margin: 0.45rem auto 0 !important;
 				}
-				.cover-tooth-img {
-					max-height: 200px !important;
+				.cover-illustration-wrap {
+					margin: 0.45rem auto 0.55rem !important;
+					display: flex !important;
+					justify-content: center !important;
+					align-items: center !important;
+				}
+				.cover-pain-head-img {
+					max-height: 265px !important;
+					width: auto !important;
+					object-fit: contain !important;
+				}
+				.cover-tooth-glow {
+					width: 290px !important;
+					height: 290px !important;
 				}
 				.backcover-tagline {
 					font-size: 1.55rem !important;
