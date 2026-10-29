@@ -2717,3 +2717,225 @@ body.focus-spotlight-active .post-content > .tts-active-block {
     padding: 1.15rem;
   }
 }
+
+/* ==========================================================================
+   V3 Mandibular Nerve Cross-Talk & Retrograde Wave Animation
+   ========================================================================== */
+.v3-animation-container {
+  margin: 2.5rem 0;
+  width: 100%;
+  background: #090414;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 35px rgba(168, 85, 247, 0.15);
+  box-sizing: border-box;
+}
+
+.v3-anim-header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.v3-badge {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #c084fc;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  margin-bottom: 0.5rem;
+}
+
+.v3-title {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.01em;
+}
+
+.v3-subtitle {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #94a3b8;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.v3-svg-wrapper {
+  width: 100%;
+  margin: 1rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #080314;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.v3-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 6-Second Synchronized Neural Animation Keyframes */
+@keyframes triggerToothPulse {
+  0%, 100% { fill: #311042; stroke: #f59e0b; stroke-width: 2px; }
+  10%, 25% { fill: #78350f; stroke: #fbbf24; stroke-width: 3.5px; }
+  35% { fill: #311042; stroke: #f59e0b; stroke-width: 2px; }
+}
+
+@keyframes sparkBurstAnim {
+  0%, 25% { opacity: 0; transform: scale(0.6); }
+  28% { opacity: 1; transform: scale(1.15); }
+  34% { opacity: 0.85; transform: scale(1.0); }
+  42% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 0; }
+}
+
+@keyframes tongueFlushAnim {
+  0%, 45% { opacity: 0; }
+  55%, 75% { opacity: 0.85; }
+  90%, 100% { opacity: 0; }
+}
+
+@keyframes neuropeptideSprayAnim {
+  0%, 48% { opacity: 0; transform: translateY(-4px); }
+  56%, 78% { opacity: 1; transform: translateY(0); }
+  90%, 100% { opacity: 0; transform: translateY(4px); }
+}
+
+@keyframes archFlushAnim {
+  0%, 50% { opacity: 0; }
+  60%, 80% { opacity: 0.9; }
+  92%, 100% { opacity: 0; }
+}
+
+.anim-trigger-tooth {
+  animation: triggerToothPulse 6s infinite ease-in-out;
+}
+
+.anim-spark-burst {
+  transform-origin: 700px 95px;
+  animation: sparkBurstAnim 6s infinite ease-out;
+}
+
+.anim-tongue-flush {
+  animation: tongueFlushAnim 6s infinite ease-in-out;
+}
+
+.anim-neuropeptides {
+  animation: neuropeptideSprayAnim 6s infinite ease-in-out;
+}
+
+.anim-arch-flush {
+  animation: archFlushAnim 6s infinite ease-in-out;
+}
+
+/* Pipeline Stage Trackers */
+.v3-status-pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.v3-stage {
+  background: #130a24;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.85rem 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  transition: all 0.3s ease;
+}
+
+.stage-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 3px;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.stage-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-num {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  margin-bottom: 0.15rem;
+}
+
+.stage-title {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.stage-desc {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Synchronized Active Glow for Pipeline Indicators */
+@keyframes stage1Glow {
+  0%, 28% { border-color: #fbbf24; background: rgba(245, 158, 11, 0.12); }
+  32%, 100% { border-color: rgba(255, 255, 255, 0.08); background: #130a24; }
+}
+@keyframes stage2Glow {
+  0%, 25% { border-color: rgba(255, 255, 255, 0.08); background: #130a24; }
+  28%, 46% { border-color: #c084fc; background: rgba(168, 85, 247, 0.15); }
+  50%, 100% { border-color: rgba(255, 255, 255, 0.08); background: #130a24; }
+}
+@keyframes stage3Glow {
+  0%, 42% { border-color: rgba(255, 255, 255, 0.08); background: #130a24; }
+  45%, 72% { border-color: #fb923c; background: rgba(251, 146, 60, 0.15); }
+  76%, 100% { border-color: rgba(255, 255, 255, 0.08); background: #130a24; }
+}
+@keyframes stage4Glow {
+  0%, 55% { border-color: rgba(255, 255, 255, 0.08); background: #130a24; }
+  58%, 92% { border-color: #f43f5e; background: rgba(244, 63, 94, 0.18); }
+  96%, 100% { border-color: rgba(255, 255, 255, 0.08); background: #130a24; }
+}
+
+.stage-1 { animation: stage1Glow 6s infinite; }
+.stage-2 { animation: stage2Glow 6s infinite; }
+.stage-3 { animation: stage3Glow 6s infinite; }
+.stage-4 { animation: stage4Glow 6s infinite; }
+
+.dot-1 { color: #fbbf24; background: #fbbf24; }
+.dot-2 { color: #c084fc; background: #c084fc; }
+.dot-3 { color: #fb923c; background: #fb923c; }
+.dot-4 { color: #f43f5e; background: #f43f5e; }
+
+@media (max-width: 768px) {
+  .v3-status-pipeline {
+    grid-template-columns: 1fr 1fr;
+  }
+  .v3-animation-container {
+    padding: 1.25rem 0.85rem;
+  }
+}
+@media (max-width: 480px) {
+  .v3-status-pipeline {
+    grid-template-columns: 1fr;
+  }
+}

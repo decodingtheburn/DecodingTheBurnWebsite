@@ -9,6 +9,8 @@ entryNumber: 98
 tags: ['neurology', 'cross-talk', 'ephaptic-transmission', 'antidromic', 'research', 'science']
 ---
 
+import V3NeuralCrossTalkAnimation from '../../components/V3NeuralCrossTalkAnimation.astro';
+
 If you suffer from persistent, unexplained pain, one of the most frustrating experiences is having doctors examine the exact area that hurts, only to declare that the tissue looks completely healthy. There is no swelling, no ulcer, no infection, and no visible injury. Yet your sensory experience is unmistakable: a scalding, throbbing ache that refuses to&nbsp;quiet.
 
 For years, clinical medicine often treated this paradox as an insoluble mystery. If the painful tissue looked normal, clinicians assumed the pain had to be centralized, idiopathic, or psychological.
@@ -25,78 +27,7 @@ Under normal conditions, every sensory nerve fiber is electrically isolated. Mye
 
 When a localized area is subjected to chronic chemical stress, sustained low-grade acidity, or repetitive micro-trauma, that insulation breaks down. The barrier becomes permeable, and electrical signals begin to jump between neighboring&nbsp;channels.
 
-<div class="crosstalk-diagram-wrap">
-  <div class="crosstalk-diagram-card">
-    <div class="crosstalk-diagram-header">
-      <div class="crosstalk-title-badge">Biological Circuit</div>
-      <h3 class="crosstalk-diagram-heading">Ephaptic Cross-Talk &amp; Retrograde Conduction</h3>
-      <p class="crosstalk-diagram-sub">How an upstream trigger jumps across adjacent sensory fibers and fires backward into healthy downstream tissue.</p>
-    </div>
-
-    
-    <div class="crosstalk-flow-box trigger-box">
-      <div class="flow-box-header">
-        <span class="flow-step-label">1. Upstream Trigger (Fiber A)</span>
-        <span class="flow-status-tag tag-active">Active Excitation</span>
-      </div>
-      <p class="flow-box-text">
-        A sustained chemical or mechanical breach (e.g. proton influx, micro-leakage, or local irritation) continuously depolarizes <strong>Fiber A</strong>, firing rapid action potentials along the nerve bundle.
-      </p>
-    </div>
-
-    
-    <div class="crosstalk-spark-junction">
-      <div class="spark-line-left"></div>
-      <div class="spark-node">
-        <div class="spark-pulse"></div>
-        <div class="spark-icon">&#9889;</div>
-        <div class="spark-label">EPHAPTIC CROSS-TALK GAP</div>
-        <div class="spark-sub">Current leaks across demyelinated axons &amp; glial gap junctions</div>
-      </div>
-      <div class="spark-line-right"></div>
-    </div>
-
-    
-    <div class="crosstalk-flow-box receiver-box">
-      <div class="flow-box-header">
-        <span class="flow-step-label">2. Downstream Receiver (Fiber B)</span>
-        <span class="flow-status-tag tag-cross">Cross-Talk Ignited</span>
-      </div>
-      <p class="flow-box-text">
-        <strong>Fiber B</strong> (which innervates completely separate downstream tissue) catches the electrical spark. Because peripheral axons lack one-way directional synapses, the action potential detonates in <strong>both directions simultaneously</strong>.
-      </p>
-    </div>
-
-    
-    <div class="crosstalk-split-grid">
-      
-      <div class="split-col forward-col">
-        <div class="split-arrow-badge">&uarr; Forward (Orthodromic)</div>
-        <h4 class="split-heading">Upward to Brainstem &amp; Cortex</h4>
-        <p class="split-text">
-          Signal ascends to the sensory cortex. The brain interprets the signal as originating from Fiber B's territory, creating <strong>spatial mislocalization</strong> (referred pain).
-        </p>
-        <div class="split-result result-forward">
-          Brain perceives: "Severe pain in healthy tissue!"
-        </div>
-      </div>
-
-      
-      <div class="split-col backward-col">
-        <div class="split-arrow-badge">&darr; Backward (Antidromic)</div>
-        <h4 class="split-heading">Backward to Downstream Nerve Ending</h4>
-        <p class="split-text">
-          Signal races in reverse down to the peripheral terminal, triggering the exocytosis of <strong>CGRP</strong> and <strong>Substance P</strong> directly into uninjured tissue.
-        </p>
-        <div class="split-result result-backward">
-          Tissue response: Blood vessels dilate, mast cells degranulate!
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+<V3NeuralCrossTalkAnimation />
 
 ---
 

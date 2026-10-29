@@ -1,0 +1,196 @@
+---
+// V3NeuralCrossTalkAnimation.astro
+// Interactive / Animated Neural Circuit of the Mandibular Nerve (V3)
+// Demonstrates Upstream Acid Leak -> Trigeminal Ganglion Cross-Talk -> Retrograde Wave to Tongue & Arch
+---
+
+<div class="v3-animation-container">
+  <div class="v3-anim-header">
+    <div class="v3-badge">Live Neural Simulation</div>
+    <h3 class="v3-title">The V3 Mandibular Cross-Talk &amp; Retrograde Wave</h3>
+    <p class="v3-subtitle">Watch an electrical spike ignite at a lower molar nerve ending, travel up to the Trigeminal Ganglion, spark adjacent fibers, and blast backward across the entire lower arch and tongue.</p>
+  </div>
+
+  <div class="v3-svg-wrapper">
+    <svg viewBox="0 0 840 500" class="v3-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Gradients -->
+        <linearGradient id="v3TrunkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#a855f7" stop-opacity="0.9" />
+          <stop offset="100%" stop-color="#6366f1" stop-opacity="0.4" />
+        </linearGradient>
+        <radialGradient id="ganglionGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#c084fc" stop-opacity="0.8" />
+          <stop offset="50%" stop-color="#7e22ce" stop-opacity="0.4" />
+          <stop offset="100%" stop-color="#1e1b4b" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="tongueBurnGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ff0055" stop-opacity="0.75" />
+          <stop offset="60%" stop-color="#ff5500" stop-opacity="0.35" />
+          <stop offset="100%" stop-color="#3b0764" stop-opacity="0" />
+        </radialGradient>
+        <filter id="glowEffect" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="sparkGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Canvas Background -->
+      <rect x="0" y="0" width="840" height="500" fill="#080314" rx="16" />
+      <circle cx="700" cy="95" r="140" fill="url(#ganglionGlow)" opacity="0.6" />
+
+      <!-- Tongue Silhouette (Lingual Target Zone) -->
+      <path d="M 170 210 C 230 180, 330 190, 390 230 C 420 250, 410 300, 360 320 C 290 345, 180 320, 140 280 C 120 255, 130 225, 170 210 Z" fill="#1e1136" stroke="#4c1d95" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.85" />
+      <text x="260" y="260" fill="#a78bfa" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" letter-spacing="0.08em" text-anchor="middle" opacity="0.75">TONGUE (LINGUAL MUCOSA)</text>
+      <!-- Tongue Burn Flush (Animated) -->
+      <path class="anim-tongue-flush" d="M 170 210 C 230 180, 330 190, 390 230 C 420 250, 410 300, 360 320 C 290 345, 180 320, 140 280 C 120 255, 130 225, 170 210 Z" fill="url(#tongueBurnGlow)" opacity="0" />
+
+      <!-- Mandibular Lower Arch Silhouette (Bone & Canal) -->
+      <path d="M 680 180 C 650 260, 580 340, 490 390 C 410 435, 290 445, 190 430 C 120 420, 70 395, 60 365 C 50 330, 90 300, 150 320 C 220 345, 330 360, 430 330 C 510 300, 580 230, 610 160 Z" fill="#0d091f" stroke="#332057" stroke-width="1.2" opacity="0.9" />
+
+      <!-- Lower Arch Teeth Along Mandible -->
+      <g opacity="0.85">
+        <rect x="80" y="340" width="14" height="20" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <rect x="100" y="348" width="16" height="22" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <rect x="122" y="356" width="18" height="23" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <rect x="150" y="365" width="22" height="25" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <rect x="180" y="375" width="24" height="26" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <rect x="215" y="385" width="28" height="28" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <!-- TRIGGER TOOTH: Lower Molar #19 with Leaky Margin -->
+        <rect class="anim-trigger-tooth" x="255" y="392" width="32" height="30" rx="5" fill="#311042" stroke="#f59e0b" stroke-width="2" />
+        <rect x="300" y="395" width="32" height="28" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <rect x="345" y="390" width="30" height="26" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1" />
+      </g>
+      <!-- Trigger Tooth Label -->
+      <g>
+        <circle cx="271" cy="407" r="4" fill="#f59e0b" filter="url(#glowEffect)" />
+        <text x="271" y="445" fill="#fbbf24" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" text-anchor="middle">TRIGGER TOOTH (Molar #19)</text>
+        <text x="271" y="460" fill="#fde68a" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" text-anchor="middle">Acid Leak / Exposed Tubule</text>
+      </g>
+
+      <!-- NERVE PATHWAYS (The V3 Mandibular Wiring System) -->
+      <!-- 1. Inferior Alveolar Nerve ascending from Molar #19 up to Ganglion -->
+      <path id="ianAscendingPath" d="M 271 392 C 340 395, 460 365, 540 280 C 600 210, 650 150, 700 95" fill="none" stroke="#6b21a8" stroke-width="3" stroke-linecap="round" />
+
+      <!-- 2. Retrograde to Entire Lower Arch Teeth -->
+      <path id="archRetrogradePath" d="M 540 280 C 460 365, 340 395, 271 392 C 220 388, 140 370, 90 350" fill="none" stroke="#701a75" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.65" />
+
+      <!-- 3. Retrograde Lingual Nerve to Tongue -->
+      <path id="lingualRetrogradePath" d="M 540 280 C 470 260, 380 250, 290 250 C 230 250, 180 245, 150 240" fill="none" stroke="#831843" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.65" />
+
+      <!-- 4. Central Projection to Brainstem -->
+      <path d="M 700 95 C 730 80, 760 65, 800 50" fill="none" stroke="#4338ca" stroke-width="2.5" stroke-dasharray="4 3" opacity="0.7" />
+      <text x="765" y="45" fill="#a5b4fc" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700">To Brainstem</text>
+
+      <!-- TRIGEMINAL GANGLION -->
+      <g id="ganglionHub">
+        <circle cx="700" cy="95" r="26" fill="#2e1065" stroke="#a855f7" stroke-width="2.5" />
+        <circle cx="686" cy="85" r="5" fill="#7c3aed" opacity="0.8" />
+        <circle cx="712" cy="88" r="4.5" fill="#7c3aed" opacity="0.8" />
+        <circle cx="698" cy="110" r="5.5" fill="#7c3aed" opacity="0.8" />
+        <circle cx="714" cy="104" r="4" fill="#7c3aed" opacity="0.8" />
+        <text x="700" y="60" fill="#e9d5ff" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" text-anchor="middle">TRIGEMINAL GANGLION</text>
+        <text x="700" y="73" fill="#c084fc" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" text-anchor="middle">SGC Gap Junctions</text>
+      </g>
+
+      <!-- Cross-Talk Spark Burst (Flash at Ganglion) -->
+      <g class="anim-spark-burst" opacity="0">
+        <circle cx="700" cy="95" r="38" fill="none" stroke="#f43f5e" stroke-width="3" filter="url(#sparkGlow)" />
+        <circle cx="700" cy="95" r="20" fill="#ffffff" filter="url(#sparkGlow)" opacity="0.9" />
+        <line x1="660" y1="95" x2="740" y2="95" stroke="#fbbf24" stroke-width="2.5" />
+        <line x1="700" y1="55" x2="700" y2="135" stroke="#fbbf24" stroke-width="2.5" />
+        <line x1="672" y1="67" x2="728" y2="123" stroke="#f472b6" stroke-width="2" />
+        <line x1="672" y1="123" x2="728" y2="67" stroke="#f472b6" stroke-width="2" />
+        <text x="700" y="148" fill="#fda4af" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="800" text-anchor="middle" filter="url(#glowEffect)">CROSS-TALK DETONATION!</text>
+      </g>
+
+      <!-- NERVE LABELS -->
+      <text x="590" y="240" fill="#c084fc" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700">V3 Mandibular Trunk</text>
+      <text x="350" y="235" fill="#f472b6" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700">Lingual Nerve (to Tongue)</text>
+      <text x="470" y="340" fill="#fbbf24" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700">Inferior Alveolar Nerve (to Arch)</text>
+
+      <!-- ANIMATED PULSES -->
+      <!-- 1. Upstream Pulse: From Molar #19 up to Ganglion -->
+      <circle class="anim-pulse-upstream" r="6" fill="#fbbf24" filter="url(#glowEffect)">
+        <animateMotion dur="6s" repeatCount="indefinite" path="M 271 392 C 340 395, 460 365, 540 280 C 600 210, 650 150, 700 95" keyTimes="0; 0.30; 0.32; 1" keyPoints="0; 1; 1; 1" />
+      </circle>
+
+      <!-- 2. Backward Pulse A (Retrograde Lingual): To Tongue -->
+      <circle class="anim-pulse-lingual" r="6.5" fill="#f43f5e" filter="url(#glowEffect)">
+        <animateMotion dur="6s" repeatCount="indefinite" path="M 700 95 C 650 150, 600 210, 540 280 C 470 260, 380 250, 290 250 C 230 250, 180 245, 150 240" keyTimes="0; 0.38; 0.72; 1" keyPoints="0; 0; 1; 1" />
+      </circle>
+
+      <!-- 3. Backward Pulse B (Retrograde Arch): To Front Teeth -->
+      <circle class="anim-pulse-arch" r="6" fill="#fb923c" filter="url(#glowEffect)">
+        <animateMotion dur="6s" repeatCount="indefinite" path="M 700 95 C 650 150, 600 210, 540 280 C 460 365, 340 395, 271 392 C 220 388, 140 370, 90 350" keyTimes="0; 0.38; 0.78; 1" keyPoints="0; 0; 1; 1" />
+      </circle>
+
+      <!-- Neuropeptide Spray Particles on Tongue -->
+      <g class="anim-neuropeptides" opacity="0">
+        <circle cx="160" cy="225" r="3" fill="#ff0055" filter="url(#glowEffect)" />
+        <circle cx="185" cy="245" r="3.5" fill="#ff0055" filter="url(#glowEffect)" />
+        <circle cx="215" cy="235" r="3" fill="#ff5500" filter="url(#glowEffect)" />
+        <circle cx="240" cy="255" r="4" fill="#ff0055" filter="url(#glowEffect)" />
+        <circle cx="270" cy="240" r="3" fill="#ffaa00" filter="url(#glowEffect)" />
+        <circle cx="310" cy="265" r="3.5" fill="#ff0055" filter="url(#glowEffect)" />
+        <text x="235" y="295" fill="#fecdd3" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="800" text-anchor="middle" filter="url(#glowEffect)">NEUROPEPTIDE FLOOD (CGRP &amp; Substance P)</text>
+      </g>
+
+      <!-- Arch Radiating Pain Rings (Anterior Teeth) -->
+      <g class="anim-arch-flush" opacity="0">
+        <circle cx="100" cy="350" r="18" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="3 3" opacity="0.8" />
+        <circle cx="160" cy="370" r="22" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="3 3" opacity="0.8" />
+        <text x="130" y="415" fill="#fdba74" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" text-anchor="middle">Whole Lower Arch Achiness</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Synchronized 4-Stage Status Pipeline -->
+  <div class="v3-status-pipeline">
+    <div class="v3-stage stage-1">
+      <div class="stage-dot dot-1"></div>
+      <div class="stage-info">
+        <div class="stage-num">STAGE 1</div>
+        <div class="stage-title">Upstream Acid Leak</div>
+        <div class="stage-desc">Protons enter Molar #19, firing IAN sensory fiber upward.</div>
+      </div>
+    </div>
+
+    <div class="v3-stage stage-2">
+      <div class="stage-dot dot-2"></div>
+      <div class="stage-info">
+        <div class="stage-num">STAGE 2</div>
+        <div class="stage-title">Ganglion Cross-Talk</div>
+        <div class="stage-desc">Glial gap junctions spark the adjacent lingual &amp; arch fibers.</div>
+      </div>
+    </div>
+
+    <div class="v3-stage stage-3">
+      <div class="stage-dot dot-3"></div>
+      <div class="stage-info">
+        <div class="stage-num">STAGE 3</div>
+        <div class="stage-title">Retrograde Back-Fire</div>
+        <div class="stage-desc">Antidromic pulses race down into the tongue and anterior arch.</div>
+      </div>
+    </div>
+
+    <div class="v3-stage stage-4">
+      <div class="stage-dot dot-4"></div>
+      <div class="stage-info">
+        <div class="stage-num">STAGE 4</div>
+        <div class="stage-title">Neuropeptide Flood</div>
+        <div class="stage-desc">CGRP &amp; Substance P spray into healthy tissue, burning tongue!</div>
+      </div>
+    </div>
+  </div>
+</div>
