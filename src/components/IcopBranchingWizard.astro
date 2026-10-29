@@ -1,0 +1,1189 @@
+---
+// IcopBranchingWizard.astro
+// Interactive ICOP-AL Diagnostic Algorithm Decision Tree & Quiz Wizard
+// Dual-pane breakout layout: Step-by-step clinical questions + Dynamic SVG branching flowchart
+---
+
+<div class="icop-wizard-wrapper" id="icop-wizard-root">
+	<!-- Top Intro Banner -->
+	<div class="icop-wizard-header">
+		<h2 class="icop-wizard-title">Interactive ICOP-AL Clinical Decision&nbsp;Tree</h2>
+		<p class="icop-wizard-desc">
+			Navigate the official International Classification of Orofacial Pain diagnostic algorithm step by step. Track your responses in real time on the branching flowchart to determine whether your symptoms align with classic Primary BMS, secondary pathology, or peripheral hardware&nbsp;leaks.
+		</p>
+	</div>
+
+	<!-- Main Dual-Pane Grid -->
+	<div class="icop-split-grid">
+		<!-- Left Pane: Interactive Question Card & Controls -->
+		<div class="icop-question-pane">
+			<div class="icop-card-wrapper" id="icop-question-card">
+				<!-- Dynamically rendered via client JS -->
+			</div>
+		</div>
+
+		<!-- Right Pane: Dynamic SVG Branching Tree Flowchart -->
+		<div class="icop-flowchart-pane">
+			<div class="icop-flowchart-header">
+				<div class="flowchart-title-wrap">
+					<span class="flowchart-label">Algorithm Visualizer</span>
+					<span class="flowchart-status" id="flowchart-status-text">Step 1: Clinical Safety&nbsp;Triage</span>
+				</div>
+				<button type="button" class="icop-btn-ghost" id="icop-btn-reset-tree" title="Reset flowchart to beginning">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+						<path d="M3 3v5h5"></path>
+					</svg>
+					<span>Reset Flow</span>
+				</button>
+			</div>
+
+			<div class="icop-svg-canvas-container" id="icop-svg-container">
+				<svg viewBox="0 0 760 840" class="icop-tree-svg" id="icop-tree-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ICOP-AL Decision Tree Flowchart">
+					<defs>
+						<!-- Arrow markers -->
+						<marker id="arrow-default" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+							<path d="M 0 1 L 8 5 L 0 9 z" fill="#64748b" />
+						</marker>
+						<marker id="arrow-active" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+							<path d="M 0 1 L 8 5 L 0 9 z" fill="#c084fc" />
+						</marker>
+						<marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+							<path d="M 0 1 L 8 5 L 0 9 z" fill="#ef4444" />
+						</marker>
+						<marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+							<path d="M 0 1 L 8 5 L 0 9 z" fill="#f59e0b" />
+						</marker>
+						<marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+							<path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+						</marker>
+						<marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+							<path d="M 0 1 L 8 5 L 0 9 z" fill="#d8b4fe" />
+						</marker>
+					</defs>
+
+					<!-- Decision Paths (Connecting lines) -->
+					<!-- Level 1: Red-Flag Screen (Center X: 480, Y: 45) -->
+					<path id="edge-n1-t1" d="M 350 45 L 260 115" class="icop-edge" marker-end="url(#arrow-default)" />
+					<path id="edge-n1-n2" d="M 480 70 L 480 115" class="icop-edge" marker-end="url(#arrow-default)" />
+
+					<!-- Level 2: Mucosal Exam (Center X: 480, Y: 140) -->
+					<path id="edge-n2-t2" d="M 350 140 L 260 215" class="icop-edge" marker-end="url(#arrow-default)" />
+					<path id="edge-n2-n3" d="M 480 165 L 480 215" class="icop-edge" marker-end="url(#arrow-default)" />
+
+					<!-- Level 3: Chronobiology (Center X: 480, Y: 240) -->
+					<path id="edge-n3-t3" d="M 350 240 L 260 315" class="icop-edge" marker-end="url(#arrow-default)" />
+					<path id="edge-n3-n4" d="M 480 265 L 480 315" class="icop-edge" marker-end="url(#arrow-default)" />
+
+					<!-- Level 4: Local Dental Exclusions (Center X: 480, Y: 340) -->
+					<path id="edge-n4-t4" d="M 350 340 L 260 415" class="icop-edge" marker-end="url(#arrow-default)" />
+					<path id="edge-n4-n5" d="M 480 365 L 480 415" class="icop-edge" marker-end="url(#arrow-default)" />
+
+					<!-- Level 5: Systemic Medical Exclusions (Center X: 480, Y: 440) -->
+					<path id="edge-n5-t5" d="M 350 440 L 260 515" class="icop-edge" marker-end="url(#arrow-default)" />
+					<path id="edge-n5-n6" d="M 480 465 L 480 515" class="icop-edge" marker-end="url(#arrow-default)" />
+
+					<!-- Level 6: Peripheral Hardware Frontier (Center X: 480, Y: 540) -->
+					<path id="edge-n6-t6" d="M 400 565 L 290 645" class="icop-edge" marker-end="url(#arrow-default)" />
+					<path id="edge-n6-t7" d="M 560 565 L 610 645" class="icop-edge" marker-end="url(#arrow-default)" />
+
+					<!-- Decision Nodes (Rectangles) -->
+					<!-- Node 1: Red-Flag Screen -->
+					<g id="node-n1" class="icop-node icop-node-decision active" data-node="n1" tabindex="0" role="button" aria-label="Step 1: Clinical Safety Triage">
+						<rect x="350" y="20" width="260" height="50" rx="10" class="node-box" />
+						<text x="480" y="42" class="node-title" text-anchor="middle">1. Clinical Safety Triage</text>
+						<text x="480" y="58" class="node-subtitle" text-anchor="middle">Ruling out acute red-flag signs</text>
+					</g>
+
+					<!-- Terminal 1: Urgent Specialist Care -->
+					<g id="node-t1" class="icop-node icop-node-terminal node-terminal-red" data-node="t1" tabindex="0" role="button" aria-label="Urgent Specialist Referral">
+						<rect x="30" y="115" width="230" height="50" rx="10" class="node-box" />
+						<text x="145" y="137" class="node-title" text-anchor="middle">Urgent Specialist Care</text>
+						<text x="145" y="153" class="node-subtitle" text-anchor="middle">Oral Surgery / ENT / Oncology</text>
+					</g>
+
+					<!-- Node 2: Mucosal Visual Exam -->
+					<g id="node-n2" class="icop-node icop-node-decision" data-node="n2" tabindex="0" role="button" aria-label="Step 2: Mucosal Visual Examination">
+						<rect x="350" y="115" width="260" height="50" rx="10" class="node-box" />
+						<text x="480" y="137" class="node-title" text-anchor="middle">2. Mucosal Visual Exam</text>
+						<text x="480" y="153" class="node-subtitle" text-anchor="middle">Visual soft tissue inspection</text>
+					</g>
+
+					<!-- Terminal 2: Secondary Mucosal Pathology -->
+					<g id="node-t2" class="icop-node icop-node-terminal node-terminal-amber" data-node="t2" tabindex="0" role="button" aria-label="Secondary Mucosal Pathology">
+						<rect x="30" y="215" width="230" height="50" rx="10" class="node-box" />
+						<text x="145" y="237" class="node-title" text-anchor="middle">Secondary Mucosal Pathology</text>
+						<text x="145" y="253" class="node-subtitle" text-anchor="middle">Candida, Lichen Planus, etc.</text>
+					</g>
+
+					<!-- Node 3: Chronobiology & Duration -->
+					<g id="node-n3" class="icop-node icop-node-decision" data-node="n3" tabindex="0" role="button" aria-label="Step 3: Chronobiology & Duration">
+						<rect x="350" y="215" width="260" height="50" rx="10" class="node-box" />
+						<text x="480" y="237" class="node-title" text-anchor="middle">3. Chronobiology &amp; Duration</text>
+						<text x="480" y="253" class="node-subtitle" text-anchor="middle">&gt;2 hrs/day for &gt;3 continuous months</text>
+					</g>
+
+					<!-- Terminal 3: Acute / Subacute Orofacial Pain -->
+					<g id="node-t3" class="icop-node icop-node-terminal node-terminal-slate" data-node="t3" tabindex="0" role="button" aria-label="Acute or Subacute Pain">
+						<rect x="30" y="315" width="230" height="50" rx="10" class="node-box" />
+						<text x="145" y="337" class="node-title" text-anchor="middle">Acute / Subacute Pain</text>
+						<text x="145" y="353" class="node-subtitle" text-anchor="middle">Does not fulfill 3-month ICOP rule</text>
+					</g>
+
+					<!-- Node 4: Local Dental Exclusions -->
+					<g id="node-n4" class="icop-node icop-node-decision" data-node="n4" tabindex="0" role="button" aria-label="Step 4: Local Dental Exclusions">
+						<rect x="350" y="315" width="260" height="50" rx="10" class="node-box" />
+						<text x="480" y="337" class="node-title" text-anchor="middle">4. Local Dental Exclusions</text>
+						<text x="480" y="353" class="node-subtitle" text-anchor="middle">Salivary flow, trauma, allergy tests</text>
+					</g>
+
+					<!-- Terminal 4: Secondary Local BMS -->
+					<g id="node-t4" class="icop-node icop-node-terminal node-terminal-amber" data-node="t4" tabindex="0" role="button" aria-label="Secondary Local Dental BMS">
+						<rect x="30" y="415" width="230" height="50" rx="10" class="node-box" />
+						<text x="145" y="437" class="node-title" text-anchor="middle">Secondary Local Dental BMS</text>
+						<text x="145" y="453" class="node-subtitle" text-anchor="middle">Hyposalivation, allergy, or trauma</text>
+					</g>
+
+					<!-- Node 5: Systemic Medical Exclusions -->
+					<g id="node-n5" class="icop-node icop-node-decision" data-node="n5" tabindex="0" role="button" aria-label="Step 5: Systemic Medical Exclusions">
+						<rect x="350" y="415" width="260" height="50" rx="10" class="node-box" />
+						<text x="480" y="437" class="node-title" text-anchor="middle">5. Systemic Medical Exclusions</text>
+						<text x="480" y="453" class="node-subtitle" text-anchor="middle">B12, ferritin, HbA1c, thyroid, drugs</text>
+					</g>
+
+					<!-- Terminal 5: Secondary Systemic BMS -->
+					<g id="node-t5" class="icop-node icop-node-terminal node-terminal-amber" data-node="t5" tabindex="0" role="button" aria-label="Secondary Systemic BMS">
+						<rect x="30" y="515" width="230" height="50" rx="10" class="node-box" />
+						<text x="145" y="537" class="node-title" text-anchor="middle">Secondary Systemic BMS</text>
+						<text x="145" y="553" class="node-subtitle" text-anchor="middle">Nutritional, thyroid, or medication</text>
+					</g>
+
+					<!-- Node 6: Peripheral Hardware Frontier -->
+					<g id="node-n6" class="icop-node icop-node-decision" data-node="n6" tabindex="0" role="button" aria-label="Step 6: Hardware & Tubule Leak Frontier">
+						<rect x="330" y="515" width="300" height="52" rx="10" class="node-box" />
+						<text x="480" y="537" class="node-title" text-anchor="middle">6. Peripheral Hardware Frontier</text>
+						<text x="480" y="553" class="node-subtitle" text-anchor="middle">Sub-micron tubule leaks &amp; acid testing</text>
+					</g>
+
+					<!-- Terminal 6: Peripheral Hardware Leak -->
+					<g id="node-t6" class="icop-node icop-node-terminal node-terminal-purple" data-node="t6" tabindex="0" role="button" aria-label="Peripheral Restorative / Tubule Leak">
+						<rect x="150" y="645" width="260" height="54" rx="12" class="node-box" />
+						<text x="280" y="668" class="node-title" text-anchor="middle">Peripheral Restorative Leak</text>
+						<text x="280" y="685" class="node-subtitle" text-anchor="middle">Exposed tubules &amp; cement washout</text>
+					</g>
+
+					<!-- Terminal 7: Classical Primary BMS (ICOP 6.1) -->
+					<g id="node-t7" class="icop-node icop-node-terminal node-terminal-emerald" data-node="t7" tabindex="0" role="button" aria-label="ICOP 6.1 Primary BMS">
+						<rect x="460" y="645" width="270" height="54" rx="12" class="node-box" />
+						<text x="595" y="668" class="node-title" text-anchor="middle">ICOP 6.1: Primary BMS</text>
+						<text x="595" y="685" class="node-subtitle" text-anchor="middle">Classic idiopathic neuropathic condition</text>
+					</g>
+				</svg>
+			</div>
+
+			<div class="icop-legend">
+				<div class="legend-item"><span class="legend-dot dot-purple"></span><span>Active Path</span></div>
+				<div class="legend-item"><span class="legend-dot dot-emerald"></span><span>Primary ICOP 6.1</span></div>
+				<div class="legend-item"><span class="legend-dot dot-amber"></span><span>Secondary Condition</span></div>
+				<div class="legend-item"><span class="legend-dot dot-red"></span><span>Urgent Medical Triage</span></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.icop-wizard-wrapper {
+		background: #ffffff;
+		border: 1.5px solid #e2e8f0;
+		border-radius: 20px;
+		padding: 2rem 1.5rem 2.25rem;
+		margin: 3rem 0;
+		box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+		font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+		box-sizing: border-box;
+		width: 100%;
+	}
+
+	/* 86vw Breakout on Desktop and Tablet */
+	@media (min-width: 1024px) {
+		.icop-wizard-wrapper {
+			position: relative;
+			width: 88vw;
+			max-width: 1240px;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 2.5rem 2.5rem 3rem;
+		}
+	}
+
+	.icop-wizard-header {
+		margin-bottom: 2rem;
+		text-align: left;
+		border-bottom: 1.5px solid #f1f5f9;
+		padding-bottom: 1.5rem;
+	}
+
+	.icop-wizard-title {
+		font-size: 1.5rem;
+		font-weight: 800;
+		color: #1e1b4b; /* Deep Indigo / Purple */
+		margin: 0 0 0.5rem;
+		text-wrap: balance;
+		letter-spacing: -0.015em;
+	}
+
+	.icop-wizard-desc {
+		font-size: 0.95rem;
+		line-height: 1.65;
+		color: #475569;
+		margin: 0;
+		text-wrap: pretty;
+		max-width: 860px;
+	}
+
+	/* Dual-Pane Grid */
+	.icop-split-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		align-items: stretch;
+	}
+
+	@media (min-width: 1024px) {
+		.icop-split-grid {
+			grid-template-columns: minmax(380px, 1fr) minmax(480px, 1.3fr);
+			gap: 2.25rem;
+		}
+	}
+
+	/* Question Card Pane */
+	.icop-question-pane {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.icop-card-wrapper {
+		background: #f8fafc;
+		border: 1.5px solid #cbd5e1;
+		border-radius: 16px;
+		padding: 1.75rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 520px;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+	}
+
+	/* Flowchart Pane */
+	.icop-flowchart-pane {
+		background: #0f172a; /* Slate 900 dark blueprint canvas */
+		border-radius: 16px;
+		padding: 1.5rem;
+		border: 1.5px solid #334155;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		min-height: 520px;
+	}
+
+	.icop-flowchart-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+		padding-bottom: 0.85rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.flowchart-title-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.flowchart-label {
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #94a3b8;
+	}
+
+	.flowchart-status {
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #f1f5f9;
+	}
+
+	.icop-btn-ghost {
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		color: #cbd5e1;
+		padding: 0.45rem 0.85rem;
+		border-radius: 8px;
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		transition: all 0.15s ease;
+	}
+
+	.icop-btn-ghost:hover {
+		background: rgba(255, 255, 255, 0.18);
+		color: #ffffff;
+	}
+
+	.icop-svg-canvas-container {
+		width: 100%;
+		flex-grow: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.icop-tree-svg {
+		width: 100%;
+		height: auto;
+		max-height: 660px;
+	}
+
+	/* SVG Elements Styling */
+	.icop-edge {
+		stroke: #334155;
+		stroke-width: 2.5;
+		fill: none;
+		transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
+	}
+
+	.icop-edge.edge-active {
+		stroke: #c084fc;
+		stroke-width: 3.5;
+	}
+
+	.icop-edge.edge-red {
+		stroke: #ef4444;
+		stroke-width: 3.5;
+	}
+
+	.icop-edge.edge-amber {
+		stroke: #f59e0b;
+		stroke-width: 3.5;
+	}
+
+	.icop-edge.edge-emerald {
+		stroke: #10b981;
+		stroke-width: 3.5;
+	}
+
+	.icop-edge.edge-purple {
+		stroke: #d8b4fe;
+		stroke-width: 3.5;
+	}
+
+	/* Node Groups */
+	.icop-node {
+		cursor: pointer;
+		transition: transform 0.2s ease, opacity 0.25s ease;
+		outline: none;
+	}
+
+	.icop-node:hover {
+		transform: translateY(-2px);
+	}
+
+	.icop-node .node-box {
+		fill: #1e293b;
+		stroke: #475569;
+		stroke-width: 1.5;
+		transition: all 0.25s ease;
+	}
+
+	.icop-node .node-title {
+		fill: #f8fafc;
+		font-size: 13px;
+		font-weight: 700;
+		font-family: inherit;
+		letter-spacing: -0.01em;
+	}
+
+	.icop-node .node-subtitle {
+		fill: #94a3b8;
+		font-size: 11px;
+		font-family: inherit;
+	}
+
+	/* Active Node Pulse / Highlight */
+	.icop-node.active .node-box {
+		fill: #3b0764;
+		stroke: #c084fc;
+		stroke-width: 2.5;
+		filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.7));
+	}
+
+	.icop-node.active .node-title {
+		fill: #faf5ff;
+	}
+
+	.icop-node.active .node-subtitle {
+		fill: #e9d5ff;
+	}
+
+	/* Visited Node */
+	.icop-node.visited:not(.active) .node-box {
+		stroke: #9333ea;
+		fill: #2e1065;
+	}
+
+	/* Dimmed Inactive Nodes */
+	.icop-node.dimmed {
+		opacity: 0.32;
+	}
+
+	.icop-edge.dimmed {
+		opacity: 0.18;
+	}
+
+	/* Terminals Colors */
+	.node-terminal-red .node-box {
+		fill: #450a0a;
+		stroke: #f87171;
+	}
+	.node-terminal-red.active .node-box {
+		fill: #7f1d1d;
+		stroke: #ef4444;
+		filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.8));
+	}
+
+	.node-terminal-amber .node-box {
+		fill: #451a03;
+		stroke: #fbbf24;
+	}
+	.node-terminal-amber.active .node-box {
+		fill: #78350f;
+		stroke: #f59e0b;
+		filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.8));
+	}
+
+	.node-terminal-slate .node-box {
+		fill: #1e293b;
+		stroke: #94a3b8;
+	}
+
+	.node-terminal-purple .node-box {
+		fill: #3b0764;
+		stroke: #c084fc;
+	}
+	.node-terminal-purple.active .node-box {
+		fill: #581c87;
+		stroke: #d8b4fe;
+		filter: drop-shadow(0 0 14px rgba(216, 180, 254, 0.85));
+	}
+
+	.node-terminal-emerald .node-box {
+		fill: #064e3b;
+		stroke: #34d399;
+	}
+	.node-terminal-emerald.active .node-box {
+		fill: #065f46;
+		stroke: #10b981;
+		filter: drop-shadow(0 0 14px rgba(16, 185, 129, 0.85));
+	}
+
+	/* Legend */
+	.icop-legend {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.25rem;
+		justify-content: center;
+		margin-top: 1rem;
+		padding-top: 0.85rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		font-size: 0.78rem;
+		color: #94a3b8;
+	}
+
+	.legend-item {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	.legend-dot {
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+	.dot-purple { background: #c084fc; box-shadow: 0 0 8px #c084fc; }
+	.dot-emerald { background: #10b981; }
+	.dot-amber { background: #f59e0b; }
+	.dot-red { background: #ef4444; }
+
+	/* Interactive Question Card Styling (Rendered via JS) */
+	:global(.icop-q-step-indicator) {
+		font-size: 0.82rem;
+		font-weight: 700;
+		color: #7e22ce;
+		margin-bottom: 0.45rem;
+		display: block;
+	}
+
+	:global(.icop-q-title) {
+		font-size: 1.3rem;
+		font-weight: 800;
+		color: #0f172a;
+		margin: 0 0 0.65rem;
+		line-height: 1.35;
+		text-wrap: balance;
+	}
+
+	:global(.icop-q-desc) {
+		font-size: 0.90rem;
+		line-height: 1.6;
+		color: #475569;
+		margin-bottom: 1.35rem;
+		text-wrap: pretty;
+	}
+
+	:global(.icop-options-stack) {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+		margin-bottom: 1.5rem;
+	}
+
+	:global(.icop-opt-btn) {
+		background: #ffffff;
+		border: 1.5px solid #cbd5e1;
+		border-radius: 12px;
+		padding: 1rem 1.15rem;
+		text-align: left;
+		cursor: pointer;
+		transition: all 0.15s ease;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		position: relative;
+	}
+
+	:global(.icop-opt-btn:hover) {
+		border-color: #9333ea;
+		background: #faf5ff;
+		transform: translateX(4px);
+		box-shadow: 0 4px 12px rgba(147, 51, 234, 0.08);
+	}
+
+	:global(.icop-opt-label) {
+		font-size: 0.96rem;
+		font-weight: 700;
+		color: #1e1b4b;
+	}
+
+	:global(.icop-opt-sub) {
+		font-size: 0.82rem;
+		color: #64748b;
+		line-height: 1.45;
+	}
+
+	:global(.icop-card-actions) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 1rem;
+		border-top: 1.5px solid #e2e8f0;
+	}
+
+	:global(.icop-btn-back) {
+		background: transparent;
+		border: none;
+		color: #64748b;
+		font-size: 0.85rem;
+		font-weight: 600;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.5rem 0.75rem;
+		border-radius: 6px;
+		transition: all 0.15s ease;
+	}
+
+	:global(.icop-btn-back:hover) {
+		color: #0f172a;
+		background: #e2e8f0;
+	}
+
+	/* Terminal Results Card Styling */
+	:global(.icop-result-card) {
+		background: #f8fafc;
+		border: 2px solid #cbd5e1;
+		border-radius: 14px;
+		padding: 1.75rem;
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: space-between;
+	}
+
+	:global(.icop-result-card.res-emerald) {
+		border-color: #10b981;
+		background: #f0fdf4;
+	}
+
+	:global(.icop-result-card.res-purple) {
+		border-color: #9333ea;
+		background: #faf5ff;
+	}
+
+	:global(.icop-result-card.res-amber) {
+		border-color: #f59e0b;
+		background: #fffbeb;
+	}
+
+	:global(.icop-result-card.res-red) {
+		border-color: #ef4444;
+		background: #fef2f2;
+	}
+
+	:global(.res-badge) {
+		font-size: 0.78rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: #581c87;
+		margin-bottom: 0.35rem;
+		display: block;
+	}
+
+	:global(.res-title) {
+		font-size: 1.35rem;
+		font-weight: 800;
+		color: #0f172a;
+		margin: 0 0 0.75rem;
+		text-wrap: balance;
+	}
+
+	:global(.res-summary-box) {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 10px;
+		padding: 1rem 1.25rem;
+		margin: 1rem 0;
+	}
+
+	:global(.res-talking-points) {
+		list-style: none;
+		padding: 0;
+		margin: 0.75rem 0 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	:global(.res-talking-points li) {
+		font-size: 0.88rem;
+		line-height: 1.55;
+		color: #334155;
+		position: relative;
+		padding-left: 1.25rem;
+	}
+
+	:global(.res-talking-points li::before) {
+		content: "•";
+		position: absolute;
+		left: 0;
+		color: #7e22ce;
+		font-weight: bold;
+		font-size: 1.1rem;
+	}
+
+	:global(.res-actions-bar) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+		padding-top: 1rem;
+		border-top: 1px solid #e2e8f0;
+	}
+
+	:global(.res-btn-print) {
+		background: #7e22ce;
+		color: #ffffff;
+		border: none;
+		padding: 0.65rem 1.25rem;
+		border-radius: 8px;
+		font-weight: 700;
+		font-size: 0.88rem;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		transition: background 0.15s ease;
+	}
+
+	:global(.res-btn-print:hover) {
+		background: #6b21a8;
+	}
+
+	:global(.res-btn-secondary) {
+		background: #ffffff;
+		color: #334155;
+		border: 1px solid #cbd5e1;
+		padding: 0.65rem 1.15rem;
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 0.88rem;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		transition: all 0.15s ease;
+	}
+
+	:global(.res-btn-secondary:hover) {
+		background: #f1f5f9;
+		color: #0f172a;
+	}
+</style>
+
+<script is:inline>
+	(function() {
+		// ICOP-AL Diagnostic Decision Tree Data Model
+		const TREE_DATA = {
+			nodes: {
+				n1: {
+					stepLabel: "Step 1 of 6: Clinical Safety Triage",
+					title: "Do you have any acute red-flag warning signs?",
+					desc: "Before considering Burning Mouth Syndrome, clinicians must verify that you are free of high-risk red-flag indicators: strictly unilateral oral pain, visible sores or lumps unhealed after 3 weeks, difficulty swallowing (dysphagia), persistent unilateral numbness, unexplained facial swelling, or rapid weight loss.",
+					options: [
+						{
+							label: "Yes, I have one or more of these red-flag signs",
+							sub: "Requires immediate medical/surgical evaluation",
+							targetNode: "t1"
+						},
+						{
+							label: "No, none of these warning signs apply to me",
+							sub: "Classic bilateral burning presentation; safe to proceed",
+							targetNode: "n2"
+						}
+					]
+				},
+				n2: {
+					stepLabel: "Step 2 of 6: Mucosal Visual Inspection",
+					title: "Does your mouth tissue appear completely healthy and pink?",
+					desc: "Primary BMS requires clinically normal mucosal appearance. When a dentist or physician uses a mouth mirror and light, do your tongue, gums, and cheeks show zero ulcerations, white patches, bright red spots, or fungal plaques?",
+					options: [
+						{
+							label: "No, visible lesions, white patches, or red sores are present",
+							sub: "Points toward primary mucosal dermatological or fungal etiology",
+							targetNode: "t2"
+						},
+						{
+							label: "Yes, mucosa looks completely clean, pink, and healthy",
+							sub: "The 'Spotless Exam Paradox' characteristic of classic BMS",
+							targetNode: "n3"
+						}
+					]
+				},
+				n3: {
+					stepLabel: "Step 3 of 6: Chronobiology & Duration Criteria",
+					title: "How frequently and how long have you experienced burning?",
+					desc: "ICOP 2020 §6.1 defines BMS by strict temporal criteria: the burning sensation must recur daily for more than 2 hours per day, persisting continuously for at least 3 months.",
+					options: [
+						{
+							label: "Brief or recent: less than 2 hours/day or under 3 months",
+							sub: "Classified as acute or subacute intraoral pain",
+							targetNode: "t3"
+						},
+						{
+							label: "Chronic: recurs daily (>2 hrs/day) for 3 continuous months or more",
+							sub: "Meets official ICOP diagnostic chronobiology criteria",
+							targetNode: "n4"
+						}
+					]
+				},
+				n4: {
+					stepLabel: "Step 4 of 6: Local Dental & Mucosal Exclusions",
+					title: "Have local intraoral causes been evaluated and ruled out?",
+					desc: "International guidelines require ruling out local intraoral triggers: oral thrush (Candida smear), objective hyposalivation (sialometry <0.1 mL/min resting), active denture trauma, confirmed dental material allergy (patch test), or galvanic electrical currents between mixed metals.",
+					options: [
+						{
+							label: "A specific local dental cause was diagnosed (e.g. severe dry mouth, allergy, or denture sore)",
+							sub: "Classified as Secondary Burning Mouth of local dental origin",
+							targetNode: "t4"
+						},
+						{
+							label: "Local dental tests are all negative or within normal ranges",
+							sub: "Normal salivary flow, no allergy, stable restorations on standard exam",
+							targetNode: "n5"
+						}
+					]
+				},
+				n5: {
+					stepLabel: "Step 5 of 6: Systemic Medical Laboratory Exclusions",
+					title: "Have comprehensive systemic blood tests been completed?",
+					desc: "A full medical workup must evaluate systemic conditions: B-vitamin deficiencies (serum B12, folate), iron stores (ferritin), blood sugar (HbA1c/glucose), thyroid function (TSH, Free T4), and medication audit (excluding ACE inhibitors or ARBs).",
+					options: [
+						{
+							label: "An uncorrected systemic cause was identified (e.g. severe B12 deficiency, thyroid disease, or ACE inhibitor)",
+							sub: "Classified as Secondary BMS of systemic medical origin",
+							targetNode: "t5"
+						},
+						{
+							label: "All blood tests are spotless and medications audited",
+							sub: "Meets full criteria for idiopathic / primary classification",
+							targetNode: "n6"
+						}
+					]
+				},
+				n6: {
+					stepLabel: "Step 6 of 6: The Modern Frontier: Hardware & Tubule Leaks",
+					title: "Do you have existing dental crowns, exposed root collars, or dietary acid triggers?",
+					desc: "This is where conventional 2D guidelines meet peripheral biophysics: do you have crowns/fillings older than 8-10 years, gum recession exposing dentin root tubules, and do acidic foods (coffee, citrus, soda) or carbohydrates provoke or worsen your burning?",
+					options: [
+						{
+							label: "Yes: I have crowns/recession, and dietary acids or starches clearly trigger/escalate the burn",
+							sub: "Strong indicator of peripheral sub-micron cement washout or exposed tubule hydrodynamic leaks",
+							targetNode: "t6"
+						},
+						{
+							label: "No: I have zero restorations/recession, and acid elimination brought zero change",
+							sub: "Aligns with classic idiopathic central or generalized small-fiber neuropathy",
+							targetNode: "t7"
+						}
+					]
+				}
+			},
+			terminals: {
+				t1: {
+					badge: "Urgent Medical Priority",
+					colorClass: "res-red",
+					title: "Urgent Specialist Clinical Triage Required",
+					summary: "Your responses indicated the presence of one or more clinical red-flag signs (such as unilateral pain, non-healing ulcerations, or difficulty swallowing). These indicators do not fit typical Burning Mouth Syndrome and warrant prioritized evaluation.",
+					talkingPoints: [
+						"Schedule a prioritized appointment with an Oral and Maxillofacial Surgeon or Head & Neck ENT specialist.",
+						"Request a comprehensive soft tissue biopsy or advanced cross-sectional imaging for any persistent lesion.",
+						"Pause at-home self-treatment until high-risk organic etiologies are formally excluded."
+					],
+					actionTip: "Share this exact red-flag symptom list directly with your primary care provider today."
+				},
+				t2: {
+					badge: "Secondary Mucosal Diagnosis",
+					colorClass: "res-amber",
+					title: "Secondary Intraoral Mucosal Pathology",
+					summary: "Because visible soft tissue lesions, erythema, or plaques were noted during examination, your symptoms do not meet the operational definition of Primary BMS (which strictly requires clinically normal mucosa).",
+					talkingPoints: [
+						"Consult an Oral Medicine specialist or dermatologist specializing in oral mucosal diseases.",
+						"Undergo a microbiological smear or culture to test for erythematous Candidiasis.",
+						"Evaluate for Oral Lichen Planus, pemphigoid, or contact stomatitis."
+					],
+					actionTip: "Treating the underlying mucosal dermatosis typically resolves the secondary burning sensation completely."
+				},
+				t3: {
+					badge: "Temporal Exclusion",
+					colorClass: "res-amber",
+					title: "Acute or Subacute Orofacial Pain",
+					summary: "Under ICOP 2020 §6.1, Burning Mouth Syndrome is by definition a persistent chronic disorder requiring symptoms to recur daily for over 2 hours per day across at least 3 continuous months.",
+					talkingPoints: [
+						"If your pain began following a recent dental injection, restoration, or viral illness, monitor symptom evolution.",
+						"Keep a daily symptom diary documenting duration, timing, and food exposures.",
+						"Re-evaluate with your dentist if symptoms persist past the 90-day threshold."
+					],
+					actionTip: "Early intervention with gentle saline rinses and dietary resting can prevent neuroplastic wind-up."
+				},
+				t4: {
+					badge: "Secondary Dental Etiology",
+					colorClass: "res-amber",
+					title: "Secondary Local Dental Burning Mouth",
+					summary: "An identifiable local dental or mucosal condition was identified. In the ICOP-AL algorithm, treating this local intraoral cause is the required first step before considering idiopathic neuralgia.",
+					talkingPoints: [
+						"For dry mouth: request quantitative resting sialometry and salivary gland ultrasound or Sjögren's antibody screen.",
+						"For dental allergy: review patch testing results against methacrylate resins, eugenol, or metals with your dentist.",
+						"For mechanical irritation: have sharp tooth edges smoothed or denture base borders re-relieved."
+					],
+					actionTip: "Addressing local friction and restoring salivary lubrication frequently quenches the burn."
+				},
+				t5: {
+					badge: "Secondary Systemic Etiology",
+					colorClass: "res-amber",
+					title: "Secondary Systemic Burning Mouth",
+					summary: "An uncorrected systemic medical condition or medication trigger was identified. Systemic nutritional and endocrine factors directly modulate oral mucosal cellular repair and nerve health.",
+					talkingPoints: [
+						"Work with your physician to replenish documented deficiencies (serum ferritin >50 ng/mL, B12 >500 pg/mL).",
+						"If taking an ACE inhibitor or ARB for blood pressure, discuss alternative hypertensive classes with your doctor.",
+						"Optimize glycemic control (HbA1c) and thyroid hormone parameters (TSH, Free T4)."
+					],
+					actionTip: "Systemic nerve recovery typically requires 8 to 16 weeks of sustained nutritional replenishment."
+				},
+				t6: {
+					badge: "Peripheral Hardware Frontier",
+					colorClass: "res-purple",
+					title: "Probable Peripheral Hardware or Tubule Leak",
+					summary: "You meet all traditional ICOP criteria for Primary BMS (clean mucosa, chronic duration, negative labs), BUT you possess aging restorations or exposed root collars and notice clear triggers from dietary acids and carbohydrates.",
+					talkingPoints: [
+						"Request a high-magnification (4.5x loupe) tactile examination of all 360-degree crown and filling margins.",
+						"Discuss chairside application of a glutaraldehyde/HEMA tubule desensitizer (such as Gluma) on suspect root collars.",
+						"Present a 14-day low-acid food tracking log demonstrating the relationship between acid intake and your pain cycle."
+					],
+					actionTip: "Read Chapter 26 & 27 in the companion book for constructive clinical scripts when talking to your dentist."
+				},
+				t7: {
+					badge: "Official ICOP 6.1 Diagnosis",
+					colorClass: "res-emerald",
+					title: "ICOP 6.1: Primary Burning Mouth Syndrome",
+					summary: "Your symptoms strictly align with classic idiopathic Primary Burning Mouth Syndrome. You have spotless mucosal exams, continuous chronic duration, clean dental and systemic labs, and no peripheral dental hardware leaks.",
+					talkingPoints: [
+						"Discuss small-fiber trigeminal neuropathic protocols with an Orofacial Pain or Neurology specialist.",
+						"Evaluate topical clonazepam rinses (swish and spit) to modulate peripheral GABA-A receptors without systemic sedation.",
+						"Consider low-dose central neuromodulation (alpha-lipoic acid trials, gabapentinoids) under medical guidance."
+					],
+					actionTip: "Explore Chapter 28 (Remission vs. Progression) for long-term neuropathic settling strategies."
+				}
+			}
+		};
+
+		let currentHistory = ['n1']; // Navigation stack
+
+		function initWizard() {
+			renderCurrentState();
+
+			const resetBtn = document.getElementById('icop-btn-reset-tree');
+			if (resetBtn) {
+				resetBtn.addEventListener('click', () => {
+					currentHistory = ['n1'];
+					renderCurrentState();
+				});
+			}
+
+			// Add interactive click listener to SVG nodes
+			const svgNodes = document.querySelectorAll('.icop-node');
+			svgNodes.forEach(nodeEl => {
+				nodeEl.addEventListener('click', () => {
+					const targetNodeId = nodeEl.getAttribute('data-node');
+					if (targetNodeId && TREE_DATA.nodes[targetNodeId]) {
+						if (!currentHistory.includes(targetNodeId)) {
+							currentHistory.push(targetNodeId);
+						} else {
+							// Truncate to this point
+							const idx = currentHistory.indexOf(targetNodeId);
+							currentHistory = currentHistory.slice(0, idx + 1);
+						}
+						renderCurrentState();
+					}
+				});
+			});
+		}
+
+		function renderCurrentState() {
+			const activeNodeId = currentHistory[currentHistory.length - 1];
+			const isTerminal = activeNodeId.startsWith('t');
+
+			// Update flowchart SVG visuals
+			updateFlowchartVisuals(activeNodeId, isTerminal);
+
+			// Render Left Question Pane or Terminal Card
+			const cardContainer = document.getElementById('icop-question-card');
+
+			if (!isTerminal) {
+				const nodeData = TREE_DATA.nodes[activeNodeId];
+				if (!nodeData) return;
+
+				let optionsHtml = '';
+				nodeData.options.forEach((opt) => {
+					optionsHtml += `
+						<button type="button" class="icop-opt-btn" data-target="${opt.targetNode}">
+							<span class="icop-opt-label">${opt.label}</span>
+							<span class="icop-opt-sub">${opt.sub}</span>
+						</button>
+					`;
+				});
+
+				const canGoBack = currentHistory.length > 1;
+
+				cardContainer.innerHTML = `
+					<div>
+						<span class="icop-q-step-indicator">${nodeData.stepLabel}</span>
+						<h3 class="icop-q-title">${nodeData.title}</h3>
+						<p class="icop-q-desc">${nodeData.desc}</p>
+						<div class="icop-options-stack">
+							${optionsHtml}
+						</div>
+					</div>
+					<div class="icop-card-actions">
+						${canGoBack ? `
+							<button type="button" class="icop-btn-back" id="icop-btn-back">
+								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<polyline points="15 18 9 12 15 6"></polyline>
+								</svg>
+								<span>Previous Step</span>
+							</button>
+						` : `<span></span>`}
+						<span style="font-size: 0.78rem; color: #94a3b8;">Click an option to proceed</span>
+					</div>
+				`;
+
+				// Bind option clicks
+				cardContainer.querySelectorAll('.icop-opt-btn').forEach(btn => {
+					btn.addEventListener('click', () => {
+						const nextNode = btn.getAttribute('data-target');
+						if (nextNode) {
+							currentHistory.push(nextNode);
+							renderCurrentState();
+						}
+					});
+				});
+
+				const backBtn = document.getElementById('icop-btn-back');
+				if (backBtn) {
+					backBtn.addEventListener('click', () => {
+						if (currentHistory.length > 1) {
+							currentHistory.pop();
+							renderCurrentState();
+						}
+					});
+				}
+			} else {
+				// We reached a terminal outcome
+				const termData = TREE_DATA.terminals[activeNodeId];
+				if (!termData) return;
+
+				let talkingPointsHtml = '';
+				termData.talkingPoints.forEach(pt => {
+					talkingPointsHtml += `<li>${pt}</li>`;
+				});
+
+				const outcomeHtml = `
+					<div class="icop-result-card ${termData.colorClass}">
+						<div>
+							<span class="res-badge">${termData.badge}</span>
+							<h3 class="res-title">${termData.title}</h3>
+							<p style="font-size: 0.92rem; line-height: 1.6; color: #334155; margin-bottom: 1rem;">
+								${termData.summary}
+							</p>
+
+							<div class="res-summary-box">
+								<strong style="font-size: 0.88rem; color: #0f172a; display: block; margin-bottom: 0.35rem;">
+									Recommended Clinical Conversation Points:
+								</strong>
+								<ul class="res-talking-points">
+									${talkingPointsHtml}
+								</ul>
+							</div>
+
+							<p style="font-size: 0.84rem; font-style: italic; color: #64748b; margin: 0.85rem 0 0;">
+								<strong>Key Next Step:</strong> ${termData.actionTip}
+							</p>
+						</div>
+
+						<div class="res-actions-bar">
+							<button type="button" class="res-btn-print" id="icop-btn-print">
+								<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<polyline points="6 9 6 2 18 2 18 9"></polyline>
+									<path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+									<rect x="6" y="14" width="12" height="8"></rect>
+								</svg>
+								<span>Print / Save Clinical Report</span>
+							</button>
+							<button type="button" class="res-btn-secondary" id="icop-btn-startover">
+								<span>Start Over</span>
+							</button>
+						</div>
+					</div>
+				`;
+
+				cardContainer.innerHTML = outcomeHtml;
+
+				const printBtn = document.getElementById('icop-btn-print');
+				if (printBtn) {
+					printBtn.addEventListener('click', () => {
+						window.print();
+					});
+				}
+
+				const startOverBtn = document.getElementById('icop-btn-startover');
+				if (startOverBtn) {
+					startOverBtn.addEventListener('click', () => {
+						currentHistory = ['n1'];
+						renderCurrentState();
+					});
+				}
+			}
+		}
+
+		function updateFlowchartVisuals(activeNodeId, isTerminal) {
+			const statusText = document.getElementById('flowchart-status-text');
+
+			// Reset all nodes
+			document.querySelectorAll('.icop-node').forEach(el => {
+				el.classList.remove('active', 'visited', 'dimmed');
+			});
+
+			// Reset all edges
+			document.querySelectorAll('.icop-edge').forEach(edge => {
+				edge.classList.remove('edge-active', 'edge-red', 'edge-amber', 'edge-emerald', 'edge-purple', 'dimmed');
+			});
+
+			// Highlight history trail
+			for (let i = 0; i < currentHistory.length; i++) {
+				const nid = currentHistory[i];
+				const el = document.getElementById(`node-${nid}`);
+				if (el) {
+					if (i === currentHistory.length - 1) {
+						el.classList.add('active');
+					} else {
+						el.classList.add('visited');
+					}
+				}
+
+				if (i > 0) {
+					const prevNid = currentHistory[i - 1];
+					const edgeEl = document.getElementById(`edge-${prevNid}-${nid}`);
+					if (edgeEl) {
+						if (nid.startsWith('t')) {
+							if (nid === 't1') edgeEl.classList.add('edge-red');
+							else if (nid === 't6') edgeEl.classList.add('edge-purple');
+							else if (nid === 't7') edgeEl.classList.add('edge-emerald');
+							else edgeEl.classList.add('edge-amber');
+						} else {
+							edgeEl.classList.add('edge-active');
+						}
+					}
+				}
+			}
+
+			// Dim unrelated nodes if deep in tree
+			if (currentHistory.length > 1) {
+				document.querySelectorAll('.icop-node').forEach(el => {
+					const nid = el.getAttribute('data-node');
+					if (!currentHistory.includes(nid)) {
+						el.classList.add('dimmed');
+					}
+				});
+				document.querySelectorAll('.icop-edge').forEach(edge => {
+					if (!edge.classList.contains('edge-active') && !edge.classList.contains('edge-red') && !edge.classList.contains('edge-amber') && !edge.classList.contains('edge-emerald') && !edge.classList.contains('edge-purple')) {
+						edge.classList.add('dimmed');
+					}
+				});
+			}
+
+			if (statusText) {
+				if (isTerminal) {
+					const t = TREE_DATA.terminals[activeNodeId];
+					statusText.textContent = `Outcome: ${t ? t.badge : 'Diagnosed'}`;
+				} else {
+					const n = TREE_DATA.nodes[activeNodeId];
+					statusText.textContent = n ? n.stepLabel.split(':')[0] : 'In Progress';
+				}
+			}
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initWizard);
+		} else {
+			initWizard();
+		}
+	})();
+</script>
