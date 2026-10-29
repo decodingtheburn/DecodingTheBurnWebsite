@@ -128,10 +128,28 @@ export const KDP_7X10_BASE_CSS = `
 	#bms_print_btn,
 	#bms_clear_btn,
 	#bms_clear_btn_p14,
-	button[onclick*="window.print"],
+	button[onclick*="window.print"] {
+		display: none !important;
+	}
+
+	/* Style contributor buttons for crisp black-and-white print with clickable/typable links */
 	.contributor-read-more-btn,
 	.contributor-apply-btn {
-		display: none !important;
+		display: inline-flex !important;
+		border: 1.5px solid #0f172a !important;
+		background: #ffffff !important;
+		color: #0f172a !important;
+		font-weight: 700 !important;
+		padding: 0.35rem 0.85rem !important;
+		border-radius: 6px !important;
+		box-shadow: none !important;
+	}
+	.contributor-apply-btn {
+		background: #0f172a !important;
+		color: #ffffff !important;
+	}
+	.contributor-print-url {
+		display: block !important;
 	}
 
 	html body .book-viewport {
