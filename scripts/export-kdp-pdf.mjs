@@ -175,9 +175,54 @@ export const KDP_7X10_BASE_CSS = `
 		height: auto !important;
 	}
 
-	html body .book-viewport #title-page .page-body-content,
+	html body .book-viewport #title-page .page-body-content {
+		height: 100% !important;
+		padding: 0 !important;
+		display: flex !important;
+		flex-direction: column !important;
+		justify-content: center !important;
+	}
+
+	html body .book-viewport #title-page .interior-title-wrap {
+		min-height: 0 !important;
+		height: 100% !important;
+		max-height: 8.8in !important;
+		padding: 1.2rem 1rem !important;
+		gap: 1.5rem !important;
+		box-sizing: border-box !important;
+		justify-content: space-evenly !important;
+	}
+
+	html body .book-viewport #title-page .interior-title-emblem-block img {
+		max-height: 110px !important;
+		width: auto !important;
+	}
+
 	html body .book-viewport #copyright-page .page-body-content {
 		height: 8.8in !important;
+	}
+
+	html body .book-viewport .chart-canvas-inner,
+	html body .book-viewport #page-15 .chart-canvas-inner {
+		min-width: 0 !important;
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	html body .book-viewport .progression-svg,
+	html body .book-viewport #page-15 .progression-svg {
+		width: 100% !important;
+		max-width: 100% !important;
+		height: auto !important;
+	}
+
+	html body .book-viewport .chart-wrapper,
+	html body .book-viewport #page-15 .chart-wrapper,
+	html body .book-viewport .book-progression-graph-box,
+	html body .book-viewport #page-15 .book-progression-graph-box {
+		overflow: hidden !important;
+		width: 100% !important;
+		max-width: 100% !important;
 	}
 
 	/* Pin footer line & page number to the exact bottom footer zone on every page */
@@ -1279,7 +1324,7 @@ async function main() {
 		console.log('   -> Saved:', quizPdfPath);
 
 		// 4. Export Separate KDP Full-Wrap Cover Spread PDF (Back Cover + Spine + Front Cover)
-		console.log('4/4 Generating Separate Amazon KDP Full-Wrap Cover PDF (14.480" x 10.25")...');
+		console.log('4/4 Generating Separate Amazon KDP Full-Wrap Cover PDF (14.658" x 10.25")...');
 		await quizTag.evaluate((el) => el.remove());
 
 		await page.evaluate(() => {
@@ -1301,13 +1346,13 @@ async function main() {
 		await page.addStyleTag({
 			content: `
 				@page {
-					size: 14.48in 10.25in;
+					size: 14.658in 10.25in;
 					margin: 0 !important;
 				}
 				html, body {
 					margin: 0 !important;
 					padding: 0 !important;
-					width: 14.48in !important;
+					width: 14.658in !important;
 					height: 10.25in !important;
 					overflow: hidden !important;
 					background: #080310 !important;
@@ -1315,7 +1360,7 @@ async function main() {
 					print-color-adjust: exact !important;
 				}
 				.kdp-cover-spread {
-					width: 14.48in;
+					width: 14.658in;
 					height: 10.25in;
 					display: flex;
 					flex-direction: row;
@@ -1343,7 +1388,7 @@ async function main() {
 					text-align: left;
 				}
 				.kdp-spine-panel {
-					width: 0.23in;
+					width: 0.408in;
 					height: 10in;
 					background: #06020c;
 					border-left: 1px solid rgba(168, 85, 247, 0.3);
@@ -1357,7 +1402,7 @@ async function main() {
 					writing-mode: vertical-rl;
 					transform: rotate(180deg);
 					font-family: 'Cinzel', serif;
-					font-size: 6.5pt;
+					font-size: 8pt;
 					font-weight: 700;
 					letter-spacing: 0.18em;
 					color: #e9d5ff;
@@ -1458,7 +1503,7 @@ async function main() {
 		const kdpCoverPath = path.join(publicDir, 'decoding-the-burn-kdp-cover-7x10.pdf');
 		await page.pdf({
 			path: kdpCoverPath,
-			width: '14.48in',
+			width: '14.658in',
 			height: '10.25in',
 			printBackground: true,
 			margin: { top: '0in', right: '0in', bottom: '0in', left: '0in' },
