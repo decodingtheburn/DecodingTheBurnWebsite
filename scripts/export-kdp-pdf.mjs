@@ -756,19 +756,21 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .stat-page-number {
-		font-size: 3.4rem !important;
+		font-size: 1.65rem !important;
+		line-height: 1.15 !important;
+		margin-top: 0 !important;
 		margin-bottom: 0.65rem !important;
 		color: #000000 !important;
 	}
 
 	html body .book-viewport .stat-full-title,
 	html body .book-viewport h1.stat-full-title {
-		font-size: 2.15rem !important;
+		font-size: 1.65rem !important;
 		line-height: 1.15 !important;
+		margin-top: 0 !important;
 		margin-bottom: 0.65rem !important;
 		padding-bottom: 0.45rem !important;
 		border-bottom: 2px solid #000000 !important;
-		text-wrap: balance !important;
 	}
 
 	html body .book-viewport .stat-page-title {
