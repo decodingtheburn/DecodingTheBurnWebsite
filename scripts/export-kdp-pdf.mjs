@@ -818,7 +818,13 @@ const READER_EDITION_CSS = `
 		box-sizing: border-box !important;
 	}
 
-	.cover-gold-border,
+	.cover-gold-border {
+		border: none !important;
+		min-height: 8.6in !important;
+		height: 100% !important;
+		padding: 1.75rem 1.5rem !important;
+	}
+
 	.backcover-gold-border {
 		min-height: 8.6in !important;
 		height: 100% !important;
@@ -835,28 +841,29 @@ const READER_EDITION_CSS = `
 	}
 
 	.cover-title-line-1 {
-		display: inline-block !important;
-		font-size: 2.48rem !important;
+		display: block !important;
+		font-size: 2.45rem !important;
 		font-weight: 800 !important;
-		letter-spacing: 0.18em !important;
-		text-indent: 0.18em !important;
-		line-height: 1.05 !important;
-		width: auto !important;
+		letter-spacing: 0.12em !important;
+		margin-right: -0.12em !important;
+		line-height: 1.08 !important;
+		width: 100% !important;
 		text-align: center !important;
-		margin: 0 auto !important;
+		margin-left: auto !important;
 		white-space: nowrap !important;
 	}
 
 	.cover-title-line-2 {
-		display: inline-block !important;
-		font-size: 3.02rem !important;
+		display: block !important;
+		font-size: 3.05rem !important;
 		font-weight: 900 !important;
-		letter-spacing: 0.06em !important;
-		text-indent: 0.06em !important;
-		line-height: 1.02 !important;
-		width: auto !important;
+		letter-spacing: 0.04em !important;
+		margin-right: -0.04em !important;
+		line-height: 1.05 !important;
+		width: 100% !important;
 		text-align: center !important;
-		margin: 0.15rem auto 0 !important;
+		margin-top: 0.25rem !important;
+		margin-left: auto !important;
 		white-space: nowrap !important;
 	}
 
@@ -1356,7 +1363,16 @@ async function main() {
 					color: #e9d5ff;
 					white-space: nowrap;
 				}
-				.cover-gold-border,
+				.cover-gold-border {
+					border: none !important;
+					min-height: 8.7in !important;
+					height: 100% !important;
+					padding: 1.75rem 1.5rem !important;
+					box-sizing: border-box !important;
+					display: flex !important;
+					flex-direction: column !important;
+					justify-content: space-between !important;
+				}
 				.backcover-gold-border {
 					min-height: 8.7in !important;
 					height: 100% !important;
@@ -1375,27 +1391,28 @@ async function main() {
 					margin: 0 auto 0.65rem !important;
 				}
 				.cover-title-line-1 {
-					display: inline-block !important;
-					font-size: 2.48rem !important;
+					display: block !important;
+					font-size: 2.45rem !important;
 					font-weight: 800 !important;
-					letter-spacing: 0.18em !important;
-					text-indent: 0.18em !important;
-					line-height: 1.05 !important;
-					width: auto !important;
+					letter-spacing: 0.12em !important;
+					margin-right: -0.12em !important;
+					line-height: 1.08 !important;
+					width: 100% !important;
 					text-align: center !important;
-					margin: 0 auto !important;
+					margin-left: auto !important;
 					white-space: nowrap !important;
 				}
 				.cover-title-line-2 {
-					display: inline-block !important;
-					font-size: 3.02rem !important;
+					display: block !important;
+					font-size: 3.05rem !important;
 					font-weight: 900 !important;
-					letter-spacing: 0.06em !important;
-					text-indent: 0.06em !important;
-					line-height: 1.02 !important;
-					width: auto !important;
+					letter-spacing: 0.04em !important;
+					margin-right: -0.04em !important;
+					line-height: 1.05 !important;
+					width: 100% !important;
 					text-align: center !important;
-					margin: 0.15rem auto 0 !important;
+					margin-top: 0.25rem !important;
+					margin-left: auto !important;
 					white-space: nowrap !important;
 				}
 				.cover-subtitle {
