@@ -413,6 +413,49 @@ export const KDP_7X10_BASE_CSS = `
 		margin-top: 0.35rem !important;
 	}
 
+	/* Chapter Opener Template (Takes ~1/3 of the page at the top, centered) */
+	html body .book-viewport .chapter-opener-header {
+		min-height: 2.3in !important;
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: center !important;
+		justify-content: center !important;
+		text-align: center !important;
+		padding: 0.25in 0.2in 0.2in !important;
+		margin-bottom: 0.3in !important;
+		box-sizing: border-box !important;
+		border-bottom: 1px solid #cbd5e1 !important;
+		background: none !important;
+	}
+
+	html body .book-viewport .chapter-opener-num {
+		font-family: 'Cinzel', serif !important;
+		font-size: 10.5pt !important;
+		font-weight: 700 !important;
+		letter-spacing: 0.22em !important;
+		text-transform: uppercase !important;
+		color: #000000 !important;
+		margin-bottom: 0.12in !important;
+	}
+
+	html body .book-viewport .chapter-opener-title {
+		font-family: 'Lora', Georgia, serif !important;
+		font-size: 19pt !important;
+		font-weight: 700 !important;
+		line-height: 1.22 !important;
+		color: #000000 !important;
+		margin: 0 !important;
+		text-align: center !important;
+		max-width: 5.5in !important;
+	}
+
+	html body .book-viewport .chapter-opener-divider {
+		width: 0.75in !important;
+		height: 1.5px !important;
+		background: #000000 !important;
+		margin: 0.12in auto 0 !important;
+	}
+
 	/* Questionnaire Cards calibration for 7x10 (Pages 7-14) */
 	html body .book-viewport .quiz-book-card {
 		padding: 0.48rem 0.68rem !important;

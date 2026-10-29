@@ -707,6 +707,56 @@ import { SITE_TITLE } from '../consts';
 				pointer-events: none;
 			}
 
+			/* Chapter Opener Template (Takes ~1/3 of the page at the top, centered) */
+			.chapter-opener-header {
+				min-height: 280px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				padding: 2.5rem 1.5rem 2rem;
+				margin-bottom: 2.75rem;
+				position: relative;
+				box-sizing: border-box;
+				border-bottom: 1px solid #f1f5f9;
+				background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.025) 0%, transparent 75%);
+				border-radius: 8px;
+			}
+
+			.chapter-opener-num {
+				font-family: 'Cinzel', serif;
+				font-size: 1.05rem;
+				font-weight: 700;
+				letter-spacing: 0.24em;
+				text-transform: uppercase;
+				color: #7c3aed;
+				margin-bottom: 1rem;
+			}
+
+			.chapter-opener-title {
+				font-family: 'Lora', Georgia, serif;
+				font-size: clamp(1.85rem, 3.4vw, 2.35rem);
+				font-weight: 700;
+				line-height: 1.24;
+				color: #0f172a;
+				margin: 0;
+				text-align: center;
+				text-wrap: balance;
+				max-width: 680px;
+			}
+
+			.chapter-opener-divider {
+				width: 54px;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, #c084fc 50%, transparent);
+				margin: 1.5rem auto 0;
+			}
+
+			.chapter-first-page-head {
+				display: none !important;
+			}
+
 			/* Page Header & Running Head */
 			.page-running-head {
 				display: flex;
@@ -5345,28 +5395,19 @@ import { SITE_TITLE } from '../consts';
 				<div id="chapter-2" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Part I &bull; Chapter 2: Symptoms &amp; Realities</span>
-						<span class="page-count-label">Page 11</span>
+					<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 2</div>
+						<h2 class="chapter-opener-title">What Sufferers Experience: Symptoms &&nbsp;Realities</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
 
-					<h2 class="chapter-title">Chapter 2: What Sufferers Experience: Symptoms &amp; Realities</h2>
-
-					<div class="chapter-content is-first-page">
-						<div id="ch2-symptoms" style="scroll-margin-top: 5rem; margin-bottom: 1.5rem;">
-							<h3 style="font-size: 1.15rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.4rem;">Symptoms</h3>
-							<p>Burning Mouth Syndrome presents with a relentless clinical triad. The predominant symptom is a bilateral, continuous scalding sensation across the oral mucosal surface, frequently accompanied by phantom metallic or bitter taste disturbances (dysgeusia) and subjective dry mouth (xerostomia) despite normal salivary flow. Crucially, the oral mucosa appears completely healthy and pink under examination, leaving clinicians without an observable structural target on visual inspection while small-fiber nerve endings fire&nbsp;continuously.</p>
-						</div>
-
-						<div id="ch2-where" style="scroll-margin-top: 5rem; margin-bottom: 1.5rem;">
-							<h3 style="font-size: 1.15rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.4rem;">Where It Hurts</h3>
-							<p>The pain maps strictly to sensory pathways of the trigeminal nerve (V3 and V2 branches). The anterior two-thirds and tip of the tongue are affected in over 85% of cases via the lingual nerve. The lateral tongue borders, anterior hard palate, and mucosal surface of the lower lip are secondary hot zones. Notably, the floor of the mouth and buccal mucosa are typically spared, reflecting specific receptor densities and hardware contact&nbsp;areas.</p>
-						</div>
-
-						<div id="ch2-when" style="scroll-margin-top: 5rem; margin-bottom: 1.5rem;">
-							<h3 style="font-size: 1.15rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.4rem;">When It Hurts</h3>
-							<p>The pain follows a characteristic diurnal crescendo: patients wake with mild or nonexistent discomfort, but burning steadily intensifies through late morning, reaching peak agony in late afternoon and evening. Strikingly, sufferers report temporary relief while eating or chewing, because mastication stimulates bicarbonate-rich salivary flow that temporarily washes protons away from mucosal acid&nbsp;sensors.</p>
-						</div>
+					<div class="chapter-content is-first-page" style="max-width: 680px; margin: 0 auto;">
+						<p style="font-size: 1.18rem; line-height: 1.85; margin-bottom: 1.5rem; text-indent: 0; color: #1e293b;">
+							Behind every epidemiological statistic and clinical diagnosis are real human beings whose lives have been upended by chronic oral pain. Burning Mouth Syndrome does not just burn the tongue; it disrupts sleep, strains relationships, turns everyday meals into anxious calculations, and isolates individuals inside a relentless physical sensation that no one around them can&nbsp;see.
+						</p>
+						<p style="font-size: 1.14rem; line-height: 1.8; margin-bottom: 1.5rem; text-indent: 0; color: #334155;">
+							Here are stories from real people across the world documenting what it truly feels like to live with this condition: how the fire started without warning, the profound frustration of spotless clinical exams, and the quiet resilience required to keep searching for answers when conventional pathways offer little&nbsp;clarity.
+						</p>
 					</div>
 				</div>
 
@@ -5667,13 +5708,12 @@ import { SITE_TITLE } from '../consts';
 
 			<section class="book-page" id="page-3">
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Part I &bull; Chapter 3: Why We Need to Do Research</span>
-						<span class="page-count-label">Page 12</span>
-					</div>
-
 					<div id="chapter-3"></div>
-					<h2 class="chapter-title">Chapter 3: Why We Need to Do Research: The Hidden Human&nbsp;Toll</h2>
+					<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 3</div>
+						<h2 class="chapter-opener-title">Why We Need to Do Research: The Hidden Human&nbsp;Toll</h2>
+						<div class="chapter-opener-divider"></div>
+					</div>
 
 					<div class="chapter-content is-first-page">
 						<div id="ch3-work" style="scroll-margin-top: 5rem; margin-bottom: 1.35rem;">
@@ -5756,12 +5796,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch17-stigma" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3B: BMS History</span>
-						<span class="page-count-label">Page 14</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 4</div>
+						<h2 class="chapter-title chapter-opener-title">BMS History &&nbsp;Evolution</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 4: BMS History &&nbsp;Evolution</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>To understand why modern clinicians struggle to diagnose Burning Mouth Syndrome, you have to understand the historical journey of the condition. For over a century, medicine treated oral burning not as a physical sensory disorder, but as a phantom complaint of the human&nbsp;mind.</p>
@@ -5825,12 +5864,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="chapter-5" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 5: The Diagnostic Sequence</span>
-						<span class="page-count-label">Page 14c</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 5</div>
+						<h2 class="chapter-title chapter-opener-title">The Diagnostic Sequence &&nbsp;Workup</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 5: The Diagnostic Sequence &&nbsp;Workup</h2>
 
 					<div class="chapter-content is-first-page">
 						<h3>Phase 1: Discovery of&nbsp;the&nbsp;Pain</h3>
@@ -5907,12 +5945,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch4-recent" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Part II &bull; Chapter 4: Nine Episodes That Led to Acid</span>
-						<span class="page-count-label">Page 15</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 4</div>
+						<h2 class="chapter-title chapter-opener-title">Nine Episodes That Led to&nbsp;Acid</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 4: Nine Episodes That Led to&nbsp;Acid</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When doctors and dentists label Burning Mouth Syndrome as an incurable idiopathic mystery, your only rational path as a patient is to stop guessing and treat your biology as an engineering circuit. My journey out of 10/10 chronic pain was not a straight downward line. It was an escalating series of distinct episodes over four years, where eliminating a specific input produced total relief, only for the fire to return months later through a different&nbsp;pathway.</p>
@@ -6235,12 +6272,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch10-triggers" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Part III &bull; Chapter 10: Identify What Makes Pain Worse</span>
-						<span class="page-count-label">Page 28</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 10</div>
+						<h2 class="chapter-title chapter-opener-title">Identify What Makes Pain&nbsp;Worse</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 10: Identify What Makes Pain&nbsp;Worse</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Three years into my burning mouth, I asked myself a simple first-principle question: What makes my pain worse and what makes it&nbsp;better?</p>
@@ -6341,12 +6377,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch11-why-acid" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Part III &bull; Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth?</span>
-						<span class="page-count-label">Page 31</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 11</div>
+						<h2 class="chapter-title chapter-opener-title">Where Are the Acid-Sensing Receptors in the&nbsp;Mouth?</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 11: Where Are the Acid-Sensing Receptors in the&nbsp;Mouth?</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When sufferers describe burning mouth pain, clinicians frequently examine the oral tissues and find no macroscopic ulcers or redness. This paradox leads many to mistakenly conclude that the pain lacks a physical basis. However, modern sensory neurobiology reveals that the human mouth is not a passive lining. It is an intensely wired sensor array packed with specialized <strong>Acid-Sensing Ion Channels (ASICs)</strong> that monitor biochemical changes in real&nbsp;time.</p>
@@ -6483,12 +6518,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch12-asics" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 12: The Receptors of Pain in the Mouth</span>
-						<span class="page-count-label">Page 31</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 12</div>
+						<h2 class="chapter-title chapter-opener-title">The Receptors of Pain in&nbsp;the&nbsp;Mouth</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 12: The Receptors of Pain in&nbsp;the&nbsp;Mouth</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Once we establish that acid and chemical irritants consistently intensify oral burning across the majority of patients, we must look at the molecular hardware sitting inside the oral tissues. How does a sip of coffee, a breath of cool air, or a microscopic film of bacterial lactic acid translate into a blinding ten-out-of-ten sensation of scalding&nbsp;fire?</p>
@@ -6578,12 +6612,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch13-permeability" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 13: When Acid Triggers Through the Oral Mucosa</span>
-						<span class="page-count-label">Page 34</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 13</div>
+						<h2 class="chapter-title chapter-opener-title">When Acid Triggers Through the Oral&nbsp;Mucosa</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 13: When Acid Triggers Through the Oral&nbsp;Mucosa</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Your mouth is not lined with inert leather. It is shielded by a living, specialized cellular layer known as the oral mucosa. Covering the dorsal and lateral tongue, the vaulted hard palate, the inner cheeks, and the gingival tissues, this delicate membrane functions as your oral cavity's first line of&nbsp;defense.</p>
@@ -6650,12 +6683,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch14-gaps" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 15: When Acid Triggers Through Leaking Fillings & Hardware</span>
-						<span class="page-count-label">Page 41</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 15</div>
+						<h2 class="chapter-title chapter-opener-title">When Acid Triggers Through Leaking Fillings &&nbsp;Hardware</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 15: When Acid Triggers Through Leaking Fillings &&nbsp;Hardware</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Having millions of open, microscopic dentinal tubules sitting across receded root margins creates an undeniable structural breach. But a physical breach alone does not explain why the pain burns with such ferocious intensity. A pipe can sit open in a calm room without causing&nbsp;an&nbsp;explosion.</p>
@@ -6769,12 +6801,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch15-hydrodynamic" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 16: When Acid Triggers Through Gum Recession & Exposed Tubules</span>
-						<span class="page-count-label">Page 38</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 16</div>
+						<h2 class="chapter-title chapter-opener-title">When Acid Triggers Through Gum Recession &&nbsp;Exposed&nbsp;Tubules</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 16: When Acid Triggers Through Gum Recession &&nbsp;Exposed&nbsp;Tubules</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>If you hand a contractor a blueprint of a house with an active water leak, the first thing they measure is the size and number of the broken pipes. In conventional dentistry, however, the examination stops at the&nbsp;outer&nbsp;surface.</p>
@@ -6861,12 +6892,11 @@ import { SITE_TITLE } from '../consts';
 
 			<section class="book-page" id="page-34">
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Clinical Focus: Why BMS Starts at Around 50 Years Old</span>
-						<span class="page-count-label">Page 34</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Clinical Focus</div>
+						<h2 class="chapter-title chapter-opener-title">Why BMS Starts at Around 50 Years&nbsp;Old</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Clinical Focus: Why BMS Starts at Around 50 Years&nbsp;Old</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>The fire that erupted in my mouth did not materialize out of thin air. It was a slow-motion mechanical and biological collapse fifty years in&nbsp;the&nbsp;making.</p>
@@ -6975,12 +7005,11 @@ import { SITE_TITLE } from '../consts';
 
 			<section class="book-page" id="page-37b">
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Clinical Focus: Why BMS Is More Prevalent in Women</span>
-						<span class="page-count-label">Page 38</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Clinical Focus</div>
+						<h2 class="chapter-title chapter-opener-title">Why BMS Is More Prevalent in&nbsp;Women</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Clinical Focus: Why BMS Is More Prevalent in&nbsp;Women</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Across epidemiological registries and clinical pain cohorts, one demographic pattern stands out with remarkable consistency: Burning Mouth Syndrome is predominantly diagnosed in women, with reported female-to-male ratios ranging from five-to-one to seven-to-one <a href="#src-22" class="cite-ref">[22]</a>, <a href="#src-23" class="cite-ref">[23]</a>. In specialized tertiary oral medicine practices, that ratio often climbs even&nbsp;higher.</p>
@@ -7099,12 +7128,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch16-trigeminal" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 16: The Oral Neuropathic Circuit</span>
-						<span class="page-count-label">Page 45</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 16</div>
+						<h2 class="chapter-title chapter-opener-title">The Oral&nbsp;Neuropathic&nbsp;Circuit</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 16: The Oral&nbsp;Neuropathic&nbsp;Circuit</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>One of the most maddening paradoxes of Burning Mouth Syndrome is the sheer scale of&nbsp;the&nbsp;fire.</p>
@@ -7339,12 +7367,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch18-catalysts" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 18: Finding the Real Cause of Your BMS</span>
-						<span class="page-count-label">Page 16</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 18</div>
+						<h2 class="chapter-title chapter-opener-title">Finding the Real Cause of Your BMS: Trigger Events vs. The Real&nbsp;Cause</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 18: Finding the Real Cause of Your BMS: Trigger Events vs. The Real&nbsp;Cause</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Ask ten people with Burning Mouth Syndrome when their nightmare began, and nine will name a specific calendar date: <em>"It started three days after my lower molar was pulled,"</em> or <em>"It hit the week after my car accident,"</em> or <em>"I drank an acidic green juice cleanse and my tongue never stopped&nbsp;burning."</em></p>
@@ -7418,12 +7445,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch19-redflags" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 3: The BMS Diagnostic Questionnaire</span>
-						<span class="page-count-label">Page 7</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 19</div>
+						<h2 class="chapter-title chapter-opener-title">The BMS Diagnostic&nbsp;Questionnaire &amp; Self-Assessment</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 19: The BMS Diagnostic&nbsp;Questionnaire &amp; Self-Assessment</h2>
 
 					<div class="chapter-content is-first-page">
 						<p style="font-size: 0.94rem; line-height: 1.68; color: #334155; margin-bottom: 1.25rem; text-wrap: pretty;">
@@ -8543,12 +8569,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch21-lowacid" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 21: Starving the Fire</span>
-						<span class="page-count-label">Page 52</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 21</div>
+						<h2 class="chapter-title chapter-opener-title">Starving the&nbsp;Fire</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 21: Starving the&nbsp;Fire</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When you are in the grip of a 10/10 burning mouth flare, your oral nervous system is caught in an acute electrical storm. You cannot negotiate with the fire, and you cannot test complex&nbsp;multi-ingredient&nbsp;remedies.</p>
@@ -8704,12 +8729,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch22-window" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 22: Calculating Your Time Lag</span>
-						<span class="page-count-label">Page 55</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 22</div>
+						<h2 class="chapter-title chapter-opener-title">Calculating Your&nbsp;Time&nbsp;Lag</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 22: Calculating Your&nbsp;Time&nbsp;Lag</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>The single greatest obstacle preventing patients and doctors from solving Burning Mouth Syndrome is the deceptive phenomenon of <strong>delayed chemical latency</strong>. We are biologically conditioned to look for immediate cause and effect: if a wasp stings your finger, it swells in seconds; if you eat a peanut you are allergic to, your throat tightens in&nbsp;minutes.</p>
@@ -8858,12 +8882,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch23-barriers" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 23: Mechanical Shields</span>
-						<span class="page-count-label">Page 57</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 23</div>
+						<h2 class="chapter-title chapter-opener-title">Mechanical&nbsp;Shields</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 23:&nbsp;Mechanical&nbsp;Shields</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>While an elimination baseline extinguishes the chemical fire, it does not fix the physical breaches in your mouth. If you rely solely on diet, you are forced to remain in perpetual&nbsp;nutritional&nbsp;restriction.</p>
@@ -8964,12 +8987,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch24-emergency" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 24: The Recovery Protocol</span>
-						<span class="page-count-label">Page 60</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 24</div>
+						<h2 class="chapter-title chapter-opener-title">The&nbsp;Recovery&nbsp;Protocol</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 24: The&nbsp;Recovery&nbsp;Protocol</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Even with a strong understanding of your triggers and dental margins,&nbsp;setbacks&nbsp;happen.</p>
@@ -9062,12 +9084,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="research-stats" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 25: Beyond Acid: Other Evidence-Based Options</span>
-						<span class="page-count-label">Page 62b</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 25</div>
+						<h2 class="chapter-title chapter-opener-title">What If Acid Isn't the Cause? Other Options &amp; Reported Success&nbsp;Rates</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 25: What If Acid Isn't the Cause? Other Options &amp; Reported Success&nbsp;Rates</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>A rigorous first-principles investigation requires accepting that not all burning mouth pain shares the identical origin. While the acid-leak and dentinal tubule pathway explains the sharp sensitivity and flare cycles for a significant subset of sufferers, what happens if eliminating dietary acids brings zero change to your&nbsp;pain?</p>
@@ -9360,12 +9381,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch25-dynamics" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 26: The Diabetic Parallel</span>
-						<span class="page-count-label">Page 63</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 26</div>
+						<h2 class="chapter-title chapter-opener-title">The&nbsp;Diabetic&nbsp;Parallel</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 26: The&nbsp;Diabetic&nbsp;Parallel</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When you tell an ear, nose, and throat doctor or an oral surgeon that your tongue, palate, and gums feel like they are being bathed in boiling liquid, you are frequently met with blank stares, polite nods, and a referral to psychiatry. Because the oral mucosa appears pink and healthy on the surface, the medical system treats the burning as an isolated,&nbsp;incomprehensible&nbsp;phantom.</p>
@@ -9482,12 +9502,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch26-bottlenecks" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 27: The Two Bottlenecks</span>
-						<span class="page-count-label">Page 67</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 27</div>
+						<h2 class="chapter-title chapter-opener-title">The&nbsp;Two&nbsp;Bottlenecks</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 27: The&nbsp;Two&nbsp;Bottlenecks</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Once you recognize that Diabetic Peripheral Neuropathy and Burning Mouth Syndrome share the exact same sensory wiring, the natural question is: why does one burn in the toes while the other burns in&nbsp;the&nbsp;mouth?</p>
@@ -9608,12 +9627,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch27-outcomes" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 28: Remission vs. Progression</span>
-						<span class="page-count-label">Page 71</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 28</div>
+						<h2 class="chapter-title chapter-opener-title">Remission&nbsp;vs.&nbsp;Progression</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 28: Remission&nbsp;vs.&nbsp;Progression</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>In standard chronic disease management, conventional care models frequently proceed from a cautious premise when managing complex neuropathic conditions: the expectation of chronic, irreversible&nbsp;progression.</p>
@@ -9694,12 +9712,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch28-framing" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 29: How to Talk to Your Doctor</span>
-						<span class="page-count-label">Page 74</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 29</div>
+						<h2 class="chapter-title chapter-opener-title">How to Talk to&nbsp;Your&nbsp;Doctor</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 29: How to Talk to&nbsp;Your&nbsp;Doctor</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Walking into a clinical consultation to discuss complex oral burning requires strategic communication.</p>
@@ -9783,12 +9800,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch29-framing" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 30: How to Talk to Your Dentist</span>
-						<span class="page-count-label">Page 77</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 30</div>
+						<h2 class="chapter-title chapter-opener-title">How to Talk to&nbsp;Your&nbsp;Dentist</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 30: How to Talk to&nbsp;Your&nbsp;Dentist</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>If speaking with your physician focuses on biochemical and neurological pathways, communicating with your dentist centers on the precise principles of restorative materials science, natural cervical wear, and routine structural&nbsp;maintenance.</p>
@@ -9850,12 +9866,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch30-fifty" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 31: Top Questions &amp; Answers</span>
-						<span class="page-count-label">Page 85</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 31</div>
+						<h2 class="chapter-title chapter-opener-title">The Top Questions &amp; Answers on Burning Mouth&nbsp;Syndrome</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 31: The Top Questions &amp; Answers on Burning Mouth&nbsp;Syndrome</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>Across thousands of patient case histories and community research logs, sufferers repeatedly encounter the same clinical paradoxes and unanswered diagnostic&nbsp;questions. Here are the clear, first-principles answers to the most critical questions in Burning Mouth&nbsp;Syndrome.</p>
@@ -9991,12 +10006,11 @@ import { SITE_TITLE } from '../consts';
 				<div id="ch31-registries" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 32: Citizen Science Data</span>
-						<span class="page-count-label">Page 79</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 32</div>
+						<h2 class="chapter-title chapter-opener-title">Citizen Science&nbsp;Data</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 32: Citizen Science&nbsp;Data</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When institutions fail to bridge the divide, the responsibility shifts to the people with skin in the game: the patients living with&nbsp;the&nbsp;fire.</p>
@@ -10052,12 +10066,11 @@ import { SITE_TITLE } from '../consts';
 
 			<section class="book-page" id="page-81">
 				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 33: Active BMS Communities</span>
-						<span class="page-count-label">Page 81</span>
+										<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 33</div>
+						<h2 class="chapter-title chapter-opener-title">Active BMS&nbsp;Communities</h2>
+						<div class="chapter-opener-divider"></div>
 					</div>
-
-					<h2 class="chapter-title">Chapter 33: Active BMS&nbsp;Communities</h2>
 
 					<div class="chapter-content is-first-page">
 						<p>When you are struck with Burning Mouth Syndrome, the psychological burden of isolation is often as debilitating as the physical pain. You sit in front of family members who cannot see your symptoms, and you leave dental and medical consultations clutching completely normal lab slips and inconclusive answers. You are told that your physical findings are unremarkable, or that your scalding tongue remains an unexplained mystery.</p>
