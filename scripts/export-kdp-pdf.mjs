@@ -983,29 +983,55 @@ const READER_EDITION_CSS = `
 		margin: 0 auto 0.65rem !important;
 	}
 
-	.cover-title-line-1 {
-		display: block !important;
-		font-size: 2.85rem !important;
-		font-weight: 900 !important;
-		letter-spacing: 0.05em !important;
-		line-height: 0.98 !important;
-		width: 100% !important;
+	.cover-kicker {
+		font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+		font-size: 0.95rem !important;
+		font-weight: 800 !important;
+		letter-spacing: 0.22em !important;
+		color: #fbbf24 !important;
+		text-transform: uppercase !important;
 		text-align: center !important;
-		margin: 0 auto !important;
+		margin-bottom: 0.45rem !important;
+	}
+
+	.cover-title-line-1 {
+		display: inline-block !important;
+		font-family: 'Oswald', sans-serif !important;
+		font-size: 3.5rem !important;
+		font-weight: 700 !important;
+		line-height: 0.88 !important;
+		letter-spacing: 0.04em !important;
+		margin-right: -0.04em !important;
+		text-transform: uppercase !important;
+		color: #ffffff !important;
+		text-align: center !important;
 		white-space: nowrap !important;
 	}
 
 	.cover-title-line-2 {
-		display: block !important;
-		font-size: 2.95rem !important;
-		font-weight: 900 !important;
-		letter-spacing: 0.165em !important;
-		text-indent: 0.165em !important;
-		line-height: 0.98 !important;
-		width: 100% !important;
+		display: inline-block !important;
+		font-family: 'Oswald', sans-serif !important;
+		font-size: 4.54rem !important;
+		font-weight: 700 !important;
+		line-height: 0.88 !important;
+		letter-spacing: 0.03em !important;
+		margin-right: -0.03em !important;
+		text-transform: uppercase !important;
+		color: #ffffff !important;
 		text-align: center !important;
-		margin: 0.2rem auto 0 !important;
+		margin-top: 0.2rem !important;
 		white-space: nowrap !important;
+	}
+
+	.cover-sced-badge {
+		font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+		font-size: 0.78rem !important;
+		font-weight: 700 !important;
+		color: #e9d5ff !important;
+		letter-spacing: 0.04em !important;
+		text-transform: uppercase !important;
+		text-align: center !important;
+		margin-bottom: 0.55rem !important;
 	}
 
 	.cover-subtitle {
@@ -1534,28 +1560,52 @@ async function main() {
 					margin: 0 auto 0.45rem !important;
 					padding-top: 0 !important;
 				}
-				.cover-title-line-1 {
-					display: block !important;
-					font-size: 5.4rem !important;
-					font-weight: 900 !important;
-					letter-spacing: 0.05em !important;
-					line-height: 0.95 !important;
-					width: 100% !important;
+				.cover-kicker {
+					font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+					font-size: 1.25rem !important;
+					font-weight: 800 !important;
+					letter-spacing: 0.22em !important;
+					color: #fbbf24 !important;
+					text-transform: uppercase !important;
 					text-align: center !important;
-					margin: 0 auto !important;
+					margin-bottom: 0.65rem !important;
+				}
+				.cover-title-line-1 {
+					display: inline-block !important;
+					font-family: 'Oswald', sans-serif !important;
+					font-size: 5.8rem !important;
+					font-weight: 700 !important;
+					letter-spacing: 0.04em !important;
+					margin-right: -0.04em !important;
+					line-height: 0.88 !important;
+					text-transform: uppercase !important;
+					color: #ffffff !important;
+					text-align: center !important;
 					white-space: nowrap !important;
 				}
 				.cover-title-line-2 {
-					display: block !important;
-					font-size: 5.55rem !important;
-					font-weight: 900 !important;
-					letter-spacing: 0.165em !important;
-					text-indent: 0.165em !important;
-					line-height: 0.95 !important;
-					width: 100% !important;
+					display: inline-block !important;
+					font-family: 'Oswald', sans-serif !important;
+					font-size: 7.52rem !important;
+					font-weight: 700 !important;
+					letter-spacing: 0.03em !important;
+					margin-right: -0.03em !important;
+					line-height: 0.88 !important;
+					text-transform: uppercase !important;
+					color: #ffffff !important;
 					text-align: center !important;
-					margin: 0.25rem auto 0 !important;
+					margin-top: 0.25rem !important;
 					white-space: nowrap !important;
+				}
+				.cover-sced-badge {
+					font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+					font-size: 0.95rem !important;
+					font-weight: 700 !important;
+					color: #e9d5ff !important;
+					letter-spacing: 0.04em !important;
+					text-transform: uppercase !important;
+					text-align: center !important;
+					margin-bottom: 0.65rem !important;
 				}
 				.cover-subtitle {
 					font-size: 0.95rem !important;

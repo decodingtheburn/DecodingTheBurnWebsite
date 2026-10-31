@@ -18,7 +18,7 @@ import { SITE_TITLE } from '../consts';
 		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Oswald:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 		<style>
 			:root {
 				--book-bg: #ecefe6;
@@ -324,6 +324,17 @@ import { SITE_TITLE } from '../consts';
 				width: 100%;
 			}
 
+			.cover-sced-badge {
+				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+				font-size: 1.02rem;
+				font-weight: 700;
+				color: #e9d5ff;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+				text-align: center;
+				margin-bottom: 0.85rem;
+			}
+
 			.book-cover {
 				position: relative;
 				width: 100%;
@@ -386,9 +397,19 @@ import { SITE_TITLE } from '../consts';
 				margin-bottom: 1.25rem;
 			}
 
+			.cover-kicker {
+				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+				font-size: 1.35rem;
+				font-weight: 800;
+				letter-spacing: 0.22em;
+				color: #fbbf24;
+				text-transform: uppercase;
+				text-align: center;
+				margin-bottom: 0.75rem;
+			}
+
 			.cover-title {
-				font-family: 'Cinzel', serif;
-				margin: 0 0 1.25rem;
+				margin: 0 0 1rem;
 				text-shadow: 0 6px 35px rgba(0, 0, 0, 0.9);
 				display: flex;
 				flex-direction: column;
@@ -398,41 +419,44 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.cover-title-line-1 {
-				display: block;
-				font-size: clamp(4.4rem, 8.5vw, 6.2rem);
-				font-weight: 900;
-				line-height: 0.95;
-				letter-spacing: 0.05em;
+				display: inline-block;
+				font-family: 'Oswald', sans-serif;
+				font-size: clamp(4.4rem, 8.4vw, 6.2rem);
+				font-weight: 700;
+				line-height: 0.88;
+				letter-spacing: 0.04em;
+				margin-right: -0.04em;
+				text-transform: uppercase;
 				color: #ffffff;
 				text-align: center;
-				width: 100%;
-				margin: 0 auto;
 				white-space: nowrap;
 			}
 
 			.cover-title-line-2 {
-				display: block;
-				font-size: clamp(4.55rem, 8.8vw, 6.4rem);
-				font-weight: 900;
-				line-height: 0.95;
-				letter-spacing: 0.165em;
-				text-indent: 0.165em;
+				display: inline-block;
+				font-family: 'Oswald', sans-serif;
+				font-size: clamp(5.82rem, 11.1vw, 8.22rem);
+				font-weight: 700;
+				line-height: 0.88;
+				letter-spacing: 0.026em;
+				margin-right: -0.026em;
+				text-transform: uppercase;
 				color: #ffffff;
 				text-align: center;
-				width: 100%;
-				margin: 0.35rem auto 0;
+				margin-top: 0.35rem;
 				white-space: nowrap;
 			}
 
 			.cover-subtitle {
-				font-family: 'Lora', Georgia, 'Times New Roman', serif;
-				font-size: 1.12rem;
-				font-weight: 400;
-				color: #e2e8f0;
-				line-height: 1.6;
-				max-width: 680px;
-				margin: 0 auto;
+				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+				font-size: 1.25rem;
+				font-weight: 600;
+				color: #f1f5f9;
+				line-height: 1.5;
+				max-width: 620px;
+				margin: 1.15rem auto 0;
 				text-wrap: balance;
+				text-align: center;
 			}
 
 			.cover-subtitle-lead {
@@ -3687,13 +3711,13 @@ import { SITE_TITLE } from '../consts';
 				<div class="book-cover">
 					<div class="cover-gold-border">
 						<div>
+							<div class="cover-kicker">Acid-Induced</div>
 							<h1 class="cover-title">
 								<span class="cover-title-line-1">BURNING</span>
 								<span class="cover-title-line-2">MOUTH</span>
 							</h1>
 							<p class="cover-subtitle">
-								<span class="cover-subtitle-lead" style="display: block; font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f3e8ff; letter-spacing: 0.02em;">A Single-Case Experimental Design (SCED&nbsp;ABAB).</span>
-								<span class="cover-subtitle-rest" style="display: block; font-family: 'Lora', Georgia, serif; font-size: 1.02rem; line-height: 1.6; color: #e2e8f0; max-width: 620px; margin: 0 auto; text-wrap: balance;">How a 2024 Pain Receptor Scientific Discovery Validated My Dietary Change, Eliminated My 10/10 Burning Pain, and Revealed Some of the Root&nbsp;Causes.</span>
+								A Practical Guide to Testing If Acidity Is a Trigger and What to Do to Stop&nbsp;It.
 							</p>
 						</div>
 
@@ -3709,6 +3733,7 @@ import { SITE_TITLE } from '../consts';
 						</div>
 						
 						<div>
+							<div class="cover-sced-badge">A Single-Case Experimental Design (SCED&nbsp;ABAB)</div>
 							<div class="cover-divider"></div>
 							<div class="cover-author">Denis Ethier</div>
 							<div>
