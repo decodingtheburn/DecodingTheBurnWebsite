@@ -985,21 +985,21 @@ const READER_EDITION_CSS = `
 
 	.cover-kicker {
 		font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
-		font-size: 0.95rem !important;
+		font-size: 1.38rem !important;
 		font-weight: 800 !important;
 		letter-spacing: 0.22em !important;
 		color: #fbbf24 !important;
 		text-transform: uppercase !important;
 		text-align: center !important;
-		margin-bottom: 0.45rem !important;
+		margin-bottom: 0.65rem !important;
 	}
 
 	.cover-title-line-1 {
 		display: inline-block !important;
 		font-family: 'Oswald', sans-serif !important;
-		font-size: 3.5rem !important;
+		font-size: 5.4rem !important;
 		font-weight: 700 !important;
-		line-height: 0.88 !important;
+		line-height: 0.85 !important;
 		letter-spacing: 0.04em !important;
 		margin-right: -0.04em !important;
 		text-transform: uppercase !important;
@@ -1011,9 +1011,9 @@ const READER_EDITION_CSS = `
 	.cover-title-line-2 {
 		display: inline-block !important;
 		font-family: 'Oswald', sans-serif !important;
-		font-size: 4.54rem !important;
+		font-size: 7.12rem !important;
 		font-weight: 700 !important;
-		line-height: 0.88 !important;
+		line-height: 0.85 !important;
 		letter-spacing: 0.03em !important;
 		margin-right: -0.03em !important;
 		text-transform: uppercase !important;
@@ -1562,22 +1562,22 @@ async function main() {
 				}
 				.cover-kicker {
 					font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
-					font-size: 1.25rem !important;
+					font-size: 1.82rem !important;
 					font-weight: 800 !important;
 					letter-spacing: 0.22em !important;
 					color: #fbbf24 !important;
 					text-transform: uppercase !important;
 					text-align: center !important;
-					margin-bottom: 0.65rem !important;
+					margin-bottom: 0.95rem !important;
 				}
 				.cover-title-line-1 {
 					display: inline-block !important;
 					font-family: 'Oswald', sans-serif !important;
-					font-size: 5.8rem !important;
+					font-size: 7.8rem !important;
 					font-weight: 700 !important;
 					letter-spacing: 0.04em !important;
 					margin-right: -0.04em !important;
-					line-height: 0.88 !important;
+					line-height: 0.85 !important;
 					text-transform: uppercase !important;
 					color: #ffffff !important;
 					text-align: center !important;
@@ -1586,11 +1586,11 @@ async function main() {
 				.cover-title-line-2 {
 					display: inline-block !important;
 					font-family: 'Oswald', sans-serif !important;
-					font-size: 7.52rem !important;
+					font-size: 10.28rem !important;
 					font-weight: 700 !important;
 					letter-spacing: 0.03em !important;
 					margin-right: -0.03em !important;
-					line-height: 0.88 !important;
+					line-height: 0.85 !important;
 					text-transform: uppercase !important;
 					color: #ffffff !important;
 					text-align: center !important;
