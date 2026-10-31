@@ -399,7 +399,7 @@ import { SITE_TITLE } from '../consts';
 
 			.cover-kicker {
 				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-				font-size: clamp(1.6rem, 3.2vw, 2.15rem);
+				font-size: clamp(1.92rem, 3.84vw, 2.58rem);
 				font-weight: 800;
 				letter-spacing: 0.22em;
 				color: #fbbf24;
@@ -1839,6 +1839,197 @@ import { SITE_TITLE } from '../consts';
 				font-size: 0.9rem;
 				font-weight: 600;
 				color: #000000;
+			}
+
+			/* Stat Visual Cards & Data Graphics */
+			.stat-visual-card {
+				background: #fdfbf7;
+				border: 1.5px solid #000000;
+				border-radius: 8px;
+				padding: 1.25rem 1.5rem;
+				margin: 1.25rem 0 1.35rem;
+				box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+			}
+
+			.stat-visual-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				margin-bottom: 0.85rem;
+				border-bottom: 1px solid #e2e8f0;
+				padding-bottom: 0.45rem;
+			}
+
+			.stat-visual-caption {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.78rem;
+				font-weight: 800;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: #475569;
+			}
+
+			.stat-visual-meta {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.8rem;
+				font-weight: 700;
+				color: #0f172a;
+			}
+
+			/* Demographic Bar Chart */
+			.stat-bars-container {
+				display: flex;
+				flex-direction: column;
+				gap: 0.55rem;
+			}
+
+			.stat-bar-row {
+				display: flex;
+				align-items: center;
+				gap: 0.85rem;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.82rem;
+			}
+
+			.stat-bar-label {
+				width: 75px;
+				font-weight: 600;
+				color: #334155;
+				text-align: right;
+				flex-shrink: 0;
+			}
+
+			.stat-bar-track {
+				flex: 1;
+				height: 20px;
+				background: #e2e8f0;
+				border-radius: 4px;
+				overflow: hidden;
+				display: flex;
+				align-items: center;
+			}
+
+			.stat-bar-fill {
+				height: 100%;
+				background: #1e293b;
+				border-radius: 4px;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				padding-right: 6px;
+				transition: width 0.3s ease;
+			}
+
+			.stat-bar-fill.is-peak {
+				background: #b91c1c;
+			}
+
+			.stat-bar-val {
+				width: 55px;
+				font-weight: 700;
+				color: #0f172a;
+				text-align: left;
+				flex-shrink: 0;
+			}
+
+			.stat-bar-val.is-peak {
+				color: #b91c1c;
+				font-weight: 800;
+			}
+
+			/* Ratio Graphic */
+			.stat-ratio-display {
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				gap: 1.5rem;
+				padding: 0.5rem 0;
+			}
+
+			.stat-ratio-cohort {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+			}
+
+			.stat-ratio-icons {
+				display: flex;
+				gap: 0.4rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.stat-ratio-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.stat-ratio-num {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 1.85rem;
+				font-weight: 900;
+				line-height: 1;
+				color: #0f172a;
+				margin-bottom: 0.25rem;
+			}
+
+			.stat-ratio-num.is-accent {
+				color: #b91c1c;
+			}
+
+			.stat-ratio-lbl {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.8rem;
+				font-weight: 700;
+				color: #475569;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+			}
+
+			.stat-ratio-vs {
+				font-family: 'Cinzel', serif;
+				font-size: 1.35rem;
+				font-weight: 800;
+				color: #94a3b8;
+			}
+
+			/* Global Impact Grid */
+			.stat-global-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 0.85rem;
+				text-align: center;
+			}
+
+			.stat-global-col {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 6px;
+				padding: 0.85rem 0.65rem;
+			}
+
+			.stat-global-num {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 1.45rem;
+				font-weight: 900;
+				color: #0f172a;
+				line-height: 1.1;
+				margin-bottom: 0.25rem;
+			}
+
+			.stat-global-num.is-accent {
+				color: #b91c1c;
+			}
+
+			.stat-global-label {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.72rem;
+				font-weight: 700;
+				color: #475569;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+				line-height: 1.3;
 			}
 
 			/* Chapter 2 Dedicated Patient Voices Layout (2 Pages, 3 Short Centered Quotes Per Page) */
@@ -3853,17 +4044,9 @@ import { SITE_TITLE } from '../consts';
 								<li class="toc-sub-row">
 									<a href="#page-1" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">138 Million Individuals: Worldwide Sufferers</span>
+										<span class="toc-sub-title">There Are 138 Million Individuals Worldwide Suffering from Burning&nbsp;Mouth</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">1</span>
-									</a>
-								</li>
-								<li class="toc-sub-row">
-									<a href="#page-1-stat-2" class="toc-sub-link">
-										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">1 in 13 Dental Patients: Clinical Prevalence</span>
-										<span class="toc-dots"></span>
-										<span class="toc-sub-num">2</span>
 									</a>
 								</li>
 								<li class="toc-sub-row">
@@ -3877,15 +4060,63 @@ import { SITE_TITLE } from '../consts';
 								<li class="toc-sub-row">
 									<a href="#page-1-stat-4" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">13 to 38 Months: Multi-Year Diagnostic Odyssey</span>
+										<span class="toc-sub-title">Nearly 5 to 1 Female Ratio: The Gender Divide</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">4</span>
 									</a>
 								</li>
 								<li class="toc-sub-row">
+									<a href="#page-1-stat-5" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">Zero Children or Teens: Pediatric Absence</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">5</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-1-stat-5b" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">Where Burning Mouth Hurts&nbsp;Most</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">5b</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-1-stat-5c" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">When Burning Mouth Hurts&nbsp;Most</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">5c</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-1-stat-6" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">7.2 out of 10 Daily Pain: Severe Daily Agony</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">6</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-1-stat-7" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">4 Doctors &bull; 2.2 Years Searching: The Diagnostic Search</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">7</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-1-stat-8" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">74% Triggered by Acid: Dietary Acid Sparks the Fire</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">8</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
 									<a href="#page-1-stat-10" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">0/10 Pain-Free Remission: Achieving Complete Resolution</span>
+										<span class="toc-sub-title">68% vs. 24% Relief: Peripheral Sealing vs. Central Pills</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">10</span>
 									</a>
@@ -5336,6 +5567,29 @@ import { SITE_TITLE } from '../consts';
 							<p class="stat-page-desc">
 								How did this 138 million figure come to light? It was established by a landmark 2022 systematic review and meta-analysis published in <em>Oral Diseases</em> by Wu and colleagues, synthesizing data across 18 international epidemiological studies comprising 18,290 evaluated individuals. The researchers determined a pooled general population prevalence rate of 1.73%. When calculated across a global population of 8 billion people, this reveals an extraordinary hidden scale: approximately 138 million individuals living with chronic intraoral&nbsp;burning.
 							</p>
+
+							<!-- Stat Graphic: Global Scale Breakdown -->
+							<div class="stat-visual-card">
+								<div class="stat-visual-header">
+									<span class="stat-visual-caption">Global Epidemiology Breakdown</span>
+									<span class="stat-visual-meta">Wu et al. (2022)</span>
+								</div>
+								<div class="stat-global-grid">
+									<div class="stat-global-col">
+										<div class="stat-global-num is-accent">138M</div>
+										<div class="stat-global-label">Global Sufferers</div>
+									</div>
+									<div class="stat-global-col">
+										<div class="stat-global-num">1.73%</div>
+										<div class="stat-global-label">General Population</div>
+									</div>
+									<div class="stat-global-col">
+										<div class="stat-global-num">7.72%</div>
+										<div class="stat-global-label">Dental Patients</div>
+									</div>
+								</div>
+							</div>
+
 							<div class="stat-page-source">
 								<a href="#src-22" class="table-src-link">Prevalence: 1.73% of worldwide population (95% CI: 1.10% to 2.51%) &bull; Source: Wu et al., Oral Diseases (2022) [18 Studies, N=18,290]</a>
 							</div>
@@ -5392,6 +5646,59 @@ import { SITE_TITLE } from '../consts';
 							<p class="stat-page-desc">
 								In the 10-year Rochester Epidemiology Project cohort (Kohorst et al., 2014, N=169 confirmed primary cases), the mean patient age at clinical diagnosis was 61.4 years (standard deviation &plusmn;13.2 years). Incidence rates accelerate progressively from 3.3 per 100,000 person-years in individuals aged 30 to 39, reaching 34.6 per 100,000 person-years in those aged 70 to&nbsp;79.
 							</p>
+
+							<!-- Stat Graphic: Age Distribution Bar Chart -->
+							<div class="stat-visual-card">
+								<div class="stat-visual-header">
+									<span class="stat-visual-caption">Incidence per 100,000 by Age Cohort</span>
+									<span class="stat-visual-meta">Kohorst et al. (2014)</span>
+								</div>
+								<div class="stat-bars-container">
+									<div class="stat-bar-row">
+										<span class="stat-bar-label">&lt; 30 yrs</span>
+										<div class="stat-bar-track">
+											<div class="stat-bar-fill" style="width: 2%;"></div>
+										</div>
+										<span class="stat-bar-val">0.0</span>
+									</div>
+									<div class="stat-bar-row">
+										<span class="stat-bar-label">30–39 yrs</span>
+										<div class="stat-bar-track">
+											<div class="stat-bar-fill" style="width: 10%;"></div>
+										</div>
+										<span class="stat-bar-val">3.3</span>
+									</div>
+									<div class="stat-bar-row">
+										<span class="stat-bar-label">40–49 yrs</span>
+										<div class="stat-bar-track">
+											<div class="stat-bar-fill" style="width: 28%;"></div>
+										</div>
+										<span class="stat-bar-val">9.6</span>
+									</div>
+									<div class="stat-bar-row">
+										<span class="stat-bar-label">50–59 yrs</span>
+										<div class="stat-bar-track">
+											<div class="stat-bar-fill" style="width: 58%;"></div>
+										</div>
+										<span class="stat-bar-val">19.8</span>
+									</div>
+									<div class="stat-bar-row">
+										<span class="stat-bar-label">60–69 yrs</span>
+										<div class="stat-bar-track">
+											<div class="stat-bar-fill is-peak" style="width: 88%;"></div>
+										</div>
+										<span class="stat-bar-val is-peak">30.4</span>
+									</div>
+									<div class="stat-bar-row">
+										<span class="stat-bar-label">70–79 yrs</span>
+										<div class="stat-bar-track">
+											<div class="stat-bar-fill is-peak" style="width: 100%;"></div>
+										</div>
+										<span class="stat-bar-val is-peak">34.6</span>
+									</div>
+								</div>
+							</div>
+
 							<div class="stat-page-source">
 								<a href="#src-23" class="table-src-link">Mean age: 61.4 years (IQR: 53.0 to 71.0) &bull; Source: Kohorst et al., Mayo Clinic Proceedings (2014) &bull; PMC4532369</a>
 							</div>
@@ -5420,6 +5727,38 @@ import { SITE_TITLE } from '../consts';
 							<p class="stat-page-desc">
 								Long-term population-based surveillance confirms an age- and sex-adjusted annual incidence of 19.8 per 100,000 person-years for females compared to 4.3 per 100,000 person-years for males, establishing an overall female-to-male ratio of 4.6 to 1 (Kohorst et al., 2014). This sex disparity peaks in post-menopausal age cohorts between 50 and 69&nbsp;years, as declining estrogen levels thin mucosal tissue and reduce protective salivary&nbsp;buffers.
 							</p>
+
+							<!-- Stat Graphic: Gender Disparity Ratio -->
+							<div class="stat-visual-card">
+								<div class="stat-visual-header">
+									<span class="stat-visual-caption">Age-Adjusted Annual Incidence</span>
+									<span class="stat-visual-meta">Kohorst et al. (2014)</span>
+								</div>
+								<div class="stat-ratio-display">
+									<div class="stat-ratio-cohort">
+										<div class="stat-ratio-icons">
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="#b91c1c" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M12 14c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg>
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="#b91c1c" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M12 14c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg>
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="#b91c1c" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M12 14c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg>
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="#b91c1c" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M12 14c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg>
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="#f87171" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M12 14c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg>
+										</div>
+										<div class="stat-ratio-num is-accent">19.8</div>
+										<div class="stat-ratio-lbl">Females / 100k</div>
+									</div>
+
+									<div class="stat-ratio-vs">vs</div>
+
+									<div class="stat-ratio-cohort">
+										<div class="stat-ratio-icons">
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="#1e293b" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M12 14c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg>
+										</div>
+										<div class="stat-ratio-num">4.3</div>
+										<div class="stat-ratio-lbl">Males / 100k</div>
+									</div>
+								</div>
+							</div>
+
 							<div class="stat-page-source">
 								<a href="#src-23" class="table-src-link">Annual Incidence: 19.8 females vs. 4.3 males per 100,000 &bull; Source: Kohorst et al., Mayo Clinic Proceedings (2014)</a>
 							</div>
@@ -5769,34 +6108,6 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-number-footer">
 					<span>8</span>
-				</div>
-			</section>
-
-			<!-- Chapter 1: Stat 9 of 10 -->
-
-			<section class="book-page" id="page-1-stat-9">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Part I &bull; Chapter 1: The Numbers of the Fire</span>
-						<span class="page-count-label">Page 9</span>
-					</div>
-
-					<div class="chapter-content">
-						<div class="stat-showcase-wrap">
-							<h1 class="stat-page-number">Up to 45,000 Micro-Pipes</h1>
-							<h2 class="stat-page-title">The Exposed Dentinal Tubule: How Oral Acid Reaches Living Tooth&nbsp;Nerves</h2>
-							<p class="stat-page-desc">
-								Scanning electron microscopy studies (Pashley, 1996; Schilke et al., 2000) reveal that human dentin is perforated by 20,000 to 45,000 microscopic fluid-filled channels per square millimeter leading straight into the dental pulp. Each tubule has an average diameter of 1.5 to 2.5 micrometers. When just 1.0 square millimeter of cervical root collar or restorative margin seal is breached, tens of thousands of open channels transmit ambient oral acids directly into living pulpal nerve&nbsp;terminals.
-							</p>
-							<div class="stat-page-source">
-								<a href="#src-29" class="table-src-link">Tubule Density: 20,000 to 45,000 / mm&sup2; &bull; Sources: Pashley DH, Arch Oral Biol (1996); Schilke et al., J Dent (2000)</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>9</span>
 				</div>
 			</section>
 

@@ -985,7 +985,7 @@ const READER_EDITION_CSS = `
 
 	.cover-kicker {
 		font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
-		font-size: 1.38rem !important;
+		font-size: 1.65rem !important;
 		font-weight: 800 !important;
 		letter-spacing: 0.22em !important;
 		color: #fbbf24 !important;
@@ -1562,7 +1562,7 @@ async function main() {
 				}
 				.cover-kicker {
 					font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
-					font-size: 1.82rem !important;
+					font-size: 2.18rem !important;
 					font-weight: 800 !important;
 					letter-spacing: 0.22em !important;
 					color: #fbbf24 !important;
