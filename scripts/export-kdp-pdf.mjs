@@ -996,12 +996,12 @@ const READER_EDITION_CSS = `
 
 	.cover-title-line-1 {
 		display: inline-block !important;
-		font-family: 'Oswald', sans-serif !important;
-		font-size: 5.4rem !important;
-		font-weight: 700 !important;
-		line-height: 0.85 !important;
-		letter-spacing: 0.04em !important;
-		margin-right: -0.04em !important;
+		font-family: 'Montserrat', sans-serif !important;
+		font-size: 4.78rem !important;
+		font-weight: 900 !important;
+		line-height: 0.86 !important;
+		letter-spacing: 0.02em !important;
+		margin-right: -0.02em !important;
 		text-transform: uppercase !important;
 		color: #ffffff !important;
 		text-align: center !important;
@@ -1010,12 +1010,12 @@ const READER_EDITION_CSS = `
 
 	.cover-title-line-2 {
 		display: inline-block !important;
-		font-family: 'Oswald', sans-serif !important;
-		font-size: 7.12rem !important;
-		font-weight: 700 !important;
-		line-height: 0.85 !important;
-		letter-spacing: 0.03em !important;
-		margin-right: -0.03em !important;
+		font-family: 'Montserrat', sans-serif !important;
+		font-size: 6.02rem !important;
+		font-weight: 900 !important;
+		line-height: 0.86 !important;
+		letter-spacing: 0.015em !important;
+		margin-right: -0.015em !important;
 		text-transform: uppercase !important;
 		color: #ffffff !important;
 		text-align: center !important;
@@ -1572,12 +1572,12 @@ async function main() {
 				}
 				.cover-title-line-1 {
 					display: inline-block !important;
-					font-family: 'Oswald', sans-serif !important;
-					font-size: 7.8rem !important;
-					font-weight: 700 !important;
-					letter-spacing: 0.04em !important;
-					margin-right: -0.04em !important;
-					line-height: 0.85 !important;
+					font-family: 'Montserrat', sans-serif !important;
+					font-size: 7.17rem !important;
+					font-weight: 900 !important;
+					letter-spacing: 0.02em !important;
+					margin-right: -0.02em !important;
+					line-height: 0.86 !important;
 					text-transform: uppercase !important;
 					color: #ffffff !important;
 					text-align: center !important;
@@ -1585,12 +1585,12 @@ async function main() {
 				}
 				.cover-title-line-2 {
 					display: inline-block !important;
-					font-family: 'Oswald', sans-serif !important;
-					font-size: 10.28rem !important;
-					font-weight: 700 !important;
-					letter-spacing: 0.03em !important;
-					margin-right: -0.03em !important;
-					line-height: 0.85 !important;
+					font-family: 'Montserrat', sans-serif !important;
+					font-size: 9.03rem !important;
+					font-weight: 900 !important;
+					letter-spacing: 0.015em !important;
+					margin-right: -0.015em !important;
+					line-height: 0.86 !important;
 					text-transform: uppercase !important;
 					color: #ffffff !important;
 					text-align: center !important;
