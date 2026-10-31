@@ -985,28 +985,26 @@ const READER_EDITION_CSS = `
 
 	.cover-title-line-1 {
 		display: block !important;
-		font-size: 2.45rem !important;
-		font-weight: 800 !important;
-		letter-spacing: 0.12em !important;
-		margin-right: -0.12em !important;
-		line-height: 1.08 !important;
+		font-size: 2.85rem !important;
+		font-weight: 900 !important;
+		letter-spacing: 0.05em !important;
+		line-height: 0.98 !important;
 		width: 100% !important;
 		text-align: center !important;
-		margin-left: auto !important;
+		margin: 0 auto !important;
 		white-space: nowrap !important;
 	}
 
 	.cover-title-line-2 {
 		display: block !important;
-		font-size: 3.05rem !important;
+		font-size: 2.95rem !important;
 		font-weight: 900 !important;
-		letter-spacing: 0.04em !important;
-		margin-right: -0.04em !important;
-		line-height: 1.05 !important;
+		letter-spacing: 0.165em !important;
+		text-indent: 0.165em !important;
+		line-height: 0.98 !important;
 		width: 100% !important;
 		text-align: center !important;
-		margin-top: 0.25rem !important;
-		margin-left: auto !important;
+		margin: 0.2rem auto 0 !important;
 		white-space: nowrap !important;
 	}
 
@@ -1538,10 +1536,10 @@ async function main() {
 				}
 				.cover-title-line-1 {
 					display: block !important;
-					font-size: 4.75rem !important;
-					font-weight: 800 !important;
-					letter-spacing: 0.14em !important;
-					line-height: 1.02 !important;
+					font-size: 5.4rem !important;
+					font-weight: 900 !important;
+					letter-spacing: 0.05em !important;
+					line-height: 0.95 !important;
 					width: 100% !important;
 					text-align: center !important;
 					margin: 0 auto !important;
@@ -1549,10 +1547,11 @@ async function main() {
 				}
 				.cover-title-line-2 {
 					display: block !important;
-					font-size: 5.75rem !important;
+					font-size: 5.55rem !important;
 					font-weight: 900 !important;
-					letter-spacing: 0.05em !important;
-					line-height: 1.0 !important;
+					letter-spacing: 0.165em !important;
+					text-indent: 0.165em !important;
+					line-height: 0.95 !important;
 					width: 100% !important;
 					text-align: center !important;
 					margin: 0.25rem auto 0 !important;
