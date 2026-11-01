@@ -50,7 +50,8 @@ export default defineConfig({
 					pathname.startsWith('/drafts') ||
 					pathname.startsWith('/presentation') ||
 					pathname.startsWith('/thumbnails-preview') ||
-					pathname.startsWith('/backgrounds')
+					pathname.startsWith('/backgrounds') ||
+					pathname.startsWith('/brand')
 				) {
 					return false;
 				}
