@@ -984,13 +984,17 @@ const READER_EDITION_CSS = `
 	}
 
 	.cover-kicker {
-		font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
-		font-size: 1.65rem !important;
-		font-weight: 800 !important;
-		letter-spacing: 0.22em !important;
+		font-family: 'Montserrat', sans-serif !important;
+		font-size: 2.95rem !important;
+		font-weight: 900 !important;
+		letter-spacing: 0.02em !important;
+		text-indent: 0.02em !important;
+		margin-right: -0.02em !important;
 		color: #fbbf24 !important;
 		text-transform: uppercase !important;
 		text-align: center !important;
+		white-space: nowrap !important;
+		display: inline-block !important;
 		margin-bottom: 0.65rem !important;
 	}
 
@@ -1458,7 +1462,15 @@ async function main() {
 				<div class="kdp-cover-spread">
 					<div class="kdp-back-panel">${backCover.innerHTML}</div>
 					<div class="kdp-spine-panel">
-						<span>DECODING THE BURN &bull; DENIS ETHIER</span>
+						<div class="kdp-spine-top">
+							<span class="kdp-spine-title">ACID-INDUCED BURNING MOUTH</span>
+						</div>
+						<div class="kdp-spine-center">
+							<span class="kdp-spine-author">DENIS ETHIER</span>
+						</div>
+						<div class="kdp-spine-bottom">
+							<span class="kdp-spine-edition">VERSION 1.0 &bull; NOVEMBER 2026 EDITION</span>
+						</div>
 					</div>
 					<div class="kdp-front-panel">${frontCover.innerHTML}</div>
 				</div>
@@ -1508,6 +1520,7 @@ async function main() {
 				}
 				.kdp-back-panel {
 					text-align: left;
+					padding: 0.65in 0.55in 0.65in 0.55in !important;
 				}
 				.kdp-spine-panel {
 					width: 0.408in;
@@ -1516,19 +1529,45 @@ async function main() {
 					border-left: 1px solid rgba(168, 85, 247, 0.3);
 					border-right: 1px solid rgba(168, 85, 247, 0.3);
 					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: space-between;
+					padding: 0.65in 0;
+					box-sizing: border-box;
+					overflow: hidden;
+				}
+				.kdp-spine-top,
+				.kdp-spine-center,
+				.kdp-spine-bottom {
+					display: flex;
 					align-items: center;
 					justify-content: center;
-					overflow: hidden;
 				}
 				.kdp-spine-panel span {
 					writing-mode: vertical-rl;
 					transform: rotate(180deg);
-					font-family: 'Cinzel', serif;
-					font-size: 8pt;
-					font-weight: 700;
-					letter-spacing: 0.18em;
-					color: #e9d5ff;
 					white-space: nowrap;
+				}
+				.kdp-spine-title {
+					font-family: 'Montserrat', sans-serif;
+					font-size: 8.8pt;
+					font-weight: 900;
+					letter-spacing: 0.16em;
+					color: #ffffff;
+				}
+				.kdp-spine-author {
+					font-family: 'Montserrat', sans-serif;
+					font-size: 8.8pt;
+					font-weight: 900;
+					letter-spacing: 0.18em;
+					color: #f1f5f9;
+				}
+				.kdp-spine-edition {
+					font-family: 'Plus Jakarta Sans', sans-serif;
+					font-size: 6.8pt;
+					font-weight: 700;
+					letter-spacing: 0.12em;
+					color: #c4b5fd;
 				}
 				.cover-gold-border {
 					border: none !important;
@@ -1543,9 +1582,10 @@ async function main() {
 				}
 				.backcover-gold-border {
 					border: none !important;
-					min-height: 8.7in !important;
+					min-height: 0 !important;
 					height: 100% !important;
-					padding: 1.75rem 1.5rem !important;
+					padding: 0 !important;
+					margin: 0 !important;
 					box-sizing: border-box !important;
 					display: flex !important;
 					flex-direction: column !important;
@@ -1561,13 +1601,17 @@ async function main() {
 					padding-top: 0 !important;
 				}
 				.cover-kicker {
-					font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
-					font-size: 2.18rem !important;
-					font-weight: 800 !important;
-					letter-spacing: 0.22em !important;
+					font-family: 'Montserrat', sans-serif !important;
+					font-size: 4.43rem !important;
+					font-weight: 900 !important;
+					letter-spacing: 0.02em !important;
+					text-indent: 0.02em !important;
+					margin-right: -0.02em !important;
 					color: #fbbf24 !important;
 					text-transform: uppercase !important;
 					text-align: center !important;
+					white-space: nowrap !important;
+					display: inline-block !important;
 					margin-bottom: 0.95rem !important;
 				}
 				.cover-title-line-1 {
@@ -1644,31 +1688,61 @@ async function main() {
 					height: 290px !important;
 				}
 				.backcover-tagline {
-					font-size: 1.55rem !important;
+					font-size: 1.48rem !important;
 					line-height: 1.2 !important;
-					margin-bottom: 0.65rem !important;
+					margin-bottom: 0.55rem !important;
 				}
 				.backcover-blurb {
-					font-size: 0.88rem !important;
-					line-height: 1.52 !important;
-					margin-bottom: 0.65rem !important;
+					font-size: 0.85rem !important;
+					line-height: 1.48 !important;
+					margin-bottom: 0.55rem !important;
 				}
 				.backcover-figure {
-					margin: 0.75rem 0 !important;
+					margin: 0.65rem 0 !important;
 					border-radius: 6px !important;
 				}
 				.backcover-figure img {
-					max-height: 145px !important;
+					max-height: 140px !important;
 					width: 100% !important;
 					object-fit: cover !important;
 				}
 				.backcover-features {
-					margin: 0.75rem 0 0.85rem !important;
+					margin: 0.55rem 0 0.65rem !important;
 				}
 				.backcover-features li {
-					font-size: 0.82rem !important;
-					line-height: 1.45 !important;
-					margin-bottom: 0.45rem !important;
+					font-size: 0.81rem !important;
+					line-height: 1.42 !important;
+					margin-bottom: 0.4rem !important;
+				}
+				.backcover-showcase {
+					display: grid !important;
+					grid-template-columns: 36% 1fr !important;
+					gap: 1.15rem !important;
+					margin: 0.65rem 0 !important;
+				}
+				.backcover-showcase-media {
+					display: flex !important;
+					flex-direction: column !important;
+					justify-content: flex-start !important;
+					max-height: none !important;
+					overflow: visible !important;
+				}
+				.backcover-showcase-media img {
+					max-height: 155px !important;
+					width: 100% !important;
+					object-fit: cover !important;
+				}
+				.backcover-media-caption {
+					display: block !important;
+					font-size: 0.64rem !important;
+					line-height: 1.25 !important;
+					padding: 0.35rem 0.45rem !important;
+					color: #cbd5e1 !important;
+				}
+				.backcover-bottom {
+					margin-top: auto !important;
+					padding-top: 1.25rem !important;
+					padding-bottom: 0.45rem !important;
 				}
 			`,
 		});
