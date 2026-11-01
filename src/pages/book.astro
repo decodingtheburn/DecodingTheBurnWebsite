@@ -12076,6 +12076,12 @@ import { SITE_TITLE } from '../consts';
       mainPageNum++;
       const numStr = String(mainPageNum);
       pageMap[sec.id] = numStr;
+      // Also map all anchor IDs located inside this section so chapter anchors match the page they start on
+      sec.querySelectorAll('[id]').forEach((child) => {
+        if (child.id && !pageMap[child.id]) {
+          pageMap[child.id] = numStr;
+        }
+      });
       const footerSpan = sec.querySelector('.page-number-footer span');
       if (footerSpan) footerSpan.textContent = numStr;
       const countLbl = sec.querySelector('.page-running-head .page-count-label');
