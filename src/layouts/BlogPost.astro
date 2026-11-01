@@ -1861,25 +1861,36 @@ if (!postNumber && slug) {
 			}
 
 			/* Markdown & MDX Responsive Table Architecture */
+			.post-content :global(.wide-table-container),
+			.post-content :global(.table-breakout-wrapper) {
+				width: 100%;
+				margin: 2.75rem 0 3.25rem 0;
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+
+			@media (min-width: 860px) {
+				.post-content :global(.wide-table-container),
+				.post-content :global(.table-breakout-wrapper) {
+					width: min(880px, calc(100vw - 4rem));
+					max-width: none;
+					margin-left: calc(-0.5 * (min(880px, calc(100vw - 4rem)) - 100%));
+					margin-right: calc(-0.5 * (min(880px, calc(100vw - 4rem)) - 100%));
+				}
+			}
+
 			.post-content :global(table) {
 				width: 100%;
 				border-collapse: separate;
 				border-spacing: 0;
-				margin: 2.5rem 0 3rem 0;
+				margin: 0;
 				background: #ffffff;
-				border: 1px solid #cbd5e1;
-				border-radius: 12px;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 14px;
 				overflow: hidden;
-				box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+				box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07);
 				font-size: 0.96rem;
-				line-height: 1.6;
-			}
-
-			@media (min-width: 860px) {
-				.post-content :global(table) {
-					width: 100%;
-					max-width: 100%;
-				}
+				line-height: 1.75;
 			}
 
 			.post-content :global(thead) {
