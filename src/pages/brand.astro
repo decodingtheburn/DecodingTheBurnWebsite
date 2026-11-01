@@ -7,759 +7,114 @@ import Footer from '../components/Footer.astro';
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead 
-			title="Trigeminal Nerve Wiring Diagram (V1, V2, V3) | Decoding The Burn" 
-			description="Interactive anatomical overlay mapping the Trigeminal sensory divisions (V1, V2, V3), ganglion convergence, and pain pathways." 
-			noindex={true}
-		/>
+		<BaseHead title="Brand Review: Trigeminal Nerve (V2 & V3) Anatomy" description="Confidential review" />
 		<meta name="robots" content="noindex, nofollow" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+		<style>
+			html, body {
+				background-color: #06040d !important;
+				background-image: none !important;
+				color: #ffffff !important;
+			}
+			/* Scope styling specifically inside brand-content to isolate from global styles */
+			.brand-content h1 {
+				color: #ffffff !important;
+				font-size: 2.25rem !important;
+				font-weight: 800 !important;
+				line-height: 1.25 !important;
+				margin-bottom: 0.5rem !important;
+			}
+			.brand-content h2 {
+				color: #ffffff !important;
+				font-size: 1.4rem !important;
+				font-weight: 700 !important;
+				line-height: 1.3 !important;
+				margin-bottom: 0.5rem !important;
+			}
+			.brand-content p {
+				color: #cbd5e1 !important;
+				font-size: 0.95rem !important;
+				line-height: 1.5 !important;
+			}
+			.brand-box {
+				background-color: #110d24 !important;
+				border: 1px solid rgba(255, 255, 255, 0.12) !important;
+			}
+			.img-frame {
+				background-color: #030108 !important;
+				border: 1px solid rgba(255, 255, 255, 0.08) !important;
+			}
+		</style>
 	</head>
-
-	<body class="brand-body">
+	<body class="min-h-screen">
 		<Header />
-
-		<main class="brand-container">
-			<!-- Header / Studio Intro -->
-			<div class="brand-hero">
-				<div class="brand-badge">Internal Brand Asset • Draft Review</div>
-				<h1 class="brand-title">Trigeminal Nerve Architecture (V2 &amp; V3 Connections)</h1>
-				<p class="brand-subhead">
-					Anatomical mapping of Cranial Nerve V showing how continuous acid stimulation on tooth roots travels through V2 &amp; V3 branches into the Trigeminal Ganglion, projecting phantom burning into the palate, tongue, and&nbsp;face.
+		<main class="brand-content py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+			<div class="mb-12 text-center">
+				<h1 class="tracking-tight">
+					Trigeminal Nerve Pathways (V2 &amp;&nbsp;V3)
+				</h1>
+				<p class="text-base sm:text-lg max-w-2xl mx-auto">
+					Photorealistic 3D anatomical visualizations showing real neural arborization in glowing ruby red, free of diagrammatic vector lines or&nbsp;labels.
 				</p>
 			</div>
 
-			<!-- Main Viewer Workspace -->
-			<div class="viewer-layout">
-				<!-- Left: The Visual Stage with SVG Overlay -->
-				<div class="stage-card">
-					<div class="stage-header">
-						<div class="stage-status-dot"></div>
-						<span class="stage-status-title">High-Fidelity Neural Circuit Map</span>
-						<div class="stage-toggles">
-							<button type="button" class="ctrl-btn active" id="toggle-v2">V2 Maxillary</button>
-							<button type="button" class="ctrl-btn active" id="toggle-v3">V3 Mandibular</button>
-							<button type="button" class="ctrl-btn active" id="toggle-ganglion">Ganglion &amp; Glia</button>
-							<button type="button" class="ctrl-btn" id="toggle-pulse">Animate Signals</button>
-						</div>
+			<!-- Option A: Frontal Coronal View -->
+			<div class="brand-box rounded-2xl p-6 sm:p-10 mb-12 shadow-2xl">
+				<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 mb-6 border-b border-white/10 gap-4">
+					<div>
+						<h2>
+							Option A: Frontal Coronal View (Full Face &amp; Oral Cavity)
+						</h2>
+						<p>
+							Direct anterior perspective looking into the open mouth showing bilateral ganglia, V2 branches wrapping the upper dental arch and palate, and V3 lingual &amp; inferior alveolar pathways.
+						</p>
 					</div>
-
-					<div class="stage-canvas-wrap" id="canvas-wrapper">
-						<!-- Base Anatomical Render -->
-						<img 
-							src="/trigeminal-v2-v3-head-base.png" 
-							alt="3D translucent anatomical head rendering showing oral cavity, palate, and tongue burning zones" 
-							class="head-base-image"
-							id="head-img"
-						/>
-
-						<!-- Precision SVG Neural Wiring Overlay (viewBox matched to 775 x 860) -->
-						<svg class="nerve-overlay-svg" viewBox="0 0 775 860" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-							<defs>
-								<!-- Glow filters -->
-								<filter id="cyan-glow" x="-20%" y="-20%" width="140%" height="140%">
-									<feGaussianBlur stdDeviation="3.5" result="blur" />
-									<feMerge>
-										<feMergeNode in="blur" />
-										<feMergeNode in="SourceGraphic" />
-									</feMerge>
-								</filter>
-								<filter id="gold-glow" x="-20%" y="-20%" width="140%" height="140%">
-									<feGaussianBlur stdDeviation="4" result="blur" />
-									<feMerge>
-										<feMergeNode in="blur" />
-										<feMergeNode in="SourceGraphic" />
-									</feMerge>
-								</filter>
-								<filter id="purple-glow" x="-30%" y="-30%" width="160%" height="160%">
-									<feGaussianBlur stdDeviation="5" result="blur" />
-									<feMerge>
-										<feMergeNode in="blur" />
-										<feMergeNode in="SourceGraphic" />
-									</feMerge>
-								</filter>
-
-								<!-- Pulse Animation Gradients -->
-								<linearGradient id="v2-pulse-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-									<stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2" />
-									<stop offset="50%" stop-color="#38bdf8" stop-opacity="1" />
-									<stop offset="100%" stop-color="#38bdf8" stop-opacity="0.2" />
-								</linearGradient>
-
-								<linearGradient id="v3-pulse-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-									<stop offset="0%" stop-color="#fbbf24" stop-opacity="0.2" />
-									<stop offset="50%" stop-color="#fbbf24" stop-opacity="1" />
-									<stop offset="100%" stop-color="#fbbf24" stop-opacity="0.2" />
-								</linearGradient>
-							</defs>
-
-							<!-- ============================================== -->
-							<!-- 1. GANGLIA & BRAINSTEM CONVERGENCE (DEEP TISSUE) -->
-							<!-- ============================================== -->
-							<g id="layer-ganglia" class="neural-layer active">
-								<!-- Left Trigeminal Ganglion Area (Right on image screen) -->
-								<g class="ganglion-group right-side" transform="translate(565, 335)">
-									<ellipse cx="0" cy="0" rx="34" ry="24" fill="rgba(147, 51, 234, 0.22)" stroke="#a855f7" stroke-width="2.5" filter="url(#purple-glow)" />
-									<!-- Glial Satellite cell cluster indication -->
-									<circle cx="-10" cy="-6" r="4.5" fill="#c084fc" />
-									<circle cx="8" cy="-5" r="4" fill="#c084fc" />
-									<circle cx="-4" cy="8" r="5" fill="#c084fc" />
-									<circle cx="12" cy="7" r="3.5" fill="#c084fc" />
-									<!-- Brainstem root exiting posterior -->
-									<path d="M 18,-4 C 45,-15 70,-10 95,-2" fill="none" stroke="#a855f7" stroke-width="3.5" stroke-dasharray="5 3" />
-								</g>
-
-								<!-- Right Trigeminal Ganglion Area (Left on image screen) -->
-								<g class="ganglion-group left-side" transform="translate(210, 335)">
-									<ellipse cx="0" cy="0" rx="34" ry="24" fill="rgba(147, 51, 234, 0.22)" stroke="#a855f7" stroke-width="2.5" filter="url(#purple-glow)" />
-									<!-- Glial Satellite cell cluster indication -->
-									<circle cx="10" cy="-6" r="4.5" fill="#c084fc" />
-									<circle cx="-8" cy="-5" r="4" fill="#c084fc" />
-									<circle cx="4" cy="8" r="5" fill="#c084fc" />
-									<circle cx="-12" cy="7" r="3.5" fill="#c084fc" />
-									<!-- Brainstem root exiting posterior -->
-									<path d="M -18,-4 C -45,-15 -70,-10 -95,-2" fill="none" stroke="#a855f7" stroke-width="3.5" stroke-dasharray="5 3" />
-								</g>
-							</g>
-
-							<!-- ============================================== -->
-							<!-- 2. V2 MAXILLARY NERVE BRANCHES (CYAN / TEAL)  -->
-							<!-- ============================================== -->
-							<g id="layer-v2" class="neural-layer active">
-								<!-- V2 Trunk Right (Image Left) -->
-								<path 
-									d="M 215,340 C 235,355 285,350 330,345 C 360,340 380,310 387,270" 
-									fill="none" 
-									stroke="#38bdf8" 
-									stroke-width="3.2" 
-									filter="url(#cyan-glow)" 
-									class="nerve-trunk"
-								/>
-								<!-- V2 Trunk Left (Image Right) -->
-								<path 
-									d="M 560,340 C 540,355 490,350 445,345 C 415,340 395,310 388,270" 
-									fill="none" 
-									stroke="#38bdf8" 
-									stroke-width="3.2" 
-									filter="url(#cyan-glow)" 
-									class="nerve-trunk"
-								/>
-
-								<!-- Nasopalatine & Incisive Canal Projection (Nose Tip circle marker) -->
-								<path d="M 387,270 L 387,258" fill="none" stroke="#38bdf8" stroke-width="2.5" />
-								<circle cx="387.5" cy="256" r="8" fill="none" stroke="#38bdf8" stroke-width="2.5" />
-								<circle cx="387.5" cy="256" r="3.5" fill="#38bdf8" />
-
-								<!-- Superior Alveolar Nerves to Upper Teeth / Palate -->
-								<!-- Left Upper Arch -->
-								<path d="M 310,348 C 290,380 270,410 285,455" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" />
-								<path d="M 330,345 C 315,385 305,420 325,445" fill="none" stroke="#38bdf8" stroke-width="2" />
-								<path d="M 350,343 C 345,380 340,415 365,438" fill="none" stroke="#38bdf8" stroke-width="2" />
-
-								<!-- Right Upper Arch -->
-								<path d="M 465,348 C 485,380 505,410 490,455" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" />
-								<path d="M 445,345 C 460,385 470,420 450,445" fill="none" stroke="#38bdf8" stroke-width="2" />
-								<path d="M 425,343 C 430,380 435,415 410,438" fill="none" stroke="#38bdf8" stroke-width="2" />
-
-								<!-- Greater Palatine Nerves converging into Mid-Palate circle marker -->
-								<path d="M 285,365 C 315,390 355,420 387.5,424" fill="none" stroke="#38bdf8" stroke-width="2.5" />
-								<path d="M 490,365 C 460,390 420,420 387.5,424" fill="none" stroke="#38bdf8" stroke-width="2.5" />
-								<circle cx="387.5" cy="424" r="8" fill="none" stroke="#38bdf8" stroke-width="2.5" />
-								<circle cx="387.5" cy="424" r="3.5" fill="#38bdf8" />
-
-								<!-- Radiating micro-fibers along Upper Gums -->
-								<path d="M 285,455 Q 387.5,400 490,455" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.85" />
-							</g>
-
-							<!-- ============================================== -->
-							<!-- 3. V3 MANDIBULAR NERVE BRANCHES (GOLD / AMBER) -->
-							<!-- ============================================== -->
-							<g id="layer-v3" class="neural-layer active">
-								<!-- V3 Trunk Right (Image Left) descending through foramen ovale -->
-								<path 
-									d="M 220,345 C 235,400 240,460 250,520 C 255,560 270,610 320,640" 
-									fill="none" 
-									stroke="#f59e0b" 
-									stroke-width="3.5" 
-									filter="url(#gold-glow)" 
-									class="nerve-trunk"
-								/>
-								<!-- V3 Trunk Left (Image Right) -->
-								<path 
-									d="M 555,345 C 540,400 535,460 525,520 C 520,560 505,610 455,640" 
-									fill="none" 
-									stroke="#f59e0b" 
-									stroke-width="3.5" 
-									filter="url(#gold-glow)" 
-									class="nerve-trunk"
-								/>
-
-								<!-- Lingual Nerve branch to Tongue (Deep red center organ) -->
-								<path 
-									d="M 245,460 C 275,475 315,505 350,535 C 365,548 375,555 387.5,555" 
-									fill="none" 
-									stroke="#f59e0b" 
-									stroke-width="2.8" 
-									stroke-linecap="round"
-								/>
-								<path 
-									d="M 530,460 C 500,475 460,505 425,535 C 410,548 400,555 387.5,555" 
-									fill="none" 
-									stroke="#f59e0b" 
-									stroke-width="2.8" 
-									stroke-linecap="round"
-								/>
-								<!-- Lingual Arborization over anterior tongue body -->
-								<circle cx="387.5" cy="545" r="5" fill="#f59e0b" />
-								<path d="M 387.5,545 C 365,535 345,550 355,568" fill="none" stroke="#f59e0b" stroke-width="1.8" />
-								<path d="M 387.5,545 C 410,535 430,550 420,568" fill="none" stroke="#f59e0b" stroke-width="1.8" />
-								<path d="M 387.5,545 L 387.5,575" fill="none" stroke="#f59e0b" stroke-width="2" />
-
-								<!-- Inferior Alveolar Nerve looping through mandible to all lower molars -->
-								<path 
-									d="M 255,540 C 270,580 300,610 340,630 C 365,640 410,640 435,630 C 475,610 505,580 520,540" 
-									fill="none" 
-									stroke="#f59e0b" 
-									stroke-width="2.5" 
-									stroke-dasharray="4 2"
-								/>
-
-								<!-- Auriculotemporal branch ascending toward ear cartilage -->
-								<path d="M 215,340 C 190,360 170,410 160,470" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 3" />
-								<circle cx="160" cy="480" r="4.5" fill="#f59e0b" />
-								<path d="M 560,340 C 585,360 605,410 615,470" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 3" />
-								<circle cx="615" cy="480" r="4.5" fill="#f59e0b" />
-
-								<!-- Mental Foramen nerve exit (Lower chin/lip burning) -->
-								<circle cx="315" cy="625" r="5" fill="#f59e0b" />
-								<circle cx="460" cy="625" r="5" fill="#f59e0b" />
-							</g>
-
-							<!-- ============================================== -->
-							<!-- 4. INTERACTIVE ANNOTATION CALLOUT LABELS       -->
-							<!-- ============================================== -->
-							<!-- V1 Reference -->
-							<g class="annotation-label" transform="translate(18, 140)">
-								<rect width="180" height="42" rx="8" fill="rgba(15, 23, 42, 0.88)" stroke="#64748b" stroke-width="1.2" />
-								<text x="12" y="18" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">DIVISION V1</text>
-								<text x="12" y="32" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700">Ophthalmic Branch</text>
-								<path d="M 180,21 L 230,190" stroke="#64748b" stroke-width="1.2" stroke-dasharray="2 2" fill="none" />
-							</g>
-
-							<!-- V2 Callout -->
-							<g class="annotation-label" transform="translate(18, 230)">
-								<rect width="210" height="52" rx="8" fill="rgba(15, 23, 42, 0.92)" stroke="#38bdf8" stroke-width="1.5" />
-								<text x="12" y="18" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">DIVISION V2 (MAXILLARY)</text>
-								<text x="12" y="33" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700">Palate, Upper Teeth &amp; Nose</text>
-								<text x="12" y="46" fill="#94a3b8" font-family="'Plus Jakarta Sans', sans-serif" font-size="10">Nasopalatine &amp; Superior Alveolar</text>
-								<path d="M 210,245 L 290,345" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2" fill="none" />
-							</g>
-
-							<!-- V3 Callout -->
-							<g class="annotation-label" transform="translate(18, 540)">
-								<rect width="220" height="52" rx="8" fill="rgba(15, 23, 42, 0.92)" stroke="#f59e0b" stroke-width="1.5" />
-								<text x="12" y="18" fill="#f59e0b" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">DIVISION V3 (MANDIBULAR)</text>
-								<text x="12" y="33" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700">Tongue, Lower Teeth &amp; Ear</text>
-								<text x="12" y="46" fill="#94a3b8" font-family="'Plus Jakarta Sans', sans-serif" font-size="10">Lingual &amp; Inferior Alveolar Nerves</text>
-								<path d="M 220,555 L 280,510" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 2" fill="none" />
-							</g>
-
-							<!-- Trigeminal Ganglion & Glia Callout (Right Side) -->
-							<g class="annotation-label" transform="translate(545, 170)">
-								<rect width="215" height="56" rx="8" fill="rgba(24, 9, 44, 0.92)" stroke="#c084fc" stroke-width="1.5" />
-								<text x="12" y="18" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">TRIGEMINAL GANGLION</text>
-								<text x="12" y="34" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700">Glial Gap Junction Short-Circuit</text>
-								<text x="12" y="48" fill="#cbd5e1" font-family="'Plus Jakarta Sans', sans-serif" font-size="10">Cross-talk between V2 &amp; V3 roots</text>
-								<path d="M 640,226 L 580,315" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="3 2" fill="none" />
-							</g>
-
-							<!-- Brainstem Caudalis Projection (Bottom Center) -->
-							<g class="annotation-label" transform="translate(255, 760)">
-								<rect width="265" height="48" rx="8" fill="rgba(15, 23, 42, 0.95)" stroke="#a855f7" stroke-width="1.5" />
-								<text x="12" y="18" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">SUBNUCLEUS CAUDALIS (MEDULLA)</text>
-								<text x="12" y="34" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700">Convergence Hub: All Branches Collide</text>
-							</g>
-						</svg>
-					</div>
+					<a
+						href="/trigeminal-v2-v3-frontal.jpg"
+						download="trigeminal-v2-v3-frontal.jpg"
+						class="inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-purple-600 hover:bg-purple-500 rounded-lg shadow transition whitespace-nowrap"
+					>
+						Download High-Res JPG &darr;
+					</a>
 				</div>
 
-				<!-- Right: Deep Anatomical Analysis & Key Insights -->
-				<div class="sidebar-card">
-					<div class="sidebar-header">
-						<span class="sidebar-tag">Scientific Breakdown</span>
-						<h2 class="sidebar-title">Why Pain in V3 Projects Into V2 (and Vice Versa)</h2>
+				<div class="img-frame flex justify-center items-center py-4 rounded-xl overflow-hidden">
+					<img
+						src="/trigeminal-v2-v3-frontal.jpg"
+						alt="3D medical render of Trigeminal V2 and V3 nerves in glowing red - Frontal view"
+						class="max-w-full sm:max-w-2xl rounded-lg shadow-2xl"
+					/>
+				</div>
+			</div>
+
+			<!-- Option B: 3/4 Oblique Depth View -->
+			<div class="brand-box rounded-2xl p-6 sm:p-10 mb-12 shadow-2xl">
+				<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 mb-6 border-b border-white/10 gap-4">
+					<div>
+						<h2>
+							Option B: 3/4 Oblique Depth View
+						</h2>
+						<p>
+							Angled depth perspective highlighting the 3D anatomical depth of the ganglion in Meckel's cave and the lingual nerve curving around into the substance of the tongue.
+						</p>
 					</div>
+					<a
+						href="/trigeminal-v2-v3-nerves-real.jpg"
+						download="trigeminal-v2-v3-nerves-depth.jpg"
+						class="inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-purple-600 hover:bg-purple-500 rounded-lg shadow transition whitespace-nowrap"
+					>
+						Download High-Res JPG &darr;
+					</a>
+				</div>
 
-					<div class="sidebar-content">
-						<!-- Insight 1: V3 to Tongue -->
-						<div class="insight-box insight-v3">
-							<div class="insight-badge badge-v3">V3 Mandibular Channel</div>
-							<h3 class="insight-heading">The Lingual &amp; Alveolar Generators</h3>
-							<p>
-								The mandibular branch (V3) travels directly into the pulp of all lower molars via the <strong>Inferior Alveolar Nerve</strong>, while the <strong>Lingual Nerve</strong> blankets the anterior two-thirds of the tongue.
-							</p>
-							<p>
-								When acidic foods or subgingival bacterial fermentation leak into exposed dentin tubules on lower molars, action potentials travel up V3 toward the skull base.
-							</p>
-						</div>
-
-						<!-- Insight 2: Ganglion Glial Cross-Talk -->
-						<div class="insight-box insight-ganglion">
-							<div class="insight-badge badge-ganglion">Relay Station: Ganglion Gap Junctions</div>
-							<h3 class="insight-heading">The Trigeminal Short-Circuit</h3>
-							<p>
-								Inside the Trigeminal (Gasserian) Ganglion, primary neurons for V2 (palate/nose) and V3 (tongue/teeth) lie millimeter-close, cocooned by <strong>Satellite Glial Cells</strong>.
-							</p>
-							<p>
-								Research (2010–2018) proved that intense nociceptive firing activates glial <strong>Connexin-43 gap junctions</strong>, directly depolarizing adjacent uninjured V2 fibers. A tooth leak in V3 thus lights up the palate in V2.
-							</p>
-						</div>
-
-						<!-- Insight 3: V2 Palate & Nasal Radiation -->
-						<div class="insight-box insight-v2">
-							<div class="insight-badge badge-v2">V2 Maxillary Channel</div>
-							<h3 class="insight-heading">The Scalded Palate &amp; Nasal Spillover</h3>
-							<p>
-								The maxillary division (V2) innervates the hard palate (Greater Palatine) and anterior premaxilla (Nasopalatine via Incisive Canal, circled above).
-							</p>
-							<p>
-								Patients experiencing 10/10 burning invariably report the roof of their mouth feeling scalded by boiling tea, even when the underlying cause is a quiet microscopic leak on an upper or lower molar.
-							</p>
-						</div>
-
-						<!-- Download / Export Toolkit -->
-						<div class="export-box">
-							<span class="export-label">Asset Export Options</span>
-							<div class="export-btns">
-								<button type="button" class="action-btn" id="btn-save-png">Download 4K SVG</button>
-								<a href="/trigeminal-v2-v3-head-base.png" download="trigeminal-base-head.png" class="action-btn-outline">Download Base Render</a>
-							</div>
-						</div>
-					</div>
+				<div class="img-frame flex justify-center items-center py-4 rounded-xl overflow-hidden">
+					<img
+						src="/trigeminal-v2-v3-nerves-real.jpg"
+						alt="3D medical render of Trigeminal V2 and V3 nerves in glowing red - Angled perspective"
+						class="max-w-full sm:max-w-2xl rounded-xl shadow-2xl"
+					/>
 				</div>
 			</div>
 		</main>
-
 		<Footer />
-
-		<script>
-			// Interactive layer toggles
-			const v2Btn = document.getElementById('toggle-v2');
-			const v3Btn = document.getElementById('toggle-v3');
-			const ganglionBtn = document.getElementById('toggle-ganglion');
-			const pulseBtn = document.getElementById('toggle-pulse');
-
-			const layerV2 = document.getElementById('layer-v2');
-			const layerV3 = document.getElementById('layer-v3');
-			const layerGanglia = document.getElementById('layer-ganglia');
-			const svgEl = document.querySelector('.nerve-overlay-svg');
-
-			v2Btn?.addEventListener('click', () => {
-				v2Btn.classList.toggle('active');
-				layerV2?.classList.toggle('active');
-			});
-
-			v3Btn?.addEventListener('click', () => {
-				v3Btn.classList.toggle('active');
-				layerV3?.classList.toggle('active');
-			});
-
-			ganglionBtn?.addEventListener('click', () => {
-				ganglionBtn.classList.toggle('active');
-				layerGanglia?.classList.toggle('active');
-			});
-
-			pulseBtn?.addEventListener('click', () => {
-				pulseBtn.classList.toggle('active');
-				svgEl?.classList.toggle('animating-pulses');
-			});
-		</script>
-
-		<style>
-			:root {
-				--bg-dark: #0a0718;
-				--card-bg: #120d29;
-				--card-border: rgba(168, 85, 247, 0.25);
-				--cyan-neon: #38bdf8;
-				--gold-neon: #fbbf24;
-				--purple-neon: #c084fc;
-			}
-
-			html, body.brand-body, body {
-				background: #080514 !important;
-				background-image: none !important;\n\t\t\t\tbackground-color: #080514 !important;\n\t\t\t\tbackground-image: none !important;
-				background-color: #080514 !important;
-				color: #f8fafc !important;
-				font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-				min-height: 100vh;
-				margin: 0;
-				padding: 0;
-			}
-
-			.brand-container {
-				max-width: 1400px;
-				margin: 0 auto;
-				padding: 3rem 1.5rem 5rem 1.5rem;
-			}
-
-			.brand-hero {
-				text-align: center;
-				max-width: 900px;
-				margin: 0 auto 3rem auto;
-			}
-
-			.brand-badge {
-				display: inline-block;
-				background: rgba(168, 85, 247, 0.18);
-				border: 1px solid rgba(168, 85, 247, 0.45);
-				color: #e9d5ff;
-				font-family: 'JetBrains Mono', monospace;
-				font-size: 0.8rem;
-				font-weight: 700;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				padding: 0.4rem 0.95rem;
-				border-radius: 9999px;
-				margin-bottom: 1.35rem;
-			}
-
-			.brand-title {
-				font-family: 'Montserrat', sans-serif;
-				font-size: clamp(2.2rem, 4.2vw, 3.4rem);
-				font-weight: 900;
-				line-height: 1.15;
-				color: #ffffff !important;
-				letter-spacing: -0.025em;
-				margin: 0 0 1.25rem 0;
-				text-wrap: balance;
-			}
-
-			.brand-subhead {
-				font-size: 1.12rem;
-				line-height: 1.7;
-				color: #cbd5e1 !important;
-				margin: 0 auto;
-				max-width: 820px;
-				text-wrap: balance;
-			}
-
-			/* 2-Column Responsive Workspace */
-			.viewer-layout {
-				display: grid;
-				grid-template-columns: 1fr;
-				gap: 2.25rem;
-				align-items: start;
-			}
-
-			@media (min-width: 1040px) {
-				.viewer-layout {
-					grid-template-columns: 1.15fr 0.85fr;
-				}
-			}
-
-			/* Left: Stage Card */
-			.stage-card {
-				background: #0f0a24;
-				border: 1.5px solid var(--card-border);
-				border-radius: 20px;
-				box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
-				overflow: hidden;
-				display: flex;
-				flex-direction: column;
-			}
-
-			.stage-header {
-				display: flex;
-				flex-wrap: wrap;
-				align-items: center;
-				gap: 0.75rem;
-				padding: 1rem 1.4rem;
-				background: rgba(24, 15, 48, 0.85);
-				border-bottom: 1px solid rgba(168, 85, 247, 0.2);
-			}
-
-			.stage-status-dot {
-				width: 10px;
-				height: 10px;
-				background: #10b981;
-				border-radius: 50%;
-				box-shadow: 0 0 8px #10b981;
-			}
-
-			.stage-status-title {
-				font-size: 0.9rem;
-				font-weight: 700;
-				letter-spacing: 0.02em;
-				color: #f1f5f9;
-				margin-right: auto;
-			}
-
-			.stage-toggles {
-				display: flex;
-				gap: 0.5rem;
-				flex-wrap: wrap;
-			}
-
-			.ctrl-btn {
-				background: rgba(255, 255, 255, 0.08);
-				border: 1px solid rgba(255, 255, 255, 0.16);
-				color: #cbd5e1;
-				font-size: 0.78rem;
-				font-weight: 700;
-				padding: 0.45rem 0.85rem;
-				border-radius: 8px;
-				cursor: pointer;
-				transition: all 0.2s ease;
-			}
-
-			.ctrl-btn:hover {
-				background: rgba(255, 255, 255, 0.16);
-				color: #ffffff;
-			}
-
-			.ctrl-btn.active#toggle-v2 {
-				background: rgba(56, 189, 248, 0.25);
-				border-color: #38bdf8;
-				color: #38bdf8;
-			}
-
-			.ctrl-btn.active#toggle-v3 {
-				background: rgba(251, 191, 36, 0.25);
-				border-color: #fbbf24;
-				color: #fbbf24;
-			}
-
-			.ctrl-btn.active#toggle-ganglion {
-				background: rgba(192, 132, 252, 0.25);
-				border-color: #c084fc;
-				color: #c084fc;
-			}
-
-			.ctrl-btn.active#toggle-pulse {
-				background: rgba(16, 185, 129, 0.25);
-				border-color: #10b981;
-				color: #10b981;
-			}
-
-			/* The Canvas Wrapper with precise layer alignment */
-			.stage-canvas-wrap {
-				position: relative;
-				width: 100%;
-				aspect-ratio: 775 / 860;
-				background: #06030e;
-				overflow: hidden;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-
-			.head-base-image {
-				width: 100%;
-				height: 100%;
-				object-fit: contain;
-				display: block;
-				opacity: 0.98;
-			}
-
-			.nerve-overlay-svg {
-				position: absolute;
-				inset: 0;
-				width: 100%;
-				height: 100%;
-				pointer-events: all;
-			}
-
-			.neural-layer {
-				opacity: 0;
-				transition: opacity 0.3s ease;
-			}
-
-			.neural-layer.active {
-				opacity: 1;
-			}
-
-			.nerve-trunk {
-				transition: stroke-width 0.2s ease;
-			}
-
-			.nerve-trunk:hover {
-				stroke-width: 5;
-				cursor: pointer;
-			}
-
-			/* Pulse animation */
-			.animating-pulses .nerve-trunk {
-				stroke-dasharray: 12 8;
-				animation: dashNerve 1.5s linear infinite;
-			}
-
-			@keyframes dashNerve {
-				from { stroke-dashoffset: 40; }
-				to { stroke-dashoffset: 0; }
-			}
-
-			/* Right: Sidebar Analysis Card */
-			.sidebar-card {
-				background: #0f0a24;
-				border: 1.5px solid var(--card-border);
-				border-radius: 20px;
-				padding: 2.25rem 2rem;
-				box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
-			}
-
-			.sidebar-header {
-				margin-bottom: 2rem;
-				border-bottom: 1px solid rgba(168, 85, 247, 0.22);
-				padding-bottom: 1.35rem;
-			}
-
-			.sidebar-tag {
-				font-family: 'JetBrains Mono', monospace;
-				font-size: 0.78rem;
-				font-weight: 700;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				color: #c084fc;
-				display: block;
-				margin-bottom: 0.45rem;
-			}
-
-			.sidebar-title {
-				font-family: 'Montserrat', sans-serif;
-				font-size: 1.65rem;
-				font-weight: 800;
-				color: #ffffff;
-				line-height: 1.25;
-				margin: 0;
-				text-wrap: balance;
-			}
-
-			.sidebar-content {
-				display: flex;
-				flex-direction: column;
-				gap: 1.35rem;
-			}
-
-			.insight-box {
-				background: rgba(255, 255, 255, 0.035);
-				border: 1px solid rgba(255, 255, 255, 0.08);
-				border-radius: 12px;
-				padding: 1.35rem 1.45rem;
-				transition: transform 0.2s ease, border-color 0.2s ease;
-			}
-
-			.insight-box:hover {
-				transform: translateY(-2px);
-			}
-
-			.insight-v3 {
-				border-left: 4px solid #f59e0b;
-			}
-			.insight-ganglion {
-				border-left: 4px solid #c084fc;
-			}
-			.insight-v2 {
-				border-left: 4px solid #38bdf8;
-			}
-
-			.insight-badge {
-				display: inline-block;
-				font-family: 'JetBrains Mono', monospace;
-				font-size: 0.72rem;
-				font-weight: 700;
-				letter-spacing: 0.05em;
-				text-transform: uppercase;
-				padding: 0.22rem 0.6rem;
-				border-radius: 6px;
-				margin-bottom: 0.6rem;
-			}
-
-			.badge-v3 {
-				background: rgba(245, 158, 11, 0.2);
-				color: #fbbf24;
-			}
-			.badge-ganglion {
-				background: rgba(192, 132, 252, 0.2);
-				color: #d8b4fe;
-			}
-			.badge-v2 {
-				background: rgba(56, 189, 248, 0.2);
-				color: #7dd3fc;
-			}
-
-			.insight-heading {
-				font-size: 1.15rem;
-				font-weight: 800;
-				color: #ffffff;
-				margin: 0 0 0.5rem 0;
-			}
-
-			.insight-box p {
-				font-size: 0.94rem;
-				line-height: 1.65;
-				color: #cbd5e1;
-				margin: 0 0 0.65rem 0;
-			}
-			.insight-box p:last-child {
-				margin-bottom: 0;
-			}
-
-			.export-box {
-				background: rgba(168, 85, 247, 0.09);
-				border: 1px dashed rgba(168, 85, 247, 0.4);
-				border-radius: 12px;
-				padding: 1.35rem;
-				margin-top: 0.5rem;
-			}
-
-			.export-label {
-				font-size: 0.8rem;
-				font-weight: 700;
-				color: #e9d5ff;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				display: block;
-				margin-bottom: 0.85rem;
-			}
-
-			.export-btns {
-				display: flex;
-				gap: 0.75rem;
-				flex-wrap: wrap;
-			}
-
-			.action-btn {
-				background: #7c3aed;
-				color: #ffffff;
-				font-size: 0.88rem;
-				font-weight: 700;
-				border: none;
-				border-radius: 8px;
-				padding: 0.7rem 1.25rem;
-				cursor: pointer;
-				transition: background 0.2s ease;
-			}
-			.action-btn:hover {
-				background: #6d28d9;
-			}
-
-			.action-btn-outline {
-				background: transparent;
-				color: #e2e8f0;
-				font-size: 0.88rem;
-				font-weight: 700;
-				border: 1px solid rgba(255, 255, 255, 0.25);
-				border-radius: 8px;
-				padding: 0.7rem 1.25rem;
-				text-decoration: none;
-				transition: all 0.2s ease;
-			}
-			.action-btn-outline:hover {
-				border-color: #ffffff;
-				background: rgba(255, 255, 255, 0.1);
-			}
-		</style>
 	</body>
 </html>
