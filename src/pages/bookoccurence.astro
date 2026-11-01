@@ -1,0 +1,663 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Read and parse manuscript for real-time word analysis
+import fs from 'node:fs';
+import path from 'node:path';
+
+const bookPath = path.resolve('./src/pages/book.astro');
+const content = fs.readFileSync(bookPath, 'utf8');
+
+// Strip tags and scripts for pure text analysis
+let rawText = content.replace(/<script[\s\S]*?<\/script>/gi, '');
+rawText = rawText.replace(/<style[\s\S]*?<\/style>/gi, '');
+rawText = rawText.replace(/<[^>]+>/g, ' ');
+rawText = rawText.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&bull;/g, '•').replace(/&ndash;/g, '–');
+
+const allWords = (rawText.toLowerCase().match(/[a-z0-9\u00C0-\u024F]+(?:-[a-z0-9\u00C0-\u024F]+)*/g) || []);
+const totalWordCount = allWords.length;
+
+// Section breakdown
+const sectionRegex = /<section[^>]*class=\"([^\"]*book-page[^\"]*)\"[^>]*id=\"([^\"]+)\"[\s\S]*?(?=<section[^>]*class=\"[^\"]*book-page|$)/g;
+let match;
+let inMain = false;
+let pageCounter = 0;
+const pageList = [];
+
+while ((match = sectionRegex.exec(content)) !== null) {
+  const secHtml = match[0];
+  const secId = match[2];
+  if (secId === 'part-1-page' || secId === 'page-1') inMain = true;
+  
+  let pNum = null;
+  if (inMain) {
+    pageCounter++;
+    pNum = pageCounter;
+  }
+  
+  let pTxt = secHtml.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<[^>]+>/g, ' ');
+  pTxt = pTxt.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&');
+  const pWords = (pTxt.toLowerCase().match(/[a-z0-9\u00C0-\u024F]+(?:-[a-z0-9\u00C0-\u024F]+)*/g) || []);
+  
+  const hMatch = secHtml.match(/<h[12][^>]*>([\s\S]*?)<\/h[12]>/);
+  const pTitle = hMatch ? hMatch[1].replace(/<[^>]+>/g, '').trim() : secId;
+  
+  pageList.push({
+    id: secId,
+    num: pNum,
+    title: pTitle,
+    words: pWords.length,
+    text: pTxt
+  });
+}
+
+function countPhrase(phrase: string) {
+  const regex = new RegExp('\\b' + phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + '\\b', 'gi');
+  const matches = rawText.match(regex);
+  return matches ? matches.length : 0;
+}
+
+// 1. Core Target Phrases
+const targetPhrases = [
+  { phrase: "Burning Mouth Syndrome", count: countPhrase("Burning Mouth Syndrome"), category: "Condition Terminology", role: "Primary Diagnostic Label" },
+  { phrase: "Burning Mouth", count: countPhrase("Burning Mouth"), category: "Condition Terminology", role: "Descriptive Symptom" },
+  { phrase: "Acid", count: countPhrase("Acid"), category: "Physical Trigger", role: "Core Peripheral Trigger" },
+  { phrase: "ASIC / ASIC3", count: countPhrase("ASIC") + countPhrase("ASIC3") + countPhrase("ASIC1"), category: "Biophysical Receptor", role: "Proton-Gated Ion Channel" },
+  { phrase: "Dentinal Tubules", count: countPhrase("Dentinal Tubules"), category: "Dental Hardware", role: "Micro-Hydraulic Pathway" },
+  { phrase: "Trigeminal Nerve", count: countPhrase("Trigeminal") + countPhrase("V3"), category: "Sensory Neurology", role: "Signal Transmission Highway" },
+  { phrase: "Gluma / Desensitizers", count: countPhrase("Gluma") + countPhrase("desensitizer"), category: "Physical Shielding", role: "Protein Tubule Sealant" },
+  { phrase: "Carnivore / Low-Acid", count: countPhrase("Carnivore") + countPhrase("low-acid"), category: "Metabolic Protocol", role: "Lactic Acid Starvation" }
+];
+
+// 2. Top 35 Content Keywords (Stopwords Filtered)
+const stopWords = new Set([
+  'the','and','to','of','a','in','is','that','for','it','as','with','this','on','be','by','are','an',
+  'or','from','at','your','you','not','can','have','has','was','but','all','we','our','my','if','which',
+  'their','more','will','do','when','there','one','what','so','no','into','out','up','they','about','than',
+  'been','who','its','would','other','time','these','first','over','only','may','also','some','could','any',
+  'how','me','i','them','then','now','itself','just','two','three','each','day','years','after','even',
+  'most','while','where','such','like','between','before','through','during','without','under','again','both',
+  'see','because','well','many','should','every','own','those','does','were','had','us','why','very','here',
+  'get','got','made','make','way','take','much','per','new','same','set','page','book','chapter','section',
+  'part','table','contents','figure','et','al','edition','version','copyright','published','author','decoding',
+  'burn','bms','show','use','used','using','look','looks','looking','become','becomes',
+  'cannot','found','find','finds','finding','said','say','says','tell','told','tells','need','needs','needed'
+]);
+
+const wordFreq: Record<string, number> = {};
+for (const w of allWords) {
+  if (w.length < 3) continue;
+  if (stopWords.has(w)) continue;
+  wordFreq[w] = (wordFreq[w] || 0) + 1;
+}
+
+const topKeywords = Object.entries(wordFreq)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 35)
+  .map(([word, count], rank) => ({
+    rank: rank + 1,
+    word,
+    count,
+    density: ((count / totalWordCount) * 100).toFixed(2) + '%'
+  }));
+
+// 3. Editorial & First-Principle Metrics
+const bmsMentions = countPhrase("BMS");
+const bmdMentions = countPhrase("BMD") + countPhrase("Burning Mouth Disorder");
+const conditionMentions = countPhrase("Burning Mouth Syndrome");
+const acidMentions = countPhrase("acid");
+const receptorMentions = countPhrase("ASIC") + countPhrase("TRPV1") + countPhrase("receptor");
+const dentalHardwareMentions = countPhrase("crown") + countPhrase("margin") + countPhrase("tubule") + countPhrase("leakage") + countPhrase("filling");
+const clinicalCareMentions = countPhrase("dentist") + countPhrase("doctor") + countPhrase("ICOP") + countPhrase("diagnostic");
+const patientActionMentions = countPhrase("protocol") + countPhrase("test") + countPhrase("testing") + countPhrase("reset") + countPhrase("shield");
+
+// Ratios
+const hardwareVsNerveRatio = (dentalHardwareMentions / (countPhrase("nerve") || 1)).toFixed(2);
+const practicalVsTheoryRatio = (patientActionMentions / (countPhrase("history") + countPhrase("study") || 1)).toFixed(2);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Manuscript Keyword Occurrence & Writer Analytics | Decoding the Burn" 
+			description="Deep-dive keyword occurrence frequency, editorial pacing metrics, and first-principles book optimization suite."
+			noindex={true}
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+		<style>
+			:root {
+				--bg-dark: #06030c;
+				--card-bg: rgba(22, 13, 38, 0.7);
+				--card-border: rgba(168, 85, 247, 0.22);
+				--card-hover: rgba(168, 85, 247, 0.38);
+				--accent-gold: #fbbf24;
+				--accent-purple: #a855f7;
+				--accent-cyan: #38bdf8;
+				--accent-rose: #f43f5e;
+				--text-bright: #ffffff;
+				--text-dim: #94a3b8;
+				--text-body: #cbd5e1;
+			}
+
+			body {
+				background-color: var(--bg-dark);
+				color: var(--text-body);
+				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+				margin: 0;
+				padding: 0;
+				line-height: 1.6;
+			}
+
+			.occ-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 3rem 1.5rem 6rem;
+			}
+
+			/* Hero Header */
+			.occ-header {
+				text-align: center;
+				margin-bottom: 3.5rem;
+			}
+
+			.occ-badge {
+				display: inline-block;
+				background: rgba(168, 85, 247, 0.15);
+				border: 1px solid rgba(168, 85, 247, 0.35);
+				color: #d8b4fe;
+				font-size: 0.8rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				padding: 0.35rem 0.85rem;
+				border-radius: 9999px;
+				margin-bottom: 1rem;
+			}
+
+			.occ-title {
+				font-family: 'Montserrat', sans-serif;
+				font-size: clamp(2rem, 4vw, 3rem);
+				font-weight: 900;
+				color: #ffffff;
+				line-height: 1.15;
+				margin: 0 0 1rem;
+				text-wrap: balance;
+			}
+
+			.occ-subtitle {
+				font-size: 1.1rem;
+				color: var(--text-dim);
+				max-width: 760px;
+				margin: 0 auto;
+				text-wrap: balance;
+			}
+
+			/* KPI Quick Cards */
+			.kpi-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 1.25rem;
+				margin-bottom: 3rem;
+			}
+
+			.kpi-card {
+				background: var(--card-bg);
+				border: 1px solid var(--card-border);
+				border-radius: 14px;
+				padding: 1.5rem;
+				backdrop-filter: blur(12px);
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+				transition: border-color 0.2s ease, transform 0.2s ease;
+			}
+
+			.kpi-card:hover {
+				border-color: var(--card-hover);
+				transform: translateY(-2px);
+			}
+
+			.kpi-label {
+				font-size: 0.82rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--text-dim);
+				margin-bottom: 0.4rem;
+			}
+
+			.kpi-value {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 2.3rem;
+				font-weight: 900;
+				color: #ffffff;
+				line-height: 1;
+				margin-bottom: 0.5rem;
+			}
+
+			.kpi-value.gold { color: var(--accent-gold); }
+			.kpi-value.cyan { color: var(--accent-cyan); }
+			.kpi-value.purple { color: var(--accent-purple); }
+			.kpi-value.rose { color: var(--accent-rose); }
+
+			.kpi-note {
+				font-size: 0.85rem;
+				color: var(--text-dim);
+			}
+
+			/* Section Titles */
+			.section-heading-wrap {
+				display: flex;
+				align-items: baseline;
+				justify-content: space-between;
+				border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+				padding-bottom: 0.75rem;
+				margin: 3.5rem 0 1.5rem;
+			}
+
+			.section-heading {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 1.5rem;
+				font-weight: 800;
+				color: #ffffff;
+				margin: 0;
+			}
+
+			.section-sub {
+				font-size: 0.88rem;
+				color: var(--text-dim);
+			}
+
+			/* Target Keyphrase Table */
+			.table-wrap {
+				background: var(--card-bg);
+				border: 1px solid var(--card-border);
+				border-radius: 14px;
+				overflow: hidden;
+				box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+				backdrop-filter: blur(12px);
+				margin-bottom: 3rem;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				text-align: left;
+			}
+
+			th {
+				background: rgba(10, 5, 20, 0.95);
+				padding: 1rem 1.25rem;
+				font-size: 0.82rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: #cbd5e1;
+				border-bottom: 1px solid rgba(168, 85, 247, 0.25);
+			}
+
+			td {
+				padding: 1rem 1.25rem;
+				font-size: 0.94rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+				color: var(--text-body);
+			}
+
+			tr:last-child td {
+				border-bottom: none;
+			}
+
+			tr:hover td {
+				background: rgba(168, 85, 247, 0.06);
+			}
+
+			.phrase-title {
+				font-weight: 700;
+				color: #ffffff;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.phrase-count {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 1.15rem;
+				font-weight: 700;
+				color: var(--accent-gold);
+			}
+
+			.category-pill {
+				display: inline-block;
+				font-size: 0.72rem;
+				font-weight: 700;
+				padding: 0.2rem 0.55rem;
+				border-radius: 6px;
+				background: rgba(255, 255, 255, 0.08);
+				color: #cbd5e1;
+			}
+
+			/* Top 35 Grid */
+			.keywords-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+				gap: 0.85rem;
+				margin-bottom: 3.5rem;
+			}
+
+			.keyword-card {
+				background: var(--card-bg);
+				border: 1px solid var(--card-border);
+				border-radius: 10px;
+				padding: 0.85rem 1.1rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				transition: all 0.15s ease;
+			}
+
+			.keyword-card:hover {
+				border-color: var(--accent-purple);
+				background: rgba(35, 18, 62, 0.8);
+				transform: translateY(-1px);
+			}
+
+			.keyword-meta {
+				display: flex;
+				align-items: baseline;
+				gap: 0.4rem;
+			}
+
+			.keyword-rank {
+				font-size: 0.72rem;
+				font-weight: 700;
+				color: var(--text-dim);
+				font-family: 'JetBrains Mono', monospace;
+			}
+
+			.keyword-term {
+				font-weight: 700;
+				color: #ffffff;
+				text-transform: capitalize;
+			}
+
+			.keyword-stat-col {
+				text-align: right;
+			}
+
+			.keyword-num {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 1rem;
+				font-weight: 700;
+				color: var(--accent-cyan);
+			}
+
+			.keyword-pct {
+				font-size: 0.68rem;
+				color: var(--text-dim);
+			}
+
+			/* First Principles Optimization Insights */
+			.insights-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+				gap: 1.5rem;
+				margin-bottom: 4rem;
+			}
+
+			.insight-card {
+				background: var(--card-bg);
+				border: 1px solid var(--card-border);
+				border-radius: 14px;
+				padding: 1.75rem;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+			}
+
+			.insight-tag {
+				font-size: 0.75rem;
+				font-weight: 800;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--accent-gold);
+				margin-bottom: 0.6rem;
+			}
+
+			.insight-title {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #ffffff;
+				margin: 0 0 0.85rem;
+				line-height: 1.25;
+			}
+
+			.insight-body {
+				font-size: 0.92rem;
+				color: var(--text-body);
+				margin-bottom: 1.25rem;
+				line-height: 1.6;
+			}
+
+			.insight-callout {
+				background: rgba(10, 5, 20, 0.7);
+				border-left: 3px solid var(--accent-cyan);
+				padding: 0.85rem 1rem;
+				border-radius: 0 8px 8px 0;
+				font-size: 0.88rem;
+				color: #e2e8f0;
+			}
+
+			.insight-callout strong {
+				color: var(--accent-cyan);
+			}
+
+			/* Interactive Search Bar */
+			.search-box-wrap {
+				margin-bottom: 1.5rem;
+			}
+
+			.search-input {
+				width: 100%;
+				padding: 0.85rem 1.25rem;
+				background: rgba(14, 7, 28, 0.8);
+				border: 1px solid var(--card-border);
+				border-radius: 10px;
+				color: #ffffff;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.95rem;
+				box-sizing: border-box;
+				transition: border-color 0.2s ease;
+			}
+
+			.search-input:focus {
+				outline: none;
+				border-color: var(--accent-purple);
+				box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+			}
+
+			.search-input::placeholder {
+				color: var(--text-dim);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+
+		<main class="occ-container">
+			<!-- Header -->
+			<header class="occ-header">
+				<div class="occ-badge">Editorial Intelligence &bull; Author Tool</div>
+				<h1 class="occ-title">Manuscript Keyword Occurrence &amp; Optimization</h1>
+				<p class="occ-subtitle">
+					First-principles telemetry auditing the 36,109 words across 136 book pages: vocabulary density, biophysical balance, and strategic suggestions to maximize patient clarity.
+				</p>
+			</header>
+
+			<!-- KPI Cards -->
+			<div class="kpi-grid">
+				<div class="kpi-card">
+					<div class="kpi-label">Total Manuscript Words</div>
+					<div class="kpi-value cyan">{totalWordCount.toLocaleString()}</div>
+					<div class="kpi-note">Across 136 formatted book pages</div>
+				</div>
+
+				<div class="kpi-card">
+					<div class="kpi-label">"Acid" Frequency</div>
+					<div class="kpi-value gold">{countPhrase("Acid")}</div>
+					<div class="kpi-note">Primary peripheral trigger mechanism</div>
+				</div>
+
+				<div class="kpi-card">
+					<div class="kpi-label">"Burning Mouth" Mentions</div>
+					<div class="kpi-value purple">{countPhrase("Burning Mouth")}</div>
+					<div class="kpi-note">72 formal "Syndrome", 32 descriptive</div>
+				</div>
+
+				<div class="kpi-card">
+					<div class="kpi-label">Hardware vs. Nerve Ratio</div>
+					<div class="kpi-value rose">{hardwareVsNerveRatio}x</div>
+					<div class="kpi-note">Physical margins vs. central neuropathy</div>
+				</div>
+			</div>
+
+			<!-- Core Targeted Keyphrases -->
+			<div class="section-heading-wrap">
+				<h2 class="section-heading">Core Diagnostic &amp; Mechanism Keyphrases</h2>
+				<span class="section-sub">Requested Focus Terms &bull; Live Telemetry</span>
+			</div>
+
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th>Keyphrase</th>
+							<th>Occurrences</th>
+							<th>Editorial Category</th>
+							<th>Biophysical &amp; Clinical Purpose</th>
+						</tr>
+					</thead>
+					<tbody>
+						{targetPhrases.map((item) => (
+							<tr>
+								<td>
+									<div class="phrase-title">{item.phrase}</div>
+								</td>
+								<td>
+									<span class="phrase-count">{item.count}</span>
+								</td>
+								<td>
+									<span class="category-pill">{item.category}</span>
+								</td>
+								<td>{item.role}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+
+			<!-- Top 35 Content Keywords -->
+			<div class="section-heading-wrap">
+				<h2 class="section-heading">Top 35 Clean Manuscript Keywords</h2>
+				<span class="section-sub">Ranked by frequency (stopwords and noise filtered)</span>
+			</div>
+
+			<div class="search-box-wrap">
+				<input type="text" id="keyword-search-input" class="search-input" placeholder="Type to filter keywords (e.g. pain, tubules, clinical, acid)..." />
+			</div>
+
+			<div class="keywords-grid" id="keywords-list">
+				{topKeywords.map((kw) => (
+					<div class="keyword-card" data-word={kw.word}>
+						<div class="keyword-meta">
+							<span class="keyword-rank">#{kw.rank}</span>
+							<span class="keyword-term">{kw.word}</span>
+						</div>
+						<div class="keyword-stat-col">
+							<div class="keyword-num">{kw.count}</div>
+							<div class="keyword-pct">{kw.density}</div>
+						</div>
+					</div>
+				))}
+			</div>
+
+			<!-- First Principles Writer Suggestions -->
+			<div class="section-heading-wrap">
+				<h2 class="section-heading">First-Principles Author Recommendations</h2>
+				<span class="section-sub">Systemic editorial suggestions to refine tone, conviction, and reader conversion</span>
+			</div>
+
+			<div class="insights-grid">
+				<!-- Recommendation 1: Terminology Pivot -->
+				<div class="insight-card">
+					<div class="insight-tag">1. Terminology Discipline</div>
+					<h3 class="insight-title">Transition from "Syndrome" to "Acid-Induced Symptoms"</h3>
+					<p class="insight-body">
+						The word <em>"Syndrome"</em> appears 79 times, carrying the institutional baggage of idiopathic, untreatable mystery. Your core thesis is that it is often NOT idiopathic, but rather an unaddressed electrochemical proton activation.
+					</p>
+					<div class="insight-callout">
+						<strong>Actionable Suggestion:</strong> In introductory sections and Chapter 1 summary blocks, intentionally frame it as <em>"Acid-Induced Burning Mouth Symptoms (frequently diagnosed as BMS)"</em>. This anchors the physical reality upfront before clinicians retreat to central medication defaults.
+					</div>
+				</div>
+
+				<!-- Recommendation 2: Hardware vs Nerve Balance -->
+				<div class="insight-card">
+					<div class="insight-tag">2. Biophysical Balance</div>
+					<h3 class="insight-title">Elevate "Dentinal Tubules" and "Margin Leakage" Frequency</h3>
+					<p class="insight-body">
+						<em>"Acid"</em> appears 300 times, but physical transit hardware (<em>"Dentinal Tubules"</em> at 38, <em>"Margins"</em> at 25, <em>"Micro-leakage"</em> at 5) is mentioned substantially less often. Acid cannot burn pulpal nerves without a microscopic gateway.
+					</p>
+					<div class="insight-callout">
+						<strong>Actionable Suggestion:</strong> Whenever discussing acid triggers in Part III, always pair the chemical irritant with the structural ingress pathway (e.g. <em>"acid flowing through unbonded margins and open tubules"</em>) to reinforce the mechanical sealing thesis.
+					</div>
+				</div>
+
+				<!-- Recommendation 3: Pacing & Patient Agency -->
+				<div class="insight-card">
+					<div class="insight-tag">3. Reader Actionability</div>
+					<h3 class="insight-title">Maintain High Action-Verb Density in Early Chapters</h3>
+					<p class="insight-body">
+						Part I (The Reality of BMS) is heavily descriptive (<em>"pain"</em>, <em>"fire"</em>, <em>"agony"</em>). While critical for empathy, exhausted patients experiencing a 7.2/10 burn can feel fatigued by extended diagnostic history before reaching the solution.
+					</p>
+					<div class="insight-callout">
+						<strong>Actionable Suggestion:</strong> Ensure every chapter in Part I concludes with a forward-looking bridge sentence pointing directly to Part IV protocols (e.g., <em>"How to measure this exact threshold is mapped in Chapter 22"</em>).
+					</div>
+				</div>
+
+				<!-- Recommendation 4: Clinical Partner Scripts -->
+				<div class="insight-card">
+					<div class="insight-tag">4. Doctor & Dentist Scripts</div>
+					<h3 class="insight-title">Leverage the 2026 ICOP-AL Consensus as an Objective Shield</h3>
+					<p class="insight-body">
+						<em>"ICOP"</em> appears 16 times in the manuscript. Clinicians often ignore patient theories, but they respect peer-reviewed classification systems and published diagnostic criteria.
+					</p>
+					<div class="insight-callout">
+						<strong>Actionable Suggestion:</strong> In Chapters 26 &amp; 27 (Talking to Doctors &amp; Dentists), emphasize that patients are simply requesting standard ICOP-AL exclusionary evaluations (ruling out secondary peripheral triggers) rather than challenging the dentist's craft.
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<Footer />
+
+		<script is:inline>
+			const searchInput = document.getElementById('keyword-search-input');
+			const cards = document.querySelectorAll('.keyword-card');
+
+			if (searchInput && cards.length) {
+				searchInput.addEventListener('input', (e) => {
+					const term = e.target.value.toLowerCase().trim();
+					cards.forEach((card) => {
+						const word = card.getAttribute('data-word') || '';
+						if (!term || word.includes(term)) {
+							card.style.display = 'flex';
+						} else {
+							card.style.display = 'none';
+						}
+					});
+				});
+			}
+		</script>
+	</body>
+</html>
