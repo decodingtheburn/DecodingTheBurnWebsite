@@ -1477,7 +1477,14 @@ if (headings && headings.length > 0) {
 				if (sentenceStrings.length === 0) return;
 
 				// Collect text nodes inside block
-				const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null);
+				const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+					acceptNode(node) {
+						if (node.parentElement && node.parentElement.closest('.chem-formula, .chem-molecule, .sci-chem, code, pre, script, style')) {
+							return NodeFilter.FILTER_REJECT;
+						}
+						return NodeFilter.FILTER_ACCEPT;
+					}
+				});
 				const textNodes: Text[] = [];
 				let n: Node | null;
 				while ((n = walker.nextNode())) {

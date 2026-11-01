@@ -2038,5 +2038,51 @@ if (!postNumber && slug) {
 			}
 		</style>
 		<PresenterCursor />
+	
+		<script>
+			// Global Chemical & Molecule Formatter (STIX Two Text / STIX Two Math)
+			function formatScientificMolecules() {
+				const container = document.getElementById('blog-post-content') || document.querySelector('.post-content');
+				if (!container) return;
+
+				// Target nodes that haven't been processed yet
+				const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+					acceptNode(node) {
+						if (node.parentElement && node.parentElement.closest('code, pre, script, style, .chem-formula, .chem-molecule')) {
+							return NodeFilter.FILTER_REJECT;
+						}
+						// Match any of: ($H^+), ($H+), $H^+$, (H+), H^+, H<sup>+</sup>
+						if (/\(?\$H\^?\+?\$\)?|\(H\+\)|\$H\^\+\$|H\^\+|\bH\+/i.test(node.nodeValue || '')) {
+							return NodeFilter.FILTER_ACCEPT;
+						}
+						return NodeFilter.FILTER_SKIP;
+					}
+				});
+
+				const nodesToReplace = [];
+				let n;
+				while ((n = walker.nextNode())) {
+					nodesToReplace.push(n);
+				}
+
+				nodesToReplace.forEach((node) => {
+					const text = node.nodeValue || '';
+					// Replace ($H^+), ($H+), $H^+$, (H+), H^+, H+ with formatted STIX span
+					const formatted = text.replace(/\(?\$H\^?\+?\$\)?|\(H\+\)|\$H\^\+\$|H\^\+|\bH\+/g, '<span class="chem-formula">H<sup>+</sup></span>');
+					if (formatted !== text) {
+						const span = document.createElement('span');
+						span.innerHTML = formatted;
+						node.parentNode?.replaceChild(span, node);
+					}
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', formatScientificMolecules);
+			} else {
+				formatScientificMolecules();
+			}
+		</script>
+
 	</body>
 </html>
