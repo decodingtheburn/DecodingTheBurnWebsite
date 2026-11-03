@@ -281,7 +281,25 @@ export const KDP_7X10_BASE_CSS = `
 		display: none !important;
 	}
 
+	/* PDF Export: Enforce Headline Font (Montserrat) across all headings */
+	html body .book-viewport h1,
+	html body .book-viewport h2,
+	html body .book-viewport h3,
+	html body .book-viewport h4,
+	html body .book-viewport .chapter-title,
+	html body .book-viewport .chapter-opener-title,
+	html body .book-viewport .part-hero-title,
+	html body .book-viewport .part-page-title,
+	html body .book-viewport .interior-title-main,
+	html body .book-viewport .stat-page-number,
+	html body .book-viewport .stat-page-title,
+	html body .book-viewport .contributor-category-title {
+		font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+	}
+
 	html body .book-viewport .chapter-title {
+		font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+		font-weight: 800 !important;
 		font-size: 1.35rem !important;
 		margin-top: 0.35rem !important;
 		margin-bottom: 0.75rem !important;
@@ -1760,7 +1778,7 @@ async function main() {
 					display: block !important;
 				}
 				.cover-subtitle-rest {
-					font-family: 'Lora', Georgia, serif !important;
+					font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
 					font-size: 0.92rem !important;
 					line-height: 1.45 !important;
 					display: block !important;
