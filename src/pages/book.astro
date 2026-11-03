@@ -355,7 +355,7 @@ import { SITE_TITLE } from '../consts';
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				padding: 0.75in 0.45in 0.55in calc(0.45in - 22px);
+				padding: 0.55in 0.55in 0.45in calc(0.55in - 22px);
 				box-sizing: border-box;
 			}
 
@@ -397,9 +397,34 @@ import { SITE_TITLE } from '../consts';
 				margin-bottom: 1.25rem;
 			}
 
+			.cover-ph-spectrum-bar {
+				width: 100%;
+				max-width: 680px;
+				margin: 0 auto 0.95rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.ph-gradient-line {
+				width: 100%;
+				height: 5px;
+				border-radius: 9999px;
+				background: linear-gradient(
+					to right,
+					#ef4444 0%,      /* pH 1-3 Strong Acid (Red) */
+					#f97316 25%,     /* pH 4 Moderate Acid (Orange) */
+					#eab308 45%,     /* pH 5-6 Mild Acid (Yellow) */
+					#22c55e 65%,     /* pH 7 Neutral (Green) */
+					#3b82f6 85%,     /* pH 8-11 Alkaline (Blue) */
+					#8b5cf6 100%     /* pH 12-14 Strong Base (Violet) */
+				);
+				box-shadow: 0 0 14px rgba(234, 179, 8, 0.45), 0 0 25px rgba(239, 68, 68, 0.35);
+			}
+
 			.cover-kicker {
 				font-family: 'Montserrat', sans-serif;
-				font-size: clamp(3.46rem, 7.91vw, 5.91rem);
+				font-size: clamp(2.95rem, 6.85vw, 5.12rem);
 				font-weight: 900;
 				letter-spacing: 0.02em;
 				text-indent: 0.02em;
@@ -409,11 +434,11 @@ import { SITE_TITLE } from '../consts';
 				text-align: center;
 				white-space: nowrap;
 				display: inline-block;
-				margin-bottom: 1.15rem;
+				margin-bottom: 0.15rem;
 			}
 
 			.cover-title {
-				margin: 0 0 1rem;
+				margin: -0.95rem 0 0.55rem;
 				text-shadow: 0 8px 40px rgba(0, 0, 0, 0.95);
 				display: flex;
 				flex-direction: column;
@@ -453,14 +478,15 @@ import { SITE_TITLE } from '../consts';
 
 			.cover-subtitle {
 				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-				font-size: 1.25rem;
-				font-weight: 600;
-				color: #f1f5f9;
-				line-height: 1.5;
-				max-width: 620px;
-				margin: 1.15rem auto 0;
+				font-size: clamp(1.38rem, 2.4vw, 1.55rem);
+				font-weight: 700;
+				color: #f8fafc;
+				line-height: 1.38;
+				max-width: 720px;
+				margin: 2.15rem auto 1.45rem;
 				text-wrap: balance;
 				text-align: center;
+				letter-spacing: -0.01em;
 			}
 
 			.cover-subtitle-lead {
@@ -1274,7 +1300,7 @@ import { SITE_TITLE } from '../consts';
 
 			.backcover-header {
 				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-				font-size: 0.88rem;
+				font-size: 1.15rem;
 				font-weight: 800;
 				letter-spacing: 0.22em;
 				color: #fbbf24;
@@ -1283,7 +1309,7 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.backcover-divider {
-				width: 54px;
+				width: 64px;
 				height: 2px;
 				background: linear-gradient(90deg, #fbbf24 0%, rgba(251, 191, 36, 0.2) 100%);
 				margin-bottom: 1.25rem;
@@ -1291,22 +1317,27 @@ import { SITE_TITLE } from '../consts';
 
 			.backcover-tagline {
 				font-family: 'Montserrat', sans-serif;
-				font-size: 2.25rem;
+				font-size: 2.85rem;
 				font-weight: 900;
-				letter-spacing: 0.01em;
+				letter-spacing: 0.005em;
 				line-height: 1.15;
 				color: #ffffff;
-				margin-bottom: 1.5rem;
+				margin-bottom: 1.25rem;
 				text-wrap: balance;
 			}
 
 			.backcover-blurb {
 				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-				font-size: 1.02rem;
-				line-height: 1.68;
+				font-size: 1.35rem;
+				line-height: 1.62;
 				color: #e2e8f0;
-				margin-bottom: 1.25rem;
+				margin-bottom: 1rem;
 				text-wrap: pretty;
+			}
+
+			.backcover-blurb-sub {
+				margin-bottom: 1.35rem;
+				color: #f1f5f9;
 			}
 
 			.backcover-figure {
@@ -1321,21 +1352,20 @@ import { SITE_TITLE } from '../consts';
 			.backcover-figure img {
 				display: block;
 				width: 100%;
-				max-height: 215px;
+				max-height: 250px;
 				object-fit: cover;
 			}
 
 			.backcover-showcase {
 				display: grid;
-				grid-template-columns: 36% 1fr;
-				align-items: stretch;
-				gap: 1.65rem;
-				margin: 1.5rem 0 1.65rem;
+				grid-template-columns: 42% 1fr;
+				align-items: center;
+				gap: 2rem;
+				margin: 1.85rem 0 1.65rem;
 			}
 
 			.backcover-showcase-media {
 				width: 100%;
-				height: 100%;
 				border: 1px solid rgba(168, 85, 247, 0.35);
 				border-radius: 8px;
 				overflow: hidden;
@@ -1343,26 +1373,24 @@ import { SITE_TITLE } from '../consts';
 				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
 				display: flex;
 				flex-direction: column;
-				justify-content: space-between;
 			}
 
 			.backcover-showcase-media img {
 				display: block;
 				width: 100%;
-				height: 100%;
-				flex: 1;
-				min-height: 220px;
+				height: auto;
+				max-height: 290px;
 				object-fit: cover;
 			}
 
 			.backcover-media-caption {
 				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-				font-size: 0.69rem;
+				font-size: 1.05rem;
 				font-weight: 600;
-				line-height: 1.3;
+				line-height: 1.38;
 				color: #cbd5e1;
 				background: rgba(15, 7, 28, 0.95);
-				padding: 0.35rem 0.5rem;
+				padding: 0.55rem 0.75rem;
 				border-top: none;
 				text-align: center;
 				text-wrap: pretty;
@@ -1370,6 +1398,9 @@ import { SITE_TITLE } from '../consts';
 
 			.backcover-showcase-content {
 				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
 			}
 
 			.backcover-showcase-content .backcover-features {
@@ -1379,16 +1410,16 @@ import { SITE_TITLE } from '../consts';
 			.backcover-features {
 				list-style: none;
 				padding: 0;
-				margin: 1.5rem 0 1.75rem;
+				margin: 0.85rem 0 1rem;
 			}
 
 			.backcover-features li {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.96rem;
-				line-height: 1.6;
+				font-size: 1.45rem;
+				line-height: 1.58;
 				color: #cbd5e1;
-				margin-bottom: 0.85rem;
-				padding-left: 1.65rem;
+				margin-bottom: 1.15rem;
+				padding-left: 2rem;
 				position: relative;
 				text-wrap: pretty;
 			}
@@ -1399,7 +1430,7 @@ import { SITE_TITLE } from '../consts';
 				left: 0;
 				color: #a855f7;
 				font-weight: 900;
-				font-size: 1.1rem;
+				font-size: 1.55rem;
 				line-height: 1;
 			}
 
@@ -1418,17 +1449,17 @@ import { SITE_TITLE } from '../consts';
 
 			.backcover-category {
 				font-family: 'Cinzel', serif;
-				font-size: 0.86rem;
+				font-size: 1.15rem;
 				font-weight: 700;
 				letter-spacing: 0.16em;
 				color: #c084fc;
 				text-transform: uppercase;
-				margin-bottom: 0.35rem;
+				margin-bottom: 0.45rem;
 			}
 
 			.backcover-pricing {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.05rem;
+				font-size: 1.45rem;
 				font-weight: 700;
 				color: #ffffff;
 				margin-bottom: 0.35rem;
@@ -1436,8 +1467,17 @@ import { SITE_TITLE } from '../consts';
 
 			.backcover-author-tag {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.88rem;
+				font-size: 1.25rem;
 				color: #94a3b8;
+				margin-bottom: 0.25rem;
+			}
+
+			.backcover-edition-tag {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.12rem;
+				color: #a855f7;
+				font-weight: 600;
+				margin-bottom: 0.35rem;
 			}
 
 			.backcover-barcode-reserved {
@@ -1449,10 +1489,10 @@ import { SITE_TITLE } from '../consts';
 
 			.backcover-isbn-text {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.82rem;
+				font-size: 1.15rem;
 				font-weight: 600;
 				letter-spacing: 0.04em;
-				margin-top: 0.4rem;
+				margin-top: 0.25rem;
 				color: #cbd5e1;
 			}
 
@@ -3632,19 +3672,21 @@ import { SITE_TITLE } from '../consts';
 			}
 			/* Academic Scientific Typography: Molecules, Mucins, Proteins & Chemical Formulas */
 			:global(.sci-molecule) {
-				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-family: 'Lora', Georgia, serif !important;
 				font-weight: 700 !important;
-				letter-spacing: 0.02em !important;
-				color: #3b0764 !important; /* Deep academic purple */
+				letter-spacing: 0.03em !important;
+				color: #2e1065 !important; /* Deep academic royal purple */
 				font-variant-numeric: tabular-nums !important;
 				white-space: nowrap !important;
+				font-style: normal !important;
 			}
 			:global(.chem-formula) {
-				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-family: 'Lora', Georgia, serif !important;
 				font-weight: 600 !important;
-				letter-spacing: 0.015em !important;
+				letter-spacing: 0.02em !important;
 				color: #1e1b4b !important; /* Deep scientific indigo */
 				white-space: nowrap !important;
+				font-style: normal !important;
 			}
 			:global(.chem-formula sub),
 			:global(.chem-formula sup) {
@@ -3803,12 +3845,9 @@ import { SITE_TITLE } from '../consts';
 							<div class="toolbar-menu">
 								<a href="#part-3-page" class="toolbar-menu-header" title="Jump to Part III">Part III: The Science of Acid &amp; ASICs</a>
 								<a href="#page-28"><span>Chapter 10: Identify What Makes Pain Worse</span><span class="menu-num">p. 28</span></a>
-								<a href="#page-30b"><span>Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth?</span><span class="menu-num">p. 31</span></a>
-								<a href="#page-31"><span>Chapter 12: The Receptors of Pain in the Mouth</span><span class="menu-num">p. 31</span></a>
-								<a href="#page-33b"><span>Chapter 13: When Acid Triggers Through the Oral Mucosa</span><span class="menu-num">p. 34</span></a>
-								<a href="#page-41"><span>Chapter 15: When Acid Triggers Through Leaking Fillings &amp; Hardware</span><span class="menu-num">p. 41</span></a>
-								<a href="#page-38"><span>Chapter 16: When Acid Triggers Through Gum Recession &amp; Exposed Tubules</span><span class="menu-num">p. 38</span></a>
-								<a href="#page-45"><span>Chapter 17: The Oral Neuropathic Circuit</span><span class="menu-num">p. 45</span></a>
+								<a href="#page-31"><span>Chapter 11: The Receptors of Pain in the Mouth</span><span class="menu-num">p. 31</span></a>
+								<a href="#page-30b"><span>Chapter 12: Where Are the Pain Receptors in the Mouth?</span><span class="menu-num">p. 31</span></a>
+								<a href="#page-45"><span>Chapter 13: The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</span><span class="menu-num">p. 45</span></a>
 							</div>
 						</div>
 
@@ -3940,18 +3979,18 @@ import { SITE_TITLE } from '../consts';
 				<div class="book-cover">
 					<div class="cover-gold-border">
 						<div>
-							<div class="cover-kicker">Acid-Induced</div>
+							<div class="cover-kicker"><span style="color: #ef4444;">A</span><span style="color: #f45b36;">C</span><span style="color: #f97316;">I</span><span style="color: #fb923c;">D</span><span style="color: #f59e0b;">-</span><span style="color: #eab308;">T</span><span style="color: #84cc16;">R</span><span style="color: #22c55e;">I</span><span style="color: #10b981;">G</span><span style="color: #06b6d4;">G</span><span style="color: #3b82f6;">E</span><span style="color: #6366f1;">R</span><span style="color: #8b5cf6;">E</span><span style="color: #a855f7;">D</span></div>
 							<h1 class="cover-title">
 								<span class="cover-title-line-1">BURNING</span>
 								<span class="cover-title-line-2">MOUTH</span>
 							</h1>
 							<p class="cover-subtitle">
-								<span style="display: block;">A Practical Guide to Testing If Acidity Is a Trigger</span>
-								<span style="display: block; margin-top: 0.25rem;">and Working with Your Dentist to Fix&nbsp;It.</span>
+								<span style="display: block;">A Practical Guide to Evaluate If Acidity Is a Trigger</span>
+								<span style="display: block; margin-top: 0.25rem;">and Find Real Solutions to Lower Your&nbsp;Pain</span>
 							</p>
 						</div>
 
-						<div class="cover-illustration-wrap" style="flex-direction: column; margin: 0.85rem 0 1rem;">
+						<div class="cover-illustration-wrap" style="flex-direction: column; margin: 0.25rem 0 0.35rem;">
 							<div class="cover-tooth-glow" style="width: 380px; height: 380px;"></div>
 							<img 
 								src="/bms-head-transparent-pain-map.png" 
@@ -3962,8 +4001,7 @@ import { SITE_TITLE } from '../consts';
 
 						</div>
 						
-						<div style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%;">
-							<div class="cover-divider"></div>
+						<div style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; margin-top: 0.15rem;">
 							<div class="cover-author">Denis Ethier</div>
 							<div style="text-align: center; width: 100%;">
 								<span class="cover-edition-tag">VERSION 1.0 &bull; NOVEMBER 2026 EDITION</span>
@@ -4674,43 +4712,8 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#chapter-11" class="toc-link" title="Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth?">
+								<a href="#chapter-11" class="toc-link" title="Chapter 11: The Receptors of Pain in the Mouth">
 									<span class="toc-ch-prefix">Chapter 11:</span>
-									<span class="toc-ch-title">Where Are the Acid-Sensing Receptors in the Mouth?</span>
-								</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">31</span>
-							</div>
-							<ul class="toc-subsections-clean">
-								<li class="toc-sub-row">
-									<a href="#page-30b" class="toc-sub-link">
-										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">Why Is Acid a Problem for the Body? Acid-Sensing Receptors</span>
-										<span class="toc-dots"></span>
-										<span class="toc-sub-num">31</span>
-									</a>
-								</li>
-								<li class="toc-sub-row">
-									<a href="#page-30c" class="toc-sub-link">
-										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">The Three Anatomical Zones Where Acid Meets Nerve Endings</span>
-										<span class="toc-dots"></span>
-										<span class="toc-sub-num">32</span>
-									</a>
-								</li>
-								<li class="toc-sub-row">
-									<a href="#page-30d" class="toc-sub-link">
-										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">Where Does the Acid Come From?</span>
-										<span class="toc-dots"></span>
-										<span class="toc-sub-num">33</span>
-									</a>
-								</li>
-							</ul>
-
-							<div class="toc-item">
-								<a href="#chapter-12" class="toc-link" title="Chapter 12: The Receptors of Pain in the Mouth">
-									<span class="toc-ch-prefix">Chapter 12:</span>
 									<span class="toc-ch-title">The Receptors of Pain in the Mouth</span>
 								</a>
 								<span class="toc-dots"></span>
@@ -4728,7 +4731,7 @@ import { SITE_TITLE } from '../consts';
 								<li class="toc-sub-row">
 									<a href="#page-31" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">The Three Primary Pain Gateways in the Mouth</span>
+										<span class="toc-sub-title">The Primary Pain Gateways in the Mouth</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">31</span>
 									</a>
@@ -4752,106 +4755,68 @@ import { SITE_TITLE } from '../consts';
 							</ul>
 
 							<div class="toc-item">
-								<a href="#chapter-13" class="toc-link" title="Chapter 13: When Acid Triggers Through the Oral Mucosa">
-									<span class="toc-ch-prefix">Chapter 13:</span>
-									<span class="toc-ch-title">When Acid Triggers Through the Oral Mucosa</span>
+								<a href="#chapter-12" class="toc-link" title="Chapter 12: Where Are the Pain Receptors in the Mouth?">
+									<span class="toc-ch-prefix">Chapter 12:</span>
+									<span class="toc-ch-title">Where Are the Pain Receptors in the Mouth?</span>
 								</a>
 								<span class="toc-dots"></span>
-								<span class="toc-num">34</span>
+								<span class="toc-num">31</span>
 							</div>
 							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
+									<a href="#page-30b" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">The 3D Receptor Density Map: Pulp, Tongue, and Palate</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">31</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-30c" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">The Three Anatomical Zones Where Acid Meets Nerve Endings</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">32</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-30d" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">Where Does the Acid Come From? External vs. Internal</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">33</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
 									<a href="#page-33b" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">My Own Discovery: The Sandpaper Awakening &amp; Water Paradox</span>
+										<span class="toc-sub-title">Zone 1: The Oral Mucosa, Sandpaper Tongue &amp; Water Washout</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">34</span>
 									</a>
 								</li>
 								<li class="toc-sub-row">
-									<a href="#page-33c" class="toc-sub-link">
-										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">Subclinical Dry Mouth and the Friction-Acid Cascade</span>
-										<span class="toc-dots"></span>
-										<span class="toc-sub-num">35</span>
-									</a>
-								</li>
-							</ul>
-
-							<div class="toc-item">
-								<a href="#chapter-15" class="toc-link" title="Chapter 15: When Acid Triggers Through Leaking Fillings &amp; Hardware">
-									<span class="toc-ch-prefix">Chapter 15:</span>
-									<span class="toc-ch-title">When Acid Triggers Through Leaking Fillings &amp; Hardware</span>
-								</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">41</span>
-							</div>
-							<ul class="toc-subsections-clean">
-								<li class="toc-sub-row">
 									<a href="#page-41" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">My Own Restorations: The "Spotless" X-Ray Illusion</span>
+										<span class="toc-sub-title">Zone 2: Restorative Hardware Leaks &amp; The "Spotless" X-Ray</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">41</span>
 									</a>
 								</li>
-								<li class="toc-sub-row">
-									<a href="#page-41" class="toc-sub-link">
-										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">The Two Shields: Enamel vs. Root Dentin</span>
-										<span class="toc-dots"></span>
-										<span class="toc-sub-num">41</span>
-									</a>
-								</li>
-								<li class="toc-sub-row">
-									<a href="#page-42" class="toc-sub-link">
-										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">The Two Clocks: Immediate Chemical Shock vs. 72-Hour Latency Trap</span>
-										<span class="toc-dots"></span>
-										<span class="toc-sub-num">42</span>
-									</a>
-								</li>
-							</ul>
-
-							<div class="toc-item">
-								<a href="#chapter-16" class="toc-link" title="Chapter 16: When Acid Triggers Through Gum Recession &amp; Exposed Tubules">
-									<span class="toc-ch-prefix">Chapter 16:</span>
-									<span class="toc-ch-title">When Acid Triggers Through Gum Recession &amp; Exposed Tubules</span>
-								</a>
-								<span class="toc-dots"></span>
-								<span class="toc-num">38</span>
-							</div>
-							<ul class="toc-subsections-clean">
 								<li class="toc-sub-row">
 									<a href="#page-38" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">My Own Realization: The Sieve of Open Conduits</span>
+										<span class="toc-sub-title">Zone 3: Exposed Cervical Root Tubules &amp; Hydrodynamic Jolt</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">38</span>
 									</a>
 								</li>
-								<li class="toc-sub-row">
-									<a href="#page-39" class="toc-sub-link">
-										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">Why Standard Exams Miss Microscopic Tubule Conduits</span>
-										<span class="toc-dots"></span>
-										<span class="toc-sub-num">39</span>
-									</a>
-								</li>
-								<li class="toc-sub-row">
-									<a href="#page-40" class="toc-sub-link">
-										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">The Hydrodynamic Mechanism of Dentin Sensitivity</span>
-										<span class="toc-dots"></span>
-										<span class="toc-sub-num">40</span>
-									</a>
-								</li>
 							</ul>
 
 							<div class="toc-item">
-								<a href="#chapter-17" class="toc-link" title="Chapter 17: The Oral Neuropathic Circuit">
-									<span class="toc-ch-prefix">Chapter 17:</span>
-									<span class="toc-ch-title">The Oral Neuropathic Circuit</span>
+								<a href="#chapter-13" class="toc-link" title="Chapter 13: The Trigeminal Circuit: Referred Pain, Cross-Talk &amp; The 72-Hour Delay">
+									<span class="toc-ch-prefix">Chapter 13:</span>
+									<span class="toc-ch-title">The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</span>
 								</a>
 								<span class="toc-dots"></span>
 								<span class="toc-num">45</span>
@@ -4860,7 +4825,7 @@ import { SITE_TITLE } from '../consts';
 								<li class="toc-sub-row">
 									<a href="#page-45" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">V3 Trigeminal Convergence</span>
+										<span class="toc-sub-title">V3 Trigeminal Convergence: Why a Molar Leak Burns the Tongue</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">45</span>
 									</a>
@@ -4868,7 +4833,7 @@ import { SITE_TITLE } from '../consts';
 								<li class="toc-sub-row">
 									<a href="#page-46" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">Brainstem Amplification &amp; Central Wind-Up</span>
+										<span class="toc-sub-title">Brainstem Amplification &amp; Medullary Dorsal Horn Wind-Up</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">46</span>
 									</a>
@@ -4876,15 +4841,23 @@ import { SITE_TITLE } from '../consts';
 								<li class="toc-sub-row">
 									<a href="#page-47" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">The Chronic Misinterpretation Loop</span>
+										<span class="toc-sub-title">Nerve Cross-Talk &amp; Ephaptic Transmission Across C-Fibers</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">47</span>
 									</a>
 								</li>
 								<li class="toc-sub-row">
+									<a href="#page-47b" class="toc-sub-link">
+										<span class="toc-sub-bullet">&bull;</span>
+										<span class="toc-sub-title">Antidromic Conduction &amp; Axon Reflex Neuropeptide Spraying</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">47b</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
 									<a href="#page-48" class="toc-sub-link">
 										<span class="toc-sub-bullet">&bull;</span>
-										<span class="toc-sub-title">Why the Tongue Suffers Most: The Mechanical Paradox</span>
+										<span class="toc-sub-title">The 72-Hour Fermentation Clock &amp; The 2,000x Kinetic Mismatch</span>
 										<span class="toc-dots"></span>
 										<span class="toc-sub-num">48</span>
 									</a>
@@ -4902,7 +4875,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- Table of Contents (Page 4 of 5: Part V Taking Charge) -->
 			<section class="book-page" id="toc-4">
 				<div class="page-body-content">
-					<div class="page-running-head" style="margin-bottom: 0.45rem;">
+					<div class="page-running-head" style="margin-bottom: 0.25rem;">
 						<span class="chapter-header-label">Decoding the Burn</span>
 						<span class="page-count-label">Contents &bull; Part IV</span>
 					</div>
@@ -7361,7 +7334,7 @@ import { SITE_TITLE } from '../consts';
 								</svg>
 							</span>
 							<div class="book-callout-text">
-								<p><strong>Key Engineering Insight:</strong> When you eliminate direct acids and the fermentable substrates that oral bacteria turn into acid, you remove the chemical trigger gating your nerve endings. In Chapter 11, we explore where these acid-sensing receptors are physically distributed throughout your mouth and how many receptors exist per square&nbsp;millimeter.</p>
+								<p><strong>Key Engineering Insight:</strong> When you eliminate direct acids and the fermentable substrates that oral bacteria turn into acid, you remove the chemical trigger gating your nerve endings. In Chapter 11, we explore the primary pain receptors of the mouth, how each ion channel functions, and why acid triggers continuous non-stop&nbsp;signals.</p>
 							</div>
 						</div>
 					</div>
@@ -7372,21 +7345,110 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-						<section class="book-page" id="page-30b">
+			<section class="book-page" id="page-31">
 				<div id="chapter-11" style="scroll-margin-top: 5rem;"></div>
-				<div id="ch11-receptors" style="scroll-margin-top: 5rem;"></div>
-				<div id="ch11-density" style="scroll-margin-top: 5rem;"></div>
-				<div id="ch11-why-acid" style="scroll-margin-top: 5rem;"></div>
+				<div id="ch11-protons" style="scroll-margin-top: 5rem;"></div>
+				<div id="ch11-trpv1" style="scroll-margin-top: 5rem;"></div>
+				<div id="ch11-asics" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
-										<div class="chapter-opener-header">
+					<div class="chapter-opener-header">
 						<div class="chapter-opener-num">Chapter 11</div>
-						<h2 class="chapter-title chapter-opener-title">Where Are the Acid-Sensing Receptors in the&nbsp;Mouth?</h2>
+						<h2 class="chapter-title chapter-opener-title">The Receptors of Pain in&nbsp;the&nbsp;Mouth</h2>
 						<div class="chapter-opener-divider"></div>
 					</div>
 
 					<div class="chapter-content is-first-page">
-						<p>When sufferers describe burning mouth pain, clinicians frequently examine the oral tissues and find no macroscopic ulcers or redness. This paradox leads many to mistakenly conclude that the pain lacks a physical basis. However, modern sensory neurobiology reveals that the human mouth is not a passive lining. It is an intensely wired sensor array packed with specialized <strong>Acid-Sensing Ion Channels (ASICs)</strong> that monitor biochemical changes in real&nbsp;time.</p>
+						<p>Once we establish that acid and chemical irritants consistently intensify oral burning across the majority of patients, we must examine the molecular hardware embedded inside oral tissues. How does a sip of coffee, a breath of cool air, or a microscopic film of bacterial lactic acid translate into a blinding ten-out-of-ten sensation of scalding&nbsp;fire?</p>
+						<p>While human cells express thousands of general metabolic proteins, the human mouth does not possess thousands of mysterious pain sensors. For taste, temperature detection, mechanical touch, dentinal hypersensitivity, and Burning Mouth Syndrome, the oral cavity relies on a finite master suite of roughly <strong>35 to 45 specialized functional receptor types and ion&nbsp;channels</strong>.</p>
+						<p>Understanding this finite receptor matrix strips away the mystery of "idiopathic" pain and turns Burning Mouth Syndrome into a clear biophysical engineering&nbsp;problem.</p>
+						<h3>Separating Taste Buds from Trigeminal Pain&nbsp;Alarms</h3>
+						<p>The first critical distinction in oral biology is that taste is completely separate from pain. Pure gustatory receptors on your taste buds - such as TAS1R channels for sweet and umami, or TAS2R receptors for bitter - wire into gustatory nerves to report flavor, not agony. Even sour taste is handled by a specialized proton channel called OTOP1.</p>
+						<p>When your mouth burns, stings, or throbs, the signal is not coming from flavor receptors. It is coming from <strong>nociceptive ion channels</strong> embedded in the unmyelinated C-fibers and thinly myelinated A&delta; fibers of the Trigeminal Nerve (specifically the V<sub>2</sub> maxillary arch and V<sub>3</sub> mandibular and lingual branches) <a href="#src-10" class="cite-ref">[10]</a>.</p>
+						<h3>The Primary Pain Gateways in the&nbsp;Mouth</h3>
+						<p>Across those 35 to 45 oral receptors, chronic burning and tooth sensitivity are driven by primary interconnected molecular families with distinct discovery&nbsp;timelines:</p>
+						<p><strong>1. Acid-Sensing Ion Channels &mdash; ASICs (Discovered: Proton-gated currents by Krishtal 1980; Molecularly cloned by Waldmann &amp; Lazdunski 1997; High-resolution proton-pocket crystallography 2014&ndash;2024):</strong> These are high-precision digital proton detectors <a href="#src-10" class="cite-ref">[10]</a>. As free hydrogen protons (H<sup>+</sup>) accumulate, they dock directly into ASIC3 and ASIC1 acidic pockets. Groundbreaking discoveries reveal that while sensory channels normally adapt or desensitize, extracellular protons keep ASIC channels locked open even at mild acidic thresholds (pH 6.2 to 6.8), driving continuous inward sodium influx and non-stop burning&nbsp;pain.</p>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>31</span>
+				</div>
+			</section>
+
+			<!-- Chapter 11: The Receptors of Pain in the Mouth (Page 2 of 3) -->
+
+			<section class="book-page" id="page-32">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part III &bull; Chapter 11: The Receptors of Pain in the Mouth</span>
+						<span class="page-count-label">Page 32</span>
+					</div>
+
+					<div class="chapter-content">
+						<p><strong>2. Hydrodynamic Mechanoreceptors &mdash; Piezo1 (Discovered: Patapoutian Lab 2010), TRPC5 (Discovered: Clapham Lab 2003 / Polgar 2021), and TREK-1 (Discovered: Honor&eacute; 1996):</strong> Inside exposed dentinal tubules, specialized odontoblast cells and A&delta; nerve terminals express mechanical stretch sensors. When cold water, air, or osmotic sugar shifts fluid inside open tubules, these mechanical gates flex and trigger an instantaneous electrical jolt <a href="#src-7" class="cite-ref">[7]</a>. Stressed odontoblasts also release ATP through Pannexin-1 pores, activating P2X3 (cloned 1995) and P2X7 purinergic pain receptors on deeper nerve&nbsp;fibers.</p>
+						<p><strong>3. Transient Receptor Potential (TRP) Channels:</strong> This superfamily forms the primary thermal and chemical alarm system of the trigeminal nerve <a href="#src-12" class="cite-ref">[12]</a>. When patients describe their mouth feeling simultaneously scalded by boiling water, stung by icy menthol, and rubbed with raw sandpaper, they are describing the simultaneous firing of multiple TRP channels.</p>
+						<h3>The TRP Channel Sensory Bandwidth&nbsp;Breakdown</h3>
+						<p>During an active V<sub>2</sub> and V<sub>3</sub> trigeminal overload event, total TRP sensory bandwidth divides across specific channel&nbsp;groups:</p>
+						<p><strong>TRPV1 (Noxious Heat, Acid Protons, Capsaicin &mdash; Discovered: David Julius Lab 1997) &mdash; 40% to 45% of TRP Bandwidth:</strong> Normally, TRPV1 only opens when mouth temperature exceeds a scorching 43&deg;C (109&deg;F). However, chronic exposure to acid protons (H<sup>+</sup>) and inflammatory mediators phosphorylates the receptor and drops its activation threshold below normal human body temperature (37&deg;C) <a href="#src-12" class="cite-ref">[12]</a>. Sensitized TRPV1 channels interpret your own resting body heat as an active thermal burn, firing a relentless barrage of action&nbsp;potentials.</p>
+						<p><strong>TRPM8 (Cold, Mint, Menthol &mdash; Discovered: McKemy &amp; Julius / Peier &amp; Patapoutian 2002) &mdash; 20% to 25% of TRP Bandwidth:</strong> Heavily concentrated on the faster-conducting A&delta; fibers of the lingual nerve (V<sub>3</sub>), TRPM8 detects cooling below 26&deg;C and menthol. When hyper-sensitized, it fires rapid bursts alongside TRPV1, explaining why peppermint toothpaste or cool room air triggers a paradoxical icy-burning sting in BMS&nbsp;patients.</p>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>32</span>
+				</div>
+			</section>
+
+			<!-- Chapter 11: The Receptors of Pain in the Mouth (Page 3 of 3) -->
+
+			<section class="book-page" id="page-33">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Part III &bull; Chapter 11: The Receptors of Pain in the Mouth</span>
+						<span class="page-count-label">Page 33</span>
+					</div>
+
+					<div class="chapter-content">
+						<p><strong>TRPA1 (Chemical Irritants and Oxidative Stress &mdash; Discovered: Story Lab 2003) &mdash; 15% to 20% of TRP Bandwidth:</strong> Co-expressed on the exact same C-fibers as TRPV1, TRPA1 responds to bacterial toxins, oxidative byproducts, cinnamon, and harsh toothpaste detergents like sodium lauryl sulfate <a href="#src-15" class="cite-ref">[15]</a>. When activated, it dumps Substance P and CGRP into surrounding tissues, fueling local neurogenic inflammation and raw chemical&nbsp;stinging.</p>
+						<p><strong>TRPV4 (Mechanical Stretch &mdash; Discovered: Liedtke 2000) &amp; Minor Channels:</strong> Located in the palate (V<sub>2</sub>) and periodontal ligaments, TRPV4 fires when a dry tongue rubs against oral mucosa. TRPV2 (1999) and TRPV3 (2002) contribute minor background thermal&nbsp;input.</p>
+						<p><strong>4. TLR4 &amp; Glycan Arrays (Barrier Defense &mdash; Discovered: Medzhitov &amp; Janeway 1997; Poltorak &amp; Beutler 1998):</strong> Toll-like receptors recognize bacterial cell walls (LPS) and invasive plant agglutinins. Their job is to trigger local inflammation to wall off the breach and recruit immune cells before microbes invade systemic&nbsp;blood.</p>
+						<p><strong>5. Voltage-Gated Amplifiers (Na<sub>v</sub>1.7 &amp; Na<sub>v</sub>1.8 &mdash; Cloned: Klugbauer 1995; Akopian 1996):</strong> Once ASIC3, TRPV1, TRPM8, and TRPA1 open their gates, sodium rushes into the nerve terminal. Na<sub>v</sub>1.7 and Na<sub>v</sub>1.8 amplify that spark into an unbroken digital pulse stream racing straight to the&nbsp;brainstem.</p>
+						<div class="book-callout">
+							<span class="book-callout-icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="12" cy="12" r="10"></circle>
+									<line x1="12" y1="16" x2="12" y2="12"></line>
+									<line x1="12" y1="8" x2="12.01" y2="8"></line>
+								</svg>
+							</span>
+							<div class="book-callout-text">
+								<p><strong>From Molecular Sensors to Physical Anatomy:</strong> Now that we understand the specific receptor types and why protons lock ASIC channels open, where are these receptors concentrated inside the human mouth? In Chapter 12, we map the exact anatomical density of these acid-sensing receptor arrays across teeth, tongue, and oral&nbsp;tissues.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-number-footer">
+					<span>33</span>
+				</div>
+			</section>
+
+			<section class="book-page" id="page-30b">
+				<div id="chapter-12" style="scroll-margin-top: 5rem;"></div>
+				<div id="ch12-receptors" style="scroll-margin-top: 5rem;"></div>
+				<div id="ch12-density" style="scroll-margin-top: 5rem;"></div>
+				<div id="ch12-why-acid" style="scroll-margin-top: 5rem;"></div>
+
+				<div class="page-body-content">
+					<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 12</div>
+						<h2 class="chapter-title chapter-opener-title">Where Are the Pain Receptors in the&nbsp;Mouth?</h2>
+						<div class="chapter-opener-divider"></div>
+					</div>
+
+					<div class="chapter-content is-first-page">
+						<p>When sufferers describe burning mouth pain, clinicians frequently examine oral tissues and find no macroscopic ulcers or redness. This paradox leads many to mistakenly conclude that the pain lacks a physical basis. However, modern sensory neurobiology reveals that the human mouth is not a passive lining. It is an intensely wired sensor array packed with specialized <strong>Acid-Sensing Ion Channels (ASICs)</strong> that monitor biochemical changes in real&nbsp;time.</p>
 
 						<figure class="book-figure">
 							<img src="/oral-cavity-asic-receptor-density-map.jpg" alt="3D Anatomical Map of Acid-Sensing Receptors in the Human Oral Cavity showing density in dental pulp, tongue, and palate" loading="lazy" />
@@ -7409,12 +7471,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth? (Page 2 of 3) -->
+			<!-- Chapter 12: Where Are the Acid-Sensing Receptors in the Mouth? (Page 2 of 3) -->
 
 			<section class="book-page" id="page-30c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Part III &bull; Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth?</span>
+						<span class="chapter-header-label">Part III &bull; Chapter 12: Where Are the Pain Receptors in the Mouth?</span>
 						<span class="page-count-label">Page 32</span>
 					</div>
 
@@ -7442,12 +7504,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 
-			<!-- Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth? (Page 3 of 3) -->
+			<!-- Chapter 12: Where Are the Acid-Sensing Receptors in the Mouth? (Page 3 of 3) -->
 
 			<section class="book-page" id="page-30d">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Part III &bull; Chapter 11: Where Are the Acid-Sensing Receptors in the Mouth?</span>
+						<span class="chapter-header-label">Part III &bull; Chapter 12: Where Are the Pain Receptors in the Mouth?</span>
 						<span class="page-count-label">Page 33</span>
 					</div>
 
@@ -7459,35 +7521,34 @@ import { SITE_TITLE } from '../consts';
 
 						<p><strong>2. Internal Acid Sources (From the Stomach):</strong> Internal acids rise upward from the digestive system. In Gastroesophageal Reflux Disease (GERD) and nocturnal Laryngopharyngeal Reflux (silent LPR), concentrated hydrochloric acid (pH 1.5 to 3.0) and proteolytic pepsin travel up the esophagus while sleeping flat. This nocturnal acid mist coats the posterior tongue, palate, and lingual molar margins, bathing vulnerable tissues in caustic stomach acid without necessarily causing classic chest&nbsp;heartburn.</p>
 
-						<div class="research-table-wrapper" style="margin: 0.65rem 0 0.9rem;">
-							<table class="research-table">
+						<div class="book-table-wrap">
+							<table class="book-table">
 								<thead>
 									<tr>
-										<th style="width: 24%;">Acid Origin Group</th>
-										<th style="width: 20%;">Typical pH Level</th>
-										<th style="width: 56%;">Mechanism &amp; Why Patients Miss It</th>
+										<th>Acid Source Category</th>
+										<th>Specific Oral Triggers</th>
+										<th>Chemical pH Range</th>
+										<th>Impact on Receptors &amp; Dentin</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td><strong>External: Direct Dietary Acids</strong><div class="intervention-mechanism-desc">Direct drinks, foods, &amp; mouthwashes</div></td>
-										<td><span class="rate-val rate-high">pH 2.0 to 5.2</span><span class="rate-tag">Immediate Contact</span></td>
-										<td>Citrus, sodas, sparkling water (carbonic acid), coffee, wine, vinegars, and acidic mouthwashes flood the oral cavity with free hydrogen protons (H<sup>+</sup>) on contact, instantly depolarizing exposed mucosa and open&nbsp;tubules.</td>
+										<td><strong>Direct External Acids</strong></td>
+										<td>Citrus fruit, vinegar dressings, kombucha, wine, soda, acidic rinses</td>
+										<td>pH 2.0 &ndash; 3.8</td>
+										<td>Instantaneous ASIC gating; strips mucosal salivary pellicle on contact</td>
 									</tr>
 									<tr>
-										<td><strong>External: Sugars to Bacterial Acid</strong><div class="intervention-mechanism-desc">Transformed into lactic acid by oral bacteria</div></td>
-										<td><span class="rate-val rate-high">pH 3.8 to 4.8</span><span class="rate-tag">48 to 72 Hr Brew</span></td>
-										<td>Bread, pasta, crackers, fruit, and sweets do not taste sour. However, biofilm bacteria in gum pockets and filling margins digest these sugars and excrete concentrated <strong>lactic and acetic acids</strong> directly against tubules for days.</td>
+										<td><strong>Bacterial Fermentation</strong></td>
+										<td>Refined grains, sweets, fruit sugars metabolized by bio-film bacteria</td>
+										<td>pH 4.0 &ndash; 5.5</td>
+										<td>Prolonged acid stagnation at crown margins &amp; pocket sulci for 48+ hours</td>
 									</tr>
 									<tr>
-										<td><strong>Internal: Gastric Reflux (GERD &amp; LPR)</strong><div class="intervention-mechanism-desc">Hydrochloric stomach acid &amp; pepsin mist</div></td>
-										<td><span class="rate-val rate-high">pH 1.5 to 3.0</span><span class="rate-tag">Nocturnal Mist</span></td>
-										<td>Gastric acid and pepsin rise up the esophagus while sleeping flat, coating the tongue, palate, and inner molar margins without necessarily producing classic chest heartburn or esophageal&nbsp;symptoms.</td>
-									</tr>
-									<tr>
-										<td><strong>Compounding Factor: Buffer Depletion</strong><div class="intervention-mechanism-desc">Salivary volume loss &amp; bicarbonate drop</div></td>
-										<td><span class="rate-val rate-moderate">pH Drops &lt; 5.8</span><span class="rate-tag">Unbuffered State</span></td>
-										<td>Healthy saliva supplies bicarbonate ions (HCO<sub>3</sub><sup>&minus;</sup>) to neutralize acids back to pH 7.0. When saliva flow drops from mouth breathing, stress, or medications, the mouth loses its buffer, leaving acids to linger&nbsp;indefinitely.</td>
+										<td><strong>Internal Gastric Reflux</strong></td>
+										<td>Nocturnal silent LPR, GERD mist reaching upper oral cavity</td>
+										<td>pH 1.5 &ndash; 3.0</td>
+										<td>Severe chemical demineralization and activation of posterior mucosal receptors</td>
 									</tr>
 								</tbody>
 							</table>
@@ -7502,7 +7563,7 @@ import { SITE_TITLE } from '../consts';
 								</svg>
 							</span>
 							<div class="book-callout-text">
-								<p><strong>The Core Neuropathic Insight:</strong> Oral burning occurs when <strong>external or internal acids</strong> make sustained contact with <strong>these ultra-dense receptor fields</strong>. In Chapter 12, we examine how sustained ASIC and TRPV1 activation drives central sensitization across the trigeminal&nbsp;circuit.</p>
+								<p><strong>The Core Neuropathic Insight:</strong> Oral burning occurs when <strong>external or internal acids</strong> make sustained contact with <strong>these ultra-dense receptor fields</strong>. In Chapter 13, we examine how sustained ASIC and TRPV1 activation drives central sensitization across the trigeminal&nbsp;circuit.</p>
 							</div>
 						</div>
 					</div>
@@ -7512,100 +7573,6 @@ import { SITE_TITLE } from '../consts';
 					<span>33</span>
 				</div>
 			</section>
-
-			<section class="book-page" id="page-31">
-				<div id="chapter-12" style="scroll-margin-top: 5rem;"></div>
-				<div id="ch12-protons" style="scroll-margin-top: 5rem;"></div>
-				<div id="ch12-trpv1" style="scroll-margin-top: 5rem;"></div>
-				<div id="ch12-asics" style="scroll-margin-top: 5rem;"></div>
-
-				<div class="page-body-content">
-										<div class="chapter-opener-header">
-						<div class="chapter-opener-num">Chapter 12</div>
-						<h2 class="chapter-title chapter-opener-title">The Receptors of Pain in&nbsp;the&nbsp;Mouth</h2>
-						<div class="chapter-opener-divider"></div>
-					</div>
-
-					<div class="chapter-content is-first-page">
-						<p>Once we establish that acid and chemical irritants consistently intensify oral burning across the majority of patients, we must look at the molecular hardware sitting inside the oral tissues. How does a sip of coffee, a breath of cool air, or a microscopic film of bacterial lactic acid translate into a blinding ten-out-of-ten sensation of scalding&nbsp;fire?</p>
-						<p>While human cells express thousands of general metabolic and structural proteins throughout the body, the human mouth does not possess thousands of mysterious pain sensors. For taste, temperature detection, mechanical touch, dentinal hypersensitivity, and Burning Mouth Syndrome, the oral cavity relies on a finite master suite of roughly <strong>35 to 45 specialized functional receptor types and ion&nbsp;channels</strong>.</p>
-						<p>Understanding this finite receptor matrix strips away the mystery of "idiopathic" pain and turns Burning Mouth Syndrome into a clear biophysical engineering&nbsp;problem.</p>
-						<h3>Separating Taste Buds from Trigeminal Pain&nbsp;Alarms</h3>
-						<p>The first critical distinction in oral biology is that taste is separate from pain. Pure gustatory receptors on your taste buds - such as TAS1R channels for sweet and umami, or TAS2R receptors for bitter - wire into gustatory nerves to report flavor, not agony. Even sour taste is handled by a specialized proton channel called OTOP1.</p>
-						<p>When your mouth burns, stings, or throbs, the signal is not coming from flavor receptors. It is coming from <strong>nociceptive ion channels</strong> embedded in the unmyelinated C-fibers and thinly myelinated A&delta; fibers of the Trigeminal Nerve (specifically the V<sub>2</sub> maxillary arch and V<sub>3</sub> mandibular and lingual branches) <a href="#src-10" class="cite-ref">[10]</a>.</p>
-						<h3>The Three Primary Pain Gateways in the&nbsp;Mouth</h3>
-						<p>Across those 35 to 45 oral receptors, chronic burning and tooth sensitivity are driven by three interconnected molecular&nbsp;families:</p>
-						<p><strong>1. Acid-Sensing Ion Channels (ASIC1 and ASIC3):</strong> These are high-precision digital proton detectors <a href="#src-10" class="cite-ref">[10]</a>. As soon as extracellular pH drops below 6.5 from dietary acid or bacterial fermentation, free hydrogen protons (H<sup>+</sup>) bind directly to ASIC3, snapping the channel open and firing immediate stinging&nbsp;pain <a href="#src-11" class="cite-ref">[11]</a>.</p>
-
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>31</span>
-				</div>
-			</section>
-
-			<!-- Chapter 13: The Receptors of Pain in the Mouth (Page 2 of 3) -->
-
-			<section class="book-page" id="page-32">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 12: The Receptors of Pain in the Mouth</span>
-						<span class="page-count-label">Page 32</span>
-					</div>
-
-					<div class="chapter-content">
-						<p><strong>2. Hydrodynamic Mechanoreceptors (Piezo1, TRPC5, and TREK-1):</strong> Inside exposed dentinal tubules, specialized odontoblast cells and A&delta; nerve terminals express mechanical stretch sensors. When cold water, air, or osmotic sugar shifts fluid inside open tubules, these mechanical gates flex and trigger an instantaneous electrical jolt <a href="#src-7" class="cite-ref">[7]</a>. Stressed odontoblasts also release ATP through Pannexin-1 pores, activating P2X3 and P2X7 purinergic pain receptors on deeper nerve&nbsp;fibers.</p>
-						<p><strong>3. Transient Receptor Potential (TRP) Channels:</strong> This family forms the primary thermal and chemical alarm system of the trigeminal nerve <a href="#src-12" class="cite-ref">[12]</a>. When patients describe their mouth feeling simultaneously scalded by boiling water, stung by icy menthol, and rubbed with raw sandpaper, they are describing the simultaneous firing of multiple TRP channels.</p>
-						<h3>The TRP Channel Sensory Bandwidth&nbsp;Breakdown</h3>
-						<p>During an active V<sub>2</sub> and V<sub>3</sub> trigeminal overload event, total TRP sensory bandwidth divides across five specific channel&nbsp;groups:</p>
-						<p><strong>TRPV1 (Noxious Heat, Acid Protons, Capsaicin) - 40% to 45% of TRP Bandwidth:</strong> Normally, TRPV1 only opens when mouth temperature exceeds a scorching 43&deg;C (109&deg;F). However, chronic exposure to acid protons (H<sup>+</sup>) and inflammatory mediators (prostaglandins, bradykinin, nerve growth factor) phosphorylates the receptor and drops its activation threshold below normal human body temperature (37&deg;C) <a href="#src-12" class="cite-ref">[12]</a>. Because your mouth naturally sits at 37&deg;C, sensitized TRPV1 channels interpret your own resting body heat as an active thermal burn, firing a relentless barrage of action&nbsp;potentials.</p>
-						<p><strong>TRPM8 (Cold, Mint, Menthol) - 20% to 25% of TRP Bandwidth:</strong> Heavily concentrated on the faster-conducting A&delta; fibers of the lingual nerve (V<sub>3</sub>), TRPM8 detects cooling below 26&deg;C and menthol. When hyper-sensitized, it fires rapid bursts alongside TRPV1, explaining why peppermint toothpaste or cool room air triggers a paradoxical icy-burning sting in BMS&nbsp;patients.</p>
-
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>32</span>
-				</div>
-			</section>
-
-			<!-- Chapter 13: The Receptors of Pain in the Mouth (Page 3 of 3) -->
-
-			<section class="book-page" id="page-33">
-				<div class="page-body-content">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 12: The Receptors of Pain in the Mouth</span>
-						<span class="page-count-label">Page 33</span>
-					</div>
-
-					<div class="chapter-content">
-						<p><strong>TRPA1 (Chemical Irritants and Oxidative Stress) - 15% to 20% of TRP Bandwidth:</strong> Co-expressed on the exact same C-fibers as TRPV1, TRPA1 responds to bacterial toxins, oxidative byproducts, cinnamon, and harsh toothpaste detergents like sodium lauryl sulfate <a href="#src-15" class="cite-ref">[15]</a>. When activated, it dumps Substance P and CGRP into surrounding tissues, fueling local neurogenic inflammation and raw chemical&nbsp;stinging.</p>
-						<p><strong>TRPV4 (Mechanical Stretch and Osmotic Swelling) - ~10% of TRP Bandwidth:</strong> Located heavily in the hard palate (V<sub>2</sub>) and periodontal ligaments, TRPV4 fires whenever a dry tongue rubs against the roof of the mouth or saliva osmolarity&nbsp;shifts.</p>
-						<p><strong>TRPV2 and TRPV3 (Extreme Heat and Background Warmth) - ~5% of TRP Bandwidth:</strong> Provide minor background thermal input across mucosal epithelial&nbsp;cells.</p>
-						<h3>Voltage-Gated Amplifiers and the Structural&nbsp;Question</h3>
-						<p>Once ASIC3, TRPV1, TRPM8, and TRPA1 open their gates, positively charged sodium and calcium ions rush into the nerve terminal. Voltage-gated sodium channels - led by <strong>Na<sub>v</sub>1.7 and Na<sub>v</sub>1.8</strong> - amplify that spark into an unbroken digital pulse stream racing straight to the&nbsp;brainstem.</p>
-						<div class="book-callout">
-							<span class="book-callout-icon" aria-hidden="true">
-								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-									<circle cx="12" cy="12" r="10"></circle>
-									<line x1="12" y1="16" x2="12" y2="12"></line>
-									<line x1="12" y1="8" x2="12.01" y2="8"></line>
-								</svg>
-							</span>
-							<div class="book-callout-text">
-								<p><strong>Why Single-Target Drugs Fail:</strong> Blocking just one receptor leaves the rest of the bandwidth wide open. More importantly, healthy enamel and tight gums normally shield these deep receptors from daily acid. Why, then, did our oral armor fail in midlife and leave these sensors exposed? To answer that, we must rewind the clock across five&nbsp;decades.</p>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="page-number-footer">
-					<span>33</span>
-				</div>
-			</section>
-
 						<!-- Chapter 14: When Acid Triggers Through the Oral Mucosa (Page 1 of 2) -->
 
 			<section class="book-page" id="page-33b">
@@ -7615,7 +7582,7 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 										<div class="chapter-opener-header">
-						<div class="chapter-opener-num">Chapter 13</div>
+						<div class="chapter-opener-num">Chapter 12 &bull; Zone 1</div>
 						<h2 class="chapter-title chapter-opener-title">When Acid Triggers Through the Oral&nbsp;Mucosa</h2>
 						<div class="chapter-opener-divider"></div>
 					</div>
@@ -7644,7 +7611,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-33c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 13: When Acid Triggers Through the Oral Mucosa</span>
+						<span class="chapter-header-label">Chapter 12: Where Are the Pain Receptors in the Mouth? (Zone 1: Mucosa)</span>
 						<span class="page-count-label">Page 35</span>
 					</div>
 
@@ -7686,7 +7653,7 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 										<div class="chapter-opener-header">
-						<div class="chapter-opener-num">Chapter 15</div>
+						<div class="chapter-opener-num">Chapter 12 &bull; Zone 2</div>
 						<h2 class="chapter-title chapter-opener-title">When Acid Triggers Through Leaking Fillings &&nbsp;Hardware</h2>
 						<div class="chapter-opener-divider"></div>
 					</div>
@@ -7717,7 +7684,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-42">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 15: When Acid Triggers Through Leaking Fillings & Hardware</span>
+						<span class="chapter-header-label">Chapter 12: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
 						<span class="page-count-label">Page 42</span>
 					</div>
 
@@ -7746,7 +7713,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-43">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 15: When Acid Triggers Through Leaking Fillings & Hardware</span>
+						<span class="chapter-header-label">Chapter 12: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
 						<span class="page-count-label">Page 43</span>
 					</div>
 
@@ -7773,7 +7740,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-44">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 15: When Acid Triggers Through Leaking Fillings & Hardware</span>
+						<span class="chapter-header-label">Chapter 12: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
 						<span class="page-count-label">Page 44</span>
 					</div>
 
@@ -7804,7 +7771,7 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 										<div class="chapter-opener-header">
-						<div class="chapter-opener-num">Chapter 16</div>
+						<div class="chapter-opener-num">Chapter 12 &bull; Zone 3</div>
 						<h2 class="chapter-title chapter-opener-title">When Acid Triggers Through Gum Recession &&nbsp;Exposed&nbsp;Tubules</h2>
 						<div class="chapter-opener-divider"></div>
 					</div>
@@ -7835,7 +7802,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-39">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 16: When Acid Triggers Through Gum Recession & Exposed Tubules</span>
+						<span class="chapter-header-label">Chapter 12: Where Are the Pain Receptors in the Mouth? (Zone 3: Tubules)</span>
 						<span class="page-count-label">Page 39</span>
 					</div>
 
@@ -7869,7 +7836,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-40">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 16: When Acid Triggers Through Gum Recession & Exposed Tubules</span>
+						<span class="chapter-header-label">Chapter 12: Where Are the Pain Receptors in the Mouth? (Zone 3: Tubules)</span>
 						<span class="page-count-label">Page 40</span>
 					</div>
 
@@ -7899,8 +7866,8 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-body-content">
 										<div class="chapter-opener-header">
-						<div class="chapter-opener-num">Chapter 17</div>
-						<h2 class="chapter-title chapter-opener-title">The Oral&nbsp;Neuropathic&nbsp;Circuit</h2>
+						<div class="chapter-opener-num">Chapter 13</div>
+						<h2 class="chapter-title chapter-opener-title">The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</h2>
 						<div class="chapter-opener-divider"></div>
 					</div>
 
@@ -7924,7 +7891,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-46">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 13: The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</span>
 						<span class="page-count-label">Page 46</span>
 					</div>
 
@@ -7953,7 +7920,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-47">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 13: The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</span>
 						<span class="page-count-label">Page 47</span>
 					</div>
 
@@ -7978,15 +7945,14 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-47b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 13: The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</span>
 						<span class="page-count-label">Page 47b</span>
 					</div>
 
 					<div class="chapter-content">
-						<h3>The Real Physical Backfire: The&nbsp;Axon&nbsp;Reflex</h3>
-						<p>While conscious sensory signals only travel upward toward the brain, overloaded sensory nerve endings can occasionally trigger an axon reflex locally right in the&nbsp;periphery.</p>
-						<p>When an intense electrical wave hits a fork in a peripheral nerve, it can bounce backward down adjacent sensory twigs. This antidromic backfire causes those terminal nerve endings to dump Substance P and Calcitonin Gene-Related Peptide (CGRP) directly into the surrounding tissue. This chemical release dilates local micro-vessels, increases vascular permeability, and produces throbbing, warmth, and localized tissue&nbsp;irritation.</p>
-						<p>So while the phantom burning across the palate is a central switchboard translation error, the local heat and hypersensitivity around neighboring gums can be driven by a genuine, physical backward electrical wave down peripheral nerve&nbsp;branches.</p>
+						<h3>The Real Physical Backfire: Antidromic Conduction and Neuropeptide&nbsp;Spraying</h3>
+						<p>While conscious sensation travels orthodromically toward the brainstem, overloaded sensory C-fibers possess no internal electrical diodes. When high-frequency action potentials generated by acid protons hitting ASIC3 channels reach an axonal branch point (bifurcation), the electrical wave splits. Part of the wave travels up to the brainstem, but a powerful pulse travels <em>backward</em> (<span class="sci-molecule">antidromic conduction</span>) down neighboring branches into entirely uninjured oral&nbsp;tissues.</p>
+						<p>When this antidromic pulse reaches terminal mucosal nerve endings, it triggers immediate calcium-dependent exocytosis of potent inflammatory neuropeptides: <strong>Substance P</strong> and <strong>Calcitonin Gene-Related Peptide (CGRP)</strong>. These neuropeptides degranulate mast cells, dilate local arterioles, and induce neurogenic plasma extravasation. This explains why a microscopic acid leak under an aging lower molar crown can physically trigger genuine chemical heat, throbbing, and raw redness across healthy anterior tongue and buccal mucosa where no mechanical wound&nbsp;exists.</p>
 						<figure class="book-figure">
 							<img src="/trigeminal-radiating-pain-convergence.jpg" alt="Trigeminal radiating pain convergence diagram showing how a localized mandibular molar signal bleeds into maxillary and lingual burning" loading="lazy" />
 							<figcaption class="book-figure-caption">
@@ -8006,7 +7972,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-48">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 13: The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</span>
 						<span class="page-count-label">Page 48</span>
 					</div>
 
@@ -8035,7 +8001,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-48b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 13: The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</span>
 						<span class="page-count-label">Page 48b</span>
 					</div>
 
@@ -8063,18 +8029,16 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-48c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 13: The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</span>
 						<span class="page-count-label">Page 48c</span>
 					</div>
 
 					<div class="chapter-content">
-						<h3>Crosstalk and Central Wind-Up: The Gain&nbsp;Surge</h3>
-						<p>When unshielded dentin or micro-leaks fire continuous action potentials for months, the Subnucleus Caudalis undergoes three distinct neurochemical&nbsp;failures:</p>
-						<p><strong>1. Buffer Exhaustion:</strong> Glial cells and astrocytes cannot clear the neurotransmitters fast enough. The extracellular chemical clearing system fails, allowing glutamate to bathe neighboring dendrites for seconds rather than&nbsp;milliseconds.</p>
-						<p><strong>2. Loss of Gating (Disinhibition):</strong> The natural biological brake pedals, inhibitory GABAergic and glycinergic interneurons, are completely overwhelmed, exhausted, and functionally&nbsp;depleted.</p>
-						<p><strong>3. Buffer Overflow and Signal Bleed:</strong> The excitation threshold for neighboring neurons drops to near zero. Second-order neurons that normally process signals only from the tongue, the roof of the mouth, or the ear canal begin picking up the high-voltage electrical discharge bleeding out of the hyperactive&nbsp;molar&nbsp;circuit.</p>
-						<p>This is the biophysical reality behind referred oral burning. Your brain's conscious display screen (the somatosensory cortex) has no way of knowing that the Subnucleus Caudalis is experiencing central signal crosstalk. It simply reads the data arriving from the switchboard. Because the second-order neurons mapped to your tongue and palate are firing frantically from chemical and electrical bleed-over, your brain faithfully reports the sensation: "My tongue is on fire. The roof of my mouth&nbsp;is&nbsp;scalded."</p>
-						<p>The patient feels widespread 10/10 agony across the entire mouth, yet the original electrical generator is a localized hardware leak under an aging lower crown or an exposed interproximal&nbsp;root&nbsp;collar.</p>
+						<h3>Ephaptic Transmission, Central Wind-Up, and The 72-Hour&nbsp;Delay</h3>
+						<p>Beyond synaptic convergence, severe chronic oral burning involves two critical biophysical phenomena established in recent sensory&nbsp;neurobiology:</p>
+						<p><strong>1. Ephaptic Transmission (Direct Axon-to-Axon Cross-Talk):</strong> Unmyelinated trigeminal C-fibers travel bundled tightly inside common Schwann cell sheaths (Remak bundles). Under sustained chemical irritation, inflammatory edema strips protective myelin and increases extracellular potassium (K<sup>+</sup>). Action potentials in one active fiber create local extracellular voltage fields strong enough to directly depolarize silent adjacent fibers without any synapse. A firestorm in a single molar C-fiber literally sparks electrical fires across neighboring tongue and palate axons&nbsp;laterally.</p>
+						<p><strong>2. The 72-Hour Bacterial Fermentation Clock:</strong> Why do so many BMS sufferers report that eating sugar or starch causes zero pain during the meal, but triggers an unbearable 10/10 firestorm two to three days later? Direct dietary acid acts in seconds, but fermentable carbohydrates feed anaerobic bacteria (*Streptococcus mutans* and *Lactobacillus*) trapped inside subgingival pockets and hardware micro-gaps. It takes 48 to 72 hours for bacterial biofilm to complete metabolic fermentation, accumulate concentrated lactic acid below pH 5.5, and breach open tubule conduits. Understanding this 72-hour delay dissolves the confusion of "random" flares and reveals the strict cause-and-effect chemistry of the&nbsp;disease.</p>
+						<p><strong>3. The 2,000&times; Kinetic Demineralization Mismatch:</strong> Acid demineralization occurs in minutes, whereas salivary calcium remineralization takes weeks. Over decades, this creates an irreversible erosion deficit that permanently exposes deep pulpal&nbsp;transducers.</p>
 					</div>
 				</div>
 
@@ -8088,7 +8052,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-49">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Chapter 17: The Oral Neuropathic Circuit</span>
+						<span class="chapter-header-label">Chapter 13: The Trigeminal Circuit: Referred Pain &amp; Cross-Talk</span>
 						<span class="page-count-label">Page 49</span>
 					</div>
 
@@ -11300,27 +11264,24 @@ import { SITE_TITLE } from '../consts';
 						<div>
 							<div class="backcover-header">A Practical Guide</div>
 							<div class="backcover-divider" aria-hidden="true"></div>
-							<h2 class="backcover-tagline">What If It's Not BMS but Acid-Induced Burning Mouth&nbsp;Symptoms?</h2>
+							<h2 class="backcover-tagline">What If Your Burning Mouth Syndrome Is Caused by Everyday Acids and&nbsp;Sugars?</h2>
 							<p class="backcover-blurb">
-								When I went to the dentist, they looked at my mouth and found no cavities, no dead nerves, and no fungal thrush. They told me they couldn't find anything. I was prescribed special mouthwashes and sensitive toothpastes, but none of them&nbsp;worked.
+								In 2024, groundbreaking research revealed that non-stop burning pain can be triggered when acid-sensing ion channels (ASIC3) activate at a mild pH of 6.7. When direct dietary acids or oral bacteria fermenting everyday sugars wash over exposed root dentin and microscopic dental gaps, these sensors unlock, flooding your nervous system with continuous pain signals while routine clinical checkups look completely&nbsp;normal.
 							</p>
-							<p class="backcover-blurb">
-								Then I went to doctors who ran comprehensive blood panels for B12 deficiency, diabetes, and autoimmune breakdown. I couldn't get a clear answer about my pain until I found out about Burning Mouth Syndrome. The only explanation initially given to me was that my nerves were somehow misfiring or defective in some&nbsp;way.
-							</p>
-							<p class="backcover-blurb">
-								I tried prescription medications and supplements without relief. But when I eliminated all acid from my diet, my symptoms gradually diminished down to zero. I set out to understand where the pain came from and how it actually worked, and I made several discoveries:
+							<p class="backcover-blurb backcover-blurb-sub">
+								By temporarily eliminating acid and sugar triggers, you can validate if acid is a trigger for you. If it is, you can then work directly with your dentist to pinpoint key dental repairs that could be done and silence the&nbsp;pain.
 							</p>
 
 							<div class="backcover-showcase">
 								<div class="backcover-showcase-media">
 									<img src="/asic-pain-receptor-discovery-2024.jpg" alt="Scientific 3D visualization of the 2024 Pain Receptor Discovery: Extracellular protons docking into the ASIC ion channel, opening the pore to flood sodium into the Trigeminal sensory nerve fiber" loading="eager" />
-									<div class="backcover-media-caption">2024 Discovery: Extracellular H<sup>+</sup> ions dock into ASIC channels on oral nerves, driving sodium influx and non-stop burning pain</div>
+									<div class="backcover-media-caption">2024 Discovery: Extracellular protons activate ASIC pain channels at pH 6.7, sustaining relentless burning&nbsp;pain.</div>
 								</div>
 								<div class="backcover-showcase-content">
 									<ul class="backcover-features">
-										<li><strong>The Science of Acid Pain:</strong> Why acid-sensing ion channels refuse to adapt or desensitize like other oral sensors, causing non-stop burning pain, and how 2024 discoveries could help other&nbsp;patients.</li>
-										<li><strong>The Elimination Diet:</strong> A few options to eliminate acid from food, drinks, and hidden ingredients to test whether acid is driving your daily&nbsp;burn.</li>
-										<li><strong>Working with Your Dentist:</strong> A practical checklist of targeted, non-invasive steps your dentist can perform to find out where the pain is and seal&nbsp;it.</li>
+										<li><strong>The Science of Acid Pain:</strong> Why acid-sensing ion channels refuse to desensitize like thermal sensors, causing constant burning, and how this 2024 finding will help some&nbsp;patients.</li>
+										<li><strong>The Elimination Protocol:</strong> How to systematically remove dietary and chemical acids to confirm within days whether acidity drives your oral&nbsp;symptoms.</li>
+										<li><strong>Working with Your Dentist:</strong> A targeted clinical checklist of non-invasive diagnostic tests and biomaterial sealants to identify the source and stop the&nbsp;burn.</li>
 									</ul>
 								</div>
 							</div>
@@ -11329,7 +11290,8 @@ import { SITE_TITLE } from '../consts';
 						<div class="backcover-bottom">
 							<div class="backcover-meta">
 								<div class="backcover-pricing">$24.95 USD</div>
-								<div class="backcover-author-tag">DecodingTheBurn.com &bull; 2026 Edition</div>
+								<div class="backcover-author-tag">DecodingTheBurn.com</div>
+								<div class="backcover-edition-tag">November 2026 Edition</div>
 								<div class="backcover-isbn-text">ISBN 979-8-166169-90-7</div>
 							</div>
 
