@@ -454,20 +454,21 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .chapter-opener-num {
-		font-family: 'Cinzel', serif !important;
-		font-size: 10.5pt !important;
-		font-weight: 700 !important;
-		letter-spacing: 0.22em !important;
+		font-family: 'Montserrat', sans-serif !important;
+		font-size: 10pt !important;
+		font-weight: 800 !important;
+		letter-spacing: 0.18em !important;
 		text-transform: uppercase !important;
 		color: #000000 !important;
 		margin-bottom: 0.12in !important;
 	}
 
 	html body .book-viewport .chapter-opener-title {
-		font-family: 'Lora', Georgia, serif !important;
-		font-size: 19pt !important;
-		font-weight: 700 !important;
-		line-height: 1.22 !important;
+		font-family: 'Montserrat', sans-serif !important;
+		font-size: 18pt !important;
+		font-weight: 800 !important;
+		line-height: 1.2 !important;
+		letter-spacing: -0.01em !important;
 		color: #000000 !important;
 		margin: 0 !important;
 		text-align: center !important;
