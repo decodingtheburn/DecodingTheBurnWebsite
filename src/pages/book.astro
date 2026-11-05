@@ -1074,7 +1074,8 @@ import { SITE_TITLE } from '../consts';
 				color: #7c3aed !important;
 				font-size: 1.22rem;
 				border-bottom: 1px solid #ede9fe;
-				padding-top: 0.75rem; /* Extra top padding for sub-sections */
+				margin-top: 2.75rem !important; /* Generous breathing room above chapter sub-sections */
+				padding-top: 0.75rem;
 				padding-bottom: 0.45rem;
 			}
 
@@ -1244,11 +1245,12 @@ import { SITE_TITLE } from '../consts';
 				height: 100%;
 				display: flex;
 				flex-direction: column;
-				justify-content: flex-end;
-				padding: 2rem 0;
+				justify-content: space-between;
+				padding: 1.5rem 0.5rem 1rem;
+				box-sizing: border-box;
 				font-family: 'Plus Jakarta Sans', sans-serif;
 				font-size: 0.82rem;
-				line-height: 1.7;
+				line-height: 1.68;
 				color: #475569;
 			}
 
@@ -3616,18 +3618,19 @@ import { SITE_TITLE } from '../consts';
 
 			/* Master Table of Contents: Dark Purple Palette, Full Chapter Labels, Aligned Sub-Blocks */
 			.toc-part-header {
-				font-family: 'Plus Jakarta Sans', sans-serif !important;
-				font-size: 0.96rem !important;
-				font-weight: 800 !important;
+				font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+				font-size: 1.15rem !important; /* Standout prominent size */
+				font-weight: 900 !important;
 				text-transform: uppercase !important;
-				letter-spacing: 0.04em !important;
-				color: #7c3aed !important; /* Lighter vibrant purple */
+				letter-spacing: 0.05em !important;
+				color: #581c87 !important;
 				white-space: nowrap !important;
 				overflow: hidden !important;
 				text-overflow: ellipsis !important;
-				margin-bottom: 0.4rem !important;
-				border-bottom: 2px solid #ddd6fe !important; /* Light purple border */
-				padding-bottom: 0.28rem !important;
+				margin-top: 0.65rem !important;
+				margin-bottom: 0.75rem !important; /* Generous bottom padding */
+				border-bottom: 2px solid #7c3aed !important;
+				padding-bottom: 0.45rem !important;
 			}
 			.toc-part-purpose {
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
@@ -3692,7 +3695,7 @@ import { SITE_TITLE } from '../consts';
 			.toc-subsections-clean {
 				list-style: none !important;
 				padding: 0 !important;
-				margin: 0.15rem 0 0.55rem 1.5rem !important; /* Clean indent under chapter */
+				margin: 0.45rem 0 0.75rem 1.5rem !important; /* Added padding on top of first sub-section */
 				border: none !important;
 				border-left: none !important;
 			}
@@ -3855,10 +3858,10 @@ import { SITE_TITLE } from '../consts';
 							</button>
 							<div class="toolbar-menu">
 								<a href="#toc" class="toolbar-menu-header" title="Jump to Table of Contents">Table of Contents</a>
-								<a href="#toc"><span>Preliminary &amp; Part I</span><span class="menu-num">TOC 1</span></a>
+								<a href="#toc"><span>Orientation &bull; Part I</span><span class="menu-num">TOC 1</span></a>
 								<a href="#toc-1b"><span>Part I (Chapters 2&ndash;4)</span><span class="menu-num">TOC 2</span></a>
 								<a href="#toc-2"><span>Part II: My Story</span><span class="menu-num">TOC 3</span></a>
-								<a href="#toc-3"><span>Part III: The Science of Acid &amp; ASICs</span><span class="menu-num">TOC 3</span></a>
+								<a href="#toc-3"><span>Part III: The Science of Pain, ACID &amp; ASICS</span><span class="menu-num">TOC 3</span></a>
 								<a href="#toc-4"><span>Part IV: Taking Charge of Investigation</span><span class="menu-num">TOC 4</span></a>
 								<a href="#toc-5"><span>Part V: The Future of Burning Mouth</span><span class="menu-num">TOC 5</span></a>
 							</div>
@@ -3898,14 +3901,14 @@ import { SITE_TITLE } from '../consts';
 
 						<!-- Part 3 Dropdown -->
 						<div class="toolbar-dropdown">
-							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part III: The Science of Acid &amp; ASICs: Oral Burning Pain">
+							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part III: The Science of Pain, ACID &amp; ASICS">
 								<span>Science</span>
 								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<polyline points="6 9 12 15 18 9"></polyline>
 								</svg>
 							</button>
 							<div class="toolbar-menu">
-								<a href="#part-3-page" class="toolbar-menu-header" title="Jump to Part III">Part III: The Science of Acid &amp; ASICs</a>
+								<a href="#part-3-page" class="toolbar-menu-header" title="Jump to Part III">Part III: The Science of Pain, ACID &amp; ASICS</a>
 								<a href="#page-28"><span>Chapter 10: How Pain Is Created</span><span class="menu-num">p. 28</span></a>
 								<a href="#page-31"><span>Chapter 11: What Is Acid and Why It Causes Pain</span><span class="menu-num">p. 31</span></a>
 								<a href="#page-30b"><span>Chapter 12: Where Are the Pain Receptors in the Mouth?</span><span class="menu-num">p. 31</span></a>
@@ -4073,6 +4076,57 @@ import { SITE_TITLE } from '../consts';
 			</div>
 
 			<!-- INTERIOR TITLE PAGE (Page F-2 / Secondary Title Cover) -->
+			<!-- HALF-TITLE PAGE (Page 1 - Recto) -->
+			<section class="book-page" id="half-title-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+					<div style="max-width: 580px; margin: 0 auto;">
+						<div class="cover-kicker" style="font-size: 1.25rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.85rem;">
+							<span style="color: #ef4444;">A</span><span style="color: #f45b36;">C</span><span style="color: #f97316;">I</span><span style="color: #fb923c;">D</span><span style="color: #f59e0b;">-</span><span style="color: #eab308;">T</span><span style="color: #84cc16;">R</span><span style="color: #22c55e;">I</span><span style="color: #10b981;">G</span><span style="color: #06b6d4;">G</span><span style="color: #3b82f6;">E</span><span style="color: #6366f1;">R</span><span style="color: #8b5cf6;">E</span><span style="color: #a855f7;">D</span>
+						</div>
+						<h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.85rem; font-weight: 900; line-height: 1.05; letter-spacing: 0.02em; text-transform: uppercase; color: #0f172a; margin: 0;">
+							BURNING&nbsp;MOUTH
+						</h1>
+					</div>
+				</div>
+			</section>
+
+			<!-- EPIGRAPH / OPENING QUOTES PAGE (Page 2 - Verso) -->
+			<section class="book-page" id="epigraph-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 2rem 1rem;">
+					<div style="max-width: 540px; margin: 0 auto; text-align: left;">
+						<!-- Quote 1: Einstein -->
+						<div style="margin-bottom: 2.75rem;">
+							<p style="font-family: 'Lora', Georgia, serif; font-size: 1.08rem; font-style: italic; line-height: 1.75; color: #1e293b; margin-bottom: 0.5rem; text-wrap: pretty;">
+								&ldquo;We cannot solve our problems with the same thinking we used when we created&nbsp;them.&rdquo;
+							</p>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">
+								&mdash;&nbsp;Albert Einstein
+							</div>
+						</div>
+
+						<!-- Quote 2: Rumi -->
+						<div style="margin-bottom: 2.75rem;">
+							<p style="font-family: 'Lora', Georgia, serif; font-size: 1.08rem; font-style: italic; line-height: 1.75; color: #1e293b; margin-bottom: 0.5rem; text-wrap: pretty;">
+								&ldquo;The cure for pain is in the&nbsp;pain.&rdquo;
+							</p>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">
+								&mdash;&nbsp;Jalal al-Din Rumi
+							</div>
+						</div>
+
+						<!-- Quote 3: Dr. Robert Bastian -->
+						<div style="margin-bottom: 1rem;">
+							<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; font-style: italic; line-height: 1.75; color: #1e293b; margin-bottom: 0.5rem; text-wrap: pretty;">
+								&ldquo;If you listen to the patient, they will tell you what is wrong with them. Testing will get you nowhere if we don&rsquo;t want to just listen to the&nbsp;patient.&rdquo;
+							</p>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">
+								&mdash;&nbsp;Dr. Robert Bastian, <span style="font-weight: 500; text-transform: none; font-size: 0.82rem; color: #94a3b8;">Discoverer of R-CPD (&ldquo;No-Burp&rdquo; Syndrome)</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
 			<section class="book-page" id="title-page">
 				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
 					<div class="interior-title-wrap">
@@ -4155,37 +4209,64 @@ import { SITE_TITLE } from '../consts';
 			</section>
 
 			<!-- ACKNOWLEDGMENTS / THANK YOU PAGE -->
-			<section class="book-page" id="thank-you-page">
-				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Acknowledgments</span>
-					</div>
-
-					<div style="max-width: 620px; margin: 0 auto; text-align: left;">
+			<!-- WHY I WROTE THIS BOOK PAGE -->
+			<section class="book-page" id="why-i-wrote-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 2rem 0.5rem;">
+					<div style="max-width: 600px; margin: 0 auto; text-align: left;">
 						<h2 class="chapter-title" style="margin-top: 0; margin-bottom: 2rem; font-family: 'Montserrat', sans-serif; font-size: 2.15rem; font-weight: 800; color: #0f172a; text-align: center;">
+							Why I Wrote This&nbsp;Book
+						</h2>
+
+						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; line-height: 1.82; color: #1e293b; margin-bottom: 1.35rem; text-wrap: pretty;">
+							When I realized that dentists and doctors didn&rsquo;t have an answer for my unrelenting pain, I made a conscious choice: let me look into it myself. Let me give it an honest chance. Let me try, at the very least, to see what I can uncover. After all, I had spent my entire adult life as a software engineer and systems researcher breaking down complex, stubborn problems into first principles. Even if the odds were slim, there was a chance I could become pain-free.
+						</p>
+
+						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; line-height: 1.82; color: #1e293b; margin-bottom: 1.35rem; text-wrap: pretty;">
+							Once that initial zero-pain baseline was finally reached, a deeper scientific drive took over: I needed to know <em>why</em> I was pain-free. I wanted to understand the biological mechanism from first principles, tracing every nerve gate, acidity threshold, and microscopic root pathway until the physiology made undeniable sense.
+						</p>
+
+						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; line-height: 1.82; color: #1e293b; margin-bottom: 1.35rem; text-wrap: pretty;">
+							Once that understanding was achieved, the next mission was immediate: let&rsquo;s go and help others. Let&rsquo;s reach every patient who might share this exact same sensitivity to oral acid, validate what they are experiencing, and hand them practical tools to ease their suffering.
+						</p>
+
+						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; line-height: 1.82; color: #1e293b; margin-bottom: 1.85rem; text-wrap: pretty;">
+							This volume is just the first foundation. The next step is to continue publishing further research, author specialized follow-up guides, and build an open clinical dataset until Burning Mouth Syndrome is fully understood and solved across the medical&nbsp;world.
+						</p>
+
+						<div style="text-align: right; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #e2e8f0;">
+							<div style="font-family: 'Montserrat', sans-serif; font-size: 1.12rem; font-weight: 800; color: #0f172a;">Denis Ethier</div>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.8rem; font-weight: 600; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 0.2rem;">Author &bull; Patient Researcher</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="book-page" id="thank-you-page">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 2rem 0.5rem;">
+					<div style="max-width: 620px; margin: 0 auto; text-align: left;">
+						<h2 class="chapter-title" style="margin-top: 0; margin-bottom: 2rem; font-family: 'Montserrat', sans-serif; font-size: 2.25rem; font-weight: 800; line-height: 1.15; color: #0f172a; text-align: center;">
 							Thank&nbsp;You
 						</h2>
 
-						<p style="font-family: 'Lora', Georgia, serif;  line-height: 1.85; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
-							To everyone who supported, listened, and shared their experience throughout this eighteen-month investigation: thank&nbsp;you.
+						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; line-height: 1.85; color: #1e293b; margin-bottom: 1.45rem; text-wrap: pretty;">
+							To <strong>everyone who supported, listened, and shared their experience</strong> throughout this eighteen-month investigation: thank&nbsp;you.
 						</p>
 
-						<p style="font-family: 'Lora', Georgia, serif;  line-height: 1.82; color: #334155; margin-bottom: 1.35rem; text-wrap: pretty;">
-							To my family and close friends, whose patience, understanding, and quiet reassurance anchored me through sleepless nights, unpredictable pain flares, and dietary trials when simple answers were completely absent.
+						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; line-height: 1.82; color: #334155; margin-bottom: 1.35rem; text-wrap: pretty;">
+							To <strong>my family and close friends</strong>, whose patience, understanding, and quiet reassurance anchored me through sleepless nights, unpredictable pain flares, and dietary trials when simple answers were completely absent.
 						</p>
 
-						<p style="font-family: 'Lora', Georgia, serif;  line-height: 1.82; color: #334155; margin-bottom: 1.35rem; text-wrap: pretty;">
-							To the worldwide community of Burning Mouth sufferers who bravely reached out, shared their symptom logs, and refused to accept that invisible pain has no physical explanation. Your honesty turned an isolating personal struggle into a shared scientific mission.
+						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; line-height: 1.82; color: #334155; margin-bottom: 1.35rem; text-wrap: pretty;">
+							To the <strong>worldwide community of Burning Mouth sufferers</strong> who bravely reached out, shared their symptom logs, and refused to accept that invisible pain has no physical explanation. Your honesty turned an isolating personal struggle into a shared scientific mission.
 						</p>
 
-						<p style="font-family: 'Lora', Georgia, serif;  line-height: 1.82; color: #334155; margin-bottom: 2rem; text-wrap: pretty;">
-							And to the dentists, oral medicine specialists, and neurobiologists who took the time to listen openly, examine microscopic hardware margins, and evaluate peripheral electrochemical pathways with curiosity and clinical humility.
+						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; line-height: 1.82; color: #334155; margin-bottom: 1.85rem; text-wrap: pretty;">
+							And to the <strong>dentists, oral medicine specialists, and neurobiologists</strong> who took the time to listen openly, examine microscopic hardware margins, and evaluate peripheral electrochemical pathways with curiosity and clinical humility.
 						</p>
 
-						<div style="text-align: right; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0;">
-							<div style="font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 800; color: #0f172a;">Denis Ethier</div>
-							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; font-weight: 600; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 0.25rem;">Author &bull; Patient Researcher</div>
+						<div style="text-align: right; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #e2e8f0;">
+							<div style="font-family: 'Montserrat', sans-serif; font-size: 1.12rem; font-weight: 800; color: #0f172a;">Denis Ethier</div>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.8rem; font-weight: 600; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 0.2rem;">Author &bull; Patient Researcher</div>
 						</div>
 					</div>
 				</div>
@@ -4197,15 +4278,15 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Contents &bull; Preliminary &amp; Part I Start</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
+						<span class="page-count-label">Contents &bull; Orientation &bull; Part I Start</span>
 					</div>
 
 					<div class="toc-centered-container">
 						<h1 class="toc-main-title">Table of&nbsp;Contents</h1>
 
 						<div class="toc-group" style="margin-bottom: 2rem;">
-							<div class="toc-part-header">Preliminary &amp; Foundations</div>
+							<div class="toc-part-header">Orientation</div>
 
 							<div class="toc-item">
 								<a href="#disclaimer" class="toc-link" title="Medical &amp; Educational Disclaimer">
@@ -4369,7 +4450,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc-1b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
 						<span class="page-count-label">Contents &bull; Part I (Chapters 3 &ndash; 5)</span>
 					</div>
 
@@ -4621,7 +4702,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
 						<span class="page-count-label">Contents &bull; Part II</span>
 					</div>
 
@@ -4722,13 +4803,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
 						<span class="page-count-label">Contents &bull; Part III</span>
 					</div>
 
 					<div class="toc-centered-container">
 						<div class="toc-group" style="margin-bottom: 0.75rem;">
-							<div class="toc-part-header"><a href="#part-3-page" class="toc-part-link">Part III: The Science of Acid &amp; ASICs: Oral Burning Pain</a></div>
+							<div class="toc-part-header"><a href="#part-3-page" class="toc-part-link">Part III: The Science of Pain, ACID &amp; ASICS</a></div>
 
 							<div class="toc-item">
 								<a href="#chapter-10" class="toc-link" title="Chapter 10: How Pain Is Created">
@@ -4978,7 +5059,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc-4">
 				<div class="page-body-content">
 					<div class="page-running-head" style="margin-bottom: 0.25rem;">
-						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
 						<span class="page-count-label">Contents &bull; Part IV</span>
 					</div>
 
@@ -5268,7 +5349,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc-5">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
 						<span class="page-count-label">Contents &bull; Part V</span>
 					</div>
 
@@ -5562,8 +5643,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="disclaimer">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Preliminary &bull; Page iii</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
+						<span class="page-count-label">Orientation &bull; Page iii</span>
 					</div>
 
 					<h2 class="chapter-title" style="margin-top: 1rem; margin-bottom: 1.5rem;">Medical &amp; Educational&nbsp;Disclaimer</h2>
@@ -5612,8 +5693,12 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="expectation">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
-						<span class="page-count-label">Preliminary &bull; Page iv</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
+						<span class="page-count-label">Orientation &bull; Page iv</span>
+					</div>
+					<div class="page-running-head">
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
+						<span class="page-count-label">Orientation &bull; Page iv</span>
 					</div>
 
 					<h2 class="chapter-title" style="margin-top: 1rem;">Expectations: What You Can Expect from This&nbsp;Book</h2>
@@ -5636,7 +5721,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="contributors">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
 						<span class="page-count-label">Patient Research &bull; Page v</span>
 					</div>
 
@@ -5670,7 +5755,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="contributors-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
 						<span class="page-count-label">Professional Collaboration &bull; Page vi</span>
 					</div>
 
@@ -5704,7 +5789,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="overview-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
 						<span class="page-count-label">Executive Summary &bull; Page 1 of 2 &bull; Page vii</span>
 					</div>
 
@@ -5749,7 +5834,7 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="overview-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="chapter-header-label">Decoding the Burn</span>
+						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
 						<span class="page-count-label">Executive Summary &bull; Page 2 of 2 &bull; Page viii</span>
 					</div>
 
@@ -5985,7 +6070,7 @@ import { SITE_TITLE } from '../consts';
 					<div class="chapter-content">
 					<div class="stat-showcase-wrap">
 							<h1 class="stat-page-title" style="border-bottom: none; margin-bottom: 0.85rem; padding-bottom: 0; font-size: 1.65rem; line-height: 1.25; text-align: center;">
-								Why Burning Mouth Peaks in Our Sixties
+								Why Burning Mouth<br />Peaks in Our Sixties
 							</h1>
 							<div class="chapter-opener-divider" style="margin: 0 auto 1.5rem; width: 54px; height: 2px;"></div>
 

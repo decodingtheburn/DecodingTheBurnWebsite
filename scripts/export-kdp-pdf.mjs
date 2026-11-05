@@ -216,8 +216,38 @@ export const KDP_7X10_BASE_CSS = `
 		width: auto !important;
 	}
 
+	html body .book-viewport #copyright-page {
+		padding: 0.65in 0.65in 0.75in 0.7in !important;
+	}
 	html body .book-viewport #copyright-page .page-body-content {
-		height: 8.8in !important;
+		height: 100% !important;
+		max-height: 8.5in !important;
+		padding: 0 !important;
+	}
+	html body .book-viewport #copyright-page .copyright-page-wrap {
+		padding: 0 !important;
+		justify-content: space-between !important;
+		font-size: 0.78rem !important;
+		line-height: 1.55 !important;
+	}
+	html body .book-viewport #copyright-page .copyright-title-block {
+		margin-bottom: 1rem !important;
+	}
+	html body .book-viewport #copyright-page .copyright-notice-text {
+		margin-bottom: 0.85rem !important;
+		font-size: 0.78rem !important;
+	}
+	html body .book-viewport #copyright-page .copyright-metadata-table {
+		margin: 0.85rem 0 !important;
+		padding: 0.65rem 0 !important;
+		font-size: 0.74rem !important;
+		line-height: 1.48 !important;
+	}
+	html body .book-viewport #copyright-page .copyright-disclaimer-box {
+		margin-top: 0.85rem !important;
+		padding: 0.65rem 0.85rem !important;
+		font-size: 0.72rem !important;
+		line-height: 1.42 !important;
 	}
 
 	html body .book-viewport .chart-canvas-inner,
@@ -333,14 +363,15 @@ export const KDP_7X10_BASE_CSS = `
 		text-indent: 1.5em !important;
 	}
 
-	html body .book-viewport .chapter-content h3 {
+		html body .book-viewport .chapter-content h3 {
 		font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
-		font-size: 1.15rem !important;
-		margin-top: 1.65rem !important; /* Noticeably more breathing room above each sub-section */
-		margin-bottom: 0.55rem !important;
+		font-size: 1.18rem !important;
+		margin-top: 2.75rem !important; /* Noticeably more breathing room above each sub-section */
+		margin-bottom: 0.65rem !important;
 		padding-top: 0.45rem !important;
-		padding-bottom: 0.28rem !important;
-		border-bottom: 1px solid #e9d5ff !important;
+		padding-bottom: 0.32rem !important;
+		border-bottom: 1.5px solid #d8b4fe !important;
+		color: #7c3aed !important;
 	}
 
 	html body .book-viewport .chapter-content h4 {
@@ -521,6 +552,26 @@ export const KDP_7X10_BASE_CSS = `
 		margin: 0.12in auto 0 !important;
 	}
 
+
+	/* Thank You Page Calibration (Vertically Centered + 2x Bigger Title) */
+	html body .book-viewport #thank-you-page .page-body-content {
+		height: 100% !important;
+		display: flex !important;
+		flex-direction: column !important;
+		justify-content: center !important;
+		padding-top: 1in !important;
+		padding-bottom: 1in !important;
+		box-sizing: border-box !important;
+	}
+	html body .book-viewport #thank-you-page .chapter-title {
+		font-size: 3.8rem !important; /* 2x bigger */
+		font-weight: 900 !important;
+		line-height: 1.05 !important;
+		margin-bottom: 2.5rem !important;
+		text-align: center !important;
+	}
+
+
 	/* Questionnaire Cards calibration for 7x10 (Pages 7-14) */
 	html body .book-viewport .quiz-book-card {
 		padding: 0.48rem 0.68rem !important;
@@ -555,37 +606,67 @@ export const KDP_7X10_BASE_CSS = `
 	/* TOC Calibration (#toc & #toc-2) */
 	html body .book-viewport #toc h2,
 	html body .book-viewport #toc-2 h2 {
-		font-size: 1.5rem !important;
+		font-size: 1.65rem !important;
 		margin-top: 0.25rem !important;
 		margin-bottom: 0.2rem !important;
 	}
 
 	html body .book-viewport #toc .page-body-content > p,
 	html body .book-viewport #toc-2 .page-body-content > p {
-		font-size: 0.78rem !important;
+		font-size: 0.88rem !important;
 		margin-bottom: 0.65rem !important;
 	}
 
 	html body .book-viewport .toc-group {
-		margin-bottom: 0.5rem !important;
+		margin-bottom: 0.95rem !important;
 	}
 
+	/* Part Titles in TOC: Bigger font size to stand out + padding bottom */
 	html body .book-viewport .toc-part-header {
-		font-size: 0.72rem !important;
-		margin-bottom: 0.15rem !important;
-		padding-bottom: 0.12rem !important;
+		font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+		font-size: 1.15rem !important; /* Standout prominent size */
+		font-weight: 900 !important;
+		letter-spacing: 0.05em !important;
+		margin-top: 0.65rem !important;
+		margin-bottom: 0.75rem !important;
+		padding-bottom: 0.45rem !important;
+		border-bottom: 2px solid #7c3aed !important;
+		color: #581c87 !important;
 	}
 
 	html body .book-viewport .toc-part-purpose {
-		font-size: 0.68rem !important;
-		line-height: 1.28 !important;
-		margin-bottom: 0.25rem !important;
+		font-size: 0.78rem !important;
+		line-height: 1.35 !important;
+		margin-bottom: 0.45rem !important;
 	}
 
 	html body .book-viewport .toc-item {
-		padding: 0.1rem 0 !important;
-		font-size: 0.73rem !important;
-		line-height: 1.25 !important;
+		padding: 0.22rem 0 0.1rem !important;
+		font-size: 0.95rem !important;
+		line-height: 1.32 !important;
+	}
+
+	/* TOC Sub-sections: 1.3x bigger font */
+	html body .book-viewport .toc-subsections-clean {
+		margin-top: 0.45rem !important; /* Padding on top of the first sub-section */
+		margin-bottom: 0.75rem !important;
+		padding-left: 1.2rem !important;
+	}
+
+	html body .book-viewport .toc-sub-row {
+		margin-bottom: 0.32rem !important;
+		font-size: 0.95rem !important; /* 1.3x bigger */
+		line-height: 1.45 !important;
+	}
+
+	html body .book-viewport .toc-sub-title {
+		font-size: 0.95rem !important; /* 1.3x bigger */
+		font-weight: 500 !important;
+	}
+
+	html body .book-viewport .toc-sub-num {
+		font-size: 0.92rem !important; /* 1.3x bigger */
+		font-weight: 700 !important;
 	}
 
 	/* Contributors Page Calibration (#contributors) */
