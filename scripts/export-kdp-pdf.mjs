@@ -389,33 +389,33 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .chapter-content .book-callout p {
-		font-size: 0.9rem !important;
-		line-height: 1.45 !important;
-		margin-bottom: 0.35rem !important;
+		font-size: 1.125rem !important; /* Uniform 18px */
+		line-height: 1.72 !important;
+		margin-bottom: 0.45rem !important;
 	}
 
 	html body .book-viewport .chapter-content .book-callout ul li {
-		font-size: 0.86rem !important;
-		line-height: 1.42 !important;
-		margin-bottom: 0.25rem !important;
+		font-size: 1.125rem !important; /* Uniform 18px */
+		line-height: 1.72 !important;
+		margin-bottom: 0.35rem !important;
 	}
 
-	/* Keep #expectation and #page-50 cleanly on single pages */
+	/* Keep #expectation and #page-50 cleanly on single pages with uniform 18px body font */
 	html body .book-viewport #expectation .book-callout {
-		padding: 0.48rem 0.7rem !important;
-		margin-bottom: 0.48rem !important;
+		padding: 0.65rem 0.85rem !important;
+		margin-bottom: 0.65rem !important;
 	}
 
 	html body .book-viewport #expectation .chapter-content p {
-		font-size: 0.82rem !important;
-		line-height: 1.4 !important;
-		margin-bottom: 0.42rem !important;
+		font-size: 1.125rem !important; /* Uniform 18px */
+		line-height: 1.72 !important;
+		margin-bottom: 0.65rem !important;
 	}
 
 	html body .book-viewport #expectation .chapter-content .book-callout ul li {
-		font-size: 0.78rem !important;
-		line-height: 1.34 !important;
-		margin-bottom: 0.18rem !important;
+		font-size: 1.125rem !important; /* Uniform 18px */
+		line-height: 1.72 !important;
+		margin-bottom: 0.35rem !important;
 	}
 
 	html body .book-viewport #page-50 .part-hero-block {
@@ -640,8 +640,8 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .contributor-relief-summary {
-		font-size: 0.75rem !important;
-		line-height: 1.35 !important;
+		font-size: 1.05rem !important;
+		line-height: 1.55 !important;
 		margin-bottom: 0 !important;
 	}
 
@@ -656,8 +656,8 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .contributor-apply-text {
-		font-size: 0.74rem !important;
-		line-height: 1.35 !important;
+		font-size: 1.125rem !important; /* Uniform 18px */
+		line-height: 1.72 !important;
 		margin-bottom: 0 !important;
 	}
 
@@ -667,9 +667,9 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .exec-lead-paragraph {
-		font-size: 0.88rem !important;
-		line-height: 1.48 !important;
-		margin-bottom: 0.35rem !important;
+		font-size: 1.125rem !important; /* Uniform 18px */
+		line-height: 1.72 !important;
+		margin-bottom: 0.45rem !important;
 	}
 
 	html body .book-viewport .exec-section-card {
@@ -687,8 +687,8 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .exec-card-text {
-		font-size: 0.76rem !important;
-		line-height: 1.38 !important;
+		font-size: 1.05rem !important;
+		line-height: 1.55 !important;
 		color: #000000 !important;
 	}
 
@@ -706,8 +706,8 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .exec-takeaway-text {
-		font-size: 0.78rem !important;
-		line-height: 1.4 !important;
+		font-size: 1.05rem !important;
+		line-height: 1.55 !important;
 		color: #000000 !important;
 	}
 
@@ -747,8 +747,8 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .chapter-content p.overview-sentence {
-		font-size: 0.7rem !important;
-		line-height: 1.3 !important;
+		font-size: 0.95rem !important;
+		line-height: 1.45 !important;
 		margin: 0 !important;
 		color: #000000 !important;
 	}
