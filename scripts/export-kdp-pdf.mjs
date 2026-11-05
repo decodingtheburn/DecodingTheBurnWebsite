@@ -201,6 +201,41 @@ export const KDP_7X10_BASE_CSS = `
 		justify-content: center !important;
 	}
 
+	
+	/* Vertical Centering for Half-Title and Epigraph Pages */
+	html body .book-viewport #half-title-page,
+	html body .book-viewport #epigraph-page {
+		display: flex !important;
+		flex-direction: column !important;
+		justify-content: center !important;
+		align-items: center !important;
+		height: 10in !important;
+		min-height: 10in !important;
+		padding: 0 !important;
+		box-sizing: border-box !important;
+	}
+
+	html body .book-viewport #half-title-page .page-body-content,
+	html body .book-viewport #epigraph-page .page-body-content {
+		height: 100% !important;
+		display: flex !important;
+		flex-direction: column !important;
+		justify-content: center !important;
+		align-items: center !important;
+		padding: 0 1.5in !important;
+		margin: auto !important;
+		box-sizing: border-box !important;
+	}
+
+	/* Ensure Copyright Page aligns to bottom with uniform tiny black font */
+	html body .book-viewport #copyright-page {
+		display: flex !important;
+		flex-direction: column !important;
+		justify-content: flex-end !important;
+		height: 10in !important;
+		box-sizing: border-box !important;
+	}
+
 	html body .book-viewport #title-page .interior-title-wrap {
 		min-height: 0 !important;
 		height: 100% !important;
@@ -662,9 +697,23 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .toc-sub-row {
-		margin-bottom: 0.32rem !important;
-		font-size: 0.95rem !important; /* 1.3x bigger */
-		line-height: 1.45 !important;
+		margin-bottom: 0.12rem !important;
+		font-size: 0.95rem !important;
+		line-height: 1.25 !important;
+	}
+
+	html body .book-viewport .toc-sub-bullet {
+		display: inline-block !important;
+		width: 0.85rem !important;
+		flex-shrink: 0 !important;
+		text-align: left !important;
+	}
+
+	html body .book-viewport .toc-frontmatter-item .toc-ch-title,
+	html body .book-viewport .toc-frontmatter-item .toc-num,
+	html body .book-viewport .toc-frontmatter-item span {
+		font-weight: 400 !important;
+		color: #475569 !important;
 	}
 
 	html body .book-viewport .toc-sub-title {
@@ -1399,7 +1448,7 @@ export async function paginateOverflowingBookPages(page) {
 		let allPages = Array.from(document.querySelectorAll('.book-viewport > .book-page'));
 		for (let i = 0; i < allPages.length; i++) {
 			const pageEl = allPages[i];
-			if (pageEl.id === 'title-page' || pageEl.id === 'copyright-page') continue;
+			if (['title-page', 'copyright-page', 'half-title-page', 'epigraph-page', 'why-i-wrote-page', 'thank-you-page'].includes(pageEl.id)) continue;
 
 			const bodyBottom = getBodyBottom(pageEl);
 			if (bodyBottom <= MAX_BODY_BOTTOM_PX) continue;
@@ -1528,7 +1577,7 @@ export async function paginateOverflowingBookPages(page) {
 		const idToPageLabel = {};
 
 		for (const p of finalPages) {
-			if (p.id === 'title-page' || p.id === 'copyright-page') continue;
+			if (['title-page', 'copyright-page', 'half-title-page', 'epigraph-page'].includes(p.id)) continue;
 			if (p.id === 'page-1') {
 				inMainBook = true;
 			}
