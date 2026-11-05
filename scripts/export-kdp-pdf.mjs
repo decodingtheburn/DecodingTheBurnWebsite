@@ -713,8 +713,8 @@ export const KDP_7X10_BASE_CSS = `
 
 	html body .book-viewport .toc-sub-row {
 		margin-bottom: 0.12rem !important;
-		font-size: 0.95rem !important;
-		line-height: 1.25 !important;
+		font-size: 0.74rem !important; /* 1.3x smaller */
+		line-height: 1.3 !important;
 	}
 
 	html body .book-viewport .toc-sub-bullet {
@@ -732,12 +732,12 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .toc-sub-title {
-		font-size: 0.95rem !important; /* 1.3x bigger */
+		font-size: 0.74rem !important; /* 1.3x smaller */
 		font-weight: 500 !important;
 	}
 
 	html body .book-viewport .toc-sub-num {
-		font-size: 0.92rem !important; /* 1.3x bigger */
+		font-size: 0.72rem !important; /* 1.3x smaller */
 		font-weight: 700 !important;
 	}
 
