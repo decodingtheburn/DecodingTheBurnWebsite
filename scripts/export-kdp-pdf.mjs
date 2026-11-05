@@ -306,11 +306,25 @@ export const KDP_7X10_BASE_CSS = `
 		line-height: 1.25 !important;
 	}
 
+	/* Uniform 18px (1.125rem / ~11.5pt in print) body typography across entire PDF */
+	html body .book-viewport .chapter-content p,
+	html body .book-viewport .chapter-content li,
+	html body .book-viewport .chapter-lead-text,
+	html body .book-viewport .voice-single-quote,
+	html body .book-viewport .voice-short-quote,
+	html body .book-viewport .stat-page-desc,
+	html body .book-viewport .exec-lead-paragraph,
+	html body .book-viewport .book-page p,
+	html body .book-viewport .book-page li {
+		font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+		font-size: 1.125rem !important; /* Exactly 18px */
+		line-height: 1.72 !important;
+		color: #000000 !important;
+	}
+
 	html body .book-viewport .chapter-content p {
-		font-size: 0.96rem !important;
-		line-height: 1.52 !important;
 		margin-top: 0 !important;
-		margin-bottom: 0.35rem !important;
+		margin-bottom: 0.55rem !important;
 	}
 
 	html body .book-viewport .chapter-content > p {
@@ -334,11 +348,11 @@ export const KDP_7X10_BASE_CSS = `
 	html body .book-viewport .chapter-content ol,
 	html body .book-viewport .chapter-list {
 		font-family: 'Plus Jakarta Sans', sans-serif !important;
-		font-size: 0.96rem !important; /* Exact match with paragraph font size */
-		line-height: 1.46 !important;
-		margin-top: 0.3rem !important;
-		margin-bottom: 0.45rem !important;
-		padding-left: 1.65rem !important; /* Proper rightward indent from the left margin */
+		font-size: 1.125rem !important; /* Exactly 18px */
+		line-height: 1.72 !important;
+		margin-top: 0.4rem !important;
+		margin-bottom: 0.6rem !important;
+		padding-left: 1.65rem !important;
 		list-style-position: outside !important;
 	}
 
@@ -355,10 +369,10 @@ export const KDP_7X10_BASE_CSS = `
 	html body .book-viewport .chapter-content li,
 	html body .book-viewport .chapter-list li {
 		font-family: 'Plus Jakarta Sans', sans-serif !important;
-		font-size: 0.96rem !important; /* Exact match with paragraph font size */
-		line-height: 1.46 !important;
+		font-size: 1.125rem !important; /* Exactly 18px */
+		line-height: 1.72 !important;
 		color: #000000 !important;
-		margin-bottom: 0.22rem !important;
+		margin-bottom: 0.35rem !important;
 		padding-left: 0.2rem !important;
 	}
 
@@ -411,15 +425,15 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport #page-50 .chapter-content p {
-		font-size: 0.85rem !important;
-		line-height: 1.42 !important;
+		font-size: 1.125rem !important;
+		line-height: 1.65 !important;
 		margin-bottom: 0.42rem !important;
 	}
 
 	html body .book-viewport #page-51 .chapter-content p,
 	html body .book-viewport section[id^="page-51"] .chapter-content p {
-		font-size: 0.84rem !important;
-		line-height: 1.4 !important;
+		font-size: 1.125rem !important;
+		line-height: 1.65 !important;
 		margin-bottom: 0.38rem !important;
 	}
 
@@ -800,8 +814,8 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .stat-page-desc {
-		font-size: 1.05rem !important;
-		line-height: 1.65 !important;
+		font-size: 1.125rem !important; /* Exactly 18px */
+		line-height: 1.72 !important;
 		color: #000000 !important;
 		text-indent: 0 !important;
 	}
@@ -827,8 +841,8 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .voice-short-quote {
-		font-size: 1.04rem !important;
-		line-height: 1.55 !important;
+		font-size: 1.125rem !important; /* Exactly 18px */
+		line-height: 1.72 !important;
 		font-style: italic !important;
 		color: #000000 !important;
 		margin: 0 0 0.5rem !important;
