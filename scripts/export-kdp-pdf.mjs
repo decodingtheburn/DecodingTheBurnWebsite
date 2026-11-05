@@ -243,7 +243,7 @@ export const KDP_7X10_BASE_CSS = `
 		max-width: 100% !important;
 	}
 
-	/* Pin footer line & page number to the exact bottom footer zone on every page */
+	/* Pin footer line & page number to the exact bottom footer zone on every page (Standard sans-serif font) */
 	html body .book-viewport .page-number-footer {
 		position: absolute !important;
 		bottom: 0.3in !important;
@@ -256,7 +256,9 @@ export const KDP_7X10_BASE_CSS = `
 		display: flex !important;
 		justify-content: center !important;
 		align-items: center !important;
-		font-size: 0.78rem !important;
+		font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+		font-size: 0.95rem !important; /* Clean legible standard size */
+		font-weight: 700 !important;
 		line-height: 1 !important;
 		z-index: 10 !important;
 	}
@@ -332,16 +334,21 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .chapter-content h3 {
-		font-size: 1.08rem !important;
-		margin-top: 0.8rem !important;
-		margin-bottom: 0.4rem !important;
-		padding-bottom: 0.2rem !important;
+		font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+		font-size: 1.15rem !important;
+		margin-top: 1.65rem !important; /* Noticeably more breathing room above each sub-section */
+		margin-bottom: 0.55rem !important;
+		padding-top: 0.45rem !important;
+		padding-bottom: 0.28rem !important;
+		border-bottom: 1px solid #e9d5ff !important;
 	}
 
 	html body .book-viewport .chapter-content h4 {
-		font-size: 0.98rem !important;
-		margin-top: 0.65rem !important;
-		margin-bottom: 0.32rem !important;
+		font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+		font-size: 1.05rem !important;
+		margin-top: 1.35rem !important; /* More breathing room above h4 */
+		margin-bottom: 0.45rem !important;
+		padding-top: 0.35rem !important;
 	}
 
 	html body .book-viewport .chapter-content ul,
