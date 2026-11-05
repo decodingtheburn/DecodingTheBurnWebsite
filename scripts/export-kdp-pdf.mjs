@@ -228,6 +228,34 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	/* Ensure Copyright Page aligns to bottom with uniform tiny black font */
+
+	/* Universal Tiny Black Font for #copyright-page in PDF */
+	html body .book-viewport #copyright-page,
+	html body .book-viewport #copyright-page * {
+		color: #000000 !important;
+	}
+
+	html body .book-viewport #copyright-page p,
+	html body .book-viewport #copyright-page div,
+	html body .book-viewport #copyright-page span,
+	html body .book-viewport #copyright-page em,
+	html body .book-viewport #copyright-page strong {
+		font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+		font-size: 0.65rem !important;
+		line-height: 1.48 !important;
+		text-indent: 0 !important;
+	}
+
+	html body .book-viewport #copyright-page .copyright-title-main {
+		font-size: 0.72rem !important;
+		font-weight: 700 !important;
+	}
+
+	html body .book-viewport #copyright-page p {
+		margin-bottom: 0.65rem !important;
+		text-indent: 0 !important;
+	}
+
 	html body .book-viewport #copyright-page {
 		display: flex !important;
 		flex-direction: column !important;
