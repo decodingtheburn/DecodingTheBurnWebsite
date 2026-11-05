@@ -962,10 +962,19 @@ import { SITE_TITLE } from '../consts';
 				flex-grow: 1;
 			}
 
+			/* Uniform 20px (1.25rem) body typography across entire book for 50+ readers */
+			.chapter-content p,
+			.chapter-content li,
+			.chapter-lead-text,
+			.voice-single-quote,
+			.voice-short-quote,
+			.stat-page-desc {
+				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+				font-size: 1.25rem !important; /* Exactly 20px */
+				line-height: 1.82 !important;
+				color: #18181b !important;
+			}
 			.chapter-content p {
-				font-size: 1.25rem; /* 20px */
-				line-height: 1.82;
-				color: #18181b;
 				margin-bottom: 1.45rem;
 				text-wrap: pretty;
 			}
@@ -1962,12 +1971,16 @@ import { SITE_TITLE } from '../consts';
 
 			/* Stat Visual Cards & Data Graphics */
 			.stat-visual-card {
-				background: #fdfbf7;
-				border: 1.5px solid #000000;
+				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+				background: #faf5ff;
+				border: 1.5px solid #d8b4fe;
 				border-radius: 8px;
 				padding: 1.25rem 1.5rem;
 				margin: 1.25rem 0 1.35rem;
-				box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+				box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+			}
+			.stat-visual-card * {
+				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
 			}
 
 			.stat-visual-header {
@@ -4149,19 +4162,19 @@ import { SITE_TITLE } from '../consts';
 							Thank&nbsp;You
 						</h2>
 
-						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.05rem; line-height: 1.85; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
+						<p style="font-family: 'Lora', Georgia, serif;  line-height: 1.85; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
 							To everyone who supported, listened, and shared their experience throughout this eighteen-month investigation: thank&nbsp;you.
 						</p>
 
-						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.02rem; line-height: 1.82; color: #334155; margin-bottom: 1.35rem; text-wrap: pretty;">
+						<p style="font-family: 'Lora', Georgia, serif;  line-height: 1.82; color: #334155; margin-bottom: 1.35rem; text-wrap: pretty;">
 							To my family and close friends, whose patience, understanding, and quiet reassurance anchored me through sleepless nights, unpredictable pain flares, and dietary trials when simple answers were completely absent.
 						</p>
 
-						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.02rem; line-height: 1.82; color: #334155; margin-bottom: 1.35rem; text-wrap: pretty;">
+						<p style="font-family: 'Lora', Georgia, serif;  line-height: 1.82; color: #334155; margin-bottom: 1.35rem; text-wrap: pretty;">
 							To the worldwide community of Burning Mouth sufferers who bravely reached out, shared their symptom logs, and refused to accept that invisible pain has no physical explanation. Your honesty turned an isolating personal struggle into a shared scientific mission.
 						</p>
 
-						<p style="font-family: 'Lora', Georgia, serif; font-size: 1.02rem; line-height: 1.82; color: #334155; margin-bottom: 2rem; text-wrap: pretty;">
+						<p style="font-family: 'Lora', Georgia, serif;  line-height: 1.82; color: #334155; margin-bottom: 2rem; text-wrap: pretty;">
 							And to the dentists, oral medicine specialists, and neurobiologists who took the time to listen openly, examine microscopic hardware margins, and evaluate peripheral electrochemical pathways with curiosity and clinical humility.
 						</p>
 
@@ -5551,7 +5564,7 @@ import { SITE_TITLE } from '../consts';
 					<h2 class="chapter-title" style="margin-top: 1rem; margin-bottom: 1.5rem;">Medical &amp; Educational&nbsp;Disclaimer</h2>
 
 					<div class="chapter-content">
-						<p style="font-size: 0.98rem; line-height: 1.72; color: #000000; margin-bottom: 1.15rem;">
+						<p style="line-height: 1.72; color: #000000; margin-bottom: 1.15rem;">
 							<em>Decoding the Burn</em> documents an independent, self-directed research investigation into my own burning mouth symptoms. The author is a software engineer by training and systems researcher, not a licensed medical doctor, dentist, oral surgeon, or&nbsp;neurologist.
 						</p>
 
@@ -5565,21 +5578,21 @@ import { SITE_TITLE } from '../consts';
 							</span>
 							<div class="book-callout-text">
 								<p style="font-style: normal; font-weight: 700; color: #1e293b; margin-bottom: 0.35rem !important;">Important Notice for Readers</p>
-								<p style="font-size: 0.9rem; line-height: 1.6; color: #475569;">
+								<p style="line-height: 1.6; color: #475569;">
 									The models, observations, dietary protocols, and tooth margin audits presented in this volume are shared exclusively for educational, investigative, and informational purposes. They are intended to assist patients in framing informed, constructive discussions with qualified clinicians.
 								</p>
 							</div>
 						</div>
 
-						<p style="font-size: 0.95rem; line-height: 1.7; color: #1e293b; margin-bottom: 1rem;">
+						<p style="line-height: 1.7; color: #1e293b; margin-bottom: 1rem;">
 							<strong>1. Not Medical or Dental Advice:</strong> Nothing contained in this book constitutes clinical advice, a medical diagnosis, or a prescribed treatment plan. Burning mouth symptoms can arise from complex systemic pathologies, including autoimmune disorders (such as Sjögren's syndrome), severe nutritional deficiencies (B12, folate, ferritin), contact allergies, fungal infections, or peripheral neuropathies that necessitate comprehensive professional medical evaluation.
 						</p>
 
-						<p style="font-size: 0.95rem; line-height: 1.7; color: #1e293b; margin-bottom: 1rem;">
+						<p style="line-height: 1.7; color: #1e293b; margin-bottom: 1rem;">
 							<strong>2. Mandatory Professional Consultation:</strong> Always consult with a qualified, licensed physician, dentist, or oral medicine specialist before adopting, altering, or stopping any diet, nutritional supplement, oral hygiene product, or prescription medication. Never disregard professional clinical judgment or delay seeking medical care because of information read in this&nbsp;guide.
 						</p>
 
-						<p style="font-size: 0.95rem; line-height: 1.7; color: #1e293b; margin-bottom: 1rem;">
+						<p style="line-height: 1.7; color: #1e293b; margin-bottom: 1rem;">
 							<strong>3. Individual Variability &amp; Assumption of Risk:</strong> Every human physiology, oral microbiome, and dental architecture is distinct. Applying any elimination protocol, chemical threshold test, or mechanical barrier technique described in this book is undertaken entirely at your own discretion and personal&nbsp;responsibility.
 						</p>
 					</div>
@@ -5625,19 +5638,19 @@ import { SITE_TITLE } from '../consts';
 					<h2 class="chapter-title" style="margin-top: 1rem;">Contribute as a Patient to the&nbsp;Research</h2>
 
 					<div class="chapter-content">
-						<p style="font-size: 1.08rem; line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
+						<p style="line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
 							Burning Mouth Syndrome has remained an unresolved puzzle for decades because patient data is rarely collected, organized, and analyzed in one place. <em>Decoding the Burn</em> is a patient-led, open citizen science initiative to gather real-world observations on oral acidity, dentin permeability, and trigeminal pain&nbsp;pathways.
 						</p>
 
-						<p style="font-size: 1.08rem; line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
+						<p style="line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
 							To make this research truly useful, we need to collect patient stories from both sides: successful journeys and non-successful trials. If you tested a low-acid diet, removed chemical irritants, or sealed exposed root margins and experienced relief, your experience helps validate key mechanisms. But just as importantly, if you tried these protocols and nothing changed, that data is equally critical. In clinical science, knowing what fails helps rule out variables and proves that different biological mechanisms are at play for different&nbsp;individuals.
 						</p>
 
-						<p style="font-size: 1.08rem; line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
+						<p style="line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
 							Whether your experience was a complete success, a partial improvement, or produced zero difference, sharing your timeline, known triggers, and dental history provides vital evidence. By combining collective patient experiences, we can help build the empirical foundation needed for future clinical&nbsp;trials.
 						</p>
 
-						<p style="font-size: 1.05rem; line-height: 1.72; color: #0f172a; margin-top: 2rem; text-wrap: pretty;">
+						<p style="line-height: 1.72; color: #0f172a; margin-top: 2rem; text-wrap: pretty;">
 							To share your patient story and contribute your data, please reach out directly at <strong>decodingtheburn.com/contact</strong> or connect through our citizen science&nbsp;portal.
 						</p>
 					</div>
@@ -5659,19 +5672,19 @@ import { SITE_TITLE } from '../consts';
 					<h2 class="chapter-title" style="margin-top: 1rem;">Contribute as a Professional to the Next&nbsp;Edition</h2>
 
 					<div class="chapter-content">
-						<p style="font-size: 1.08rem; line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
+						<p style="line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
 							If you want to be added, or if you have something to contribute, we would love to add you to the next version. We can add your information, cite your work, or include your bio in the next revision of the book, so please send it&nbsp;across.
 						</p>
 
-						<p style="font-size: 1.08rem; line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
+						<p style="line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
 							We are actively seeking perspectives from dental clinicians, oral medicine specialists, periodontists, neurologists, and independent researchers. If you treat orofacial pain, observe restoration micro-leakage in daily practice, or investigate acid-sensing ion channels, we welcome your clinical commentary, case critiques, and professional observations.
 						</p>
 
-						<p style="font-size: 1.08rem; line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
+						<p style="line-height: 1.78; color: #1e293b; margin-bottom: 1.5rem; text-wrap: pretty;">
 							Future revisions of this book will feature expanded clinical commentary, specialist interviews, and cited research papers from collaborators who want to help solve the diagnostic bottlenecks surrounding BMS. Whether you wish to contribute a brief clinical note, review a specific chapter, or have your clinical practice cited, we would be honored to include your&nbsp;voice.
 						</p>
 
-						<p style="font-size: 1.05rem; line-height: 1.72; color: #0f172a; margin-top: 2rem; text-wrap: pretty;">
+						<p style="line-height: 1.72; color: #0f172a; margin-top: 2rem; text-wrap: pretty;">
 							To propose a contribution, share research findings, or discuss inclusion in the upcoming release, please send us a message at <strong>decodingtheburn.com/contact</strong>.
 						</p>
 					</div>
@@ -5808,12 +5821,12 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="chapter-content is-first-page" style="max-width: 680px; margin: 0 auto;">
-						<p style="font-size: 1.14rem; line-height: 1.82; margin-bottom: 1.35rem; text-indent: 0; color: #1e293b;">
+						<p style="line-height: 1.82; margin-bottom: 1.35rem; text-indent: 0; color: #1e293b;">
 							Before we examine the raw epidemiological data, we must address a fundamental question that causes widespread confusion in clinic waiting rooms and patient communities alike: <em>What are we actually measuring when we talk about burning mouth?</em>
 						</p>
 
 						<h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 1.4rem 0 0.65rem;">Symptoms, Syndromes, and Disorders: The Diagnostic Challenges</h3>
-						<p style="font-size: 1.14rem; line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
+						<p style="line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
 							In clinical practice and literature, a clear distinction is drawn between three distinct concepts:
 						</p>
 						<ul class="chapter-list" style="margin-bottom: 1.25rem; font-size: 1.14rem; line-height: 1.82; color: #334155;">
@@ -5823,10 +5836,10 @@ import { SITE_TITLE } from '../consts';
 						</ul>
 
 						<h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 1.4rem 0 0.65rem;">The Realization: When Sufferers Don't Even Realize It's "Burning"</h3>
-						<p style="font-size: 1.14rem; line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
+						<p style="line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
 							Here is an unspoken truth known to many who suffer: many people live with this condition for months or even years without ever realizing that what they are feeling is technically classified as "burning."
 						</p>
-						<p style="font-size: 1.14rem; line-height: 1.82; color: #334155;">
+						<p style="line-height: 1.82; color: #334155;">
 							In my own journey, when my discomfort first started, I never walked into a doctor's office announcing that my mouth was on fire. I described it as a raw, astringent, coated, sandpaper sensation, or like I had scalded my tongue on hot soup three days prior and it simply refused to heal. It was only when someone directly asked me, <em>"Does it feel like a chemical burn or hot pepper?"</em> that the lightbulb suddenly turned on: that could be it. Countless sufferers describe their symptoms as electric tingling, phantom acidity, numbness, metallic taste, or localized gum soreness, never realizing their pain fits the Burning Mouth&nbsp;profile.
 						</p>
 					</div>
@@ -5848,21 +5861,21 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="chapter-content" style="max-width: 680px; margin: 0 auto;">
 						<h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 0.5rem 0 0.65rem;">The Diagnostic Journey: Multiple Consultations in Search of Clarity</h3>
-						<p style="font-size: 1.14rem; line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
+						<p style="line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
 							Because standard visual exams reveal completely healthy pink tissue, arriving at an accurate diagnosis is an arduous journey. Clinical surveys document that patients frequently attend four to six consultations across general dentists, periodontists, ENT specialists, and neurologists before a clinician identifies Burning Mouth as the underlying diagnostic category.
 						</p>
-						<p style="font-size: 1.14rem; line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
+						<p style="line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
 							In routine practice, dental and medical exams naturally focus on visible pathology: caries, periodontal pockets, tissue ulcerations, or infection. Because microscopic small-fiber hyperexcitability and sub-micron chemical exposures do not produce visible redness or macroscopic lesions, exams return as pristine. Sufferers often hear: <em>"Everything looks completely healthy."</em> Many individuals live with persistent discomfort without receiving targeted questions regarding pain quality, timing, or chemical triggers. For a structured breakdown of these distinct sensation patterns, see the <strong>BMS Diagnostic Questionnaire &amp; Self-Assessment</strong> in Chapter 19.
 						</p>
 
 						<h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 1.4rem 0 0.65rem;">Our Focus: The Underlying Sensations and Biology</h3>
-						<p style="font-size: 1.14rem; line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
+						<p style="line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
 							This highlights the primary focus of this book: <strong>we are investigating the physical sensation itself and the biological mechanisms driving it, rather than focusing solely on strict diagnostic classifications.</strong>
 						</p>
-						<p style="font-size: 1.14rem; line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
+						<p style="line-height: 1.82; margin-bottom: 1.15rem; color: #334155;">
 							Thorough clinical differential diagnosis is vital to rule out nutritional deficiencies, fungal infections, and autoimmune conditions. Yet for the individual experiencing persistent pain, the physical sensation of a scalding tongue, palate, or gingival margin remains intensely real, regardless of where they are in their formal diagnostic evaluation.
 						</p>
-						<p style="font-size: 1.14rem; line-height: 1.82; color: #334155;">
+						<p style="line-height: 1.82; color: #334155;">
 							Furthermore, oral burning rarely presents uniformly across the mouth. For some, it is strictly isolated to the anterior tip of the tongue; for others, it burns along the lateral borders, the hard palate, the lower lip, or adjacent to a specific quadrant of teeth. People with a formal BMS diagnosis experience these sensations, but many with localized, unclassified oral burning share the exact same underlying biophysical triggers. As we examine the clinical statistics that follow, each number represents living individuals navigating these real physical&nbsp;sensations.
 						</p>
 					</div>
@@ -5898,10 +5911,7 @@ import { SITE_TITLE } from '../consts';
 
 							<!-- Stat Graphic: Global Scale Breakdown (Light purple tint, standard borders) -->
 							<div class="stat-visual-card" style="margin-top: 0; margin-bottom: 1.35rem; background: #faf5ff; border: 1.5px solid #d8b4fe;">
-								<div class="stat-visual-header" style="border-bottom: 1px solid #e9d5ff;">
-									<span class="stat-visual-caption" style="color: #581c87;">Global Epidemiology Breakdown</span>
-									<span class="stat-visual-meta" style="color: #6b21a8;">Wu et al. (2022)</span>
-								</div>
+								
 								<div class="stat-global-grid">
 									<div class="stat-global-col">
 										<div class="stat-global-num is-accent" style="color: #6b21a8;">138M</div>
@@ -5974,34 +5984,11 @@ import { SITE_TITLE } from '../consts';
 							</h1>
 							<div class="chapter-opener-divider" style="margin: 0 auto 1.5rem; width: 54px; height: 2px;"></div>
 
-							<!-- Visual Summary Graphic Card -->
-					<div class="stat-visual-card" style="background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 0 0 1.35rem;">
-						<div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #e9d5ff; padding-bottom: 0.6rem; margin-bottom: 1rem;">
-							<span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #581c87;">Clinical Demographics &bull; 30-Year Mayo Clinic Cohort</span>
-							<span style="font-size: 0.78rem; color: #6b21a8; font-weight: 600;">Sample: 169 Confirmed Patients</span>
-						</div>
-						<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
-							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
-								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">61 yrs</div>
-								<div style="font-size: 0.75rem; color: #3b0764; margin-top: 0.35rem; font-weight: 600;">Mean Age at Onset</div>
-							</div>
-							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
-								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">26 &ndash; 90</div>
-								<div style="font-size: 0.75rem; color: #3b0764; margin-top: 0.35rem; font-weight: 600;">Full Age Range</div>
-							</div>
-							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
-								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">50 &ndash; 70</div>
-								<div style="font-size: 0.75rem; color: #3b0764; margin-top: 0.35rem; font-weight: 600;">Primary Peak Bracket</div>
-							</div>
-						</div>
-					</div>
+							
 
 							<!-- Stat Graphic: Age Distribution Bar Chart (Light purple background) -->
 							<div class="stat-visual-card" style="margin-top: 0; margin-bottom: 1.35rem; background: #faf5ff; border: 1.5px solid #d8b4fe;">
-								<div class="stat-visual-header" style="border-bottom: 1px solid #e9d5ff;">
-									<span class="stat-visual-caption" style="color: #581c87;">Annual Incidence per 100,000 People by Age</span>
-									<span class="stat-visual-meta" style="color: #6b21a8;">Kohorst et al. (2014)</span>
-								</div>
+								
 								<div class="stat-bars-container">
 									<div class="stat-bar-row">
 										<span class="stat-bar-label" style="color: #3b0764;">&lt; 30 yrs</span>
@@ -6076,34 +6063,11 @@ import { SITE_TITLE } from '../consts';
 							</h1>
 							<div class="chapter-opener-divider" style="margin: 0 auto 1.5rem; width: 54px; height: 2px;"></div>
 
-							<!-- Visual Summary Graphic Card -->
-					<div class="stat-visual-card" style="background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 0 0 1.35rem;">
-						<div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #e9d5ff; padding-bottom: 0.6rem; margin-bottom: 1rem;">
-							<span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #581c87;">Sex Disparity Ratio &bull; Epidemiology Analysis</span>
-							<span style="font-size: 0.78rem; color: #6b21a8; font-weight: 600;">International Studies Synthesis</span>
-						</div>
-						<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
-							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
-								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">80%</div>
-								<div style="font-size: 0.75rem; color: #3b0764; margin-top: 0.35rem; font-weight: 600;">Female Sufferers (~5:1)</div>
-							</div>
-							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
-								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">20%</div>
-								<div style="font-size: 0.75rem; color: #3b0764; margin-top: 0.35rem; font-weight: 600;">Male Sufferers (~1:5)</div>
-							</div>
-							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
-								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">Post-Meno</div>
-								<div style="font-size: 0.75rem; color: #3b0764; margin-top: 0.35rem; font-weight: 600;">Key Demographic Window</div>
-							</div>
-						</div>
-					</div>
+							
 
 							<!-- Stat Graphic: Gender Disparity Ratio (Light purple background) -->
 							<div class="stat-visual-card" style="margin-top: 0; margin-bottom: 1.35rem; background: #faf5ff; border: 1.5px solid #d8b4fe;">
-								<div class="stat-visual-header" style="border-bottom: 1px solid #e9d5ff;">
-									<span class="stat-visual-caption" style="color: #581c87;">Annual Incidence per 100,000 People by Sex</span>
-									<span class="stat-visual-meta" style="color: #6b21a8;">Kohorst et al. (2014)</span>
-								</div>
+								
 								<div class="stat-ratio-display" style="padding: 0.5rem 0;">
 									<div class="stat-ratio-cohort">
 										<div class="stat-ratio-num is-female" style="color: #7c3aed; font-size: 2.2rem; font-weight: 800;">19.8</div>
@@ -6150,10 +6114,7 @@ import { SITE_TITLE } from '../consts';
 
 							<!-- Visual Summary Graphic Card -->
 					<div class="stat-visual-card" style="background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 0 0 1.35rem;">
-						<div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #e9d5ff; padding-bottom: 0.6rem; margin-bottom: 1rem;">
-							<span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #581c87;">Age Distribution Boundary &bull; Global Literature</span>
-							<span style="font-size: 0.78rem; color: #6b21a8; font-weight: 600;">Pediatric Prevalence: 0.0%</span>
-						</div>
+						
 						<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
 							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
 								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">0%</div>
@@ -6326,10 +6287,7 @@ import { SITE_TITLE } from '../consts';
 
 							<!-- Visual Summary Graphic Card -->
 					<div class="stat-visual-card" style="background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 0 0 1.35rem;">
-						<div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #e9d5ff; padding-bottom: 0.6rem; margin-bottom: 1rem;">
-							<span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #581c87;">Visual Analog Scale (VAS) &bull; Mean Pain Intensity</span>
-							<span style="font-size: 0.78rem; color: #6b21a8; font-weight: 600;">Clinical Benchmark Data</span>
-						</div>
+						
 						<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
 							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
 								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">7.2 / 10</div>
@@ -6376,10 +6334,7 @@ import { SITE_TITLE } from '../consts';
 
 							<!-- Visual Summary Graphic Card -->
 					<div class="stat-visual-card" style="background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 0 0 1.35rem;">
-						<div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #e9d5ff; padding-bottom: 0.6rem; margin-bottom: 1rem;">
-							<span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #581c87;">The Diagnostic Odyssey &bull; Patient Journey Metrics</span>
-							<span style="font-size: 0.78rem; color: #6b21a8; font-weight: 600;">Average Delay Before Clarity</span>
-						</div>
+						
 						<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
 							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
 								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">4.1</div>
@@ -6426,10 +6381,7 @@ import { SITE_TITLE } from '../consts';
 
 							<!-- Visual Summary Graphic Card -->
 					<div class="stat-visual-card" style="background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 0 0 1.35rem;">
-						<div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #e9d5ff; padding-bottom: 0.6rem; margin-bottom: 1rem;">
-							<span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #581c87;">Dietary Trigger Prevalence &bull; Patient Reported Outcomes</span>
-							<span style="font-size: 0.78rem; color: #6b21a8; font-weight: 600;">Acid &amp; Chemical Irritation</span>
-						</div>
+						
 						<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
 							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
 								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">74%</div>
@@ -6476,10 +6428,7 @@ import { SITE_TITLE } from '../consts';
 
 							<!-- Visual Summary Graphic Card -->
 					<div class="stat-visual-card" style="background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 0 0 1.35rem;">
-						<div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #e9d5ff; padding-bottom: 0.6rem; margin-bottom: 1rem;">
-							<span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #581c87;">Treatment Response Rates &bull; Comparative Efficacy</span>
-							<span style="font-size: 0.78rem; color: #6b21a8; font-weight: 600;">Peripheral Barrier vs. Central Drugs</span>
-						</div>
+						
 						<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
 							<div style="background: #ffffff; padding: 0.85rem 0.5rem; border-radius: 6px; border: 1px solid #e9d5ff;">
 								<div style="font-size: 1.85rem; font-weight: 800; color: #6b21a8; line-height: 1.1;">68%</div>
@@ -6521,10 +6470,10 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="chapter-content is-first-page" style="max-width: 680px; margin: 0 auto;">
-						<p style="font-size: 1.18rem; line-height: 1.85; margin-bottom: 1.5rem; text-indent: 0; color: #1e293b;">
+						<p style="line-height: 1.85; margin-bottom: 1.5rem; text-indent: 0; color: #1e293b;">
 							Behind every epidemiological statistic and clinical diagnosis are real human beings whose lives have been upended by chronic oral pain. Burning Mouth Syndrome does not just burn the tongue; it disrupts sleep, strains relationships, turns everyday meals into anxious calculations, and isolates individuals inside a relentless physical sensation that no one around them can&nbsp;see.
 						</p>
-						<p style="font-size: 1.14rem; line-height: 1.8; margin-bottom: 1.5rem; text-indent: 0; color: #334155;">
+						<p style="line-height: 1.8; margin-bottom: 1.5rem; text-indent: 0; color: #334155;">
 							Here are stories from real people across the world documenting what it truly feels like to live with this condition: how the fire started without warning, the profound frustration of spotless clinical exams, and the quiet resilience required to keep searching for answers when conventional pathways offer little&nbsp;clarity.
 						</p>
 					</div>
@@ -6835,23 +6784,23 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="chapter-content is-first-page">
-						<p class="chapter-lead-text" style="font-size: 1.05rem; line-height: 1.72; color: #1e293b; margin-bottom: 1.35rem; text-indent: 0;">
+						<p class="chapter-lead-text" style="line-height: 1.72; color: #1e293b; margin-bottom: 1.35rem; text-indent: 0;">
 							When clinical literature describes Burning Mouth Syndrome through dry diagnostic criteria, it often overlooks the profound disruption the condition causes to a person's life. Chronic oral burning is not just a physical sensation; it reshapes daily existence from the moment you wake up. It dismantles the simple pleasures of eating, forces painful pauses in conversation, and burdens sufferers with an invisible agony that routine exams cannot&nbsp;measure.
 						</p>
 
 						<div id="ch3-diet" style="scroll-margin-top: 5rem; margin-bottom: 1.25rem;">
 							<h3 style="font-size: 1.08rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.3rem;">The Daily Minefield of Eating and&nbsp;Nourishment</h3>
-							<p style="font-size: 1.02rem; line-height: 1.68; margin-bottom: 0;">Eating ceases to be a source of pleasure and comfort, turning into a cautious calculation of chemical triggers. Sufferers find themselves restricted to a narrow rotation of bland foods, forced to eliminate citrus, tomatoes, dressings, vinegar, coffee, and seasonings. The constant fear of sparking an agonizing flare frequently leads to involuntary weight loss, social dining anxiety, and nutritional&nbsp;strain.</p>
+							<p style="line-height: 1.68; margin-bottom: 0;">Eating ceases to be a source of pleasure and comfort, turning into a cautious calculation of chemical triggers. Sufferers find themselves restricted to a narrow rotation of bland foods, forced to eliminate citrus, tomatoes, dressings, vinegar, coffee, and seasonings. The constant fear of sparking an agonizing flare frequently leads to involuntary weight loss, social dining anxiety, and nutritional&nbsp;strain.</p>
 						</div>
 
 						<div id="ch3-isolation" style="scroll-margin-top: 5rem; margin-bottom: 1.25rem;">
 							<h3 style="font-size: 1.08rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.3rem;">Forced Silence: The Physical Friction of&nbsp;Speech</h3>
-							<p style="font-size: 1.02rem; line-height: 1.68; margin-bottom: 0;">Every spoken word generates physical contact between sensitized tongue borders and adjacent teeth, mechanically fanning mucosal burning. Sufferers are often forced to ration their speech, withdraw from dinner table conversations, keep phone calls brief, and avoid social gatherings. The condition imposes an involuntary, exhausting silence that separates patients from friends and&nbsp;family.</p>
+							<p style="line-height: 1.68; margin-bottom: 0;">Every spoken word generates physical contact between sensitized tongue borders and adjacent teeth, mechanically fanning mucosal burning. Sufferers are often forced to ration their speech, withdraw from dinner table conversations, keep phone calls brief, and avoid social gatherings. The condition imposes an involuntary, exhausting silence that separates patients from friends and&nbsp;family.</p>
 						</div>
 
 						<div id="ch3-depression" style="scroll-margin-top: 5rem; margin-bottom: 1.25rem;">
 							<h3 style="font-size: 1.08rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.3rem;">The Invisible Agony: Normal Exams and&nbsp;Invalidation</h3>
-							<p style="font-size: 1.02rem; line-height: 1.68; margin-bottom: 0;">Enduring persistent, scalding pain while physical oral mucosa looks completely pink and healthy creates deep emotional strain. When standard workups conclude that "everything looks pristine," patients can feel deeply misunderstood by well-meaning peers and clinicians. Carrying severe physical pain without visible markers precipitates situational anxiety, isolation, and profound emotional&nbsp;exhaustion.</p>
+							<p style="line-height: 1.68; margin-bottom: 0;">Enduring persistent, scalding pain while physical oral mucosa looks completely pink and healthy creates deep emotional strain. When standard workups conclude that "everything looks pristine," patients can feel deeply misunderstood by well-meaning peers and clinicians. Carrying severe physical pain without visible markers precipitates situational anxiety, isolation, and profound emotional&nbsp;exhaustion.</p>
 						</div>
 					</div>
 				</div>
@@ -6873,27 +6822,27 @@ import { SITE_TITLE } from '../consts';
 					<div class="chapter-content is-first-page">
 						<div id="ch3-sleep" style="scroll-margin-top: 5rem; margin-bottom: 1.25rem;">
 							<h3 style="font-size: 1.08rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.3rem;">Sleep Disruption and Chronic&nbsp;Fatigue</h3>
-							<p style="font-size: 1.02rem; line-height: 1.68; margin-bottom: 0;">Although burning pain characteristically peaks in the late afternoon and evening, nocturnal mouth breathing, dry mucosal tissue, and subconscious tongue pressing frequently interrupt deep sleep. Patients wake with parched oral tissues, compounding daytime fatigue and reducing the nervous system's capacity to regulate baseline sensory&nbsp;signals.</p>
+							<p style="line-height: 1.68; margin-bottom: 0;">Although burning pain characteristically peaks in the late afternoon and evening, nocturnal mouth breathing, dry mucosal tissue, and subconscious tongue pressing frequently interrupt deep sleep. Patients wake with parched oral tissues, compounding daytime fatigue and reducing the nervous system's capacity to regulate baseline sensory&nbsp;signals.</p>
 						</div>
 
 						<div id="ch3-connection" style="scroll-margin-top: 5rem; margin-bottom: 1.25rem;">
 							<h3 style="font-size: 1.08rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.3rem;">Loss of Connection and Emotional&nbsp;Bandwidth</h3>
-							<p style="font-size: 1.02rem; line-height: 1.68; margin-bottom: 0;">Living with relentless sensory discomfort consumes cognitive energy. When nerve signals monopolize mental bandwidth twenty-four hours a day, sufferers frequently feel emotionally depleted. Relationships with spouses, children, and close friends can become strained as the energy needed for spontaneous joy is consumed by pain&nbsp;management.</p>
+							<p style="line-height: 1.68; margin-bottom: 0;">Living with relentless sensory discomfort consumes cognitive energy. When nerve signals monopolize mental bandwidth twenty-four hours a day, sufferers frequently feel emotionally depleted. Relationships with spouses, children, and close friends can become strained as the energy needed for spontaneous joy is consumed by pain&nbsp;management.</p>
 						</div>
 
 						<div id="ch3-work" style="scroll-margin-top: 5rem; margin-bottom: 1.25rem;">
 							<h3 style="font-size: 1.08rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.3rem;">Workplace and Career&nbsp;Endurance</h3>
-							<p style="font-size: 1.02rem; line-height: 1.68; margin-bottom: 0;">Chronic oral burning undermines professional productivity. Whether a person is striving to maintain their career to support their family or has had to scale back work hours, the toll is significant. Constant trigeminal firing drains executive bandwidth, contributes to brain fog during meetings, and turns routine communication into a daily endurance&nbsp;test.</p>
+							<p style="line-height: 1.68; margin-bottom: 0;">Chronic oral burning undermines professional productivity. Whether a person is striving to maintain their career to support their family or has had to scale back work hours, the toll is significant. Constant trigeminal firing drains executive bandwidth, contributes to brain fog during meetings, and turns routine communication into a daily endurance&nbsp;test.</p>
 						</div>
 
 						<div id="ch3-financial" style="scroll-margin-top: 5rem; margin-bottom: 1.25rem;">
 							<h3 style="font-size: 1.08rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.3rem;">Financial and Diagnostic&nbsp;Exhaustion</h3>
-							<p style="font-size: 1.02rem; line-height: 1.68; margin-bottom: 0;">Consulting multiple specialists across dentistry, ENT, and neurology, alongside paying out-of-pocket for custom occlusal guards, restoration replacements, specialized blood panels, and targeted supplements creates a substantial financial burden, often without delivering clear or lasting clinical&nbsp;clarity.</p>
+							<p style="line-height: 1.68; margin-bottom: 0;">Consulting multiple specialists across dentistry, ENT, and neurology, alongside paying out-of-pocket for custom occlusal guards, restoration replacements, specialized blood panels, and targeted supplements creates a substantial financial burden, often without delivering clear or lasting clinical&nbsp;clarity.</p>
 						</div>
 
 						<div id="ch3-mandate" style="scroll-margin-top: 5rem; margin-bottom: 1.25rem;">
 							<h3 style="font-size: 1.08rem; font-weight: 700; color: #7c3aed; margin-bottom: 0.3rem;">The Patient-Led Research&nbsp;Mandate</h3>
-							<p style="font-size: 1.02rem; line-height: 1.68; margin-bottom: 0;">Because dentistry concentrates on dental hard tissues while medicine focuses on systemic pathology, chronic oral burning often sits at an interdisciplinary boundary. Sufferers benefit immensely when they bridge this gap through structured observation. Systematic daily symptom tracking and open-source citizen science supply the detailed telemetry necessary to help clinicians pinpoint peripheral root&nbsp;triggers.</p>
+							<p style="line-height: 1.68; margin-bottom: 0;">Because dentistry concentrates on dental hard tissues while medicine focuses on systemic pathology, chronic oral burning often sits at an interdisciplinary boundary. Sufferers benefit immensely when they bridge this gap through structured observation. Systematic daily symptom tracking and open-source citizen science supply the detailed telemetry necessary to help clinicians pinpoint peripheral root&nbsp;triggers.</p>
 						</div>
 					</div>
 				</div>
@@ -6991,7 +6940,7 @@ import { SITE_TITLE } from '../consts';
 							<div class="part-page-num">Part 2</div>
 							<h1 class="part-page-title">My Story: An N=1&nbsp;Investigation</h1>
 							<div class="part-page-divider"></div>
-							<p class="part-page-desc" style="font-weight: 700; font-size: 1.35rem; color: #1e1b4b; margin-bottom: 0.75rem;">4 years of discoveries</p>
+							<p class="part-page-desc" style="font-weight: 700;  color: #1e1b4b; margin-bottom: 0.75rem;">4 years of discoveries</p>
 							<p class="part-page-desc">From sudden 10/10 onset and spotless clinical exams to the six-day reset: documenting eighteen months of self-experimentation and sustained&nbsp;remission.</p>
 						</div>
 
@@ -8626,7 +8575,7 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="chapter-content is-first-page">
-						<p style="font-size: 0.94rem; line-height: 1.68; color: #334155; margin-bottom: 1.25rem; text-wrap: pretty;">
+						<p style="line-height: 1.68; color: #334155; margin-bottom: 1.25rem; text-wrap: pretty;">
 							Use this comprehensive clinical diagnostic questionnaire to map your symptom profile, identify triggers, and establish an actionable record. You can select your answers directly on this page; your entries are preserved locally and can be printed or shared with your dental and medical&nbsp;providers.
 						</p>
 
@@ -8635,10 +8584,10 @@ import { SITE_TITLE } from '../consts';
 							<h3 style="font-size: 1.05rem; font-weight: 700; color: #991b1b; margin: 0 0 0.45rem; display: flex; align-items: center; gap: 0.5rem;">
 								<span>Emergency Clinical Safety Warning</span>
 							</h3>
-							<p style="font-size: 0.84rem; color: #7f1d1d; line-height: 1.6; margin-bottom: 0.45rem;">
+							<p style="color: #7f1d1d; line-height: 1.6; margin-bottom: 0.45rem;">
 								<strong>Emergency Notice:</strong> If you experience sudden chest pain, shortness of breath, sudden facial droop, slurred speech, or acute throat or tongue swelling, <strong>call 911 or go to an emergency room immediately</strong>. If you are ever unsure whether your symptoms are an emergency, always call 911 or seek urgent emergency medical evaluation.
 							</p>
-							<p style="font-size: 0.80rem; color: #991b1b; line-height: 1.5; margin-bottom: 0;">
+							<p style="color: #991b1b; line-height: 1.5; margin-bottom: 0;">
 								This clinical self-assessment is designed exclusively for the systematic documentation and analysis of chronic, persistent intraoral burning sensations. It does not replace medical evaluation. Always consult a licensed physician, oral medicine specialist, or dentist for professional diagnosis and&nbsp;treatment.
 							</p>
 						</div>
@@ -8648,7 +8597,7 @@ import { SITE_TITLE } from '../consts';
 							<h3 style="font-size: 1.05rem; font-weight: 700; color: #991b1b; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
 								<span>Initial Clinical Safety Triage (Red-Flag Warning Signs)</span>
 							</h3>
-							<p style="font-size: 0.82rem; color: #7f1d1d; line-height: 1.55; margin-bottom: 0.75rem;">
+							<p style="color: #7f1d1d; line-height: 1.55; margin-bottom: 0.75rem;">
 								These specific clinical signs do not fit typical Primary Burning Mouth Syndrome. If any apply, they require prompt professional evaluation by an oral surgeon, ENT specialist, or physician before pursuing at-home self-management:
 							</p>
 							<div class="bms-grid-2col" style="font-size: 0.82rem; color: #1e293b;">
@@ -8675,7 +8624,7 @@ import { SITE_TITLE } from '../consts';
 							<h3 style="font-size: 1.05rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
 								<span>Official ICOP Diagnostic Criteria &amp; Clinical Workup&nbsp;Sequence</span>
 							</h3>
-							<p style="font-size: 0.82rem; color: #475569; line-height: 1.55; margin-bottom: 0.85rem;">
+							<p style="color: #475569; line-height: 1.55; margin-bottom: 0.85rem;">
 								Under the <strong>International Classification of Orofacial Pain (ICOP 2020 &sect;6.1)</strong> and the <strong>International Classification of Headache Disorders (ICHD-3)</strong>, Burning Mouth Syndrome is defined by strict operational criteria. It is a formal diagnosis of exclusion requiring systematic verification that visible mucosal lesions, local dental etiologies, and systemic medical diseases are ruled&nbsp;out:
 							</p>
 
@@ -8705,7 +8654,7 @@ import { SITE_TITLE } from '../consts';
 							<!-- Part 2: Local Dental & Oral Medicine Exclusion Checklist -->
 							<div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.85rem;">
 								<h4 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; margin: 0 0 0.35rem;">2. Local Dental &amp; Mucosal Exclusion Sequence (Check tests completed)</h4>
-								<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">International guidelines require ruling out primary intraoral causes before confirming idiopathic BMS:</p>
+								<p style="color: #64748b; margin-bottom: 0.5rem;">International guidelines require ruling out primary intraoral causes before confirming idiopathic BMS:</p>
 								<div class="bms-grid-2col" style="font-size: 0.82rem; color: #1e293b;">
 									<label class="bms-check-label"><input type="checkbox" name="icop_test_candida" class="bms-input-persist" /> <span><strong>Oral Lesion / Candida Smear:</strong> Swab or culture ruling out fungal overgrowth, lichen planus, or leukoplakia.</span></label>
 									<label class="bms-check-label"><input type="checkbox" name="icop_test_sialometry" class="bms-input-persist" /> <span><strong>Quantitative Sialometry:</strong> Flow measurement ruling out objective hyposalivation (&lt;0.1 mL/min resting).</span></label>
@@ -8720,7 +8669,7 @@ import { SITE_TITLE } from '../consts';
 							<!-- Part 3: Systemic Medical Laboratory Exclusion Checklist -->
 							<div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.65rem;">
 								<h4 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; margin: 0 0 0.35rem;">3. Systemic Medical Laboratory Exclusion Sequence (Check panels completed)</h4>
-								<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">Standard laboratory blood panels to identify or rule out secondary systemic drivers:</p>
+								<p style="color: #64748b; margin-bottom: 0.5rem;">Standard laboratory blood panels to identify or rule out secondary systemic drivers:</p>
 								<div class="bms-grid-2col" style="font-size: 0.82rem; color: #1e293b;">
 									<label class="bms-check-label"><input type="checkbox" name="icop_lab_hematinic" class="bms-input-persist" /> <span><strong>Hematinic &amp; Vitamin Panel:</strong> CBC, Ferritin, Serum B12, RBC Folate, Serum Zinc, and Vitamin D.</span></label>
 									<label class="bms-check-label"><input type="checkbox" name="icop_lab_glycemic" class="bms-input-persist" /> <span><strong>Glycemic Screening:</strong> Fasting blood glucose and HbA1c to rule out diabetic small-fiber neuropathy.</span></label>
@@ -8731,7 +8680,7 @@ import { SITE_TITLE } from '../consts';
 							</div>
 
 							<!-- Interactive Blog Link -->
-							<p style="font-size: 0.82rem; color: #4338ca; margin: 0.65rem 0 0; line-height: 1.5;">
+							<p style="color: #4338ca; margin: 0.65rem 0 0; line-height: 1.5;">
 								<strong>Interactive Branching Decision Tree:</strong> Want to explore the step-by-step clinical flow chart from primary vs. secondary diagnosis to peripheral trigger mapping? <a href="/blog/icop-bms-diagnostic-algorithm" target="_blank" style="color: #4338ca; font-weight: 700; text-decoration: underline;">Explore the Complete ICOP-AL Branching Algorithm on Our Blog &rarr;</a>
 							</p>
 						</div>
@@ -9094,7 +9043,7 @@ import { SITE_TITLE } from '../consts';
 								<span>7. 24-Hour Food &amp; Beverage Intake Log</span>
 							</h3>
 							
-							<p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.65rem;">
+							<p style="color: #64748b; margin-bottom: 0.65rem;">
 								Document your last 3 meals and drinks to detect delayed acidic fermentation patterns:
 							</p>
 
@@ -9338,7 +9287,7 @@ import { SITE_TITLE } from '../consts';
 					<h2 class="chapter-title">Comprehensive Medical &amp; Systemic&nbsp;History</h2>
 
 					<div class="chapter-content is-first-page">
-						<p style="font-size: 0.94rem; line-height: 1.68; color: #334155; margin-bottom: 1.15rem; text-wrap: pretty;">
+						<p style="line-height: 1.68; color: #334155; margin-bottom: 1.15rem; text-wrap: pretty;">
 							Standard dental clinics utilize extensive multi-page medical questionnaires to rule out systemic contraindications and metabolic neuropathies. Complete this clinical audit to document cardiovascular status, endocrine markers, and gastrointestinal reflux patterns before your dental consult.
 						</p>
 
@@ -9742,7 +9691,7 @@ import { SITE_TITLE } from '../consts';
 							<h3 style="font-size: 1.02rem; font-weight: 700; color: #7c3aed; margin: 0 0 0.4rem;">
 								<span>10. Current Prescription Medications &amp; Daily Supplements</span>
 							</h3>
-							<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">
+							<p style="color: #64748b; margin-bottom: 0.5rem;">
 								List all medications, daily vitamins, pain relievers, and supplements currently taken (include dosage if known):
 							</p>
 							<textarea name="bms_master_medication_list" class="bms-input-persist" placeholder="e.g., Lisinopril 20mg (morning), Omeprazole 40mg (before dinner), Vitamin B12 1000mcg sublingual, Calcium + Vitamin D, Multivitamin, Ibuprofen as needed..." style="width: 100%; height: 80px; font-size: 0.82rem; line-height: 1.5; padding: 0.45rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; resize: vertical;"></textarea>
@@ -9753,7 +9702,7 @@ import { SITE_TITLE } from '../consts';
 							<h3 style="font-size: 1.02rem; font-weight: 700; color: #7c3aed; margin: 0 0 0.4rem;">
 								<span>11. Surgical History, Oral Trauma, &amp; Dental Complications</span>
 							</h3>
-							<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">
+							<p style="color: #64748b; margin-bottom: 0.5rem;">
 								Document major surgeries, intubation history, facial trauma, difficult extractions, or anesthesia complications:
 							</p>
 							<textarea name="bms_surgical_trauma_history" class="bms-input-persist" placeholder="e.g., Difficult wisdom tooth extraction in lower right with lingering numbness in 2021. Endotracheal intubation during knee surgery in 2024 with subsequent throat and palate irritation..." style="width: 100%; height: 75px; font-size: 0.82rem; line-height: 1.5; padding: 0.45rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; resize: vertical;"></textarea>
@@ -9764,7 +9713,7 @@ import { SITE_TITLE } from '../consts';
 							<h3 style="font-size: 1.02rem; font-weight: 700; color: #7c3aed; margin: 0 0 0.4rem;">
 								<span>12. Specific Dental Diagnostics Requested for Today's Visit</span>
 							</h3>
-							<p style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.5rem;">
+							<p style="color: #64748b; margin-bottom: 0.5rem;">
 								Check the specific diagnostic tests you are requesting your dentist perform during this evaluation:
 							</p>
 							<div class="bms-grid-3col">
@@ -10060,7 +10009,7 @@ import { SITE_TITLE } from '../consts';
 
 						<div class="timelag-box">
 							<p class="timelag-title">The Core 3-Day Off / 3-Day On Delta Calculation Protocol</p>
-							<p style="font-size: 0.88rem; line-height: 1.55; color: #334155; margin-bottom: 0.85rem;">
+							<p style="line-height: 1.55; color: #334155; margin-bottom: 0.85rem;">
 								Select ONE suspect variable: <strong>Acidic Drinks</strong> (coffee, citrus juice, soda, tea, vinegar, sparkling water). Keep everything else in your routine strictly stable.
 							</p>
 
@@ -10113,13 +10062,13 @@ import { SITE_TITLE } from '../consts';
 								</tbody>
 							</table>
 
-							<p style="font-size: 0.88rem; line-height: 1.55; color: #334155; margin-bottom: 0.4rem;">
+							<p style="line-height: 1.55; color: #334155; margin-bottom: 0.4rem;">
 								<strong>The Lag Delta Formula:</strong>
 							</p>
 							<div class="formula-badge">
 								Lag Delta (&Delta;) = Average Pain (Days 5 and 6) - Baseline Pain (Day 3)
 							</div>
-							<p style="font-size: 0.84rem; line-height: 1.5; color: #475569; margin-top: 0.4rem; margin-bottom: 0;">
+							<p style="line-height: 1.5; color: #475569; margin-top: 0.4rem; margin-bottom: 0;">
 								<strong>Score Interpretation:</strong> If &Delta; is <strong>+2.0 or greater</strong>, you have definitive clinical confirmation: dietary acid is an active electrochemical fuel powering your oral circuit.
 							</p>
 						</div>
@@ -10128,21 +10077,21 @@ import { SITE_TITLE } from '../consts';
 
 						<div class="alt-protocol-card">
 							<p class="alt-protocol-title">Alternative 1: The Single Pulse Spike (Fast Weekend Test)</p>
-							<p style="font-size: 0.88rem; line-height: 1.55; color: #334155; margin: 0;">
+							<p style="line-height: 1.55; color: #334155; margin: 0;">
 								If you cannot endure three consecutive days of pain flares, use the single pulse method. Establish a neutral baseline Monday through Thursday. On Friday morning at 8:00 AM, drink ONE single 8oz glass of orange juice or black coffee. Immediately return to zero-acid water for the entire weekend. Record your pain every 12 hours. Look for the distinctive bell curve: flat on Friday, beginning to sting Saturday evening, peaking Sunday at 48 hours, and returning to calm by Monday afternoon. This pinpoints your exact personal latency hours down to the clock.
 							</p>
 						</div>
 
 						<div class="alt-protocol-card">
 							<p class="alt-protocol-title">Alternative 2: The Split A/B Rotation Block (12-Day Wave Verification)</p>
-							<p style="font-size: 0.88rem; line-height: 1.55; color: #334155; margin: 0;">
+							<p style="line-height: 1.55; color: #334155; margin: 0;">
 								For skeptical clinicians or family members who assume your pain is psychosomatic, execute a 12-day split block: 3 Days OFF &rarr; 3 Days ON &rarr; 3 Days OFF &rarr; 3 Days ON. Graphing daily pain levels over twelve days reveals an undeniable oscillating sine wave shifted exactly 48 to 72 hours behind your intake ledger. A repeating biological wave disproves placebo, stress, or random fluctuation with mathematical certainty.
 							</p>
 						</div>
 
 						<div class="alt-protocol-card" style="margin-bottom: 0;">
 							<p class="alt-protocol-title">Alternative 3: The Mechanical Barrier Straw Test (Hardware vs. Systemic)</p>
-							<p style="font-size: 0.88rem; line-height: 1.55; color: #334155; margin: 0;">
+							<p style="line-height: 1.55; color: #334155; margin: 0;">
 								Wondering if the acid is irritating a stomach nerve reflex or directly penetrating a leaking tooth margin? Coat your suspected tooth crown or receded root neck with orthodontic dental wax, or insert a custom night barrier tray. Drink the acidic beverage through a straw aimed towards the back of the throat, avoiding contact with the shielded tooth. If the 48-hour burning surge fails to appear, you have conclusively isolated the culprit: the trigger is a direct physical hardware leak, not a systemic or central brain defect.
 							</p>
 						</div>
@@ -10455,11 +10404,11 @@ import { SITE_TITLE } from '../consts';
 							</table>
 						</div>
 
-						<p style="font-size: 0.92rem; line-height: 1.6; color: #000000; margin-top: 0.85rem;">
+						<p style="line-height: 1.6; color: #000000; margin-top: 0.85rem;">
 							<strong>Key Takeaway:</strong> Central brain medications yield 20% to 30% response rates with minimal 1 to 2 point pain shifts. Physically sealing hardware breaches (Gluma, crown re-sealing) or eliminating oral acid fuel achieves 65% to 80% reported success with 4 to 8 point pain&nbsp;reductions.
 						</p>
 
-						<p style="font-size: 0.92rem; line-height: 1.6; color: #000000; margin-top: 0.85rem;">
+						<p style="line-height: 1.6; color: #000000; margin-top: 0.85rem;">
 							<strong>Key Clinical Takeaway:</strong> If you fall into the non-acid category, do not despair. Work closely with an oral medicine specialist or neurologist to methodically trial targeted alternatives (such as low-dose topical clonazepam rinses, ALA protocols, or verified B12/ferritin repletion) rather than resigning to&nbsp;hopelessness.
 						</p>
 					</div>
@@ -11508,7 +11457,7 @@ import { SITE_TITLE } from '../consts';
 					<h2 class="chapter-title" style="margin-top: 1rem;">Master Scientific Data&nbsp;Sources</h2>
 
 					<div class="chapter-content is-first-page">
-						<p style="font-size: 0.95rem; line-height: 1.65; color: #475569; margin-bottom: 1.25rem;">
+						<p style="line-height: 1.65; color: #475569; margin-bottom: 1.25rem;">
 							The hypotheses, biophysical mechanisms, and clinical models detailed throughout Decoding the Burn are anchored in peer-reviewed oral biology, sensory neurophysiology, and biomimetic restorative literature. Click on any citation to open the original PubMed or NIH archive record.
 						</p>
 
@@ -11940,7 +11889,7 @@ import { SITE_TITLE } from '../consts';
 				<div id="feedback-step-success" class="feedback-success-state" style="display: none;">
 					<div class="feedback-success-icon">✓</div>
 					<h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: #0f172a; font-weight: 700;">Feedback Sent!</h4>
-					<p style="margin: 0; font-size: 0.88rem; color: #64748b; line-height: 1.55;">
+					<p style="margin: 0;  color: #64748b; line-height: 1.55;">
 						Your note on this passage has been sent directly to Denis's inbox. Thank you for helping improve the book!
 					</p>
 				</div>
@@ -11997,7 +11946,7 @@ import { SITE_TITLE } from '../consts';
 				<div id="contributor-success-state" class="feedback-success-state" style="display: none;">
 					<div class="feedback-success-icon">✓</div>
 					<h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: #0f172a; font-weight: 700;">Submission Received!</h4>
-					<p style="margin: 0; font-size: 0.88rem; color: #64748b; line-height: 1.55;">
+					<p style="margin: 0;  color: #64748b; line-height: 1.55;">
 						Thank you for sharing your data and clinical insights. Denis will review your submission and reach out before listing your contribution in the directory.
 					</p>
 				</div>
