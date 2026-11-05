@@ -546,10 +546,18 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .chapter-opener-divider {
-		width: 0.75in !important;
-		height: 1.5px !important;
-		background: #000000 !important;
-		margin: 0.12in auto 0 !important;
+		width: 100px !important;
+		height: 2.5px !important;
+		background: linear-gradient(90deg, transparent, #a855f7, transparent) !important;
+		margin: 0.5rem auto 1rem !important;
+		border: none !important;
+	}
+	html body .book-viewport .part-page-divider {
+		width: 100px !important;
+		height: 2.5px !important;
+		background: linear-gradient(90deg, transparent, #a855f7, transparent) !important;
+		margin: 0.5rem auto 1rem !important;
+		border: none !important;
 	}
 
 
@@ -1000,6 +1008,16 @@ const KDP_BW_INTERIOR_CSS = `
 	.book-page-toc img,
 	.book-page-toc svg {
 		filter: grayscale(100%) contrast(1.06) !important;
+	}
+
+	
+	/* Keep gradient dividers elegant in B&W Interior */
+	.chapter-opener-divider,
+	.part-page-divider {
+		width: 100px !important;
+		height: 2px !important;
+		background: linear-gradient(90deg, transparent, #94a3b8 50%, transparent) !important;
+		margin: 0.5rem auto 1rem !important;
 	}
 
 	/* Ensure crisp black ink on white paper for KDP B&W */
