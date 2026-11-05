@@ -252,8 +252,10 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport #copyright-page p {
-		margin-bottom: 0.65rem !important;
+		margin-bottom: 0.4rem !important;
 		text-indent: 0 !important;
+		font-size: 0.65rem !important;
+		line-height: 1.42 !important;
 	}
 
 	html body .book-viewport #copyright-page {
@@ -262,36 +264,21 @@ export const KDP_7X10_BASE_CSS = `
 		justify-content: flex-end !important;
 		height: 10in !important;
 		box-sizing: border-box !important;
-	}
-
-	html body .book-viewport #title-page .interior-title-wrap {
-		min-height: 0 !important;
-		height: 100% !important;
-		max-height: 8.8in !important;
-		padding: 1.2rem 1rem !important;
-		gap: 1.5rem !important;
-		box-sizing: border-box !important;
-		justify-content: space-evenly !important;
-	}
-
-	html body .book-viewport #title-page .interior-title-emblem-block img {
-		max-height: 110px !important;
-		width: auto !important;
-	}
-
-	html body .book-viewport #copyright-page {
-		padding: 0.65in 0.65in 0.75in 0.7in !important;
+		padding: 0.65in 0.65in 0.65in 0.7in !important;
 	}
 	html body .book-viewport #copyright-page .page-body-content {
-		height: 100% !important;
-		max-height: 8.5in !important;
+		height: auto !important;
+		max-height: none !important;
+		display: block !important;
 		padding: 0 !important;
+		margin-top: auto !important;
 	}
 	html body .book-viewport #copyright-page .copyright-page-wrap {
 		padding: 0 !important;
-		justify-content: space-between !important;
-		font-size: 0.78rem !important;
-		line-height: 1.55 !important;
+		margin: 0 !important;
+		display: block !important;
+		font-size: 0.65rem !important;
+		line-height: 1.42 !important;
 	}
 	html body .book-viewport #copyright-page .copyright-title-block {
 		margin-bottom: 1rem !important;
