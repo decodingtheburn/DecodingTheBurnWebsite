@@ -1674,14 +1674,16 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.toc-centered-container .toc-part-header {
-				font-size: 0.96rem;
-				letter-spacing: 0.04em;
-				color: #7c3aed;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				margin-bottom: 0.85rem;
-				padding-bottom: 0.4rem;
+				font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+				font-size: 1.15rem !important;
+				font-weight: 900 !important;
+				letter-spacing: 0.05em !important;
+				text-transform: uppercase !important;
+				color: #581c87 !important;
+				border-bottom: 2px solid #7c3aed !important;
+				margin-top: 0.65rem !important;
+				margin-bottom: 0.75rem !important;
+				padding-bottom: 0.45rem !important;
 			}
 
 			.toc-centered-container .toc-item {
@@ -1694,28 +1696,29 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.toc-group {
-				margin-bottom: 0.5rem;
+				margin-bottom: 0.95rem;
 			}
 
 			.toc-part-header {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.8rem;
-				font-weight: 800;
-				text-transform: uppercase;
-				letter-spacing: 0.08em;
-				color: #7c3aed;
-				margin-bottom: 0.35rem;
-				border-bottom: 1.5px solid #e2e8f0;
-				padding-bottom: 0.25rem;
+				font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+				font-size: 1.15rem !important; /* Standout prominent size */
+				font-weight: 900 !important;
+				text-transform: uppercase !important;
+				letter-spacing: 0.05em !important;
+				color: #581c87 !important; /* Dark purple matching PDF */
+				margin-top: 0.65rem !important;
+				margin-bottom: 0.75rem !important;
+				padding-bottom: 0.45rem !important;
+				border-bottom: 2px solid #7c3aed !important;
 			}
 
 			.toc-part-purpose {
 				font-family: 'Lora', Georgia, serif;
-				font-size: 0.86rem;
+				font-size: 0.78rem;
 				font-style: italic;
-				line-height: 1.5;
+				line-height: 1.35;
 				color: #475569;
-				margin: 0 0 0.65rem;
+				margin: 0 0 0.45rem;
 				text-wrap: pretty;
 			}
 
@@ -1723,9 +1726,10 @@ import { SITE_TITLE } from '../consts';
 				display: flex;
 				justify-content: space-between;
 				align-items: baseline;
-				padding: 0.22rem 0;
-				font-family: 'Lora', serif;
-				font-size: 0.88rem;
+				padding: 0.22rem 0 0.1rem;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 0.95rem;
+				line-height: 1.32;
 			}
 
 			.toc-link {
@@ -1735,7 +1739,7 @@ import { SITE_TITLE } from '../consts';
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				max-width: 250px;
+				max-width: 520px;
 			}
 
 			.toc-link:hover {
@@ -1745,8 +1749,9 @@ import { SITE_TITLE } from '../consts';
 			.toc-dots {
 				flex-grow: 1;
 				border-bottom: 1px dotted #cbd5e1;
-				margin: 0 0.4rem;
+				margin: 0 0.35rem;
 				height: 1px;
+				min-width: 12px;
 			}
 
 			.toc-num {
@@ -3530,36 +3535,41 @@ import { SITE_TITLE } from '../consts';
 				opacity: 0.85;
 			}
 			.toc-ch-prefix {
-				font-family: 'Plus Jakarta Sans', sans-serif !important;
-				font-size: 0.94rem !important;
+				font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+				font-size: 0.95rem !important;
 				font-weight: 800 !important;
-				color: #0f172a !important; /* prominent black */
+				color: #0f172a !important; /* solid black */
 				letter-spacing: -0.01em;
 			}
 			.toc-ch-title {
-				font-family: 'Montserrat', sans-serif !important;
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
 				font-size: 0.92rem !important;
 				font-weight: 700 !important;
-				color: #e11d48 !important; /* brand pink / rose */
+				color: #581c87 !important; /* Elegant dark purple matching PDF */
 			}
-						.toc-sub-link {
+			.toc-sub-link {
+				display: flex !important;
+				justify-content: space-between !important;
+				align-items: baseline !important;
+				width: 100% !important;
 				text-decoration: none !important;
 				color: inherit !important;
-				display: block !important;
 				cursor: pointer;
 				transition: color 0.15s ease;
 			}
-			.toc-sub-link:hover .toc-sub-term {
+			.toc-sub-link:hover .toc-sub-title {
 				color: #7c3aed !important;
 			}
-.toc-subsections-clean {
+			.toc-subsections-clean {
 				list-style: none !important;
 				padding: 0 !important;
-				margin: 0.10rem 0 0.40rem 1.35rem !important;
+				margin-top: 0.2rem !important;
+				margin-bottom: 0.35rem !important;
+				margin-left: 0.85rem !important;
 				border: none !important;
 				border-left: none !important;
 			}
-.toc-sub-row {
+			.toc-sub-row {
 				display: block !important;
 				margin-bottom: 0.04rem !important;
 				font-size: 0.72rem !important;
@@ -3569,61 +3579,37 @@ import { SITE_TITLE } from '../consts';
 				font-style: normal !important;
 				color: #0f172a !important;
 			}
-			.toc-ch-title {
+			.toc-sub-title {
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
-				font-size: 0.88rem !important;
-				font-weight: 700 !important;
-				color: #3b0764 !important; /* Dark purple, whole line in color */
-			}
-			.toc-dots {
-				flex-grow: 1 !important;
-				border-bottom: 1px dotted #c4b5fd !important; /* Soft purple dots */
-				margin: 0 0.4rem !important;
-				height: 1px !important;
-			}
-			.toc-num {
-				font-family: 'Plus Jakarta Sans', sans-serif !important;
-				font-size: 0.94rem !important; /* 1.2x bigger */
-				font-weight: 700 !important;
-				color: #3b0764 !important; /* Dark purple */
-			}
-			.toc-subsections-clean {
-				list-style: none !important;
-				padding: 0 !important;
-				margin: 0.45rem 0 0.75rem 1.5rem !important; /* Added padding on top of first sub-section */
-				border: none !important;
-				border-left: none !important;
-			}
-			.toc-sub-row {
-				display: block !important;
-				margin-bottom: 0.22rem !important;
-				font-size: 0.88rem !important; /* 1.2x bigger */
-				line-height: 1.45 !important;
+				font-size: 0.74rem !important;
+				font-weight: 500 !important;
 				white-space: normal !important;
+				color: #0f172a !important;
+			}
+			.toc-sub-link .toc-dots {
+				display: block !important;
+				flex-grow: 1 !important;
+				border-bottom: 1px dotted #cbd5e1 !important;
+				margin: 0 0.35rem !important;
+				height: 1px !important;
+				min-width: 12px !important;
+			}
+			.toc-sub-num {
 				font-family: 'Plus Jakarta Sans', sans-serif !important;
-				font-style: normal !important;
+				font-size: 0.72rem !important;
+				font-weight: 700 !important;
+				white-space: nowrap !important;
 				color: #0f172a !important;
 			}
 			.toc-sub-bullet {
 				display: none !important;
+				width: 0 !important;
 			}
-			.toc-sub-term {
-				font-family: 'Plus Jakarta Sans', sans-serif !important;
-				font-size: 0.76rem !important; /* 1.3x bigger */
-				font-weight: 700 !important;
-				color: #0f172a !important; /* Solid black */
-				font-style: normal !important;
-				display: inline !important;
-				margin-right: 0.28rem !important;
-			}
-			.toc-sub-desc {
-				font-family: 'Plus Jakarta Sans', sans-serif !important;
-				font-size: 0.75rem !important; /* 1.3x bigger */
+			.toc-frontmatter-item .toc-ch-title,
+			.toc-frontmatter-item .toc-num,
+			.toc-frontmatter-item span {
 				font-weight: 400 !important;
-				color: #0f172a !important; /* Solid black */
-				font-style: normal !important;
-				display: inline !important;
-				white-space: normal !important;
+				color: #475569 !important;
 			}
 			@media (max-width: 640px) {
 				.toc-subsections-clean {
@@ -12615,7 +12601,7 @@ import { SITE_TITLE } from '../consts';
     let mainPageNum = 0;
     const pageMap = {};
     allBookPages.forEach((sec) => {
-      if (sec.id === 'part-1-page' || sec.id === 'page-1') inMain = true;
+      if (sec.id === 'page-1-intro-1' || sec.id === 'page-1') inMain = true;
       if (!inMain) return;
       mainPageNum++;
       const numStr = String(mainPageNum);
