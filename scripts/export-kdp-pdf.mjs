@@ -1612,6 +1612,39 @@ export async function paginateOverflowingBookPages(page) {
 				}
 			}
 
+// Special case: If the overflowing element at splitIdx is a .quiz-book-card with multiple inner child blocks,
+			// split its child blocks across continuation pages so it never exceeds MAX_BODY_BOTTOM_PX.
+			if (splitIdx >= 0 && children[splitIdx].classList.contains('quiz-book-card')) {
+				const cardEl = children[splitIdx];
+				const innerChildren = Array.from(cardEl.children);
+				if (innerChildren.length > 2) {
+					const fittingInner = [];
+					const overflowInner = [];
+					for (let iIdx = 0; iIdx < innerChildren.length; iIdx++) {
+						const elBottom = innerChildren[iIdx].getBoundingClientRect().bottom - pRect.top;
+						if (elBottom <= MAX_BODY_BOTTOM_PX) {
+							fittingInner.push(innerChildren[iIdx]);
+						} else {
+							overflowInner.push(innerChildren[iIdx]);
+						}
+					}
+
+					if (fittingInner.length > 0 && overflowInner.length > 0) {
+						const { newPage, newCC } = createContinuationPage(pageEl, 1);
+						const clonedCard = cardEl.cloneNode(false);
+						overflowInner.forEach((child) => clonedCard.appendChild(child));
+						newCC.appendChild(clonedCard);
+
+						for (let cIdx = splitIdx + 1; cIdx < children.length; cIdx++) {
+							newCC.appendChild(children[cIdx]);
+						}
+
+						allPages = Array.from(document.querySelectorAll('.book-viewport > .book-page'));
+						continue;
+					}
+				}
+			}
+
 			if (splitIdx <= 0) splitIdx = 1; // Ensure at least 1 element stays to guarantee progress
 
 			// Avoid leaving a stranded heading (H2, H3, H4) or part-title at the very bottom of the page
@@ -1787,7 +1820,7 @@ async function main() {
 		console.log('   -> Saved:', quizPdfPath);
 
 		// 4. Export Separate KDP Full-Wrap Cover Spread PDF (Back Cover + Spine + Front Cover)
-		console.log('4/4 Generating Separate Amazon KDP Full-Wrap Cover PDF (14.658" x 10.25")...');
+		console.log('4/4 Generating Separate Amazon KDP Full-Wrap Cover PDF (14.849" x 10.25")...');
 		await quizTag.evaluate((el) => el.remove());
 
 		await page.evaluate(() => {
@@ -1817,13 +1850,13 @@ async function main() {
 		await page.addStyleTag({
 			content: `
 				@page {
-					size: 14.658in 10.25in;
+					size: 14.849in 10.25in;
 					margin: 0 !important;
 				}
 				html, body {
 					margin: 0 !important;
 					padding: 0 !important;
-					width: 14.658in !important;
+					width: 14.849in !important;
 					height: 10.25in !important;
 					overflow: hidden !important;
 					background: #080310 !important;
@@ -1831,7 +1864,7 @@ async function main() {
 					print-color-adjust: exact !important;
 				}
 				.kdp-cover-spread {
-					width: 14.658in;
+					width: 14.849in;
 					height: 10.25in;
 					display: flex;
 					flex-direction: row;
@@ -1860,7 +1893,7 @@ async function main() {
 					padding: 0.65in 0.55in 0.65in 0.55in !important;
 				}
 				.kdp-spine-panel {
-					width: 0.408in;
+					width: 0.599in;
 					height: 10in;
 					background: #06020c;
 					border-left: 1px solid rgba(168, 85, 247, 0.3);
@@ -2138,7 +2171,7 @@ async function main() {
 		const kdpCoverPath = path.join(publicDir, 'decoding-the-burn-kdp-cover-7x10.pdf');
 		await page.pdf({
 			path: kdpCoverPath,
-			width: '14.658in',
+			width: '14.849in',
 			height: '10.25in',
 			printBackground: true,
 			margin: { top: '0in', right: '0in', bottom: '0in', left: '0in' },
