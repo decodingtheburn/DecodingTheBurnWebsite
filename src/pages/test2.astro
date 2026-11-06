@@ -10,17 +10,17 @@
 	<meta name="robots" content="noindex, nofollow" />
 	<title>Typography Comparison Lab - Decoding The Burn</title>
 
-	<!-- Google Fonts for all requested pairings -->
+	<!-- Google Fonts for all requested pairings including Inter, Public Sans, and Work Sans -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Fira+Sans:ital,wght@0,600;0,700;0,800;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@700;800;900&family=PT+Sans:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Fira+Sans:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@700;800;900&family=PT+Sans:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Public+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Work+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
 		rel="stylesheet"
 	/>
 
 	<style>
 		:root {
-			--bg-app: #0f0a1c;
+			--bg-app: #0a0614;
 			--bg-card: #ffffff;
 			--accent-purple: #7c3aed;
 			--accent-dark-purple: #581c87;
@@ -34,15 +34,15 @@
 
 		body {
 			margin: 0;
-			padding: 2rem 1rem 5rem;
+			padding: 2.5rem 1.25rem 5rem;
 			background-color: var(--bg-app);
 			color: #f8fafc;
-			font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+			font-family: 'Inter', system-ui, -apple-system, sans-serif;
 			-webkit-font-smoothing: antialiased;
 		}
 
 		.lab-container {
-			max-width: 1400px;
+			max-width: 1460px;
 			margin: 0 auto;
 		}
 
@@ -52,59 +52,111 @@
 		}
 
 		.lab-header h1 {
-			font-size: 2.4rem;
+			font-size: 2.5rem;
 			font-weight: 800;
 			color: #ffffff;
-			margin: 0 0 0.5rem;
-			letter-spacing: -0.02em;
+			margin: 0 0 0.6rem;
+			letter-spacing: -0.025em;
 		}
 
 		.lab-header p {
 			color: #c4b5fd;
-			font-size: 1.1rem;
-			max-width: 800px;
+			font-size: 1.05rem;
+			max-width: 860px;
 			margin: 0 auto;
-			line-height: 1.5;
+			line-height: 1.55;
 		}
 
 		.tag-noindex {
 			display: inline-block;
 			background: rgba(239, 68, 68, 0.2);
-			color: #f87171;
+			color: #fca5a5;
 			border: 1px solid rgba(239, 68, 68, 0.4);
-			padding: 0.25rem 0.75rem;
+			padding: 0.25rem 0.85rem;
 			border-radius: 9999px;
 			font-size: 0.75rem;
 			font-weight: 700;
 			letter-spacing: 0.05em;
 			text-transform: uppercase;
-			margin-bottom: 1rem;
+			margin-bottom: 1.2rem;
+		}
+
+		/* Sticky Live Filter Bar */
+		.toolbar {
+			background: rgba(18, 12, 34, 0.85);
+			backdrop-filter: blur(12px);
+			border: 1px solid rgba(168, 85, 247, 0.25);
+			border-radius: 14px;
+			padding: 1.15rem 1.5rem;
+			margin-bottom: 2.25rem;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			gap: 0.85rem;
+			position: sticky;
+			top: 1rem;
+			z-index: 50;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+		}
+
+		.toolbar-title {
+			font-weight: 700;
+			color: #ffffff;
+			font-size: 0.92rem;
+			letter-spacing: 0.02em;
+		}
+
+		.toolbar-buttons {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.45rem;
+		}
+
+		.btn-filter {
+			background: rgba(255, 255, 255, 0.08);
+			color: #e2e8f0;
+			border: 1px solid rgba(255, 255, 255, 0.15);
+			padding: 0.45rem 0.85rem;
+			border-radius: 7px;
+			font-size: 0.82rem;
+			cursor: pointer;
+			font-weight: 600;
+			transition: all 0.2s ease;
+		}
+
+		.btn-filter:hover,
+		.btn-filter.active {
+			background: var(--accent-purple);
+			color: #ffffff;
+			border-color: #a855f7;
+			box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
 		}
 
 		/* Grid for comparisons */
 		.comparisons-grid {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-			gap: 2rem;
-			margin-top: 2rem;
+			grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+			gap: 2.25rem;
 		}
 
 		.variant-card {
 			background: var(--bg-card);
 			color: #0f172a;
-			border-radius: 12px;
-			padding: 2.25rem 2rem;
-			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+			border-radius: 14px;
+			padding: 2.25rem 2.15rem;
+			box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 			position: relative;
 			display: flex;
 			flex-direction: column;
+			border: 1px solid rgba(255, 255, 255, 0.1);
 		}
 
 		.variant-badge-bar {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1.35rem;
 			padding-bottom: 0.85rem;
 			border-bottom: 2px solid var(--border-subtle);
 		}
@@ -141,7 +193,7 @@
 			color: #94a3b8;
 			text-transform: uppercase;
 			padding-bottom: 0.65rem;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1.35rem;
 			border-bottom: 1px solid #e2e8f0;
 			display: flex;
 			justify-content: space-between;
@@ -149,19 +201,21 @@
 
 		.sample-book-sheet h3 {
 			margin-top: 0;
-			margin-bottom: 1.25rem;
+			margin-bottom: 1.15rem;
 			color: var(--accent-dark-purple);
-			letter-spacing: -0.01em;
+			letter-spacing: -0.015em;
 			line-height: 1.25;
-			/* Gradient underline like the user screenshot */
 			border-bottom: 1.5px solid transparent;
 			border-image: linear-gradient(90deg, #a855f7 0%, #c084fc 35%, transparent 75%) 1;
 			padding-bottom: 0.4rem;
+			text-align: left;
 		}
 
+		/* Strict: Natural left-aligned text, NOT fully justified */
 		.sample-book-sheet p {
-			margin: 0 0 1.15rem 0;
-			text-align: justify;
+			margin: 0 0 1.05rem 0;
+			text-align: left;
+			text-wrap: pretty;
 		}
 
 		.sample-book-sheet p:last-child {
@@ -177,16 +231,62 @@
 			font-style: italic;
 		}
 
+		/* Dedicated Chemistry & Physics Formula Displays */
+		.formula-box {
+			background: #f8fafc;
+			border-left: 3px solid #7c3aed;
+			padding: 0.75rem 1rem;
+			margin: 1.15rem 0;
+			border-radius: 0 8px 8px 0;
+			font-size: 0.88em;
+			line-height: 1.45;
+			color: #1e1b4b;
+		}
+
+		.formula-label {
+			display: block;
+			font-size: 0.72rem;
+			text-transform: uppercase;
+			font-weight: 700;
+			letter-spacing: 0.05em;
+			color: #6b21a8;
+			margin-bottom: 0.35rem;
+		}
+
+		.formula-math {
+			font-family: inherit;
+			font-weight: 600;
+			color: #0f172a;
+			display: block;
+			font-feature-settings: 'tnum' on, 'lnum' on;
+		}
+
+		.sci-tag {
+			display: inline-block;
+			background: #f1f5f9;
+			border: 1px solid #cbd5e1;
+			padding: 0.05rem 0.3rem;
+			border-radius: 4px;
+			font-size: 0.88em;
+			font-weight: 600;
+			color: #334155;
+			white-space: nowrap;
+		}
+
+		.chem-val {
+			white-space: nowrap;
+			font-feature-settings: 'tnum' on;
+		}
+
 		.font-notes {
-			margin-top: 1.75rem;
-			padding-top: 1.25rem;
+			margin-top: 1.6rem;
+			padding: 0.95rem 1.15rem;
 			border-top: 1px solid #f1f5f9;
-			font-size: 0.85rem;
+			font-size: 0.82rem;
 			line-height: 1.5;
 			color: #475569;
 			background: #faf5ff;
 			border-radius: 8px;
-			padding: 1rem 1.25rem;
 		}
 
 		.font-notes strong {
@@ -194,32 +294,14 @@
 		}
 
 		/* ==============================================================
-		   VARIANT 0: CURRENT BASELINE (Montserrat H3 + Plus Jakarta Sans Body)
-		   ============================================================== */
-		.var-current h3 {
-			font-family: 'Montserrat', sans-serif;
-			font-size: 1.25rem;
-			font-weight: 800;
-		}
-		.var-current p {
-			font-family: 'Plus Jakarta Sans', sans-serif;
-			font-size: 10.5pt;
-			line-height: 15.5pt;
-			color: #0f172a;
-		}
-
-		/* ==============================================================
-		   VARIANT 1: THE MODERN TECHNICAL / MEDICAL PAIRING (Top Recommendation)
-		   Title/H3: Archivo (Bold / SemiBold)
-		   Body: Source Sans 3 (Regular, 10.5pt on 15pt leading)
+		   1. COMBINATION 1: ARCHIVO (Bold) + SOURCE SANS 3 (Top Pick)
 		   ============================================================== */
 		.var-1 h3 {
 			font-family: 'Archivo', sans-serif;
-			font-size: 1.28rem;
+			font-size: 1.32rem;
 			font-weight: 700;
-			letter-spacing: -0.015em;
 		}
-		.var-1 p {
+		.var-1 p, .var-1 .formula-box {
 			font-family: 'Source Sans 3', sans-serif;
 			font-size: 10.5pt;
 			line-height: 15pt;
@@ -227,34 +309,14 @@
 		}
 
 		/* ==============================================================
-		   VARIANT 1B: ARCHIVO (Extra Bold) + SOURCE SANS 3
-		   Same pairing with punchier H3 weight for strong chapter emphasis
-		   ============================================================== */
-		.var-1b h3 {
-			font-family: 'Archivo', sans-serif;
-			font-size: 1.25rem;
-			font-weight: 800;
-			letter-spacing: -0.01em;
-		}
-		.var-1b p {
-			font-family: 'Source Sans 3', sans-serif;
-			font-size: 10.5pt;
-			line-height: 15pt;
-			color: #1e293b;
-		}
-
-		/* ==============================================================
-		   VARIANT 2: THE EUROPEAN CLINICAL MONOGRAPH (Warm & Humanist)
-		   Title/H3: Fira Sans (Bold)
-		   Body: PT Sans (Regular)
+		   2. COMBINATION 2: FIRA SANS (Bold) + PT SANS
 		   ============================================================== */
 		.var-2 h3 {
 			font-family: 'Fira Sans', sans-serif;
-			font-size: 1.26rem;
+			font-size: 1.28rem;
 			font-weight: 700;
-			letter-spacing: -0.01em;
 		}
-		.var-2 p {
+		.var-2 p, .var-2 .formula-box {
 			font-family: 'PT Sans', sans-serif;
 			font-size: 10.5pt;
 			line-height: 15pt;
@@ -262,85 +324,104 @@
 		}
 
 		/* ==============================================================
-		   VARIANT 3A: THE AUTHORITATIVE CLEAN SERIF (Literata)
-		   Title/H3: Source Sans 3 (Bold / Black)
-		   Body: Literata (Regular, 10pt on 14.5pt leading)
+		   3. COMBINATION 3A: SOURCE SANS 3 (Bold) + LITERATA
 		   ============================================================== */
 		.var-3a h3 {
 			font-family: 'Source Sans 3', sans-serif;
 			font-size: 1.3rem;
 			font-weight: 800;
-			letter-spacing: -0.01em;
 		}
-		.var-3a p {
+		.var-3a p, .var-3a .formula-box {
 			font-family: 'Literata', Georgia, serif;
 			font-size: 10pt;
-			line-height: 14.5pt;
+			line-height: 14.8pt;
 			color: #1e293b;
 		}
 
 		/* ==============================================================
-		   VARIANT 3B: THE AUTHORITATIVE CLEAN SERIF (Merriweather)
-		   Title/H3: Source Sans 3 (Bold / Black)
-		   Body: Merriweather (Regular, 10pt on 15pt leading)
+		   4. COMBINATION 4: INTER (Precision Clinical Metric Standard)
+		   Title/H3: Inter (Bold 700)
+		   Body: Inter (Regular 10.25pt / 15pt)
 		   ============================================================== */
-		.var-3b h3 {
-			font-family: 'Source Sans 3', sans-serif;
-			font-size: 1.3rem;
-			font-weight: 800;
-			letter-spacing: -0.01em;
+		.var-inter h3 {
+			font-family: 'Inter', sans-serif;
+			font-size: 1.28rem;
+			font-weight: 700;
+			letter-spacing: -0.02em;
 		}
-		.var-3b p {
-			font-family: 'Merriweather', Georgia, serif;
-			font-size: 9.75pt;
-			line-height: 15.5pt;
+		.var-inter p, .var-inter .formula-box {
+			font-family: 'Inter', sans-serif;
+			font-size: 10.25pt;
+			line-height: 15pt;
+			color: #1e293b;
+			font-feature-settings: 'cv05' on, 'cv08' on, 'tnum' on; /* disambiguated 1, stable numerals */
+		}
+
+		/* ==============================================================
+		   5. COMBINATION 5: PUBLIC SANS (Clean U.S. Federal Web Standard)
+		   Title/H3: Public Sans (Bold 800)
+		   Body: Public Sans (Regular 10.25pt / 15pt)
+		   ============================================================== */
+		.var-public h3 {
+			font-family: 'Public Sans', sans-serif;
+			font-size: 1.28rem;
+			font-weight: 800;
+			letter-spacing: -0.015em;
+		}
+		.var-public p, .var-public .formula-box {
+			font-family: 'Public Sans', sans-serif;
+			font-size: 10.25pt;
+			line-height: 15pt;
 			color: #1e293b;
 		}
 
-		/* Live Toggle Bar */
-		.toolbar {
-			background: rgba(255, 255, 255, 0.08);
-			backdrop-filter: blur(8px);
-			border: 1px solid rgba(255, 255, 255, 0.12);
-			border-radius: 12px;
-			padding: 1rem 1.5rem;
-			margin-bottom: 2rem;
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: space-between;
-			gap: 1rem;
-		}
-
-		.toolbar-title {
+		/* ==============================================================
+		   6. COMBINATION 6: WORK SANS (Architectural & Crisp Early Sans)
+		   Title/H3: Work Sans (Bold 700)
+		   Body: Work Sans (Regular 10.25pt / 15pt)
+		   ============================================================== */
+		.var-worksans h3 {
+			font-family: 'Work Sans', sans-serif;
+			font-size: 1.3rem;
 			font-weight: 700;
-			color: #ffffff;
-			font-size: 0.95rem;
+			letter-spacing: -0.02em;
+		}
+		.var-worksans p, .var-worksans .formula-box {
+			font-family: 'Work Sans', sans-serif;
+			font-size: 10.25pt;
+			line-height: 15pt;
+			color: #1e293b;
 		}
 
-		.toolbar-buttons {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.5rem;
+		/* ==============================================================
+		   7. HYBRID: WORK SANS (Title) + SOURCE SANS 3 (Body)
+		   ============================================================== */
+		.var-work-source h3 {
+			font-family: 'Work Sans', sans-serif;
+			font-size: 1.3rem;
+			font-weight: 700;
+			letter-spacing: -0.02em;
+		}
+		.var-work-source p, .var-work-source .formula-box {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 10.5pt;
+			line-height: 15pt;
+			color: #1e293b;
 		}
 
-		.btn-filter {
-			background: rgba(255, 255, 255, 0.1);
-			color: #e2e8f0;
-			border: 1px solid rgba(255, 255, 255, 0.2);
-			padding: 0.4rem 0.85rem;
-			border-radius: 6px;
-			font-size: 0.85rem;
-			cursor: pointer;
-			font-weight: 600;
-			transition: all 0.2s ease;
+		/* ==============================================================
+		   8. CURRENT BOOK BASELINE (Montserrat H3 + Plus Jakarta Sans)
+		   ============================================================== */
+		.var-current h3 {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 1.25rem;
+			font-weight: 800;
 		}
-
-		.btn-filter:hover,
-		.btn-filter.active {
-			background: var(--accent-purple);
-			color: #ffffff;
-			border-color: var(--accent-purple);
+		.var-current p, .var-current .formula-box {
+			font-family: 'Plus Jakarta Sans', sans-serif;
+			font-size: 10.5pt;
+			line-height: 15.5pt;
+			color: #0f172a;
 		}
 	</style>
 </head>
@@ -350,91 +431,332 @@
 			<span class="tag-noindex">Hidden Test Lab &bull; Noindex</span>
 			<h1>Book Typography Pairing Laboratory (/test2)</h1>
 			<p>
-				Direct side-by-side comparison of the exact section from your screenshot (Chapter 10: <em>The 2024 Cryo-EM Proof</em>) rendered across all three recommended font pairings with technical numerals, chemical subscripts, and clinical terminology.
+				Direct side-by-side comparison of Chapter 10 with natural left-aligned body text (no forced justification) containing complex organic molecules, biophysical electrophysiology, chemical subscripts, and mathematical physics formulas.
 			</p>
 		</header>
 
 		<!-- Interactive Filter Toolbar -->
 		<div class="toolbar">
-			<span class="toolbar-title">Filter Combinations:</span>
+			<span class="toolbar-title">Filter Candidates:</span>
 			<div class="toolbar-buttons">
-				<button type="button" class="btn-filter active" onclick="showAll()">Show All (Side-by-Side)</button>
-				<button type="button" class="btn-filter" onclick="filterCard('card-var-1')">Combo 1: Archivo + Source Sans 3</button>
-				<button type="button" class="btn-filter" onclick="filterCard('card-var-2')">Combo 2: Fira Sans + PT Sans</button>
-				<button type="button" class="btn-filter" onclick="filterCard('card-var-3a')">Combo 3A: Source Sans 3 + Literata</button>
-				<button type="button" class="btn-filter" onclick="filterCard('card-var-3b')">Combo 3B: Source Sans 3 + Merriweather</button>
-				<button type="button" class="btn-filter" onclick="filterCard('card-var-current')">Current Baseline (Montserrat)</button>
+				<button type="button" class="btn-filter active" onclick="showAll()">Show All (8 Variations)</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-1')">1. Archivo + Source Sans 3</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-inter')">2. Inter (Full Suite)</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-public')">3. Public Sans</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-worksans')">4. Work Sans</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-work-source')">5. Work Sans + Source Sans 3</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-2')">6. Fira Sans + PT Sans</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-3a')">7. Source Sans 3 + Literata</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-current')">8. Current Baseline (Montserrat)</button>
 			</div>
 		</div>
 
 		<div class="comparisons-grid">
 
-			<!-- COMBINATION 1: THE MODERN TECHNICAL / MEDICAL PAIRING (TOP RECOMMENDATION) -->
+			<!-- 1. COMBINATION 1: ARCHIVO + SOURCE SANS 3 -->
 			<div class="variant-card var-1" id="card-var-1">
 				<div class="variant-badge-bar">
-					<span class="variant-pill highlight">Combination 1 (Top Pick)</span>
-					<span class="spec-pills">Archivo (Bold) &bull; Source Sans 3 (10.5pt / 15pt)</span>
+					<span class="variant-pill highlight">Top Pick: Technical Precision</span>
+					<span class="spec-pills">Archivo (Bold 700) &bull; Source Sans 3 (10.5pt)</span>
 				</div>
 
 				<div class="sample-book-sheet">
 					<div class="book-running-head">
-						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
+						<span>Part III &bull; Chapter 10: Biophysical Pain Mechanisms</span>
 						<span>Page 68</span>
 					</div>
 
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
-					<p>
-						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
-					</p>
+					<!-- Physics & Chemistry Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Biophysical Electrophysiology: Nernst &amp; Goldman Reversal Potential</span>
+						<span class="formula-math">
+							E<sub>rev</sub> = &minus;61.5 mV &bull; log<sub>10</sub> &times; [ (P<sub>Na</sub>[Na<sup>+</sup>]<sub>i</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>i</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>o</sub>) &divide; (P<sub>Na</sub>[Na<sup>+</sup>]<sub>o</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>o</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>i</sub>) ]
+						</span>
+						<span style="font-size: 0.82em; color: #64748b; margin-top: 0.3rem; display: block;">
+							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
+						</span>
+					</div>
 
 					<p>
-						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
+					<!-- Fluid Dynamics Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Hydrodynamic Fluid Shear Stress in Dentinal Microtubules</span>
+						<span class="formula-math">
+							Q = ( &pi; &bull; &Delta;P &bull; r<sup>4</sup> ) &divide; ( 8 &bull; &eta; &bull; L ) &nbsp;=&nbsp; 4.62 &times; 10<sup>&minus;9</sup> cm<sup>3</sup>/sec &bull; Pa
+						</span>
+					</div>
+
 					<p>
-						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
+						Unlike transient channels that inactivate within 100 to 300 ms, sensory nerves express <strong>ASIC3</strong> at 5&times; to 10&times; higher concentrations. Between pH 6.2 and 6.7, ASIC3 locks into an unbroken, non-inactivating window current, generating non-stop 10/10 neuropathic burning.
 					</p>
 				</div>
 
 				<div class="font-notes">
-					<strong>Why it works:</strong> Archivo eliminates the wide geometric "signage" feel of Montserrat while keeping technical authority. Notice how numerals like <strong>1</strong>, <strong>2024</strong>, <strong>10/10</strong>, and <strong>ASIC1a</strong> sit stably without oversized geometric loops.
+					<strong>Why it works:</strong> Archivo gives titles industrial, nineteenth-century American grotesque stability without Montserrat's wide circular loops. Source Sans 3 renders numerals <strong>1</strong>, <strong>2024</strong>, <strong>10/10</strong>, subscripts, and superscripts with pristine Adobe clarity.
 				</div>
 			</div>
 
-			<!-- COMBINATION 2: THE EUROPEAN CLINICAL MONOGRAPH (WARM & HUMANIST) -->
-			<div class="variant-card var-2" id="card-var-2">
+			<!-- 2. COMBINATION 4: INTER (MODERN PRECISION CLINICAL METRIC STANDARD) -->
+			<div class="variant-card var-inter" id="card-var-inter">
 				<div class="variant-badge-bar">
-					<span class="variant-pill">Combination 2</span>
-					<span class="spec-pills">Fira Sans (Bold) &bull; PT Sans (Regular 10.5pt)</span>
+					<span class="variant-pill highlight">Inter (Digital &amp; Print Precision)</span>
+					<span class="spec-pills">Inter (Bold 700) &bull; Inter (10.25pt / 15pt)</span>
 				</div>
 
 				<div class="sample-book-sheet">
 					<div class="book-running-head">
-						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
+						<span>Part III &bull; Chapter 10: Biophysical Pain Mechanisms</span>
 						<span>Page 68</span>
 					</div>
 
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
-					<p>
-						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
-					</p>
+					<!-- Physics & Chemistry Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Biophysical Electrophysiology: Nernst &amp; Goldman Reversal Potential</span>
+						<span class="formula-math">
+							E<sub>rev</sub> = &minus;61.5 mV &bull; log<sub>10</sub> &times; [ (P<sub>Na</sub>[Na<sup>+</sup>]<sub>i</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>i</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>o</sub>) &divide; (P<sub>Na</sub>[Na<sup>+</sup>]<sub>o</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>o</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>i</sub>) ]
+						</span>
+						<span style="font-size: 0.82em; color: #64748b; margin-top: 0.3rem; display: block;">
+							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
+						</span>
+					</div>
 
 					<p>
-						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
+					<!-- Fluid Dynamics Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Hydrodynamic Fluid Shear Stress in Dentinal Microtubules</span>
+						<span class="formula-math">
+							Q = ( &pi; &bull; &Delta;P &bull; r<sup>4</sup> ) &divide; ( 8 &bull; &eta; &bull; L ) &nbsp;=&nbsp; 4.62 &times; 10<sup>&minus;9</sup> cm<sup>3</sup>/sec &bull; Pa
+						</span>
+					</div>
+
 					<p>
-						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
+						Unlike transient channels that inactivate within 100 to 300 ms, sensory nerves express <strong>ASIC3</strong> at 5&times; to 10&times; higher concentrations. Between pH 6.2 and 6.7, ASIC3 locks into an unbroken, non-inactivating window current, generating non-stop 10/10 neuropathic burning.
+					</p>
+				</div>
+
+				<div class="font-notes">
+					<strong>Why it works:</strong> Inter is the world gold-standard for technical interfaces and research papers. Tall x-height, neutral geometric discipline, and features explicit tabular numerals (numeral <strong>1</strong> has a crisp, sharp top spur that never collides with adjacent capital letters).
+				</div>
+			</div>
+
+			<!-- 3. COMBINATION 5: PUBLIC SANS -->
+			<div class="variant-card var-public" id="card-var-public">
+				<div class="variant-badge-bar">
+					<span class="variant-pill">Public Sans (U.S. Web Design Standard)</span>
+					<span class="spec-pills">Public Sans (Bold 800) &bull; Public Sans (10.25pt)</span>
+				</div>
+
+				<div class="sample-book-sheet">
+					<div class="book-running-head">
+						<span>Part III &bull; Chapter 10: Biophysical Pain Mechanisms</span>
+						<span>Page 68</span>
+					</div>
+
+					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
+
+					<p>
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+					</p>
+
+					<!-- Physics & Chemistry Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Biophysical Electrophysiology: Nernst &amp; Goldman Reversal Potential</span>
+						<span class="formula-math">
+							E<sub>rev</sub> = &minus;61.5 mV &bull; log<sub>10</sub> &times; [ (P<sub>Na</sub>[Na<sup>+</sup>]<sub>i</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>i</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>o</sub>) &divide; (P<sub>Na</sub>[Na<sup>+</sup>]<sub>o</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>o</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>i</sub>) ]
+						</span>
+						<span style="font-size: 0.82em; color: #64748b; margin-top: 0.3rem; display: block;">
+							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
+						</span>
+					</div>
+
+					<p>
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+					</p>
+
+					<!-- Fluid Dynamics Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Hydrodynamic Fluid Shear Stress in Dentinal Microtubules</span>
+						<span class="formula-math">
+							Q = ( &pi; &bull; &Delta;P &bull; r<sup>4</sup> ) &divide; ( 8 &bull; &eta; &bull; L ) &nbsp;=&nbsp; 4.62 &times; 10<sup>&minus;9</sup> cm<sup>3</sup>/sec &bull; Pa
+						</span>
+					</div>
+
+					<p>
+						Unlike transient channels that inactivate within 100 to 300 ms, sensory nerves express <strong>ASIC3</strong> at 5&times; to 10&times; higher concentrations. Between pH 6.2 and 6.7, ASIC3 locks into an unbroken, non-inactivating window current, generating non-stop 10/10 neuropathic burning.
+					</p>
+				</div>
+
+				<div class="font-notes">
+					<strong>Why it works:</strong> Developed by the United States Digital Service based on Libre Franklin. Crisp, square proportions with slightly sturdier letter strokes than Helvetica or Inter. Extremely legible across both print pages and small tables.
+				</div>
+			</div>
+
+			<!-- 4. COMBINATION 6: WORK SANS (FULL SUITE) -->
+			<div class="variant-card var-worksans" id="card-var-worksans">
+				<div class="variant-badge-bar">
+					<span class="variant-pill">Work Sans (Early Grotesque)</span>
+					<span class="spec-pills">Work Sans (Bold 700) &bull; Work Sans (10.25pt)</span>
+				</div>
+
+				<div class="sample-book-sheet">
+					<div class="book-running-head">
+						<span>Part III &bull; Chapter 10: Biophysical Pain Mechanisms</span>
+						<span>Page 68</span>
+					</div>
+
+					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
+
+					<p>
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+					</p>
+
+					<!-- Physics & Chemistry Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Biophysical Electrophysiology: Nernst &amp; Goldman Reversal Potential</span>
+						<span class="formula-math">
+							E<sub>rev</sub> = &minus;61.5 mV &bull; log<sub>10</sub> &times; [ (P<sub>Na</sub>[Na<sup>+</sup>]<sub>i</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>i</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>o</sub>) &divide; (P<sub>Na</sub>[Na<sup>+</sup>]<sub>o</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>o</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>i</sub>) ]
+						</span>
+						<span style="font-size: 0.82em; color: #64748b; margin-top: 0.3rem; display: block;">
+							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
+						</span>
+					</div>
+
+					<p>
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+					</p>
+
+					<!-- Fluid Dynamics Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Hydrodynamic Fluid Shear Stress in Dentinal Microtubules</span>
+						<span class="formula-math">
+							Q = ( &pi; &bull; &Delta;P &bull; r<sup>4</sup> ) &divide; ( 8 &bull; &eta; &bull; L ) &nbsp;=&nbsp; 4.62 &times; 10<sup>&minus;9</sup> cm<sup>3</sup>/sec &bull; Pa
+						</span>
+					</div>
+
+					<p>
+						Unlike transient channels that inactivate within 100 to 300 ms, sensory nerves express <strong>ASIC3</strong> at 5&times; to 10&times; higher concentrations. Between pH 6.2 and 6.7, ASIC3 locks into an unbroken, non-inactivating window current, generating non-stop 10/10 neuropathic burning.
+					</p>
+				</div>
+
+				<div class="font-notes">
+					<strong>Why it works:</strong> Based on early twentieth-century architectural and editorial grotesque types. It has natural, friendly curves with a distinct intellectual presence. The numerals have character and rhythm without feeling clinical.
+				</div>
+			</div>
+
+			<!-- 5. COMBINATION 7: WORK SANS (TITLE) + SOURCE SANS 3 (BODY) -->
+			<div class="variant-card var-work-source" id="card-var-work-source">
+				<div class="variant-badge-bar">
+					<span class="variant-pill highlight">Hybrid Architectural</span>
+					<span class="spec-pills">Work Sans (Bold 700) &bull; Source Sans 3 (10.5pt)</span>
+				</div>
+
+				<div class="sample-book-sheet">
+					<div class="book-running-head">
+						<span>Part III &bull; Chapter 10: Biophysical Pain Mechanisms</span>
+						<span>Page 68</span>
+					</div>
+
+					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
+
+					<p>
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+					</p>
+
+					<!-- Physics & Chemistry Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Biophysical Electrophysiology: Nernst &amp; Goldman Reversal Potential</span>
+						<span class="formula-math">
+							E<sub>rev</sub> = &minus;61.5 mV &bull; log<sub>10</sub> &times; [ (P<sub>Na</sub>[Na<sup>+</sup>]<sub>i</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>i</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>o</sub>) &divide; (P<sub>Na</sub>[Na<sup>+</sup>]<sub>o</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>o</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>i</sub>) ]
+						</span>
+						<span style="font-size: 0.82em; color: #64748b; margin-top: 0.3rem; display: block;">
+							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
+						</span>
+					</div>
+
+					<p>
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+					</p>
+
+					<!-- Fluid Dynamics Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Hydrodynamic Fluid Shear Stress in Dentinal Microtubules</span>
+						<span class="formula-math">
+							Q = ( &pi; &bull; &Delta;P &bull; r<sup>4</sup> ) &divide; ( 8 &bull; &eta; &bull; L ) &nbsp;=&nbsp; 4.62 &times; 10<sup>&minus;9</sup> cm<sup>3</sup>/sec &bull; Pa
+						</span>
+					</div>
+
+					<p>
+						Unlike transient channels that inactivate within 100 to 300 ms, sensory nerves express <strong>ASIC3</strong> at 5&times; to 10&times; higher concentrations. Between pH 6.2 and 6.7, ASIC3 locks into an unbroken, non-inactivating window current, generating non-stop 10/10 neuropathic burning.
+					</p>
+				</div>
+
+				<div class="font-notes">
+					<strong>Why it works:</strong> Combines the warm, distinctive architectural personality of Work Sans in the titles with the unmatched technical numeral and subscript rendering of Adobe's Source Sans 3 in the body copy.
+				</div>
+			</div>
+
+			<!-- 6. COMBINATION 2: FIRA SANS + PT SANS -->
+			<div class="variant-card var-2" id="card-var-2">
+				<div class="variant-badge-bar">
+					<span class="variant-pill">European Humanist Monograph</span>
+					<span class="spec-pills">Fira Sans (Bold 700) &bull; PT Sans (Regular 10.5pt)</span>
+				</div>
+
+				<div class="sample-book-sheet">
+					<div class="book-running-head">
+						<span>Part III &bull; Chapter 10: Biophysical Pain Mechanisms</span>
+						<span>Page 68</span>
+					</div>
+
+					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
+
+					<p>
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+					</p>
+
+					<!-- Physics & Chemistry Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Biophysical Electrophysiology: Nernst &amp; Goldman Reversal Potential</span>
+						<span class="formula-math">
+							E<sub>rev</sub> = &minus;61.5 mV &bull; log<sub>10</sub> &times; [ (P<sub>Na</sub>[Na<sup>+</sup>]<sub>i</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>i</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>o</sub>) &divide; (P<sub>Na</sub>[Na<sup>+</sup>]<sub>o</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>o</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>i</sub>) ]
+						</span>
+						<span style="font-size: 0.82em; color: #64748b; margin-top: 0.3rem; display: block;">
+							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
+						</span>
+					</div>
+
+					<p>
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+					</p>
+
+					<!-- Fluid Dynamics Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Hydrodynamic Fluid Shear Stress in Dentinal Microtubules</span>
+						<span class="formula-math">
+							Q = ( &pi; &bull; &Delta;P &bull; r<sup>4</sup> ) &divide; ( 8 &bull; &eta; &bull; L ) &nbsp;=&nbsp; 4.62 &times; 10<sup>&minus;9</sup> cm<sup>3</sup>/sec &bull; Pa
+						</span>
+					</div>
+
+					<p>
+						Unlike transient channels that inactivate within 100 to 300 ms, sensory nerves express <strong>ASIC3</strong> at 5&times; to 10&times; higher concentrations. Between pH 6.2 and 6.7, ASIC3 locks into an unbroken, non-inactivating window current, generating non-stop 10/10 neuropathic burning.
 					</p>
 				</div>
 
@@ -443,81 +765,59 @@
 				</div>
 			</div>
 
-			<!-- COMBINATION 3A: THE AUTHORITATIVE CLEAN SERIF (LITERATA) -->
+			<!-- 7. COMBINATION 3A: SOURCE SANS 3 + LITERATA -->
 			<div class="variant-card var-3a" id="card-var-3a">
 				<div class="variant-badge-bar">
-					<span class="variant-pill">Combination 3A (Clean Serif)</span>
-					<span class="spec-pills">Source Sans 3 (Bold) &bull; Literata (Regular 10pt / 14.5pt)</span>
+					<span class="variant-pill">Clean Academic Serif</span>
+					<span class="spec-pills">Source Sans 3 (Bold 800) &bull; Literata (Regular 10pt)</span>
 				</div>
 
 				<div class="sample-book-sheet">
 					<div class="book-running-head">
-						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
+						<span>Part III &bull; Chapter 10: Biophysical Pain Mechanisms</span>
 						<span>Page 68</span>
 					</div>
 
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
-					<p>
-						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
-					</p>
-
-					<p>
-						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
-					</p>
-
-					<p>
-						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
-					</p>
-				</div>
-
-				<div class="font-notes">
-					<strong>Why it works:</strong> Literata was engineered specifically for long-form book reading. It prevents eye fatigue across 200+ pages and renders numerals and scientific subscripts with traditional editorial dignity.
-				</div>
-			</div>
-
-			<!-- COMBINATION 3B: THE AUTHORITATIVE CLEAN SERIF (MERRIWEATHER) -->
-			<div class="variant-card var-3b" id="card-var-3b">
-				<div class="variant-badge-bar">
-					<span class="variant-pill">Combination 3B (Warm Editorial Serif)</span>
-					<span class="spec-pills">Source Sans 3 (Bold) &bull; Merriweather (9.75pt / 15.5pt)</span>
-				</div>
-
-				<div class="sample-book-sheet">
-					<div class="book-running-head">
-						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
-						<span>Page 68</span>
+					<!-- Physics & Chemistry Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Biophysical Electrophysiology: Nernst &amp; Goldman Reversal Potential</span>
+						<span class="formula-math">
+							E<sub>rev</sub> = &minus;61.5 mV &bull; log<sub>10</sub> &times; [ (P<sub>Na</sub>[Na<sup>+</sup>]<sub>i</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>i</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>o</sub>) &divide; (P<sub>Na</sub>[Na<sup>+</sup>]<sub>o</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>o</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>i</sub>) ]
+						</span>
+						<span style="font-size: 0.82em; color: #64748b; margin-top: 0.3rem; display: block;">
+							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
+						</span>
 					</div>
 
-					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
-
 					<p>
-						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
-					<p>
-						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
-					</p>
+					<!-- Fluid Dynamics Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Hydrodynamic Fluid Shear Stress in Dentinal Microtubules</span>
+						<span class="formula-math">
+							Q = ( &pi; &bull; &Delta;P &bull; r<sup>4</sup> ) &divide; ( 8 &bull; &eta; &bull; L ) &nbsp;=&nbsp; 4.62 &times; 10<sup>&minus;9</sup> cm<sup>3</sup>/sec &bull; Pa
+						</span>
+					</div>
 
 					<p>
-						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
-					</p>
-
-					<p>
-						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
+						Unlike transient channels that inactivate within 100 to 300 ms, sensory nerves express <strong>ASIC3</strong> at 5&times; to 10&times; higher concentrations. Between pH 6.2 and 6.7, ASIC3 locks into an unbroken, non-inactivating window current, generating non-stop 10/10 neuropathic burning.
 					</p>
 				</div>
 
 				<div class="font-notes">
-					<strong>Why it works:</strong> Merriweather has high x-height and sturdy serifs that hold up well at small print sizes and on digital screens alike.
+					<strong>Why it works:</strong> Literata was engineered specifically for long-form reading across 200+ pages. Notice how the serifs cradle complex Greek variables (&Delta;, &pi;, &eta;) and subscripts without mathematical clutter.
 				</div>
 			</div>
 
-			<!-- CURRENT BASELINE (FOR COMPARISON) -->
+			<!-- 8. CURRENT BOOK BASELINE -->
 			<div class="variant-card var-current" id="card-var-current">
 				<div class="variant-badge-bar">
 					<span class="variant-pill">Current Book Baseline</span>
@@ -526,31 +826,46 @@
 
 				<div class="sample-book-sheet">
 					<div class="book-running-head">
-						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
+						<span>Part III &bull; Chapter 10: Biophysical Pain Mechanisms</span>
 						<span>Page 68</span>
 					</div>
 
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
-					<p>
-						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
-					</p>
+					<!-- Physics & Chemistry Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Biophysical Electrophysiology: Nernst &amp; Goldman Reversal Potential</span>
+						<span class="formula-math">
+							E<sub>rev</sub> = &minus;61.5 mV &bull; log<sub>10</sub> &times; [ (P<sub>Na</sub>[Na<sup>+</sup>]<sub>i</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>i</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>o</sub>) &divide; (P<sub>Na</sub>[Na<sup>+</sup>]<sub>o</sub> + P<sub>K</sub>[K<sup>+</sup>]<sub>o</sub> + P<sub>Cl</sub>[Cl<sup>&minus;</sup>]<sub>i</sub>) ]
+						</span>
+						<span style="font-size: 0.82em; color: #64748b; margin-top: 0.3rem; display: block;">
+							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
+						</span>
+					</div>
 
 					<p>
-						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
+					<!-- Fluid Dynamics Equation Block -->
+					<div class="formula-box">
+						<span class="formula-label">Hydrodynamic Fluid Shear Stress in Dentinal Microtubules</span>
+						<span class="formula-math">
+							Q = ( &pi; &bull; &Delta;P &bull; r<sup>4</sup> ) &divide; ( 8 &bull; &eta; &bull; L ) &nbsp;=&nbsp; 4.62 &times; 10<sup>&minus;9</sup> cm<sup>3</sup>/sec &bull; Pa
+						</span>
+					</div>
+
 					<p>
-						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
+						Unlike transient channels that inactivate within 100 to 300 ms, sensory nerves express <strong>ASIC3</strong> at 5&times; to 10&times; higher concentrations. Between pH 6.2 and 6.7, ASIC3 locks into an unbroken, non-inactivating window current, generating non-stop 10/10 neuropathic burning.
 					</p>
 				</div>
 
 				<div class="font-notes">
-					<strong>Baseline Notes:</strong> Notice how Montserrat's geometric character shapes and numerals compare against the more restrained, technical proportions of Archivo, Fira, and Source Sans 3.
+					<strong>Baseline Notes:</strong> Notice how Montserrat's round circular characters and wide numerals compare against Inter, Archivo, Public Sans, and Work Sans.
 				</div>
 			</div>
 
@@ -574,7 +889,9 @@
 			});
 			const btns = document.querySelectorAll('.btn-filter');
 			btns.forEach(b => b.classList.remove('active'));
-			event.target.classList.add('active');
+			if (window.event && window.event.target) {
+				window.event.target.classList.add('active');
+			}
 		}
 
 		function setActiveBtn(idx) {
