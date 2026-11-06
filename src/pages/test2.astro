@@ -250,43 +250,14 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 			font-style: italic;
 		}
 
-		/* Dedicated Publication-Grade Math Formula Block (KaTeX Typesetting) */
+		/* Clean Publication Math Formula Display (Zero Boxes / No Badges) */
 		.katex-formula-block {
-			background: #faf8ff;
-			border: 1px solid #e9d5ff;
-			border-left: 4px solid #7c3aed;
-			padding: 1.1rem 1.25rem 0.95rem;
-			margin: 1.35rem 0;
-			border-radius: 0 10px 10px 0;
-			box-shadow: 0 4px 12px rgba(124, 58, 237, 0.05);
+			background: transparent;
+			border: none;
+			padding: 1rem 0;
+			margin: 1.25rem 0;
 			overflow-x: auto;
-		}
-
-		.katex-formula-header {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 0.65rem;
-			border-bottom: 1px dashed #e9d5ff;
-			padding-bottom: 0.35rem;
-		}
-
-		.katex-formula-label {
-			font-size: 0.72rem;
-			text-transform: uppercase;
-			font-weight: 800;
-			letter-spacing: 0.06em;
-			color: #6b21a8;
-		}
-
-		.katex-formula-badge {
-			font-size: 0.68rem;
-			background: #f3e8ff;
-			color: #581c87;
-			padding: 0.15rem 0.45rem;
-			border-radius: 4px;
-			font-weight: 700;
-			letter-spacing: 0.03em;
+			text-align: center;
 		}
 
 		/* KaTeX Display Math Styling */
@@ -296,23 +267,40 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 		}
 
 		.katex-formula-subtext {
-			font-size: 0.8rem;
+			font-size: 0.82rem;
 			color: #64748b;
-			margin-top: 0.5rem;
+			margin-top: 0.65rem;
 			display: block;
 			line-height: 1.45;
+			text-align: center;
 		}
 
+		/* Clean Inline Chemical Formulas (No Badges, No Borders, No Background Bubbles) */
 		.sci-tag {
-			display: inline-block;
-			background: #f1f5f9;
-			border: 1px solid #cbd5e1;
-			padding: 0.05rem 0.35rem;
-			border-radius: 4px;
-			font-size: 0.88em;
+			display: inline;
+			background: transparent;
+			border: none;
+			padding: 0;
+			font-size: inherit;
 			font-weight: 600;
-			color: #334155;
+			color: inherit;
 			white-space: nowrap;
+		}
+
+		/* Math Font Mode Toggle */
+		body.math-sans .katex {
+			font-family: inherit !important;
+		}
+		body.math-sans .katex .mathnormal,
+		body.math-sans .katex .mathrm,
+		body.math-sans .katex .mathbf,
+		body.math-sans .katex .text {
+			font-family: inherit !important;
+			font-style: normal !important;
+		}
+		body.math-sans .katex .mathit {
+			font-family: inherit !important;
+			font-style: italic !important;
 		}
 
 		.chem-val {
@@ -474,6 +462,11 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 		<!-- Interactive Filter Toolbar -->
 		<div class="toolbar">
 			<span class="toolbar-title">Filter Candidates:</span>
+			<div style="display: flex; gap: 0.4rem; align-items: center; margin-right: 0.5rem;">
+				<span style="font-size: 0.78rem; color: #a78bfa; font-weight: 600;">Math Style:</span>
+				<button type="button" class="btn-filter" id="btn-math-serif" onclick="setMathStyle('serif')">Classic Serif Math</button>
+				<button type="button" class="btn-filter active" id="btn-math-sans" onclick="setMathStyle('sans')">Modern Sans-Serif Math</button>
+			</div>
 			<div class="toolbar-buttons">
 				<button type="button" class="btn-filter active" onclick="showAll()">Show All (8 Variations)</button>
 				<button type="button" class="btn-filter" onclick="filterCard('card-var-1')">1. Archivo + Source Sans 3</button>
@@ -510,10 +503,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Goldman Equation (Exact match to user screenshot) -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Biophysical Electrophysiology: Reversal Potential</span>
-							<span class="katex-formula-badge">Goldman-Hodgkin-Katz</span>
-						</div>
 						<div set:html={goldmanHtml} />
 						<span class="katex-formula-subtext">
 							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
@@ -526,10 +515,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Microtubule Fluid Shear Stress</span>
-							<span class="katex-formula-badge">Hagen-Poiseuille</span>
-						</div>
 						<div set:html={poiseuilleHtml} />
 					</div>
 
@@ -564,10 +549,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Goldman Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Biophysical Electrophysiology: Reversal Potential</span>
-							<span class="katex-formula-badge">Goldman-Hodgkin-Katz</span>
-						</div>
 						<div set:html={goldmanHtml} />
 						<span class="katex-formula-subtext">
 							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
@@ -580,10 +561,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Microtubule Fluid Shear Stress</span>
-							<span class="katex-formula-badge">Hagen-Poiseuille</span>
-						</div>
 						<div set:html={poiseuilleHtml} />
 					</div>
 
@@ -618,10 +595,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Goldman Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Biophysical Electrophysiology: Reversal Potential</span>
-							<span class="katex-formula-badge">Goldman-Hodgkin-Katz</span>
-						</div>
 						<div set:html={goldmanHtml} />
 						<span class="katex-formula-subtext">
 							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
@@ -634,10 +607,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Microtubule Fluid Shear Stress</span>
-							<span class="katex-formula-badge">Hagen-Poiseuille</span>
-						</div>
 						<div set:html={poiseuilleHtml} />
 					</div>
 
@@ -672,10 +641,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Goldman Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Biophysical Electrophysiology: Reversal Potential</span>
-							<span class="katex-formula-badge">Goldman-Hodgkin-Katz</span>
-						</div>
 						<div set:html={goldmanHtml} />
 						<span class="katex-formula-subtext">
 							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
@@ -688,10 +653,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Microtubule Fluid Shear Stress</span>
-							<span class="katex-formula-badge">Hagen-Poiseuille</span>
-						</div>
 						<div set:html={poiseuilleHtml} />
 					</div>
 
@@ -726,10 +687,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Goldman Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Biophysical Electrophysiology: Reversal Potential</span>
-							<span class="katex-formula-badge">Goldman-Hodgkin-Katz</span>
-						</div>
 						<div set:html={goldmanHtml} />
 						<span class="katex-formula-subtext">
 							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
@@ -742,10 +699,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Microtubule Fluid Shear Stress</span>
-							<span class="katex-formula-badge">Hagen-Poiseuille</span>
-						</div>
 						<div set:html={poiseuilleHtml} />
 					</div>
 
@@ -780,10 +733,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Goldman Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Biophysical Electrophysiology: Reversal Potential</span>
-							<span class="katex-formula-badge">Goldman-Hodgkin-Katz</span>
-						</div>
 						<div set:html={goldmanHtml} />
 						<span class="katex-formula-subtext">
 							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
@@ -796,10 +745,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Microtubule Fluid Shear Stress</span>
-							<span class="katex-formula-badge">Hagen-Poiseuille</span>
-						</div>
 						<div set:html={poiseuilleHtml} />
 					</div>
 
@@ -834,10 +779,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Goldman Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Biophysical Electrophysiology: Reversal Potential</span>
-							<span class="katex-formula-badge">Goldman-Hodgkin-Katz</span>
-						</div>
 						<div set:html={goldmanHtml} />
 						<span class="katex-formula-subtext">
 							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
@@ -850,10 +791,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Microtubule Fluid Shear Stress</span>
-							<span class="katex-formula-badge">Hagen-Poiseuille</span>
-						</div>
 						<div set:html={poiseuilleHtml} />
 					</div>
 
@@ -888,10 +825,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Goldman Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Biophysical Electrophysiology: Reversal Potential</span>
-							<span class="katex-formula-badge">Goldman-Hodgkin-Katz</span>
-						</div>
 						<div set:html={goldmanHtml} />
 						<span class="katex-formula-subtext">
 							Depolarization shift: &Delta;V<sub>m</sub> = &minus;70 mV &rarr; &minus;45 mV at inward current density J<sub>Na</sub> = 14.8 &plusmn; 1.2 pA/pF.
@@ -904,10 +837,6 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
 					<div class="katex-formula-block">
-						<div class="katex-formula-header">
-							<span class="katex-formula-label">Microtubule Fluid Shear Stress</span>
-							<span class="katex-formula-badge">Hagen-Poiseuille</span>
-						</div>
 						<div set:html={poiseuilleHtml} />
 					</div>
 
@@ -925,6 +854,23 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 	</div>
 
 	<script is:inline>
+		function setMathStyle(style) {
+			if (style === 'sans') {
+				document.body.classList.add('math-sans');
+				document.getElementById('btn-math-sans').classList.add('active');
+				document.getElementById('btn-math-serif').classList.remove('active');
+			} else {
+				document.body.classList.remove('math-sans');
+				document.getElementById('btn-math-serif').classList.add('active');
+				document.getElementById('btn-math-sans').classList.remove('active');
+			}
+		}
+
+		// Default to modern sans-serif math
+		document.addEventListener('DOMContentLoaded', () => {
+			document.body.classList.add('math-sans');
+		});
+
 		function showAll() {
 			document.querySelectorAll('.variant-card').forEach(c => c.style.display = 'flex');
 			setActiveBtn(0);
