@@ -1,0 +1,589 @@
+---
+// src/pages/test2.astro - Typography Comparison Lab for Book Titles & Body Font Pairings
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noindex, nofollow" />
+	<title>Typography Comparison Lab - Decoding The Burn</title>
+
+	<!-- Google Fonts for all requested pairings -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Fira+Sans:ital,wght@0,600;0,700;0,800;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@700;800;900&family=PT+Sans:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&display=swap"
+		rel="stylesheet"
+	/>
+
+	<style>
+		:root {
+			--bg-app: #0f0a1c;
+			--bg-card: #ffffff;
+			--accent-purple: #7c3aed;
+			--accent-dark-purple: #581c87;
+			--text-subtle: #64748b;
+			--border-subtle: #e2e8f0;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			padding: 2rem 1rem 5rem;
+			background-color: var(--bg-app);
+			color: #f8fafc;
+			font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+			-webkit-font-smoothing: antialiased;
+		}
+
+		.lab-container {
+			max-width: 1400px;
+			margin: 0 auto;
+		}
+
+		.lab-header {
+			text-align: center;
+			margin-bottom: 2.5rem;
+		}
+
+		.lab-header h1 {
+			font-size: 2.4rem;
+			font-weight: 800;
+			color: #ffffff;
+			margin: 0 0 0.5rem;
+			letter-spacing: -0.02em;
+		}
+
+		.lab-header p {
+			color: #c4b5fd;
+			font-size: 1.1rem;
+			max-width: 800px;
+			margin: 0 auto;
+			line-height: 1.5;
+		}
+
+		.tag-noindex {
+			display: inline-block;
+			background: rgba(239, 68, 68, 0.2);
+			color: #f87171;
+			border: 1px solid rgba(239, 68, 68, 0.4);
+			padding: 0.25rem 0.75rem;
+			border-radius: 9999px;
+			font-size: 0.75rem;
+			font-weight: 700;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+			margin-bottom: 1rem;
+		}
+
+		/* Grid for comparisons */
+		.comparisons-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		.variant-card {
+			background: var(--bg-card);
+			color: #0f172a;
+			border-radius: 12px;
+			padding: 2.25rem 2rem;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+			position: relative;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.variant-badge-bar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 1.5rem;
+			padding-bottom: 0.85rem;
+			border-bottom: 2px solid var(--border-subtle);
+		}
+
+		.variant-pill {
+			background: #f1f5f9;
+			color: #334155;
+			padding: 0.35rem 0.85rem;
+			border-radius: 6px;
+			font-size: 0.8rem;
+			font-weight: 700;
+		}
+
+		.variant-pill.highlight {
+			background: #f3e8ff;
+			color: #6b21a8;
+			border: 1px solid #d8b4fe;
+		}
+
+		.spec-pills {
+			font-size: 0.82rem;
+			color: #64748b;
+			font-weight: 600;
+		}
+
+		.sample-book-sheet {
+			flex-grow: 1;
+		}
+
+		.book-running-head {
+			font-size: 0.72rem;
+			font-weight: 700;
+			letter-spacing: 0.06em;
+			color: #94a3b8;
+			text-transform: uppercase;
+			padding-bottom: 0.65rem;
+			margin-bottom: 1.5rem;
+			border-bottom: 1px solid #e2e8f0;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.sample-book-sheet h3 {
+			margin-top: 0;
+			margin-bottom: 1.25rem;
+			color: var(--accent-dark-purple);
+			letter-spacing: -0.01em;
+			line-height: 1.25;
+			/* Gradient underline like the user screenshot */
+			border-bottom: 1.5px solid transparent;
+			border-image: linear-gradient(90deg, #a855f7 0%, #c084fc 35%, transparent 75%) 1;
+			padding-bottom: 0.4rem;
+		}
+
+		.sample-book-sheet p {
+			margin: 0 0 1.15rem 0;
+			text-align: justify;
+		}
+
+		.sample-book-sheet p:last-child {
+			margin-bottom: 0;
+		}
+
+		.sample-book-sheet strong {
+			font-weight: 700;
+			color: #0f172a;
+		}
+
+		.sample-book-sheet em {
+			font-style: italic;
+		}
+
+		.font-notes {
+			margin-top: 1.75rem;
+			padding-top: 1.25rem;
+			border-top: 1px solid #f1f5f9;
+			font-size: 0.85rem;
+			line-height: 1.5;
+			color: #475569;
+			background: #faf5ff;
+			border-radius: 8px;
+			padding: 1rem 1.25rem;
+		}
+
+		.font-notes strong {
+			color: #581c87;
+		}
+
+		/* ==============================================================
+		   VARIANT 0: CURRENT BASELINE (Montserrat H3 + Plus Jakarta Sans Body)
+		   ============================================================== */
+		.var-current h3 {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 1.25rem;
+			font-weight: 800;
+		}
+		.var-current p {
+			font-family: 'Plus Jakarta Sans', sans-serif;
+			font-size: 10.5pt;
+			line-height: 15.5pt;
+			color: #0f172a;
+		}
+
+		/* ==============================================================
+		   VARIANT 1: THE MODERN TECHNICAL / MEDICAL PAIRING (Top Recommendation)
+		   Title/H3: Archivo (Bold / SemiBold)
+		   Body: Source Sans 3 (Regular, 10.5pt on 15pt leading)
+		   ============================================================== */
+		.var-1 h3 {
+			font-family: 'Archivo', sans-serif;
+			font-size: 1.28rem;
+			font-weight: 700;
+			letter-spacing: -0.015em;
+		}
+		.var-1 p {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 10.5pt;
+			line-height: 15pt;
+			color: #1e293b;
+		}
+
+		/* ==============================================================
+		   VARIANT 1B: ARCHIVO (Extra Bold) + SOURCE SANS 3
+		   Same pairing with punchier H3 weight for strong chapter emphasis
+		   ============================================================== */
+		.var-1b h3 {
+			font-family: 'Archivo', sans-serif;
+			font-size: 1.25rem;
+			font-weight: 800;
+			letter-spacing: -0.01em;
+		}
+		.var-1b p {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 10.5pt;
+			line-height: 15pt;
+			color: #1e293b;
+		}
+
+		/* ==============================================================
+		   VARIANT 2: THE EUROPEAN CLINICAL MONOGRAPH (Warm & Humanist)
+		   Title/H3: Fira Sans (Bold)
+		   Body: PT Sans (Regular)
+		   ============================================================== */
+		.var-2 h3 {
+			font-family: 'Fira Sans', sans-serif;
+			font-size: 1.26rem;
+			font-weight: 700;
+			letter-spacing: -0.01em;
+		}
+		.var-2 p {
+			font-family: 'PT Sans', sans-serif;
+			font-size: 10.5pt;
+			line-height: 15pt;
+			color: #1e293b;
+		}
+
+		/* ==============================================================
+		   VARIANT 3A: THE AUTHORITATIVE CLEAN SERIF (Literata)
+		   Title/H3: Source Sans 3 (Bold / Black)
+		   Body: Literata (Regular, 10pt on 14.5pt leading)
+		   ============================================================== */
+		.var-3a h3 {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 1.3rem;
+			font-weight: 800;
+			letter-spacing: -0.01em;
+		}
+		.var-3a p {
+			font-family: 'Literata', Georgia, serif;
+			font-size: 10pt;
+			line-height: 14.5pt;
+			color: #1e293b;
+		}
+
+		/* ==============================================================
+		   VARIANT 3B: THE AUTHORITATIVE CLEAN SERIF (Merriweather)
+		   Title/H3: Source Sans 3 (Bold / Black)
+		   Body: Merriweather (Regular, 10pt on 15pt leading)
+		   ============================================================== */
+		.var-3b h3 {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 1.3rem;
+			font-weight: 800;
+			letter-spacing: -0.01em;
+		}
+		.var-3b p {
+			font-family: 'Merriweather', Georgia, serif;
+			font-size: 9.75pt;
+			line-height: 15.5pt;
+			color: #1e293b;
+		}
+
+		/* Live Toggle Bar */
+		.toolbar {
+			background: rgba(255, 255, 255, 0.08);
+			backdrop-filter: blur(8px);
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			border-radius: 12px;
+			padding: 1rem 1.5rem;
+			margin-bottom: 2rem;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+
+		.toolbar-title {
+			font-weight: 700;
+			color: #ffffff;
+			font-size: 0.95rem;
+		}
+
+		.toolbar-buttons {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
+		.btn-filter {
+			background: rgba(255, 255, 255, 0.1);
+			color: #e2e8f0;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			padding: 0.4rem 0.85rem;
+			border-radius: 6px;
+			font-size: 0.85rem;
+			cursor: pointer;
+			font-weight: 600;
+			transition: all 0.2s ease;
+		}
+
+		.btn-filter:hover,
+		.btn-filter.active {
+			background: var(--accent-purple);
+			color: #ffffff;
+			border-color: var(--accent-purple);
+		}
+	</style>
+</head>
+<body>
+	<div class="lab-container">
+		<header class="lab-header">
+			<span class="tag-noindex">Hidden Test Lab &bull; Noindex</span>
+			<h1>Book Typography Pairing Laboratory (/test2)</h1>
+			<p>
+				Direct side-by-side comparison of the exact section from your screenshot (Chapter 10: <em>The 2024 Cryo-EM Proof</em>) rendered across all three recommended font pairings with technical numerals, chemical subscripts, and clinical terminology.
+			</p>
+		</header>
+
+		<!-- Interactive Filter Toolbar -->
+		<div class="toolbar">
+			<span class="toolbar-title">Filter Combinations:</span>
+			<div class="toolbar-buttons">
+				<button type="button" class="btn-filter active" onclick="showAll()">Show All (Side-by-Side)</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-1')">Combo 1: Archivo + Source Sans 3</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-2')">Combo 2: Fira Sans + PT Sans</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-3a')">Combo 3A: Source Sans 3 + Literata</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-3b')">Combo 3B: Source Sans 3 + Merriweather</button>
+				<button type="button" class="btn-filter" onclick="filterCard('card-var-current')">Current Baseline (Montserrat)</button>
+			</div>
+		</div>
+
+		<div class="comparisons-grid">
+
+			<!-- COMBINATION 1: THE MODERN TECHNICAL / MEDICAL PAIRING (TOP RECOMMENDATION) -->
+			<div class="variant-card var-1" id="card-var-1">
+				<div class="variant-badge-bar">
+					<span class="variant-pill highlight">Combination 1 (Top Pick)</span>
+					<span class="spec-pills">Archivo (Bold) &bull; Source Sans 3 (10.5pt / 15pt)</span>
+				</div>
+
+				<div class="sample-book-sheet">
+					<div class="book-running-head">
+						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
+						<span>Page 68</span>
+					</div>
+
+					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
+
+					<p>
+						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+					</p>
+
+					<p>
+						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
+					</p>
+
+					<p>
+						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
+					</p>
+
+					<p>
+						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
+					</p>
+				</div>
+
+				<div class="font-notes">
+					<strong>Why it works:</strong> Archivo eliminates the wide geometric "signage" feel of Montserrat while keeping technical authority. Notice how numerals like <strong>1</strong>, <strong>2024</strong>, <strong>10/10</strong>, and <strong>ASIC1a</strong> sit stably without oversized geometric loops.
+				</div>
+			</div>
+
+			<!-- COMBINATION 2: THE EUROPEAN CLINICAL MONOGRAPH (WARM & HUMANIST) -->
+			<div class="variant-card var-2" id="card-var-2">
+				<div class="variant-badge-bar">
+					<span class="variant-pill">Combination 2</span>
+					<span class="spec-pills">Fira Sans (Bold) &bull; PT Sans (Regular 10.5pt)</span>
+				</div>
+
+				<div class="sample-book-sheet">
+					<div class="book-running-head">
+						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
+						<span>Page 68</span>
+					</div>
+
+					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
+
+					<p>
+						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+					</p>
+
+					<p>
+						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
+					</p>
+
+					<p>
+						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
+					</p>
+
+					<p>
+						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
+					</p>
+				</div>
+
+				<div class="font-notes">
+					<strong>Why it works:</strong> Pen-stroke calligraphic rhythm rather than rigid circles. In PT Sans, numeral <strong>1</strong> has a natural, understated top spur and standard character width, blending smoothly into long body paragraphs.
+				</div>
+			</div>
+
+			<!-- COMBINATION 3A: THE AUTHORITATIVE CLEAN SERIF (LITERATA) -->
+			<div class="variant-card var-3a" id="card-var-3a">
+				<div class="variant-badge-bar">
+					<span class="variant-pill">Combination 3A (Clean Serif)</span>
+					<span class="spec-pills">Source Sans 3 (Bold) &bull; Literata (Regular 10pt / 14.5pt)</span>
+				</div>
+
+				<div class="sample-book-sheet">
+					<div class="book-running-head">
+						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
+						<span>Page 68</span>
+					</div>
+
+					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
+
+					<p>
+						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+					</p>
+
+					<p>
+						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
+					</p>
+
+					<p>
+						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
+					</p>
+
+					<p>
+						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
+					</p>
+				</div>
+
+				<div class="font-notes">
+					<strong>Why it works:</strong> Literata was engineered specifically for long-form book reading. It prevents eye fatigue across 200+ pages and renders numerals and scientific subscripts with traditional editorial dignity.
+				</div>
+			</div>
+
+			<!-- COMBINATION 3B: THE AUTHORITATIVE CLEAN SERIF (MERRIWEATHER) -->
+			<div class="variant-card var-3b" id="card-var-3b">
+				<div class="variant-badge-bar">
+					<span class="variant-pill">Combination 3B (Warm Editorial Serif)</span>
+					<span class="spec-pills">Source Sans 3 (Bold) &bull; Merriweather (9.75pt / 15.5pt)</span>
+				</div>
+
+				<div class="sample-book-sheet">
+					<div class="book-running-head">
+						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
+						<span>Page 68</span>
+					</div>
+
+					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
+
+					<p>
+						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+					</p>
+
+					<p>
+						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
+					</p>
+
+					<p>
+						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
+					</p>
+
+					<p>
+						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
+					</p>
+				</div>
+
+				<div class="font-notes">
+					<strong>Why it works:</strong> Merriweather has high x-height and sturdy serifs that hold up well at small print sizes and on digital screens alike.
+				</div>
+			</div>
+
+			<!-- CURRENT BASELINE (FOR COMPARISON) -->
+			<div class="variant-card var-current" id="card-var-current">
+				<div class="variant-badge-bar">
+					<span class="variant-pill">Current Book Baseline</span>
+					<span class="spec-pills">Montserrat (800) &bull; Plus Jakarta Sans (10.5pt)</span>
+				</div>
+
+				<div class="sample-book-sheet">
+					<div class="book-running-head">
+						<span>Part III &bull; Chapter 10: How Pain Is Created</span>
+						<span>Page 68</span>
+					</div>
+
+					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
+
+					<p>
+						For a decade following the 2014 breakthrough, skeptics argued that open-state crystal structures were laboratory artifacts forced open artificially by Texas coral snake toxin (MitTx). In the landmark 2024 Cahill study, researchers overcame this limitation by reconstituting purified, full-length <strong>human ASIC1a protein</strong> directly into synthetic lipid nanodiscs, mimicking the natural fatty bilayer of living human nerve membranes.
+					</p>
+
+					<p>
+						Using single-particle cryogenic electron microscopy (Cryo-EM) at near-atomic resolution (2.7 to 3.2 Ångströms), the team exposed native human channels directly to physiological acidic buffer solutions (stepping pH from neutral 7.4 down to acidic 6.5 and 5.5) with <strong>zero venom or chemical locks present</strong>. They paired structural imaging with patch-clamp electrophysiology on living human embryonic kidney (HEK293) and Xenopus oocyte cell membranes to measure the electrical currents in real time.
+					</p>
+
+					<p>
+						The structural telemetry revealed the exact mechanical sequence: free hydrogen protons (H<sup>+</sup>) entering the acidic pocket neutralize negative carboxylates (residues D238, E239, D350), snapping water bridges. This electrostatic collapse drives the thumb and finger domains inward, physically pulling the lower transmembrane gate (residues T449, S446, H28, and T26) open like a mechanical camera aperture. This proved conclusively that protons alone, without any external toxins, physically unlock human nerve channels.
+					</p>
+
+					<p>
+						Instead, as long as ambient fluid sits at a mild, everyday acidic pH between 6.2 and 6.7, ASIC3 remains wedged open in a continuous, non-inactivating <strong>"window current."</strong> Sodium ions continuously pour through the open pore minute after minute, hour after hour. This molecular discovery provides the definitive atomic proof for why your 10/10 burning was an unbroken, relentless fire rather than a brief sting.
+					</p>
+				</div>
+
+				<div class="font-notes">
+					<strong>Baseline Notes:</strong> Notice how Montserrat's geometric character shapes and numerals compare against the more restrained, technical proportions of Archivo, Fira, and Source Sans 3.
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script is:inline>
+		function showAll() {
+			document.querySelectorAll('.variant-card').forEach(c => c.style.display = 'flex');
+			setActiveBtn(0);
+		}
+
+		function filterCard(cardId) {
+			document.querySelectorAll('.variant-card').forEach(c => {
+				if (c.id === cardId) {
+					c.style.display = 'flex';
+					c.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+				} else {
+					c.style.display = 'none';
+				}
+			});
+			const btns = document.querySelectorAll('.btn-filter');
+			btns.forEach(b => b.classList.remove('active'));
+			event.target.classList.add('active');
+		}
+
+		function setActiveBtn(idx) {
+			const btns = document.querySelectorAll('.btn-filter');
+			btns.forEach((b, i) => {
+				if (i === idx) b.classList.add('active');
+				else b.classList.remove('active');
+			});
+		}
+	</script>
+</body>
+</html>
