@@ -18,7 +18,7 @@ import { SITE_TITLE } from '../consts';
 		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 		<style>
 			:root {
 				--book-bg: #ecefe6;
@@ -819,24 +819,27 @@ import { SITE_TITLE } from '../consts';
 				display: none !important;
 			}
 
-			/* Page Header & Running Head */
+			/* Page Header & Running Head (Centered, No ALL CAPS, Inter Font) */
 			.page-running-head {
 				display: flex;
-				justify-content: space-between;
+				justify-content: center !important;
 				align-items: center;
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.78rem;
-				font-weight: 700;
-				letter-spacing: 0.06em;
-				color: #475569;
-				text-transform: uppercase;
+				text-align: center !important;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+				font-size: 0.82rem;
+				font-weight: 500;
+				letter-spacing: 0.01em;
+				color: #64748b;
+				text-transform: none !important;
 				border-bottom: 1px solid #e2e8f0;
 				padding-bottom: 0.85rem;
 				margin-bottom: 40px;
 			}
 
 			.page-running-head .chapter-header-label {
-				color: #94a3b8;
+				color: #64748b !important;
+				text-transform: none !important;
+				text-align: center !important;
 			}
 
 			.page-running-head .page-count-label {
@@ -936,22 +939,29 @@ import { SITE_TITLE } from '../consts';
 				text-wrap: balance;
 			}
 
-			/* Book Chapter Titles & Headings (Enforce Headline Font: Montserrat) */
+			/* Book Chapter Titles & Headings (Inter 900 for Titles) */
 			.book-viewport h1,
 			.book-viewport h2,
 			.book-viewport h3,
 			.book-viewport h4,
 			.book-viewport .chapter-title,
-			.book-viewport .chapter-opener-title {
-				font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+			.book-viewport .chapter-opener-title,
+			.book-viewport .part-page-title,
+			.book-viewport .part-hero-title,
+			.book-viewport .interior-title-main,
+			.book-viewport .stat-page-number,
+			.book-viewport .stat-page-title,
+			.book-viewport .contributor-category-title {
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+				font-weight: 900 !important;
 			}
 
 			.chapter-title {
-				font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 				font-size: clamp(1.55rem, 2.8vw, 2.05rem);
-				font-weight: 800 !important;
+				font-weight: 900 !important;
 				line-height: 1.22;
-				letter-spacing: -0.015em;
+				letter-spacing: -0.02em;
 				color: #0f172a;
 				margin-top: 1.75rem;
 				margin-bottom: 2.25rem;
@@ -962,7 +972,7 @@ import { SITE_TITLE } from '../consts';
 				flex-grow: 1;
 			}
 
-			/* Uniform 18px (1.125rem) body typography across entire book */
+			/* Uniform 18px (1.125rem) body typography across entire book (Inter Regular) */
 			.chapter-content p,
 			.chapter-content li,
 			.chapter-lead-text,
@@ -972,8 +982,12 @@ import { SITE_TITLE } from '../consts';
 			.exec-lead-paragraph,
 			.overview-sentence,
 			.book-page p,
-			.book-page li {
-				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+			.book-page li,
+			.chapter-content ul,
+			.chapter-content ol,
+			.chapter-list {
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+				font-weight: 400 !important;
 				font-size: 1.125rem !important; /* Exactly 18px */
 				line-height: 1.78 !important;
 				color: #18181b !important;
@@ -1647,13 +1661,13 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.toc-main-title {
-				font-family: 'Montserrat', sans-serif !important;
-				font-size: 1.85rem;
-				font-weight: 800;
-				letter-spacing: 0.08em;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+				font-size: 2.1rem;
+				font-weight: 900 !important;
+				letter-spacing: -0.02em;
 				line-height: 1.15;
 				color: #0f172a;
-				text-transform: uppercase;
+				text-transform: none !important; /* First letter caps only */
 				padding: 0 0 1.25rem 0;
 				margin: 0 auto 1.5rem auto;
 				border-bottom: none !important;
@@ -1674,11 +1688,11 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.toc-centered-container .toc-part-header {
-				font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 				font-size: 1.15rem !important;
 				font-weight: 900 !important;
-				letter-spacing: 0.05em !important;
-				text-transform: uppercase !important;
+				letter-spacing: -0.01em !important;
+				text-transform: none !important; /* First letter caps only */
 				color: #581c87 !important;
 				border-bottom: 2px solid #7c3aed !important;
 				margin-top: 0.65rem !important;
@@ -1700,11 +1714,11 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.toc-part-header {
-				font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 				font-size: 1.15rem !important; /* Standout prominent size */
 				font-weight: 900 !important;
-				text-transform: uppercase !important;
-				letter-spacing: 0.05em !important;
+				text-transform: none !important; /* First letter caps only */
+				letter-spacing: -0.01em !important;
 				color: #581c87 !important; /* Dark purple matching PDF */
 				margin-top: 0.65rem !important;
 				margin-bottom: 0.75rem !important;
@@ -3461,17 +3475,17 @@ import { SITE_TITLE } from '../consts';
 				opacity: 0.85;
 			}
 			.toc-ch-prefix {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 0.94rem;
-				font-weight: 800;
-				color: #0f172a; /* bold black */
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+				font-size: 0.94rem !important;
+				font-weight: 800 !important;
+				color: #0f172a !important; /* bold black */
 				letter-spacing: -0.01em;
 			}
 			.toc-ch-title {
-				font-family: 'Lora', Georgia, serif;
-				font-size: 0.92rem;
-				font-weight: 700;
-				color: #e11d48; /* brand pink / rose */
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+				font-size: 0.92rem !important;
+				font-weight: 700 !important;
+				color: #581c87 !important;
 			}
 			.toc-subsections-list {
 				list-style: none;
@@ -3535,14 +3549,14 @@ import { SITE_TITLE } from '../consts';
 				opacity: 0.85;
 			}
 			.toc-ch-prefix {
-				font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 				font-size: 0.95rem !important;
 				font-weight: 800 !important;
 				color: #0f172a !important; /* solid black */
 				letter-spacing: -0.01em;
 			}
 			.toc-ch-title {
-				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 				font-size: 0.92rem !important;
 				font-weight: 700 !important;
 				color: #581c87 !important; /* Elegant dark purple matching PDF */
@@ -3742,7 +3756,7 @@ import { SITE_TITLE } from '../consts';
 								<a href="#toc"><span>Introduction &bull; Part I</span><span class="menu-num">TOC 1</span></a>
 								<a href="#toc-1b"><span>Part I (Chapters 2&ndash;4)</span><span class="menu-num">TOC 2</span></a>
 								<a href="#toc-2"><span>Part II: My Story</span><span class="menu-num">TOC 3</span></a>
-								<a href="#toc-3"><span>Part III: The Science of Pain, ACID &amp; ASICS</span><span class="menu-num">TOC 3</span></a>
+								<a href="#toc-3"><span>Part III: The Science of Pain, Acid &amp; ASICs</span><span class="menu-num">TOC 3</span></a>
 								<a href="#toc-4"><span>Part IV: Taking Charge of Investigation</span><span class="menu-num">TOC 4</span></a>
 								<a href="#toc-5"><span>Part V: The Future of Burning Mouth</span><span class="menu-num">TOC 5</span></a>
 							</div>
@@ -3782,14 +3796,14 @@ import { SITE_TITLE } from '../consts';
 
 						<!-- Part 3 Dropdown -->
 						<div class="toolbar-dropdown">
-							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part III: The Science of Pain, ACID &amp; ASICS">
+							<button type="button" class="toolbar-trigger" aria-haspopup="true" aria-expanded="false" title="Part III: The Science of Pain, Acid &amp; ASICs">
 								<span>Science</span>
 								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<polyline points="6 9 12 15 18 9"></polyline>
 								</svg>
 							</button>
 							<div class="toolbar-menu">
-								<a href="#part-3-page" class="toolbar-menu-header" title="Jump to Part III">Part III: The Science of Pain, ACID &amp; ASICS</a>
+								<a href="#part-3-page" class="toolbar-menu-header" title="Jump to Part III">Part III: The Science of Pain, Acid &amp; ASICs</a>
 								<a href="#page-28"><span>Chapter 10: How Pain Is Created</span><span class="menu-num">p. 28</span></a>
 								<a href="#page-31"><span>Chapter 11: What Is Acid and Why It Causes Pain</span><span class="menu-num">p. 31</span></a>
 								<a href="#page-30b"><span>Chapter 12: Where Are the Pain Receptors in the Mouth?</span><span class="menu-num">p. 31</span></a>
@@ -4702,7 +4716,7 @@ import { SITE_TITLE } from '../consts';
 
 					<div class="toc-centered-container">
 						<div class="toc-group" style="margin-bottom: 0.75rem;">
-							<div class="toc-part-header"><a href="#part-3-page" class="toc-part-link">Part III: The Science of Pain, ACID &amp; ASICS</a></div>
+							<div class="toc-part-header"><a href="#part-3-page" class="toc-part-link">Part III: The Science of Pain, Acid &amp; ASICs</a></div>
 
 							<div class="toc-item">
 								<a href="#chapter-10" class="toc-link" title="Chapter 10: How Pain Is Created">

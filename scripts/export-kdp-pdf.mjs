@@ -343,16 +343,26 @@ export const KDP_7X10_BASE_CSS = `
 		z-index: 10 !important;
 	}
 
-	/* Calibrate typography to fit 7" x 10" cleanly without overflow */
+	/* Calibrate typography to fit 7" x 10" cleanly without overflow (Centered, Inter, No ALL CAPS) */
 	html body .book-viewport .page-running-head {
-		font-size: 0.64rem !important;
+		display: flex !important;
+		justify-content: center !important;
+		align-items: center !important;
+		text-align: center !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+		font-size: 0.68rem !important;
+		font-weight: 500 !important;
+		letter-spacing: 0.01em !important;
+		text-transform: none !important;
 		padding-bottom: 0.35rem !important;
 		margin-bottom: 40px !important;
 		border-bottom: 1px solid #cbd5e1 !important;
 	}
 
 	html body .book-viewport .page-running-head .chapter-header-label {
-		color: #94a3b8 !important;
+		color: #64748b !important;
+		text-transform: none !important;
+		text-align: center !important;
 	}
 
 	html body .book-viewport .page-running-head .page-count-label {
@@ -363,7 +373,7 @@ export const KDP_7X10_BASE_CSS = `
 		display: none !important;
 	}
 
-	/* PDF Export: Enforce Headline Font (Montserrat) across all headings */
+	/* PDF Export: Enforce Headline Font (Inter 900) across all headings */
 	html body .book-viewport h1,
 	html body .book-viewport h2,
 	html body .book-viewport h3,
@@ -376,19 +386,21 @@ export const KDP_7X10_BASE_CSS = `
 	html body .book-viewport .stat-page-number,
 	html body .book-viewport .stat-page-title,
 	html body .book-viewport .contributor-category-title {
-		font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+		font-weight: 900 !important;
 	}
 
 	html body .book-viewport .chapter-title {
-		font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-		font-weight: 800 !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+		font-weight: 900 !important;
 		font-size: 1.35rem !important;
 		margin-top: 0.35rem !important;
 		margin-bottom: 0.75rem !important;
 		line-height: 1.25 !important;
+		letter-spacing: -0.02em !important;
 	}
 
-	/* Uniform 18px (1.125rem / ~11.5pt in print) body typography across entire PDF */
+	/* Uniform 18px (1.125rem / ~11.5pt in print) body typography across entire PDF (Inter Regular) */
 	html body .book-viewport .chapter-content p,
 	html body .book-viewport .chapter-content li,
 	html body .book-viewport .chapter-lead-text,
@@ -398,7 +410,8 @@ export const KDP_7X10_BASE_CSS = `
 	html body .book-viewport .exec-lead-paragraph,
 	html body .book-viewport .book-page p,
 	html body .book-viewport .book-page li {
-		font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+		font-weight: 400 !important;
 		font-size: 1.125rem !important; /* Exactly 18px */
 		line-height: 1.72 !important;
 		color: #000000 !important;
@@ -414,7 +427,8 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 		html body .book-viewport .chapter-content h3 {
-		font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+		font-weight: 800 !important;
 		font-size: 1.18rem !important;
 		margin-top: 2.75rem !important; /* Noticeably more breathing room above each sub-section */
 		margin-bottom: 0.65rem !important;
@@ -425,7 +439,8 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .chapter-content h4 {
-		font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+		font-weight: 700 !important;
 		font-size: 1.05rem !important;
 		margin-top: 1.35rem !important; /* More breathing room above h4 */
 		margin-bottom: 0.45rem !important;
@@ -435,7 +450,7 @@ export const KDP_7X10_BASE_CSS = `
 	html body .book-viewport .chapter-content ul,
 	html body .book-viewport .chapter-content ol,
 	html body .book-viewport .chapter-list {
-		font-family: 'Plus Jakarta Sans', sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 		font-size: 1.125rem !important; /* Exactly 18px */
 		line-height: 1.72 !important;
 		margin-top: 0.4rem !important;
@@ -456,7 +471,7 @@ export const KDP_7X10_BASE_CSS = `
 
 	html body .book-viewport .chapter-content li,
 	html body .book-viewport .chapter-list li {
-		font-family: 'Plus Jakarta Sans', sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 		font-size: 1.125rem !important; /* Exactly 18px */
 		line-height: 1.72 !important;
 		color: #000000 !important;
@@ -574,7 +589,7 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .chapter-opener-num {
-		font-family: 'Montserrat', sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 		font-size: 10pt !important;
 		font-weight: 800 !important;
 		letter-spacing: 0.18em !important;
@@ -584,11 +599,11 @@ export const KDP_7X10_BASE_CSS = `
 	}
 
 	html body .book-viewport .chapter-opener-title {
-		font-family: 'Montserrat', sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 		font-size: 18pt !important;
-		font-weight: 800 !important;
+		font-weight: 900 !important;
 		line-height: 1.2 !important;
-		letter-spacing: -0.01em !important;
+		letter-spacing: -0.02em !important;
 		color: #000000 !important;
 		margin: 0 !important;
 		text-align: center !important;
