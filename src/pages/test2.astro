@@ -277,17 +277,18 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 
 		/* Publication Standard Subscript & Superscript Reset
 		   Fixes the browser default bug where <sub> and <sup> destroy uniform paragraph line-height */
-		sub, sup {
-			font-size: 0.72em;
-			line-height: 0;
-			position: relative;
-			vertical-align: baseline;
+		:global(sub),
+		:global(sup) {
+			font-size: 0.72em !important;
+			line-height: 0 !important;
+			position: relative !important;
+			vertical-align: baseline !important;
 		}
-		sub {
-			bottom: -0.22em;
+		:global(sub) {
+			bottom: -0.22em !important;
 		}
-		sup {
-			top: -0.42em;
+		:global(sup) {
+			top: -0.42em !important;
 		}
 
 		/* Clean Inline Chemical Formulas: Completely Seamless, Zero Box, Zero Background */
