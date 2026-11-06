@@ -711,17 +711,50 @@ export const KDP_7X10_BASE_CSS = `
 		padding-left: 1.2rem !important;
 	}
 
+	html body .book-viewport .toc-subsections-clean {
+		margin-top: 0.2rem !important;
+		margin-bottom: 0.35rem !important;
+		padding-left: 0.85rem !important;
+	}
+
 	html body .book-viewport .toc-sub-row {
-		margin-bottom: 0.12rem !important;
-		font-size: 0.74rem !important; /* 1.3x smaller */
-		line-height: 1.3 !important;
+		margin-bottom: 0.04rem !important;
+		font-size: 0.72rem !important;
+		line-height: 1.15 !important; /* 1.5x tighter */
+	}
+
+	html body .book-viewport .toc-sub-link {
+		display: flex !important;
+		justify-content: space-between !important;
+		align-items: baseline !important;
+		width: 100% !important;
+		text-decoration: none !important;
+	}
+
+	html body .book-viewport .toc-sub-title {
+		font-size: 0.72rem !important;
+		font-weight: 500 !important;
+		white-space: normal !important;
+	}
+
+	html body .book-viewport .toc-sub-link .toc-dots {
+		display: block !important;
+		flex-grow: 1 !important;
+		border-bottom: 1px dotted #cbd5e1 !important;
+		margin: 0 0.35rem !important;
+		height: 1px !important;
+		min-width: 12px !important;
+	}
+
+	html body .book-viewport .toc-sub-num {
+		font-size: 0.72rem !important;
+		font-weight: 600 !important;
+		white-space: nowrap !important;
 	}
 
 	html body .book-viewport .toc-sub-bullet {
-		display: inline-block !important;
-		width: 0.85rem !important;
-		flex-shrink: 0 !important;
-		text-align: left !important;
+		display: none !important;
+		width: 0 !important;
 	}
 
 	html body .book-viewport .toc-frontmatter-item .toc-ch-title,
@@ -1593,7 +1626,7 @@ export async function paginateOverflowingBookPages(page) {
 
 		for (const p of finalPages) {
 			if (['title-page', 'copyright-page', 'half-title-page', 'epigraph-page'].includes(p.id)) continue;
-			if (p.id === 'page-1') {
+			if (p.id === 'page-1-intro-1' || p.id === 'page-1') {
 				inMainBook = true;
 			}
 
@@ -1620,14 +1653,15 @@ export async function paginateOverflowingBookPages(page) {
 		}
 
 		// Update TOC numbers to match exact paginated positions
-		document.querySelectorAll('#toc .toc-item, #toc-2 .toc-item').forEach((item) => {
-			const link = item.querySelector('a.toc-link');
-			const numSpan = item.querySelector('.toc-num');
+		document.querySelectorAll('.toc-item, .toc-sub-row').forEach((item) => {
+			const link = item.querySelector('a.toc-link, a.toc-sub-link');
+			const numSpan = item.querySelector('.toc-num, .toc-sub-num');
 			if (!link || !numSpan) return;
 			const href = link.getAttribute('href');
 			if (!href || !href.startsWith('#')) return;
 			let targetId = href.slice(1);
 			if (targetId === 'bibliography') targetId = 'page-83';
+			if (targetId === 'chapter-1') targetId = 'page-1-intro-1';
 			if (idToPageLabel[targetId]) {
 				numSpan.textContent = idToPageLabel[targetId];
 			}
