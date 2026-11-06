@@ -275,16 +275,35 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 			text-align: center;
 		}
 
-		/* Clean Inline Chemical Formulas (No Badges, No Borders, No Background Bubbles) */
+		/* Publication Standard Subscript & Superscript Reset
+		   Fixes the browser default bug where <sub> and <sup> destroy uniform paragraph line-height */
+		sub, sup {
+			font-size: 0.72em;
+			line-height: 0;
+			position: relative;
+			vertical-align: baseline;
+		}
+		sub {
+			bottom: -0.22em;
+		}
+		sup {
+			top: -0.42em;
+		}
+
+		/* Clean Inline Chemical Formulas: Completely Seamless, Zero Box, Zero Background */
+		.sci-chem,
 		.sci-tag {
 			display: inline;
-			background: transparent;
-			border: none;
-			padding: 0;
+			background: transparent !important;
+			border: none !important;
+			padding: 0 !important;
+			margin: 0 !important;
 			font-size: inherit;
 			font-weight: 600;
 			color: inherit;
 			white-space: nowrap;
+			box-shadow: none !important;
+			outline: none !important;
 		}
 
 		/* Math Font Mode Toggle */
@@ -498,7 +517,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-chem">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
 					<!-- KaTeX Rendered Goldman Equation (Exact match to user screenshot) -->
@@ -510,7 +529,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					</div>
 
 					<p>
-						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-chem">MUC5B</span> and <span class="sci-chem">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-chem">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
@@ -544,7 +563,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-chem">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
 					<!-- KaTeX Rendered Goldman Equation -->
@@ -556,7 +575,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					</div>
 
 					<p>
-						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-chem">MUC5B</span> and <span class="sci-chem">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-chem">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
@@ -590,7 +609,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-chem">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
 					<!-- KaTeX Rendered Goldman Equation -->
@@ -602,7 +621,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					</div>
 
 					<p>
-						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-chem">MUC5B</span> and <span class="sci-chem">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-chem">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
@@ -636,7 +655,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-chem">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
 					<!-- KaTeX Rendered Goldman Equation -->
@@ -648,7 +667,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					</div>
 
 					<p>
-						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-chem">MUC5B</span> and <span class="sci-chem">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-chem">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
@@ -682,7 +701,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-chem">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
 					<!-- KaTeX Rendered Goldman Equation -->
@@ -694,7 +713,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					</div>
 
 					<p>
-						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-chem">MUC5B</span> and <span class="sci-chem">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-chem">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
@@ -728,7 +747,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-chem">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
 					<!-- KaTeX Rendered Goldman Equation -->
@@ -740,7 +759,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					</div>
 
 					<p>
-						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-chem">MUC5B</span> and <span class="sci-chem">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-chem">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
@@ -774,7 +793,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-chem">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
 					<!-- KaTeX Rendered Goldman Equation -->
@@ -786,7 +805,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					</div>
 
 					<p>
-						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-chem">MUC5B</span> and <span class="sci-chem">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-chem">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
@@ -820,7 +839,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					<h3>The 2024 Cryo-EM Proof: Bypassing Venom to Test Real Human Receptors</h3>
 
 					<p>
-						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-tag">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
+						In the landmark 2024 Cahill cryo-EM investigation at 2.7 to 3.2 Ångström resolution, researchers reconstituted full-length <strong>human ASIC1a protein</strong> into synthetic lipid nanodiscs. Stepping pH from neutral <span class="chem-val">7.40 &plusmn; 0.05</span> down to acidic <span class="chem-val">6.50</span> and <span class="chem-val">5.50</span> demonstrated that free hydronium ions (<span class="sci-chem">H<sub>3</sub>O<sup>+</sup></span>) neutralize carboxylates <span class="chem-val">Asp238</span>, <span class="chem-val">Glu239</span>, and <span class="chem-val">Asp350</span>, snapping salt bridges and opening lower transmembrane gates <span class="chem-val">Thr449 / Ser446</span>.
 					</p>
 
 					<!-- KaTeX Rendered Goldman Equation -->
@@ -832,7 +851,7 @@ const poiseuilleHtml = katex.renderToString(poiseuilleFormulaLatex, {
 					</div>
 
 					<p>
-						In saliva, high-molecular-weight glycoproteins (<span class="sci-tag">MUC5B</span> and <span class="sci-tag">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-tag">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
+						In saliva, high-molecular-weight glycoproteins (<span class="sci-chem">MUC5B</span> and <span class="sci-chem">MUC7</span>) normally partner with bicarbonate ions (<span class="sci-chem">HCO<sub>3</sub><sup>&minus;</sup></span>) to buffer ambient oral acidity. When this buffer collapses, dental tubules leak dentinal fluid according to Hagen-Poiseuille hydrodynamics:
 					</p>
 
 					<!-- KaTeX Rendered Fluid Dynamics Equation -->
