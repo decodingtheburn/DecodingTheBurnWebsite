@@ -2171,11 +2171,28 @@ async function main() {
 		const kdpCoverPath = path.join(publicDir, 'decoding-the-burn-kdp-cover-7x10.pdf');
 		await page.pdf({
 			path: kdpCoverPath,
-			width: '14.849in',
+			width: '14.842in',
 			height: '10.25in',
 			printBackground: true,
 			margin: { top: '0in', right: '0in', bottom: '0in', left: '0in' },
 		});
+
+		// Enforce exact KDP cover dimensions in MediaBox (14.842" x 10.250" = 1068.624pt x 738pt)
+		try {
+			const buf = fs.readFileSync(kdpCoverPath);
+			let str = buf.toString('latin1');
+			const m = str.match(/\/MediaBox\s*\[\s*([\d\.\s]+)\s*\]/);
+			if (m) {
+				const oldMediaBox = m[0];
+				const target = '/MediaBox [0 0 1068.62400 738]';
+				if (target.length === oldMediaBox.length) {
+					str = str.replace(oldMediaBox, target);
+					fs.writeFileSync(kdpCoverPath, Buffer.from(str, 'latin1'));
+				}
+			}
+		} catch (e) {
+			console.warn('Could not post-process cover MediaBox:', e.message);
+		}
 		console.log('   -> Saved:', kdpCoverPath);
 
 		// Also copy the generated PDFs into dist/
