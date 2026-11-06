@@ -1566,7 +1566,7 @@ export async function paginateOverflowingBookPages(page) {
 
 			// Standard element-level split for .chapter-content children
 			const children = Array.from(cc.children);
-			if (children.length <= 1) continue;
+			if (children.length === 0) continue;
 
 			const pRect = pageEl.getBoundingClientRect();
 			let splitIdx = -1;
@@ -1575,6 +1575,40 @@ export async function paginateOverflowingBookPages(page) {
 				if (elBottom > MAX_BODY_BOTTOM_PX) {
 					splitIdx = cIdx;
 					break;
+				}
+			}
+
+			// Special case: If the overflowing element at splitIdx is a UL/OL with multiple LI children,
+			// check if the first 1 or 2 items fit before MAX_BODY_BOTTOM_PX.
+			if (splitIdx >= 0 && (children[splitIdx].tagName === 'UL' || children[splitIdx].tagName === 'OL')) {
+				const listEl = children[splitIdx];
+				const liItems = Array.from(listEl.querySelectorAll(':scope > li'));
+				if (liItems.length > 1) {
+					const fittingLi = [];
+					const overflowLi = [];
+					for (let lIdx = 0; lIdx < liItems.length; lIdx++) {
+						const liBottom = liItems[lIdx].getBoundingClientRect().bottom - pRect.top;
+						if (liBottom <= MAX_BODY_BOTTOM_PX) {
+							fittingLi.push(liItems[lIdx]);
+						} else {
+							overflowLi.push(liItems[lIdx]);
+						}
+					}
+
+					// If 1 or more items fit, keep them on the current page and move the rest to continuation
+					if (fittingLi.length > 0 && overflowLi.length > 0) {
+						const { newPage, newCC } = createContinuationPage(pageEl, 1);
+						const clonedList = listEl.cloneNode(false);
+						overflowLi.forEach((li) => clonedList.appendChild(li));
+						newCC.appendChild(clonedList);
+
+						for (let cIdx = splitIdx + 1; cIdx < children.length; cIdx++) {
+							newCC.appendChild(children[cIdx]);
+						}
+
+						allPages = Array.from(document.querySelectorAll('.book-viewport > .book-page'));
+						continue;
+					}
 				}
 			}
 
