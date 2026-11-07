@@ -3177,11 +3177,13 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			/* Desktop vs Mobile Toolbar Layout Switching */
-			.mobile-toolbar-actions {
-				display: none;
+			.mobile-toolbar-actions,
+			.mobile-toc-dropdown,
+			.mobile-toc-menu {
+				display: none !important;
 			}
 			.desktop-toolbar-actions {
-				display: flex;
+				display: flex !important;
 			}
 
 			@media (max-width: 768px) {
@@ -3190,6 +3192,10 @@ import { SITE_TITLE } from '../consts';
 				}
 				.mobile-toolbar-actions {
 					display: flex !important;
+				}
+				.mobile-toc-dropdown {
+					display: inline-flex !important;
+				}
 					justify-content: space-between;
 					align-items: center;
 					width: 100%;
