@@ -1728,8 +1728,9 @@ import { SITE_TITLE } from '../consts';
 				text-transform: none !important; /* First letter caps only */
 				color: #581c87 !important;
 				border-bottom: 2px solid #7c3aed !important;
-				margin-top: 0.65rem !important;
-				margin-bottom: 0.75rem !important;
+				line-height: 1.35 !important;
+				margin-top: 0.85rem !important;
+				margin-bottom: 0.85rem !important;
 				padding-bottom: 0.45rem !important;
 			}
 
@@ -1748,13 +1749,14 @@ import { SITE_TITLE } from '../consts';
 
 			.toc-part-header {
 				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-				font-size: 1.15rem !important; /* Standout prominent size */
+				font-size: 1.15rem !important;
 				font-weight: 900 !important;
-				text-transform: none !important; /* First letter caps only */
+				text-transform: none !important;
 				letter-spacing: -0.01em !important;
-				color: #581c87 !important; /* Dark purple matching PDF */
-				margin-top: 0.65rem !important;
-				margin-bottom: 0.75rem !important;
+				color: #581c87 !important;
+				line-height: 1.35 !important;
+				margin-top: 0.85rem !important;
+				margin-bottom: 0.85rem !important;
 				padding-bottom: 0.45rem !important;
 				border-bottom: 2px solid #7c3aed !important;
 			}
@@ -3175,6 +3177,60 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			@media (max-width: 768px) {
+				.stat-visual-card div[style*="grid-template-columns"] {
+					grid-template-columns: 1fr !important;
+					gap: 0.75rem !important;
+				}
+				.stat-global-grid {
+					grid-template-columns: 1fr !important;
+					gap: 0.75rem !important;
+				}
+				.toc-subsections-clean {
+					margin-left: 0 !important;
+				}
+				.toc-item {
+					flex-wrap: wrap;
+				}
+				.toc-link {
+					white-space: normal !important;
+					max-width: calc(100% - 3rem) !important;
+					overflow: visible !important;
+					text-overflow: clip !important;
+				}
+				.toc-ch-title {
+					white-space: normal !important;
+					line-height: 1.35 !important;
+				}
+				.toc-sub-link {
+					align-items: flex-start !important;
+				}
+				.toc-sub-title {
+					white-space: normal !important;
+					line-height: 1.35 !important;
+					max-width: calc(100% - 2.5rem);
+				}
+				.cover-title-line-1 {
+					font-size: clamp(2.2rem, 7.8vw, 4.2rem) !important;
+					white-space: normal !important;
+				}
+				.cover-title-line-2 {
+					font-size: clamp(2.8rem, 9.8vw, 5.2rem) !important;
+					white-space: normal !important;
+				}
+				.cover-kicker {
+					font-size: clamp(1.3rem, 4.8vw, 2.2rem) !important;
+					white-space: normal !important;
+				}
+				.interior-title-main span {
+					font-size: clamp(2.2rem, 7.5vw, 4rem) !important;
+					white-space: normal !important;
+				}
+				#copyright-page .page-body-content {
+					padding: 1.5rem 1rem !important;
+				}
+				.copyright-page-wrap {
+					max-width: 100% !important;
+				}
 				.reading-toolbar {
 					padding: 0 0.75rem;
 					height: 44px;
@@ -3623,15 +3679,15 @@ import { SITE_TITLE } from '../consts';
 				padding: 0 !important;
 				margin-top: 0.2rem !important;
 				margin-bottom: 0.35rem !important;
-				margin-left: 0.85rem !important;
+				margin-left: 0 !important;
 				border: none !important;
 				border-left: none !important;
 			}
 			.toc-sub-row {
 				display: block !important;
-				margin-bottom: 0.04rem !important;
-				font-size: 0.72rem !important;
-				line-height: 1.15 !important;
+				margin-bottom: 0.3rem !important;
+				font-size: 0.75rem !important;
+				line-height: 1.38 !important;
 				white-space: normal !important;
 				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 				font-style: normal !important;
@@ -3671,7 +3727,7 @@ import { SITE_TITLE } from '../consts';
 			}
 			@media (max-width: 640px) {
 				.toc-subsections-clean {
-					margin-left: 1rem !important;
+					margin-left: 0 !important;
 				}
 			}
 			/* Academic Scientific Typography: Molecules, Mucins, Proteins & Chemical Formulas */
@@ -4018,14 +4074,32 @@ import { SITE_TITLE } from '../consts';
 			<!-- INTERIOR TITLE PAGE (Page F-2 / Secondary Title Cover) -->
 			<!-- HALF-TITLE PAGE (Page 1 - Recto) -->
 			<section class="book-page" id="half-title-page">
-				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-sizing: border-box;">
-					<div style="max-width: 580px; margin: auto 0; width: 100%;">
-						<div class="cover-kicker half-title-kicker" style="font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.85rem; color: #52525b;">
+				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; box-sizing: border-box; padding: 3.5rem 1.75rem 2.5rem;">
+					<div style="width: 100%; max-width: 680px; margin-top: 1rem;">
+						<div class="cover-kicker" style="font-family: 'Inter', sans-serif; font-size: clamp(1.2rem, 3.5vw, 1.85rem); font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.85rem; color: #475569;">
 							Acid-Triggered
 						</div>
-						<h1 style="font-family: 'Inter', system-ui, sans-serif; font-size: 2.85rem; font-weight: 900; line-height: 1.05; letter-spacing: 0.02em; text-transform: uppercase; color: #000000; margin: 0;">
+						<h1 style="font-family: 'Inter', system-ui, sans-serif; font-size: clamp(2.6rem, 7.5vw, 4.5rem); font-weight: 900; line-height: 1.02; letter-spacing: 0.01em; text-transform: uppercase; color: #0f172a; margin: 0 0 1.25rem;">
 							BURNING&nbsp;MOUTH
 						</h1>
+						<p style="font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: clamp(0.95rem, 2.4vw, 1.15rem); font-weight: 600; line-height: 1.5; color: #334155; max-width: 580px; margin: 0 auto; text-wrap: balance;">
+							How Everyday Acid and Sugar Can Mimic BMS, and the Science Behind Bringing My Pain to&nbsp;Zero
+						</p>
+					</div>
+
+					<div style="margin: 1.5rem auto;">
+						<img 
+							src="/bms-head-transparent-pain-map.png" 
+							alt="Trigeminal Pain Distribution Map" 
+							style="width: 150px; max-height: 190px; height: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));"
+							loading="eager"
+						/>
+					</div>
+
+					<div style="width: 100%; max-width: 480px; margin-bottom: 1rem; border-top: 1px solid #e2e8f0; padding-top: 1.25rem;">
+						<div style="font-family: 'Inter', system-ui, sans-serif; font-size: 1.35rem; font-weight: 800; color: #0f172a; margin-bottom: 0.35rem;">Denis Ethier</div>
+						<div style="font-family: 'Inter', system-ui, sans-serif; font-size: 0.82rem; font-weight: 600; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase;">First Edition &bull; November 2026</div>
+						<div style="font-family: 'Inter', system-ui, sans-serif; font-size: 0.78rem; color: #7c3aed; margin-top: 0.25rem;">www.decodingtheburn.com</div>
 					</div>
 				</div>
 			</section>
@@ -4643,7 +4717,44 @@ import { SITE_TITLE } from '../consts';
 										<span class="toc-sub-num">14b</span>
 									</a>
 								</li>
-								
+							</ul>
+							<div class="toc-item">
+								<a href="#chapter-6-diff" class="toc-link" title="Chapter 6: Is It BMS or Something Else? Differential Realities">
+									<span class="toc-ch-prefix">Chapter 6:</span>
+									<span class="toc-ch-title">Is It BMS or Something Else?</span>
+								</a>
+								<span class="toc-dots"></span>
+								<span class="toc-num">14c</span>
+							</div>
+							<ul class="toc-subsections-clean">
+								<li class="toc-sub-row">
+									<a href="#page-chapter-6-differential" class="toc-sub-link">
+										<span class="toc-sub-title">Is It BMS or Dentin Hypersensitivity (DH)?</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">14c</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-chapter-6-differential" class="toc-sub-link">
+										<span class="toc-sub-title">Severe Tooth Wear Secondary to Dental Erosion</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">14c</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-chapter-6-differential-2" class="toc-sub-link">
+										<span class="toc-sub-title">Systemic &amp; Metabolic Mimics: B12, Iron, Thyroid</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">14d</span>
+									</a>
+								</li>
+								<li class="toc-sub-row">
+									<a href="#page-chapter-6-differential-2" class="toc-sub-link">
+										<span class="toc-sub-title">Comparative Diagnostic Matrix</span>
+										<span class="toc-dots"></span>
+										<span class="toc-sub-num">14d</span>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -7176,6 +7287,103 @@ import { SITE_TITLE } from '../consts';
 
 				<div class="page-number-footer">
 					<span>14b</span>
+				</div>
+			</section>
+
+			
+			<!-- Chapter 6: Is It BMS or Something Else? Differential Realities -->
+			<section class="book-page" id="page-chapter-6-differential">
+				<div id="chapter-6-diff" style="scroll-margin-top: 5rem;"></div>
+				<div class="page-body-content">
+					<div class="chapter-opener-header">
+						<div class="chapter-opener-num">Chapter 6</div>
+						<h2 class="chapter-title chapter-opener-title">Is It BMS or Something Else? Differential Realities</h2>
+						<div class="chapter-opener-divider"></div>
+					</div>
+
+					<div class="chapter-content is-first-page">
+						<p>When you sit across from a doctor or dentist with agonizing oral burning and hear that your mouth looks completely normal, the immediate instinct is to wonder whether you actually have Burning Mouth Syndrome or another underlying physical condition entirely. In clinical medicine, this investigation is known as a <strong>differential diagnosis</strong>: systematically separating primary neuropathic oral burning from conditions that share identical or overlapping symptoms.</p>
+
+						<p>Before assuming that burning mouth is an untreatable idiopathic mystery, every patient and clinician must evaluate the common physical, structural, and metabolic imitators of BMS:</p>
+
+						<h3>1. Is It BMS or Dentin Hypersensitivity (DH)?</h3>
+						<p>In conventional dental textbooks, <strong>Dentin Hypersensitivity (DH)</strong> is defined strictly as a brief, sharp, transient pain lasting two to three seconds in response to cold air, ice water, or touch. It occurs when gum recession or enamel loss exposes microscopic dentinal tubules (20,000 to 45,000 conduits per square millimeter), allowing fluid movement to stimulate intradental mechanoreceptors.</p>
+						<p>However, conventional dental training frequently overlooks the direct biochemical connection: when exposed tubules remain unsealed, they do not just react to cold air. They serve as open microscopic conduits for everyday dietary acids (coffee, wine, salad dressings) and bacterial lactic acid. Unlike a brief two-second cold twinge, continuous acid ingress activates Acid-Sensing Ion Channels (ASIC3) on pulpal C-fibers, which do not rapidly inactivate under sustained mild acidity. Through central convergence in the trigeminal brainstem, continuous intradental acid stimulation is referred to the tongue, creating persistent oral burning. An in-office trial with a tubule-sealing desensitizer (such as Gluma or Tokuyama Shield Force Plus) provides immediate diagnostic clarity: if background burning diminishes within 24 to 48 hours of sealing, exposed tubules were driving the fire.</p>
+
+						<h3>2. Is It BMS or Generalized Severe Tooth Wear Secondary to Dental Erosion?</h3>
+						<p><strong>Generalized severe tooth wear secondary to dental erosion</strong> involves the chemical dissolution of hard tooth structure by non-bacterial acids (gastric acid from silent GERD/LPR or frequent intake of acidic beverages). When acidic insults overwhelm salivary buffering capacity (dropping pH below the critical enamel dissolution threshold of 5.5 and dentin threshold of 6.2), the protective enamel shield dissolves across multiple tooth surfaces.</p>
+						<p>This massive loss of mineral barrier leaves expansive areas of dentin unprotected. Acidic fluids and sugars bathe large surface areas of open tubules, creating a constant chemical burn that mimics or exacerbates BMS. Dentists can formally grade this erosive loss using the standardized <strong>Basic Erosive Wear Examination (BEWE)</strong>. Restoring the acid-eroded barrier and addressing ambient oral acidity halts this ongoing nerve bombardment.</p>
+					</div>
+				</div>
+				<div class="page-number-footer">
+					<span>14c</span>
+				</div>
+			</section>
+
+			<section class="book-page" id="page-chapter-6-differential-2">
+				<div class="page-body-content">
+					<div class="page-running-head">
+						<span class="chapter-header-label">Chapter 6: Is It BMS or Something Else?</span>
+						<span class="page-count-label">Page 14d</span>
+					</div>
+
+					<div class="chapter-content">
+						<h3>3. Systemic & Metabolic Mimicry: The Reversible Checklist</h3>
+						<p>Secondary burning sensations can also stem from systemic deficiencies or metabolic disruptions that alter nerve sheath integrity or oral mucosal cell turnover:</p>
+
+						<ul class="chapter-list">
+							<li><strong>Vitamin B12 & Folate Deficiency:</strong> Cobalamin (B12) is vital for maintaining the myelin sheath of peripheral nerve fibers. B12 deficiency leads to atrophic glossitis (the classic beefy, smooth, intensely burning tongue) and peripheral neuropathy. Serum B12, methylmalonic acid (MMA), and homocysteine tests confirm whether cellular B12 starvation is present.</li>
+							<li><strong>Iron-Deficiency Anemia & Ferritin Depletion:</strong> Depleted iron reserves reduce tissue oxygenation to oral epithelium, causing mucosal atrophy, thinning, and intense scalding sensitivity. Testing serum ferritin (aiming above 50 &mu;g/L) is critical even when standard hemoglobin appears normal.</li>
+							<li><strong>Subclinical Hypothyroidism:</strong> Low circulating thyroid hormone impairs cellular micro-circulation and salivary gland secretion, reducing the oral cavity's natural bicarbonate acid-buffering buffer.</li>
+							<li><strong>Medication-Induced Xerostomia & ACE Inhibitors:</strong> Antihypertensive ACE inhibitors (such as Lisinopril) and drying anticholinergics inhibit saliva flow. Without protective salivary mucins, oral tissues cannot neutralize mild acids.</li>
+							<li><strong>Undiagnosed Type 2 Diabetes & Hyperglycemia:</strong> Chronic elevated blood glucose feeds subgingival biofilms and damages microvascular capillaries that nourish peripheral trigeminal nerve endings.</li>
+						</ul>
+
+						<h3>Comparative Diagnostic Matrix</h3>
+						<div class="bms-differential-table-wrap" style="overflow-x: auto; margin: 1.25rem 0;">
+							<table style="width: 100%; border-collapse: collapse; font-family: 'Inter', system-ui, sans-serif; font-size: 0.78rem; line-height: 1.4; text-align: left;">
+								<thead>
+									<tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1; color: #0f172a;">
+										<th style="padding: 0.5rem 0.65rem;">Condition</th>
+										<th style="padding: 0.5rem 0.65rem;">Primary Pain Quality</th>
+										<th style="padding: 0.5rem 0.65rem;">Clinical Presentation</th>
+										<th style="padding: 0.5rem 0.65rem;">Response to Desensitizers</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr style="border-bottom: 1px solid #e2e8f0;">
+										<td style="padding: 0.5rem 0.65rem; font-weight: 700; color: #1e293b;">Primary BMS</td>
+										<td style="padding: 0.5rem 0.65rem;">Continuous scalding, burning; worse by evening</td>
+										<td style="padding: 0.5rem 0.65rem;">Completely normal mucosa under gross exam</td>
+										<td style="padding: 0.5rem 0.65rem;">Variable (Significant relief if triggered by margin leak)</td>
+									</tr>
+									<tr style="border-bottom: 1px solid #e2e8f0;">
+										<td style="padding: 0.5rem 0.65rem; font-weight: 700; color: #1e293b;">Dentin Hypersensitivity</td>
+										<td style="padding: 0.5rem 0.65rem;">Sharp, transient (2s) jolt to cold/touch, or sustained burn if acid-washed</td>
+										<td style="padding: 0.5rem 0.65rem;">Exposed cervical root dentin, gum recession, abfraction</td>
+										<td style="padding: 0.5rem 0.65rem; color: #166534; font-weight: 600;">Immediate relief within 24-48 hours</td>
+									</tr>
+									<tr style="border-bottom: 1px solid #e2e8f0;">
+										<td style="padding: 0.5rem 0.65rem; font-weight: 700; color: #1e293b;">Severe Dental Erosion</td>
+										<td style="padding: 0.5rem 0.65rem;">Broad toothache, thermal ache, diffused burning on acid contact</td>
+										<td style="padding: 0.5rem 0.65rem;">Cupping on cusps, loss of enamel luster, high BEWE score</td>
+										<td style="padding: 0.5rem 0.65rem;">Moderate relief; requires protective barrier restoration</td>
+									</tr>
+									<tr>
+										<td style="padding: 0.5rem 0.65rem; font-weight: 700; color: #1e293b;">Systemic / B12 Deficiency</td>
+										<td style="padding: 0.5rem 0.65rem;">Generalized bilateral burning, numbness, altered taste</td>
+										<td style="padding: 0.5rem 0.65rem;">Erythematous, depapillated, glossy red tongue</td>
+										<td style="padding: 0.5rem 0.65rem;">No local effect; resolves with nutritional replenishment</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<p>By systematically separating these overlapping conditions, you and your healthcare team transform an intimidating "idiopathic" puzzle into clear, testable physical targets.</p>
+					</div>
+				</div>
+				<div class="page-number-footer">
+					<span>14d</span>
 				</div>
 			</section>
 
