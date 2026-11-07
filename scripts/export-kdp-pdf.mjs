@@ -240,7 +240,7 @@ export const KDP_7X10_BASE_CSS = `
 	html body .book-viewport #copyright-page span,
 	html body .book-viewport #copyright-page em,
 	html body .book-viewport #copyright-page strong {
-		font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 		font-size: 0.65rem !important;
 		line-height: 1.48 !important;
 		text-indent: 0 !important;
@@ -323,7 +323,7 @@ export const KDP_7X10_BASE_CSS = `
 		max-width: 100% !important;
 	}
 
-	/* Pin footer line & page number to the exact bottom footer zone on every page (Standard sans-serif font) */
+	/* Pin footer line & page number to the exact bottom footer zone on every page (Standard Inter font) */
 	html body .book-viewport .page-number-footer {
 		position: absolute !important;
 		bottom: 0.3in !important;
@@ -336,7 +336,7 @@ export const KDP_7X10_BASE_CSS = `
 		display: flex !important;
 		justify-content: center !important;
 		align-items: center !important;
-		font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+		font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 		font-size: 0.95rem !important; /* Clean legible standard size */
 		font-weight: 700 !important;
 		line-height: 1 !important;
@@ -1302,7 +1302,7 @@ const READER_EDITION_CSS = `
 	}
 
 	.cover-sced-badge {
-		font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+		font-family: 'Inter', system-ui, sans-serif !important;
 		font-size: 0.78rem !important;
 		font-weight: 700 !important;
 		color: #e9d5ff !important;
@@ -1948,7 +1948,7 @@ async function main() {
 					color: #f1f5f9;
 				}
 				.kdp-spine-edition {
-					font-family: 'Plus Jakarta Sans', sans-serif;
+					font-family: 'Inter', sans-serif;
 					font-size: 6.8pt;
 					font-weight: 700;
 					letter-spacing: 0.12em;
@@ -2050,7 +2050,7 @@ async function main() {
 					white-space: nowrap !important;
 				}
 				.cover-sced-badge {
-					font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+					font-family: 'Inter', system-ui, sans-serif !important;
 					font-size: 0.95rem !important;
 					font-weight: 700 !important;
 					color: #e9d5ff !important;
@@ -2069,7 +2069,7 @@ async function main() {
 					color: #f8fafc !important;
 				}
 				.cover-subtitle-lead {
-					font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 					font-size: 1.08rem !important;
 					font-weight: 700 !important;
 					letter-spacing: 0.02em !important;
@@ -2078,7 +2078,7 @@ async function main() {
 					display: block !important;
 				}
 				.cover-subtitle-rest {
-					font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 					font-size: 0.92rem !important;
 					line-height: 1.45 !important;
 					display: block !important;
