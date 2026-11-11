@@ -1,0 +1,334 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import emailTemplates from '../data/email_templates.json';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title={`BMS Email Tracker Sequences & Templates | ${SITE_TITLE}`} 
+			description="Automated daily, weekly, and monthly email reminder sequence for the BMS Tracking Sheet, guiding patients through food logs, water pH, and symptom tracking."
+			noindex={true}
+		/>
+		<style>
+			:root {
+				--brand-purple: #7c3aed;
+				--brand-purple-dark: #581c87;
+				--bg-soft: #f8fafc;
+				--border-card: #e2e8f0;
+			}
+
+			.email-studio-container {
+				max-width: 1200px;
+				margin: 2rem auto 6rem;
+				padding: 0 1.5rem;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif;
+			}
+
+			.studio-header {
+				background: linear-gradient(135deg, #090514 0%, #1e0b38 50%, #2a0845 100%);
+				color: #ffffff;
+				padding: 2.75rem 2.25rem;
+				border-radius: 18px;
+				margin-bottom: 2.5rem;
+				box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+			}
+
+			.studio-badge {
+				display: inline-block;
+				background: rgba(168, 85, 247, 0.2);
+				color: #e9d5ff;
+				border: 1px solid rgba(168, 85, 247, 0.4);
+				padding: 0.25rem 0.75rem;
+				border-radius: 9999px;
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+				margin-bottom: 1rem;
+			}
+
+			.studio-title {
+				font-size: 2.2rem;
+				font-weight: 800;
+				line-height: 1.15;
+				margin: 0 0 0.85rem;
+				letter-spacing: -0.02em;
+			}
+
+			.studio-desc {
+				font-size: 1rem;
+				color: #e9d5ff;
+				max-width: 800px;
+				line-height: 1.6;
+				margin: 0;
+			}
+
+			/* Schedule Cadence Summary */
+			.cadence-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 1.25rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.cadence-card {
+				background: #ffffff;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 14px;
+				padding: 1.35rem;
+				box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+			}
+
+			.cadence-tag {
+				font-size: 0.75rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: var(--brand-purple);
+				background: rgba(124, 58, 237, 0.08);
+				padding: 0.2rem 0.55rem;
+				border-radius: 6px;
+				display: inline-block;
+				margin-bottom: 0.5rem;
+			}
+
+			.cadence-name {
+				font-size: 1.1rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.4rem;
+			}
+
+			.cadence-desc {
+				font-size: 0.85rem;
+				color: #475569;
+				line-height: 1.45;
+				margin: 0;
+			}
+
+			/* Email Template List */
+			.email-cards-list {
+				display: flex;
+				flex-direction: column;
+				gap: 1.75rem;
+			}
+
+			.email-card {
+				background: #ffffff;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+				transition: border-color 0.2s ease;
+			}
+
+			.email-card:hover {
+				border-color: #cbd5e1;
+			}
+
+			.email-card-header {
+				background: #f8fafc;
+				border-bottom: 1px solid #e2e8f0;
+				padding: 1.15rem 1.5rem;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				align-items: center;
+				gap: 0.75rem;
+			}
+
+			.email-day-badge {
+				font-size: 0.85rem;
+				font-weight: 800;
+				color: #0f172a;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.email-timing-pill {
+				font-size: 0.75rem;
+				font-weight: 700;
+				color: #64748b;
+				background: #e2e8f0;
+				padding: 0.2rem 0.55rem;
+				border-radius: 6px;
+			}
+
+			.email-card-body {
+				padding: 1.5rem;
+			}
+
+			.email-meta-row {
+				margin-bottom: 1.15rem;
+				font-size: 0.9rem;
+			}
+
+			.meta-label {
+				font-weight: 700;
+				color: #475569;
+				display: inline-block;
+				width: 90px;
+			}
+
+			.meta-subject {
+				font-weight: 800;
+				color: #0f172a;
+				font-size: 1.05rem;
+			}
+
+			.meta-preview {
+				color: #64748b;
+				font-style: italic;
+			}
+
+			.lesson-box {
+				background: rgba(124, 58, 237, 0.04);
+				border-left: 3px solid var(--brand-purple);
+				border-radius: 0 8px 8px 0;
+				padding: 0.95rem 1.15rem;
+				margin-bottom: 1.25rem;
+			}
+
+			.lesson-title {
+				font-size: 0.92rem;
+				font-weight: 800;
+				color: var(--brand-purple-dark);
+				margin: 0 0 0.35rem;
+			}
+
+			.lesson-text {
+				font-size: 0.85rem;
+				color: #334155;
+				line-height: 1.5;
+				margin: 0;
+			}
+
+			.prompts-box {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 10px;
+				padding: 1rem 1.25rem;
+				margin-bottom: 1.25rem;
+			}
+
+			.prompts-title {
+				font-size: 0.85rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				color: #475569;
+				margin: 0 0 0.5rem;
+			}
+
+			.prompts-list {
+				margin: 0;
+				padding-left: 1.2rem;
+				font-size: 0.85rem;
+				color: #1e293b;
+				line-height: 1.55;
+			}
+
+			.action-cue-box {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: #2563eb;
+				background: #eff6ff;
+				padding: 0.65rem 0.9rem;
+				border-radius: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+
+		<main class="email-studio-container">
+			<!-- Header -->
+			<div class="studio-header">
+				<span class="studio-badge">Automated Email Engine • Internal Sequences</span>
+				<h1 class="studio-title">BMS Tracking Sheet: Automated Email Sequences</h1>
+				<p class="studio-desc">
+					Daily evening check-ins, weekly trendline audits, and monthly reviews sent to tracking subscribers. Each email takes less than 60 seconds to read, teaches one bite-sized micro-fact, and prompts the reader to log food, water pH, and pain levels on their Tracking Sheet.
+				</p>
+			</div>
+
+			<!-- Cadence Overview -->
+			<div class="cadence-grid">
+				<div class="cadence-card">
+					<span class="cadence-tag">Days 1 to 14 • Daily</span>
+					<h3 class="cadence-name">Daily 7:00 PM Check-In</h3>
+					<p class="cadence-desc">
+						Gentle evening prompt reminding patients to log morning vs. evening pain, mouth dryness (1-5), water source, and food intake before bed.
+					</p>
+				</div>
+
+				<div class="cadence-card">
+					<span class="cadence-tag">Every Sunday • Weekly</span>
+					<h3 class="cadence-name">Weekly Trendline Audit</h3>
+					<p class="cadence-desc">
+						Guides patients to look back across 7 days of logs to detect 48-to-72 hour delayed carbohydrate rebounds and salivary buffer dips.
+					</p>
+				</div>
+
+				<div class="cadence-card">
+					<span class="cadence-tag">Day 30 • Monthly</span>
+					<h3 class="cadence-name">Monthly Doctor-Ready Summary</h3>
+					<p class="cadence-desc">
+						Generates a clean 30-day statistical summary sheet (averages, confirmed food triggers, and flossing scores) to take to their next clinician visit.
+					</p>
+				</div>
+			</div>
+
+			<!-- Email Sequences -->
+			<div class="email-cards-list">
+				{emailTemplates.map((email) => (
+					<div class="email-card">
+						<div class="email-card-header">
+							<div class="email-day-badge">
+								<span>📬</span> Day {email.day} Sequence
+							</div>
+							<div class="email-timing-pill">{email.cadence}</div>
+						</div>
+
+						<div class="email-card-body">
+							<div class="email-meta-row">
+								<div><span class="meta-label">Subject:</span> <span class="meta-subject">{email.subject}</span></div>
+								<div><span class="meta-label">Preview:</span> <span class="meta-preview">{email.preview_text}</span></div>
+							</div>
+
+							<div class="lesson-box">
+								<div class="lesson-title">💡 60-Second Micro-Fact: {email.micro_lesson_title}</div>
+								<p class="lesson-text">{email.micro_lesson}</p>
+							</div>
+
+							<div class="prompts-box">
+								<div class="prompts-title">Tonight's 60-Second Tracking Prompts:</div>
+								<ul class="prompts-list">
+									{email.daily_tracking_prompts.map((p) => (
+										<li>{p}</li>
+									))}
+								</ul>
+							</div>
+
+							<div class="action-cue-box">
+								<span>📝</span>
+								<span><strong>Tonight's Action:</strong> {email.action_cue}</span>
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</main>
+
+		<Footer />
+	</body>
+</html>
