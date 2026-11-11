@@ -1,0 +1,409 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title={`BMS Tracking Sheet (Free Download & Email Reminders) | ${SITE_TITLE}`} 
+			description="Download the free BMS Tracking Sheet (Version 2.1). A doctor-ready 14-day daily flare log, food elimination tracker, and baseline hardware audit with automatic email reminders."
+		/>
+		<style>
+			:root {
+				--brand-purple: #7c3aed;
+				--brand-purple-dark: #581c87;
+				--bg-soft: #f8fafc;
+				--border-card: #e2e8f0;
+			}
+
+			.tracking-wrapper {
+				max-width: 1040px;
+				margin: 2rem auto 6rem;
+				padding: 0 1.5rem;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif;
+			}
+
+			/* Hero Box */
+			.tracking-hero {
+				background: linear-gradient(135deg, #090514 0%, #1e0b38 50%, #2a0845 100%);
+				color: #ffffff;
+				padding: 3rem 2.5rem;
+				border-radius: 20px;
+				margin-bottom: 2rem;
+				box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				text-align: center;
+			}
+
+			.version-pill {
+				display: inline-block;
+				background: rgba(168, 85, 247, 0.2);
+				color: #e9d5ff;
+				border: 1px solid rgba(168, 85, 247, 0.4);
+				padding: 0.3rem 0.85rem;
+				border-radius: 9999px;
+				font-size: 0.8rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+				margin-bottom: 1.25rem;
+			}
+
+			.hero-title {
+				font-size: clamp(2rem, 3.8vw, 3rem);
+				font-weight: 800;
+				line-height: 1.15;
+				margin: 0 0 1rem;
+				letter-spacing: -0.025em;
+				color: #ffffff;
+				text-wrap: balance;
+			}
+
+			.hero-desc {
+				font-size: clamp(1rem, 1.4vw, 1.15rem);
+				color: #e9d5ff;
+				max-width: 760px;
+				margin: 0 auto 2rem;
+				line-height: 1.6;
+				text-wrap: pretty;
+			}
+
+			/* Email Signup Card */
+			.signup-card {
+				background: #ffffff;
+				border: 2px solid #cbd5e1;
+				border-radius: 18px;
+				padding: 2.25rem 2rem;
+				margin-bottom: 3rem;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+				text-align: center;
+			}
+
+			.signup-title {
+				font-size: 1.45rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.5rem;
+				letter-spacing: -0.015em;
+			}
+
+			.signup-subtitle {
+				font-size: 0.95rem;
+				color: #64748b;
+				max-width: 680px;
+				margin: 0 auto 1.5rem;
+				line-height: 1.5;
+			}
+
+			.signup-form {
+				max-width: 580px;
+				margin: 0 auto;
+			}
+
+			.input-wrapper {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.65rem;
+				justify-content: center;
+			}
+
+			.email-field {
+				flex: 1 1 300px;
+				padding: 0.85rem 1.15rem;
+				font-size: 1rem;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 10px;
+				outline: none;
+				transition: border-color 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.email-field:focus {
+				border-color: var(--brand-purple);
+				box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+			}
+
+			.submit-btn {
+				background: var(--brand-purple);
+				color: #ffffff;
+				font-weight: 700;
+				font-size: 1rem;
+				padding: 0.85rem 1.65rem;
+				border-radius: 10px;
+				border: none;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+			}
+
+			.submit-btn:hover {
+				background: #6d28d9;
+				transform: translateY(-1px);
+			}
+
+			.signup-benefits {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 1.5rem;
+				margin-top: 1.25rem;
+				font-size: 0.82rem;
+				color: #64748b;
+			}
+
+			.benefit-item {
+				display: flex;
+				align-items: center;
+				gap: 0.35rem;
+			}
+
+			/* Two-Part Architecture Preview */
+			.parts-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 1.5rem;
+				margin-bottom: 3rem;
+			}
+
+			.part-card {
+				background: #ffffff;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 1.75rem;
+				box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+			}
+
+			.part-tag {
+				font-size: 0.75rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: var(--brand-purple);
+				background: rgba(124, 58, 237, 0.08);
+				padding: 0.25rem 0.65rem;
+				border-radius: 6px;
+				display: inline-block;
+				margin-bottom: 0.75rem;
+			}
+
+			.part-title {
+				font-size: 1.2rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.5rem;
+			}
+
+			.part-desc {
+				font-size: 0.88rem;
+				color: #475569;
+				line-height: 1.5;
+				margin-bottom: 1rem;
+			}
+
+			.part-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				font-size: 0.85rem;
+				color: #334155;
+			}
+
+			.part-list li {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.5rem;
+			}
+
+			.part-list li::before {
+				content: '✓';
+				color: #16a34a;
+				font-weight: 800;
+			}
+
+			/* Changelog Box */
+			.changelog-card {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 14px;
+				padding: 1.5rem 1.75rem;
+				margin-bottom: 3rem;
+			}
+
+			.changelog-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 0.75rem;
+				border-bottom: 1px solid #e2e8f0;
+				padding-bottom: 0.5rem;
+			}
+
+			.changelog-title {
+				font-size: 1rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0;
+			}
+
+			.changelog-date {
+				font-size: 0.8rem;
+				font-weight: 600;
+				color: #64748b;
+			}
+
+			.changelog-list {
+				margin: 0;
+				padding-left: 1.25rem;
+				font-size: 0.85rem;
+				line-height: 1.6;
+				color: #475569;
+			}
+
+			/* Interactive Live Preview Box */
+			.preview-card {
+				background: #ffffff;
+				border: 1px solid #cbd5e1;
+				border-radius: 14px;
+				padding: 1.75rem;
+				text-align: center;
+			}
+
+			.preview-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				background: #0f172a;
+				color: #ffffff;
+				font-size: 0.95rem;
+				font-weight: 700;
+				padding: 0.85rem 1.75rem;
+				border-radius: 10px;
+				text-decoration: none;
+				transition: background 0.2s ease;
+			}
+
+			.preview-btn:hover {
+				background: var(--brand-purple);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+
+		<main class="tracking-wrapper">
+			<!-- Hero Header -->
+			<div class="tracking-hero">
+				<span class="version-pill">Version 2.1 • November 2026 Release</span>
+				<h1 class="hero-title">The BMS Tracking Sheet</h1>
+				<p class="hero-desc">
+					Stop relying on vague memories during rushed 15-minute consultations. The BMS Tracking Sheet turns your daily pain into clear, objective forensic data that dentists and doctors can immediately verify.
+				</p>
+			</div>
+
+			<!-- Email Capture & Free Download -->
+			<div class="signup-card">
+				<h2 class="signup-title">Download Free Template &amp; Get Email Reminders</h2>
+				<p class="signup-subtitle">
+					Enter your email below to instantly receive the printable PDF Tracking Sheet. You can also opt-in to gentle daily or weekly tracking reminder emails, plus automatic changelog alerts whenever new diagnostic questions are added.
+				</p>
+
+				<!-- Direct MailerLite Form -->
+				<form class="signup-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
+					<div class="input-wrapper">
+						<input 
+							type="email" 
+							name="fields[email]" 
+							placeholder="Enter your email address..." 
+							required 
+							aria-label="Email address"
+							class="email-field"
+						/>
+						<button type="submit" class="submit-btn">Get Free Sheet &amp; Reminders</button>
+					</div>
+				</form>
+
+				<div class="signup-benefits">
+					<div class="benefit-item">
+						<span>📄</span> Free Instant PDF Download
+					</div>
+					<div class="benefit-item">
+						<span>⏰</span> Optional Evening Log Reminders
+					</div>
+					<div class="benefit-item">
+						<span>🔔</span> Version 2.2 Changelog Alerts
+					</div>
+					<div class="benefit-item">
+						<span>🔒</span> Zero spam • 1-click unsubscribe
+					</div>
+				</div>
+			</div>
+
+			<!-- What is Inside: Two-Part Architecture -->
+			<div class="parts-grid">
+				<!-- Part 1: Baseline Hardware Audit -->
+				<div class="part-card">
+					<span class="part-tag">Part 1 • One-Time Intake</span>
+					<h3 class="part-title">The Baseline Hardware Audit</h3>
+					<p class="part-desc">
+						A comprehensive 1-page baseline record mapping the physical state of your mouth before beginning treatment or dietary trials.
+					</p>
+					<ul class="part-list">
+						<li><strong>Teeth &amp; Margins:</strong> Mapping receded cervical root collars and old crown gaps.</li>
+						<li><strong>3 to 4 mm Gum Pockets:</strong> Identifying subgingival bacterial acid incubation zones.</li>
+						<li><strong>Canine Guidance &amp; Bite Pressure:</strong> Screening for lateral tooth flexure and PDL ischemia.</li>
+						<li><strong>Craniofacial Spillover:</strong> Bilateral 0 to 10 grading for ear fullness and eye fatigue.</li>
+					</ul>
+				</div>
+
+				<!-- Part 2: 14-Day Flare & Elimination Log -->
+				<div class="part-card">
+					<span class="part-tag">Part 2 • Daily Tracking</span>
+					<h3 class="part-title">The 14-Day Daily Flare Log</h3>
+					<p class="part-desc">
+						A simple morning and evening log designed to catch delayed 72-hour food rebounds and salivary buffer shifts.
+					</p>
+					<ul class="part-list">
+						<li><strong>Morning vs. Evening Severity:</strong> Tracking the 2 PM circadian salivary drop.</li>
+						<li><strong>The Chewing Paradox:</strong> Checking if meal mastication temporarily relieves burning.</li>
+						<li><strong>Delayed 72-Hour Food Tracker:</strong> Correlating Sunday flares with Friday carbohydrates.</li>
+						<li><strong>Water Acidity Check:</strong> Logging the verified pH of your daily drinking water.</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Changelog Box -->
+			<div class="changelog-card">
+				<div class="changelog-header">
+					<h4 class="changelog-title">Version 2.1 Changelog (What Was Just Added)</h4>
+					<span class="changelog-date">Updated November 2026</span>
+				</div>
+				<ul class="changelog-list">
+					<li><strong>Bilateral Craniofacial Spillover Scoring:</strong> Added side-by-side Left/Right 0 to 10 rating tables for Ear Fullness (Auriculotemporal V3) and Eye Fatigue / Light Sensitivity (Ophthalmic V1).</li>
+					<li><strong>Periodontal Pocket Screening:</strong> Added explicit check for 3 to 4 mm sulci acting as oxygen-poor bacterial lactic acid reservoirs.</li>
+					<li><strong>Canine Occlusal Shear Audit:</strong> Added checks for tooth 33 / canine guidance wear facets and nocturnal clenching pressure.</li>
+					<li><strong>Water Acidity Testing Field:</strong> Added space to log narrow-range liquid pH readings for daily drinking water.</li>
+				</ul>
+			</div>
+
+			<!-- Link to Book & Online Interactive Questionnaire -->
+			<div class="preview-card">
+				<h3 style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem;">Prefer to Fill It Out Online?</h3>
+				<p style="font-size: 0.9rem; color: #64748b; max-width: 600px; margin: 0 auto 1.25rem; line-height: 1.5;">
+					You can also fill out the interactive version directly inside Chapter 13 of our book reader. Answers are automatically and securely saved in your browser.
+				</p>
+				<a href="/book#chapter-13" class="preview-btn">
+					<span>Open Interactive Questionnaire in Book</span>
+					<span>&rarr;</span>
+				</a>
+			</div>
+		</main>
+
+		<Footer />
+	</body>
+</html>
