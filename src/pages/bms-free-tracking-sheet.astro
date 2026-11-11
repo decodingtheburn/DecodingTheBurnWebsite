@@ -21,8 +21,8 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.free-tracking-container {
-				max-width: 1040px;
-				margin: 2rem auto 6rem;
+				max-width: 980px;
+				margin: 2rem auto 5rem;
 				padding: 0 1.5rem;
 				font-family: 'Inter', system-ui, -apple-system, sans-serif;
 			}
@@ -30,8 +30,8 @@ import { SITE_TITLE } from '../consts';
 			.hero-card {
 				background: linear-gradient(135deg, #090514 0%, #1e0b38 50%, #2a0845 100%);
 				color: #ffffff;
-				padding: 3rem 2.5rem 2.5rem;
-				border-radius: 20px;
+				padding: 3rem 2rem 2.5rem;
+				border-radius: 24px;
 				margin-bottom: 2rem;
 				box-shadow: 0 20px 45px rgba(0,0,0,0.3);
 				border: 1px solid rgba(255, 255, 255, 0.1);
@@ -41,41 +41,41 @@ import { SITE_TITLE } from '../consts';
 			.version-label {
 				display: block;
 				color: #e9d5ff;
-				font-size: 0.85rem;
+				font-size: 0.82rem;
 				font-weight: 700;
 				letter-spacing: 0.05em;
 				text-transform: uppercase;
-				margin-bottom: 1.25rem;
+				margin-bottom: 1rem;
 			}
 
 			.hero-title {
-				font-size: clamp(2rem, 3.8vw, 3rem);
+				font-size: clamp(2rem, 3.8vw, 2.9rem);
 				font-weight: 800;
 				line-height: 1.15;
-				margin: 0 0 1rem;
+				margin: 0 0 0.85rem;
 				letter-spacing: -0.025em;
 				color: #ffffff;
 				text-wrap: balance;
 			}
 
 			.hero-desc {
-				font-size: clamp(1rem, 1.4vw, 1.15rem);
+				font-size: clamp(0.95rem, 1.3vw, 1.1rem);
 				color: #e9d5ff;
-				max-width: 760px;
-				margin: 0 auto 2rem;
-				line-height: 1.6;
+				max-width: 680px;
+				margin: 0 auto 1.75rem;
+				line-height: 1.55;
 				text-wrap: pretty;
 			}
 
 			/* Mockup Image Presentation */
 			.mockup-wrapper {
-				max-width: 860px;
-				margin: 0 auto 1.5rem;
+				max-width: 780px;
+				margin: 0 auto 2rem;
 				position: relative;
-				border-radius: 18px;
+				border-radius: 16px;
 				overflow: hidden;
-				box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-				border: 1px solid rgba(255, 255, 255, 0.15);
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+				border: 1px solid rgba(255, 255, 255, 0.12);
 				background: #0d061c;
 			}
 
@@ -85,148 +85,118 @@ import { SITE_TITLE } from '../consts';
 				display: block;
 			}
 
-			/* Download Box & Action Buttons */
-			.download-card {
-				background: #ffffff;
-				border: 2px solid #cbd5e1;
+			/* Integrated CTA inside purple box under image */
+			.integrated-cta-box {
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid rgba(168, 85, 247, 0.35);
 				border-radius: 18px;
-				padding: 2.25rem 2rem;
-				margin-bottom: 2.5rem;
-				box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-				text-align: center;
-			}
-
-			.action-buttons-row {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 1rem;
-				justify-content: center;
-				margin-bottom: 2rem;
-			}
-
-			.btn-direct-download {
-				background: #16a34a;
-				color: #ffffff;
-				font-weight: 800;
-				font-size: 1.05rem;
-				padding: 0.95rem 1.85rem;
-				border-radius: 12px;
-				text-decoration: none;
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25);
-				transition: all 0.2s ease;
-			}
-
-			.btn-direct-download:hover {
-				background: #15803d;
-				transform: translateY(-2px);
-				box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
-			}
-
-			.btn-reminder-scroll {
-				background: var(--brand-purple);
-				color: #ffffff;
-				font-weight: 800;
-				font-size: 1.05rem;
-				padding: 0.95rem 1.85rem;
-				border-radius: 12px;
-				text-decoration: none;
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
-				transition: all 0.2s ease;
-			}
-
-			.btn-reminder-scroll:hover {
-				background: #6d28d9;
-				transform: translateY(-2px);
-			}
-
-			/* Email reminder section */
-			.reminder-section {
-				border-top: 1px solid #e2e8f0;
-				padding-top: 2rem;
-				margin-top: 1rem;
-			}
-
-			.reminder-title {
-				font-size: 1.25rem;
-				font-weight: 800;
-				color: #0f172a;
-				margin: 0 0 0.5rem;
-			}
-
-			.reminder-subtitle {
-				font-size: 0.92rem;
-				color: #64748b;
-				max-width: 620px;
-				margin: 0 auto 1.5rem;
-				line-height: 1.5;
-			}
-
-			.signup-form {
-				max-width: 580px;
+				padding: 1.75rem 1.5rem 1.5rem;
+				max-width: 520px;
 				margin: 0 auto;
+				backdrop-filter: blur(8px);
 			}
 
-			.input-wrapper {
+			.cta-heading {
+				font-size: 1.2rem;
+				font-weight: 800;
+				color: #ffffff;
+				margin: 0 0 0.35rem;
+			}
+
+			.cta-subtext {
+				font-size: 0.88rem;
+				color: #d8b4fe;
+				margin: 0 0 1.25rem;
+				line-height: 1.4;
+			}
+
+			.compact-form {
+				max-width: 440px;
+				margin: 0 auto 1rem;
+			}
+
+			.compact-input-row {
 				display: flex;
-				flex-wrap: wrap;
-				gap: 0.65rem;
+				gap: 0.5rem;
 				justify-content: center;
+				align-items: center;
 			}
 
-			.email-field {
-				flex: 1 1 300px;
-				padding: 0.85rem 1.15rem;
-				font-size: 1rem;
-				border: 1.5px solid #cbd5e1;
-				border-radius: 10px;
+			.compact-email-input {
+				flex: 1;
+				max-width: 250px;
+				padding: 0.7rem 0.95rem;
+				font-size: 0.92rem;
+				border-radius: 8px;
+				border: 1.5px solid rgba(168, 85, 247, 0.45);
+				background: rgba(15, 7, 30, 0.85);
+				color: #ffffff;
 				outline: none;
+				transition: border-color 0.2s ease;
 			}
 
-			.email-field:focus {
-				border-color: var(--brand-purple);
-				box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+			.compact-email-input:focus {
+				border-color: #c084fc;
+				box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.2);
 			}
 
-			.submit-btn {
-				background: #0f172a;
+			.compact-submit-btn {
+				background: #9333ea;
 				color: #ffffff;
 				font-weight: 700;
-				font-size: 1rem;
-				padding: 0.85rem 1.65rem;
-				border-radius: 10px;
+				font-size: 0.9rem;
+				padding: 0.7rem 1.15rem;
+				border-radius: 8px;
 				border: none;
 				cursor: pointer;
+				white-space: nowrap;
 				transition: all 0.2s ease;
 			}
 
-			.submit-btn:hover {
-				background: #1e293b;
+			.compact-submit-btn:hover {
+				background: #a855f7;
 				transform: translateY(-1px);
+			}
+
+			/* Free direct download link under input */
+			.free-pdf-link-wrap {
+				margin-top: 0.75rem;
+			}
+
+			.free-pdf-link {
+				color: #e9d5ff;
+				font-size: 0.85rem;
+				font-weight: 600;
+				text-decoration: underline;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				transition: color 0.2s ease;
+			}
+
+			.free-pdf-link:hover {
+				color: #ffffff;
 			}
 
 			/* Version history minimal box */
 			.versions-box {
 				background: #f8fafc;
 				border: 1px solid #e2e8f0;
-				border-radius: 14px;
-				padding: 1.25rem 1.5rem;
+				border-radius: 12px;
+				padding: 1rem 1.25rem;
 				text-align: center;
 				color: #64748b;
-				font-size: 0.85rem;
+				font-size: 0.82rem;
+				max-width: 600px;
+				margin: 0 auto;
 			}
 
 			.versions-list {
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: center;
-				gap: 1.5rem;
-				margin-top: 0.5rem;
+				gap: 1.25rem;
+				margin-top: 0.35rem;
 				font-weight: 600;
 				color: #334155;
 			}
@@ -236,7 +206,7 @@ import { SITE_TITLE } from '../consts';
 		<Header />
 
 		<main class="free-tracking-container">
-			<!-- Hero -->
+			<!-- Hero Card with Integrated CTA -->
 			<div class="hero-card">
 				<span class="version-label">Always Up-To-Date • 100% Free</span>
 				<h1 class="hero-title">The Free BMS Tracking Sheet</h1>
@@ -253,44 +223,35 @@ import { SITE_TITLE } from '../consts';
 						loading="eager"
 					/>
 				</div>
-			</div>
 
-			<!-- Main Actions Card: 2 Buttons -->
-			<div class="download-card">
-				<div class="action-buttons-row">
-					<!-- Button 1: Free Download (No login required) -->
-					<a href="/bms-clinical-intake-questionnaire.pdf" download class="btn-direct-download">
-						<span>⬇</span>
-						<span>Free PDF Download</span>
-					</a>
-
-					<!-- Button 2: Receive Reminders -->
-					<a href="#reminders" class="btn-reminder-scroll">
-						<span>🔔</span>
-						<span>Receive Daily Reminders</span>
-					</a>
-				</div>
-
-				<!-- Email Reminder Section -->
-				<div id="reminders" class="reminder-section">
-					<h2 class="reminder-title">Receive Email Tracking Reminders</h2>
-					<p class="reminder-subtitle">
-						Enter your email to receive gentle evening reminders and automatic updates whenever new diagnostic markers are added.
+				<!-- Integrated CTA Box inside Purple Section -->
+				<div class="integrated-cta-box">
+					<h2 class="cta-heading">Tracking Reminders</h2>
+					<p class="cta-subtext">
+						Get daily reminders and automatic notifications when new markers are added.
 					</p>
 
-					<form class="signup-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
-						<div class="input-wrapper">
+					<form class="compact-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
+						<div class="compact-input-row">
 							<input 
 								type="email" 
 								name="fields[email]" 
-								placeholder="Enter your email for reminders..." 
+								placeholder="Enter email..." 
 								required 
 								aria-label="Email address"
-								class="email-field"
+								class="compact-email-input"
 							/>
-							<button type="submit" class="submit-btn">Get Reminders</button>
+							<button type="submit" class="compact-submit-btn">Get Reminders</button>
 						</div>
 					</form>
+
+					<!-- Free PDF direct link directly under the input box -->
+					<div class="free-pdf-link-wrap">
+						<a href="/bms-clinical-intake-questionnaire.pdf" download class="free-pdf-link">
+							<span>⬇</span>
+							<span>Or download free PDF directly (no email required)</span>
+						</a>
+					</div>
 				</div>
 			</div>
 
