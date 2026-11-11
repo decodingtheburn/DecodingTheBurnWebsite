@@ -1,0 +1,300 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title={`The Free BMS Tracking Sheet (Version 2.1) | ${SITE_TITLE}`} 
+			description="Download the always up-to-date, 100% free BMS Tracking Sheet. A doctor-ready 14-day daily flare log, food elimination tracker, and baseline hardware audit."
+		/>
+		<style>
+			:root {
+				--brand-purple: #7c3aed;
+				--brand-purple-dark: #581c87;
+				--bg-soft: #f8fafc;
+				--border-card: #e2e8f0;
+			}
+
+			.free-tracking-container {
+				max-width: 1040px;
+				margin: 2rem auto 6rem;
+				padding: 0 1.5rem;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif;
+			}
+
+			.hero-card {
+				background: linear-gradient(135deg, #090514 0%, #1e0b38 50%, #2a0845 100%);
+				color: #ffffff;
+				padding: 3rem 2.5rem;
+				border-radius: 20px;
+				margin-bottom: 2rem;
+				box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				text-align: center;
+			}
+
+			.version-label {
+				display: block;
+				color: #e9d5ff;
+				font-size: 0.85rem;
+				font-weight: 700;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+				margin-bottom: 1.25rem;
+			}
+
+			.hero-title {
+				font-size: clamp(2rem, 3.8vw, 3rem);
+				font-weight: 800;
+				line-height: 1.15;
+				margin: 0 0 1rem;
+				letter-spacing: -0.025em;
+				color: #ffffff;
+				text-wrap: balance;
+			}
+
+			.hero-desc {
+				font-size: clamp(1rem, 1.4vw, 1.15rem);
+				color: #e9d5ff;
+				max-width: 760px;
+				margin: 0 auto 2rem;
+				line-height: 1.6;
+				text-wrap: pretty;
+			}
+
+			/* Download Box */
+			.download-card {
+				background: #ffffff;
+				border: 2px solid #cbd5e1;
+				border-radius: 18px;
+				padding: 2.25rem 2rem;
+				margin-bottom: 2.5rem;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+				text-align: center;
+			}
+
+			.download-title {
+				font-size: 1.45rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.5rem;
+			}
+
+			.download-subtitle {
+				font-size: 0.95rem;
+				color: #64748b;
+				max-width: 680px;
+				margin: 0 auto 1.5rem;
+				line-height: 1.5;
+			}
+
+			.signup-form {
+				max-width: 580px;
+				margin: 0 auto;
+			}
+
+			.input-wrapper {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.65rem;
+				justify-content: center;
+			}
+
+			.email-field {
+				flex: 1 1 300px;
+				padding: 0.85rem 1.15rem;
+				font-size: 1rem;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 10px;
+				outline: none;
+			}
+
+			.email-field:focus {
+				border-color: var(--brand-purple);
+				box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+			}
+
+			.submit-btn {
+				background: var(--brand-purple);
+				color: #ffffff;
+				font-weight: 700;
+				font-size: 1rem;
+				padding: 0.85rem 1.65rem;
+				border-radius: 10px;
+				border: none;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+
+			.submit-btn:hover {
+				background: #6d28d9;
+				transform: translateY(-1px);
+			}
+
+			/* Banner for AI Smart Tracker */
+			.ai-upgrade-banner {
+				background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+				border: 2px solid #e879f9;
+				border-radius: 16px;
+				padding: 1.5rem 2rem;
+				margin-bottom: 2.5rem;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1.25rem;
+			}
+
+			.ai-upgrade-text h3 {
+				font-size: 1.15rem;
+				font-weight: 800;
+				color: #701a75;
+				margin: 0 0 0.35rem;
+			}
+
+			.ai-upgrade-text p {
+				font-size: 0.88rem;
+				color: #86198f;
+				margin: 0;
+				line-height: 1.5;
+			}
+
+			.ai-upgrade-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				background: #c026d3;
+				color: #ffffff;
+				font-weight: 700;
+				font-size: 0.9rem;
+				padding: 0.75rem 1.35rem;
+				border-radius: 10px;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			.ai-upgrade-btn:hover {
+				background: #a21caf;
+				transform: translateY(-1px);
+			}
+
+			/* Grid layout for sheet contents */
+			.features-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 1.5rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.feature-card {
+				background: #ffffff;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 14px;
+				padding: 1.5rem;
+			}
+
+			.feature-title {
+				font-size: 1.1rem;
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0 0 0.5rem;
+			}
+
+			.feature-desc {
+				font-size: 0.88rem;
+				color: #475569;
+				line-height: 1.55;
+				margin: 0;
+			}
+
+			.changelog-box {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 14px;
+				padding: 1.5rem 1.75rem;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+
+		<main class="free-tracking-container">
+			<!-- Hero -->
+			<div class="hero-card">
+				<span class="version-label">Version 2.1 • Always Up-To-Date • 100% Free</span>
+				<h1 class="hero-title">The Free BMS Tracking Sheet</h1>
+				<p class="hero-desc">
+					Download the doctor-ready tracking sheet used by patients to map daily morning-to-evening pain curves, 72-hour food rebounds, and physical oral hardware leaks.
+				</p>
+			</div>
+
+			<!-- AI Upgrade Teaser -->
+			<div class="ai-upgrade-banner">
+				<div class="ai-upgrade-text">
+					<h3>Tired of Logging on Paper? Meet the AI Smart Tracker</h3>
+					<p>Want an AI health partner to check in daily via text or voice, calculate your 72-hour delay curves, and generate clinician reports? Early presale access is now open.</p>
+				</div>
+				<a href="/smart-tracker" class="ai-upgrade-btn">
+					<span>Explore AI Smart Tracker</span>
+					<span>&rarr;</span>
+				</a>
+			</div>
+
+			<!-- Free Download Box -->
+			<div class="download-card">
+				<h2 class="download-title">Download Free Printable PDF &amp; Get Update Alerts</h2>
+				<p class="download-subtitle">
+					Enter your email below to instantly receive the PDF. We will also notify you with automatic changelog updates whenever new diagnostic markers are added to the sheet.
+				</p>
+
+				<form class="signup-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
+					<div class="input-wrapper">
+						<input 
+							type="email" 
+							name="fields[email]" 
+							placeholder="Enter your email address..." 
+							required 
+							aria-label="Email address"
+							class="email-field"
+						/>
+						<button type="submit" class="submit-btn">Get Free Sheet (PDF)</button>
+					</div>
+				</form>
+			</div>
+
+			<!-- What is inside -->
+			<div class="features-grid">
+				<div class="feature-card">
+					<h3 class="feature-title">Part 1: The Baseline Hardware Audit</h3>
+					<p class="feature-desc">
+						A 1-time clinical inventory of exposed cervical tooth necks (Tooth 33), 3-to-4 mm gum pockets, crown margins, salivary flow, and bilateral ear/eye trigeminal scores.
+					</p>
+				</div>
+				<div class="feature-card">
+					<h3 class="feature-title">Part 2: The 14-Day Flare &amp; Food Log</h3>
+					<p class="feature-desc">
+						A structured morning vs. 2 PM circadian curve log that correlates pain spikes with what you ate and drank 48 to 72 hours earlier, plus water pH tracking.
+					</p>
+				</div>
+			</div>
+
+			<!-- Changelog -->
+			<div class="changelog-box">
+				<h4 style="margin: 0 0 0.5rem; font-size: 0.95rem; font-weight: 800; color: #0f172a;">Version 2.1 Changelog</h4>
+				<ul style="margin: 0; padding-left: 1.25rem; font-size: 0.85rem; color: #475569; line-height: 1.6;">
+					<li>Added Craniofacial Spillover: Bilateral Left/Right 0-10 scoring for Ear Fullness (V3) and Eye Fatigue (V1).</li>
+					<li>Added 3 to 4 mm Periodontal Pocket Screening as subgingival bacterial acid incubation trenches.</li>
+					<li>Added Canine Guidance &amp; Occlusal Shear checks for non-axial bite torque.</li>
+					<li>Added Verified Drinking Water pH logging field.</li>
+				</ul>
+			</div>
+		</main>
+
+		<Footer />
+	</body>
+</html>

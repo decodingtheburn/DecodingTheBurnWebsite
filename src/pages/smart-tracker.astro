@@ -1,0 +1,632 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title={`BMS AI Smart Tracker & Community | ${SITE_TITLE}`} 
+			description="Automate your daily symptom logs with conversational voice and text AI. Spot 72-hour flare patterns, track drinking water pH, and join weekly group coaching."
+		/>
+		<style>
+			:root {
+				--brand-purple: #7c3aed;
+				--brand-purple-dark: #581c87;
+				--bg-slate: #0b0718;
+				--card-bg: #150d2e;
+				--card-border: rgba(168, 85, 247, 0.25);
+			}
+
+			.smart-tracker-page {
+				background: linear-gradient(180deg, #090514 0%, #110926 40%, #0d061c 100%);
+				color: #f1f5f9;
+				min-height: 100vh;
+			}
+
+			.container {
+				max-width: 1180px;
+				margin: 0 auto;
+				padding: 3rem 1.5rem 6rem;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif;
+			}
+
+			/* Hero section */
+			.hero-section {
+				text-align: center;
+				max-width: 920px;
+				margin: 0 auto 4rem;
+				padding-top: 1rem;
+			}
+
+			.hero-eyebrow {
+				display: block;
+				color: #c084fc;
+				font-size: 0.85rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				margin-bottom: 1.25rem;
+			}
+
+			.hero-title {
+				font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+				font-weight: 900;
+				line-height: 1.15;
+				margin: 0 0 1.25rem;
+				letter-spacing: -0.03em;
+				color: #ffffff;
+				text-wrap: balance;
+			}
+
+			.hero-subtitle {
+				font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+				color: #d8b4fe;
+				line-height: 1.6;
+				margin: 0 auto 2.5rem;
+				max-width: 780px;
+				text-wrap: balance;
+			}
+
+			.trust-bar {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 2rem;
+				color: #a855f7;
+				font-size: 0.9rem;
+				font-weight: 600;
+				padding: 1.2rem;
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.07);
+				border-radius: 14px;
+				margin-bottom: 3.5rem;
+			}
+
+			.trust-item {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				color: #e9d5ff;
+			}
+
+			/* Feature Highlights */
+			.section-header {
+				text-align: center;
+				margin-bottom: 3rem;
+			}
+
+			.section-title {
+				font-size: clamp(1.8rem, 3vw, 2.4rem);
+				font-weight: 800;
+				color: #ffffff;
+				margin: 0 0 0.75rem;
+				text-wrap: balance;
+			}
+
+			.section-desc {
+				font-size: 1.05rem;
+				color: #c084fc;
+				max-width: 680px;
+				margin: 0 auto;
+				line-height: 1.6;
+				text-wrap: balance;
+			}
+
+			.features-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 1.75rem;
+				margin-bottom: 5rem;
+			}
+
+			.feature-card {
+				background: rgba(30, 15, 60, 0.45);
+				border: 1px solid rgba(168, 85, 247, 0.2);
+				border-radius: 18px;
+				padding: 2rem;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+				backdrop-filter: blur(10px);
+			}
+
+			.feature-icon {
+				font-size: 2rem;
+				margin-bottom: 1rem;
+				display: inline-block;
+			}
+
+			.feature-heading {
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: #ffffff;
+				margin: 0 0 0.75rem;
+			}
+
+			.feature-text {
+				font-size: 0.95rem;
+				color: #d1d5db;
+				line-height: 1.6;
+				margin: 0;
+			}
+
+			/* Pricing Section */
+			.pricing-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 2rem;
+				align-items: stretch;
+				margin-bottom: 5rem;
+			}
+
+			.pricing-card {
+				background: rgba(22, 11, 46, 0.75);
+				border: 1.5px solid rgba(168, 85, 247, 0.25);
+				border-radius: 22px;
+				padding: 2.75rem 2.25rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				position: relative;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+			}
+
+			.pricing-card.featured {
+				background: linear-gradient(145deg, rgba(45, 18, 92, 0.85) 0%, rgba(26, 10, 56, 0.95) 100%);
+				border: 2px solid #a855f7;
+				transform: scale(1.02);
+				box-shadow: 0 25px 60px rgba(168, 85, 247, 0.25);
+			}
+
+			.tier-tag {
+				color: #c084fc;
+				font-size: 0.8rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				margin-bottom: 0.75rem;
+				display: block;
+			}
+
+			.tier-title {
+				font-size: 1.65rem;
+				font-weight: 800;
+				color: #ffffff;
+				margin: 0 0 0.5rem;
+			}
+
+			.tier-summary {
+				font-size: 0.92rem;
+				color: #d8b4fe;
+				margin: 0 0 1.5rem;
+				line-height: 1.5;
+				min-height: 44px;
+			}
+
+			.tier-price-box {
+				margin-bottom: 1.75rem;
+				padding-bottom: 1.75rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			}
+
+			.tier-amount {
+				font-size: 3rem;
+				font-weight: 900;
+				color: #ffffff;
+				letter-spacing: -0.03em;
+			}
+
+			.tier-cycle {
+				font-size: 1rem;
+				color: #c084fc;
+				font-weight: 600;
+				margin-left: 0.25rem;
+			}
+
+			.tier-note {
+				font-size: 0.8rem;
+				color: #94a3b8;
+				margin-top: 0.35rem;
+			}
+
+			.tier-perks {
+				list-style: none;
+				padding: 0;
+				margin: 0 0 2.25rem;
+				flex-grow: 1;
+			}
+
+			.tier-perks li {
+				position: relative;
+				padding-left: 1.65rem;
+				margin-bottom: 0.9rem;
+				font-size: 0.92rem;
+				color: #e2e8f0;
+				line-height: 1.5;
+			}
+
+			.tier-perks li::before {
+				content: "✓";
+				position: absolute;
+				left: 0;
+				color: #a855f7;
+				font-weight: 800;
+			}
+
+			.pricing-btn {
+				display: block;
+				text-align: center;
+				padding: 1rem 1.5rem;
+				border-radius: 12px;
+				font-size: 1.05rem;
+				font-weight: 700;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			.btn-standard {
+				background: rgba(255, 255, 255, 0.1);
+				color: #ffffff;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.btn-standard:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+
+			.btn-featured {
+				background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+				color: #ffffff;
+				box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+			}
+
+			.btn-featured:hover {
+				background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+				transform: translateY(-2px);
+			}
+
+			/* Presale waitlist form */
+			.presale-box {
+				background: linear-gradient(135deg, rgba(38, 16, 77, 0.8) 0%, rgba(19, 8, 41, 0.95) 100%);
+				border: 1px solid rgba(168, 85, 247, 0.4);
+				border-radius: 20px;
+				padding: 3rem 2.5rem;
+				text-align: center;
+				max-width: 780px;
+				margin: 0 auto 5rem;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+			}
+
+			.presale-title {
+				font-size: 1.85rem;
+				font-weight: 800;
+				color: #ffffff;
+				margin: 0 0 0.75rem;
+			}
+
+			.presale-text {
+				font-size: 1rem;
+				color: #d8b4fe;
+				max-width: 620px;
+				margin: 0 auto 1.75rem;
+				line-height: 1.6;
+			}
+
+			.presale-form {
+				max-width: 520px;
+				margin: 0 auto;
+			}
+
+			.input-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.65rem;
+				justify-content: center;
+			}
+
+			.email-input {
+				flex: 1 1 280px;
+				padding: 0.9rem 1.25rem;
+				font-size: 1rem;
+				border-radius: 10px;
+				border: 1.5px solid rgba(168, 85, 247, 0.4);
+				background: rgba(15, 7, 30, 0.8);
+				color: #ffffff;
+				outline: none;
+			}
+
+			.email-input:focus {
+				border-color: #c084fc;
+				box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.2);
+			}
+
+			.submit-button {
+				background: #9333ea;
+				color: #ffffff;
+				font-weight: 700;
+				font-size: 1rem;
+				padding: 0.9rem 1.75rem;
+				border-radius: 10px;
+				border: none;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+
+			.submit-button:hover {
+				background: #a855f7;
+				transform: translateY(-1px);
+			}
+
+			/* FAQ Section */
+			.faq-grid {
+				max-width: 820px;
+				margin: 0 auto;
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+			}
+
+			.faq-card {
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 1.5rem 1.75rem;
+			}
+
+			.faq-q {
+				font-size: 1.15rem;
+				font-weight: 700;
+				color: #ffffff;
+				margin: 0 0 0.5rem;
+			}
+
+			.faq-a {
+				font-size: 0.95rem;
+				color: #cbd5e1;
+				line-height: 1.6;
+				margin: 0;
+			}
+
+			.free-sheet-link {
+				display: inline-block;
+				margin-top: 2rem;
+				color: #c084fc;
+				text-decoration: underline;
+				font-weight: 600;
+				font-size: 0.95rem;
+			}
+		</style>
+	</head>
+	<body class="smart-tracker-page">
+		<Header />
+
+		<main class="container">
+			<!-- Hero Section -->
+			<section class="hero-section">
+				<span class="hero-eyebrow">Early Access Presale &amp; Community</span>
+				<h1 class="hero-title">BMS AI Smart Tracker</h1>
+				<p class="hero-subtitle">
+					Replace stressful manual paper logs with an AI partner that checks in via voice or text, maps your 72-hour food delay spikes, and arms your dental specialist with clinical proof.
+				</p>
+
+				<div class="trust-bar">
+					<div class="trust-item">
+						<span>🎙️</span>
+						<span>Voice or Text Check-Ins</span>
+					</div>
+					<div class="trust-item">
+						<span>⏱️</span>
+						<span>72-Hour Flare Decay Math</span>
+					</div>
+					<div class="trust-item">
+						<span>📄</span>
+						<span>Doctor-Ready PDF Summaries</span>
+					</div>
+					<div class="trust-item">
+						<span>🔒</span>
+						<span>Strictly Private &amp; Encrypted</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- Value Proposition Grid -->
+			<section>
+				<div class="section-header">
+					<h2 class="section-title">How the AI Smart Tracker Works</h2>
+					<p class="section-desc">
+						Designed specifically around trigeminal nerve physiology, circadian burn cycles, and delayed food irritations.
+					</p>
+				</div>
+
+				<div class="features-grid">
+					<div class="feature-card">
+						<div class="feature-icon">🗣️</div>
+						<h3 class="feature-heading">Daily Voice &amp; Text Conversations</h3>
+						<p class="feature-text">
+							Every evening, simply talk to your AI tracker on your phone or computer. Speak naturally about what you ate, how dry your mouth feels, and how severe your symptoms are.
+						</p>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">📈</div>
+						<h3 class="feature-heading">Automatic 72-Hour Delay Detection</h3>
+						<p class="feature-text">
+							BMS food triggers rarely ignite immediate pain. The AI algorithm correlates today's burning flare with meals and acidic drinks consumed 48 to 72 hours ago.
+						</p>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">🩺</div>
+						<h3 class="feature-heading">Clinician-Grade Appointment Briefs</h3>
+						<p class="feature-text">
+							Export clean, professional 1-page reports before seeing your dentist, endodontist, or neurologist. Show documented trends instead of relying on memory.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- 3 Pricing Tiers -->
+			<section id="pricing">
+				<div class="section-header">
+					<h2 class="section-title">Choose Your Presale Plan</h2>
+					<p class="section-desc">
+						Lock in early-bird founding rates before our general public launch.
+					</p>
+				</div>
+
+				<div class="pricing-grid">
+					<!-- Tier 1: $20/month -->
+					<div class="pricing-card">
+						<div>
+							<span class="tier-tag">Software Plan</span>
+							<h3 class="tier-title">AI Smart Tracker</h3>
+							<p class="tier-summary">Conversational daily logging for independent self-trackers.</p>
+							
+							<div class="tier-price-box">
+								<span class="tier-amount">$20</span>
+								<span class="tier-cycle">/ month</span>
+								<div class="tier-note">Billed monthly. Cancel anytime.</div>
+							</div>
+
+							<ul class="tier-perks">
+								<li>Daily evening check-in via Voice or Text</li>
+								<li>Automated food intake and beverage logging</li>
+								<li>Salivary dryness &amp; water pH correlation</li>
+								<li>72-hour delayed flare pattern detection</li>
+								<li>One-click PDF reports for doctor appointments</li>
+								<li>Free version updates &amp; new diagnostic markers</li>
+							</ul>
+						</div>
+
+						<a href="#presale-signup" class="pricing-btn btn-standard">
+							Lock In $20/mo Presale
+						</a>
+					</div>
+
+					<!-- Tier 2: $150/month (Featured) -->
+					<div class="pricing-card featured">
+						<div>
+							<span class="tier-tag" style="color: #f0abfc;">Most Popular • Complete Guidance</span>
+							<h3 class="tier-title">Group Coaching &amp; Support</h3>
+							<p class="tier-summary">Direct access to research reviews, live group calls, and guided root-cause exploration.</p>
+							
+							<div class="tier-price-box">
+								<span class="tier-amount">$150</span>
+								<span class="tier-cycle">/ month</span>
+								<div class="tier-note">Billed monthly. Limited founding cohorts.</div>
+							</div>
+
+							<ul class="tier-perks">
+								<li><strong>Everything in AI Smart Tracker ($20/mo value)</strong></li>
+								<li>Weekly live group coaching webinars with Denis Ethier</li>
+								<li>Interactive Q&amp;A on dental hardware, nerve recovery &amp; nutrition</li>
+								<li>Personal review of your 14-day trend graphs</li>
+								<li>Curated specialist interview question preparation</li>
+								<li>Private patient community circle for daily encouragement</li>
+							</ul>
+						</div>
+
+						<a href="#presale-signup" class="pricing-btn btn-featured">
+							Join Group Coaching Presale
+						</a>
+					</div>
+
+					<!-- Tier 3: $2,000 5-Year Access -->
+					<div class="pricing-card">
+						<div>
+							<span class="tier-tag">Founder Pass</span>
+							<h3 class="tier-title">5-Year Full Access</h3>
+							<p class="tier-summary">Long-term commitment for dedicated healing and continuous support.</p>
+							
+							<div class="tier-price-box">
+								<span class="tier-amount">$2,000</span>
+								<span class="tier-cycle">for 5 Years</span>
+								<div class="tier-note">Single one-time payment. Saves over 75%.</div>
+							</div>
+
+							<ul class="tier-perks">
+								<li><strong>Full 5-year uninterrupted access to AI Smart Tracker</strong></li>
+								<li><strong>Full 5-year access to all weekly group coaching webinars</strong></li>
+								<li>Complete archive of all past research recordings &amp; slides</li>
+								<li>Priority email feedback on complex dental imaging findings</li>
+								<li>VIP founder roadmap access to test new tracker features first</li>
+								<li>Guaranteed rate freeze forever</li>
+							</ul>
+						</div>
+
+						<a href="#presale-signup" class="pricing-btn btn-standard">
+							Claim 5-Year Founder Pass
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Presale Signup Box -->
+			<section id="presale-signup" class="presale-box">
+				<h2 class="presale-title">Join the Early Presale Waiting List</h2>
+				<p class="presale-text">
+					We are onboarding early users in small groups to guarantee personal attention and continuous AI tuning. Enter your email below to reserve your early-bird pricing slot.
+				</p>
+
+				<form class="presale-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
+					<div class="input-row">
+						<input 
+							type="email" 
+							name="fields[email]" 
+							placeholder="Enter your email to reserve your spot..." 
+							required 
+							aria-label="Email address"
+							class="email-input"
+						/>
+						<button type="submit" class="submit-button">Reserve My Spot</button>
+					</div>
+				</form>
+
+				<a href="/free-tracking-sheet" class="free-sheet-link">
+					Looking for the free printable PDF tracking sheet instead? Click here.
+				</a>
+			</section>
+
+			<!-- FAQ Section -->
+			<section>
+				<div class="section-header">
+					<h2 class="section-title">Frequently Asked Questions</h2>
+				</div>
+
+				<div class="faq-grid">
+					<div class="faq-card">
+						<h3 class="faq-q">How does voice tracking work?</h3>
+						<p class="faq-a">
+							You open the app in your browser on your phone or laptop, tap the microphone button, and speak naturally. For example: "I had scrambled eggs for breakfast, black tea at 2 PM, and my lower left tongue feels around a 6 out of 10." The AI parses your food, timing, and nerve scores into your encrypted personal database.
+						</p>
+					</div>
+
+					<div class="faq-card">
+						<h3 class="faq-q">What is the 72-hour delay calculation?</h3>
+						<p class="faq-a">
+							Many foods and oral irritants do not cause an immediate spike; instead, mucosal inflammation and nerve sensitization can peak 2 to 3 days later. The tracker cross-references every flare with your logs from the preceding 72 hours to identify hidden trigger candidates.
+						</p>
+					</div>
+
+					<div class="faq-card">
+						<h3 class="faq-q">What happens in the weekly group coaching calls?</h3>
+						<p class="faq-a">
+							Calls are hosted weekly on Zoom. Denis walks through new published dental and neurogenic research, reviews anonymized trend logs to point out overlooked hardware variables, and answers individual questions in a supportive group environment.
+						</p>
+					</div>
+
+					<div class="faq-card">
+						<h3 class="faq-q">Can I start with the free tracking sheet first?</h3>
+						<p class="faq-a">
+							Yes. You can download the complete printable PDF tracking sheet at any time for free. When you want the AI to handle calculations and remind you daily, you can join the Smart Tracker.
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer />
+	</body>
+</html>
