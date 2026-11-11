@@ -6,9 +6,10 @@ interface Props {
 	title?: string;
 	headings?: { depth: number; slug: string; text: string }[];
 	contentSelector?: string;
+	showToc?: boolean;
 }
 
-const { title = 'this article', headings = [], contentSelector = '.post-content' } = Astro.props;
+const { title = 'this article', headings = [], contentSelector = '.post-content', showToc = true } = Astro.props;
 
 // Curated sections or mapped headings
 const defaultNavItems = [
@@ -47,13 +48,15 @@ if (headings && headings.length > 0) {
 
 			<div class="tts-compact-right">
 				<!-- Table of Contents Toggle Button -->
-				<button type="button" class="tts-expand-toggle" id="tts-toc-btn" aria-expanded="false" title="Table of Contents">
-					<span class="tts-expand-text tts-toc-text-desktop">Table of Contents</span>
-					<span class="tts-expand-text tts-toc-text-mobile">TOC</span>
-					<svg class="tts-expand-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.3" fill="none">
-						<polyline points="6 9 12 15 18 9"></polyline>
-					</svg>
-				</button>
+				{showToc && (
+					<button type="button" class="tts-expand-toggle" id="tts-toc-btn" aria-expanded="false" title="Table of Contents">
+						<span class="tts-expand-text tts-toc-text-desktop">Table of Contents</span>
+						<span class="tts-expand-text tts-toc-text-mobile">TOC</span>
+						<svg class="tts-expand-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.3" fill="none">
+							<polyline points="6 9 12 15 18 9"></polyline>
+						</svg>
+					</button>
+				)}
 
 								<!-- Go to Active Reading Position (Icon Only) -->
 				<button type="button" class="tts-expand-toggle tts-compact-locate-btn" id="tts-compact-locate" title="Go to active text on page" aria-label="Go to active text on page">
@@ -90,21 +93,23 @@ if (headings && headings.length > 0) {
 		</div>
 
 		<!-- 2. Table of Contents Drawer (Hidden by default) -->
-		<div class="tts-toc-drawer" id="tts-toc-drawer" style="display: none;">
-			<div class="tts-drawer-divider"></div>
-			<div class="tts-toc-content">
-				<ol class="tts-toc-list" id="tts-toc-list">
-					{tocItems.map((item) => (
-						<li class="tts-toc-item">
-							<a href={item.href} class="tts-toc-link">
-								<span class="tts-toc-num">{item.number}.</span>
-								<span class="tts-toc-text">{item.title}</span>
-							</a>
-						</li>
-					))}
-				</ol>
+		{showToc && (
+			<div class="tts-toc-drawer" id="tts-toc-drawer" style="display: none;">
+				<div class="tts-drawer-divider"></div>
+				<div class="tts-toc-content">
+					<ol class="tts-toc-list" id="tts-toc-list">
+						{tocItems.map((item) => (
+							<li class="tts-toc-item">
+								<a href={item.href} class="tts-toc-link">
+									<span class="tts-toc-num">{item.number}.</span>
+									<span class="tts-toc-text">{item.title}</span>
+								</a>
+							</li>
+						))}
+					</ol>
+				</div>
 			</div>
-		</div>
+		)}
 
 		<!-- 2. Expandable Options Drawer (Hidden by default) -->
 		<div class="tts-expanded-drawer" id="tts-expanded-drawer" style="display: none;">
