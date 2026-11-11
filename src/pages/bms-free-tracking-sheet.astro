@@ -9,8 +9,8 @@ import { SITE_TITLE } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead 
-			title={`The Free BMS Tracking Sheet (Version 2.1) | ${SITE_TITLE}`} 
-			description="Download the always up-to-date, 100% free BMS Tracking Sheet. A doctor-ready 14-day daily flare log, food elimination tracker, and baseline hardware audit."
+			title={`The Free BMS Tracking Sheet | ${SITE_TITLE}`} 
+			description="Download the 100% free BMS Tracking Sheet. A doctor-ready 3-page daily flare log, 72-hour trigger record, and baseline hardware audit."
 		/>
 		<style>
 			:root {
@@ -30,7 +30,7 @@ import { SITE_TITLE } from '../consts';
 			.hero-card {
 				background: linear-gradient(135deg, #090514 0%, #1e0b38 50%, #2a0845 100%);
 				color: #ffffff;
-				padding: 3rem 2.5rem;
+				padding: 3rem 2.5rem 2.5rem;
 				border-radius: 20px;
 				margin-bottom: 2rem;
 				box-shadow: 0 20px 45px rgba(0,0,0,0.3);
@@ -67,7 +67,25 @@ import { SITE_TITLE } from '../consts';
 				text-wrap: pretty;
 			}
 
-			/* Download Box */
+			/* Mockup Image Presentation */
+			.mockup-wrapper {
+				max-width: 860px;
+				margin: 0 auto 1.5rem;
+				position: relative;
+				border-radius: 18px;
+				overflow: hidden;
+				box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				background: #0d061c;
+			}
+
+			.mockup-img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+
+			/* Download Box & Action Buttons */
 			.download-card {
 				background: #ffffff;
 				border: 2px solid #cbd5e1;
@@ -78,17 +96,73 @@ import { SITE_TITLE } from '../consts';
 				text-align: center;
 			}
 
-			.download-title {
-				font-size: 1.45rem;
+			.action-buttons-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+				justify-content: center;
+				margin-bottom: 2rem;
+			}
+
+			.btn-direct-download {
+				background: #16a34a;
+				color: #ffffff;
+				font-weight: 800;
+				font-size: 1.05rem;
+				padding: 0.95rem 1.85rem;
+				border-radius: 12px;
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25);
+				transition: all 0.2s ease;
+			}
+
+			.btn-direct-download:hover {
+				background: #15803d;
+				transform: translateY(-2px);
+				box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+			}
+
+			.btn-reminder-scroll {
+				background: var(--brand-purple);
+				color: #ffffff;
+				font-weight: 800;
+				font-size: 1.05rem;
+				padding: 0.95rem 1.85rem;
+				border-radius: 12px;
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
+				transition: all 0.2s ease;
+			}
+
+			.btn-reminder-scroll:hover {
+				background: #6d28d9;
+				transform: translateY(-2px);
+			}
+
+			/* Email reminder section */
+			.reminder-section {
+				border-top: 1px solid #e2e8f0;
+				padding-top: 2rem;
+				margin-top: 1rem;
+			}
+
+			.reminder-title {
+				font-size: 1.25rem;
 				font-weight: 800;
 				color: #0f172a;
 				margin: 0 0 0.5rem;
 			}
 
-			.download-subtitle {
-				font-size: 0.95rem;
+			.reminder-subtitle {
+				font-size: 0.92rem;
 				color: #64748b;
-				max-width: 680px;
+				max-width: 620px;
 				margin: 0 auto 1.5rem;
 				line-height: 1.5;
 			}
@@ -120,7 +194,7 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.submit-btn {
-				background: var(--brand-purple);
+				background: #0f172a;
 				color: #ffffff;
 				font-weight: 700;
 				font-size: 1rem;
@@ -132,91 +206,29 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.submit-btn:hover {
-				background: #6d28d9;
+				background: #1e293b;
 				transform: translateY(-1px);
 			}
 
-			/* Banner for AI Smart Tracker */
-			.ai-upgrade-banner {
-				background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
-				border: 2px solid #e879f9;
-				border-radius: 16px;
-				padding: 1.5rem 2rem;
-				margin-bottom: 2.5rem;
-				display: flex;
-				flex-wrap: wrap;
-				align-items: center;
-				justify-content: space-between;
-				gap: 1.25rem;
-			}
-
-			.ai-upgrade-text h3 {
-				font-size: 1.15rem;
-				font-weight: 800;
-				color: #701a75;
-				margin: 0 0 0.35rem;
-			}
-
-			.ai-upgrade-text p {
-				font-size: 0.88rem;
-				color: #86198f;
-				margin: 0;
-				line-height: 1.5;
-			}
-
-			.ai-upgrade-btn {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.45rem;
-				background: #c026d3;
-				color: #ffffff;
-				font-weight: 700;
-				font-size: 0.9rem;
-				padding: 0.75rem 1.35rem;
-				border-radius: 10px;
-				text-decoration: none;
-				transition: all 0.2s ease;
-			}
-
-			.ai-upgrade-btn:hover {
-				background: #a21caf;
-				transform: translateY(-1px);
-			}
-
-			/* Grid layout for sheet contents */
-			.features-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-				gap: 1.5rem;
-				margin-bottom: 2.5rem;
-			}
-
-			.feature-card {
-				background: #ffffff;
-				border: 1.5px solid #e2e8f0;
-				border-radius: 14px;
-				padding: 1.5rem;
-			}
-
-			.feature-title {
-				font-size: 1.1rem;
-				font-weight: 800;
-				color: #0f172a;
-				margin: 0 0 0.5rem;
-			}
-
-			.feature-desc {
-				font-size: 0.88rem;
-				color: #475569;
-				line-height: 1.55;
-				margin: 0;
-			}
-
-			.changelog-box {
+			/* Version history minimal box */
+			.versions-box {
 				background: #f8fafc;
 				border: 1px solid #e2e8f0;
 				border-radius: 14px;
-				padding: 1.5rem 1.75rem;
+				padding: 1.25rem 1.5rem;
+				text-align: center;
+				color: #64748b;
+				font-size: 0.85rem;
+			}
+
+			.versions-list {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 1.5rem;
+				margin-top: 0.5rem;
+				font-weight: 600;
+				color: #334155;
 			}
 		</style>
 	</head>
@@ -226,72 +238,70 @@ import { SITE_TITLE } from '../consts';
 		<main class="free-tracking-container">
 			<!-- Hero -->
 			<div class="hero-card">
-				<span class="version-label">Version 2.1 • Always Up-To-Date • 100% Free</span>
+				<span class="version-label">Always Up-To-Date • 100% Free</span>
 				<h1 class="hero-title">The Free BMS Tracking Sheet</h1>
 				<p class="hero-desc">
-					Download the doctor-ready tracking sheet used by patients to map daily morning-to-evening pain curves, 72-hour food rebounds, and physical oral hardware leaks.
+					Printable 3-page clinical tracking sheet to log daily morning-to-evening pain curves, 72-hour food delays, and physical oral hardware leaks.
 				</p>
-			</div>
 
-			<!-- AI Upgrade Teaser -->
-			<div class="ai-upgrade-banner">
-				<div class="ai-upgrade-text">
-					<h3>Tired of Logging on Paper? Meet the BMS Tracking App</h3>
-					<p>Want an AI health partner to check in daily via text or voice, calculate your 72-hour delay curves, and generate clinician reports? Early presale access is now open.</p>
+				<!-- 3-Page Mockup Image -->
+				<div class="mockup-wrapper">
+					<img 
+						src="/bms-tracking-sheet-mockup-3pages.png" 
+						alt="3-Page BMS Tracking Sheet Mockup showing Baseline Audit, 14-Day Circadian Flare Log, and 72-Hour Delayed Rebound Tracker" 
+						class="mockup-img"
+						loading="eager"
+					/>
 				</div>
-				<a href="/bms-tracking-app" class="ai-upgrade-btn">
-					<span>Explore BMS Tracking App</span>
-					<span>&rarr;</span>
-				</a>
 			</div>
 
-			<!-- Free Download Box -->
+			<!-- Main Actions Card: 2 Buttons -->
 			<div class="download-card">
-				<h2 class="download-title">Download Free Printable PDF &amp; Get Update Alerts</h2>
-				<p class="download-subtitle">
-					Enter your email below to instantly receive the PDF. We will also notify you with automatic changelog updates whenever new diagnostic markers are added to the sheet.
-				</p>
+				<div class="action-buttons-row">
+					<!-- Button 1: Free Download (No login required) -->
+					<a href="/bms-clinical-intake-questionnaire.pdf" download class="btn-direct-download">
+						<span>⬇</span>
+						<span>Free PDF Download</span>
+					</a>
 
-				<form class="signup-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
-					<div class="input-wrapper">
-						<input 
-							type="email" 
-							name="fields[email]" 
-							placeholder="Enter your email address..." 
-							required 
-							aria-label="Email address"
-							class="email-field"
-						/>
-						<button type="submit" class="submit-btn">Get Free Sheet (PDF)</button>
-					</div>
-				</form>
+					<!-- Button 2: Receive Reminders -->
+					<a href="#reminders" class="btn-reminder-scroll">
+						<span>🔔</span>
+						<span>Receive Daily Reminders</span>
+					</a>
+				</div>
+
+				<!-- Email Reminder Section -->
+				<div id="reminders" class="reminder-section">
+					<h2 class="reminder-title">Receive Email Tracking Reminders</h2>
+					<p class="reminder-subtitle">
+						Enter your email to receive gentle evening reminders and automatic updates whenever new diagnostic markers are added.
+					</p>
+
+					<form class="signup-form" action="https://assets.mailerlite.com/jsonp/2046918/forms/0R4iAA/subscribe" method="post">
+						<div class="input-wrapper">
+							<input 
+								type="email" 
+								name="fields[email]" 
+								placeholder="Enter your email for reminders..." 
+								required 
+								aria-label="Email address"
+								class="email-field"
+							/>
+							<button type="submit" class="submit-btn">Get Reminders</button>
+						</div>
+					</form>
+				</div>
 			</div>
 
-			<!-- What is inside -->
-			<div class="features-grid">
-				<div class="feature-card">
-					<h3 class="feature-title">Part 1: The Baseline Hardware Audit</h3>
-					<p class="feature-desc">
-						A 1-time clinical inventory of exposed cervical tooth necks (Tooth 33), 3-to-4 mm gum pockets, crown margins, salivary flow, and bilateral ear/eye trigeminal scores.
-					</p>
+			<!-- Simple Version History -->
+			<div class="versions-box">
+				<div>Version History</div>
+				<div class="versions-list">
+					<span>Version 1.0 released Nov 9, 2026</span>
+					<span>•</span>
+					<span>Version 1.1 released Nov 11, 2026</span>
 				</div>
-				<div class="feature-card">
-					<h3 class="feature-title">Part 2: The 14-Day Flare &amp; Food Log</h3>
-					<p class="feature-desc">
-						A structured morning vs. 2 PM circadian curve log that correlates pain spikes with what you ate and drank 48 to 72 hours earlier, plus water pH tracking.
-					</p>
-				</div>
-			</div>
-
-			<!-- Changelog -->
-			<div class="changelog-box">
-				<h4 style="margin: 0 0 0.5rem; font-size: 0.95rem; font-weight: 800; color: #0f172a;">Version 2.1 Changelog</h4>
-				<ul style="margin: 0; padding-left: 1.25rem; font-size: 0.85rem; color: #475569; line-height: 1.6;">
-					<li>Added Craniofacial Spillover: Bilateral Left/Right 0-10 scoring for Ear Fullness (V3) and Eye Fatigue (V1).</li>
-					<li>Added 3 to 4 mm Periodontal Pocket Screening as subgingival bacterial acid incubation trenches.</li>
-					<li>Added Canine Guidance &amp; Occlusal Shear checks for non-axial bite torque.</li>
-					<li>Added Verified Drinking Water pH logging field.</li>
-				</ul>
 			</div>
 		</main>
 
