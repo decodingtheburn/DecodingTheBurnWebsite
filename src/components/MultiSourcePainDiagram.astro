@@ -223,8 +223,8 @@
 
     </svg>
 
-    <!-- INTERACTIVE NON-SCROLLING MODAL OVERLAY -->
-    <div id="nerve-modal-card" style="display: none; position: absolute; right: 1.5rem; top: 1.25rem; bottom: 1.25rem; width: 480px; max-width: 90%; background: rgba(6, 2, 15, 0.98); backdrop-filter: blur(16px); border: 1.5px solid #7c3aed; border-radius: 14px; padding: 1.25rem 1.4rem; box-shadow: -12px 0 40px rgba(0, 0, 0, 0.9); color: #f8fafc; z-index: 50; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;">
+    <!-- FULL-VIEWPORT OVERLAY MODAL (FULL WIDTH & FULL HEIGHT, NO SCROLLING NEEDED) -->
+    <div id="nerve-modal-card" style="display: none; position: absolute; inset: 0; background: rgba(5, 2, 13, 0.98); backdrop-filter: blur(20px); border-radius: 14px; padding: 2rem 2.5rem; box-shadow: 0 0 50px rgba(0, 0, 0, 0.95); color: #f8fafc; z-index: 60; overflow-y: auto; flex-direction: column; justify-content: flex-start;">
       
       <!-- Close Button -->
       <button id="close-modal-btn" type="button" aria-label="Close details" style="position: absolute; top: 0.85rem; right: 0.95rem; background: #1e1338; border: 1px solid #4c1d95; color: #e2e8f0; border-radius: 6px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; font-weight: 700; line-height: 1;">
@@ -262,12 +262,12 @@
       codePrefix: "GATEWAY",
       subtitle: "Medullary Dorsal Horn Convergence Hub",
       axons: "140,000 Axons",
-      summary: "Central head relay: merges Trigeminal (CN V), Facial (CN VII), Glossopharyngeal (CN IX), and Vagus (CN X) fibers.",
+      summary: "The primary facial pain gateway. It merges afferents from Trigeminal (CN V), Facial (CN VII), Glossopharyngeal (CN IX), Vagus (CN X), and upper cervical nerves (C1–C3) into a single brainstem processing column.",
       branches: [
-        { code: "Vc.1", name: "Trigeminal Afferents (CN V)", subItems: ["V1 (Ophthalmic)", "V2 (Maxillary)", "V3 (Mandibular)"], role: "All dental pulps, gums, oral mucosa, and tongue general sensation." },
-        { code: "Vc.2", name: "Glossopharyngeal Nerve (CN IX)", subItems: ["Lingual branches", "Pharyngeal plexus"], role: "Posterior 1/3 of tongue, tonsillar bed, and upper pharynx." },
-        { code: "Vc.3", name: "Vagus Nerve (CN X)", subItems: ["Superior laryngeal nerve", "Esophageal branches"], role: "Laryngeal acid sensing, vocal cords, and reflux irritation." },
-        { code: "Vc.4", name: "Cervical Convergence (C1–C3)", subItems: ["Greater occipital nerve", "Suboccipital nerves"], role: "Referred neck and base-of-skull muscular tension." }
+        { code: "Vc.1", name: "Trigeminal Afferents (CN V)", subItems: ["V1 (Ophthalmic Division)", "V2 (Maxillary Division)", "V3 (Mandibular Division)"], role: "Carries all dental pulps, periodontal ligaments, alveolar bone, oral mucosa, and anterior tongue sensation." },
+        { code: "Vc.2", name: "Glossopharyngeal Nerve (CN IX)", subItems: ["Lingual branches (Posterior 1/3 of tongue)", "Tonsillar nerve plexus", "Pharyngeal mucosal branches"], role: "Innervates posterior tongue and pharynx; merges into Caudalis causing whole-throat and tongue pain cross-talk." },
+        { code: "Vc.3", name: "Vagus Nerve (CN X)", subItems: ["Internal branch of superior laryngeal nerve", "Esophageal sensory branches", "Recurrent laryngeal mucosal twigs"], role: "Detects acid reflux, peptic irritation, and esophageal spasms, sending continuous central inputs into the Vc hub." },
+        { code: "Vc.4", name: "Cervical Convergence (C1–C3)", subItems: ["Greater occipital nerve (C2)", "Third occipital nerve (C3)", "Suboccipital neck muscle afferents"], role: "Explains why dental nerve clenching and BMS pain radiate backward into occipital headaches and neck stiffness." }
       ]
     },
     v1: {
@@ -275,11 +275,11 @@
       codePrefix: "V1",
       subtitle: "Superior Division &bull; Pure Sensory",
       axons: "25,000 Axons",
-      summary: "Exits Superior Orbital Fissure to innervate the upper face, eyes, and frontal sinuses.",
+      summary: "Exits via the Superior Orbital Fissure to innervate the forehead, upper eyelids, eyeballs, frontal sinuses, and scalp.",
       branches: [
-        { code: "V1.1", name: "Frontal Nerve", subItems: ["Supraorbital nerve (forehead/scalp)", "Supratrochlear nerve (bridge of nose)"], role: "Sensory conduction for forehead and anterior scalp." },
-        { code: "V1.2", name: "Nasociliary Nerve", subItems: ["Infratrochlear", "Ethmoidal nerves", "Long ciliary (cornea)"], role: "Corneal reflex, eyeball sensation, and ethmoid sinuses." },
-        { code: "V1.3", name: "Lacrimal Nerve", subItems: ["Lacrimal gland sensory fibers", "Lateral eyelid"], role: "Tear gland and upper lateral eyelid sensation." }
+        { code: "V1.1", name: "Frontal Nerve", subItems: ["Supraorbital nerve (Forehead, frontal sinus & scalp to vertex)", "Supratrochlear nerve (Bridge of nose & medial forehead)"], role: "Main sensory highway for the upper cranial third." },
+        { code: "V1.2", name: "Nasociliary Nerve", subItems: ["Long ciliary nerves (Corneal sensory reflex)", "Infratrochlear nerve (Skin of eyelids & tear sac)", "Anterior/Posterior ethmoidal nerves (Nasal cavity & ethmoid cells)"], role: "Eye globe, corneal sensitivity, and deep nasal mucosal sensation." },
+        { code: "V1.3", name: "Lacrimal Nerve", subItems: ["Lacrimal gland sensory fibers", "Lateral upper eyelid skin"], role: "Sensory feedback from tear production apparatus and lateral orbit." }
       ]
     },
     v2: {
@@ -287,24 +287,25 @@
       codePrefix: "V2",
       subtitle: "Middle Division &bull; Pure Sensory",
       axons: "50,000 Axons",
-      summary: "Exits Foramen Rotundum to innervate upper teeth, hard/soft palate, and midface.",
+      summary: "Exits via the Foramen Rotundum into the pterygopalatine fossa. Responsible for the entire upper dental arch, palate, and midface.",
       branches: [
-        { code: "V2.1", name: "Superior Alveolar Nerves", subItems: ["Posterior (PSA - Molars)", "Middle (MSA - Premolars)", "Anterior (ASA - Canines & Incisors)"], role: "Full upper dental pulps, alveolar bone, and sinus mucosa." },
-        { code: "V2.2", name: "Palatine Nerves", subItems: ["Greater Palatine (Hard palate)", "Lesser Palatine (Soft palate)", "Nasopalatine (Anterior incisive papilla)"], role: "Entire roof of mouth and anterior rugae mucosal lining." },
-        { code: "V2.3", name: "Infraorbital & Zygomatic", subItems: ["Infraorbital (Upper lip & cheek)", "Zygomatic (Cheekbone & temple)"], role: "Midface, upper lip, cheek, and maxillary sinus floor." }
+        { code: "V2.1", name: "Superior Alveolar Nerves", subItems: ["Posterior Superior Alveolar (PSA - Upper Molars #1, #2, #3)", "Middle Superior Alveolar (MSA - Upper Premolars)", "Anterior Superior Alveolar (ASA - Upper Canines & Incisors)"], role: "Primary conduit for upper dental pulp pain, cement leaks, and periodontal ligament load." },
+        { code: "V2.2", name: "Palatine Nerves", subItems: ["Greater Palatine Nerve (Hard palate mucosa & gingiva)", "Lesser Palatine Nerve (Soft palate & uvula)", "Nasopalatine Nerve (Anterior palate behind incisors / Incisive canal)"], role: "Innervates the entire palatal roof, a frequent zone of severe burning pain in BMS." },
+        { code: "V2.3", name: "Infraorbital Nerve", subItems: ["Inferior palpebral branches (Lower eyelid)", "External nasal branches (Side of nose)", "Superior labial branches (Upper lip & cheek mucosa)"], role: "Midfacial cutaneous sensation and upper lip mucosal feedback." },
+        { code: "V2.4", name: "Zygomatic Nerve", subItems: ["Zygomaticofacial nerve (Cheek prominence skin)", "Zygomaticotemporal nerve (Anterior temple skin)"], role: "Cheekbone and temporal sensation." }
       ]
     },
     v3: {
       title: "V3 Mandibular Branch",
       codePrefix: "V3",
       subtitle: "Inferior Division &bull; Mixed Sensory + Motor",
-      axons: "70,000 Axons",
-      summary: "Exits Foramen Ovale. Powers lower jaw, teeth pulps, muscles, and anterior tongue.",
+      axons: "70,000 Axons (Largest Branch)",
+      summary: "Exits via the Foramen Ovale. Carries massive sensory traffic from the tongue and lower jaw teeth, plus motor fibers to chewing muscles.",
       branches: [
-        { code: "V3.1", name: "Lingual Nerve (Primary BMS Channel)", subItems: ["Anterior 2/3 tongue mucosa", "Sublingual fold", "Chorda tympani hitchhike"], role: "Direct transmission of oral burning, scald, and acid sensitivity." },
-        { code: "V3.2", name: "Inferior Alveolar & Mental", subItems: ["Inferior alveolar (Lower teeth & molar pulps)", "Mental nerve (Lower lip & chin)"], role: "Mandibular canal wiring for all lower teeth and chin." },
-        { code: "V3.3", name: "Buccal & Auriculotemporal", subItems: ["Buccal (Lower molar gums & cheek)", "Auriculotemporal (TMJ & ear canal)"], role: "TMJ joint capsule, temple, and lower molar gingival margins." },
-        { code: "V3.4", name: "Motor Branches (Mastication)", subItems: ["Masseteric", "Deep temporal", "Pterygoid nerves"], role: "Motor control of chewing muscles (masseter, temporalis, pterygoids)." }
+        { code: "V3.1", name: "Lingual Nerve (Primary BMS Highway)", subItems: ["Anterior 2/3 tongue mucosa general sensation (Pain/Heat/Acid)", "Sublingual gland & floor of mouth mucosa", "Chorda tympani communication (Taste hitchhike from CN VII)"], role: "The core biological conduit for burning mouth sensations, acid sensitivity, and lingual papillae pain." },
+        { code: "V3.2", name: "Inferior Alveolar Nerve (IAN)", subItems: ["Dental plexus (All lower molar & premolar pulps)", "Incisive branch (Lower canines & incisors)", "Mental nerve (Lower lip, chin, & anterior gingiva)"], role: "Transmits dental pulp signals from lower molar restorations and exposed roots directly into the V3 trunk." },
+        { code: "V3.3", name: "Buccal & Auriculotemporal Nerves", subItems: ["Long Buccal Nerve (Cheek mucosa & buccal molar gingiva)", "Auriculotemporal Nerve (TMJ joint capsule, ear canal, & temple)"], role: "Explains TMJ tenderness, ear fullness, and lateral cheek burning accompanying BMS." },
+        { code: "V3.4", name: "Motor Branches (Masticatory Power)", subItems: ["Masseteric nerve (Masseter muscle)", "Deep temporal nerves (Temporalis muscle)", "Lateral & Medial pterygoid nerves (Pterygoid chewing muscles)"], role: "Motor control of jaw closure, clenching, and masticatory bite force." }
       ]
     }
   };
@@ -324,49 +325,72 @@
         if (modalArea && modal) {
           modalArea.innerHTML = `
             <div>
-              <!-- Header -->
-              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.15rem; padding-right: 2rem;">
-                <span style="font-size: 1.15rem; font-weight: 900; color: #ffffff;">${data.title}</span>
-                <span style="font-size: 0.76rem; font-weight: 800; color: #38bdf8; background: #0c1a30; border: 1px solid #1e3a5f; padding: 0.15rem 0.55rem; border-radius: 4px;">${data.axons}</span>
-              </div>
-              <div style="font-size: 0.75rem; color: #a855f7; font-weight: 700; margin-bottom: 0.45rem;">
-                ${data.subtitle}
-              </div>
-              <div style="font-size: 0.78rem; color: #94a3b8; line-height: 1.35; margin-bottom: 0.65rem; border-bottom: 1px solid #1e1338; padding-bottom: 0.45rem;">
-                ${data.summary}
+              <!-- Header Bar -->
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem; border-bottom: 1.5px solid #3b1d6e; padding-bottom: 0.65rem; padding-right: 2.5rem;">
+                <div>
+                  <span style="font-size: 1.45rem; font-weight: 900; color: #ffffff; letter-spacing: 0.01em;">${data.title}</span>
+                  <span style="font-size: 0.85rem; color: #a855f7; font-weight: 700; margin-left: 0.75rem;">${data.subtitle}</span>
+                </div>
+                <span style="font-size: 0.85rem; font-weight: 800; color: #38bdf8; background: #0c1a30; border: 1.5px solid #1e3a5f; padding: 0.25rem 0.75rem; border-radius: 6px;">
+                  ${data.axons}
+                </span>
               </div>
 
-              <!-- Structured Sub-Branches List (Zero-Scroll Compact Layout) -->
-              <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+              <!-- Summary -->
+              <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.45; margin: 0.5rem 0 1rem;">
+                ${data.summary}
+              </p>
+
+              <!-- Structured Sub-Branches Grid (2 Columns, Items Stacked Vertically On Top of Each Other) -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0.85rem;">
                 ${data.branches.map(b => `
-                  <div style="background: #0f0720; border: 1px solid #281447; border-radius: 6px; padding: 0.5rem 0.7rem; line-height: 1.35;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
-                      <span style="font-size: 0.8rem; font-weight: 800; color: #f43f5e; display: flex; align-items: center; gap: 0.35rem;">
-                        <span style="background: #3b0718; color: #fca5a5; font-size: 0.68rem; font-weight: 800; padding: 0.05rem 0.35rem; border-radius: 3px; border: 1px solid #831843;">${b.code}</span>
-                        <span>${b.name}</span>
+                  <div style="background: #0f0720; border: 1.5px solid #281447; border-radius: 8px; padding: 0.85rem 1rem; line-height: 1.4;">
+                    <!-- Branch Header -->
+                    <div style="display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.4rem;">
+                      <span style="background: #3b0718; color: #fca5a5; font-size: 0.75rem; font-weight: 900; padding: 0.15rem 0.45rem; border-radius: 4px; border: 1px solid #831843;">
+                        ${b.code}
+                      </span>
+                      <span style="font-size: 0.95rem; font-weight: 800; color: #f43f5e;">
+                        ${b.name}
                       </span>
                     </div>
+
+                    <!-- Sub-items stacked vertically on top of each other -->
                     ${b.subItems ? `
-                      <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.25rem 0;">
+                      <ul style="margin: 0.4rem 0 0.5rem 1.1rem; padding: 0; list-style-type: disc; display: flex; flex-direction: column; gap: 0.25rem;">
                         ${b.subItems.map(item => `
-                          <span style="font-size: 0.7rem; color: #e2e8f0; background: #1a0f35; border: 1px solid #3b1d6e; padding: 0.1rem 0.4rem; border-radius: 3px;">&bull; ${item}</span>
+                          <li style="font-size: 0.82rem; color: #e2e8f0; font-weight: 600;">
+                            ${item}
+                          </li>
                         `).join('')}
-                      </div>
+                      </ul>
                     ` : ''}
-                    <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 0.15rem;">
-                      ${b.role}
+
+                    <!-- Role / Clinical Significance -->
+                    <div style="font-size: 0.76rem; color: #94a3b8; border-top: 1px solid #1e1338; padding-top: 0.35rem; margin-top: 0.35rem;">
+                      <strong style="color: #cbd5e1;">Function:</strong> ${b.role}
                     </div>
                   </div>
                 `).join('')}
               </div>
             </div>
 
-            <!-- Footer Hint -->
-            <div style="margin-top: 0.5rem; text-align: right; font-size: 0.68rem; color: #64748b;">
-              Click outside or press &times; to close
+            <!-- Footer Close Guidance -->
+            <div style="margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #1e1338; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.75rem; color: #64748b;">Click the &times; button or anywhere outside to return to the diagram.</span>
+              <button id="modal-close-footer-btn" type="button" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.35rem 0.95rem; border-radius: 6px; font-size: 0.8rem; font-weight: 800; cursor: pointer;">
+                Close Overview
+              </button>
             </div>
           `;
           modal.style.display = 'flex';
+
+          const footerClose = document.getElementById('modal-close-footer-btn');
+          if (footerClose) {
+            footerClose.addEventListener('click', () => {
+              modal.style.display = 'none';
+            });
+          }
         }
       });
     });
