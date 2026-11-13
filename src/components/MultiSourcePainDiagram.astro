@@ -304,10 +304,10 @@
     <div id="nerve-modal-card" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; background: rgba(4, 2, 10, 0.95); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 99999; overflow-y: auto; padding: 2.5rem 1.5rem; box-sizing: border-box; align-items: center; justify-content: center;">
       
       <!-- Modal Inner Container -->
-      <div style="position: relative; width: 100%; max-width: 1240px; background: #080318; border: 1.5px solid #6b21a8; border-radius: 18px; padding: 2.25rem 2.5rem; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95); color: #f8fafc; box-sizing: border-box;">
+      <div id="modal-inner-box" style="position: relative; width: 100%; max-width: 1200px; background: #ffffff; border-radius: 16px; padding: 2.5rem 3rem; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7); color: #0f172a; box-sizing: border-box; transition: all 0.2s ease;">
         
         <!-- Close Button -->
-        <button id="close-modal-btn" type="button" aria-label="Close details" style="position: absolute; top: 1.25rem; right: 1.25rem; background: #1e1035; border: 1.5px solid #7c3aed; color: #f8fafc; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 22px; font-weight: 700; line-height: 1; transition: all 0.2s ease;">
+        <button id="close-modal-btn" type="button" aria-label="Close details" style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f1f5f9; border: 1px solid #cbd5e1; color: #0f172a; border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 24px; font-weight: 700; line-height: 1; transition: all 0.2s ease;">
           &times;
         </button>
 
@@ -330,6 +330,7 @@
 
   interface BranchInfo {
     title: string;
+    isPlainList?: boolean;
     codePrefix: string;
     subtitle: string;
     axons: string;
@@ -339,61 +340,63 @@
 
   const branchData: Record<string, BranchInfo> = {
     "dental-others": {
-      title: "Other Dental Triggers (20 Potential Sources)",
-      codePrefix: "DENTAL",
-      subtitle: "Peripheral Mechanical &bull; Electrochemical &bull; Structural Drivers",
-      axons: "0% Contribution (Ruled Out)",
-      summary: "Comprehensive survey of 20 dental and mechanical factors that can trigger or amplify trigeminal nerve irritability. In this patient case, these potential contributors were systematically investigated and ruled out (0%).",
+      title: "Other Dental Triggers",
+      codePrefix: "",
+      subtitle: "Ruled out in this case (0% contribution)",
+      axons: "0% Contribution",
+      summary: "These 20 dental and mechanical factors were tested and ruled out as active contributors in this patient's case.",
+      isPlainList: true,
       branches: [
-        { code: "D.01", name: "Subgingival Biofilm Fermentation", subItems: ["Anaerobic pocket microflora", "Volatile sulfur compound release"], role: "Local acid generation and mucosal micro-inflammation." },
-        { code: "D.02", name: "Galvanic Metal Micro-Currents", subItems: ["Dissimilar alloy restorations (gold vs amalgam)", "Oral battery voltage generation"], role: "Generates continuous nano-ampere electrical discharge into periodontal ligaments." },
-        { code: "D.03", name: "Cervical Enamel Abfraction", subItems: ["Tooth flexure under clenching forces", "Wedge-shaped cervical defects"], role: "Exposes deep dentin tubules at the gumline without active caries." },
-        { code: "D.04", name: "Traumatic Premature Occlusion", subItems: ["High cusp contact in lateral excursion", "Fremitus on biting"], role: "Unbalanced bite force causing periodontal ligament mechanoreceptor hypersensitivity." },
-        { code: "D.05", name: "Recurrent Micro-Cavities", subItems: ["Interproximal sub-margin decay", "Sub-enamel demineralization"], role: "Hidden bacterial acid leakage into peripheral dentinal tubules." },
-        { code: "D.06", name: "Endodontic Apex Overfill / Resorption", subItems: ["Periapical cement extrusion", "Internal or external root resorption"], role: "Direct irritation of periapical trigeminal sensory nerve endings." },
-        { code: "D.07", name: "Cracked Tooth Syndrome", subItems: ["Incomplete micro-fracture under restoration", "Flexure pain on release"], role: "Fluid displacement in dentin tubules triggering sharp sudden pulp shocks." },
-        { code: "D.08", name: "Acrylic Denture Monomer Sensitivity", subItems: ["Residual methyl methacrylate leaching", "Mucosal contact erythema"], role: "Direct chemical irritation of tongue and palate mucosal nerve receptors." },
-        { code: "D.09", name: "Night Bruxism & Clenching Load", subItems: ["Nocturnal masseter sustained contraction", "Alveolar bone micro-strain"], role: "Overwhelms periodontal mechanoreceptor threshold, feeding into brainstem." },
-        { code: "D.10", name: "Foreign Body Periodontal Impaction", subItems: ["Subgingival cement remnants", "Retained dental floss fragment"], role: "Chronic localized inflammatory foreign body reaction." },
-        { code: "D.11", name: "Root Proximity to Mandibular Canal", subItems: ["Molar root apex pressing on IAN sheath", "Implant proximity to canal"], role: "Direct mechanical compression of the Inferior Alveolar Nerve trunk." },
-        { code: "D.12", name: "Cavitational Osteonecrosis (FDOJ)", subItems: ["Chronic ischemic jawbone marrow defect", "Wisdom tooth extraction socket cavitation"], role: "Persistent intra-osseous inflammatory cytokine production." },
-        { code: "D.13", name: "Periodontal Furcation Involvement", subItems: ["Multi-rooted molar bone loss", "Deep inaccessible pocket"], role: "Bacterial toxin pooling at bifurcation nerve fibers." },
-        { code: "D.14", name: "Composite Resin Shrinkage Gap", subItems: ["Polymerization shrinkage stress", "Interfacial microleakage"], role: "Allows thermal and chemical fluid movement into pulp." },
-        { code: "D.15", name: "Orthodontic Retainer Nickel Allergy", subItems: ["Nickel-titanium wire leaching", "Contact gingivitis"], role: "Type IV hypersensitivity manifesting as burning mucosal patches." },
-        { code: "D.16", name: "Crown Margin Impingement (Biological Width)", subItems: ["Subgingival margin violating crestal bone", "Chronic junctional bleeding"], role: "Invasive restoration edge causing continuous tissue inflammation." },
-        { code: "D.17", name: "Impacted Third Molar Pressure", subItems: ["Horizontal wisdom tooth impaction", "Pressure on adjacent second molar"], role: "Root resorption and pericoronal neural compression." },
-        { code: "D.18", name: "Maxillary Sinusitis Dental Extension", subItems: ["Odontogenic sinusitis (roots in sinus floor)", "Mucosal thickening"], role: "Pneumatic pressure on Superior Alveolar Nerve branches." },
-        { code: "D.19", name: "Pulp Canal Obliteration / Calcification", subItems: ["Dystrophic pulp calcification", "Secondary dentin deposition"], role: "Neural strangulation within shrinking dental pulp chamber." },
-        { code: "D.20", name: "Improper Pontic Tissue Pressure", subItems: ["Ridge-lap bridge design pressing ridge", "Mucosal ulceration"], role: "Sustained pressure ischemia on keratinized and alveolar mucosa." }
+        { code: "", name: "Subgingival Biofilm Fermentation", subItems: ["Anaerobic pocket microflora releasing volatile sulfur compounds and localized acids."], role: "" },
+        { code: "", name: "Galvanic Metal Micro-Currents", subItems: ["Dissimilar alloy restorations (gold vs amalgam) generating battery voltages."], role: "" },
+        { code: "", name: "Cervical Enamel Abfraction", subItems: ["Tooth flexure under clenching forces creating wedge-shaped defects at the gumline."], role: "" },
+        { code: "", name: "Traumatic Premature Occlusion", subItems: ["Unbalanced high cusp contacts causing periodontal ligament mechanoreceptor hypersensitivity."], role: "" },
+        { code: "", name: "Recurrent Micro-Cavities", subItems: ["Hidden interproximal bacterial acid leakage into peripheral dentinal tubules."], role: "" },
+        { code: "", name: "Endodontic Apex Overfill or Resorption", subItems: ["Periapical seal extrusion or root resorption irritating sensory nerve endings."], role: "" },
+        { code: "", name: "Cracked Tooth Syndrome", subItems: ["Incomplete micro-fractures flexing under bite load and displacing dentin fluid."], role: "" },
+        { code: "", name: "Acrylic Denture Monomer Sensitivity", subItems: ["Residual methyl methacrylate leaching causing contact erythema."], role: "" },
+        { code: "", name: "Night Bruxism & Clenching Load", subItems: ["Sustained masseter contraction driving micro-strain into periodontal mechanoreceptors."], role: "" },
+        { code: "", name: "Foreign Body Periodontal Impaction", subItems: ["Subgingival cement remnants or floss fragments maintaining local tissue irritation."], role: "" },
+        { code: "", name: "Root Proximity to Mandibular Canal", subItems: ["Lower molar root apices pressing directly onto the Inferior Alveolar Nerve sheath."], role: "" },
+        { code: "", name: "Cavitational Osteonecrosis (FDOJ)", subItems: ["Ischemic jawbone marrow defects producing inflammatory cytokines."], role: "" },
+        { code: "", name: "Periodontal Furcation Involvement", subItems: ["Deep multi-root pockets harboring bacterial endotoxins near pulp nerves."], role: "" },
+        { code: "", name: "Composite Resin Shrinkage Gap", subItems: ["Polymerization shrinkage gaps allowing fluid movement and thermal sensitivity."], role: "" },
+        { code: "", name: "Orthodontic Retainer Nickel Allergy", subItems: ["Nickel-titanium wires causing localized Type IV contact stomatitis."], role: "" },
+        { code: "", name: "Crown Margin Impingement", subItems: ["Subgingival restoration margins invading the biological width and crestal bone."], role: "" },
+        { code: "", name: "Impacted Third Molar Pressure", subItems: ["Impacted wisdom teeth exerting chronic compressive load on adjacent root structures."], role: "" },
+        { code: "", name: "Maxillary Sinusitis Dental Extension", subItems: ["Sinus floor inflammation irritating the Superior Alveolar Nerve plexus."], role: "" },
+        { code: "", name: "Pulp Canal Obliteration", subItems: ["Dystrophic calcification causing neural strangulation inside the pulp chamber."], role: "" },
+        { code: "", name: "Improper Pontic Tissue Pressure", subItems: ["Excessive bridge pontic pressure causing localized mucosal ischemia."], role: "" }
       ]
     },
     "systemic-others": {
-      title: "Other Triggers (20 Systemic & Environmental Drivers)",
-      codePrefix: "SYSTEMIC",
-      subtitle: "Metabolic &bull; Nutritional &bull; Endocrine &bull; Environmental Factors",
-      axons: "0% Contribution (Ruled Out)",
-      summary: "Comprehensive survey of 20 systemic, dietary, autonomic, and environmental triggers evaluated in burning mouth diagnostics. In this patient case, these factors were clinically tested and confirmed at 0% baseline.",
+      title: "Other Triggers",
+      codePrefix: "",
+      subtitle: "Ruled out in this case (0% contribution)",
+      axons: "0% Contribution",
+      summary: "These 20 systemic, dietary, and environmental factors were clinically investigated and confirmed at 0% baseline.",
+      isPlainList: true,
       branches: [
-        { code: "S.01", name: "Sodium Lauryl Sulfate (SLS) Toothpaste", subItems: ["Detergent mucosal denudation", "Epithelial barrier compromise"], role: "Surfactant stripping protective mucin layer from oral mucosa." },
-        { code: "S.02", name: "Mouth Breathing & Nocturnal Xerostomia", subItems: ["Loss of salivary pH buffering capacity", "Tongue dehydration"], role: "Evaporation strips saliva, dropping oral pH and activating mucosal ASICs." },
-        { code: "S.03", name: "Cervical Spine Spondylosis (C1–C3)", subItems: ["Occipital nerve impingement", "Suboccipital myofascial trigger points"], role: "Convergence with Trigeminal Subnucleus Caudalis in the brainstem." },
-        { code: "S.04", name: "Autonomic Dysregulation / High Cortisol", subItems: ["Sympathetic overdrive", "Microvascular vasoconstriction in tongue"], role: "Reduces mucosal capillary perfusion and elevates systemic pain sensitivity." },
-        { code: "S.05", name: "Hypothyroidism & Thyroid Dysregulation", subItems: ["Low free T3/T4 metabolic slowdown", "Mucopolysaccharide deposition"], role: "Associated with secondary taste distortion and altered oral sensory threshold." },
-        { code: "S.06", name: "Estrogen Fluctuation (Menopause)", subItems: ["Decline in mucosal estrogen receptors", "Atrophic oral epithelium"], role: "Thins mucosal lining and alters sensory nerve fiber density." },
-        { code: "S.07", name: "Celiac Disease / Gluten Enteropathy", subItems: ["Autoimmune intestinal malabsorption", "Recurrent aphthous stomatitis"], role: "Causes subclinical nutrient depletion and systemic mucosal hyper-reactivity." },
-        { code: "S.08", name: "Sjogren Syndrome (Autoimmune)", subItems: ["Anti-SSA/Ro and Anti-SSB/La antibodies", "Salivary acinar gland destruction"], role: "Severe profound loss of resting and stimulated salivary volume." },
-        { code: "S.09", name: "Folate (Vitamin B9) Deficiency", subItems: ["Serum and RBC folate depletion", "Glossitis and epithelial atrophy"], role: "Impairs mucosal cell turnover and myelin maintenance." },
-        { code: "S.10", name: "Dietary Nickel & Cobalt Ingestion", subItems: ["High-nickel food items (cacao, legumes)", "Systemic contact dermatitis"], role: "Oral manifestation of systemic heavy metal hypersensitivity." },
-        { code: "S.11", name: "ACE Inhibitor Medication Side Effect", subItems: ["Bradykinin accumulation", "Angioneurotic mucosal sensitivity"], role: "Common pharmacological culprit causing dry cough and burning mouth." },
-        { code: "S.12", name: "Histamine Intolerance / MCAS", subItems: ["Diamine oxidase (DAO) enzyme deficiency", "Mast cell degranulation"], role: "Elevated mucosal histamine triggering burning, itching, and tissue edema." },
-        { code: "S.13", name: "Candida Albicans (Subclinical Thrush)", subItems: ["Erythematous candidiasis", "Microscopic pseudohyphae colonization"], role: "Fungal metabolite secretion irritating superficial nerve endings." },
-        { code: "S.14", name: "Alcohol-Based Mouthwashes", subItems: ["High ethanol concentration (20%+)", "Protein denaturation of mucosa"], role: "Desiccates surface epithelial cells and sensitizes pain receptors." },
-        { code: "S.15", name: "Cinnamon & Artificial Flavoring Allergy", subItems: ["Cinnamic aldehyde hypersensitivity", "Contact stomatitis"], role: "Direct contact allergen causing severe localized burning." },
-        { code: "S.16", name: "Diabetes & Diabetic Small-Fiber Neuropathy", subItems: ["Elevated HbA1c glucose toxicity", "Distal axonal degeneration"], role: "Peripheral small-fiber neuropathy manifesting in intra-oral nerve endings." },
-        { code: "S.17", name: "Copper / Zinc Imbalance", subItems: ["Excess unbound copper vs zinc ratio", "Impaired superoxide dismutase"], role: "Oxidative stress within mucosal epithelial cells." },
-        { code: "S.18", name: "Sleep Apnea & Fragmented REM Sleep", subItems: ["Intermittent nocturnal hypoxia", "Central pain sensitization"], role: "Lowers central descending pain inhibition thresholds in the brainstem." },
-        { code: "S.19", name: "Proton Pump Inhibitor (PPI) Rebound", subItems: ["Hypergastrinemia and bile reflux", "pH fluctuation"], role: "Alters upper GI acid composition and systemic mineral absorption." },
-        { code: "S.20", name: "Heavy Clenching Temporomandibular Disorder", subItems: ["Lateral pterygoid spasm", "Retrodiscal tissue inflammation"], role: "Continuous nociceptive barrage into the V3 mandibular division." }
+        { code: "", name: "Sodium Lauryl Sulfate (SLS) Toothpaste", subItems: ["Detergent action stripping the protective mucin layer from oral mucosa."], role: "" },
+        { code: "", name: "Mouth Breathing & Nocturnal Xerostomia", subItems: ["Night airway evaporation stripping saliva and dropping oral mucosal pH."], role: "" },
+        { code: "", name: "Cervical Spine Spondylosis (C1–C3)", subItems: ["Upper neck sensory afferents converging into the medullary dorsal horn."], role: "" },
+        { code: "", name: "Autonomic Dysregulation / High Cortisol", subItems: ["Sympathetic vasoconstriction lowering lingual mucosal capillary perfusion."], role: "" },
+        { code: "", name: "Hypothyroidism & Thyroid Dysregulation", subItems: ["Altered cellular metabolism and mucopolysaccharide infiltration altering oral sensation."], role: "" },
+        { code: "", name: "Estrogen Fluctuation (Menopause)", subItems: ["Loss of protective mucosal estrogen receptor signaling thinning the epithelial barrier."], role: "" },
+        { code: "", name: "Celiac Disease / Gluten Enteropathy", subItems: ["Subclinical intestinal malabsorption driving epithelial vulnerability."], role: "" },
+        { code: "", name: "Sjogren Syndrome (Autoimmune)", subItems: ["Immune-mediated acinar gland destruction eliminating salivary volume."], role: "" },
+        { code: "", name: "Folate (Vitamin B9) Deficiency", subItems: ["Depleted serum folate impairing oral mucosal epithelial turnover."], role: "" },
+        { code: "", name: "Dietary Nickel & Cobalt Ingestion", subItems: ["Systemic heavy metal hypersensitivity provoking burning oral mucosal flare-ups."], role: "" },
+        { code: "", name: "ACE Inhibitor Medication Side Effect", subItems: ["Bradykinin accumulation triggering angioneurotic mucosal sensitivity."], role: "" },
+        { code: "", name: "Histamine Intolerance / MCAS", subItems: ["Diamine oxidase (DAO) deficiency causing mucosal mast cell burning."], role: "" },
+        { code: "", name: "Candida Albicans (Subclinical Thrush)", subItems: ["Microscopic yeast colonization producing irritating metabolic acids."], role: "" },
+        { code: "", name: "Alcohol-Based Mouthwashes", subItems: ["High-percentage ethanol denaturing protective surface proteins."], role: "" },
+        { code: "", name: "Cinnamon & Artificial Flavoring Allergy", subItems: ["Cinnamic aldehyde triggering localized contact stomatitis."], role: "" },
+        { code: "", name: "Diabetes & Small-Fiber Neuropathy", subItems: ["Hyperglycemia-mediated peripheral terminal axon degeneration."], role: "" },
+        { code: "", name: "Copper / Zinc Imbalance", subItems: ["Impaired superoxide dismutase enzymatic protection in epithelial cells."], role: "" },
+        { code: "", name: "Sleep Apnea & Fragmented REM Sleep", subItems: ["Nocturnal hypoxia blunting central descending pain inhibition pathways."], role: "" },
+        { code: "", name: "Proton Pump Inhibitor (PPI) Rebound", subItems: ["Bile and non-acid reflux components irritating oral structures."], role: "" },
+        { code: "", name: "Temporomandibular Joint Clenching", subItems: ["Masseter and pterygoid muscle hyperactivity feeding noxious input to V3."], role: "" }
       ]
     },
     caudalis: {
@@ -461,67 +464,138 @@
         if (!branchKey || !branchData[branchKey]) return;
 
         const data = branchData[branchKey];
-        if (modalArea && modal) {
-          modalArea.innerHTML = `
-            <div>
-              <!-- Header Bar -->
-              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem; border-bottom: 1.5px solid #3b1d6e; padding-bottom: 0.65rem; padding-right: 2.5rem;">
-                <div>
-                  <span style="font-size: 1.45rem; font-weight: 900; color: #ffffff; letter-spacing: 0.01em;">${data.title}</span>
-                  <span style="font-size: 0.85rem; color: #a855f7; font-weight: 700; margin-left: 0.75rem;">${data.subtitle}</span>
-                </div>
-                <span style="font-size: 0.85rem; font-weight: 800; color: #38bdf8; background: #0c1a30; border: 1.5px solid #1e3a5f; padding: 0.25rem 0.75rem; border-radius: 6px;">
-                  ${data.axons}
-                </span>
-              </div>
+        const innerBox = document.getElementById('modal-inner-box');
 
-              <!-- Summary -->
-              <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.45; margin: 0.5rem 0 1rem;">
-                ${data.summary}
-              </p>
+        if (modalArea && modal && innerBox) {
+          if (data.isPlainList) {
+            // Clean white background with plain list of 20 items (no boxes, no codes, single bullet point)
+            innerBox.style.background = '#ffffff';
+            innerBox.style.border = '1px solid #e2e8f0';
+            innerBox.style.color = '#0f172a';
+            innerBox.style.maxWidth = '980px';
+            if (closeBtn) {
+              closeBtn.style.background = '#f1f5f9';
+              closeBtn.style.borderColor = '#cbd5e1';
+              closeBtn.style.color = '#0f172a';
+            }
 
-              <!-- Structured Sub-Branches Grid (2 Columns, Items Stacked Vertically On Top of Each Other) -->
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0.85rem;">
-                ${data.branches.map(b => `
-                  <div style="background: #0f0720; border: 1.5px solid #281447; border-radius: 8px; padding: 0.85rem 1rem; line-height: 1.4;">
-                    <!-- Branch Header -->
-                    <div style="display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.4rem;">
-                      <span style="background: #3b0718; color: #fca5a5; font-size: 0.75rem; font-weight: 900; padding: 0.15rem 0.45rem; border-radius: 4px; border: 1px solid #831843;">
-                        ${b.code}
-                      </span>
-                      <span style="font-size: 0.95rem; font-weight: 800; color: #f43f5e;">
-                        ${b.name}
-                      </span>
-                    </div>
-
-                    <!-- Sub-items stacked vertically on top of each other -->
-                    ${b.subItems ? `
-                      <ul style="margin: 0.4rem 0 0.5rem 1.1rem; padding: 0; list-style-type: disc; display: flex; flex-direction: column; gap: 0.25rem;">
-                        ${b.subItems.map(item => `
-                          <li style="font-size: 0.82rem; color: #e2e8f0; font-weight: 600;">
-                            ${item}
-                          </li>
-                        `).join('')}
-                      </ul>
-                    ` : ''}
-
-                    <!-- Role / Clinical Significance (Aligned with text above the bullet points) -->
-                    <div style="font-size: 0.8rem; color: #94a3b8; border-top: 1px solid #1e1338; padding-top: 0.5rem; margin-top: 0.5rem; line-height: 1.45;">
-                      <span style="font-weight: 800; color: #cbd5e1;">Function:</span> ${b.role}
-                    </div>
+            modalArea.innerHTML = `
+              <div>
+                <!-- Clean Header -->
+                <div style="margin-bottom: 1.25rem; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 0.85rem; padding-right: 2.5rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <h2 style="font-size: 1.6rem; font-weight: 900; color: #0f172a; margin: 0; letter-spacing: -0.01em;">
+                      ${data.title}
+                    </h2>
+                    <span style="font-size: 0.85rem; font-weight: 800; color: #166534; background: #dcfce7; border: 1px solid #86efac; padding: 0.2rem 0.65rem; border-radius: 4px;">
+                      0% (Ruled Out)
+                    </span>
                   </div>
-                `).join('')}
-              </div>
-            </div>
+                  <p style="font-size: 0.92rem; color: #64748b; margin: 0.35rem 0 0; line-height: 1.4;">
+                    ${data.summary}
+                  </p>
+                </div>
 
-            <!-- Footer Close Guidance -->
-            <div style="margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #1e1338; display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.75rem; color: #64748b;">Click the &times; button or anywhere outside to return to the diagram.</span>
-              <button id="modal-close-footer-btn" type="button" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.35rem 0.95rem; border-radius: 6px; font-size: 0.8rem; font-weight: 800; cursor: pointer;">
-                Close Overview
-              </button>
-            </div>
-          `;
+                <!-- Clean Plain List (2 Columns of clean items, no boxes) -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 0.85rem 2rem;">
+                  ${data.branches.map(b => `
+                    <div style="margin-bottom: 0.35rem;">
+                      <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; line-height: 1.35;">
+                        ${b.name}
+                      </div>
+                      ${b.subItems && b.subItems.length > 0 ? `
+                        <ul style="margin: 0.2rem 0 0 1.25rem; padding: 0; list-style-type: disc;">
+                          <li style="font-size: 0.86rem; color: #475569; line-height: 1.4;">
+                            ${b.subItems[0]}
+                          </li>
+                        </ul>
+                      ` : ''}
+                    </div>
+                  `).join('')}
+                </div>
+
+                <!-- Footer -->
+                <div style="margin-top: 1.75rem; padding-top: 0.75rem; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-size: 0.8rem; color: #64748b;">Click &times; or anywhere outside to return to the diagram.</span>
+                  <button id="modal-close-footer-btn" type="button" style="background: #0f172a; color: #ffffff; border: none; padding: 0.45rem 1.15rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; cursor: pointer;">
+                    Close
+                  </button>
+                </div>
+              </div>
+            `;
+          } else {
+            // Dark Medical Theme for V1, V2, V3, and Caudalis
+            innerBox.style.background = '#080318';
+            innerBox.style.border = '1.5px solid #6b21a8';
+            innerBox.style.color = '#f8fafc';
+            innerBox.style.maxWidth = '1240px';
+            if (closeBtn) {
+              closeBtn.style.background = '#1e1035';
+              closeBtn.style.borderColor = '#7c3aed';
+              closeBtn.style.color = '#f8fafc';
+            }
+
+            modalArea.innerHTML = `
+              <div>
+                <!-- Header Bar -->
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem; border-bottom: 1.5px solid #3b1d6e; padding-bottom: 0.65rem; padding-right: 2.5rem;">
+                  <div>
+                    <span style="font-size: 1.45rem; font-weight: 900; color: #ffffff; letter-spacing: 0.01em;">${data.title}</span>
+                    <span style="font-size: 0.85rem; color: #a855f7; font-weight: 700; margin-left: 0.75rem;">${data.subtitle}</span>
+                  </div>
+                  <span style="font-size: 0.85rem; font-weight: 800; color: #38bdf8; background: #0c1a30; border: 1.5px solid #1e3a5f; padding: 0.25rem 0.75rem; border-radius: 6px;">
+                    ${data.axons}
+                  </span>
+                </div>
+
+                <!-- Summary -->
+                <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.45; margin: 0.5rem 0 1rem;">
+                  ${data.summary}
+                </p>
+
+                <!-- Structured Sub-Branches Grid (2 Columns, Items Stacked Vertically On Top of Each Other) -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0.85rem;">
+                  ${data.branches.map(b => `
+                    <div style="background: #0f0720; border: 1.5px solid #281447; border-radius: 8px; padding: 0.85rem 1rem; line-height: 1.4;">
+                      <!-- Branch Header -->
+                      <div style="display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.4rem;">
+                        <span style="background: #3b0718; color: #fca5a5; font-size: 0.75rem; font-weight: 900; padding: 0.15rem 0.45rem; border-radius: 4px; border: 1px solid #831843;">
+                          ${b.code}
+                        </span>
+                        <span style="font-size: 0.95rem; font-weight: 800; color: #f43f5e;">
+                          ${b.name}
+                        </span>
+                      </div>
+
+                      <!-- Sub-items stacked vertically on top of each other -->
+                      ${b.subItems ? `
+                        <ul style="margin: 0.4rem 0 0.5rem 1.1rem; padding: 0; list-style-type: disc; display: flex; flex-direction: column; gap: 0.25rem;">
+                          ${b.subItems.map(item => `
+                            <li style="font-size: 0.82rem; color: #e2e8f0; font-weight: 600;">
+                              ${item}
+                            </li>
+                          `).join('')}
+                        </ul>
+                      ` : ''}
+
+                      <!-- Role / Clinical Significance (Aligned with text above the bullet points) -->
+                      <div style="font-size: 0.8rem; color: #94a3b8; border-top: 1px solid #1e1338; padding-top: 0.5rem; margin-top: 0.5rem; line-height: 1.45;">
+                        <span style="font-weight: 800; color: #cbd5e1;">Function:</span> ${b.role}
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Footer Close Guidance -->
+              <div style="margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #1e1338; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.75rem; color: #64748b;">Click the &times; button or anywhere outside to return to the diagram.</span>
+                <button id="modal-close-footer-btn" type="button" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.35rem 0.95rem; border-radius: 6px; font-size: 0.8rem; font-weight: 800; cursor: pointer;">
+                  Close Overview
+                </button>
+              </div>
+            `;
+          }
           modal.style.display = 'flex';
 
           const footerClose = document.getElementById('modal-close-footer-btn');
