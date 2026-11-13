@@ -1,289 +1,157 @@
 ---
 // MultiSourcePainDiagram.astro
-// Clean, focused visual diagram illustrating peripheral multi-source pain inputs into the trigeminal system.
-// Strictly compliant with the 3 to 4 word title standard: No colons, no ampersands, no hyphens/dashes.
-// Base image: /trigeminal-v2-v3-nerves-with-nucleus.jpg (with Subnucleus Caudalis accurately rendered along the brainstem tract).
-// Left side:
-// - "Dental Issues" and "Other Triggers" headers 1.6x larger (21px), clean bold text without decorative dashes/lines.
-// - Badges color-coded: 30% and 20% in Red (#ef4444), 10% in Yellow (#eab308).
-// - Dividing line between Dental Issues and Other Triggers.
-// - Other Triggers includes examples: Gastric acid, Lack of saliva, and Chronic stress (10% each).
-// Right side:
-// - Column title: "Nerve Capacity".
-// - Subnucleus Caudalis, V1, V2, V3 all fully CLICKABLE with interactive popup modal showing all sub-branches and central connections.
+// Vertical Medical Diagnostic Layout:
+// 1. Nerve Capacity Header Cards (Subnucleus Caudalis, V1, V2, V3) on Top
+// 2. High-Resolution Trigeminal Medical Render with Hover Highlight Areas (No Static Lines)
+// 3. Peripheral Pain Drivers Below (Dental Issues & Other Triggers) with Interactive Hover Lighting
 ---
 
-<div class="multi-source-pain-container tts-ignore" style="margin: 2.25rem 0 2.75rem; background: #070312; border: 1.5px solid #3b1d6e; border-radius: 16px; padding: 1.75rem; box-shadow: 0 16px 45px -10px rgba(0, 0, 0, 0.8); color: #f8fafc; position: relative;">
-  
-  <!-- Header (Strict 3-4 Word Titles) -->
-  <div style="margin-bottom: 1.25rem; border-bottom: 1px solid #1e1338; padding-bottom: 1rem;">
-    <div style="font-size: 0.76rem; font-weight: 800; color: #a855f7; text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.35; margin-bottom: 0.25rem;">
-      Peripheral Drive
+<div class="pain-diagram-wrapper" style="width: 100%; max-width: 960px; margin: 2rem auto; font-family: system-ui, -apple-system, sans-serif;">
+
+  <!-- SECTION 1: TOP NERVE TRUNK CAPACITY (CLICKABLE CARDS) -->
+  <div style="margin-bottom: 1.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem;">
+      <h4 style="font-size: 1.15rem; font-weight: 900; color: #ffffff; margin: 0; letter-spacing: 0.02em;">
+        Nerve Trunk Capacity & Convergence Hub
+      </h4>
+      <span style="font-size: 0.8rem; color: #a855f7; font-weight: 700;">
+        (Click any nerve to inspect internal branches)
+      </span>
     </div>
-    <div style="font-size: 1.35rem; font-weight: 900; color: #ffffff; line-height: 1.38; margin-bottom: 0.45rem;">
-      Multi-Source Pain Stacking
+
+    <!-- 4 Responsive Top Nerve Cards -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.75rem;">
+      
+      <!-- Subnucleus Caudalis Hub -->
+      <div class="interactive-nerve-target nerve-top-card" data-branch="caudalis" data-highlight="hub-caudalis" style="background: #120309; border: 1.5px solid #ef4444; border-radius: 10px; padding: 0.75rem 0.95rem; cursor: pointer; transition: all 0.2s ease;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+          <span style="font-size: 0.95rem; font-weight: 900; color: #fca5a5;">Subnucleus Caudalis</span>
+          <span style="font-size: 0.72rem; font-weight: 800; background: #ef4444; color: #ffffff; padding: 0.15rem 0.45rem; border-radius: 4px;">Gateway</span>
+        </div>
+        <div style="font-size: 0.85rem; font-weight: 800; color: #ffffff;">140,000 Axons</div>
+        <div style="font-size: 0.75rem; color: #fda4af; margin-top: 0.2rem;">Medullary Dorsal Horn Hub</div>
+      </div>
+
+      <!-- V1 Ophthalmic -->
+      <div class="interactive-nerve-target nerve-top-card" data-branch="v1" data-highlight="nerve-v1" style="background: #090618; border: 1.5px solid #3b2064; border-radius: 10px; padding: 0.75rem 0.95rem; cursor: pointer; transition: all 0.2s ease;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+          <span style="font-size: 0.95rem; font-weight: 900; color: #e2e8f0;">V1 Ophthalmic</span>
+          <span style="font-size: 0.72rem; font-weight: 700; color: #94a3b8;">Sensory</span>
+        </div>
+        <div style="font-size: 0.85rem; font-weight: 800; color: #38bdf8;">25,000 Axons</div>
+        <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.2rem;">Orbit & Forehead</div>
+      </div>
+
+      <!-- V2 Maxillary -->
+      <div class="interactive-nerve-target nerve-top-card" data-branch="v2" data-highlight="nerve-v2" style="background: #090618; border: 1.5px solid #3b2064; border-radius: 10px; padding: 0.75rem 0.95rem; cursor: pointer; transition: all 0.2s ease;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+          <span style="font-size: 0.95rem; font-weight: 900; color: #e2e8f0;">V2 Maxillary</span>
+          <span style="font-size: 0.72rem; font-weight: 700; color: #94a3b8;">Sensory</span>
+        </div>
+        <div style="font-size: 0.85rem; font-weight: 800; color: #38bdf8;">50,000 Axons</div>
+        <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.2rem;">Upper Jaw & Palate</div>
+      </div>
+
+      <!-- V3 Mandibular -->
+      <div class="interactive-nerve-target nerve-top-card" data-branch="v3" data-highlight="nerve-v3" style="background: #090618; border: 1.5px solid #3b2064; border-radius: 10px; padding: 0.75rem 0.95rem; cursor: pointer; transition: all 0.2s ease;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+          <span style="font-size: 0.95rem; font-weight: 900; color: #e2e8f0;">V3 Mandibular</span>
+          <span style="font-size: 0.72rem; font-weight: 700; color: #94a3b8;">Sensory/Motor</span>
+        </div>
+        <div style="font-size: 0.85rem; font-weight: 800; color: #38bdf8;">70,000 Axons</div>
+        <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.2rem;">Tongue & Lower Arch</div>
+      </div>
+
     </div>
-    <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.55; margin: 0; max-width: 820px; text-wrap: balance;">
-      Left-aligned peripheral sources grouped by Dental Issues and Other Triggers, totaling 100% of sensory input. Right-aligned specifications detail trunk carrying capacity in axon&nbsp;volume. Click any right-side branch to explore its sub-branches.
-    </p>
   </div>
 
-  <!-- Medical Visual Viewport with Generous Dark Margins -->
-  <div style="position: relative; width: 100%; border-radius: 14px; overflow: hidden; background: #020005; border: 1px solid #281447; display: flex; justify-content: center; align-items: center; min-height: 720px; padding: 1.5rem 0;">
+  <!-- SECTION 2: MEDICAL VISUAL VIEWPORT (CLEAN IMAGE WITH HOVER HIGHLIGHT HOTSPOTS - ZERO LINES) -->
+  <div style="position: relative; width: 100%; border-radius: 14px; overflow: hidden; background: #020005; border: 1px solid #281447; display: flex; justify-content: center; align-items: center; min-height: 480px; padding: 1rem 0;">
     
-    <!-- Base Medical Render with Glowing Red Subnucleus Caudalis in Brainstem -->
+    <!-- Base Medical Render -->
     <img 
       src="/trigeminal-v2-v3-nerves-with-nucleus.jpg" 
-      alt="3D medical render mapping trigeminal nerve trunks V1 V2 V3, glowing red Subnucleus Caudalis hub in brainstem, and oral inputs" 
-      style="width: 68%; max-width: 760px; height: auto; max-height: 610px; object-fit: contain; object-position: center; display: block; opacity: 0.90; filter: contrast(1.15) brightness(0.96);"
+      alt="3D medical render mapping trigeminal nerve trunks V1 V2 V3 and glowing brainstem nucleus" 
+      style="width: 100%; max-width: 720px; height: auto; max-height: 520px; object-fit: contain; object-position: center; display: block; opacity: 0.92; filter: contrast(1.15) brightness(0.96);"
       loading="lazy"
     />
 
-    <!-- SVG Clean Labels & Solid White Straight Connecting Lines Overlay (1200 x 640 viewBox) -->
-    <svg viewBox="0 0 1200 740" style="position: absolute; inset: 0; width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
-      
-      <!-- ============================================================ -->
-      <!-- LEFT SIDE: GROUP 1 - DENTAL ISSUES (CLEAN, NO DASHES)        -->
-      <!-- ============================================================ -->
+    <!-- SVG Interactive Hotspots (No Static Lines, Only Glowing Hotspot Areas on Mouseover) -->
+    <svg viewBox="0 0 1000 600" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Radial Glow Filters -->
+        <filter id="red-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="gold-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
 
-      <!-- Group Category Title: Dental Issues (1.6x size = 21px, clean typography) -->
-      <g>
-        <text x="50" y="154" fill="#e9d5ff" font-size="21" font-weight="900" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.04em">
-          Dental Issues
-        </text>
+      <!-- Brainstem Caudalis Glow Spot (CX=590, CY=220) -->
+      <g id="hotspot-caudalis" class="diagram-hotspot" opacity="0.65" style="transition: opacity 0.3s ease;">
+        <circle cx="585" cy="225" r="28" fill="#ef4444" opacity="0.3" filter="url(#red-glow)" />
+        <circle cx="585" cy="225" r="10" fill="#ef4444" stroke="#ffffff" stroke-width="2" />
       </g>
 
-      <!-- 1. Leaky crown, 30% -> 0% (PURE RED 30%, ARROW, GREEN 0%, Y=195) -->
-      <g>
-        <line x1="315" y1="195" x2="550" y2="310" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="550" cy="310" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
-
-        <text x="50" y="200" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Leaky crown
-        </text>
-        <!-- Pure Red 30% -->
-        <rect x="175" y="183" width="44" height="23" rx="4" fill="#ef4444" stroke="#b91c1c" stroke-width="1" />
-        <text x="197" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          30%
-        </text>
-        <!-- Clean Transition Arrow -->
-        <text x="230" y="200" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          &rarr;
-        </text>
-        <!-- Pure Green 0% -->
-        <rect x="245" y="183" width="44" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="267" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          0%
-        </text>
+      <!-- V1 Hotspot (Forehead/Orbit: CX=515, CY=265) -->
+      <g id="hotspot-v1" class="diagram-hotspot" opacity="0" style="transition: opacity 0.3s ease;">
+        <circle cx="515" cy="265" r="22" fill="#38bdf8" opacity="0.35" filter="url(#gold-glow)" />
+        <circle cx="515" cy="265" r="8" fill="#38bdf8" stroke="#ffffff" stroke-width="2" />
       </g>
 
-      <!-- 2. Exposed tubules, 20% (Y=245) -->
-      <g>
-        <line x1="305" y1="245" x2="495" y2="425" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="495" cy="425" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
-
-        <text x="50" y="250" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Exposed tubules
-        </text>
-        <rect x="240" y="233" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="250" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          20%
-        </text>
+      <!-- V2 Hotspot (Upper Molar / Maxillary: CX=490, CY=350) -->
+      <g id="hotspot-v2" class="diagram-hotspot" opacity="0" style="transition: opacity 0.3s ease;">
+        <circle cx="490" cy="350" r="25" fill="#38bdf8" opacity="0.4" filter="url(#gold-glow)" />
+        <circle cx="490" cy="350" r="9" fill="#38bdf8" stroke="#ffffff" stroke-width="2" />
       </g>
 
-      <!-- 3. Canine occlusion, 20% (RED - high severity, Y=295) -->
-      <g>
-        <line x1="305" y1="295" x2="520" y2="375" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="520" cy="375" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
-
-        <text x="50" y="300" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Canine occlusion
-        </text>
-        <rect x="240" y="283" width="56" height="23" rx="4" fill="#ef4444" stroke="#b91c1c" stroke-width="1" />
-        <text x="268" y="300" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          20%
-        </text>
+      <!-- V3 Hotspot (Lower Jaw / Mandibular: CX=540, CY=420) -->
+      <g id="hotspot-v3" class="diagram-hotspot" opacity="0" style="transition: opacity 0.3s ease;">
+        <circle cx="540" cy="420" r="25" fill="#38bdf8" opacity="0.4" filter="url(#gold-glow)" />
+        <circle cx="540" cy="420" r="9" fill="#38bdf8" stroke="#ffffff" stroke-width="2" />
       </g>
 
-      <!-- 4. Others (20) Dental Issues, 0% (GREEN, CLICKABLE, Y=345) -->
-      <g class="interactive-nerve-target" data-branch="dental-others" style="cursor: pointer;">
-        <text x="50" y="350" fill="#38bdf8" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
-          Others (20) &rsaquo;
-        </text>
-        <rect x="240" y="333" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="268" y="350" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          0%
-        </text>
+      <!-- Leaky Crown Hotspot (Upper Molar Crown Site: CX=430, CY=335) -->
+      <g id="hotspot-leaky-crown" class="diagram-hotspot" opacity="0" style="transition: opacity 0.3s ease;">
+        <circle cx="430" cy="335" r="26" fill="#ef4444" opacity="0.45" filter="url(#red-glow)" />
+        <circle cx="430" cy="335" r="9" fill="#ef4444" stroke="#ffffff" stroke-width="2" />
       </g>
 
-      <!-- DIVIDING SEPARATOR LINE -->
-      <g>
-        <line x1="50" y1="385" x2="296" y2="385" stroke="#334155" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.8" />
+      <!-- Exposed Tubules Hotspot (Cervical Margin: CX=370, CY=430) -->
+      <g id="hotspot-tubules" class="diagram-hotspot" opacity="0" style="transition: opacity 0.3s ease;">
+        <circle cx="370" cy="430" r="26" fill="#eab308" opacity="0.45" filter="url(#gold-glow)" />
+        <circle cx="370" cy="430" r="9" fill="#eab308" stroke="#ffffff" stroke-width="2" />
       </g>
 
-      <!-- ============================================================ -->
-      <!-- LEFT SIDE: GROUP 2 - OTHER TRIGGERS (CLEAN, NO DASHES)       -->
-      <!-- ============================================================ -->
-
-      <!-- Group Category Title: Other Triggers (1.6x size = 21px, clean typography) -->
-      <g>
-        <text x="50" y="420" fill="#e0f2fe" font-size="21" font-weight="900" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.04em">
-          Other Triggers
-        </text>
+      <!-- Canine Occlusion Hotspot (Canine Guidance: CX=395, CY=385) -->
+      <g id="hotspot-canine" class="diagram-hotspot" opacity="0" style="transition: opacity 0.3s ease;">
+        <circle cx="395" cy="385" r="26" fill="#ef4444" opacity="0.45" filter="url(#red-glow)" />
+        <circle cx="395" cy="385" r="9" fill="#ef4444" stroke="#ffffff" stroke-width="2" />
       </g>
 
-      <!-- 5. Alcohol (YELLOW, Y=455) -->
-      <g>
-        <line x1="305" y1="455" x2="475" y2="475" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="475" cy="475" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
-
-        <text x="50" y="460" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Alcohol
-        </text>
-        <rect x="240" y="443" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="460" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          5%
-        </text>
+      <!-- Dietary / Oral Acid Trigger Hotspot (Tongue Surface: CX=340, CY=450) -->
+      <g id="hotspot-oral-acid" class="diagram-hotspot" opacity="0" style="transition: opacity 0.3s ease;">
+        <circle cx="340" cy="450" r="30" fill="#eab308" opacity="0.45" filter="url(#gold-glow)" />
+        <circle cx="340" cy="450" r="9" fill="#eab308" stroke="#ffffff" stroke-width="2" />
       </g>
 
-      <!-- 6. Coffee (YELLOW, Y=495) -->
-      <g>
-        <line x1="305" y1="495" x2="465" y2="495" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="465" cy="495" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
-
-        <text x="50" y="500" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Coffee
-        </text>
-        <rect x="240" y="483" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="500" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          5%
-        </text>
+      <!-- Saliva / Xerostomia Hotspot (Sublingual / Submandibular Glands: CX=330, CY=480) -->
+      <g id="hotspot-saliva" class="diagram-hotspot" opacity="0" style="transition: opacity 0.3s ease;">
+        <circle cx="330" cy="480" r="26" fill="#eab308" opacity="0.45" filter="url(#gold-glow)" />
+        <circle cx="330" cy="480" r="9" fill="#eab308" stroke="#ffffff" stroke-width="2" />
       </g>
-
-      <!-- 7. Fruits and vegetables (YELLOW, Y=535) -->
-      <g>
-        <line x1="305" y1="535" x2="455" y2="515" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="455" cy="515" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
-
-        <text x="50" y="540" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Fruits and vegetables
-        </text>
-        <rect x="240" y="523" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="540" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          5%
-        </text>
-      </g>
-
-      <!-- 8. Lack of saliva, 10% (YELLOW, Y=575) -->
-      <g>
-        <line x1="305" y1="575" x2="455" y2="535" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="455" cy="535" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
-
-        <text x="50" y="580" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Lack of saliva
-        </text>
-        <rect x="240" y="563" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="580" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          10%
-        </text>
-      </g>
-
-      <!-- 9. Chronic stress, 5% (YELLOW, NO POINTER LINE, Y=615) -->
-      <g>
-        <text x="50" y="620" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Chronic stress
-        </text>
-        <rect x="240" y="603" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="620" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          5%
-        </text>
-      </g>
-
-      <!-- 10. Others (20) Systemic Triggers, 0% (GREEN, CLICKABLE, Y=660) -->
-      <g class="interactive-nerve-target" data-branch="systemic-others" style="cursor: pointer;">
-        <text x="50" y="665" fill="#38bdf8" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
-          Others (20) &rsaquo;
-        </text>
-        <rect x="240" y="648" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="268" y="665" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          0%
-        </text>
-      </g>
-
-      <!-- ============================================================ -->
-      <!-- RIGHT SIDE: CLICKABLE TARGETS FOR POPOVER MODALS             -->
-      <!-- SUBNUCLEUS CAUDALIS (TOP), THEN V1, V2, V3                  -->
-      <!-- ============================================================ -->
-
-      <!-- Right Column Title Header -->
-      <g>
-        <text x="915" y="154" fill="#e0f2fe" font-size="21" font-weight="900" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.04em">
-          Nerve Capacity
-        </text>
-        <text x="915" y="172" fill="#64748b" font-size="11.5" font-weight="600" font-family="system-ui, -apple-system, sans-serif">
-          (Click any item for details)
-        </text>
-      </g>
-
-      <!-- 1. Subnucleus Caudalis (CLICKABLE) -->
-      <g class="interactive-nerve-target" data-branch="caudalis" style="cursor: pointer;">
-        <line x1="685" y1="195" x2="895" y2="200" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="685" cy="195" r="6" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"  />
-
-        <text x="915" y="195" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
-          Subnucleus Caudalis &rsaquo;
-        </text>
-        <rect x="915" y="204" width="130" height="23" rx="4" fill="#1e293b" stroke="#64748b" stroke-width="1.2" class="btn-rect" />
-        <text x="980" y="221" text-anchor="middle" fill="#e2e8f0" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
-          140,000 Axons
-        </text>
-      </g>
-
-      <!-- 2. V1 Ophthalmic Branch (CLICKABLE) -->
-      <g class="interactive-nerve-target" data-branch="v1" style="cursor: pointer;">
-        <line x1="620" y1="240" x2="895" y2="285" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="620" cy="240" r="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" />
-
-        <text x="915" y="280" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
-          V1 Ophthalmic Branch &rsaquo;
-        </text>
-        <rect x="915" y="289" width="130" height="23" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1.2" class="btn-rect" />
-        <text x="980" y="306" text-anchor="middle" fill="#e2e8f0" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
-          25,000 Axons
-        </text>
-      </g>
-
-      <!-- 3. V2 Maxillary Branch (CLICKABLE) -->
-      <g class="interactive-nerve-target" data-branch="v2" style="cursor: pointer;">
-        <line x1="605" y1="315" x2="895" y2="370" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="605" cy="315" r="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" />
-
-        <text x="915" y="365" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
-          V2 Maxillary Branch &rsaquo;
-        </text>
-        <rect x="915" y="374" width="130" height="23" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1.2" class="btn-rect" />
-        <text x="980" y="391" text-anchor="middle" fill="#e2e8f0" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
-          50,000 Axons
-        </text>
-      </g>
-
-      <!-- 4. V3 Mandibular Branch (CLICKABLE) -->
-      <g class="interactive-nerve-target" data-branch="v3" style="cursor: pointer;">
-        <line x1="655" y1="410" x2="895" y2="455" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="655" cy="410" r="5.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" />
-
-        <text x="915" y="450" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
-          V3 Mandibular Branch &rsaquo;
-        </text>
-        <rect x="915" y="459" width="130" height="23" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1.2" class="btn-rect" />
-        <text x="980" y="476" text-anchor="middle" fill="#e2e8f0" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
-          70,000 Axons
-        </text>
-      </g>
-
     </svg>
 
-    <!-- FULLSCREEN MODAL OVERLAY (TAKES THE FULL SCREEN / VIEWPORT, RESPONSIVE) -->
+    <!-- FULLSCREEN MODAL OVERLAY (FOR INTERACTIVE DETAILS) -->
     <div id="nerve-modal-card" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; background: rgba(4, 2, 10, 0.95); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 99999; overflow-y: auto; padding: 2.5rem 1.5rem; box-sizing: border-box; align-items: center; justify-content: center;">
       
       <!-- Modal Inner Container -->
@@ -296,6 +164,107 @@
 
         <!-- Modal Content Body -->
         <div id="modal-content-area"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 3: PERIPHERAL INPUTS BELOW THE IMAGE (DENTAL ISSUES & OTHER TRIGGERS) -->
+  <div style="margin-top: 1.75rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+    
+    <!-- COLUMN 1: DENTAL ISSUES -->
+    <div style="background: #090414; border: 1.5px solid #281447; border-radius: 12px; padding: 1.25rem 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; border-bottom: 1.5px solid #1e1035; padding-bottom: 0.5rem;">
+        <span style="font-size: 1.15rem; font-weight: 900; color: #e9d5ff; letter-spacing: 0.02em;">
+          Dental Issues
+        </span>
+        <span style="font-size: 0.8rem; font-weight: 800; color: #cbd5e1; background: #1e1035; padding: 0.2rem 0.55rem; border-radius: 4px;">
+          Baseline: 70%
+        </span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        
+        <!-- 1. Leaky Crown (30% -> 0%) -->
+        <div class="hover-trigger-row" data-highlight="hotspot-leaky-crown" style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #ffffff;">Leaky crown</span>
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="background: #ef4444; color: #ffffff; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">30%</span>
+            <span style="color: #ffffff; font-weight: 900; font-size: 0.85rem;">&rarr;</span>
+            <span style="background: #15803d; color: #ffffff; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">0%</span>
+          </div>
+        </div>
+
+        <!-- 2. Exposed Tubules (20%) -->
+        <div class="hover-trigger-row" data-highlight="hotspot-tubules" style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #ffffff;">Exposed tubules</span>
+          <span style="background: #eab308; color: #000000; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">20%</span>
+        </div>
+
+        <!-- 3. Canine Occlusion (20%) -->
+        <div class="hover-trigger-row" data-highlight="hotspot-canine" style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #ffffff;">Canine occlusion</span>
+          <span style="background: #ef4444; color: #ffffff; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">20%</span>
+        </div>
+
+        <!-- 4. Others (20) Dental Issues (Clickable Modal) -->
+        <div class="interactive-nerve-target hover-trigger-row" data-branch="dental-others" style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease; border-top: 1px dashed #281447; margin-top: 0.25rem; padding-top: 0.65rem;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #38bdf8;">Others (20) &rsaquo;</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">0%</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COLUMN 2: OTHER TRIGGERS -->
+    <div style="background: #090414; border: 1.5px solid #281447; border-radius: 12px; padding: 1.25rem 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; border-bottom: 1.5px solid #1e1035; padding-bottom: 0.5rem;">
+        <span style="font-size: 1.15rem; font-weight: 900; color: #e0f2fe; letter-spacing: 0.02em;">
+          Other Triggers
+        </span>
+        <span style="font-size: 0.8rem; font-weight: 800; color: #cbd5e1; background: #1e1035; padding: 0.2rem 0.55rem; border-radius: 4px;">
+          Total: 30%
+        </span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+        
+        <!-- Alcohol (5%) -->
+        <div class="hover-trigger-row" data-highlight="hotspot-oral-acid" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #ffffff;">Alcohol</span>
+          <span style="background: #eab308; color: #000000; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">5%</span>
+        </div>
+
+        <!-- Coffee (5%) -->
+        <div class="hover-trigger-row" data-highlight="hotspot-oral-acid" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #ffffff;">Coffee</span>
+          <span style="background: #eab308; color: #000000; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">5%</span>
+        </div>
+
+        <!-- Fruits and vegetables (5%) -->
+        <div class="hover-trigger-row" data-highlight="hotspot-oral-acid" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #ffffff;">Fruits and vegetables</span>
+          <span style="background: #eab308; color: #000000; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">5%</span>
+        </div>
+
+        <!-- Lack of saliva (10%) -->
+        <div class="hover-trigger-row" data-highlight="hotspot-saliva" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #ffffff;">Lack of saliva</span>
+          <span style="background: #eab308; color: #000000; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">10%</span>
+        </div>
+
+        <!-- Chronic stress (5%) -->
+        <div class="hover-trigger-row" data-highlight="hotspot-caudalis" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #ffffff;">Chronic stress</span>
+          <span style="background: #eab308; color: #000000; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">5%</span>
+        </div>
+
+        <!-- Others (20) Systemic Triggers (Clickable Modal) -->
+        <div class="interactive-nerve-target hover-trigger-row" data-branch="systemic-others" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease; border-top: 1px dashed #281447; margin-top: 0.25rem; padding-top: 0.55rem;">
+          <span style="font-size: 0.92rem; font-weight: 800; color: #38bdf8;">Others (20) &rsaquo;</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.82rem; font-weight: 900; padding: 0.2rem 0.55rem; border-radius: 4px;">0%</span>
+        </div>
+
       </div>
     </div>
 
@@ -321,7 +290,7 @@
     branches: SubBranch[];
   }
 
-  const branchData: Record<string, BranchInfo> = {
+const branchData: Record<string, BranchInfo> = {
     "dental-others": {
       title: "Other Dental Triggers",
       codePrefix: "",
@@ -440,7 +409,33 @@
     const modalArea = document.getElementById('modal-content-area');
     const closeBtn = document.getElementById('close-modal-btn');
     const targets = document.querySelectorAll('.interactive-nerve-target');
+    const hoverRows = document.querySelectorAll('.hover-trigger-row, .nerve-top-card');
 
+    // Interactive Hover: Mouseover row highlights the corresponding area in the diagram
+    hoverRows.forEach(row => {
+      const targetId = row.getAttribute('data-highlight');
+      if (!targetId) return;
+
+      const spot = document.getElementById(targetId);
+
+      row.addEventListener('mouseenter', () => {
+        (row as HTMLElement).style.background = '#1e1035';
+        if (spot) {
+          spot.style.opacity = '1';
+        }
+      });
+
+      row.addEventListener('mouseleave', () => {
+        (row as HTMLElement).style.background = '';
+        if (spot && targetId !== 'hotspot-caudalis') {
+          spot.style.opacity = '0';
+        } else if (spot && targetId === 'hotspot-caudalis') {
+          spot.style.opacity = '0.65';
+        }
+      });
+    });
+
+    // Modal Opening
     targets.forEach(target => {
       target.addEventListener('click', () => {
         const branchKey = target.getAttribute('data-branch');
@@ -480,7 +475,7 @@
                 </div>
 
                 <!-- Clean Plain List (2 Columns of clean items, no boxes) -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 0.85rem 2rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 0.85rem 2rem;">
                   ${data.branches.map(b => `
                     <div style="margin-bottom: 0.35rem;">
                       <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; line-height: 1.35;">
@@ -611,14 +606,9 @@
 </script>
 
 <style>
-  .interactive-nerve-target:hover .hover-glow {
-    fill: #38bdf8;
-    transition: fill 0.2s ease;
+  .nerve-top-card:hover {
+    border-color: #a855f7 !important;
+    background: #170c2e !important;
+    transform: translateY(-2px);
   }
-  .interactive-nerve-target:hover .btn-rect {
-    stroke: #38bdf8;
-    fill: #0c1a30;
-    transition: all 0.2s ease;
-  }
-  
 </style>
