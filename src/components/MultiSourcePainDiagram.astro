@@ -2,8 +2,9 @@
 // MultiSourcePainDiagram.astro
 // Clean, focused visual diagram illustrating peripheral multi-source pain convergence into the trigeminal system.
 // Strictly compliant with the 3 to 4 word title standard: No colons, no ampersands, no hyphens/dashes.
-// Wide 1200px canvas with solid white connecting lines.
-// Left labels positioned with dedicated breathing room, right labels positioned well clear of the skull anatomy.
+// Left side: Sorted top-to-bottom by anatomical level and severity (35%, 30%, 25%, 10%) with zero crossing lines.
+// Left badges: Uniformly right-aligned with fixed positions for perfect visual harmony.
+// Right side: Anatomical nerve specs with consistent units (Axons, Bandwidth, Threshold).
 ---
 
 <div class="multi-source-pain-container tts-ignore" style="margin: 2.25rem 0 2.75rem; background: #070312; border: 1.5px solid #3b1d6e; border-radius: 16px; padding: 1.75rem; box-shadow: 0 16px 45px -10px rgba(0, 0, 0, 0.8); color: #f8fafc;">
@@ -21,7 +22,7 @@
     </p>
   </div>
 
-  <!-- Medical Visual Viewport with Generous Dark Background Margins -->
+  <!-- Medical Visual Viewport with Generous Dark Margins -->
   <div style="position: relative; width: 100%; border-radius: 14px; overflow: hidden; background: #020005; border: 1px solid #281447; display: flex; justify-content: center; align-items: center; min-height: 580px; padding: 1.5rem 0;">
     
     <!-- Base Medical Render (Skull profile centered with space on left and right) -->
@@ -32,139 +33,147 @@
       loading="lazy"
     />
 
-    <!-- SVG Clean Labels & Solid White Connecting Lines Overlay (1200 x 640 viewBox) -->
+    <!-- SVG Clean Labels & Solid White Straight Connecting Lines Overlay (1200 x 640 viewBox) -->
     <svg viewBox="0 0 1200 640" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;" xmlns="http://www.w3.org/2000/svg">
       
       <!-- ============================================================ -->
-      <!-- LEFT SIDE: ALL INPUT SOURCES (LEFT-ALIGNED, SOLID WHITE)     -->
+      <!-- LEFT SIDE: SOURCES (SORTED TOP-TO-BOTTOM, NO CROSSING LINES) -->
+      <!-- BADGES UNIFORMLY RIGHT-ALIGNED AT X=240..296                 -->
       <!-- ============================================================ -->
 
-      <!-- 1. External acid, 30% (RED) -->
+      <!-- 1. Chronic stress, 10% (GREEN - upper autonomic / central relay, Y=260) -->
       <g>
-        <line x1="285" y1="210" x2="520" y2="430" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="520" cy="430" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
+        <line x1="305" y1="260" x2="575" y2="265" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="575" cy="265" r="4.5" fill="#22c55e" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="50" y="215" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          External acid
-        </text>
-        <rect x="185" y="198" width="56" height="23" rx="4" fill="#3b0718" stroke="#ef4444" stroke-width="1.2" />
-        <text x="213" y="215" text-anchor="middle" fill="#f87171" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
-          30%
-        </text>
-      </g>
-
-      <!-- 2. Chronic stress, 10% (GREEN) -->
-      <g>
-        <line x1="285" y1="275" x2="575" y2="330" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="575" cy="330" r="4.5" fill="#22c55e" stroke="#ffffff" stroke-width="1.2" />
-
-        <text x="50" y="280" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="50" y="265" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Chronic stress
         </text>
-        <rect x="195" y="263" width="56" height="23" rx="4" fill="#052e16" stroke="#22c55e" stroke-width="1.2" />
-        <text x="223" y="280" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
+        <!-- Badge right-aligned: x=240, width=56 -->
+        <rect x="240" y="248" width="56" height="23" rx="4" fill="#052e16" stroke="#22c55e" stroke-width="1.2" />
+        <text x="268" y="265" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
           10%
         </text>
       </g>
 
-      <!-- 3. Leaky margin, 30% (RED) -->
+      <!-- 2. Leaky margin, 35% (RED - severe molar leak, Y=330) -->
       <g>
-        <line x1="285" y1="340" x2="560" y2="420" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="560" cy="420" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
+        <line x1="305" y1="330" x2="550" y2="340" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="550" cy="340" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="50" y="345" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="50" y="335" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Leaky margin
         </text>
-        <rect x="185" y="328" width="56" height="23" rx="4" fill="#3b0718" stroke="#ef4444" stroke-width="1.2" />
-        <text x="213" y="345" text-anchor="middle" fill="#f87171" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
-          30%
+        <!-- Badge right-aligned: x=240, width=56 -->
+        <rect x="240" y="318" width="56" height="23" rx="4" fill="#3b0718" stroke="#ef4444" stroke-width="1.2" />
+        <text x="268" y="335" text-anchor="middle" fill="#f87171" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
+          35%
         </text>
       </g>
 
-      <!-- 4. Exposed tubules, 10% (YELLOW) -->
+      <!-- 3. Exposed tubules, 25% (YELLOW - moderate root canals/dentin, Y=400) -->
       <g>
-        <line x1="285" y1="405" x2="505" y2="455" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="505" cy="455" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
+        <line x1="305" y1="400" x2="505" y2="415" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="505" cy="415" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="50" y="410" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="50" y="405" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Exposed tubules
         </text>
-        <rect x="200" y="393" width="56" height="23" rx="4" fill="#281705" stroke="#eab308" stroke-width="1.2" />
-        <text x="228" y="410" text-anchor="middle" fill="#fde047" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
-          10%
+        <!-- Badge right-aligned: x=240, width=56 -->
+        <rect x="240" y="388" width="56" height="23" rx="4" fill="#281705" stroke="#eab308" stroke-width="1.2" />
+        <text x="268" y="405" text-anchor="middle" fill="#fde047" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
+          25%
         </text>
       </g>
 
-      <!-- 5. Lack of saliva, 30% (RED) -->
+      <!-- 4. External acid, 30% (RED - severe dietary ingress into teeth/sulci, Y=460) -->
       <g>
-        <line x1="285" y1="470" x2="535" y2="490" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="535" cy="490" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
+        <line x1="305" y1="460" x2="480" y2="465" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="480" cy="465" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="50" y="475" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="50" y="465" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+          External acid
+        </text>
+        <!-- Badge right-aligned: x=240, width=56 -->
+        <rect x="240" y="448" width="56" height="23" rx="4" fill="#3b0718" stroke="#ef4444" stroke-width="1.2" />
+        <text x="268" y="465" text-anchor="middle" fill="#f87171" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
+          30%
+        </text>
+      </g>
+
+      <!-- 5. Lack of saliva, 30% (RED - severe tongue acid bath, Y=520) -->
+      <g>
+        <line x1="305" y1="520" x2="455" y2="520" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="455" cy="520" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
+
+        <text x="50" y="525" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Lack of saliva
         </text>
-        <rect x="185" y="458" width="56" height="23" rx="4" fill="#3b0718" stroke="#ef4444" stroke-width="1.2" />
-        <text x="213" y="475" text-anchor="middle" fill="#f87171" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
+        <!-- Badge right-aligned: x=240, width=56 -->
+        <rect x="240" y="508" width="56" height="23" rx="4" fill="#3b0718" stroke="#ef4444" stroke-width="1.2" />
+        <text x="268" y="525" text-anchor="middle" fill="#f87171" font-size="13" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
           30%
         </text>
       </g>
 
       <!-- ============================================================ -->
-      <!-- RIGHT SIDE: TRUNKS & NUCLEUS (RIGHT-ALIGNED IN CLEAR BLACK)  -->
+      <!-- RIGHT SIDE: TRUNKS & BRAINSTEM NUCLEUS SPECIFICATIONS        -->
+      <!-- SUBNUCLEUS CAUDALIS POSITIONED ACCURATELY IN BRAINSTEM       -->
       <!-- ============================================================ -->
 
-      <!-- 1. Subnucleus Caudalis -->
+      <!-- 1. Subnucleus Caudalis (Dorsal Brainstem, Above/Behind Trigeminal Trunk, Y=185) -->
       <g>
-        <line x1="628" y1="275" x2="895" y2="210" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="628" cy="275" r="5" fill="#c084fc" stroke="#ffffff" stroke-width="1.2" />
+        <!-- Correct anatomical site: dorsal brainstem behind the ganglion -->
+        <line x1="680" y1="185" x2="895" y2="185" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="680" cy="185" r="5" fill="#c084fc" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="915" y="204" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="915" y="180" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Subnucleus Caudalis
         </text>
-        <rect x="915" y="213" width="138" height="23" rx="4" fill="#1e1035" stroke="#a855f7" stroke-width="1.2" />
-        <text x="984" y="230" text-anchor="middle" fill="#d8b4fe" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="915" y="189" width="138" height="23" rx="4" fill="#1e1035" stroke="#a855f7" stroke-width="1.2" />
+        <text x="984" y="206" text-anchor="middle" fill="#d8b4fe" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
           -55 mV Threshold
         </text>
       </g>
 
-      <!-- 2. V2 Maxillary Trunk -->
+      <!-- 2. V2 Maxillary Trunk (Maxilla & Palate Pathway, Y=275) -->
       <g>
-        <line x1="610" y1="305" x2="895" y2="295" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="610" cy="305" r="4.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.2" />
+        <line x1="640" y1="285" x2="895" y2="285" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="640" cy="285" r="4.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="915" y="291" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="915" y="280" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           V2 Maxillary Trunk
         </text>
-        <rect x="915" y="300" width="130" height="23" rx="4" fill="#081b33" stroke="#38bdf8" stroke-width="1.2" />
-        <text x="980" y="317" text-anchor="middle" fill="#7dd3fc" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="915" y="289" width="130" height="23" rx="4" fill="#081b33" stroke="#38bdf8" stroke-width="1.2" />
+        <text x="980" y="306" text-anchor="middle" fill="#7dd3fc" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
           50,000 Axons
         </text>
       </g>
 
-      <!-- 3. V3 Mandibular Trunk -->
+      <!-- 3. V3 Mandibular Trunk (Main Lower Jaw & Tooth Conduit, Y=375) -->
       <g>
-        <line x1="588" y1="345" x2="895" y2="385" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="588" cy="345" r="5" fill="#fbbf24" stroke="#ffffff" stroke-width="1.2" />
+        <line x1="600" y1="365" x2="895" y2="375" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="600" cy="365" r="5" fill="#fbbf24" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="915" y="381" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="915" y="370" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           V3 Mandibular Trunk
         </text>
-        <rect x="915" y="390" width="130" height="23" rx="4" fill="#291a03" stroke="#fbbf24" stroke-width="1.2" />
-        <text x="980" y="407" text-anchor="middle" fill="#fde047" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="915" y="379" width="130" height="23" rx="4" fill="#291a03" stroke="#fbbf24" stroke-width="1.2" />
+        <text x="980" y="396" text-anchor="middle" fill="#fde047" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
           70,000 Axons
         </text>
       </g>
 
-      <!-- 4. Lingual Nerve -->
+      <!-- 4. Lingual Nerve (Anterior 2/3 of Tongue Conduction, Y=470) -->
       <g>
-        <line x1="550" y1="460" x2="895" y2="475" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="550" cy="460" r="4.5" fill="#ec4899" stroke="#ffffff" stroke-width="1.2" />
+        <line x1="550" y1="465" x2="895" y2="470" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="550" cy="465" r="4.5" fill="#ec4899" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="915" y="471" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="915" y="465" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Lingual Nerve
         </text>
-        <rect x="915" y="480" width="135" height="23" rx="4" fill="#30071e" stroke="#ec4899" stroke-width="1.2" />
-        <text x="982" y="497" text-anchor="middle" fill="#f472b6" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="915" y="474" width="135" height="23" rx="4" fill="#30071e" stroke="#ec4899" stroke-width="1.2" />
+        <text x="982" y="491" text-anchor="middle" fill="#f472b6" font-size="12.5" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
           40 Hz Bandwidth
         </text>
       </g>
