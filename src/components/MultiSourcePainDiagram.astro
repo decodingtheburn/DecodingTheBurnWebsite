@@ -29,7 +29,7 @@
   </div>
 
   <!-- Medical Visual Viewport with Generous Dark Margins -->
-  <div style="position: relative; width: 100%; border-radius: 14px; overflow: hidden; background: #020005; border: 1px solid #281447; display: flex; justify-content: center; align-items: center; min-height: 840px; padding: 1.5rem 0;">
+  <div style="position: relative; width: 100%; border-radius: 14px; overflow: hidden; background: #020005; border: 1px solid #281447; display: flex; justify-content: center; align-items: center; min-height: 640px; padding: 1.5rem 0;">
     
     <!-- Base Medical Render with Glowing Red Subnucleus Caudalis in Brainstem -->
     <img 
@@ -40,7 +40,7 @@
     />
 
     <!-- SVG Clean Labels & Solid White Straight Connecting Lines Overlay (1200 x 640 viewBox) -->
-    <svg viewBox="0 0 1200 860" style="position: absolute; inset: 0; width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 1200 660" style="position: absolute; inset: 0; width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
       
       <!-- ============================================================ -->
       <!-- LEFT SIDE: GROUP 1 - DENTAL ISSUES (CLEAN, NO DASHES)        -->
@@ -53,84 +53,73 @@
         </text>
       </g>
 
-      <!-- 1. Leaky margin, 30% (RED - high severity, Y=195) -->
+            <!-- 1. Leaky crown, 30% -> 0% (RESOLVED / HEALED, Y=195) -->
       <g>
-        <line x1="305" y1="195" x2="550" y2="310" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="550" cy="310" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
+        <line x1="320" y1="195" x2="550" y2="310" stroke="#ffffff" stroke-width="1.8" opacity="0.9" stroke-dasharray="3 3" />
+        <circle cx="550" cy="310" r="4.5" fill="#15803d" stroke="#ffffff" stroke-width="1.2" />
 
         <text x="50" y="200" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Leaky margin
+          Leaky crown
         </text>
-        <rect x="240" y="183" width="56" height="23" rx="4" fill="#ef4444" stroke="#b91c1c" stroke-width="1" />
-        <text x="268" y="200" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+        <!-- Was 30% (Struck Through) -->
+        <rect x="180" y="183" width="42" height="23" rx="4" fill="#7f1d1d" stroke="#991b1b" stroke-width="1" opacity="0.75" />
+        <text x="201" y="199" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="800" font-family="system-ui, -apple-system, sans-serif">
           30%
         </text>
-      </g>
-
-      <!-- 2. Canine occlusion, 20% (RED - high severity, Y=245) -->
-      <g>
-        <line x1="305" y1="245" x2="520" y2="375" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
-        <circle cx="520" cy="375" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
-
-        <text x="50" y="250" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Canine occlusion
+        <line x1="184" y1="194.5" x2="218" y2="194.5" stroke="#ffffff" stroke-width="2" />
+        <!-- Arrow -->
+        <text x="232" y="200" text-anchor="middle" fill="#94a3b8" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+          &rarr;
         </text>
-        <rect x="240" y="233" width="56" height="23" rx="4" fill="#ef4444" stroke="#b91c1c" stroke-width="1" />
-        <text x="268" y="250" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          20%
+        <!-- Now 0% -->
+        <rect x="245" y="183" width="42" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
+        <text x="266" y="200" text-anchor="middle" fill="#ffffff" font-size="12.5" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+          0%
         </text>
       </g>
 
-      <!-- 3. Exposed tubules, 20% (Y=290) -->
+      <!-- 2. Exposed tubules, 20% (Y=245) -->
       <g>
-        <line x1="305" y1="290" x2="495" y2="425" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <line x1="305" y1="245" x2="495" y2="425" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
         <circle cx="495" cy="425" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="50" y="295" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="50" y="250" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Exposed tubules
         </text>
-        <rect x="240" y="278" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="295" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="240" y="233" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
+        <text x="268" y="250" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
           20%
         </text>
       </g>
 
-      <!-- 4. Pocket biofilm, 0% (GREEN, NO POINTER LINE, Y=335) -->
+      <!-- 3. Canine occlusion, 20% (RED - high severity, Y=295) -->
       <g>
-        <text x="50" y="340" fill="#cbd5e1" font-size="16" font-weight="700" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Pocket biofilm
+        <line x1="305" y1="295" x2="520" y2="375" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <circle cx="520" cy="375" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2" />
+
+        <text x="50" y="300" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+          Canine occlusion
         </text>
-        <rect x="240" y="323" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="268" y="340" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          0%
+        <rect x="240" y="283" width="56" height="23" rx="4" fill="#ef4444" stroke="#b91c1c" stroke-width="1" />
+        <text x="268" y="300" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+          20%
         </text>
       </g>
 
-      <!-- 5. Galvanic metals, 0% (GREEN, NO POINTER LINE, Y=380) -->
-      <g>
-        <text x="50" y="385" fill="#cbd5e1" font-size="16" font-weight="700" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Galvanic metals
-        </text>
-        <rect x="240" y="368" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="268" y="385" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          0%
-        </text>
-      </g>
-
-      <!-- 6. Others (20) Dental Issues, 0% (GREEN, CLICKABLE, Y=420) -->
+      <!-- 4. Others (20) Dental Issues, 0% (GREEN, CLICKABLE, Y=345) -->
       <g class="interactive-nerve-target" data-branch="dental-others" style="cursor: pointer;">
-        <text x="50" y="425" fill="#38bdf8" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
+        <text x="50" y="350" fill="#38bdf8" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
           Others (20) &rsaquo;
         </text>
-        <rect x="240" y="408" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="268" y="425" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="240" y="333" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
+        <text x="268" y="350" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
           0%
         </text>
       </g>
 
       <!-- DIVIDING SEPARATOR LINE -->
       <g>
-        <line x1="50" y1="455" x2="296" y2="455" stroke="#334155" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.8" />
+        <line x1="50" y1="385" x2="296" y2="385" stroke="#334155" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.8" />
       </g>
 
       <!-- ============================================================ -->
@@ -139,90 +128,57 @@
 
       <!-- Group Category Title: Other Triggers (1.6x size = 21px, clean typography) -->
       <g>
-        <text x="50" y="490" fill="#e0f2fe" font-size="21" font-weight="900" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.04em">
+        <text x="50" y="420" fill="#e0f2fe" font-size="21" font-weight="900" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.04em">
           Other Triggers
         </text>
       </g>
 
-      <!-- 6. Gastric acid, 10% (YELLOW, Y=495) -->
+      <!-- 5. Gastric acid, 10% (YELLOW, Y=460) -->
       <g>
-        <line x1="305" y1="530" x2="475" y2="475" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <line x1="305" y1="460" x2="475" y2="475" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
         <circle cx="475" cy="475" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="50" y="535" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="50" y="465" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Gastric acid
         </text>
-        <rect x="240" y="518" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="535" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="240" y="448" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
+        <text x="268" y="465" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
           10%
         </text>
       </g>
 
-      <!-- 7. Lack of saliva, 10% (YELLOW, Y=540) -->
+      <!-- 6. Lack of saliva, 10% (YELLOW, Y=510) -->
       <g>
-        <line x1="305" y1="575" x2="455" y2="520" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
+        <line x1="305" y1="510" x2="455" y2="520" stroke="#ffffff" stroke-width="1.8" opacity="0.9" />
         <circle cx="455" cy="520" r="4.5" fill="#eab308" stroke="#ffffff" stroke-width="1.2" />
 
-        <text x="50" y="580" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="50" y="515" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Lack of saliva
         </text>
-        <rect x="240" y="563" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="580" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="240" y="498" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
+        <text x="268" y="515" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
           10%
         </text>
       </g>
 
-      <!-- 8. Chronic stress, 10% (YELLOW, NO POINTER LINE, Y=585) -->
+      <!-- 7. Chronic stress, 10% (YELLOW, NO POINTER LINE, Y=555) -->
       <g>
-        <text x="50" y="620" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
+        <text x="50" y="560" fill="#ffffff" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
           Chronic stress
         </text>
-        <rect x="240" y="603" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
-        <text x="268" y="620" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="240" y="543" width="56" height="23" rx="4" fill="#eab308" stroke="#ca8a04" stroke-width="1" />
+        <text x="268" y="560" text-anchor="middle" fill="#000000" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
           10%
         </text>
       </g>
 
-      <!-- 9. Vitamin B12, 0% (GREEN, NO POINTER LINE, Y=630) -->
-      <g>
-        <text x="50" y="660" fill="#cbd5e1" font-size="16" font-weight="700" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Vitamin B12
-        </text>
-        <rect x="240" y="643" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="268" y="660" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          0%
-        </text>
-      </g>
-
-      <!-- 10. Iron / Ferritin, 0% (GREEN, NO POINTER LINE, Y=675) -->
-      <g>
-        <text x="50" y="700" fill="#cbd5e1" font-size="16" font-weight="700" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Iron / Ferritin
-        </text>
-        <rect x="240" y="683" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="268" y="700" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          0%
-        </text>
-      </g>
-
-      <!-- 11. Zinc level, 0% (GREEN, NO POINTER LINE, Y=720) -->
-      <g>
-        <text x="50" y="740" fill="#cbd5e1" font-size="16" font-weight="700" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em">
-          Zinc level
-        </text>
-        <rect x="240" y="723" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="268" y="740" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
-          0%
-        </text>
-      </g>
-
-      <!-- 12. Others (20) Systemic Triggers, 0% (GREEN, CLICKABLE, Y=780) -->
+      <!-- 8. Others (20) Systemic Triggers, 0% (GREEN, CLICKABLE, Y=605) -->
       <g class="interactive-nerve-target" data-branch="systemic-others" style="cursor: pointer;">
-        <text x="50" y="785" fill="#38bdf8" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
+        <text x="50" y="610" fill="#38bdf8" font-size="16" font-weight="800" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.01em" class="hover-glow">
           Others (20) &rsaquo;
         </text>
-        <rect x="240" y="768" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
-        <text x="268" y="785" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
+        <rect x="240" y="593" width="56" height="23" rx="4" fill="#15803d" stroke="#166534" stroke-width="1" />
+        <text x="268" y="610" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900" font-family="system-ui, -apple-system, sans-serif">
           0%
         </text>
       </g>
