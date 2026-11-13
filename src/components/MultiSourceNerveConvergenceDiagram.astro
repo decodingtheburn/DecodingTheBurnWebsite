@@ -1,202 +1,32 @@
 ---
 // MultiSourceNerveConvergenceDiagram.astro
-// High-Fidelity Photorealistic 3D Craniofacial Nerve Convergence Architecture
-// Combining realistic 3D medical anatomical rendering of the skull & trigeminal network
-// with interactive SVG overlays of the 5 peripheral oral ingress sources
+// Ultra-clean, focused 3D medical visual of the skull & trigeminal nerve.
+// Kept strictly to: Title/Header + Clean 3D Medical Render in the center.
 ---
 
-<div class="nerve-convergence-interactive-container tts-ignore" style="margin: 2.25rem 0 2.75rem; background: #070312; border: 1.5px solid #3b1d6e; border-radius: 16px; padding: 1.5rem; box-shadow: 0 16px 45px -10px rgba(0, 0, 0, 0.8); color: #f8fafc;">
+<div class="nerve-convergence-interactive-container tts-ignore" style="margin: 2.25rem 0 2.75rem; background: #070312; border: 1.5px solid #3b1d6e; border-radius: 16px; padding: 1.75rem; box-shadow: 0 16px 45px -10px rgba(0, 0, 0, 0.8); color: #f8fafc;">
   
-  <!-- Header -->
-  <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; border-bottom: 1px solid #1e1338; padding-bottom: 1rem;">
-    <div>
-      <div style="font-size: 0.76rem; font-weight: 800; color: #a855f7; text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.35; margin-bottom: 0.2rem;">
-        3D Medical Anatomy &amp; Electrophysiology
-      </div>
-      <div style="font-size: 1.28rem; font-weight: 900; color: #ffffff; line-height: 1.38;">
-        Visual Model 5: Real-World Craniofacial Hardware &amp; Trigeminal Wiring
-      </div>
-      <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin: 0.35rem 0 0; max-width: 800px;">
-        A high-fidelity 3D anatomical visualization mapping the full biological path: Cerebral Cortex on top, Trigeminal Ganglion and V2/V3 nerve trunks in the center, and the Oral Cavity with exposed cervical tubules, leaking margins, and pooling acid at the base.
-      </p>
+  <!-- Header (Arrow 1) -->
+  <div style="margin-bottom: 1.25rem; border-bottom: 1px solid #1e1338; padding-bottom: 1rem;">
+    <div style="font-size: 0.76rem; font-weight: 800; color: #a855f7; text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.35; margin-bottom: 0.25rem;">
+      3D Medical Anatomy &amp; Electrophysiology
     </div>
-    <div style="display: flex; gap: 0.5rem; align-items: center; align-self: flex-start;">
-      <span style="font-size: 0.78rem; font-weight: 700; color: #ec4899; background: #3b0724; border: 1px solid #831843; padding: 0.25rem 0.7rem; border-radius: 9999px; line-height: 1.3;">
-        Hardware-First Mapping
-      </span>
+    <div style="font-size: 1.35rem; font-weight: 900; color: #ffffff; line-height: 1.38; margin-bottom: 0.45rem;">
+      Visual Model 5: Craniofacial Hardware &amp; Trigeminal Wiring
     </div>
+    <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.55; margin: 0; max-width: 820px;">
+      A high-fidelity 3D anatomical visualization mapping the full biological path: Cerebral Cortex on top, Trigeminal Ganglion and V2/V3 nerve trunks in the center, and the Oral Cavity with exposed cervical tubules, leaking margins, and pooling acid at the base.
+    </p>
   </div>
 
-  <!-- Interactive Control Bar -->
-  <div style="background: #110822; border: 1px solid #281447; border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
-    <div style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.45;">
-      <strong style="color: #c084fc;">Simulation Controller:</strong> Test how peripheral repairs impact central brainstem firing in real-time.
-    </div>
-    <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
-      <button type="button" class="anatomical-mode-btn active" data-mode="full" style="font-size: 0.76rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid #7c3aed; background: #7c3aed; color: white; cursor: pointer;">1. Active Multi-Source Burn (10/10)</button>
-      <button type="button" class="anatomical-mode-btn" data-mode="diet" style="font-size: 0.76rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid #4c1d95; background: #1a0f35; color: #c084fc; cursor: pointer;">2. Eliminate Acid Only (-10%)</button>
-      <button type="button" class="anatomical-mode-btn" data-mode="sealed" style="font-size: 0.76rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid #065f46; background: #064e3b; color: #34d399; cursor: pointer;">3. Seal Margins + Tubules (0/10 Target)</button>
-    </div>
-  </div>
-
-  <!-- 3D ANATOMICAL RENDERING DISPLAY CONTAINER -->
-  <div class="anatomical-viewport" style="position: relative; width: 100%; border-radius: 14px; overflow: hidden; background: #030108; border: 1px solid #281447; min-height: 520px;">
-    
-    <!-- Realistic 3D Medical Base Image -->
+  <!-- 3D Anatomical Render (Arrow 2) - Clean image only, centered and prominent -->
+  <div style="width: 100%; border-radius: 14px; overflow: hidden; background: #030108; border: 1px solid #281447; display: flex; justify-content: center; align-items: center; padding: 0.5rem 0;">
     <img 
       src="/trigeminal-v2-v3-nerves-real.jpg" 
       alt="3D medical render of human skull, brain, trigeminal nerve trunks V2 V3, and oral cavity innervation" 
-      style="width: 100%; height: auto; max-height: 640px; object-fit: contain; object-position: center; display: block; opacity: 0.88; filter: contrast(1.15) brightness(0.95);"
-      class="base-medical-render"
+      style="width: 100%; max-width: 820px; height: auto; max-height: 680px; object-fit: contain; object-position: center; display: block; border-radius: 10px; filter: contrast(1.15) brightness(0.98);"
       loading="lazy"
     />
-
-    <!-- Glowing Dynamic Pain Aura Overlay (Changes with Buttons) -->
-    <div class="dynamic-flame-overlay" style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 48% 68%, rgba(244, 63, 94, 0.45) 0%, rgba(168, 85, 247, 0.25) 40%, transparent 70%); mix-blend-mode: screen; transition: opacity 0.5s ease;"></div>
-
-    <!-- SVG INTERACTIVE CALLOUT PINS OVERLAY -->
-    <svg viewBox="0 0 1000 640" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;" xmlns="http://www.w3.org/2000/svg">
-      
-      <!-- TOP REGION: BRAIN & CORTEX (Sensory S1 Homunculus) -->
-      <g style="pointer-events: auto;">
-        <!-- Pin: S1 Cortex -->
-        <circle cx="510" cy="95" r="9" fill="#ef4444" stroke="#ffffff" stroke-width="2" class="pulse-pin" />
-        <line x1="510" y1="95" x2="620" y2="70" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="3 2" />
-        <rect x="620" y="48" width="235" height="46" rx="6" fill="#140624" stroke="#f43f5e" stroke-width="1.2" />
-        <text x="632" y="67" fill="#fecdd3" font-size="11" font-weight="800">1. S1 Somatosensory Cortex</text>
-        <text x="632" y="83" fill="#cbd5e1" font-size="9.5">Registers 10/10 Scalded Mouth Agony</text>
-      </g>
-
-      <!-- MIDDLE REGION: BRAINSTEM HUB & TRIGEMINAL TRUNKS -->
-      <g style="pointer-events: auto;">
-        <!-- Pin: Trigeminal Ganglion & Vc Hub -->
-        <circle cx="535" cy="275" r="10" fill="#a855f7" stroke="#ffffff" stroke-width="2" class="pulse-pin" />
-        <line x1="535" y1="275" x2="660" y2="250" stroke="#c084fc" stroke-width="1.8" stroke-dasharray="3 2" />
-        <rect x="660" y="222" width="265" height="60" rx="6" fill="#1a0b33" stroke="#a855f7" stroke-width="1.4" />
-        <text x="672" y="242" fill="#e9d5ff" font-size="11" font-weight="800">2. Subnucleus Caudalis (Vc Hub)</text>
-        <text x="672" y="258" fill="#fda4af" font-size="9.5" font-weight="700">Glial GLT-1 Saturation &bull; 10x Central Gain</text>
-        <text x="672" y="272" fill="#94a3b8" font-size="9">Ephaptic K+ Jump into Lingual Nerve fibers</text>
-
-        <!-- Pin: V3 Mandibular Trunk (70,000 Axons) -->
-        <circle cx="490" cy="340" r="8" fill="#38bdf8" stroke="#ffffff" stroke-width="2" class="pulse-pin" />
-        <line x1="490" y1="340" x2="280" y2="280" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="3 2" />
-        <rect x="90" y="255" width="200" height="48" rx="6" fill="#08152c" stroke="#38bdf8" stroke-width="1.2" />
-        <text x="102" y="275" fill="#38bdf8" font-size="11" font-weight="800">3. V3 Mandibular Trunk</text>
-        <text x="102" y="291" fill="#cbd5e1" font-size="9.5">70k Axons &bull; Remak Bundle Crosstalk</text>
-      </g>
-
-      <!-- BOTTOM REGION: ORAL CAVITY, ROOT MARGINS, ACID & TONGUE -->
-      <g style="pointer-events: auto;">
-        <!-- Pin: Tooth #19 Leaking Crown Margin -->
-        <circle cx="460" cy="420" r="9" fill="#ec4899" stroke="#ffffff" stroke-width="2" class="pulse-pin" />
-        <line x1="460" y1="420" x2="310" y2="400" stroke="#ec4899" stroke-width="1.8" stroke-dasharray="3 2" />
-        <rect x="110" y="375" width="210" height="52" rx="6" fill="#2d0822" stroke="#ec4899" stroke-width="1.2" />
-        <text x="122" y="395" fill="#fbcfe8" font-size="11" font-weight="800">4. Leaking Crown Margin</text>
-        <text x="122" y="411" fill="#cbd5e1" font-size="9.5">Subgingival Cement Washout (40% Load)</text>
-        <text x="122" y="422" fill="#f472b6" font-size="8.5">Tooth #19 / #30 continuous 40 Hz firing</text>
-
-        <!-- Pin: Exposed Root Tubules (#33 Canine / Premolar) -->
-        <circle cx="400" cy="455" r="9" fill="#f59e0b" stroke="#ffffff" stroke-width="2" class="pulse-pin" />
-        <line x1="400" y1="455" x2="260" y2="490" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="3 2" />
-        <rect x="60" y="475" width="210" height="52" rx="6" fill="#281705" stroke="#f59e0b" stroke-width="1.2" />
-        <text x="72" y="495" fill="#fef08a" font-size="11" font-weight="800">5. Exposed Cervical Dentin</text>
-        <text x="72" y="511" fill="#cbd5e1" font-size="9.5">60,000 to 135,000 Open Tubules (25%)</text>
-        <text x="72" y="522" fill="#fbbf24" font-size="8.5">Fluid shear directly fires pulp A&delta; / C-fibers</text>
-
-        <!-- Pin: Salivary Acid Reservoir & Burning Tongue -->
-        <circle cx="430" cy="485" r="9" fill="#ff0055" stroke="#ffffff" stroke-width="2" class="pulse-pin" />
-        <line x1="430" y1="485" x2="570" y2="520" stroke="#ff0055" stroke-width="1.8" stroke-dasharray="3 2" />
-        <rect x="560" y="500" width="250" height="54" rx="6" fill="#3b0718" stroke="#ff0055" stroke-width="1.4" />
-        <text x="572" y="520" fill="#ffffff" font-size="11" font-weight="900">&#9888; Scalded Tongue &amp; Acid Pool</text>
-        <text x="572" y="535" fill="#fecdd3" font-size="9.5">Lost Salivary Buffer (pH 6.2) &bull; ASIC3 Locked</text>
-        <text x="572" y="547" fill="#fca5a5" font-size="8.5">Referred scald across anterior 2/3 of tongue</text>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Real Hardware Micrograph Evidence Cards -->
-  <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
-    <!-- Card 1: 3D Leaking Margin -->
-    <div style="background: #110822; border: 1px solid #281447; border-radius: 10px; padding: 1rem; display: flex; gap: 0.9rem; align-items: center;">
-      <img src="/leaky-crown-cross-section-3d.jpg" alt="3D cross section of crown margin leakage" style="width: 72px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid #4c1d95; flex-shrink: 0;" />
-      <div style="line-height: 1.45;">
-        <div style="font-size: 0.85rem; font-weight: 800; color: #ec4899; margin-bottom: 0.2rem;">Physical Hardware Leak</div>
-        <div style="font-size: 0.8rem; color: #cbd5e1;">Cement washout creates a micro-gap where anaerobic bacteria ferment lactic acid directly against pulp nerves.</div>
-      </div>
-    </div>
-
-    <!-- Card 2: Exposed Tubules SEM -->
-    <div style="background: #110822; border: 1px solid #281447; border-radius: 10px; padding: 1rem; display: flex; gap: 0.9rem; align-items: center;">
-      <img src="/exposed-dentinal-tubules-cross-section.jpg" alt="Exposed dentinal tubules SEM micrograph" style="width: 72px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid #4c1d95; flex-shrink: 0;" />
-      <div style="line-height: 1.45;">
-        <div style="font-size: 0.85rem; font-weight: 800; color: #fbbf24; margin-bottom: 0.2rem;">Unshielded Root Channels</div>
-        <div style="font-size: 0.8rem; color: #cbd5e1;">Each receded molar opens up to 135,000 liquid pipelines conducting acid and temperature changes into the nerve.</div>
-      </div>
-    </div>
-
-    <!-- Card 3: 10/10 Radiating Convergence -->
-    <div style="background: #110822; border: 1px solid #281447; border-radius: 10px; padding: 1rem; display: flex; gap: 0.9rem; align-items: center;">
-      <img src="/trigeminal-radiating-pain-10-10.jpg" alt="Trigeminal radiating pain clinical scan" style="width: 72px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid #4c1d95; flex-shrink: 0;" />
-      <div style="line-height: 1.45;">
-        <div style="font-size: 0.85rem; font-weight: 800; color: #f43f5e; margin-bottom: 0.2rem;">Central Convergence Radiation</div>
-        <div style="font-size: 0.8rem; color: #cbd5e1;">Continuous peripheral leaks saturate brainstem astrocyte pumps, causing tooth signals to burn the entire tongue and palate.</div>
-      </div>
-    </div>
   </div>
 
 </div>
-
-<script>
-  // Interactive Anatomical Mode Switching
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.anatomical-mode-btn');
-    const flameOverlay = document.querySelector('.dynamic-flame-overlay') as HTMLElement;
-    const baseRender = document.querySelector('.base-medical-render') as HTMLElement;
-
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        buttons.forEach(b => {
-          (b as HTMLElement).style.background = '#1a0f35';
-          (b as HTMLElement).style.color = '#c084fc';
-          (b as HTMLElement).style.borderColor = '#4c1d95';
-        });
-        (btn as HTMLElement).style.background = '#7c3aed';
-        (btn as HTMLElement).style.color = '#ffffff';
-        (btn as HTMLElement).style.borderColor = '#7c3aed';
-
-        const mode = btn.getAttribute('data-mode');
-
-        if (mode === 'diet') {
-          // Acid eliminated, but hardware leaks still fire
-          if (flameOverlay) flameOverlay.style.opacity = '0.55';
-          if (baseRender) baseRender.style.filter = 'contrast(1.1) brightness(0.9)';
-        } else if (mode === 'sealed') {
-          // Hardware sealed and acid eliminated -> Full calm
-          if (flameOverlay) flameOverlay.style.opacity = '0.05';
-          if (baseRender) baseRender.style.filter = 'contrast(1.0) brightness(0.85)';
-        } else {
-          // Full multi-source burn
-          if (flameOverlay) flameOverlay.style.opacity = '1';
-          if (baseRender) baseRender.style.filter = 'contrast(1.2) brightness(1.0)';
-        }
-      });
-    });
-  });
-</script>
-
-<style>
-  @keyframes pinPulse {
-    0%, 100% {
-      transform: scale(1);
-      filter: drop-shadow(0 0 4px currentColor);
-    }
-    50% {
-      transform: scale(1.35);
-      filter: drop-shadow(0 0 10px currentColor);
-    }
-  }
-  .pulse-pin {
-    animation: pinPulse 2s ease-in-out infinite;
-    transform-origin: center;
-  }
-</style>
