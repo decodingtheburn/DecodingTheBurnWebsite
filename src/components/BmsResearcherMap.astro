@@ -1,0 +1,202 @@
+---
+// BmsResearcherMap.astro - Interactive global map of BMS researchers without API key (using Leaflet + OpenStreetMap / CartoDB)
+---
+
+<div class="bms-map-card" style="margin: 2rem 0; border: 1.5px solid #d8b4fe; border-radius: 12px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 20px rgba(124, 58, 237, 0.08);">
+	<div style="padding: 1rem 1.25rem; background: #faf5ff; border-bottom: 1.5px solid #e9d5ff; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+		<div>
+			<strong style="color: #581c87; font-size: 0.95rem; display: block;">Interactive Global Research Network</strong>
+			<span style="font-size: 0.78rem; color: #6b21a8;">Click any university marker to view researcher details, lab focus, and public contact info</span>
+		</div>
+		<span style="font-size: 0.72rem; background: #ede9fe; color: #581c87; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 700; border: 1px solid #d8b4fe;">15 Global Academic Hubs</span>
+	</div>
+
+	<!-- Map Container -->
+	<div id="bms-research-map" style="height: 480px; width: 100%; z-index: 10;"></div>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script is:inline>
+	function initBmsMap() {
+		const mapContainer = document.getElementById('bms-research-map');
+		if (!mapContainer || typeof L === 'undefined') {
+			setTimeout(initBmsMap, 200);
+			return;
+		}
+
+		// Avoid multiple initializations
+		if (mapContainer._leaflet_id) {
+			return;
+		}
+
+		// Center globally covering Europe and North America
+		const map = L.map('bms-research-map', {
+			center: [38.0, 5.0],
+			zoom: 2.5,
+			minZoom: 2,
+			maxZoom: 10,
+			scrollWheelZoom: false
+		});
+
+		// Free CartoDB Voyager tiles (clean, beautiful, no API key required)
+		L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>',
+			subdomains: 'abcd',
+			maxZoom: 19
+		}).addTo(map);
+
+		// Custom purple marker icon
+		const purpleIcon = L.divIcon({
+			className: 'custom-bms-pin',
+			html: `<div style="background: #7c3aed; width: 22px; height: 22px; border-radius: 50%; border: 3px solid #ffffff; box-shadow: 0 2px 8px rgba(88, 28, 135, 0.5); display: flex; align-items: center; justify-content: center;"><div style="width: 6px; height: 6px; background: #ffffff; border-radius: 50%;"></div></div>`,
+			iconSize: [22, 22],
+			iconAnchor: [11, 11],
+			popupAnchor: [0, -12]
+		});
+
+		const hubs = [
+			{
+				name: "Dr. Satu K. Jääskeläinen",
+				university: "University of Turku",
+				city: "Turku, Finland",
+				coords: [60.4518, 22.2666],
+				focus: "Neurophysiology, blink reflex testing, small-fiber neuropathy subtyping",
+				email: "sjaaske@utu.fi"
+			},
+			{
+				name: "Dr. Cibele Nasri-Heir",
+				university: "Rutgers School of Dental Medicine",
+				city: "Newark, NJ, USA",
+				coords: [40.7419, -74.1866],
+				focus: "Orofacial neuropathic pain, international diagnostic criteria, pain modulation",
+				email: "nasrici@sdm.rutgers.edu"
+			},
+			{
+				name: "Dr. Gary D. Klasser",
+				university: "LSU Health New Orleans",
+				city: "New Orleans, LA, USA",
+				coords: [29.9867, -90.0766],
+				focus: "ICOP consensus criteria, differential diagnosis, topical/systemic therapies",
+				email: "gklass@lsuhsc.edu"
+			},
+			{
+				name: "Prof. Yves Boucher",
+				university: "Université Paris Cité / INSERM",
+				city: "Paris, France",
+				coords: [48.8530, 2.3350],
+				focus: "Taste-to-pain cross-inhibition, chorda tympani disinhibition of lingual nerve",
+				email: "yves.boucher@aphp.fr"
+			},
+			{
+				name: "Dr. Barry J. Sessle",
+				university: "University of Toronto",
+				city: "Toronto, Canada",
+				coords: [43.6577, -79.3871],
+				focus: "Trigeminal central sensitization, medullary dorsal horn synaptic plasticity",
+				email: "barry.sessle@dentistry.utoronto.ca"
+			},
+			{
+				name: "Dr. Giulia Ottaviani",
+				university: "University of Trieste",
+				city: "Trieste, Italy",
+				coords: [45.6580, 13.7900],
+				focus: "BMS pathogenesis, ultramicronized PEA trials, photobiomodulation",
+				email: "gottaviani@units.it"
+			},
+			{
+				name: "Prof. Stefano Fedele",
+				university: "UCL Eastman Dental Institute",
+				city: "London, United Kingdom",
+				coords: [51.5246, -0.1340],
+				focus: "Oral medicine, mucosal diagnostics, patient latency, clinical trials",
+				email: "s.fedele@ucl.ac.uk"
+			},
+			{
+				name: "Prof. Peter Svensson",
+				university: "Aarhus University",
+				city: "Aarhus, Denmark",
+				coords: [56.1680, 10.2030],
+				focus: "Quantitative Sensory Testing (QST), double-blind lingual nerve blocks",
+				email: "peter.svensson@dent.au.dk"
+			},
+			{
+				name: "Prof. Lene Baad-Hansen",
+				university: "Aarhus University",
+				city: "Aarhus, Denmark",
+				coords: [56.1730, 10.2150],
+				focus: "Sensory profiling, experimental capsaicin tongue models, mechanical allodynia",
+				email: "lene.hansen@dent.au.dk"
+			},
+			{
+				name: "Prof. Akira Toyofuku",
+				university: "Institute of Science Tokyo (TMD)",
+				city: "Tokyo, Japan",
+				coords: [35.7017, 139.7618],
+				focus: "Psychosomatic dentistry, brain imaging, multicenter BMS registry network",
+				email: "toyoompm@tmd.ac.jp"
+			},
+			{
+				name: "Prof. Michele Davide Mignogna",
+				university: "University of Naples Federico II",
+				city: "Naples, Italy",
+				coords: [40.8630, 14.2250],
+				focus: "Head of Oral Medicine, 680+ patient long-term cohorts, mucosal pathology",
+				email: "mignogna@unina.it"
+			},
+			{
+				name: "Prof. Daniela Adamo",
+				university: "University of Naples Federico II",
+				city: "Naples, Italy",
+				coords: [40.8550, 14.2380],
+				focus: "Small-fiber neuropathy, central white matter imaging, topical pregabalin trials",
+				email: "danielaadamo.it@gmail.com"
+			},
+			{
+				name: "Prof. Sharon Elad",
+				university: "Eastman Institute for Oral Health (URMC)",
+				city: "Rochester, NY, USA",
+				coords: [43.1235, -77.6258],
+				focus: "Oral medicine, refractory mucosal burning protocols, topical barrier therapy",
+				email: "SElad@urmc.rochester.edu"
+			},
+			{
+				name: "Prof. Tara Renton",
+				university: "King's College London",
+				city: "London, United Kingdom",
+				coords: [51.5033, -0.1195],
+				focus: "Lingual nerve injuries vs. BMS, mucosal P2X3 and TRPV1 receptor upregulation",
+				email: "tara.renton@kcl.ac.uk"
+			},
+			{
+				name: "Prof. Giuseppina Campisi",
+				university: "University of Palermo",
+				city: "Palermo, Italy",
+				coords: [38.1157, 13.3615],
+				focus: "Italian multicenter clinical registries, sleep disorders, mucosal neurobiology",
+				email: "giuseppina.campisi@unipa.it"
+			}
+		];
+
+		hubs.forEach(hub => {
+			const popupContent = `
+				<div style="font-family: system-ui, sans-serif; font-size: 0.8rem; line-height: 1.45; min-width: 200px;">
+					<strong style="color: #581c87; font-size: 0.88rem; display: block; margin-bottom: 2px;">${hub.name}</strong>
+					<span style="color: #7c3aed; font-weight: 600; display: block; margin-bottom: 4px;">${hub.university}</span>
+					<span style="color: #64748b; font-size: 0.74rem; display: block; margin-bottom: 6px;">📍 ${hub.city}</span>
+					<p style="margin: 0 0 6px; color: #334155; font-size: 0.76rem;">${hub.focus}</p>
+					<code style="background: #faf5ff; color: #581c87; padding: 2px 6px; border-radius: 4px; font-size: 0.72rem; border: 1px solid #e9d5ff; display: inline-block;">${hub.email}</code>
+				</div>
+			`;
+			L.marker(hub.coords, { icon: purpleIcon }).addTo(map).bindPopup(popupContent);
+		});
+	}
+
+	// Trigger initialization when DOM is loaded
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initBmsMap);
+	} else {
+		initBmsMap();
+	}
+</script>
