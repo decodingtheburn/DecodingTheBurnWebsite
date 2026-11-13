@@ -223,16 +223,20 @@
 
     </svg>
 
-    <!-- FULL-VIEWPORT OVERLAY MODAL (FULL WIDTH & FULL HEIGHT, NO SCROLLING NEEDED) -->
-    <div id="nerve-modal-card" style="display: none; position: absolute; inset: 0; background: rgba(5, 2, 13, 0.98); backdrop-filter: blur(20px); border-radius: 14px; padding: 2rem 2.5rem; box-shadow: 0 0 50px rgba(0, 0, 0, 0.95); color: #f8fafc; z-index: 60; overflow-y: auto; flex-direction: column; justify-content: flex-start;">
+    <!-- FULLSCREEN MODAL OVERLAY (TAKES THE FULL SCREEN / VIEWPORT, RESPONSIVE) -->
+    <div id="nerve-modal-card" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; background: rgba(4, 2, 10, 0.95); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 99999; overflow-y: auto; padding: 2.5rem 1.5rem; box-sizing: border-box; align-items: center; justify-content: center;">
       
-      <!-- Close Button -->
-      <button id="close-modal-btn" type="button" aria-label="Close details" style="position: absolute; top: 0.85rem; right: 0.95rem; background: #1e1338; border: 1px solid #4c1d95; color: #e2e8f0; border-radius: 6px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; font-weight: 700; line-height: 1;">
-        &times;
-      </button>
+      <!-- Modal Inner Container -->
+      <div style="position: relative; width: 100%; max-width: 1240px; background: #080318; border: 1.5px solid #6b21a8; border-radius: 18px; padding: 2.25rem 2.5rem; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95); color: #f8fafc; box-sizing: border-box;">
+        
+        <!-- Close Button -->
+        <button id="close-modal-btn" type="button" aria-label="Close details" style="position: absolute; top: 1.25rem; right: 1.25rem; background: #1e1035; border: 1.5px solid #7c3aed; color: #f8fafc; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 22px; font-weight: 700; line-height: 1; transition: all 0.2s ease;">
+          &times;
+        </button>
 
-      <!-- Modal Content Body -->
-      <div id="modal-content-area" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;"></div>
+        <!-- Modal Content Body -->
+        <div id="modal-content-area"></div>
+      </div>
     </div>
 
   </div>
@@ -366,9 +370,9 @@
                       </ul>
                     ` : ''}
 
-                    <!-- Role / Clinical Significance -->
-                    <div style="font-size: 0.76rem; color: #94a3b8; border-top: 1px solid #1e1338; padding-top: 0.35rem; margin-top: 0.35rem;">
-                      <strong style="color: #cbd5e1;">Function:</strong> ${b.role}
+                    <!-- Role / Clinical Significance (Aligned with text above the bullet points) -->
+                    <div style="font-size: 0.8rem; color: #94a3b8; border-top: 1px solid #1e1338; padding-top: 0.5rem; margin-top: 0.5rem; line-height: 1.45;">
+                      <span style="font-weight: 800; color: #cbd5e1;">Function:</span> ${b.role}
                     </div>
                   </div>
                 `).join('')}
