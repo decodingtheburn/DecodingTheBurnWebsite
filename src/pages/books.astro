@@ -11,18 +11,18 @@ const editions = [
     subtitle: "How Everyday Acid and Sugar Can Mimic BMS, Why 2-Micron Crown Leaks Ignite Trigeminal Wind-Up, and the Practical Protocol to Calm It",
     edition: "First Edition & Clinical Manuscript",
     status: "Free Online Draft & Interactive Reader",
-    pages: "92 Pages",
-    readTime: "3.5 Hours",
+    pages: "Complete 297-Page Edition",
+    readTime: "Read Time ~3.5 Hours",
     introPara: "When burning mouth pain feels constant and every routine dental exam comes back clear, it is easy to feel stuck. This book shares the personal investigation that uncovered how everyday dietary acids, sugar-fermenting bacteria, and microscopic dental gaps can keep oral pain pathways continuously firing.",
-    secondaryPara: "Inside, you will find a structured elimination approach to validate whether acidity drives your symptoms, practical steps to calm the nerve pathways, and a collaborative checklist to help your dentist investigate hidden hardware causes.",
+    expandedPara: "Beyond acidity, chronic burning is rarely driven by a single trigger. This guide breaks down the full cluster of compounding factors including nutritional deficiencies, dry mouth dynamics, silent bite stress, and nerve wind-up. You will discover a step-by-step self-test protocol to evaluate your personal triggers, along with a collaborative checklist to help your dentist investigate hidden causes.",
     coverImg: "/book-front-cover.jpg",
     backCoverImg: "/book-back-cover.jpg",
     readDraftLink: "/draft",
     amazonLink: "https://www.amazon.com/dp/B0DGBZ8XZP",
     highlights: [
-      "Understand why everyday acids and sugars can keep burning sensations active",
-      "A simple self-check to evaluate whether acidity is one of your pain triggers",
-      "A non-confrontational checklist to guide constructive discussions with your dentist"
+      "How dietary acids and everyday sugars activate persistent burning pain pathways",
+      "The compound impact of other factors: dental gaps, bite alignment, dryness, and nutrient depletion",
+      "A structured self-check and collaborative dental checklist to explore your root triggers"
     ],
     publishedDate: "November 2026",
     badge: "Available Now"
@@ -63,9 +63,9 @@ const editions = [
                 class="book-flipper-container"
                 aria-label={`View ${book.title} (Hover to see back cover)`}
               >
-                <!-- Red Hover-to-Flip Pill at Top Only -->
+                <!-- Clean Red Hover-to-Flip Text at Top (No Pill Shape) -->
                 <div class="flip-hover-hint-top">
-                  Hover to flip &orarr;
+                  Hover cover to flip &orarr;
                 </div>
 
                 <div class="book-3d-flipper">
@@ -113,13 +113,25 @@ const editions = [
                 <span class="meta-item">Published {book.publishedDate}</span>
               </div>
 
-              <!-- Two Patient-Focused Story Paragraphs -->
+              <!-- Single Intro Paragraph with Expandable Read More -->
               <p class="book-intro-text">
                 {book.introPara}
               </p>
-              <p class="book-secondary-text">
-                {book.secondaryPara}
-              </p>
+
+              <!-- Expandable Read More Section -->
+              <details class="book-read-more-wrapper">
+                <summary class="book-read-more-trigger">
+                  <span>Read more</span>
+                  <svg class="chevron-down-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="book-expanded-content">
+                  <p class="book-secondary-text">
+                    {book.expandedPara}
+                  </p>
+                </div>
+              </details>
 
               <!-- Floating Key Highlights (No Background Box, 3 Client-Focused Points) -->
               <div class="book-floating-highlights">
@@ -283,29 +295,27 @@ const editions = [
     position: relative;
   }
 
-  /* Centered Red Hover-to-Flip Pill at Top */
+  /* Centered Red Hover-to-Flip Text at Top (Zero Pill Box) */
   .flip-hover-hint-top {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
     color: #e11d48;
-    background: #ffe4e6;
-    border: 1px solid #fecdd3;
-    font-size: 0.78rem;
+    background: transparent;
+    border: none;
+    font-size: 0.85rem;
     font-weight: 700;
-    padding: 0.35rem 0.95rem;
-    border-radius: 9999px;
-    margin-bottom: 0.85rem;
+    padding: 0;
+    margin-bottom: 0.75rem;
     text-align: center;
     letter-spacing: 0.02em;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
   }
 
   .book-flipper-container:hover .flip-hover-hint-top {
-    background: #fecdd3;
     color: #be123c;
-    transform: scale(1.04);
+    transform: scale(1.05);
   }
 
   .book-3d-flipper {
@@ -496,22 +506,14 @@ const editions = [
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #64748b;
-    margin-bottom: 1.15rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.25rem;
   }
 
   .meta-separator {
-    color: #cbd5e1;
-  }
-
-  .book-synopsis-text {
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: #334155;
-    margin: 0 0 1.5rem;
-    text-wrap: pretty;
+    color: #94a3b8;
   }
 
   /* Patient Story Paragraphs */
@@ -519,15 +521,60 @@ const editions = [
     font-size: 1.05rem;
     line-height: 1.7;
     color: #1e293b;
-    margin: 0 0 1rem;
+    margin: 0 0 0.85rem;
     text-wrap: pretty;
+  }
+
+  /* Read More Interactive Expander */
+  .book-read-more-wrapper {
+    margin-bottom: 1.65rem;
+  }
+
+  .book-read-more-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #4f46e5;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s ease;
+    list-style: none;
+  }
+
+  .book-read-more-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .book-read-more-trigger:hover {
+    color: #3730a3;
+    text-decoration: underline;
+  }
+
+  .chevron-down-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .book-read-more-wrapper[open] .chevron-down-icon {
+    transform: rotate(180deg);
+  }
+
+  .book-expanded-content {
+    margin-top: 0.85rem;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .book-secondary-text {
     font-size: 0.95rem;
     line-height: 1.65;
-    color: #475569;
-    margin: 0 0 1.75rem;
+    color: #334155;
+    margin: 0;
     text-wrap: pretty;
   }
 
