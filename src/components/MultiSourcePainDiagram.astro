@@ -1,13 +1,23 @@
 ---
 // MultiSourcePainDiagram.astro
-// Vertical Medical Diagnostic Layout:
-// 1. Nerve Capacity Header Cards (Subnucleus Caudalis, V1, V2, V3) on Top
-// 2. High-Resolution Trigeminal Medical Render with Hover Highlight Areas (No Static Lines)
-// 3. Peripheral Pain Drivers Below (Dental Issues & Other Triggers) with Interactive Hover Lighting
+// Configurable Medical Diagnostic Layout:
+// showNerveCards: boolean (default: true) - whether to display the top Caudalis and V1-V3 capacity cards
+// showPeripheralInputs: boolean (default: true) - whether to display the 3 category cards below (Dental, Deficiency, Dietary)
+
+interface Props {
+  showNerveCards?: boolean;
+  showPeripheralInputs?: boolean;
+}
+
+const { 
+  showNerveCards = true, 
+  showPeripheralInputs = true 
+} = Astro.props;
 ---
 
 <div class="pain-diagram-wrapper" style="width: 100%; max-width: 960px; margin: 2rem auto; font-family: system-ui, -apple-system, sans-serif;">
 
+  {showNerveCards && (
   <!-- SECTION 1: TOP NERVE TRUNK CAPACITY (UNIFIED BRANDED PURPLE CARDS) -->
   <div style="margin-bottom: 1.5rem;">
     
@@ -58,6 +68,7 @@
 
     </div>
   </div>
+  )}
 
   <!-- SECTION 2: MEDICAL VISUAL VIEWPORT (CLEAN IMAGE WITH HOVER HIGHLIGHT HOTSPOTS - ZERO LINES) -->
   <div style="position: relative; width: 100%; border-radius: 14px; overflow: hidden; background: #020005; border: 1px solid #281447; display: flex; justify-content: center; align-items: center; min-height: 480px; padding: 1rem 0;">
@@ -163,6 +174,7 @@
 
   </div>
 
+  {showPeripheralInputs && (
   <!-- SECTION 3: PERIPHERAL INPUTS BELOW THE IMAGE (3 CATEGORIES SIDE-BY-SIDE) -->
   <div style="margin-top: 1.75rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
     
@@ -299,6 +311,7 @@
     </div>
 
   </div>
+  )}
 
 </div>
 
