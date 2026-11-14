@@ -855,22 +855,35 @@ import { SITE_TITLE } from '../consts';
 			}
 
 			.page-running-head {
-				position: relative;
-				display: flex;
-				justify-content: space-between !important;
+				display: flex !important;
+				flex-direction: column;
 				align-items: center;
+				width: 100%;
+				box-sizing: border-box;
+				border-bottom: 1px solid #e2e8f0;
+				padding-bottom: 0.65rem;
+				margin-bottom: 34px;
+				position: relative;
+			}
+
+			.running-head-stamp-row {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				margin-bottom: 0.35rem;
+			}
+
+			.running-head-text-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
 				font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 				font-size: 0.78rem;
 				font-weight: 600;
 				letter-spacing: 0.02em;
 				color: #475569;
-				text-transform: none !important;
-				border-bottom: 1px solid #e2e8f0;
-				padding-bottom: 0.75rem;
-				margin-bottom: 36px;
-				width: 100%;
-				box-sizing: border-box;
-				min-height: 48px;
 			}
 
 			.page-running-head .book-title-header-label {
@@ -4160,15 +4173,13 @@ import { SITE_TITLE } from '../consts';
 			
 			/* Slanted Draft Copy Rubber Stamp on Book Pages */
 			.page-running-head .page-draft-stamp {
-				position: absolute;
-				left: 50%;
-				top: 45%;
-				transform: translate(-50%, -50%) rotate(-10deg);
+				position: relative;
+				transform: rotate(-8deg);
 				display: inline-flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				padding: 0.22rem 0.65rem;
+				padding: 0.18rem 0.65rem;
 				border: 1.2px solid rgba(185, 28, 28, 0.72);
 				border-radius: 6px;
 				color: rgba(185, 28, 28, 0.85);
@@ -4195,7 +4206,7 @@ import { SITE_TITLE } from '../consts';
 				opacity: 1;
 				border-color: rgba(185, 28, 28, 0.95);
 				color: #b91c1c;
-				transform: translate(-50%, -50%) rotate(-10deg) scale(1.05);
+				transform: rotate(-8deg) scale(1.05);
 			}
 
 			.page-running-head .page-draft-stamp .stamp-line {
@@ -4826,9 +4837,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Contents &bull; 1</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Contents &bull; 1</span>
+						</div>
 					</div>
 
 					<div class="toc-centered-container">
@@ -4977,9 +4992,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc-1b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Contents &bull; Part I (Continued)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Contents &bull; Part I (Continued)</span>
+						</div>
 					</div>
 
 					<div class="toc-centered-container">
@@ -5088,9 +5107,13 @@ import { SITE_TITLE } from '../consts';
 <section class="book-page" id="toc-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Contents &bull; Part II</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Contents &bull; Part II</span>
+						</div>
 					</div>
 
 					<div class="toc-centered-container">
@@ -5190,9 +5213,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Contents &bull; Part III</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Contents &bull; Part III</span>
+						</div>
 					</div>
 
 					<div class="toc-centered-container">
@@ -5827,9 +5854,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="toc-5">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Contents &bull; Part V</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Contents &bull; Part V</span>
+						</div>
 					</div>
 
 					<div class="toc-centered-container">
@@ -6150,9 +6181,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="disclaimer">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Introduction &bull; Page iii</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Introduction &bull; Page iii</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title" style="margin-top: 1.5rem; margin-bottom: 2.25rem;">Medical &amp; Educational&nbsp;Disclaimer</h2>
@@ -6204,9 +6239,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="contributors">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Patient Research &bull; Page v</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Patient Research &bull; Page v</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title" style="margin-top: 1.5rem; margin-bottom: 2.25rem;">Contribute to the Research as a&nbsp;Patient</h2>
@@ -6239,9 +6278,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="contributors-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Professional Collaboration &bull; Page vi</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Professional Collaboration &bull; Page vi</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title" style="margin-top: 1.5rem; margin-bottom: 2.25rem;">Contribute to the Research as a&nbsp;Professional</h2>
@@ -6274,9 +6317,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="overview-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Draft Manuscript</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Draft Manuscript</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title" style="margin-top: 1.5rem; margin-bottom: 2.25rem; text-align: left;">Executive Summary</h2>
@@ -6311,9 +6358,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="overview-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Draft Manuscript</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Draft Manuscript</span>
+						</div>
 					</div>
 
 					<div class="chapter-content" style="padding-top: 1rem;">
@@ -6453,9 +6504,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-1-intro-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 2: Let's First Describe the Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 2: Let's First Describe the Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -6585,9 +6640,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-chapter-2-labels-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 3: The Potential Diagnoses Behind This Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 3: The Potential Diagnoses Behind This Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -6683,9 +6742,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-chapter-3-specialists-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 4: Who Patients Go and See, and What They Ask and Say</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 4: Who Patients Go and See, and What They Ask and Say</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -6738,9 +6801,13 @@ import { SITE_TITLE } from '../consts';
 					</div>
 
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -6796,9 +6863,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-1-stat-6">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -6854,9 +6925,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-1-stat-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -6945,9 +7020,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-1-stat-4">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7025,9 +7104,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-1-stat-5b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7099,9 +7182,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-1-stat-5c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7169,9 +7256,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-1-stat-7">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7227,9 +7318,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-1-stat-10">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7288,9 +7383,13 @@ import { SITE_TITLE } from '../consts';
 			<section class="book-page" id="page-1-stat-8">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7377,9 +7476,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7407,9 +7510,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7437,9 +7544,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7467,9 +7578,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-4">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7497,9 +7612,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-5">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7527,9 +7646,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-6">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7557,9 +7680,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-7">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7587,9 +7714,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-8">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7617,9 +7748,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-9">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7647,9 +7782,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-2-voice-10">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7712,9 +7851,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-3b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Chapter 7: The Human Toll (Continued)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Chapter 7: The Human Toll (Continued)</span>
+						</div>
 					</div>
 
 					
@@ -7806,9 +7949,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-3d">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 8: BMS History and Evolution</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 8: BMS History and Evolution</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7847,9 +7994,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page book-cta-page" id="page-part-1-cta">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part I &bull; Next Steps &amp; Action</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part I &bull; Next Steps &amp; Action</span>
+						</div>
 					</div>
 
 					<div class="chapter-content is-first-page" style="max-width: 620px; margin: 2rem auto 0; text-align: center;">
@@ -7955,9 +8106,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-16">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -7988,9 +8143,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-17">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8022,9 +8181,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-18">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8049,9 +8212,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-19">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8082,9 +8249,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-20">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8112,9 +8283,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-21">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8141,9 +8316,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-22">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8184,9 +8363,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-23">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8231,9 +8414,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page book-cta-page" id="page-part-2-cta">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part II &bull; Next Steps &amp; Action</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part II &bull; Next Steps &amp; Action</span>
+						</div>
 					</div>
 
 					<div class="chapter-content is-first-page" style="max-width: 620px; margin: 2rem auto 0; text-align: center;">
@@ -8340,9 +8527,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-28-acid-mechanisms">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8377,9 +8568,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-28-acid-sources-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8425,9 +8620,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-28-fibers">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8463,9 +8662,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-28b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8516,9 +8719,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-28c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8571,9 +8778,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-29">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8606,9 +8817,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-29b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8649,9 +8864,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-29c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8712,9 +8931,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-30">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8749,9 +8972,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-30-phases">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8796,9 +9023,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-30c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8832,9 +9063,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-30d">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8922,9 +9157,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-32">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 8: What Is Acid and Why It Causes Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 8: What Is Acid and Why It Causes Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -8953,9 +9192,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-33">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 8: What Is Acid and Why It Causes Pain</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 8: What Is Acid and Why It Causes Pain</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9044,9 +9287,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-30c-receptors">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 9: Where Are the Pain Receptors in the Mouth?</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 9: Where Are the Pain Receptors in the Mouth?</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9084,9 +9331,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-30d-receptors">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Chapter 9: Where Are the Pain Receptors in the Mouth?</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Chapter 9: Where Are the Pain Receptors in the Mouth?</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9202,9 +9453,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-33c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 1: Mucosa)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 1: Mucosa)</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9276,9 +9531,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-42">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9306,9 +9565,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-43">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9334,9 +9597,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-44">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9397,9 +9664,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-39">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 3: Tubules)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 3: Tubules)</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9432,9 +9703,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-40">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 3: Tubules)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 3: Tubules)</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9488,9 +9763,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-46">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9518,9 +9797,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-47">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9544,9 +9827,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-47b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9578,9 +9865,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-48">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9608,9 +9899,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-48b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9637,9 +9932,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-48c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9661,9 +9960,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-49">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9688,9 +9991,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page book-cta-page" id="page-part-3-cta">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part III &bull; Next Steps &amp; Action</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part III &bull; Next Steps &amp; Action</span>
+						</div>
 					</div>
 
 					<div class="chapter-content is-first-page" style="max-width: 620px; margin: 2rem auto 0; text-align: center;">
@@ -9812,9 +10119,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-15b2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 11: The 4-Step Master Strategy</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 11: The 4-Step Master Strategy</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9896,9 +10207,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-15c2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 12: The Importance of Documenting</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 12: The Importance of Documenting</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -9938,9 +10253,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-15c3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 12: The Importance of Documenting</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 12: The Importance of Documenting</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -10440,9 +10759,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-8">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: The BMS Diagnostic Questionnaire</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: The BMS Diagnostic Questionnaire</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title">Symptom Dynamics &amp; Food&nbsp;Triggers</h2>
@@ -10704,9 +11027,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-9">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: The BMS Diagnostic Questionnaire</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: The BMS Diagnostic Questionnaire</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title">Dental Hardware &amp; Salivary&nbsp;Audit</h2>
@@ -10865,9 +11192,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-10">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: The BMS Diagnostic Questionnaire</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: The BMS Diagnostic Questionnaire</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title">Systemic Factors &amp; Clinical&nbsp;Report</h2>
@@ -11047,9 +11378,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-11">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title">Comprehensive Medical &amp; Systemic&nbsp;History</h2>
@@ -11195,9 +11530,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-12">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title">Dental Procedures, Restorations, &amp; Periodontics</h2>
@@ -11328,9 +11667,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-13">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title">Airway, Bone Density, &amp; Pharmacology</h2>
@@ -11449,9 +11792,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-14">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title">Complete Medication &amp; Surgical Consultation&nbsp;Dossier</h2>
@@ -11545,9 +11892,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-14-notes-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -11590,9 +11941,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-14-notes-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -11635,9 +11990,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-14-notes-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -11680,9 +12039,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-14-notes-4">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -11781,9 +12144,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-53">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 14: Test Your Acidity Threshold</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 14: Test Your Acidity Threshold</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -11818,9 +12185,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-54">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 14: Test Your Acidity Threshold</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 14: Test Your Acidity Threshold</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -11857,9 +12228,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-54b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 14: Test Your Acidity Threshold</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 14: Test Your Acidity Threshold</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -11954,9 +12329,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-56">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 15: Calculating Your Time Lag</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 15: Calculating Your Time Lag</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12100,9 +12479,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-61">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 16: What If You Cheat?</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 16: What If You Cheat?</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12391,9 +12774,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 17: Beyond Acid: Other Options</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 17: Beyond Acid: Other Options</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12461,9 +12848,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-75">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 18: How to Talk to Your Doctor</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 18: How to Talk to Your Doctor</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12492,9 +12883,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-76">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 18: How to Talk to Your Doctor</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 18: How to Talk to Your Doctor</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12552,9 +12947,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12583,9 +12982,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78b">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12667,9 +13070,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78c">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12736,9 +13143,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78d">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12816,9 +13227,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78f">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 20: How to Talk to Your Close Ones</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 20: How to Talk to Your Close Ones</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -12858,9 +13273,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page book-cta-page" id="page-part-4-cta">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Part IV &bull; Next Steps &amp; Action</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Part IV &bull; Next Steps &amp; Action</span>
+						</div>
 					</div>
 
 					<div class="chapter-content is-first-page" style="max-width: 620px; margin: 2rem auto 0; text-align: center;">
@@ -12962,9 +13381,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-64">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 21: Finding Our No-Burp Doctor and Dentist</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 21: Finding Our No-Burp Doctor and Dentist</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13036,9 +13459,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-66">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 21: Other Conditions We Can Learn From</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 21: Other Conditions We Can Learn From</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13069,9 +13496,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-67">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 21: Other Conditions We Can Learn From</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 21: Other Conditions We Can Learn From</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13101,9 +13532,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-68">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 21: Other Conditions We Can Learn From</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 21: Other Conditions We Can Learn From</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13162,9 +13597,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-72">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 22: Remission vs. Progression</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 22: Remission vs. Progression</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13190,9 +13629,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-73">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 22: Remission vs. Progression</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 22: Remission vs. Progression</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13247,9 +13690,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13283,9 +13730,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13307,9 +13758,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-86-summation">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13331,9 +13786,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78c-eating">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13355,9 +13814,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78c2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13389,9 +13852,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-87-diagnostics">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13414,9 +13881,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78e">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13440,9 +13911,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78f">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13463,9 +13938,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-78g">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13530,9 +14009,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-80">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 24: Citizen Science Data</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 24: Citizen Science Data</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13597,9 +14080,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-82">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Chapter 25: Active BMS Communities</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Chapter 25: Active BMS Communities</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -13641,9 +14128,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 				<div id="master-sources" style="scroll-margin-top: 5rem;"></div>
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Master Scientific Data Sources</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Master Scientific Data Sources</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title" style="margin-top: 1rem;">Master Scientific Data&nbsp;Sources</h2>
@@ -13991,9 +14482,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 				<div id="top-100-studies" style="scroll-margin-top: 5rem;"></div>
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Appendix: The 100 Most Cited Studies</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Appendix: The 100 Most Cited Studies</span>
+						</div>
 					</div>
 
 					<h2 class="chapter-title" style="margin-top: 1rem;">The 100 Most Cited BMS Scientific&nbsp;Studies</h2>
@@ -15221,9 +15716,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-84-notes-1">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Personal Investigation Journal</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Personal Investigation Journal</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -15266,9 +15765,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-84-notes-2">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Personal Investigation Journal</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Personal Investigation Journal</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -15311,9 +15814,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-84-notes-3">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Personal Investigation Journal</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Personal Investigation Journal</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
@@ -15356,9 +15863,13 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<section class="book-page" id="page-84-notes-4">
 				<div class="page-body-content">
 					<div class="page-running-head">
-						<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
-						<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
-						<span class="chapter-header-label">Personal Investigation Journal</span>
+						<div class="running-head-stamp-row">
+							<button class="page-draft-stamp" type="button" title={`Active draft copy • Revised ${lastModifiedDate} • Click to view note`}><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span><span class="stamp-date">{lastModifiedDate}</span></button>
+						</div>
+						<div class="running-head-text-row">
+							<span class="book-title-header-label">Acid-Triggered Burning Mouth</span>
+							<span class="chapter-header-label">Personal Investigation Journal</span>
+						</div>
 					</div>
 
 					<div class="chapter-content">
