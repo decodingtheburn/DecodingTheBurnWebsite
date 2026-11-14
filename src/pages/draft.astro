@@ -4131,36 +4131,52 @@ import { SITE_TITLE } from '../consts';
 				top: 1.25rem;
 				left: 1.5rem;
 				display: inline-flex;
+				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				/* Authentic distressed rubber stamp dimensions ~ 1 inch */
-				width: 4rem;
-				height: 1.7rem;
-				border: 2px solid #b91c1c;
-				outline: 1.5px solid rgba(185, 28, 28, 0.7);
-				outline-offset: -3.5px;
-				border-radius: 2px;
-				color: #b91c1c;
+				/* Delicate rounded rubber stamp */
+				padding: 0.32rem 0.75rem;
+				border: 1.2px solid rgba(185, 28, 28, 0.72);
+				border-radius: 7px;
+				color: rgba(185, 28, 28, 0.82);
 				font-family: 'Courier New', Courier, monospace;
-				font-size: 0.72rem;
-				font-weight: 900;
-				letter-spacing: 0.18em;
-				text-indent: 0.18em;
 				text-transform: uppercase;
 				background: transparent;
 				mix-blend-mode: multiply;
-				transform: rotate(-14deg);
-				opacity: 0.78;
+				transform: rotate(-13deg);
+				opacity: 0.68;
 				cursor: pointer;
 				user-select: none;
 				z-index: 25;
-				box-shadow: inset 0 0 2px rgba(185, 28, 28, 0.35);
-				filter: drop-shadow(0 0 0.5px rgba(185, 28, 28, 0.4));
+				/* Faded ink grain & porous paper bleed */
+				mask-image: radial-gradient(circle at 50% 50%, black 70%, rgba(0, 0, 0, 0.65) 95%),
+				            repeating-linear-gradient(45deg, black 0px, black 3px, transparent 3px, transparent 4px);
+				mask-size: 100% 100%, 4px 4px;
+				-webkit-mask-image: radial-gradient(circle at 50% 50%, black 75%, rgba(0, 0, 0, 0.7) 100%),
+				                    repeating-linear-gradient(45deg, black 0px, black 2.5px, rgba(0,0,0,0.7) 2.5px, rgba(0,0,0,0.7) 3.5px);
+				-webkit-mask-size: 100% 100%, 3px 3px;
+				filter: contrast(115%) brightness(95%);
 				transition: transform 0.15s ease, opacity 0.15s ease;
 			}
 			.page-draft-stamp:hover {
-				opacity: 0.95;
-				transform: rotate(-14deg) scale(1.06);
+				opacity: 0.92;
+				transform: rotate(-13deg) scale(1.05);
+			}
+			.page-draft-stamp .stamp-line {
+				display: block;
+				font-size: 0.62rem;
+				font-weight: 800;
+				line-height: 1.05;
+				letter-spacing: 0.18em;
+				text-indent: 0.18em;
+				text-align: center;
+			}
+			.page-draft-stamp .stamp-line:last-child {
+				font-size: 0.54rem;
+				font-weight: 700;
+				letter-spacing: 0.22em;
+				text-indent: 0.22em;
+				margin-top: 1px;
 			}
 </style>
 	</head>
@@ -4539,7 +4555,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- INTERIOR TITLE PAGE (Page F-2 / Secondary Title Cover) -->
 			<!-- HALF-TITLE PAGE (Page 1 - Recto) -->
 			<section class="book-page" id="half-title-page">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; box-sizing: border-box; padding: 3.5rem 1.75rem 2.5rem;">
 					<div style="width: 100%; max-width: 680px; margin-top: 1rem;">
 						<div class="cover-kicker" style="font-family: 'Inter', sans-serif; font-size: clamp(1.2rem, 3.5vw, 1.85rem); font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.85rem; color: #475569;">
@@ -4572,7 +4588,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- EPIGRAPH / OPENING QUOTES PAGE (Page 2 - Verso) -->
 			<section class="book-page" id="epigraph-page">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2.25rem 2rem; box-sizing: border-box;">
 					<div style="max-width: 820px; margin: auto 0; width: 100%;">
 						<!-- Quote 3 (Now 1st): Sir William Osler -->
@@ -4612,7 +4628,7 @@ import { SITE_TITLE } from '../consts';
 			</section>
 
 			<section class="book-page" id="title-page">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
 					<div class="interior-title-wrap">
 						<div class="interior-title-header-block">
@@ -4654,7 +4670,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- COPYRIGHT & OPEN SCIENCE LICENSE PAGE (Page F-3) -->
 			<section class="book-page" id="copyright-page">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.25in 0.65in 0.55in 0.7in; box-sizing: border-box;">
 					<div class="copyright-page-wrap" style="font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 0.66rem; line-height: 1.42; color: #000000; text-align: left; max-width: 580px; margin: 0; width: 100%;">
 						<p style="margin-bottom: 0.35rem; color: #000000; font-size: 0.66rem !important; line-height: 1.4 !important; text-indent: 0 !important;">
@@ -4706,7 +4722,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- ACKNOWLEDGMENTS / THANK YOU PAGE -->
 			<!-- WHY I AM WRITING THIS BOOK PAGE -->
 			<section class="book-page" id="why-i-wrote-page">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 2.25rem 0.5rem; box-sizing: border-box;">
 					<div style="max-width: 600px; margin: auto 0; text-align: left; width: 100%;">
 						<h2 class="chapter-title" style="margin-top: 0; margin-bottom: 2.75rem; font-family: 'Inter', system-ui, sans-serif; font-size: 2.8rem; font-weight: 800; color: #0f172a; text-align: center; line-height: 1.15;">
@@ -4729,7 +4745,7 @@ import { SITE_TITLE } from '../consts';
 			</section>
 
 			<section class="book-page" id="thank-you-page">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 1.75rem 0.5rem; box-sizing: border-box;">
 					<div style="max-width: 620px; margin: auto 0; text-align: left; width: 100%;">
 						<h2 class="chapter-title" style="margin-top: 0; margin-bottom: 1.85rem; font-family: 'Inter', system-ui, sans-serif; font-size: 2.6rem; font-weight: 800; line-height: 1.15; color: #0f172a; text-align: center;">
@@ -4763,7 +4779,7 @@ import { SITE_TITLE } from '../consts';
 									<!-- Table of Contents (Page 1 of 5: Before You Begin & Part I) -->
 						<!-- Table of Contents (Page 1 of 6: Preliminary & Chapter 1) -->
 			<section class="book-page" id="toc">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -4914,7 +4930,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- Table of Contents (Page 2 of 5: Part I Chapters 4 - 6) -->
 			<section class="book-page" id="toc-1b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -5025,7 +5041,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 <section class="book-page" id="toc-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -5127,7 +5143,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- Table of Contents (Page 3 of 5: Parts III & IV) -->
 			<section class="book-page" id="toc-3">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -5400,7 +5416,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- Table of Contents (Page 4 of 5: Part V Taking Charge) -->
 			<section class="book-page" id="toc-4">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head" style="margin-bottom: 0.25rem;">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -5765,7 +5781,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- Table of Contents (Page 5 of 5: Part VI Models & Citizen Science) -->
 			<section class="book-page" id="toc-5">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -6088,7 +6104,7 @@ import { SITE_TITLE } from '../consts';
 
 <!-- Chapter 1: Stat 1 of 10 -->
 			<section class="book-page" id="disclaimer">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -6142,7 +6158,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- CONTRIBUTORS DIRECTORY: PAGE 1 (Page v) -->
 			<section class="book-page" id="contributors">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -6177,7 +6193,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- CONTRIBUTORS DIRECTORY: PAGE 2 (Page vi) -->
 			<section class="book-page" id="contributors-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -6212,7 +6228,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- EXECUTIVE SUMMARY: PAGE 1 (Page vii) -->
 			<section class="book-page" id="overview-1">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -6248,7 +6264,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- EXECUTIVE SUMMARY: PAGE 2 (Page viii) -->
 			<section class="book-page" id="overview-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Acid-Triggered Burning Mouth</span>
@@ -6312,7 +6328,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- PART I CHAPTER 1: EXPECTATIONS -->
 			<section class="book-page" id="page-expectation-ch1">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-1" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch1-expectations" style="scroll-margin-top: 5rem;"></div>
 
@@ -6340,7 +6356,7 @@ import { SITE_TITLE } from '../consts';
 			
 			<! -  Chapter 1: Let's First Describe the Pain (Page 1 of 2: Sensory Descriptors)  - >
 			<section class="book-page" id="page-1-intro-1">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-2" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch1-intro" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch1-descriptors" style="scroll-margin-top: 5rem;"></div>
@@ -6391,7 +6407,7 @@ import { SITE_TITLE } from '../consts';
 
 			<! -  Chapter 1 (Page 2 of 2: Option C Anatomical Pain & Sensation Matrix)  - >
 			<section class="book-page" id="page-1-intro-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 2: Let's First Describe the Pain</span>
@@ -6473,7 +6489,7 @@ import { SITE_TITLE } from '../consts';
 
 			<! -  Chapter 2: The Potential Diagnoses Behind This Pain (Page 1 of 2: The Top 10 Diagnoses)  - >
 			<section class="book-page" id="page-chapter-2-labels">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-3" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch2-labels" style="scroll-margin-top: 5rem;"></div>
 
@@ -6524,7 +6540,7 @@ import { SITE_TITLE } from '../consts';
 
 			<!-- Chapter 2 (Page 2 of 2: Systemic Mimics, The BMS Final Bucket & Fragility of Diagnosis) -->
 			<section class="book-page" id="page-chapter-2-labels-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 3: The Potential Diagnoses Behind This Pain</span>
@@ -6580,7 +6596,7 @@ import { SITE_TITLE } from '../consts';
 
 			<! -  Chapter 3: Who Patients Go and See, and What They Ask and Say (Page 1 of 2: The Top 10 Specialists)  - >
 			<section class="book-page" id="page-chapter-3-specialists">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-4" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch3-specialists" style="scroll-margin-top: 5rem;"></div>
 
@@ -6623,7 +6639,7 @@ import { SITE_TITLE } from '../consts';
 
 			<! -  Chapter 3 (Page 2 of 2: Specialists 6-10 and The Equipment Resolution Barrier)  - >
 			<section class="book-page" id="page-chapter-3-specialists-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 4: Who Patients Go and See, and What They Ask and Say</span>
@@ -6665,7 +6681,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 <section class="book-page" id="page-1">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-2" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch2-stats" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch1-invisible" style="scroll-margin-top: 5rem;"></div>
@@ -6736,7 +6752,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- Stat 2: Burning Mouth Pain Is as Severe as Kidney Stones or Shingles -->
 
 			<section class="book-page" id="page-1-stat-6">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
@@ -6794,7 +6810,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- Stat 3: Age Distribution & Average Age at Diagnosis Is 61 -->
 
 			<section class="book-page" id="page-1-stat-3">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
@@ -6885,7 +6901,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- Stat 4: Gender Disparity & The Evolving Demographics -->
 
 			<section class="book-page" id="page-1-stat-4">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
@@ -6965,7 +6981,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- Stat Profile Part 1: Where Does Burning Mouth Hurt the Most? -->
 
 			<section class="book-page" id="page-1-stat-5b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
@@ -7039,7 +7055,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- Stat Profile Part 2: When Does Burning Mouth Hurt the Most? -->
 
 			<section class="book-page" id="page-1-stat-5c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
@@ -7109,7 +7125,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- Stat: The Difficulty of Getting a Diagnosis -->
 
 			<section class="book-page" id="page-1-stat-7">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
@@ -7167,7 +7183,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- Stat: Prescription Nerve Medications (Moved before everyday food acids) -->
 
 			<section class="book-page" id="page-1-stat-10">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
@@ -7228,7 +7244,7 @@ import { SITE_TITLE } from '../consts';
 			<!-- Stat: Everyday Food Acids (Now placed after medications) -->
 
 			<section class="book-page" id="page-1-stat-8">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 5: The Statistics on Burning Mouth</span>
@@ -7280,7 +7296,7 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</section>
 <section class="book-page" id="page-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-6-voices" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-6" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch2-symptoms" style="scroll-margin-top: 5rem;"></div>
@@ -7318,7 +7334,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 1 of 10  - >
 			<section class="book-page" id="page-2-voice-1">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7348,7 +7364,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 2 of 10  - >
 			<section class="book-page" id="page-2-voice-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7378,7 +7394,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 3 of 10  - >
 			<section class="book-page" id="page-2-voice-3">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7408,7 +7424,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 4 of 10  - >
 			<section class="book-page" id="page-2-voice-4">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7438,7 +7454,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 5 of 10  - >
 			<section class="book-page" id="page-2-voice-5">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7468,7 +7484,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 6 of 10  - >
 			<section class="book-page" id="page-2-voice-6">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7498,7 +7514,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 7 of 10  - >
 			<section class="book-page" id="page-2-voice-7">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7528,7 +7544,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 8 of 10  - >
 			<section class="book-page" id="page-2-voice-8">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7558,7 +7574,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 9 of 10  - >
 			<section class="book-page" id="page-2-voice-9">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7588,7 +7604,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 2: Patient Voice 10 of 10  - >
 			<section class="book-page" id="page-2-voice-10">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 6: What Patients Are Looking For</span>
@@ -7617,7 +7633,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			</section>
 
 			<section class="book-page" id="page-3">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div id="chapter-7"></div>
 					<div class="chapter-opener-header">
@@ -7654,7 +7670,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			</section>
 
 			<section class="book-page" id="page-3b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part I &bull; Chapter 7: The Human Toll (Continued)</span>
@@ -7699,7 +7715,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<! -  Chapter 4: BMS History and Evolution  - >
 <! -  Chapter 4: BMS History and Evolution (Page 1 of 3: From Glossodynia to Neuropathy)  - >
 			<section class="book-page" id="page-3c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-8-history" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-8" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-5" style="scroll-margin-top: 5rem;"></div>
@@ -7749,7 +7765,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Chapter 4: BMS History and Evolution (Page 2 of 3: Small-Fiber Neuropathy Discovery)  - >
 			<section class="book-page" id="page-3d">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 8: BMS History and Evolution</span>
@@ -7860,7 +7876,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 5: My Journey to 0/10 Pain (Consolidated Part 2 - Page Break After Each Episode) -->
 <!-- Chapter 5: My Journey to 0/10 Pain (Page 1 of 9: Episode 1) -->
 			<section class="book-page" id="page-15">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-9-story" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-9" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-6" style="scroll-margin-top: 5rem;"></div>
@@ -7898,7 +7914,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 5: My Journey to 0/10 Pain (Page 2 of 9: Episode 2) -->
 			<section class="book-page" id="page-16">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
@@ -7931,7 +7947,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 5: My Journey to 0/10 Pain (Page 3 of 9: Episode 3) -->
 			<section class="book-page" id="page-17">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
@@ -7965,7 +7981,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 5: My Journey to 0/10 Pain (Page 4 of 9: Episode 4) -->
 			<section class="book-page" id="page-18">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
@@ -7992,7 +8008,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 5: My Journey to 0/10 Pain (Page 5 of 9: Episode 5) -->
 			<section class="book-page" id="page-19">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
@@ -8025,7 +8041,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 5: My Journey to 0/10 Pain (Page 6 of 9: Episode 6) -->
 						<!-- Chapter 5: My Journey to 0/10 Pain (Page 6 of 9: Episode 6) -->
 			<section class="book-page" id="page-20">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
@@ -8055,7 +8071,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 5: My Journey to 0/10 Pain (Page 7 of 9: Episode 7) -->
 			<section class="book-page" id="page-21">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
@@ -8084,7 +8100,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 5: My Journey to 0/10 Pain (Page 8 of 9: Episode 8) -->
 			<section class="book-page" id="page-22">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
@@ -8127,7 +8143,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 5: My Journey to 0/10 Pain (Page 9 of 9: Episode 9) -->
 			<section class="book-page" id="page-23">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part II &bull; Chapter 9: My Journey to 0/10 Pain</span>
@@ -8241,7 +8257,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			</section>
 
 						<section class="book-page" id="page-28">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-7" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-10" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch10-pain-creation" style="scroll-margin-top: 5rem;"></div>
@@ -8283,7 +8299,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 7: How Acid Protons (H+) Physically Create Burning Pain & The Different Types of Acid Pain -->
 			<section class="book-page" id="page-28-acid-mechanisms">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8320,7 +8336,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 7: The Biomechanical and Cellular Sources of Oral Acidity (Page 28-acid-2) -->
 			<section class="book-page" id="page-28-acid-sources-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8368,7 +8384,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 2 of 10: A-Delta vs. C-Fibers) -->
 
 			<section class="book-page" id="page-28-fibers">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8406,7 +8422,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 3 of 10: Master Catalog Part 1) -->
 
 			<section class="book-page" id="page-28b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8459,7 +8475,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 3 of 6: Master Catalog Part 2) -->
 
 			<section class="book-page" id="page-28c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8514,7 +8530,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 4 of 6: The Discovery Evolution of ASICs) -->
 
 			<section class="book-page" id="page-29">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8549,7 +8565,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 5 of 6: 2024 Cryo-EM Proof of Continuous Pain) -->
 
 			<section class="book-page" id="page-29b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8592,7 +8608,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 6 of 11: The Nociceptive Layering Stack & Pain Multiplication) -->
 
 			<section class="book-page" id="page-29c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8659,7 +8675,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 7 of 11: The Carrying Capacity of V2 and V3 Trunks) -->
 
 			<section class="book-page" id="page-30">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8696,7 +8712,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 7 of 7: The Three Phases of Pain Architecture) -->
 
 			<section class="book-page" id="page-30-phases">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8743,7 +8759,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 8 of 9: How Burning Mouth Typically Starts - Onset Scenarios) -->
 
 			<section class="book-page" id="page-30c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8779,7 +8795,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 7: How Pain Is Created (Page 9 of 9: Onset Scenarios 2 & 3 & Actionable Shift) -->
 
 			<section class="book-page" id="page-30d">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 7: How Pain Is Created</span>
@@ -8827,7 +8843,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 8: What Is Acid and Why It Causes Pain -->
 
 			<section class="book-page" id="page-31">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-8" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-11" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch11-what-is-acid" style="scroll-margin-top: 5rem;"></div>
@@ -8870,7 +8886,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 8: What Is Acid and Why It Causes Pain (Page 2 of 3: Progression & Triggers) -->
 
 			<section class="book-page" id="page-32">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 8: What Is Acid and Why It Causes Pain</span>
@@ -8901,7 +8917,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 8: What Is Acid and Why It Causes Pain (Page 3 of 3: Community Data & Recovery) -->
 
 			<section class="book-page" id="page-33">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 8: What Is Acid and Why It Causes Pain</span>
@@ -8952,7 +8968,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			</section>
 
 			<section class="book-page" id="page-30b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-9" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-12" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch12-receptors" style="scroll-margin-top: 5rem;"></div>
@@ -8993,7 +9009,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 9: Where Are the Acid-Sensing Receptors in the Mouth? (Page 2 of 3) -->
 
 			<section class="book-page" id="page-30c-receptors">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 9: Where Are the Pain Receptors in the Mouth?</span>
@@ -9033,7 +9049,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 9: Where Are the Acid-Sensing Receptors in the Mouth? (Page 3 of 3) -->
 
 			<section class="book-page" id="page-30d-receptors">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Part III &bull; Chapter 9: Where Are the Pain Receptors in the Mouth?</span>
@@ -9118,7 +9134,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 						<!-- Chapter 14: When Acid Triggers Through the Oral Mucosa (Page 1 of 2) -->
 
 			<section class="book-page" id="page-33b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-14" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch13-transduction" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch13-permeability" style="scroll-margin-top: 5rem;"></div>
@@ -9152,7 +9168,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 14: When Acid Triggers Through the Oral Mucosa (Page 2 of 2) -->
 
 			<section class="book-page" id="page-33c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 1: Mucosa)</span>
@@ -9191,7 +9207,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 <!-- Chapter 15: When Acid Triggers Through Leaking Fillings & Hardware (Page 1 of 4) -->
 
 			<section class="book-page" id="page-41">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-15" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch14-pump" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch14-gaps" style="scroll-margin-top: 5rem;"></div>
@@ -9227,7 +9243,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 15: When Acid Triggers Through Leaking Fillings & Hardware (Page 2 of 4) -->
 
 			<section class="book-page" id="page-42">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
@@ -9257,7 +9273,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 15: When Acid Triggers Through Leaking Fillings & Hardware (Page 3 of 4) -->
 
 			<section class="book-page" id="page-43">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
@@ -9285,7 +9301,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 15: When Acid Triggers Through Leaking Fillings & Hardware (Page 4 of 4) -->
 
 			<section class="book-page" id="page-44">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 2: Hardware)</span>
@@ -9313,7 +9329,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: When Acid Triggers Through Gum Recession & Exposed Tubules (Page 1 of 3) -->
 
 			<section class="book-page" id="page-38">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-16" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch15-coupling" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch15-hydrodynamic" style="scroll-margin-top: 5rem;"></div>
@@ -9349,7 +9365,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: When Acid Triggers Through Gum Recession & Exposed Tubules (Page 2 of 3) -->
 
 			<section class="book-page" id="page-39">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 3: Tubules)</span>
@@ -9384,7 +9400,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: When Acid Triggers Through Gum Recession & Exposed Tubules (Page 3 of 3) -->
 
 			<section class="book-page" id="page-40">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 9: Where Are the Pain Receptors in the Mouth? (Zone 3: Tubules)</span>
@@ -9411,7 +9427,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: The Oral Neuropathic Circuit (Page 1 of 8) -->
 
 			<section class="book-page" id="page-45">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-17" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch16-amplification" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch16-trigeminal" style="scroll-margin-top: 5rem;"></div>
@@ -9441,7 +9457,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: The Oral Neuropathic Circuit (Page 2 of 8) -->
 
 			<section class="book-page" id="page-46">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
@@ -9471,7 +9487,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: The Oral Neuropathic Circuit (Page 3 of 8) -->
 
 			<section class="book-page" id="page-47">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
@@ -9497,7 +9513,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: The Oral Neuropathic Circuit (Page 4 of 8) -->
 
 			<section class="book-page" id="page-47b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
@@ -9531,7 +9547,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: The Oral Neuropathic Circuit (Page 5 of 8) -->
 
 			<section class="book-page" id="page-48">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
@@ -9561,7 +9577,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: The Oral Neuropathic Circuit (Page 6 of 8) -->
 
 			<section class="book-page" id="page-48b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
@@ -9590,7 +9606,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: The Oral Neuropathic Circuit (Page 7 of 8) -->
 
 			<section class="book-page" id="page-48c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
@@ -9614,7 +9630,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: The Oral Neuropathic Circuit (Page 8 of 8) -->
 
 			<section class="book-page" id="page-49">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 10: Referred Pain &amp; Cross-Talk</span>
@@ -9710,7 +9726,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Part V: Chapter 18 (Finding Real Cause) & Chapter 19 (Questionnaire) -->
 			<!-- Chapter 11: The 4-Step Master Strategy (Page 1 of 2: The Physical Equation & Steps 1-2) -->
 			<section class="book-page" id="page-15b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-11" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-19" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch18-breach" style="scroll-margin-top: 5rem;"></div>
@@ -9765,7 +9781,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 11: The 4-Step Master Strategy (Page 2 of 2: Steps 3-4 & Restoring Freedom) -->
 			<section class="book-page" id="page-15b2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 11: The 4-Step Master Strategy</span>
@@ -9810,7 +9826,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 12: The Importance of Documenting (Page 1 of 3: Tracking Philosophy & Core Data) -->
 			<section class="book-page" id="page-15c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-12" style="scroll-margin-top: 5rem;"></div>
 				<div class="page-body-content">
 					<div class="chapter-opener-header">
@@ -9850,7 +9866,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 12: The Importance of Documenting (Page 2 of 3: Clinical Dossier & Records Checklist) -->
 			<section class="book-page" id="page-15c2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 12: The Importance of Documenting</span>
@@ -9892,7 +9908,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 12: The Importance of Documenting (Page 3 of 3: Printable Tracking Template) -->
 			<section class="book-page" id="page-15c3">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 12: The Importance of Documenting</span>
@@ -9995,7 +10011,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Part V: Chapter 19 (Questionnaire) -->
 
 			<section class="book-page" id="page-7">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-12" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-20" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch19-mapping" style="scroll-margin-top: 5rem;"></div>
@@ -10395,7 +10411,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 9: The BMS Diagnostic Questionnaire (Page 2 of 4: Triggers, Mechanical, & Diet Recall) -->
 			<section class="book-page" id="page-8">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: The BMS Diagnostic Questionnaire</span>
@@ -10659,7 +10675,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 9: The BMS Diagnostic Questionnaire (Page 3 of 4: Jaw Clenching, Dry Mouth, & Dental Audit) -->
 			<section class="book-page" id="page-9">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: The BMS Diagnostic Questionnaire</span>
@@ -10820,7 +10836,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 9: The BMS Diagnostic Questionnaire (Page 4 of 4: Systemic Reflux, Medications, & Action Summary) -->
 			<section class="book-page" id="page-10">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: The BMS Diagnostic Questionnaire</span>
@@ -11002,7 +11018,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 5 of 8 / Book Page 11) -->
 			<section class="book-page" id="page-11">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
@@ -11150,7 +11166,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 6 of 8 / Book Page 12) -->
 			<section class="book-page" id="page-12">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
@@ -11283,7 +11299,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 7 of 8 / Book Page 13) -->
 			<section class="book-page" id="page-13">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
@@ -11404,7 +11420,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 3: Part B - Comprehensive Clinical Dental & Medical History (Page 8 of 8 / Book Page 14) -->
 			<section class="book-page" id="page-14">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: Comprehensive Clinical Health Intake (Part B)</span>
@@ -11500,7 +11516,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			</section>
 
 			<section class="book-page" id="page-14-notes-1">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
@@ -11545,7 +11561,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Questionnaire Notes & Clinical Reflections (Page 2 of 4)  - >
 			<section class="book-page" id="page-14-notes-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
@@ -11590,7 +11606,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Questionnaire Notes & Clinical Reflections (Page 3 of 4)  - >
 			<section class="book-page" id="page-14-notes-3">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
@@ -11635,7 +11651,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<! -  Questionnaire Notes & Clinical Reflections (Page 4 of 4)  - >
 			<section class="book-page" id="page-14-notes-4">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 13: Clinical Intake &amp; Questionnaire</span>
@@ -11683,7 +11699,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 10: Test Your Acidity Threshold (Page 1 of 4: Introduction & Option 1 Zero-Acid Carnivore Baseline) -->
 
 			<section class="book-page" id="page-52">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-13" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-22" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch21-carnivore" style="scroll-margin-top: 5rem;"></div>
@@ -11737,7 +11753,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 10: Test Your Acidity Threshold (Page 2 of 4: Timeline & Post-Meal Protocol) -->
 
 			<section class="book-page" id="page-53">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 14: Test Your Acidity Threshold</span>
@@ -11774,7 +11790,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 10: Test Your Acidity Threshold (Page 3 of 4: Option 2 Gentle Low-Acid Elimination Trial) -->
 
 			<section class="book-page" id="page-54">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 14: Test Your Acidity Threshold</span>
@@ -11813,7 +11829,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 10: Test Your Acidity Threshold (Page 4 of 4: Stepping Down & Flexible Real-World Cycles) -->
 
 			<section class="book-page" id="page-54b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 14: Test Your Acidity Threshold</span>
@@ -11864,7 +11880,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 <!-- Chapter 15: Calculating Your Time Lag (Page 1 of 2) -->
 
 			<section class="book-page" id="page-55">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-14" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-23" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch22-window" style="scroll-margin-top: 5rem;"></div>
@@ -11911,7 +11927,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 15: Calculating Your Time Lag (Page 2 of 2) -->
 
 			<section class="book-page" id="page-56">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 15: Calculating Your Time Lag</span>
@@ -12020,7 +12036,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 15: The Recovery Protocol (Page 1 of 3) -->
 
 			<section class="book-page" id="page-60">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-15" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-25" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch24-settling" style="scroll-margin-top: 5rem;"></div>
@@ -12058,7 +12074,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 16: What If You Cheat? (Page 2 of 2: Radical Acceptance & Emotional Peace) -->
 
 			<section class="book-page" id="page-61">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 16: What If You Cheat?</span>
@@ -12103,7 +12119,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 16: What If Acid Isn't the Cause? Alternative Evidence-Based Options (Page 62b) -->
 			<section class="book-page" id="page-62b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-16" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-25" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-24b" style="scroll-margin-top: 5rem;"></div>
@@ -12347,7 +12363,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 16: Beyond Acid: The 50+ Supplement Gauntlet -->
 			<section class="book-page" id="page-62c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="supplements-gauntlet" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch4-supplements" style="scroll-margin-top: 5rem;"></div>
 
@@ -12390,7 +12406,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 18: How to Talk to Your Doctor (Page 1 of 3) -->
 
 			<section class="book-page" id="page-74">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-17" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-26" style="scroll-margin-top: 5rem;"></div>
 
@@ -12421,7 +12437,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 18: How to Talk to Your Doctor (Page 2 of 3) -->
 
 			<section class="book-page" id="page-75">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 18: How to Talk to Your Doctor</span>
@@ -12452,7 +12468,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 18: How to Talk to Your Doctor (Page 3 of 3) -->
 
 			<section class="book-page" id="page-76">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 18: How to Talk to Your Doctor</span>
@@ -12479,7 +12495,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 11: How to Talk to Your Dentist (Page 1 of 5: Operatory Dialogue & Non-Invasive Tests) -->
 
 			<section class="book-page" id="page-77">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-18" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-27" style="scroll-margin-top: 5rem;"></div>
 				<div id="ch23-barriers" style="scroll-margin-top: 5rem;"></div>
@@ -12513,7 +12529,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 11: How to Talk to Your Dentist (Page 2 of 5: Forensic Diagnostic Battery) -->
 
 			<section class="book-page" id="page-78">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
@@ -12544,7 +12560,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 11: How to Talk to Your Dentist (Page 3 of 5: In-Office Desensitizers & Comparison Table) -->
 
 			<section class="book-page" id="page-78b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
@@ -12628,7 +12644,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 11: How to Talk to Your Dentist (Page 4 of 5: Modern Solutions for Old Fillings and Margins) -->
 
 			<section class="book-page" id="page-78c">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
@@ -12697,7 +12713,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 11: How to Talk to Your Dentist (Page 5 of 5: Subgingival Pockets, Microscopy & Biological Re-Seal) -->
 
 			<section class="book-page" id="page-78d">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 19: How to Talk to Your Dentist</span>
@@ -12734,7 +12750,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 20: How to Talk to Your Close Ones (Page 1 of 2: The Invisible Pain Barrier & Handling Skepticism) -->
 
 			<section class="book-page" id="page-78e">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-20-family" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
@@ -12778,7 +12794,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 20: How to Talk to Your Close Ones (Page 2 of 2: Family Meals, Social Dinners & The Support Contract) -->
 
 			<section class="book-page" id="page-78f">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 20: How to Talk to Your Close Ones</span>
@@ -12890,7 +12906,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 19: The Diabetic Parallel (Page 1 of 4) -->
 
 			<section class="book-page" id="page-63">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-19" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-28" style="scroll-margin-top: 5rem;"></div>
 
@@ -12924,7 +12940,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 12: Finding Our No-Burp Doctor and Dentist (Page 2 of 2: The Provider Registry & Collaboration) -->
 
 			<section class="book-page" id="page-64">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 21: Finding Our No-Burp Doctor and Dentist</span>
@@ -12966,7 +12982,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 22: Other Conditions We Can Learn From (Page 1 of 4: The Low-FODMAP Parallel) -->
 
 			<section class="book-page" id="page-65">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-22" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-29" style="scroll-margin-top: 5rem;"></div>
 
@@ -12999,7 +13015,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 21: Other Conditions We Can Learn From (Page 2 of 4: Carnivore as Zero-FODMAP & The Diabetic Sensory Blueprint) -->
 
 			<section class="book-page" id="page-66">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 21: Other Conditions We Can Learn From</span>
@@ -13032,7 +13048,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 21: Other Conditions We Can Learn From (Page 3 of 4: The Two Bottlenecks) -->
 
 			<section class="book-page" id="page-67">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 21: Other Conditions We Can Learn From</span>
@@ -13064,7 +13080,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 21: Other Conditions We Can Learn From (Page 4 of 4: The 72-Hour Addiction Loop & Takeaways) -->
 
 			<section class="book-page" id="page-68">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 21: Other Conditions We Can Learn From</span>
@@ -13096,7 +13112,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 13: Remission vs. Progression (Page 1 of 3) -->
 
 			<section class="book-page" id="page-71">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-21" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-30" style="scroll-margin-top: 5rem;"></div>
 
@@ -13126,7 +13142,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 13: Remission vs. Progression (Page 2 of 3) -->
 
 			<section class="book-page" id="page-72">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 22: Remission vs. Progression</span>
@@ -13154,7 +13170,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 13: Remission vs. Progression (Page 3 of 3) -->
 
 			<section class="book-page" id="page-73">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 22: Remission vs. Progression</span>
@@ -13177,7 +13193,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 1 of 8: Opener & Gender) -->
 			<section class="book-page" id="page-85-faq">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-23" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-22" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-31" style="scroll-margin-top: 5rem;"></div>
@@ -13208,7 +13224,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 2 of 8: The 50-Year Curve) -->
 			<section class="book-page" id="page-78b2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="ch30-fifty" style="scroll-margin-top: 5rem;"></div>
 				<div id="page-34" style="scroll-margin-top: 5rem;"></div>
 				<div id="faq-fifty" style="scroll-margin-top: 5rem;"></div>
@@ -13246,7 +13262,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 3 of 8: Tooth Extraction) -->
 			<section class="book-page" id="page-78b3">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="ch30-extraction" style="scroll-margin-top: 5rem;"></div>
 
 				<div class="page-body-content">
@@ -13272,7 +13288,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 4 of 8: Spatial Summation) -->
 			<section class="book-page" id="page-86-summation">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
@@ -13296,7 +13312,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 5 of 8: Eating Paradox) -->
 			<section class="book-page" id="page-78c-eating">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
@@ -13320,7 +13336,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 6 of 8: Diurnal Progression) -->
 			<section class="book-page" id="page-78c2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
@@ -13354,7 +13370,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 7 of 8: Diagnostics & Psychology) -->
 			<section class="book-page" id="page-87-diagnostics">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
@@ -13379,7 +13395,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 8 of 8: Recovery Timeline & Takeaway) -->
 			<section class="book-page" id="page-78e">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
@@ -13405,7 +13421,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 6: Questions 11 & 12) -->
 			<section class="book-page" id="page-78f">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
@@ -13428,7 +13444,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- Chapter 22: The Top Questions & Answers on Burning Mouth Syndrome (Page 7: Questions 13 & 14 & Final Callout) -->
 			<section class="book-page" id="page-78g">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 23: Top Questions &amp; Answers</span>
@@ -13465,7 +13481,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 24: Citizen Science Data (Page 1 of 2) -->
 
 			<section class="book-page" id="page-79">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-24" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-32" style="scroll-margin-top: 5rem;"></div>
 
@@ -13496,7 +13512,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 24: Citizen Science Data (Page 2 of 2) -->
 
 			<section class="book-page" id="page-80">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 24: Citizen Science Data</span>
@@ -13530,7 +13546,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 15: Active BMS Communities (Page 1 of 2) -->
 
 			<section class="book-page" id="page-81">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="chapter-24" style="scroll-margin-top: 5rem;"></div>
 				<div id="chapter-33" style="scroll-margin-top: 5rem;"></div>
 				<div class="page-body-content">
@@ -13564,7 +13580,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- Chapter 15: Active BMS Communities (Page 2 of 2) -->
 
 			<section class="book-page" id="page-82">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Chapter 25: Active BMS Communities</span>
@@ -13607,7 +13623,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- MASTER BIBLIOGRAPHY & SCIENTIFIC DATA SOURCES (Page 83) -->
 
 			<section class="book-page" id="page-83">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="master-sources" style="scroll-margin-top: 5rem;"></div>
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -13957,7 +13973,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			<!-- End of Book Journal & Notes (Page 1 of 4) -->
 			<!-- APPENDIX: THE 100 MOST CITED SCIENTIFIC STUDIES ON BURNING MOUTH SYNDROME (Page 83b) -->
 			<section class="book-page" id="page-83b">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div id="top-100-studies" style="scroll-margin-top: 5rem;"></div>
 				<div class="page-body-content">
 					<div class="page-running-head">
@@ -15188,7 +15204,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 			</section>
 
 			<section class="book-page" id="page-84-notes-1">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Personal Investigation Journal</span>
@@ -15233,7 +15249,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- End of Book Journal & Notes (Page 2 of 4) -->
 			<section class="book-page" id="page-84-notes-2">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Personal Investigation Journal</span>
@@ -15278,7 +15294,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- End of Book Journal & Notes (Page 3 of 4) -->
 			<section class="book-page" id="page-84-notes-3">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Personal Investigation Journal</span>
@@ -15323,7 +15339,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 			<!-- End of Book Journal & Notes (Page 4 of 4) -->
 			<section class="book-page" id="page-84-notes-4">
-				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note">Draft Copy</button>
+				<button class="page-draft-stamp" type="button" title="Active draft copy • Click to view note"><span class="stamp-line">DRAFT</span><span class="stamp-line">COPY</span></button>
 				<div class="page-body-content">
 					<div class="page-running-head">
 						<span class="chapter-header-label">Personal Investigation Journal</span>
