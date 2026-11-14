@@ -6,23 +6,23 @@ import { SITE_TITLE } from '../consts';
 
 const editions = [
   {
-    id: "decoding-the-burn-ed1",
-    title: "Decoding the Burn",
+    id: "acid-triggered-burning-mouth",
+    title: "Acid-Triggered Burning Mouth",
     subtitle: "How Everyday Acid and Sugar Can Mimic BMS, Why 2-Micron Crown Leaks Ignite Trigeminal Wind-Up, and the Practical Protocol to Calm It",
     edition: "First Edition & Clinical Manuscript",
     status: "Free Online Draft & Interactive Reader",
     pages: "92 Pages",
     readTime: "3.5 Hours",
-    description: "A patient's investigative journey uncovering why everyday dietary acids, sugar-fermenting bacteria, and microscopic dental gaps can ignite relentless burning sensations. Learn the self-test protocol to identify your triggers, how to bring your pain down to zero, and the practical steps to partner with your dentist.",
+    introPara: "When burning mouth pain feels constant and every routine dental exam comes back clear, it is easy to feel stuck. This book shares the personal investigation that uncovered how everyday dietary acids, sugar-fermenting bacteria, and microscopic dental gaps can keep oral pain pathways continuously firing.",
+    secondaryPara: "Inside, you will find a structured elimination approach to validate whether acidity drives your symptoms, practical steps to calm the nerve pathways, and a collaborative checklist to help your dentist investigate hidden hardware causes.",
     coverImg: "/book-front-cover.jpg",
     backCoverImg: "/book-back-cover.jpg",
     readDraftLink: "/draft",
     amazonLink: "https://www.amazon.com/dp/B0DGBZ8XZP",
     highlights: [
-      "How everyday acids & sugars keep burning pain turned on",
-      "The rapid self-test to see if acid is driving your symptoms",
-      "Hidden dental triggers: microscopic crown gaps & exposed roots",
-      "Practical conversation guide & checklist for your dental visits"
+      "Understand why everyday acids and sugars can keep burning sensations active",
+      "A simple self-check to evaluate whether acidity is one of your pain triggers",
+      "A non-confrontational checklist to guide constructive discussions with your dentist"
     ],
     publishedDate: "November 2026",
     badge: "Available Now"
@@ -97,17 +97,14 @@ const editions = [
 
             <!-- Right Column: Book Details & Actions -->
             <div class="book-content-column">
-              <!-- Main Title & Subtitle -->
+              <!-- Main Title -->
               <h2 class="book-title-heading">
                 <a href={book.readDraftLink} class="book-title-anchor">
                   {book.title}
                 </a>
               </h2>
-              <p class="book-subtitle-text">
-                {book.subtitle}
-              </p>
 
-              <!-- Meta Specs Pill Row -->
+              <!-- Meta Specs Line Directly Below Title -->
               <div class="book-meta-line">
                 <span class="meta-item">{book.pages}</span>
                 <span class="meta-separator">&bull;</span>
@@ -116,21 +113,24 @@ const editions = [
                 <span class="meta-item">Published {book.publishedDate}</span>
               </div>
 
-              <!-- Synopsis Paragraph -->
-              <p class="book-synopsis-text">
-                {book.description}
+              <!-- Two Patient-Focused Story Paragraphs -->
+              <p class="book-intro-text">
+                {book.introPara}
+              </p>
+              <p class="book-secondary-text">
+                {book.secondaryPara}
               </p>
 
-              <!-- Key Highlights Box -->
-              <div class="book-highlights-card">
-                <h3 class="highlights-box-title">
-                  Key Highlights Included
+              <!-- Floating Key Highlights (No Background Box, 3 Client-Focused Points) -->
+              <div class="book-floating-highlights">
+                <h3 class="floating-highlights-title">
+                  What You Will Learn
                 </h3>
-                <ul class="highlights-box-list">
+                <ul class="floating-highlights-list">
                   {book.highlights.map((item) => (
-                    <li class="highlight-bullet">
-                      <span class="check-mark">&check;</span>
-                      <span class="highlight-label">{item}</span>
+                    <li class="floating-highlight-item">
+                      <span class="floating-check-icon">&check;</span>
+                      <span class="floating-highlight-label">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -154,8 +154,8 @@ const editions = [
                   rel="noopener noreferrer" 
                   class="btn-cta-amazon"
                 >
-                  <svg class="cta-svg-icon cta-amazon-svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M13.958 10.09c0 1.272-.047 2.336-.713 3.447-.52.868-1.277 1.406-2.148 1.406-1.18 0-1.734-.89-1.734-2.197 0-2.57 2.197-3.033 4.595-3.033v.377zm3.176 7.424c-.266.236-.653.256-.96.079-.884-.717-1.042-1.05-1.528-1.737-1.46 1.48-2.52 1.954-4.398 1.954-2.28 0-4.048-1.397-4.048-3.99 0-2.032 1.15-3.483 2.766-4.22 1.403-.645 3.37-.76 4.847-.932v-.36c0-.687-.07-1.488-.507-2.025-.386-.48-1.04-.71-1.666-.71-1.144 0-2.164.557-2.42 1.764-.06.27-.247.503-.52.503l-3.064-.326c-.24-.047-.493-.217-.42-.563.66-3.13 3.454-4.32 6.467-4.32 1.63 0 3.75.433 4.987 1.673 1.257 1.24 1.153 2.923 1.153 4.707v4.614c0 1.397.587 1.99 1.153 2.747.2.273.233.593-.02.793l-1.847 1.734zm-8.82 4.148c7.18 2.373 14.186-.64 15.533-1.64.28-.21.133-.51-.186-.38-1.32.533-5.26 2.08-11.467.4-2.28-.627-4.433-1.84-4.14-1.407.3 1.34 3.073 2.38 6.26 3.027z" />
+                  <svg class="cta-svg-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                   </svg>
                   <span>Buy on Amazon</span>
                 </a>
@@ -514,46 +514,59 @@ const editions = [
     text-wrap: pretty;
   }
 
-  /* Highlights Card */
-  .book-highlights-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 1.25rem 1.4rem;
-    margin-bottom: 1.85rem;
+  /* Patient Story Paragraphs */
+  .book-intro-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #1e293b;
+    margin: 0 0 1rem;
+    text-wrap: pretty;
   }
 
-  .highlights-box-title {
-    font-size: 0.76rem;
+  .book-secondary-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0 0 1.75rem;
+    text-wrap: pretty;
+  }
+
+  /* Floating Key Highlights (No Background Box, Clean Client-Focused List) */
+  .book-floating-highlights {
+    margin-bottom: 2.25rem;
+  }
+
+  .floating-highlights-title {
+    font-size: 0.78rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     color: #64748b;
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.85rem;
   }
 
-  .highlights-box-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 0.65rem 1.25rem;
+  .floating-highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .highlight-bullet {
+  .floating-highlight-item {
     display: flex;
     align-items: flex-start;
-    gap: 0.55rem;
-    font-size: 0.88rem;
+    gap: 0.65rem;
+    font-size: 0.92rem;
     color: #1e293b;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
-  .check-mark {
+  .floating-check-icon {
     color: #059669;
     font-weight: 900;
-    font-size: 0.95rem;
+    font-size: 1rem;
     flex-shrink: 0;
     margin-top: -1px;
   }
