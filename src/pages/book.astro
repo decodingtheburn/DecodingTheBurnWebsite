@@ -3686,22 +3686,168 @@ import { SITE_TITLE } from '../consts';
 			.bms-check-label {
 				display: flex;
 				align-items: flex-start;
-				gap: 0.5rem;
-				font-size: 1.02rem;
-				line-height: 1.5;
-				color: #1e293b;
+				gap: 0.65rem;
+				font-size: 1.0625rem !important;
+				line-height: 1.55 !important;
+				color: #18181b !important;
 				cursor: pointer;
 				text-wrap: pretty;
 			}
 
+			.bms-check-label span {
+				font-size: 1.0625rem !important;
+				line-height: 1.55 !important;
+				color: #18181b !important;
+			}
+
 			.bms-check-label input[type="checkbox"],
 			.bms-check-label input[type="radio"] {
-				margin-top: 0.15rem;
+				margin-top: 0.2rem;
 				flex-shrink: 0;
-				width: 17px;
-				height: 17px;
+				width: 19px;
+				height: 19px;
 				accent-color: #2563eb;
 				cursor: pointer;
+			}
+
+			/* Printable & Interactive 0-10 Numeric Pain Scale */
+			.bms-pain-scale-container {
+				margin-top: 0.65rem;
+				padding: 0.85rem 1rem;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 10px;
+			}
+			.bms-pain-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 0.65rem;
+			}
+			.bms-pain-title {
+				font-size: 1.0625rem !important;
+				font-weight: 700;
+				color: #0f172a;
+				margin: 0;
+			}
+			.bms-pain-score-pill {
+				display: inline-flex;
+				align-items: baseline;
+				gap: 0.25rem;
+				padding: 0.2rem 0.65rem;
+				background: #fee2e2;
+				border: 1px solid #fca5a5;
+				border-radius: 6px;
+				color: #b91c1c;
+				font-weight: 700;
+				font-size: 0.95rem;
+			}
+			.bms-pain-grid {
+				display: grid;
+				grid-template-columns: repeat(11, minmax(0, 1fr));
+				gap: 0.35rem;
+				margin-bottom: 0.55rem;
+			}
+			@media (max-width: 640px) {
+				.bms-pain-grid {
+					grid-template-columns: repeat(6, minmax(0, 1fr));
+					gap: 0.4rem;
+				}
+			}
+			.bms-pain-box {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				padding: 0.5rem 0.15rem;
+				background: #ffffff;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+				user-select: none;
+			}
+			.bms-pain-box input[type="radio"] {
+				position: absolute;
+				opacity: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				cursor: pointer;
+				z-index: 2;
+			}
+			.bms-pain-box .pain-num {
+				font-size: 1.15rem;
+				font-weight: 800;
+				color: #1e293b;
+				line-height: 1.1;
+			}
+			.bms-pain-box .pain-indicator {
+				width: 13px;
+				height: 13px;
+				border-radius: 50%;
+				border: 1.5px solid #94a3b8;
+				margin-top: 0.25rem;
+				background: #ffffff;
+				transition: all 0.15s ease;
+			}
+			.bms-pain-box:hover {
+				border-color: #7c3aed;
+				background: #faf5ff;
+			}
+			.bms-pain-box:has(input[type="radio"]:checked) {
+				border-color: #dc2626;
+				background: #fef2f2;
+				box-shadow: 0 0 0 1px #dc2626;
+			}
+			.bms-pain-box:has(input[type="radio"]:checked) .pain-num {
+				color: #b91c1c;
+			}
+			.bms-pain-box:has(input[type="radio"]:checked) .pain-indicator {
+				border-color: #dc2626;
+				background: #dc2626;
+				box-shadow: inset 0 0 0 2.5px #ffffff;
+			}
+			.bms-pain-anchors {
+				display: flex;
+				justify-content: space-between;
+				font-size: 0.82rem;
+				font-weight: 600;
+				color: #64748b;
+				line-height: 1.35;
+				padding: 0 0.15rem;
+			}
+			@media print {
+				.bms-pain-scale-container {
+					background: #ffffff !important;
+					border: 1.5px solid #000000 !important;
+					page-break-inside: avoid !important;
+					break-inside: avoid !important;
+				}
+				.bms-pain-box {
+					border: 1.5px solid #000000 !important;
+					background: #ffffff !important;
+					color: #000000 !important;
+				}
+				.bms-pain-box .pain-num {
+					color: #000000 !important;
+				}
+				.bms-pain-box .pain-indicator {
+					border: 1.5px solid #000000 !important;
+					background: #ffffff !important;
+				}
+				.bms-pain-box:has(input[type="radio"]:checked) {
+					background: #e2e8f0 !important;
+					border: 2px solid #000000 !important;
+				}
+				.bms-pain-box:has(input[type="radio"]:checked) .pain-indicator {
+					background: #000000 !important;
+					border-color: #000000 !important;
+				}
+				.bms-pain-anchors {
+					color: #000000 !important;
+				}
 			}
 
 		
@@ -9738,7 +9884,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 							<p style="color: #7f1d1d; line-height: 1.55; margin-bottom: 0.75rem;">
 								These specific clinical signs do not fit typical Primary Burning Mouth Syndrome. If any apply, they require prompt professional evaluation by an oral surgeon, ENT specialist, or physician before pursuing at-home self-management:
 							</p>
-							<div class="bms-grid-2col" style="font-size: 0.82rem; color: #1e293b;">
+							<div class="bms-grid-2col" style="font-size: 1.0625rem; color: #18181b;">
 								<label class="bms-check-label"><input type="checkbox" name="redflag_unilateral" class="bms-input-persist" /> <span>Burning or pain strictly on one side of the mouth</span></label>
 								<label class="bms-check-label"><input type="checkbox" name="redflag_ulcer_3w" class="bms-input-persist" /> <span>A sore, ulcer, lump, or tissue patch unhealed after 3 weeks</span></label>
 								<label class="bms-check-label"><input type="checkbox" name="redflag_weight_loss" class="bms-input-persist" /> <span>Unexplained, rapid weight loss or loss of appetite</span></label>
@@ -9769,7 +9915,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 							<!-- Part 1: Core ICOP Diagnostic Criteria (Check all that apply) -->
 							<div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.85rem;">
 								<h4 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; margin: 0 0 0.45rem;">1. Core ICOP Diagnostic Criteria (Check all that apply to your symptoms)</h4>
-								<div class="bms-grid-1col" style="font-size: 0.82rem; color: #1e293b; display: flex; flex-direction: column; gap: 0.45rem;">
+								<div class="bms-grid-1col" style="font-size: 1.0625rem; color: #18181b; display: flex; flex-direction: column; gap: 0.55rem;">
 									<label class="bms-check-label">
 										<input type="checkbox" name="icop_daily_recurrence" class="bms-input-persist" />
 										<span><strong>Criterion A &amp; B (Duration &amp; Frequency):</strong> Burning or dysaesthetic sensation recurring daily for &gt;2 hours per day for &gt;3 continuous&nbsp;months.</span>
@@ -9793,7 +9939,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 							<div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.85rem;">
 								<h4 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; margin: 0 0 0.35rem;">2. Local Dental &amp; Mucosal Exclusion Sequence (Check tests completed)</h4>
 								<p style="color: #64748b; margin-bottom: 0.5rem;">International guidelines require ruling out primary intraoral causes before confirming idiopathic BMS:</p>
-								<div class="bms-grid-2col" style="font-size: 0.82rem; color: #1e293b;">
+								<div class="bms-grid-2col" style="font-size: 1.0625rem; color: #18181b;">
 									<label class="bms-check-label"><input type="checkbox" name="icop_test_candida" class="bms-input-persist" /> <span><strong>Oral Lesion / Candida Smear:</strong> Swab or culture ruling out fungal overgrowth, lichen planus, or leukoplakia.</span></label>
 									<label class="bms-check-label"><input type="checkbox" name="icop_test_sialometry" class="bms-input-persist" /> <span><strong>Quantitative Sialometry:</strong> Flow measurement ruling out objective hyposalivation (&lt;0.1 mL/min resting).</span></label>
 									<label class="bms-check-label"><input type="checkbox" name="icop_test_bewe" class="bms-input-persist" /> <span><strong>BEWE Diagnostic Score (Erosive Wear):</strong> Basic Erosive Wear Examination (BEWE) scoring 0–3 to evaluate chemical enamel dissolution &amp; exposed dentin.</span></label>
@@ -9808,7 +9954,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 							<div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.65rem;">
 								<h4 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; margin: 0 0 0.35rem;">3. Systemic Medical Laboratory Exclusion Sequence (Check panels completed)</h4>
 								<p style="color: #64748b; margin-bottom: 0.5rem;">Standard laboratory blood panels to identify or rule out secondary systemic drivers:</p>
-								<div class="bms-grid-2col" style="font-size: 0.82rem; color: #1e293b;">
+								<div class="bms-grid-2col" style="font-size: 1.0625rem; color: #18181b;">
 									<label class="bms-check-label"><input type="checkbox" name="icop_lab_hematinic" class="bms-input-persist" /> <span><strong>Hematinic &amp; Vitamin Panel:</strong> CBC, Ferritin, Serum B12, RBC Folate, Serum Zinc, and Vitamin D.</span></label>
 									<label class="bms-check-label"><input type="checkbox" name="icop_lab_glycemic" class="bms-input-persist" /> <span><strong>Glycemic Screening:</strong> Fasting blood glucose and HbA1c to rule out diabetic small-fiber neuropathy.</span></label>
 									<label class="bms-check-label"><input type="checkbox" name="icop_lab_thyroid" class="bms-input-persist" /> <span><strong>Endocrine / Thyroid Profile:</strong> Serum TSH, Free T3, and Free T4 for subclinical thyroid dysfunction.</span></label>
@@ -9864,19 +10010,19 @@ Here, in their own words, are the voices of those who have walked through the fi
 								<div>
 									<label style="display: block; font-size: 1.02rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Age Bracket</label>
 									<div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 1.0625rem; color: #18181b; cursor: pointer;">
 											<input type="radio" name="bms_q_age" value="under-40" class="bms-input-persist" /> &lt;40
 										</label>
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 1.0625rem; color: #18181b; cursor: pointer;">
 											<input type="radio" name="bms_q_age" value="40-49" class="bms-input-persist" /> 40&ndash;49
 										</label>
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 1.0625rem; color: #18181b; cursor: pointer;">
 											<input type="radio" name="bms_q_age" value="50-59" class="bms-input-persist" /> 50&ndash;59
 										</label>
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 1.0625rem; color: #18181b; cursor: pointer;">
 											<input type="radio" name="bms_q_age" value="60-69" class="bms-input-persist" /> 60&ndash;69
 										</label>
-										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; color: #1e293b; cursor: pointer;">
+										<label style="display: flex; align-items: center; gap: 0.3rem; font-size: 1.0625rem; color: #18181b; cursor: pointer;">
 											<input type="radio" name="bms_q_age" value="70+" class="bms-input-persist" /> 70+
 										</label>
 									</div>
@@ -9884,12 +10030,12 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 								<div>
 									<label style="display: block; font-size: 1.02rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Height</label>
-									<input type="text" name="bms_q_height" placeholder="e.g., 5 ft 8 in / 173 cm" class="bms-input-persist" style="width: 100%; max-width: 200px; font-size: 0.82rem; padding: 0.35rem 0.55rem; border: 1px solid #cbd5e1; border-radius: 6px; color: #0f172a;" />
+									<input type="text" name="bms_q_height" placeholder="e.g., 5 ft 8 in / 173 cm" class="bms-input-persist" style="width: 100%; max-width: 200px; font-size: 1rem; padding: 0.45rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; color: #0f172a;" />
 								</div>
 
 								<div>
 									<label style="display: block; font-size: 1.02rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Weight</label>
-									<input type="text" name="bms_q_weight" placeholder="e.g., 160 lbs / 72 kg" class="bms-input-persist" style="width: 100%; max-width: 200px; font-size: 0.82rem; padding: 0.35rem 0.55rem; border: 1px solid #cbd5e1; border-radius: 6px; color: #0f172a;" />
+									<input type="text" name="bms_q_weight" placeholder="e.g., 160 lbs / 72 kg" class="bms-input-persist" style="width: 100%; max-width: 200px; font-size: 1rem; padding: 0.45rem 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; color: #0f172a;" />
 								</div>
 							</div>
 
@@ -9962,13 +10108,70 @@ Here, in their own words, are the voices of those who have walked through the fi
 								</div>
 							</div>
 
-							<div>
-								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-									<label style="font-size: 1.02rem; font-weight: 700; color: #334155;">Average Daily Pain Intensity (0 to 10 Scale)</label>
-									<span id="bms_pain_val_display" style="font-size: 0.9rem; font-weight: 700; color: #dc2626;">7 / 10</span>
+							<div class="bms-pain-scale-container">
+								<div class="bms-pain-header">
+									<label class="bms-pain-title">Average Daily Pain Intensity (0 to 10 Visual Scale)</label>
+									<span id="bms_pain_val_display" class="bms-pain-score-pill">7 / 10</span>
 								</div>
-								<input type="range" name="bms_pain_scale" min="0" max="10" value="7" style="width: 100%; accent-color: #dc2626; cursor: pointer;" class="bms-input-persist" id="bms_pain_slider" />
-								<div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #64748b; margin-top: 0.2rem;">
+								<!-- 0 to 10 Print-Ready Rating Grid -->
+								<div class="bms-pain-grid">
+									<label class="bms-pain-box" title="0 - No Pain">
+										<input type="radio" name="bms_pain_scale" value="0" class="bms-input-persist" />
+										<span class="pain-num">0</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="1 - Minimal">
+										<input type="radio" name="bms_pain_scale" value="1" class="bms-input-persist" />
+										<span class="pain-num">1</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="2 - Minor">
+										<input type="radio" name="bms_pain_scale" value="2" class="bms-input-persist" />
+										<span class="pain-num">2</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="3 - Mild Sting">
+										<input type="radio" name="bms_pain_scale" value="3" class="bms-input-persist" />
+										<span class="pain-num">3</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="4 - Noticeable">
+										<input type="radio" name="bms_pain_scale" value="4" class="bms-input-persist" />
+										<span class="pain-num">4</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="5 - Moderate Burn">
+										<input type="radio" name="bms_pain_scale" value="5" class="bms-input-persist" />
+										<span class="pain-num">5</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="6 - Intrusive">
+										<input type="radio" name="bms_pain_scale" value="6" class="bms-input-persist" />
+										<span class="pain-num">6</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="7 - Severe Distress">
+										<input type="radio" name="bms_pain_scale" value="7" checked class="bms-input-persist" />
+										<span class="pain-num">7</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="8 - Very Severe">
+										<input type="radio" name="bms_pain_scale" value="8" class="bms-input-persist" />
+										<span class="pain-num">8</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="9 - Debilitating">
+										<input type="radio" name="bms_pain_scale" value="9" class="bms-input-persist" />
+										<span class="pain-num">9</span>
+										<span class="pain-indicator"></span>
+									</label>
+									<label class="bms-pain-box" title="10 - Unbearable Emergency">
+										<input type="radio" name="bms_pain_scale" value="10" class="bms-input-persist" />
+										<span class="pain-num">10</span>
+										<span class="pain-indicator"></span>
+									</label>
+								</div>
+								<div class="bms-pain-anchors">
 									<span>0: No Pain</span>
 									<span>3: Mild Sting</span>
 									<span>7: Severe Distress</span>
@@ -10194,7 +10397,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 							
 							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; margin-bottom: 0.75rem;">
 								<div>
-									<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">How often do you sip liquids throughout the day?</label>
+									<label style="display: block; font-size: 1.02rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">How often do you sip liquids throughout the day?</label>
 									<div style="display: flex; flex-direction: column; gap: 0.35rem;">
 										<label class="bms-check-label">
 											<input type="radio" name="bms_sip_frequency" value="constant-sipping" class="bms-input-persist" />
@@ -10212,7 +10415,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 								</div>
 
 								<div>
-									<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Total Estimated Daily Fluid Volume</label>
+									<label style="display: block; font-size: 1.02rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Total Estimated Daily Fluid Volume</label>
 									<div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
 										<label class="bms-check-label">
 											<input type="radio" name="bms_fluid_volume" value="under-1L" class="bms-input-persist" />
@@ -10235,7 +10438,7 @@ Here, in their own words, are the voices of those who have walked through the fi
 							</div>
 
 							<div>
-								<label style="display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem;">What specific liquids do you sip throughout the day? (Select all that apply)</label>
+								<label style="display: block; font-size: 1.02rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">What specific liquids do you sip throughout the day? (Select all that apply)</label>
 								<div class="bms-grid-3col">
 									<label class="bms-check-label">
 										<input type="checkbox" name="bms_sip_tap_water" class="bms-input-persist" />
@@ -10305,16 +10508,16 @@ Here, in their own words, are the voices of those who have walked through the fi
 
 							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem;">
 								<div>
-									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Meal #1 (Most Recent)</label>
-									<input type="text" name="bms_diet_m1" placeholder="e.g., eggs, black coffee, sourdough" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
+									<label style="display: block; font-size: 1.02rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Meal #1 (Most Recent)</label>
+									<input type="text" name="bms_diet_m1" placeholder="e.g., eggs, black coffee, sourdough" class="bms-input-persist" style="width: 100%; font-size: 0.95rem; padding: 0.5rem 0.7rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
 								</div>
 								<div>
-									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Meal #2 (Previous Meal)</label>
-									<input type="text" name="bms_diet_m2" placeholder="e.g., salad with vinaigrette, chicken" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
+									<label style="display: block; font-size: 1.02rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Meal #2 (Previous Meal)</label>
+									<input type="text" name="bms_diet_m2" placeholder="e.g., salad with vinaigrette, chicken" class="bms-input-persist" style="width: 100%; font-size: 0.95rem; padding: 0.5rem 0.7rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
 								</div>
 								<div>
-									<label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 0.25rem;">Meal #3 (Third Meal Back)</label>
-									<input type="text" name="bms_diet_m3" placeholder="e.g., pasta with tomato sauce, red wine" class="bms-input-persist" style="width: 100%; font-size: 0.82rem; padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
+									<label style="display: block; font-size: 1.02rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Meal #3 (Third Meal Back)</label>
+									<input type="text" name="bms_diet_m3" placeholder="e.g., pasta with tomato sauce, red wine" class="bms-input-persist" style="width: 100%; font-size: 0.95rem; padding: 0.5rem 0.7rem; border: 1px solid #cbd5e1; border-radius: 6px;" />
 								</div>
 							</div>
 						</div>
@@ -15781,6 +15984,11 @@ Here, in their own words, are the voices of those who have walked through the fi
         } else if (input.type === 'range') {
           input.value = saved[name];
           if (painDisplay) painDisplay.textContent = saved[name] + ' / 10';
+        } else if (input.type === 'radio' && input.name === 'bms_pain_scale') {
+          if (input.value === String(saved[name])) {
+            input.checked = true;
+            if (painDisplay) painDisplay.textContent = input.value + ' / 10';
+          }
         } else {
           input.value = saved[name];
         }
@@ -15826,12 +16034,21 @@ Here, in their own words, are the voices of those who have walked through the fi
       });
     });
 
-    // Slider listener
+    // Slider listener (legacy fallback) & Print-Ready 0-10 Radio Scale listener
     if (painSlider && painDisplay) {
       painSlider.addEventListener('input', (e) => {
         painDisplay.textContent = e.target.value + ' / 10';
       });
     }
+
+    const painRadios = document.querySelectorAll('input[name="bms_pain_scale"]');
+    painRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.checked && painDisplay) {
+          painDisplay.textContent = radio.value + ' / 10';
+        }
+      });
+    });
 
     // Print button
     if (printBtn) {
