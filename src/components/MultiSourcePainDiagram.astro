@@ -175,203 +175,289 @@ const {
   </div>
 
   {showPeripheralInputs && (
-  <!-- SECTION 3: PERIPHERAL & CENTRAL INPUTS (4 CATEGORIES SIDE-BY-SIDE) -->
-  <div style="margin-top: 1.75rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+  <!-- SECTION 3: ANATOMICAL HUMAN MAPPING & 4 CATEGORY CARDS -->
+  <div style="margin-top: 2rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.07);">
     
-    <!-- CATEGORY 1: DENTAL ISSUES (70%) -->
-    <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-top: 3.5px solid #dc2626; border-radius: 12px; padding: 1.15rem 1.15rem; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.45rem;">
-        <span style="font-size: 1rem; font-weight: 800; color: #0f172a; letter-spacing: -0.01em;">
-          Dental Issues
-        </span>
-        <!-- Tooth / Dental Hardware SVG Icon -->
-        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 6px; background: #fef2f2; border: 1px solid #fecaca; color: #dc2626;" title="Local Dental Hardware Factors">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2C7.5 2 4 4.5 4 8c0 3 1.5 5.5 2 8 .6 3 1.5 6 3 6s2.5-3 3-5c.5 2 1.5 5 3 5s2.4-3 3-6c.5-2.5 2-5 2-8 0-3.5-3.5-6-8-6z" />
-          </svg>
-        </span>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 0.65rem; flex: 1;">
-        <!-- 1. Leaky Crown (30%) -->
-        <div class="hover-trigger-row" data-highlight="hotspot-leaky-crown" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Leaky crown</span>
-          <span style="background: #ef4444; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">30%</span>
-        </div>
-
-        <!-- 2. Exposed Tubules (20%) -->
-        <div class="hover-trigger-row" data-highlight="hotspot-tubules" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Exposed tubules</span>
-          <span style="background: #f59e0b; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">20%</span>
-        </div>
-
-        <!-- 3. Canine Occlusion (20%) -->
-        <div class="hover-trigger-row" data-highlight="hotspot-canine" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Canine occlusion</span>
-          <span style="background: #ef4444; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">20%</span>
-        </div>
-
-        <!-- 4. Others (20) Dental Factors (Clickable Modal) -->
-        <div class="interactive-nerve-target hover-trigger-row" data-branch="dental-others" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.85rem; font-weight: 600; color: #0284c7;">Others (20) &rsaquo;</span>
-          <span style="background: #16a34a; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">0%</span>
-        </div>
-
-        <!-- Total Row (Under dividing line) -->
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.55rem 0.15rem; border-top: 1.5px solid #e2e8f0; margin-top: auto;">
-          <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a;">Total</span>
-          <span style="font-size: 0.88rem; font-weight: 800; color: #dc2626; background: #fef2f2; border: 1px solid #fecaca; padding: 0.2rem 0.6rem; border-radius: 5px;">70%</span>
-        </div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.25rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.75rem;">
+      <div>
+        <h3 style="margin: 0; font-size: 1.15rem; font-weight: 800; color: #0f172a; letter-spacing: -0.015em;">Anatomical Sources of Oral Pain</h3>
+        <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: #64748b;">
+          Convergence of dental hardware, chemical irritants, systemic factors, and central wind-up.
+        </p>
       </div>
     </div>
 
-    <!-- CATEGORY 2: DIETARY TRIGGERS (30%) -->
-    <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-top: 3.5px solid #ea580c; border-radius: 12px; padding: 1.15rem 1.15rem; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.45rem;">
-        <span style="font-size: 1rem; font-weight: 800; color: #0f172a; letter-spacing: -0.01em;">
-          Dietary Triggers
-        </span>
-        <!-- Acid / Dietary Lemon & Flame / Chemistry SVG Icon -->
-        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 6px; background: #fff7ed; border: 1px solid #ffedd5; color: #ea580c;" title="Dietary & Oral Acid Factors">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2v6" />
-            <path d="m4.93 10.93 4.24 4.24" />
-            <path d="M2 18h6" />
-            <path d="M20 18a8 8 0 1 1-16 0c0-4.42 8-12 8-12s8 7.58 8 12z" />
-          </svg>
-        </span>
+    <!-- 2-Column Architecture: Left = Human Silhouette with Pointer Anchors; Right = 4 Stacked Neutral Cards -->
+    <div class="anatomy-stack-container" style="display: grid; grid-template-columns: minmax(240px, 310px) 1fr; gap: 1.5rem; align-items: stretch;">
+      
+      <!-- LEFT: Clean Vector Human Silhouette with Anatomical Zones -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem 0.75rem; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+        
+        <svg viewBox="0 0 280 500" style="width: 100%; max-width: 270px; height: auto; display: block;" aria-label="Human body diagram highlighting brain, oral cavity, stomach, and systemic tract">
+          <defs>
+            <linearGradient id="bodyOutlineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#cbd5e1"/>
+              <stop offset="100%" stop-color="#94a3b8"/>
+            </linearGradient>
+            <!-- Drop Shadows & Soft Glows -->
+            <filter id="softPinGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.25"/>
+            </filter>
+          </defs>
+
+          <!-- Medical Human Silhouette (Head, Neck, Torso, Hips) -->
+          <path d="M 140 25 C 114 25 102 44 102 68 C 102 92 112 108 124 115 L 124 135 C 108 140 88 152 78 175 L 70 242 C 68 260 82 265 88 248 L 98 198 L 98 335 L 112 460 C 114 475 128 475 130 460 L 138 360 L 142 360 L 150 460 C 152 475 166 475 168 460 L 182 335 L 182 198 L 192 248 C 198 265 212 260 210 242 L 202 175 C 192 152 172 140 156 135 L 156 115 C 168 108 178 92 178 68 C 178 44 166 25 140 25 Z" 
+                fill="#ffffff" stroke="url(#bodyOutlineGrad)" stroke-width="1.8" stroke-linejoin="round"/>
+
+          <!-- 1. SENSITIZATION ZONE (BRAIN & BRAINSTEM) -->
+          <g id="body-zone-brain">
+            <!-- Brain outline -->
+            <path d="M 126 50 C 122 62 130 75 140 78 C 150 75 158 62 154 50 C 150 38 130 38 126 50 Z" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+            <!-- Brainstem path -->
+            <path d="M 138 78 L 138 108 L 142 108 L 142 78 Z" fill="#94a3b8"/>
+            <circle cx="140" cy="58" r="7" fill="#0f172a" filter="url(#softPinGlow)"/>
+            <circle cx="140" cy="58" r="2.5" fill="#ffffff"/>
+            <!-- Connector to Category 4 / Sensitization -->
+            <line x1="152" y1="58" x2="265" y2="58" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <circle cx="265" cy="58" r="3" fill="#64748b"/>
+          </g>
+
+          <!-- 2. DENTAL ZONE (ORAL CAVITY / HARDWARE) -->
+          <g id="body-zone-dental">
+            <path d="M 131 96 C 131 104 149 104 149 96 C 149 92 131 92 131 96 Z" fill="#fef2f2" stroke="#dc2626" stroke-width="1.4"/>
+            <circle cx="140" cy="96" r="6" fill="#dc2626" filter="url(#softPinGlow)"/>
+            <circle cx="140" cy="96" r="2" fill="#ffffff"/>
+            <!-- Connector to Dental Card -->
+            <line x1="152" y1="96" x2="265" y2="96" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <circle cx="265" cy="96" r="3" fill="#dc2626"/>
+          </g>
+
+          <!-- 3. DIETARY ZONE (STOMACH / ACID REFLUX / GASTRO) -->
+          <g id="body-zone-diet">
+            <path d="M 140 108 L 140 180" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="2,2"/>
+            <path d="M 138 185 C 126 185 122 195 124 208 C 127 224 142 226 150 216 C 155 206 152 193 142 188 Z" fill="#fffbeb" stroke="#d97706" stroke-width="1.4"/>
+            <circle cx="136" cy="204" r="6" fill="#d97706" filter="url(#softPinGlow)"/>
+            <circle cx="136" cy="204" r="2" fill="#ffffff"/>
+            <!-- Connector to Dietary Card -->
+            <line x1="152" y1="204" x2="265" y2="204" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <circle cx="265" cy="204" r="3" fill="#d97706"/>
+          </g>
+
+          <!-- 4. SYSTEMIC ZONE (INTESTINAL ABSORPTION / HORMONAL AXIS) -->
+          <g id="body-zone-systemic">
+            <path d="M 130 240 C 124 250 134 260 140 252 C 148 245 158 258 150 268 C 142 278 132 272 128 285 C 124 298 155 305 152 285" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="140" cy="268" r="6" fill="#475569" filter="url(#softPinGlow)"/>
+            <circle cx="140" cy="268" r="2" fill="#ffffff"/>
+            <!-- Connector to Systemic Card -->
+            <line x1="154" y1="268" x2="265" y2="268" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <circle cx="265" cy="268" r="3" fill="#64748b"/>
+          </g>
+        </svg>
+
+        <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-align: center; margin-top: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase;">
+          Physiological Mapping
+        </div>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 0.55rem; flex: 1;">
-        <!-- Alcohol (5%) -->
-        <div class="hover-trigger-row" data-highlight="hotspot-oral-acid" style="display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Alcohol &amp; coffee</span>
-          <span style="background: #f59e0b; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">10%</span>
+      <!-- RIGHT: 4 ELEGANT STACKED CARDS (NEUTRAL BORDERS, NO PURPLE, CLEAN SHADOWS) -->
+      <div style="display: flex; flex-direction: column; gap: 1rem; justify-content: space-between;">
+        
+        <!-- CARD 1: DENTAL ISSUES (70%) -->
+        <div class="category-card-stacked" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.15rem; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04); transition: transform 0.15s ease, box-shadow 0.15s ease;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.45rem;">
+            <div style="display: flex; align-items: center; gap: 0.55rem;">
+              <span style="font-size: 0.98rem; font-weight: 800; color: #0f172a;">Dental Issues</span>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 600;">(Oral Cavity)</span>
+            </div>
+            <!-- Small subtle neutral badge icon matching questionnaire style -->
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 4px; background: #f8fafc; border: 1px solid #e2e8f0; color: #475569;" title="Local Dental Hardware">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C7.5 2 4 4.5 4 8c0 3 1.5 5.5 2 8 .6 3 1.5 6 3 6s2.5-3 3-5c.5 2 1.5 5 3 5s2.4-3 3-6c.5-2.5 2-5 2-8 0-3.5-3.5-6-8-6z" />
+              </svg>
+            </span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.45rem 1rem;">
+            <!-- 1. Leaky Crown (30%) -->
+            <div class="hover-trigger-row" data-highlight="hotspot-leaky-crown" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Leaky crown</span>
+              <span style="background: #ef4444; color: #ffffff; font-size: 0.74rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 4px;">30%</span>
+            </div>
+
+            <!-- 2. Exposed Tubules (20%) -->
+            <div class="hover-trigger-row" data-highlight="hotspot-tubules" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Exposed tubules</span>
+              <span style="background: #f59e0b; color: #ffffff; font-size: 0.74rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 4px;">20%</span>
+            </div>
+
+            <!-- 3. Canine Occlusion (20%) -->
+            <div class="hover-trigger-row" data-highlight="hotspot-canine" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Canine occlusion</span>
+              <span style="background: #ef4444; color: #ffffff; font-size: 0.74rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 4px;">20%</span>
+            </div>
+
+            <!-- 4. Others (20) - Underlined Clickable -->
+            <div class="interactive-nerve-target hover-trigger-row" data-branch="dental-others" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
+              <span style="font-size: 0.74rem; font-weight: 600; color: #64748b;">0%</span>
+            </div>
+          </div>
+
+          <!-- Total Row: Red for Dental Total (70%) -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">Total</span>
+            <span style="font-size: 0.85rem; font-weight: 800; color: #dc2626; background: #fef2f2; border: 1px solid #fecaca; padding: 0.15rem 0.55rem; border-radius: 4px;">70%</span>
+          </div>
         </div>
 
-        <!-- Acidic fruits (10%) -->
-        <div class="hover-trigger-row" data-highlight="hotspot-oral-acid" style="display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Acidic fruits</span>
-          <span style="background: #f59e0b; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">10%</span>
+        <!-- CARD 2: DIETARY TRIGGERS (30%) -->
+        <div class="category-card-stacked" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.15rem; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04); transition: transform 0.15s ease, box-shadow 0.15s ease;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.45rem;">
+            <div style="display: flex; align-items: center; gap: 0.55rem;">
+              <span style="font-size: 0.98rem; font-weight: 800; color: #0f172a;">Dietary Triggers</span>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 600;">(Stomach &amp; Saliva)</span>
+            </div>
+            <!-- Small subtle neutral badge icon -->
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 4px; background: #f8fafc; border: 1px solid #e2e8f0; color: #475569;" title="Dietary & Acid Triggers">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v6" />
+                <path d="M20 18a8 8 0 1 1-16 0c0-4.42 8-12 8-12s8 7.58 8 12z" />
+              </svg>
+            </span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.45rem 1rem;">
+            <!-- 1. Alcohol & Coffee -->
+            <div class="hover-trigger-row" data-highlight="hotspot-oral-acid" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Alcohol &amp; coffee</span>
+              <span style="background: #f59e0b; color: #ffffff; font-size: 0.74rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 4px;">10%</span>
+            </div>
+
+            <!-- 2. Acidic fruits -->
+            <div class="hover-trigger-row" data-highlight="hotspot-oral-acid" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Acidic fruits</span>
+              <span style="background: #f59e0b; color: #ffffff; font-size: 0.74rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 4px;">10%</span>
+            </div>
+
+            <!-- 3. Salivary loss & stress -->
+            <div class="hover-trigger-row" data-highlight="hotspot-saliva" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Salivary loss &amp; stress</span>
+              <span style="background: #f59e0b; color: #ffffff; font-size: 0.74rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 4px;">10%</span>
+            </div>
+
+            <!-- 4. Others (20) - Underlined Clickable -->
+            <div class="interactive-nerve-target hover-trigger-row" data-branch="systemic-others" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
+              <span style="font-size: 0.74rem; font-weight: 600; color: #64748b;">0%</span>
+            </div>
+          </div>
+
+          <!-- Total Row: Yellow/Amber for Dietary Total (30%) -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">Total</span>
+            <span style="font-size: 0.85rem; font-weight: 800; color: #b45309; background: #fffbeb; border: 1px solid #fde68a; padding: 0.15rem 0.55rem; border-radius: 4px;">30%</span>
+          </div>
         </div>
 
-        <!-- Saliva Loss & Stress (10%) -->
-        <div class="hover-trigger-row" data-highlight="hotspot-saliva" style="display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Salivary loss &amp; stress</span>
-          <span style="background: #f59e0b; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">10%</span>
+        <!-- CARD 3: SYSTEMIC FACTORS (0% - HORMONES, DEFICIENCIES, EXCESSES) -->
+        <div class="category-card-stacked" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.15rem; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04); transition: transform 0.15s ease, box-shadow 0.15s ease;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.45rem;">
+            <div style="display: flex; align-items: center; gap: 0.55rem;">
+              <span style="font-size: 0.98rem; font-weight: 800; color: #0f172a;">Systemic Factors</span>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 600;">(Hormones &amp; Absorption)</span>
+            </div>
+            <!-- Small subtle neutral badge icon -->
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 4px; background: #f8fafc; border: 1px solid #e2e8f0; color: #475569;" title="Systemic & Hormonal Factors">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 2v7.31L4.14 20.3A2 2 0 0 0 5.86 23h12.28a2 2 0 0 0 1.72-2.7L14 9.31V2" />
+                <path d="M8.5 2h7" />
+              </svg>
+            </span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.45rem 1rem;">
+            <!-- 1. Hormones -->
+            <div class="hover-trigger-row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Hormones (TSH/Estrogen)</span>
+              <span style="font-size: 0.74rem; font-weight: 600; color: #64748b;">0%</span>
+            </div>
+
+            <!-- 2. Deficiencies -->
+            <div class="hover-trigger-row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Deficiencies (B12/Iron)</span>
+              <span style="font-size: 0.74rem; font-weight: 600; color: #64748b;">0%</span>
+            </div>
+
+            <!-- 3. Excesses & Toxicity -->
+            <div class="hover-trigger-row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Excesses &amp; toxicity</span>
+              <span style="font-size: 0.74rem; font-weight: 600; color: #64748b;">0%</span>
+            </div>
+
+            <!-- 4. Others (20) - Underlined Clickable -->
+            <div class="interactive-nerve-target hover-trigger-row" data-branch="deficiency-others" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
+              <span style="font-size: 0.74rem; font-weight: 600; color: #64748b;">0%</span>
+            </div>
+          </div>
+
+          <!-- Total Row: Neutral Black / Gray (0%) -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">Total</span>
+            <span style="font-size: 0.85rem; font-weight: 800; color: #0f172a; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 0.15rem 0.55rem; border-radius: 4px;">0%</span>
+          </div>
         </div>
 
-        <!-- 4. Others (20) Dietary Triggers (Clickable Modal) -->
-        <div class="interactive-nerve-target hover-trigger-row" data-branch="systemic-others" style="display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.85rem; font-weight: 600; color: #0284c7;">Others (20) &rsaquo;</span>
-          <span style="background: #16a34a; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">0%</span>
+        <!-- CARD 4: CENTRAL SENSITIZATION (BRAIN AMPLIFIER) -->
+        <div class="category-card-stacked" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.15rem; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04); transition: transform 0.15s ease, box-shadow 0.15s ease;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.45rem;">
+            <div style="display: flex; align-items: center; gap: 0.55rem;">
+              <span style="font-size: 0.98rem; font-weight: 800; color: #0f172a;">Sensitization</span>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 600;">(Brain &amp; Brainstem)</span>
+            </div>
+            <!-- Small subtle neutral badge icon -->
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 4px; background: #f8fafc; border: 1px solid #e2e8f0; color: #475569;" title="Central Sensitization Circuit">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a4.5 4.5 0 0 0-4.5 4.5c0 1.25.51 2.38 1.34 3.19A4.5 4.5 0 0 0 6 14.5c0 1.7.94 3.18 2.33 3.95A4.5 4.5 0 0 0 12 22a4.5 4.5 0 0 0 3.67-1.89A4.5 4.5 0 0 0 18 14.5a4.5 4.5 0 0 0-2.84-4.81A4.5 4.5 0 0 0 16.5 6.5 4.5 4.5 0 0 0 12 2z" />
+              </svg>
+            </span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.45rem 1rem;">
+            <!-- 1. Central Wind-Up & Gating -->
+            <div class="hover-trigger-row" data-highlight="hotspot-caudalis" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Trigeminal wind-up</span>
+              <span style="background: #0f172a; color: #ffffff; font-size: 0.74rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 4px;">Active</span>
+            </div>
+
+            <!-- 2. Small-Fiber Neuropathy / Terminal Degeneration -->
+            <div class="hover-trigger-row" data-highlight="hotspot-caudalis" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Small-fiber neuropathy</span>
+              <span style="background: #0f172a; color: #ffffff; font-size: 0.74rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 4px;">Active</span>
+            </div>
+
+            <!-- 3. Nerve Trunk Compression / Microvascular -->
+            <div class="hover-trigger-row" data-highlight="hotspot-caudalis" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #334155;">Trunk compression</span>
+              <span style="font-size: 0.74rem; font-weight: 600; color: #64748b;">0%</span>
+            </div>
+
+            <!-- 4. Mechanisms (10) - Underlined Clickable -->
+            <div class="interactive-nerve-target hover-trigger-row" data-branch="sensitization-details" style="display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.4rem; border-radius: 6px; cursor: pointer;">
+              <span style="font-size: 0.85rem; font-weight: 500; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">Mechanisms (10) &rsaquo;</span>
+              <span style="font-size: 0.74rem; font-weight: 600; color: #64748b;">Details</span>
+            </div>
+          </div>
+
+          <!-- Total Row: Neutral Black / Gray (Amplification: Active) -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">Amplification</span>
+            <span style="font-size: 0.85rem; font-weight: 800; color: #0f172a; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 0.15rem 0.55rem; border-radius: 4px;">Active</span>
+          </div>
         </div>
 
-        <!-- Total Row (Under dividing line) -->
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.55rem 0.15rem; border-top: 1.5px solid #e2e8f0; margin-top: auto;">
-          <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a;">Total</span>
-          <span style="font-size: 0.88rem; font-weight: 800; color: #ea580c; background: #fff7ed; border: 1px solid #ffedd5; padding: 0.2rem 0.6rem; border-radius: 5px;">30%</span>
-        </div>
       </div>
     </div>
-
-    <!-- CATEGORY 3: SYSTEMIC & BIOCHEMICAL (Hormones, Deficiencies, Excesses - 0% Ruled Out) -->
-    <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-top: 3.5px solid #16a34a; border-radius: 12px; padding: 1.15rem 1.15rem; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.45rem;">
-        <span style="font-size: 1rem; font-weight: 800; color: #0f172a; letter-spacing: -0.01em;">
-          Systemic Factors
-        </span>
-        <!-- Lab / Activity / Biochemical Flask SVG Icon -->
-        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 6px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a;" title="Hormones, Deficiencies, and Excesses">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M10 2v7.31L4.14 20.3A2 2 0 0 0 5.86 23h12.28a2 2 0 0 0 1.72-2.7L14 9.31V2" />
-            <path d="M8.5 2h7" />
-            <path d="M7 16h10" />
-          </svg>
-        </span>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 0.65rem; flex: 1;">
-        <!-- Hormones / Thyroid -->
-        <div class="hover-trigger-row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Hormones (TSH/Estrogen)</span>
-          <span style="background: #16a34a; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">0%</span>
-        </div>
-
-        <!-- Deficiencies (B12 / Iron / Folate) -->
-        <div class="hover-trigger-row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Deficiencies (B12/Iron)</span>
-          <span style="background: #16a34a; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">0%</span>
-        </div>
-
-        <!-- Excesses / Toxicity (B6 / Heavy Metals) -->
-        <div class="hover-trigger-row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Excesses &amp; toxicity</span>
-          <span style="background: #16a34a; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">0%</span>
-        </div>
-
-        <!-- 4. Others (20) Systemic Issues (Clickable Modal) -->
-        <div class="interactive-nerve-target hover-trigger-row" data-branch="deficiency-others" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.85rem; font-weight: 600; color: #0284c7;">Others (20) &rsaquo;</span>
-          <span style="background: #16a34a; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">0%</span>
-        </div>
-
-        <!-- Total Row (Under dividing line) -->
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.55rem 0.15rem; border-top: 1.5px solid #e2e8f0; margin-top: auto;">
-          <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a;">Total</span>
-          <span style="font-size: 0.88rem; font-weight: 800; color: #16a34a; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 0.2rem 0.6rem; border-radius: 5px;">0%</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- CATEGORY 4: CENTRAL SENSITIZATION (Brain-Generated Amplification) -->
-    <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-top: 3.5px solid #7c3aed; border-radius: 12px; padding: 1.15rem 1.15rem; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.45rem;">
-        <span style="font-size: 1rem; font-weight: 800; color: #0f172a; letter-spacing: -0.01em;">
-          Sensitization
-        </span>
-        <!-- Brain / Neural Circuit SVG Icon -->
-        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 6px; background: #f5f3ff; border: 1px solid #ddd6fe; color: #7c3aed;" title="Brain & Central Sensitization Circuit">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2a4.5 4.5 0 0 0-4.5 4.5c0 1.25.51 2.38 1.34 3.19A4.5 4.5 0 0 0 6 14.5c0 1.7.94 3.18 2.33 3.95A4.5 4.5 0 0 0 12 22a4.5 4.5 0 0 0 3.67-1.89A4.5 4.5 0 0 0 18 14.5a4.5 4.5 0 0 0-2.84-4.81A4.5 4.5 0 0 0 16.5 6.5 4.5 4.5 0 0 0 12 2z" />
-            <path d="M12 2v20" />
-          </svg>
-        </span>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 0.65rem; flex: 1;">
-        <!-- Trigeminal Wind-Up -->
-        <div class="hover-trigger-row" data-highlight="hotspot-caudalis" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Trigeminal wind-up</span>
-          <span style="background: #ef4444; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">Active</span>
-        </div>
-
-        <!-- Loss of Inhibitory Gating -->
-        <div class="hover-trigger-row" data-highlight="hotspot-caudalis" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Loss of gate control</span>
-          <span style="background: #ef4444; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">Active</span>
-        </div>
-
-        <!-- Hypersensitivity Amplification -->
-        <div class="hover-trigger-row" data-highlight="hotspot-caudalis" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.88rem; font-weight: 500; color: #334155;">Sensory amplifier</span>
-          <span style="background: #ef4444; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">Active</span>
-        </div>
-
-        <!-- 4. Mechanisms (10) (Clickable Modal) -->
-        <div class="interactive-nerve-target hover-trigger-row" data-branch="sensitization-details" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0.55rem; border-radius: 6px; cursor: pointer; transition: background 0.15s ease;">
-          <span style="font-size: 0.85rem; font-weight: 600; color: #7c3aed;">Mechanisms (10) &rsaquo;</span>
-          <span style="background: #6d28d9; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 0.18rem 0.45rem; border-radius: 4px;">Details</span>
-        </div>
-
-        <!-- Total Row (Under dividing line) -->
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.55rem 0.15rem; border-top: 1.5px solid #e2e8f0; margin-top: auto;">
-          <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a;">Amplification</span>
-          <span style="font-size: 0.88rem; font-weight: 800; color: #7c3aed; background: #f5f3ff; border: 1px solid #ddd6fe; padding: 0.2rem 0.6rem; border-radius: 5px;">Active</span>
-        </div>
-      </div>
-    </div>
-
   </div>  )}
 
 </div>
