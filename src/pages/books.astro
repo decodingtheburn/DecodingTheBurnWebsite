@@ -8,14 +8,15 @@ const editions = [
   {
     id: "decoding-the-burn-ed1",
     title: "Decoding the Burn",
+    subtitle: "How Everyday Acid and Sugar Can Mimic BMS, Why 2-Micron Crown Leaks Ignite Trigeminal Wind-Up, and the Practical Protocol to Calm It",
     edition: "First Edition & Clinical Manuscript",
     status: "Free Online Draft & Interactive Reader",
     pages: "92 Pages",
     readTime: "3.5 Hours",
     description: "An investigative clinical blueprint decoding the electrochemistry of Burning Mouth Syndrome (BMS). Dissecting acid-sensing ion channels (ASIC1 & ASIC3), crown margin micro-leakage, open dentinal tubule hydrodynamics, and the 4-phase clinical de-escalation protocol.",
-    coverImg: "/cover.png",
+    coverImg: "/cover-asic-anatomy-fullface.jpg",
     readDraftLink: "/draft",
-    amazonLink: "https://www.amazon.com/dp/B0DGBZ8XZP", // Amazon buy link placeholder / ready for listing
+    amazonLink: "https://www.amazon.com/dp/B0DGBZ8XZP",
     highlights: [
       "Full 13-Chapter Interactive Reader & Clinical Tables",
       "Interactive Multi-Source Pain & Cranial Nerve Convergence Diagram",
@@ -36,139 +37,505 @@ const editions = [
       description="Explore official books, clinical manuscripts, and interactive investigative editions on Burning Mouth Syndrome and first-principles orofacial pain science."
     />
   </head>
-  <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-purple-600 selection:text-white">
+  <body>
     <Header />
 
-    <main class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <main class="books-page-container">
       <!-- Header Banner -->
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h1 class="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4 [text-wrap:balance]">
-          Books &amp; Publications
-        </h1>
-        <p class="text-lg sm:text-xl text-purple-200/90 leading-relaxed [text-wrap:pretty]">
+      <header class="books-hero-header">
+        <h1 class="books-hero-title">Books &amp; Publications</h1>
+        <p class="books-hero-subtitle">
           First-principles investigations and peer-reviewed manuscripts decoding the biological hardware of chronic oral burning.
         </p>
-      </div>
+      </header>
 
-      <!-- Books Grid / Collection -->
-      <div class="space-y-12">
+      <!-- Books Collection Grid -->
+      <div class="books-collection">
         {editions.map((book) => (
-          <article class="bg-[#130924] border border-purple-900/60 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:border-purple-600/80 transition-all duration-300">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 p-6 sm:p-8 lg:p-10 items-center">
-              
-              <!-- Book Cover Column (Left) -->
-              <div class="md:col-span-5 lg:col-span-4 flex justify-center">
-                <a href={book.readDraftLink} class="group block relative w-full max-w-[280px] sm:max-w-[320px] rounded-xl overflow-hidden shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]">
+          <article class="book-card-item">
+            
+            <!-- Book Cover Column (Left) -->
+            <div class="book-cover-col">
+              <a href={book.readDraftLink} class="book-cover-link group">
+                <div class="book-cover-wrapper">
+                  <!-- Hardcover spine aesthetic effect -->
+                  <div class="book-spine-sheen"></div>
                   <img
                     src={book.coverImg}
                     alt={book.title}
-                    class="w-full h-auto object-cover rounded-xl border border-purple-500/30"
+                    class="book-cover-img"
                     loading="eager"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-6">
-                    <span class="bg-purple-600 text-white text-sm font-bold px-4 py-2 rounded-lg shadow-lg">
-                      Read Online Free &rarr;
-                    </span>
+                  <!-- Elegant 3D Cover Overlays -->
+                  <div class="book-cover-overlay">
+                    <span class="read-overlay-btn">Read Online Free &rarr;</span>
                   </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Book Details Column (Right) -->
+            <div class="book-details-col">
+              
+              <!-- Badges -->
+              <div class="book-badges-row">
+                <span class="edition-badge">{book.edition}</span>
+                <span class="status-badge">
+                  <span class="status-dot"></span>
+                  Read Free Online Draft
+                </span>
+              </div>
+
+              <!-- Main Title & Subtitle -->
+              <h2 class="book-main-title">
+                <a href={book.readDraftLink}>{book.title}</a>
+              </h2>
+              <p class="book-main-subtitle">{book.subtitle}</p>
+
+              <!-- Meta specs -->
+              <div class="book-meta-specs">
+                <span>{book.pages}</span>
+                <span class="meta-dot">&bull;</span>
+                <span>{book.readTime}</span>
+                <span class="meta-dot">&bull;</span>
+                <span>Published {book.publishedDate}</span>
+              </div>
+
+              <!-- Description -->
+              <p class="book-synopsis">
+                {book.description}
+              </p>
+
+              <!-- Highlights Card -->
+              <div class="book-highlights-box">
+                <h3 class="highlights-header">Key Highlights Included</h3>
+                <ul class="highlights-grid">
+                  {book.highlights.map((item) => (
+                    <li class="highlight-item">
+                      <span class="highlight-check-icon">&check;</span>
+                      <span class="highlight-text">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Action CTAs: Read Now Free & Buy on Amazon -->
+              <div class="book-actions-row">
+                <a href={book.readDraftLink} class="btn-read-free">
+                  <svg class="btn-icon" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  <span>Read Now Free</span>
+                </a>
+
+                <a href={book.amazonLink} target="_blank" rel="noopener noreferrer" class="btn-buy-amazon">
+                  <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13.958 10.09c0 1.272-.047 2.336-.713 3.447-.52.868-1.277 1.406-2.148 1.406-1.18 0-1.734-.89-1.734-2.197 0-2.57 2.197-3.033 4.595-3.033v.377zm3.176 7.424c-.266.236-.653.256-.96.079-.884-.717-1.042-1.05-1.528-1.737-1.46 1.48-2.52 1.954-4.398 1.954-2.28 0-4.048-1.397-4.048-3.99 0-2.032 1.15-3.483 2.766-4.22 1.403-.645 3.37-.76 4.847-.932v-.36c0-.687-.07-1.488-.507-2.025-.386-.48-1.04-.71-1.666-.71-1.144 0-2.164.557-2.42 1.764-.06.27-.247.503-.52.503l-3.064-.326c-.24-.047-.493-.217-.42-.563.66-3.13 3.454-4.32 6.467-4.32 1.63 0 3.75.433 4.987 1.673 1.257 1.24 1.153 2.923 1.153 4.707v4.614c0 1.397.587 1.99 1.153 2.747.2.273.233.593-.02.793l-1.847 1.734zm-8.82 4.148c7.18 2.373 14.186-.64 15.533-1.64.28-.21.133-.51-.186-.38-1.32.533-5.26 2.08-11.467.4-2.28-.627-4.433-1.84-4.14-1.407.3 1.34 3.073 2.38 6.26 3.027z" />
+                  </svg>
+                  <span>Buy on Amazon</span>
                 </a>
               </div>
 
-              <!-- Book Details Column (Right) -->
-              <div class="md:col-span-7 lg:col-span-8 flex flex-col justify-between h-full space-y-6">
-                <div>
-                  <div class="flex flex-wrap items-center gap-3 mb-3">
-                    <span class="text-xs font-extrabold uppercase tracking-wider text-purple-300 bg-purple-950/80 border border-purple-700/60 px-3 py-1 rounded-full">
-                      {book.edition}
-                    </span>
-                    <span class="text-xs font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-full flex items-center gap-1.5">
-                      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                      Read Free Online Draft
-                    </span>
-                  </div>
-
-                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-2">
-                    <a href={book.readDraftLink} class="hover:text-purple-300 transition-colors">
-                      {book.title}
-                    </a>
-                  </h2>
-
-                  <div class="flex items-center gap-4 text-xs sm:text-sm text-slate-400 mb-4 font-medium">
-                    <span>{book.pages}</span>
-                    <span>&bull;</span>
-                    <span>{book.readTime}</span>
-                    <span>&bull;</span>
-                    <span>Published {book.publishedDate}</span>
-                  </div>
-
-                  <p class="text-slate-300 text-base leading-relaxed mb-6 [text-wrap:pretty]">
-                    {book.description}
-                  </p>
-
-                  <!-- Highlights List -->
-                  <div class="mb-6 bg-[#1a0f30]/60 border border-purple-900/40 rounded-xl p-4 sm:p-5">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-purple-300 mb-3">
-                      Key Highlights Included
-                    </h3>
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-200">
-                      {book.highlights.map((item) => (
-                        <li class="flex items-start gap-2">
-                          <svg class="w-4 h-4 text-purple-400 mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <!-- CTA Actions (Read Now Free & Buy on Amazon) -->
-                <div class="flex flex-wrap items-center gap-4 pt-2">
-                  <!-- Read Now Free Button -->
-                  <a
-                    href={book.readDraftLink}
-                    class="inline-flex items-center justify-center gap-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-purple-600/30 transition-all text-sm sm:text-base"
-                  >
-                    <svg class="w-5 h-5 text-purple-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                    <span>Read Now Free</span>
-                  </a>
-
-                  <!-- Buy on Amazon Button -->
-                  <a
-                    href={book.amazonLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center gap-2.5 bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-extrabold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-amber-500/20 transition-all text-sm sm:text-base"
-                  >
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M13.958 10.09c0 1.272-.047 2.336-.713 3.447-.52.868-1.277 1.406-2.148 1.406-1.18 0-1.734-.89-1.734-2.197 0-2.57 2.197-3.033 4.595-3.033v.377zm3.176 7.424c-.266.236-.653.256-.96.079-.884-.717-1.042-1.05-1.528-1.737-1.46 1.48-2.52 1.954-4.398 1.954-2.28 0-4.048-1.397-4.048-3.99 0-2.032 1.15-3.483 2.766-4.22 1.403-.645 3.37-.76 4.847-.932v-.36c0-.687-.07-1.488-.507-2.025-.386-.48-1.04-.71-1.666-.71-1.144 0-2.164.557-2.42 1.764-.06.27-.247.503-.52.503l-3.064-.326c-.24-.047-.493-.217-.42-.563.66-3.13 3.454-4.32 6.467-4.32 1.63 0 3.75.433 4.987 1.673 1.257 1.24 1.153 2.923 1.153 4.707v4.614c0 1.397.587 1.99 1.153 2.747.2.273.233.593-.02.793l-1.847 1.734zm-8.82 4.148c7.18 2.373 14.186-.64 15.533-1.64.28-.21.133-.51-.186-.38-1.32.533-5.26 2.08-11.467.4-2.28-.627-4.433-1.84-4.14-1.407.3 1.34 3.073 2.38 6.26 3.027z" />
-                    </svg>
-                    <span>Buy on Amazon</span>
-                  </a>
-                </div>
-
-              </div>
             </div>
           </article>
         ))}
 
-        <!-- Upcoming Editions Placeholder -->
-        <div class="border border-dashed border-purple-900/40 rounded-2xl p-8 sm:p-10 text-center bg-[#0d0517]/40">
-          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-950 border border-purple-800 text-purple-300 mb-4">
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <!-- Extensible Future Editions Slot -->
+        <section class="future-editions-card">
+          <div class="future-icon-wrap">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
           </div>
-          <h2 class="text-xl font-bold text-white mb-2">Future Editions &amp; Translated Manuscripts</h2>
-          <p class="text-sm text-slate-400 max-w-xl mx-auto [text-wrap:pretty]">
+          <h2 class="future-title">Future Editions &amp; Translated Monographs</h2>
+          <p class="future-desc">
             Clinical translations, updated research monographs, and specialized clinician guides will be cataloged here as new peer-reviewed findings emerge.
           </p>
-        </div>
+        </section>
       </div>
     </main>
 
     <Footer />
   </body>
 </html>
+
+<style>
+  /* Page Container & Background */
+  body {
+    background-color: #0b0517 !important;
+    color: #f1f5f9 !important;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .books-page-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 5rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  /* Hero Header */
+  .books-hero-header {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .books-hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    margin: 0 0 1rem;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .books-hero-subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.22rem);
+    color: #c4b5fd;
+    line-height: 1.6;
+    margin: 0 auto;
+    text-wrap: pretty;
+  }
+
+  /* Collection Container */
+  .books-collection {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  /* Main Book Card */
+  .book-card-item {
+    background: #150a29;
+    border: 1.5px solid #4c1d95;
+    border-radius: 20px;
+    padding: 2.25rem;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 900px) {
+    .book-card-item {
+      grid-template-columns: 1fr;
+      padding: 1.75rem;
+      gap: 2rem;
+    }
+  }
+
+  /* Cover Column */
+  .book-cover-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .book-cover-link {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    text-decoration: none;
+    border-radius: 14px;
+    perspective: 1000px;
+  }
+
+  .book-cover-wrapper {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(139, 92, 246, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .book-cover-link:hover .book-cover-wrapper {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 25px 55px rgba(124, 58, 237, 0.35), 0 0 0 1.5px rgba(192, 132, 252, 0.6);
+  }
+
+  .book-cover-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 1 / 1.45;
+    object-fit: cover;
+    background: #1e1035;
+  }
+
+  .book-spine-sheen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0.2), rgba(0,0,0,0.4) 60%, transparent);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .book-cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 60%);
+    opacity: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1.5rem;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+  }
+
+  .book-cover-link:hover .book-cover-overlay {
+    opacity: 1;
+  }
+
+  .read-overlay-btn {
+    background: #7c3aed;
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 800;
+    padding: 0.6rem 1.15rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Details Column */
+  .book-details-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .book-badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .edition-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #ddd6fe;
+    background: #2e1065;
+    border: 1px solid #6b21a8;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .status-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #34d399;
+    background: rgba(6, 78, 59, 0.6);
+    border: 1px solid #059669;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    display: inline-block;
+  }
+
+  .book-main-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin: 0.25rem 0 0.35rem;
+    line-height: 1.15;
+  }
+
+  .book-main-title a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .book-main-title a:hover {
+    color: #c4b5fd;
+  }
+
+  .book-main-subtitle {
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    line-height: 1.45;
+    margin: 0 0 0.85rem;
+  }
+
+  .book-meta-specs {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 1.1rem;
+  }
+
+  .meta-dot {
+    color: #64748b;
+  }
+
+  .book-synopsis {
+    font-size: 0.96rem;
+    line-height: 1.65;
+    color: #e2e8f0;
+    margin: 0 0 1.35rem;
+    text-wrap: pretty;
+  }
+
+  /* Highlights Box */
+  .book-highlights-box {
+    background: #1c0e35;
+    border: 1px solid #4c1d95;
+    border-radius: 12px;
+    padding: 1.15rem 1.35rem;
+    margin-bottom: 1.65rem;
+  }
+
+  .highlights-header {
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #c084fc;
+    margin: 0 0 0.75rem;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.65rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.88rem;
+    color: #f1f5f9;
+    line-height: 1.4;
+  }
+
+  .highlight-check-icon {
+    color: #a855f7;
+    font-weight: 900;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    margin-top: -1px;
+  }
+
+  /* CTAs */
+  .book-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn-read-free {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    background: #7c3aed;
+    color: #ffffff;
+    font-size: 0.98rem;
+    font-weight: 800;
+    padding: 0.85rem 1.65rem;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 12px 25px -5px rgba(124, 58, 237, 0.45);
+    transition: all 0.2s ease;
+  }
+
+  .btn-read-free:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(124, 58, 237, 0.6);
+  }
+
+  .btn-buy-amazon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    background: #f59e0b;
+    color: #0f172a;
+    font-size: 0.98rem;
+    font-weight: 800;
+    padding: 0.85rem 1.65rem;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 12px 25px -5px rgba(245, 158, 11, 0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-buy-amazon:hover {
+    background: #d97706;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(245, 158, 11, 0.5);
+  }
+
+  /* Future Editions Card */
+  .future-editions-card {
+    border: 1.5px dashed #4c1d95;
+    border-radius: 16px;
+    padding: 2.25rem 1.5rem;
+    text-align: center;
+    background: rgba(14, 6, 28, 0.45);
+  }
+
+  .future-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #2e1065;
+    border: 1px solid #6b21a8;
+    color: #c4b5fd;
+    margin-bottom: 0.85rem;
+  }
+
+  .future-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 0.45rem;
+  }
+
+  .future-desc {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+</style>
