@@ -106,11 +106,9 @@ const editions = [
 
               <!-- Meta Specs Line Directly Below Title -->
               <div class="book-meta-line">
-                <span class="meta-item">{book.pages}</span>
+                <span class="meta-item">297 Pages</span>
                 <span class="meta-separator">&bull;</span>
-                <span class="meta-item">{book.readTime}</span>
-                <span class="meta-separator">&bull;</span>
-                <span class="meta-item">Published {book.publishedDate}</span>
+                <span class="meta-item">Published November 2026</span>
               </div>
 
               <!-- Single Intro Paragraph with Expandable Read More -->
@@ -154,10 +152,10 @@ const editions = [
                   href={book.readDraftLink} 
                   class="btn-cta-read-free"
                 >
-                  <svg class="cta-svg-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
                   <span>Read Now Free</span>
+                  <svg class="cta-svg-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
                 </a>
 
                 <a 
@@ -476,12 +474,19 @@ const editions = [
   }
 
   .book-title-heading {
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-size: clamp(1.75rem, 2.6vw, 2.35rem);
     font-weight: 900;
     letter-spacing: -0.025em;
     color: #0f172a;
-    line-height: 1.18;
-    margin: 0.25rem 0 0.5rem;
+    line-height: 1.15;
+    margin: 0 0 0.65rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1200px) {
+    .book-title-heading {
+      white-space: normal;
+    }
   }
 
   .book-title-anchor {
@@ -491,36 +496,34 @@ const editions = [
   }
 
   .book-title-anchor:hover {
-    color: #4f46e5;
-  }
-
-  .book-subtitle-text {
-    font-size: 1rem;
-    color: #475569;
-    line-height: 1.5;
-    margin: 0 0 1rem;
-    text-wrap: pretty;
+    color: #e11d48;
   }
 
   .book-meta-line {
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: #0f172a;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.35rem;
+  }
+
+  .meta-item {
+    white-space: nowrap;
+    color: #0f172a;
   }
 
   .meta-separator {
-    color: #94a3b8;
+    color: #0f172a;
+    font-weight: 900;
   }
 
   /* Patient Story Paragraphs */
   .book-intro-text {
     font-size: 1.05rem;
     line-height: 1.7;
-    color: #1e293b;
+    color: #0f172a;
     margin: 0 0 0.85rem;
     text-wrap: pretty;
   }
@@ -534,8 +537,8 @@ const editions = [
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    color: #4f46e5;
-    font-size: 0.88rem;
+    color: #e11d48;
+    font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
     user-select: none;
@@ -548,7 +551,7 @@ const editions = [
   }
 
   .book-read-more-trigger:hover {
-    color: #3730a3;
+    color: #be123c;
     text-decoration: underline;
   }
 
@@ -571,9 +574,9 @@ const editions = [
   }
 
   .book-secondary-text {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     line-height: 1.65;
-    color: #334155;
+    color: #1e293b;
     margin: 0;
     text-wrap: pretty;
   }
@@ -584,11 +587,11 @@ const editions = [
   }
 
   .floating-highlights-title {
-    font-size: 0.78rem;
-    font-weight: 800;
+    font-size: 0.82rem;
+    font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #64748b;
+    color: #0f172a;
     margin: 0 0 0.85rem;
   }
 
@@ -605,8 +608,8 @@ const editions = [
     display: flex;
     align-items: flex-start;
     gap: 0.65rem;
-    font-size: 0.92rem;
-    color: #1e293b;
+    font-size: 0.95rem;
+    color: #0f172a;
     line-height: 1.45;
   }
 
@@ -631,21 +634,21 @@ const editions = [
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
-    background: #4f46e5;
+    background: #e11d48;
     color: #ffffff;
     font-size: 0.96rem;
     font-weight: 800;
     padding: 0.85rem 1.65rem;
     border-radius: 10px;
     text-decoration: none;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+    box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
     transition: all 0.2s ease;
   }
 
   .btn-cta-read-free:hover {
-    background: #4338ca;
+    background: #be123c;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.45);
+    box-shadow: 0 8px 20px rgba(225, 29, 72, 0.45);
   }
 
   .btn-cta-amazon {
