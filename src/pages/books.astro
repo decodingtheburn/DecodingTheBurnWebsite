@@ -13,16 +13,16 @@ const editions = [
     status: "Free Online Draft & Interactive Reader",
     pages: "92 Pages",
     readTime: "3.5 Hours",
-    description: "An investigative clinical blueprint decoding the electrochemistry of Burning Mouth Syndrome (BMS). Dissecting acid-sensing ion channels (ASIC1 & ASIC3), crown margin micro-leakage, open dentinal tubule hydrodynamics, and the 4-phase clinical de-escalation protocol.",
+    description: "A patient's investigative journey uncovering why everyday dietary acids, sugar-fermenting bacteria, and microscopic dental gaps can ignite relentless burning sensations. Learn the self-test protocol to identify your triggers, how to bring your pain down to zero, and the practical steps to partner with your dentist.",
     coverImg: "/book-front-cover.jpg",
     backCoverImg: "/book-back-cover.jpg",
     readDraftLink: "/draft",
     amazonLink: "https://www.amazon.com/dp/B0DGBZ8XZP",
     highlights: [
-      "Full 13-Chapter Interactive Reader & Clinical Tables",
-      "Interactive Multi-Source Pain & Cranial Nerve Convergence Diagram",
-      "The 0–10 Printable Clinical Intake Questionnaire",
-      "Over 40 Peer-Reviewed Literature & ICOP / ICHD-3 Citations"
+      "How everyday acids & sugars keep burning pain turned on",
+      "The rapid self-test to see if acid is driving your symptoms",
+      "Hidden dental triggers: microscopic crown gaps & exposed roots",
+      "Practical conversation guide & checklist for your dental visits"
     ],
     publishedDate: "November 2026",
     badge: "Available Now"
@@ -56,13 +56,18 @@ const editions = [
         {editions.map((book) => (
           <article class="book-edition-card">
             
-            <!-- Left Column: 3D Flip Cover (Front Cover default, flips to Back Cover on mouseover) -->
+            <!-- Left Column: 3D Flip Cover (Front Cover default, flips and zooms on mouseover) -->
             <div class="book-cover-stage">
               <a 
                 href={book.readDraftLink} 
                 class="book-flipper-container"
                 aria-label={`View ${book.title} (Hover to see back cover)`}
               >
+                <!-- Red Hover-to-Flip Pill at Top Only -->
+                <div class="flip-hover-hint-top">
+                  Hover to flip &orarr;
+                </div>
+
                 <div class="book-3d-flipper">
                   
                   <!-- Front Cover Face -->
@@ -74,9 +79,6 @@ const editions = [
                       class="book-cover-image"
                       loading="eager"
                     />
-                    <div class="flip-hover-hint">
-                      Hover to flip &orarr;
-                    </div>
                   </div>
 
                   <!-- Back Cover Face (Revealed on Hover) -->
@@ -87,16 +89,10 @@ const editions = [
                       class="book-cover-image"
                       loading="eager"
                     />
-                    <div class="back-cover-callout">
-                      <span>Click to Read Draft &rarr;</span>
-                    </div>
                   </div>
 
                 </div>
               </a>
-              <p class="book-cover-subcaption">
-                Interactive preview &bull; Mouse over cover to inspect back
-              </p>
             </div>
 
             <!-- Right Column: Book Details & Actions -->
@@ -275,13 +271,41 @@ const editions = [
   }
 
   .book-flipper-container {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     max-width: 380px;
     perspective: 1400px;
     -webkit-perspective: 1400px;
     text-decoration: none;
     cursor: pointer;
+    position: relative;
+  }
+
+  /* Centered Red Hover-to-Flip Pill at Top */
+  .flip-hover-hint-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    color: #e11d48;
+    background: #ffe4e6;
+    border: 1px solid #fecdd3;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    margin-bottom: 0.85rem;
+    text-align: center;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .book-flipper-container:hover .flip-hover-hint-top {
+    background: #fecdd3;
+    color: #be123c;
+    transform: scale(1.04);
   }
 
   .book-3d-flipper {
@@ -295,9 +319,11 @@ const editions = [
     border-radius: 12px;
   }
 
-  /* Flip on Hover */
+  /* Flip and Zoom on Hover */
   .book-flipper-container:hover .book-3d-flipper {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) scale(1.18);
+    box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.35);
+    z-index: 50;
   }
 
   /* Faces */
