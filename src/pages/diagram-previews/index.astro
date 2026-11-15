@@ -689,112 +689,131 @@
       <!-- LEFT COLUMN: DENTAL ISSUES (TOP) & NERVOUS SYSTEM (BOTTOM) -->
       <div style="display: flex; flex-direction: column; gap: 2.25rem;">
         
-        <!-- TOP LEFT: DENTAL ISSUES (Oral Cavity) -->
+        <!-- TOP LEFT: DENTAL ISSUES -->
         <div class="p-card" id="card-dental" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative;">
-          <!-- Header with 2x larger icon (52px), no sub-description -->
+          <!-- Header with 2x larger thinner icon (52px, stroke-width: 1.15) in pale branded purple (#c084fc / #a855f7) -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9;">
-            <div class="p-card-title" style="font-size: 1.35rem; font-weight: 850;">Dental Issues</div>
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <div class="p-card-title" style="font-size: 1.3rem; font-weight: 850;">Top 3 Dental issues</div>
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85;">
               <path d="M12 2C7.5 2 4 4.5 4 8c0 3 1.5 5.5 2 8 .6 3 1.5 6 3 6s2.5-3 3-5c.5 2 1.5 5 3 5s2.4-3 3-6c.5-2.5 2-5 2-8 0-3.5-3.5-6-8-6z"/>
             </svg>
           </div>
 
-          <!-- Top 3 Dental Issues -->
-          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-            <div class="p-row"><span class="p-row-label">Leaky crown</span><span class="p-badge-red">30%</span></div>
-            <div class="p-row"><span class="p-row-label">Exposed tubules</span><span class="p-badge-amber">20%</span></div>
-            <div class="p-row"><span class="p-row-label">Canine occlusion</span><span class="p-badge-red">20%</span></div>
+          <!-- Top 3 Dental Issues with percentage tag directly next to words -->
+          <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Leaky crown</span>
+              <span class="p-badge-red" style="padding: 0.1rem 0.35rem; font-size: 0.72rem;">30%</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Exposed tubules</span>
+              <span class="p-badge-amber" style="padding: 0.1rem 0.35rem; font-size: 0.72rem;">20%</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Canine occlusion</span>
+              <span class="p-badge-red" style="padding: 0.1rem 0.35rem; font-size: 0.72rem;">20%</span>
+            </div>
+            
+            <!-- See Top 20 at same level as top 3, same font, no underline, arrow right next to word -->
+            <div style="margin-top: 0.15rem;">
+              <button type="button" class="expand-btn" data-target="expand-dental" style="display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: none; padding: 0.2rem 0; cursor: pointer; text-align: left;">
+                <span class="p-row-label" style="font-weight: 600; color: #475569;">See Top 20</span>
+                <span class="arrow-indicator" style="font-size: 0.75rem; color: #64748b; transition: transform 0.2s ease;">&#9660;</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Expandable: See Top 20 for Other (No total, no background, no percentage) -->
-          <div style="margin-top: 1rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
-            <button type="button" class="expand-btn" data-target="expand-dental" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 0.35rem 0; cursor: pointer; text-align: left;">
-              <span style="font-size: 0.92rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">See Top 20 for Other</span>
-              <span class="arrow-indicator" style="font-size: 1rem; color: #64748b; transition: transform 0.2s ease;">&#9662;</span>
-            </button>
-            
-            <!-- Hidden Expandable Drawer -->
-            <div id="expand-dental" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
-              <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
-                <li>Subgingival biofilm fermentation &bull; 0%</li>
-                <li>Galvanic metal micro-currents &bull; 0%</li>
-                <li>Cervical enamel abfraction &bull; 0%</li>
-                <li>Traumatic premature occlusion &bull; 0%</li>
-                <li>Recurrent micro-cavities &bull; 0%</li>
-                <li>Endodontic root resorption &bull; 0%</li>
-                <li>Cracked tooth syndrome &bull; 0%</li>
-                <li>Acrylic monomer sensitivity &bull; 0%</li>
-                <li>Night bruxism micro-strain &bull; 0%</li>
-                <li>Foreign body cement impaction &bull; 0%</li>
-                <li>Root proximity to alveolar nerve &bull; 0%</li>
-                <li>Cavitational osteonecrosis &bull; 0%</li>
-                <li>Periodontal furcation defect &bull; 0%</li>
-                <li>Composite shrinkage gap &bull; 0%</li>
-                <li>Nickel-titanium retainer allergy &bull; 0%</li>
-                <li>Crown margin biological invasion &bull; 0%</li>
-                <li>Impacted wisdom molar load &bull; 0%</li>
-                <li>Maxillary sinusitis extension &bull; 0%</li>
-                <li>Pulp canal obliteration &bull; 0%</li>
-                <li>Improper pontic tissue pressure &bull; 0%</li>
-              </ul>
-              <div style="margin-top: 0.75rem; text-align: right;">
-                <a href="/blog/what-causes-sensitive-teeth-top-20-causes-occlusion" target="_blank" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
-              </div>
+          <!-- Hidden Expandable Drawer -->
+          <div id="expand-dental" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
+            <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
+              <li>Subgingival biofilm fermentation &bull; 0%</li>
+              <li>Galvanic metal micro-currents &bull; 0%</li>
+              <li>Cervical enamel abfraction &bull; 0%</li>
+              <li>Traumatic premature occlusion &bull; 0%</li>
+              <li>Recurrent micro-cavities &bull; 0%</li>
+              <li>Endodontic root resorption &bull; 0%</li>
+              <li>Cracked tooth syndrome &bull; 0%</li>
+              <li>Acrylic monomer sensitivity &bull; 0%</li>
+              <li>Night bruxism micro-strain &bull; 0%</li>
+              <li>Foreign body cement impaction &bull; 0%</li>
+              <li>Root proximity to alveolar nerve &bull; 0%</li>
+              <li>Cavitational osteonecrosis &bull; 0%</li>
+              <li>Periodontal furcation defect &bull; 0%</li>
+              <li>Composite shrinkage gap &bull; 0%</li>
+              <li>Nickel-titanium retainer allergy &bull; 0%</li>
+              <li>Crown margin biological invasion &bull; 0%</li>
+              <li>Impacted wisdom molar load &bull; 0%</li>
+              <li>Maxillary sinusitis extension &bull; 0%</li>
+              <li>Pulp canal obliteration &bull; 0%</li>
+              <li>Improper pontic tissue pressure &bull; 0%</li>
+            </ul>
+            <div style="margin-top: 0.75rem; text-align: right;">
+              <a href="/blog/what-causes-sensitive-teeth-top-20-causes-occlusion" target="_blank" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
             </div>
           </div>
         </div>
 
-        <!-- BOTTOM LEFT: NERVOUS SYSTEM (Brain & Nerves) -->
+        <!-- BOTTOM LEFT: NERVOUS SYSTEM -->
         <div class="p-card" id="card-nervous" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative;">
-          <!-- Header with 2x larger icon (52px), no sub-description -->
+          <!-- Header with 2x larger thinner icon (50px, stroke-width: 1.15) in pale branded purple (#a855f7) -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9;">
-            <div class="p-card-title" style="font-size: 1.35rem; font-weight: 850;">Nervous System</div>
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <div class="p-card-title" style="font-size: 1.3rem; font-weight: 850;">Top 3 Nervous System</div>
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85;">
               <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04Z"/>
               <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04Z"/>
             </svg>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-            <div class="p-row"><span class="p-row-label">Trigeminal wind-up</span><span class="p-badge-black">Active</span></div>
-            <div class="p-row"><span class="p-row-label">Small-fiber neuropathy</span><span class="p-badge-black">Active</span></div>
-            <div class="p-row"><span class="p-row-label">Trunk compression</span><span class="p-val-neutral">0%</span></div>
+          <!-- Top 3 Nervous System with tag directly next to words -->
+          <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Trigeminal wind-up</span>
+              <span class="p-badge-black" style="padding: 0.1rem 0.35rem; font-size: 0.72rem;">Active</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Small-fiber neuropathy</span>
+              <span class="p-badge-black" style="padding: 0.1rem 0.35rem; font-size: 0.72rem;">Active</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Trunk compression</span>
+              <span class="p-val-neutral" style="font-size: 0.76rem; background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span>
+            </div>
+
+            <!-- See Top 20 at same level as top 3, same font, no underline, arrow right next to word -->
+            <div style="margin-top: 0.15rem;">
+              <button type="button" class="expand-btn" data-target="expand-nervous" style="display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: none; padding: 0.2rem 0; cursor: pointer; text-align: left;">
+                <span class="p-row-label" style="font-weight: 600; color: #475569;">See Top 20</span>
+                <span class="arrow-indicator" style="font-size: 0.75rem; color: #64748b; transition: transform 0.2s ease;">&#9660;</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Expandable: See Top 20 for Other (No total, no background, no percentage) -->
-          <div style="margin-top: 1rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
-            <button type="button" class="expand-btn" data-target="expand-nervous" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 0.35rem 0; cursor: pointer; text-align: left;">
-              <span style="font-size: 0.92rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">See Top 20 for Other</span>
-              <span class="arrow-indicator" style="font-size: 1rem; color: #64748b; transition: transform 0.2s ease;">&#9662;</span>
-            </button>
-
-            <!-- Hidden Expandable Drawer -->
-            <div id="expand-nervous" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
-              <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
-                <li>Brainstem caudalis wind-up &bull; Active</li>
-                <li>Loss of descending GABA inhibition &bull; Active</li>
-                <li>Microglial inflammatory activation &bull; Active</li>
-                <li>Tactile-to-burning allodynia &bull; Active</li>
-                <li>Taste-mediated gating failure &bull; Active</li>
-                <li>Sustained ASIC3 receptor firing &bull; Active</li>
-                <li>Thalamocortical reverberation loop &bull; Active</li>
-                <li>Sympathetic-sensory nerve coupling &bull; Active</li>
-                <li>Neurogenic plasma extravasation &bull; Active</li>
-                <li>REM sleep pain disinhibition &bull; Active</li>
-                <li>C1–C3 cervical spine convergence &bull; 0%</li>
-                <li>Occipital nerve entrapment &bull; 0%</li>
-                <li>Sphenopalatine ganglion neuralgia &bull; 0%</li>
-                <li>Glossopharyngeal nerve cross-talk &bull; 0%</li>
-                <li>Superior laryngeal vagal input &bull; 0%</li>
-                <li>Myofascial trigger point referral &bull; 0%</li>
-                <li>Post-herpetic neuralgia &bull; 0%</li>
-                <li>Central sensitization inventory &bull; Active</li>
-                <li>Acoustic reflex motor coupling &bull; 0%</li>
-                <li>Autonomic microvascular tone &bull; Active</li>
-              </ul>
-              <div style="margin-top: 0.75rem; text-align: right;">
-                <a href="#page-28" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
-              </div>
+          <!-- Hidden Expandable Drawer -->
+          <div id="expand-nervous" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
+            <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
+              <li>Brainstem caudalis wind-up &bull; Active</li>
+              <li>Loss of descending GABA inhibition &bull; Active</li>
+              <li>Microglial inflammatory activation &bull; Active</li>
+              <li>Tactile-to-burning allodynia &bull; Active</li>
+              <li>Taste-mediated gating failure &bull; Active</li>
+              <li>Sustained ASIC3 receptor firing &bull; Active</li>
+              <li>Thalamocortical reverberation loop &bull; Active</li>
+              <li>Sympathetic-sensory nerve coupling &bull; Active</li>
+              <li>Neurogenic plasma extravasation &bull; Active</li>
+              <li>REM sleep pain disinhibition &bull; Active</li>
+              <li>C1–C3 cervical spine convergence &bull; 0%</li>
+              <li>Occipital nerve entrapment &bull; 0%</li>
+              <li>Sphenopalatine ganglion neuralgia &bull; 0%</li>
+              <li>Glossopharyngeal nerve cross-talk &bull; 0%</li>
+              <li>Superior laryngeal vagal input &bull; 0%</li>
+              <li>Myofascial trigger point referral &bull; 0%</li>
+              <li>Post-herpetic neuralgia &bull; 0%</li>
+              <li>Central sensitization inventory &bull; Active</li>
+              <li>Acoustic reflex motor coupling &bull; 0%</li>
+              <li>Autonomic microvascular tone &bull; Active</li>
+            </ul>
+            <div style="margin-top: 0.75rem; text-align: right;">
+              <a href="#page-28" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
             </div>
           </div>
         </div>
@@ -848,110 +867,130 @@
       <!-- RIGHT COLUMN: DIETARY TRIGGERS (TOP) & SYSTEMIC FACTORS (BOTTOM) -->
       <div style="display: flex; flex-direction: column; gap: 2.25rem;">
         
-        <!-- TOP RIGHT: DIETARY TRIGGERS (Stomach & Saliva) -->
+        <!-- TOP RIGHT: DIETARY TRIGGERS -->
         <div class="p-card" id="card-dietary" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative;">
-          <!-- Header with 2x larger icon (52px), no sub-description -->
+          <!-- Header with 2x larger thinner icon (50px, stroke-width: 1.15) in pale branded purple (#a855f7) -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9;">
-            <div class="p-card-title" style="font-size: 1.35rem; font-weight: 850;">Dietary Triggers</div>
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <div class="p-card-title" style="font-size: 1.3rem; font-weight: 850;">Top 3 Dietary triggers</div>
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85;">
               <path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/>
             </svg>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-            <div class="p-row"><span class="p-row-label">Alcohol &amp; coffee</span><span class="p-badge-amber">10%</span></div>
-            <div class="p-row"><span class="p-row-label">Acidic fruits</span><span class="p-badge-amber">10%</span></div>
-            <div class="p-row"><span class="p-row-label">Salivary loss &amp; stress</span><span class="p-badge-amber">10%</span></div>
+          <!-- Top 3 Dietary Triggers with tag directly next to words -->
+          <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Alcohol &amp; coffee</span>
+              <span class="p-badge-amber" style="padding: 0.1rem 0.35rem; font-size: 0.72rem;">10%</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Acidic fruits</span>
+              <span class="p-badge-amber" style="padding: 0.1rem 0.35rem; font-size: 0.72rem;">10%</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Salivary loss &amp; stress</span>
+              <span class="p-badge-amber" style="padding: 0.1rem 0.35rem; font-size: 0.72rem;">10%</span>
+            </div>
+
+            <!-- See Top 20 at same level as top 3, same font, no underline, arrow right next to word -->
+            <div style="margin-top: 0.15rem;">
+              <button type="button" class="expand-btn" data-target="expand-dietary" style="display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: none; padding: 0.2rem 0; cursor: pointer; text-align: left;">
+                <span class="p-row-label" style="font-weight: 600; color: #475569;">See Top 20</span>
+                <span class="arrow-indicator" style="font-size: 0.75rem; color: #64748b; transition: transform 0.2s ease;">&#9660;</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Expandable: See Top 20 for Other (No total, no background, no percentage) -->
-          <div style="margin-top: 1rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
-            <button type="button" class="expand-btn" data-target="expand-dietary" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 0.35rem 0; cursor: pointer; text-align: left;">
-              <span style="font-size: 0.92rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">See Top 20 for Other</span>
-              <span class="arrow-indicator" style="font-size: 1rem; color: #64748b; transition: transform 0.2s ease;">&#9662;</span>
-            </button>
-
-            <!-- Hidden Expandable Drawer -->
-            <div id="expand-dietary" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
-              <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
-                <li>Sodium lauryl sulfate (SLS) toothpaste &bull; 0%</li>
-                <li>Mouth breathing nocturnal drying &bull; 0%</li>
-                <li>Alcohol-based mouthwashes &bull; 0%</li>
-                <li>Cinnamon &amp; cinnamaldehyde flavorings &bull; 0%</li>
-                <li>Carbonated acidic sodas &bull; 0%</li>
-                <li>Spicy capsaicin mucosal irritation &bull; 0%</li>
-                <li>Concentrated vinegar &amp; dressings &bull; 0%</li>
-                <li>Dietary nickel &amp; cobalt ingestion &bull; 0%</li>
-                <li>Proton pump inhibitor acid rebound &bull; 0%</li>
-                <li>Histamine-rich aged foods &bull; 0%</li>
-                <li>Tomato &amp; citric food sauces &bull; 0%</li>
-                <li>Menthol and peppermint lozenges &bull; 0%</li>
-                <li>Subclinical candida albicans fermentation &bull; 0%</li>
-                <li>Electrolyte dehydration xerostomia &bull; 0%</li>
-                <li>Artificial sweeteners (aspartame/sucralose) &bull; 0%</li>
-                <li>Benzoic acid food preservatives &bull; 0%</li>
-                <li>Sulphite preservatives in wine &bull; 0%</li>
-                <li>Hot temperature thermal irritation &bull; 0%</li>
-                <li>Nighttime gastric juice micro-aspiration &bull; 0%</li>
-                <li>Decongestant medication salivary suppression &bull; 0%</li>
-              </ul>
-              <div style="margin-top: 0.75rem; text-align: right;">
-                <a href="#page-28" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
-              </div>
+          <!-- Hidden Expandable Drawer -->
+          <div id="expand-dietary" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
+            <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
+              <li>Sodium lauryl sulfate (SLS) toothpaste &bull; 0%</li>
+              <li>Mouth breathing nocturnal drying &bull; 0%</li>
+              <li>Alcohol-based mouthwashes &bull; 0%</li>
+              <li>Cinnamon &amp; cinnamaldehyde flavorings &bull; 0%</li>
+              <li>Carbonated acidic sodas &bull; 0%</li>
+              <li>Spicy capsaicin mucosal irritation &bull; 0%</li>
+              <li>Concentrated vinegar &amp; dressings &bull; 0%</li>
+              <li>Dietary nickel &amp; cobalt ingestion &bull; 0%</li>
+              <li>Proton pump inhibitor acid rebound &bull; 0%</li>
+              <li>Histamine-rich aged foods &bull; 0%</li>
+              <li>Tomato &amp; citric food sauces &bull; 0%</li>
+              <li>Menthol and peppermint lozenges &bull; 0%</li>
+              <li>Subclinical candida albicans fermentation &bull; 0%</li>
+              <li>Electrolyte dehydration xerostomia &bull; 0%</li>
+              <li>Artificial sweeteners (aspartame/sucralose) &bull; 0%</li>
+              <li>Benzoic acid food preservatives &bull; 0%</li>
+              <li>Sulphite preservatives in wine &bull; 0%</li>
+              <li>Hot temperature thermal irritation &bull; 0%</li>
+              <li>Nighttime gastric juice micro-aspiration &bull; 0%</li>
+              <li>Decongestant medication salivary suppression &bull; 0%</li>
+            </ul>
+            <div style="margin-top: 0.75rem; text-align: right;">
+              <a href="#page-28" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
             </div>
           </div>
         </div>
 
-        <!-- BOTTOM RIGHT: SYSTEMIC FACTORS (Hormones & Absorption) -->
+        <!-- BOTTOM RIGHT: SYSTEMIC FACTORS -->
         <div class="p-card" id="card-systemic" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative;">
-          <!-- Header with 2x larger icon (52px), no sub-description -->
+          <!-- Header with 2x larger thinner icon (50px, stroke-width: 1.15) in pale branded purple (#a855f7) -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9;">
-            <div class="p-card-title" style="font-size: 1.35rem; font-weight: 850;">Systemic Factors</div>
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <div class="p-card-title" style="font-size: 1.3rem; font-weight: 850;">Top 3 Systemic factors</div>
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85;">
               <path d="M10 2v7.31L4.14 20.3A2 2 0 0 0 5.86 23h12.28a2 2 0 0 0 1.72-2.7L14 9.31V2"/><path d="M8.5 2h7"/>
             </svg>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-            <div class="p-row"><span class="p-row-label">Hormones (TSH/Estrogen)</span><span class="p-val-neutral">0%</span></div>
-            <div class="p-row"><span class="p-row-label">Deficiencies (B12/Iron)</span><span class="p-val-neutral">0%</span></div>
-            <div class="p-row"><span class="p-row-label">Excesses &amp; toxicity</span><span class="p-val-neutral">0%</span></div>
+          <!-- Top 3 Systemic Factors with tag directly next to words -->
+          <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Hormones (TSH/Estrogen)</span>
+              <span class="p-val-neutral" style="font-size: 0.76rem; background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Deficiencies (B12/Iron)</span>
+              <span class="p-val-neutral" style="font-size: 0.76rem; background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.45rem;">
+              <span class="p-row-label">Excesses &amp; toxicity</span>
+              <span class="p-val-neutral" style="font-size: 0.76rem; background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span>
+            </div>
+
+            <!-- See Top 20 at same level as top 3, same font, no underline, arrow right next to word -->
+            <div style="margin-top: 0.15rem;">
+              <button type="button" class="expand-btn" data-target="expand-systemic" style="display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: none; padding: 0.2rem 0; cursor: pointer; text-align: left;">
+                <span class="p-row-label" style="font-weight: 600; color: #475569;">See Top 20</span>
+                <span class="arrow-indicator" style="font-size: 0.75rem; color: #64748b; transition: transform 0.2s ease;">&#9660;</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Expandable: See Top 20 for Other (No total, no background, no percentage) -->
-          <div style="margin-top: 1rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
-            <button type="button" class="expand-btn" data-target="expand-systemic" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 0.35rem 0; cursor: pointer; text-align: left;">
-              <span style="font-size: 0.92rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">See Top 20 for Other</span>
-              <span class="arrow-indicator" style="font-size: 1rem; color: #64748b; transition: transform 0.2s ease;">&#9662;</span>
-            </button>
-
-            <!-- Hidden Expandable Drawer -->
-            <div id="expand-systemic" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
-              <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
-                <li>Serum Vitamin B12 (Cobalamin) &bull; 0%</li>
-                <li>Serum Ferritin &amp; Iron saturation &bull; 0%</li>
-                <li>RBC folate (Vitamin B9) &bull; 0%</li>
-                <li>Vitamin B6 (Pyridoxine) toxicity &bull; 0%</li>
-                <li>Vitamin B1 (Thiamine) deficiency &bull; 0%</li>
-                <li>Serum zinc &amp; alkaline phosphatase &bull; 0%</li>
-                <li>Vitamin D3 (25-Hydroxy) &bull; 0%</li>
-                <li>RBC magnesium &bull; 0%</li>
-                <li>Thyroid screen (TSH, Free T3, Free T4) &bull; 0%</li>
-                <li>Fasting blood glucose &amp; HbA1c &bull; 0%</li>
-                <li>Celiac disease antibodies (tTG-IgA) &bull; 0%</li>
-                <li>Intrinsic factor antibodies &bull; 0%</li>
-                <li>Serum copper &amp; ceruloplasmin &bull; 0%</li>
-                <li>Vitamin B2 (Riboflavin) &bull; 0%</li>
-                <li>Vitamin B3 (Niacin / Pellagra screen) &bull; 0%</li>
-                <li>Complete blood count (CBC) &bull; 0%</li>
-                <li>Anti-SSA / Anti-SSB (Sjögren syndrome) &bull; 0%</li>
-                <li>Serum calcium &amp; PTH &bull; 0%</li>
-                <li>Total serum protein &amp; albumin &bull; 0%</li>
-                <li>Methylmalonic acid &amp; homocysteine &bull; 0%</li>
-              </ul>
-              <div style="margin-top: 0.75rem; text-align: right;">
-                <a href="#page-28" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
-              </div>
+          <!-- Hidden Expandable Drawer -->
+          <div id="expand-systemic" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
+            <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
+              <li>Serum Vitamin B12 (Cobalamin) &bull; 0%</li>
+              <li>Serum Ferritin &amp; Iron saturation &bull; 0%</li>
+              <li>RBC folate (Vitamin B9) &bull; 0%</li>
+              <li>Vitamin B6 (Pyridoxine) toxicity &bull; 0%</li>
+              <li>Vitamin B1 (Thiamine) deficiency &bull; 0%</li>
+              <li>Serum zinc &amp; alkaline phosphatase &bull; 0%</li>
+              <li>Vitamin D3 (25-Hydroxy) &bull; 0%</li>
+              <li>RBC magnesium &bull; 0%</li>
+              <li>Thyroid screen (TSH, Free T3, Free T4) &bull; 0%</li>
+              <li>Fasting blood glucose &amp; HbA1c &bull; 0%</li>
+              <li>Celiac disease antibodies (tTG-IgA) &bull; 0%</li>
+              <li>Intrinsic factor antibodies &bull; 0%</li>
+              <li>Serum copper &amp; ceruloplasmin &bull; 0%</li>
+              <li>Vitamin B2 (Riboflavin) &bull; 0%</li>
+              <li>Vitamin B3 (Niacin / Pellagra screen) &bull; 0%</li>
+              <li>Complete blood count (CBC) &bull; 0%</li>
+              <li>Anti-SSA / Anti-SSB (Sjögren syndrome) &bull; 0%</li>
+              <li>Serum calcium &amp; PTH &bull; 0%</li>
+              <li>Total serum protein &amp; albumin &bull; 0%</li>
+              <li>Methylmalonic acid &amp; homocysteine &bull; 0%</li>
+            </ul>
+            <div style="margin-top: 0.75rem; text-align: right;">
+              <a href="#page-28" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
             </div>
           </div>
         </div>
