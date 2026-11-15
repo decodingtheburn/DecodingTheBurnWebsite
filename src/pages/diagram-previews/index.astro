@@ -673,172 +673,314 @@
   </div>
 
   <!-- ==========================================
-       VERSION 6: CLEAN MANIKIN NO BG, TOP-ALIGNED POINTERS TOUCHING CARDS, NO TOTALS, STRETCHED OTHERS
+       VERSION 6: PAIN LOAD EXAMPLE (TOP DENTAL & DIETARY, EXPANDABLE TOP 20, 2X ICONS, LIGHT GREY MULTI-TARGET ARROWS)
        ========================================== -->
-  <div class="version-wrapper" id="v6" style="border: 2px solid #0f172a; box-shadow: 0 15px 40px rgba(15, 23, 42, 0.1);">
-    <div class="version-title-bar">
+  <div class="version-wrapper" id="v6" style="border: 1.5px solid #cbd5e1; box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);">
+    <div class="version-title-bar" style="margin-bottom: 2rem;">
       <div>
-        <h2 style="font-size: 1.45rem; font-weight: 850; color: #0f172a;">Option 6: Transparent Manikin, Top Card Touchpoints, Zero Totals</h2>
-        <div class="version-desc">No box background on the human, no vertical spine line, arrows point to and touch the top of each box, totals removed, and Others stretched across the card.</div>
+        <h2 style="font-size: 1.6rem; font-weight: 850; color: #0f172a; letter-spacing: -0.015em;">Pain load Example</h2>
       </div>
-      <span class="version-badge" style="background: #dc2626; font-size: 0.9rem; padding: 0.35rem 0.85rem;">Option 6</span>
+      <span class="version-badge" style="background: #0f172a; font-size: 0.85rem; padding: 0.35rem 0.85rem;">Option 6</span>
     </div>
 
-    <!-- 3-Column Grid: Left Card | Manikin Center | Right Card. Gap is 0 so arrows seamlessly touch the cards! -->
+    <!-- 3-Column Grid: Left Card | Manikin Center | Right Card -->
     <div style="display: grid; grid-template-columns: 1fr 140px 1fr; gap: 0; align-items: start;">
       
       <!-- LEFT COLUMN: DENTAL ISSUES (TOP) & NERVOUS SYSTEM (BOTTOM) -->
-      <div style="display: flex; flex-direction: column; gap: 2rem;">
+      <div style="display: flex; flex-direction: column; gap: 2.25rem;">
         
         <!-- TOP LEFT: DENTAL ISSUES (Oral Cavity) -->
-        <div class="p-card" style="border-radius: 12px 0 12px 12px; border-right: 2px solid #dc2626; display: flex; flex-direction: column;">
-          <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
-            <div>
-              <div class="p-card-title" style="font-size: 1.25rem;">Dental Issues</div>
-              <div class="p-card-sub">Oral Cavity</div>
-            </div>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <div class="p-card" id="card-dental" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative;">
+          <!-- Header with 2x larger icon (52px), no sub-description -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9;">
+            <div class="p-card-title" style="font-size: 1.35rem; font-weight: 850;">Dental Issues</div>
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
               <path d="M12 2C7.5 2 4 4.5 4 8c0 3 1.5 5.5 2 8 .6 3 1.5 6 3 6s2.5-3 3-5c.5 2 1.5 5 3 5s2.4-3 3-6c.5-2.5 2-5 2-8 0-3.5-3.5-6-8-6z"/>
             </svg>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <!-- Top 3 Dental Issues -->
+          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
             <div class="p-row"><span class="p-row-label">Leaky crown</span><span class="p-badge-red">30%</span></div>
             <div class="p-row"><span class="p-row-label">Exposed tubules</span><span class="p-badge-amber">20%</span></div>
             <div class="p-row"><span class="p-row-label">Canine occlusion</span><span class="p-badge-red">20%</span></div>
           </div>
 
-          <!-- Stretched Full-Width Others Category Button -->
-          <div style="margin-top: 0.85rem; padding: 0.55rem 0.75rem; background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s ease;">
-            <span style="font-size: 0.88rem; font-weight: 700; color: #991b1b; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
-            <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626; background: #fee2e2; padding: 0.15rem 0.5rem; border-radius: 4px;">0%</span>
+          <!-- Expandable: See Top 20 for Other (No total, no background, no percentage) -->
+          <div style="margin-top: 1rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
+            <button type="button" class="expand-btn" data-target="expand-dental" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 0.35rem 0; cursor: pointer; text-align: left;">
+              <span style="font-size: 0.92rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">See Top 20 for Other</span>
+              <span class="arrow-indicator" style="font-size: 1rem; color: #64748b; transition: transform 0.2s ease;">&#9662;</span>
+            </button>
+            
+            <!-- Hidden Expandable Drawer -->
+            <div id="expand-dental" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
+              <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
+                <li>Subgingival biofilm fermentation &bull; 0%</li>
+                <li>Galvanic metal micro-currents &bull; 0%</li>
+                <li>Cervical enamel abfraction &bull; 0%</li>
+                <li>Traumatic premature occlusion &bull; 0%</li>
+                <li>Recurrent micro-cavities &bull; 0%</li>
+                <li>Endodontic root resorption &bull; 0%</li>
+                <li>Cracked tooth syndrome &bull; 0%</li>
+                <li>Acrylic monomer sensitivity &bull; 0%</li>
+                <li>Night bruxism micro-strain &bull; 0%</li>
+                <li>Foreign body cement impaction &bull; 0%</li>
+                <li>Root proximity to alveolar nerve &bull; 0%</li>
+                <li>Cavitational osteonecrosis &bull; 0%</li>
+                <li>Periodontal furcation defect &bull; 0%</li>
+                <li>Composite shrinkage gap &bull; 0%</li>
+                <li>Nickel-titanium retainer allergy &bull; 0%</li>
+                <li>Crown margin biological invasion &bull; 0%</li>
+                <li>Impacted wisdom molar load &bull; 0%</li>
+                <li>Maxillary sinusitis extension &bull; 0%</li>
+                <li>Pulp canal obliteration &bull; 0%</li>
+                <li>Improper pontic tissue pressure &bull; 0%</li>
+              </ul>
+              <div style="margin-top: 0.75rem; text-align: right;">
+                <a href="/blog/what-causes-sensitive-teeth-top-20-causes-occlusion" target="_blank" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- BOTTOM LEFT: NERVOUS SYSTEM (Brain & Nerves) -->
-        <div class="p-card" style="border-radius: 12px 0 12px 12px; border-right: 2px solid #0f172a; display: flex; flex-direction: column;">
-          <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
-            <div>
-              <div class="p-card-title" style="font-size: 1.25rem;">Nervous System</div>
-              <div class="p-card-sub">Brain &amp; Nerves</div>
-            </div>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <div class="p-card" id="card-nervous" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative;">
+          <!-- Header with 2x larger icon (52px), no sub-description -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9;">
+            <div class="p-card-title" style="font-size: 1.35rem; font-weight: 850;">Nervous System</div>
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
               <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04Z"/>
               <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04Z"/>
             </svg>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
             <div class="p-row"><span class="p-row-label">Trigeminal wind-up</span><span class="p-badge-black">Active</span></div>
             <div class="p-row"><span class="p-row-label">Small-fiber neuropathy</span><span class="p-badge-black">Active</span></div>
             <div class="p-row"><span class="p-row-label">Trunk compression</span><span class="p-val-neutral">0%</span></div>
           </div>
 
-          <!-- Stretched Full-Width Others Category Button -->
-          <div style="margin-top: 0.85rem; padding: 0.55rem 0.75rem; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s ease;">
-            <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">Mechanisms (10) &rsaquo;</span>
-            <span style="font-size: 0.75rem; font-weight: 700; color: #475569; background: #e2e8f0; padding: 0.15rem 0.5rem; border-radius: 4px;">Details</span>
+          <!-- Expandable: See Top 20 for Other (No total, no background, no percentage) -->
+          <div style="margin-top: 1rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
+            <button type="button" class="expand-btn" data-target="expand-nervous" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 0.35rem 0; cursor: pointer; text-align: left;">
+              <span style="font-size: 0.92rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">See Top 20 for Other</span>
+              <span class="arrow-indicator" style="font-size: 1rem; color: #64748b; transition: transform 0.2s ease;">&#9662;</span>
+            </button>
+
+            <!-- Hidden Expandable Drawer -->
+            <div id="expand-nervous" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
+              <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
+                <li>Brainstem caudalis wind-up &bull; Active</li>
+                <li>Loss of descending GABA inhibition &bull; Active</li>
+                <li>Microglial inflammatory activation &bull; Active</li>
+                <li>Tactile-to-burning allodynia &bull; Active</li>
+                <li>Taste-mediated gating failure &bull; Active</li>
+                <li>Sustained ASIC3 receptor firing &bull; Active</li>
+                <li>Thalamocortical reverberation loop &bull; Active</li>
+                <li>Sympathetic-sensory nerve coupling &bull; Active</li>
+                <li>Neurogenic plasma extravasation &bull; Active</li>
+                <li>REM sleep pain disinhibition &bull; Active</li>
+                <li>C1–C3 cervical spine convergence &bull; 0%</li>
+                <li>Occipital nerve entrapment &bull; 0%</li>
+                <li>Sphenopalatine ganglion neuralgia &bull; 0%</li>
+                <li>Glossopharyngeal nerve cross-talk &bull; 0%</li>
+                <li>Superior laryngeal vagal input &bull; 0%</li>
+                <li>Myofascial trigger point referral &bull; 0%</li>
+                <li>Post-herpetic neuralgia &bull; 0%</li>
+                <li>Central sensitization inventory &bull; Active</li>
+                <li>Acoustic reflex motor coupling &bull; 0%</li>
+                <li>Autonomic microvascular tone &bull; Active</li>
+              </ul>
+              <div style="margin-top: 0.75rem; text-align: right;">
+                <a href="#page-28" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
 
-      <!-- CENTER: TRANSPARENT MEDICAL HUMAN (NO BG BOX, NO VERTICAL SPINE LINE, ARROWS TOUCH CARDS DIRECTLY) -->
+      <!-- CENTER: TRANSPARENT MEDICAL HUMAN WITH LIGHT GREY MULTI-TARGET ARROWS -->
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0; position: relative;">
         <!-- Height matches the cards layout, viewBox width = 140. Left edge = 0, Right edge = 140 -->
-        <svg viewBox="0 0 140 450" style="width: 100%; height: auto; display: block;" aria-label="Transparent anatomical manikin">
+        <svg viewBox="0 0 140 450" style="width: 100%; height: auto; display: block;" aria-label="Transparent anatomical manikin with light grey arrows">
           <defs>
-            <!-- Marker Arrows -->
-            <marker id="arrow-left-red" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 10 1 L 0 5 L 10 9 z" fill="#dc2626" />
+            <!-- Clean Light Grey Marker Arrowheads (#94a3b8) -->
+            <marker id="arrow-grey-left" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 10 1 L 0 5 L 10 9 z" fill="#94a3b8" />
             </marker>
-            <marker id="arrow-left-black" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 10 1 L 0 5 L 10 9 z" fill="#0f172a" />
-            </marker>
-            <marker id="arrow-right-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-              <path d="M 0 1 L 10 5 L 0 9 z" fill="#ea580c" />
-            </marker>
-            <marker id="arrow-right-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-              <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155" />
+            <marker id="arrow-grey-right" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8" />
             </marker>
           </defs>
 
-          <!-- Clean Minimalist Human Silhouette (Centered at X=70, NO vertical line) -->
+          <!-- Clean Minimalist Human Silhouette (Centered at X=70, NO vertical line, NO box bg) -->
           <path d="M 70 18 C 58 18 50 29 50 45 C 50 58 56 67 63 72 L 63 80 C 52 85 42 94 38 108 L 34 165 C 32 176 40 179 43 170 L 48 138 L 48 245 L 56 375 C 57 388 65 388 66 375 L 69 270 L 71 270 L 74 375 C 75 388 83 388 84 375 L 92 245 L 92 138 L 97 170 C 100 179 108 176 106 165 L 102 108 C 98 94 88 85 77 80 L 77 72 C 84 67 90 58 90 45 C 90 29 82 18 70 18 Z" 
                 fill="#ffffff" stroke="#94a3b8" stroke-width="1.75"/>
 
-          <!-- 1. MOUTH / DENTAL FOCAL POINT & ARROW TO TOP-LEFT CARD (Dental Issues) -->
-          <circle cx="70" cy="68" r="4.5" fill="#dc2626"/>
-          <polyline points="70,68 25,26 0,26" fill="none" stroke="#dc2626" stroke-width="1.75" marker-end="url(#arrow-left-red)" stroke-linecap="round"/>
-
-          <!-- 2. STOMACH / DIETARY FOCAL POINT & ARROW TO TOP-RIGHT CARD (Dietary Triggers) -->
-          <circle cx="70" cy="155" r="4.5" fill="#ea580c"/>
-          <polyline points="70,155 115,26 140,26" fill="none" stroke="#ea580c" stroke-width="1.75" marker-end="url(#arrow-right-orange)" stroke-linecap="round"/>
-
-          <!-- 3. BRAIN & NERVE FOCAL POINT & ARROW TO BOTTOM-LEFT CARD (Nervous System) -->
+          <!-- 1. BRAIN FOCAL POINT (Y ~ 42) -->
           <circle cx="70" cy="42" r="4.5" fill="#0f172a"/>
-          <polyline points="70,42 25,240 0,240" fill="none" stroke="#0f172a" stroke-width="1.75" marker-end="url(#arrow-left-black)" stroke-linecap="round"/>
+          <!-- Light Grey Arrow from Brain pointing to top of Nervous System Card (Bottom Left: X=0, Y=240) -->
+          <polyline points="70,42 25,240 0,240" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-grey-left)" stroke-linecap="round"/>
 
-          <!-- 4. GUT / SYSTEMIC FOCAL POINT & ARROW TO BOTTOM-RIGHT CARD (Systemic Factors) -->
+          <!-- 2. MOUTH FOCAL POINT (Y ~ 68) -->
+          <circle cx="70" cy="68" r="4.5" fill="#dc2626"/>
+          <!-- Light Grey Arrow from Mouth pointing to top of Dental Issues Card (Top Left: X=0, Y=26) -->
+          <polyline points="70,68 25,26 0,26" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-grey-left)" stroke-linecap="round"/>
+          <!-- Light Grey Arrow from Mouth branching to Dietary Triggers Card (Top Right: X=140, Y=26) -->
+          <polyline points="70,68 115,26 140,26" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
+
+          <!-- 3. STOMACH FOCAL POINT (Y ~ 155) -->
+          <circle cx="70" cy="155" r="4.5" fill="#ea580c"/>
+          <!-- Light Grey Arrow from Stomach pointing to Dietary Triggers Card (Top Right: X=140, Y=26) -->
+          <polyline points="70,155 118,55 140,26" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
+          <!-- Light Grey Arrow from Stomach pointing down to Systemic Factors Card (Bottom Right: X=140, Y=240) -->
+          <polyline points="70,155 110,240 140,240" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
+
+          <!-- 4. INTESTINE / GUT FOCAL POINT (Y ~ 225) -->
           <circle cx="70" cy="225" r="4.5" fill="#334155"/>
-          <polyline points="70,225 115,240 140,240" fill="none" stroke="#334155" stroke-width="1.75" marker-end="url(#arrow-right-slate)" stroke-linecap="round"/>
+          <!-- Light Grey Arrow from Intestine pointing to Systemic Factors Card (Bottom Right: X=140, Y=240) -->
+          <polyline points="70,225 115,240 140,240" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
         </svg>
       </div>
 
       <!-- RIGHT COLUMN: DIETARY TRIGGERS (TOP) & SYSTEMIC FACTORS (BOTTOM) -->
-      <div style="display: flex; flex-direction: column; gap: 2rem;">
+      <div style="display: flex; flex-direction: column; gap: 2.25rem;">
         
         <!-- TOP RIGHT: DIETARY TRIGGERS (Stomach & Saliva) -->
-        <div class="p-card" style="border-radius: 0 12px 12px 12px; border-left: 2px solid #ea580c; display: flex; flex-direction: column;">
-          <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
-            <div>
-              <div class="p-card-title" style="font-size: 1.25rem;">Dietary Triggers</div>
-              <div class="p-card-sub">Stomach &amp; Saliva</div>
-            </div>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <div class="p-card" id="card-dietary" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative;">
+          <!-- Header with 2x larger icon (52px), no sub-description -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9;">
+            <div class="p-card-title" style="font-size: 1.35rem; font-weight: 850;">Dietary Triggers</div>
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
               <path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/>
             </svg>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
             <div class="p-row"><span class="p-row-label">Alcohol &amp; coffee</span><span class="p-badge-amber">10%</span></div>
             <div class="p-row"><span class="p-row-label">Acidic fruits</span><span class="p-badge-amber">10%</span></div>
             <div class="p-row"><span class="p-row-label">Salivary loss &amp; stress</span><span class="p-badge-amber">10%</span></div>
           </div>
 
-          <!-- Stretched Full-Width Others Category Button -->
-          <div style="margin-top: 0.85rem; padding: 0.55rem 0.75rem; background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s ease;">
-            <span style="font-size: 0.88rem; font-weight: 700; color: #9a3412; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
-            <span style="font-size: 0.75rem; font-weight: 700; color: #ea580c; background: #ffedd5; padding: 0.15rem 0.5rem; border-radius: 4px;">0%</span>
+          <!-- Expandable: See Top 20 for Other (No total, no background, no percentage) -->
+          <div style="margin-top: 1rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
+            <button type="button" class="expand-btn" data-target="expand-dietary" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 0.35rem 0; cursor: pointer; text-align: left;">
+              <span style="font-size: 0.92rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">See Top 20 for Other</span>
+              <span class="arrow-indicator" style="font-size: 1rem; color: #64748b; transition: transform 0.2s ease;">&#9662;</span>
+            </button>
+
+            <!-- Hidden Expandable Drawer -->
+            <div id="expand-dietary" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
+              <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
+                <li>Sodium lauryl sulfate (SLS) toothpaste &bull; 0%</li>
+                <li>Mouth breathing nocturnal drying &bull; 0%</li>
+                <li>Alcohol-based mouthwashes &bull; 0%</li>
+                <li>Cinnamon &amp; cinnamaldehyde flavorings &bull; 0%</li>
+                <li>Carbonated acidic sodas &bull; 0%</li>
+                <li>Spicy capsaicin mucosal irritation &bull; 0%</li>
+                <li>Concentrated vinegar &amp; dressings &bull; 0%</li>
+                <li>Dietary nickel &amp; cobalt ingestion &bull; 0%</li>
+                <li>Proton pump inhibitor acid rebound &bull; 0%</li>
+                <li>Histamine-rich aged foods &bull; 0%</li>
+                <li>Tomato &amp; citric food sauces &bull; 0%</li>
+                <li>Menthol and peppermint lozenges &bull; 0%</li>
+                <li>Subclinical candida albicans fermentation &bull; 0%</li>
+                <li>Electrolyte dehydration xerostomia &bull; 0%</li>
+                <li>Artificial sweeteners (aspartame/sucralose) &bull; 0%</li>
+                <li>Benzoic acid food preservatives &bull; 0%</li>
+                <li>Sulphite preservatives in wine &bull; 0%</li>
+                <li>Hot temperature thermal irritation &bull; 0%</li>
+                <li>Nighttime gastric juice micro-aspiration &bull; 0%</li>
+                <li>Decongestant medication salivary suppression &bull; 0%</li>
+              </ul>
+              <div style="margin-top: 0.75rem; text-align: right;">
+                <a href="#page-28" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- BOTTOM RIGHT: SYSTEMIC FACTORS (Hormones & Absorption) -->
-        <div class="p-card" style="border-radius: 0 12px 12px 12px; border-left: 2px solid #334155; display: flex; flex-direction: column;">
-          <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
-            <div>
-              <div class="p-card-title" style="font-size: 1.25rem;">Systemic Factors</div>
-              <div class="p-card-sub">Hormones &amp; Absorption</div>
-            </div>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <div class="p-card" id="card-systemic" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative;">
+          <!-- Header with 2x larger icon (52px), no sub-description -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px solid #f1f5f9;">
+            <div class="p-card-title" style="font-size: 1.35rem; font-weight: 850;">Systemic Factors</div>
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
               <path d="M10 2v7.31L4.14 20.3A2 2 0 0 0 5.86 23h12.28a2 2 0 0 0 1.72-2.7L14 9.31V2"/><path d="M8.5 2h7"/>
             </svg>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
             <div class="p-row"><span class="p-row-label">Hormones (TSH/Estrogen)</span><span class="p-val-neutral">0%</span></div>
             <div class="p-row"><span class="p-row-label">Deficiencies (B12/Iron)</span><span class="p-val-neutral">0%</span></div>
             <div class="p-row"><span class="p-row-label">Excesses &amp; toxicity</span><span class="p-val-neutral">0%</span></div>
           </div>
 
-          <!-- Stretched Full-Width Others Category Button -->
-          <div style="margin-top: 0.85rem; padding: 0.55rem 0.75rem; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s ease;">
-            <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
-            <span style="font-size: 0.75rem; font-weight: 700; color: #475569; background: #e2e8f0; padding: 0.15rem 0.5rem; border-radius: 4px;">0% Ruled Out</span>
+          <!-- Expandable: See Top 20 for Other (No total, no background, no percentage) -->
+          <div style="margin-top: 1rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
+            <button type="button" class="expand-btn" data-target="expand-systemic" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 0.35rem 0; cursor: pointer; text-align: left;">
+              <span style="font-size: 0.92rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">See Top 20 for Other</span>
+              <span class="arrow-indicator" style="font-size: 1rem; color: #64748b; transition: transform 0.2s ease;">&#9662;</span>
+            </button>
+
+            <!-- Hidden Expandable Drawer -->
+            <div id="expand-systemic" class="expandable-drawer" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0; border-top: 1px dashed #e2e8f0; font-size: 0.82rem; color: #475569;">
+              <ul style="margin-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.35;">
+                <li>Serum Vitamin B12 (Cobalamin) &bull; 0%</li>
+                <li>Serum Ferritin &amp; Iron saturation &bull; 0%</li>
+                <li>RBC folate (Vitamin B9) &bull; 0%</li>
+                <li>Vitamin B6 (Pyridoxine) toxicity &bull; 0%</li>
+                <li>Vitamin B1 (Thiamine) deficiency &bull; 0%</li>
+                <li>Serum zinc &amp; alkaline phosphatase &bull; 0%</li>
+                <li>Vitamin D3 (25-Hydroxy) &bull; 0%</li>
+                <li>RBC magnesium &bull; 0%</li>
+                <li>Thyroid screen (TSH, Free T3, Free T4) &bull; 0%</li>
+                <li>Fasting blood glucose &amp; HbA1c &bull; 0%</li>
+                <li>Celiac disease antibodies (tTG-IgA) &bull; 0%</li>
+                <li>Intrinsic factor antibodies &bull; 0%</li>
+                <li>Serum copper &amp; ceruloplasmin &bull; 0%</li>
+                <li>Vitamin B2 (Riboflavin) &bull; 0%</li>
+                <li>Vitamin B3 (Niacin / Pellagra screen) &bull; 0%</li>
+                <li>Complete blood count (CBC) &bull; 0%</li>
+                <li>Anti-SSA / Anti-SSB (Sjögren syndrome) &bull; 0%</li>
+                <li>Serum calcium &amp; PTH &bull; 0%</li>
+                <li>Total serum protein &amp; albumin &bull; 0%</li>
+                <li>Methylmalonic acid &amp; homocysteine &bull; 0%</li>
+              </ul>
+              <div style="margin-top: 0.75rem; text-align: right;">
+                <a href="#page-28" style="font-size: 0.78rem; font-weight: 700; color: #0f172a; text-decoration: underline;">Open dedicated page &rarr;</a>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const expandBtns = document.querySelectorAll('.expand-btn');
+      expandBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-target');
+          if (!targetId) return;
+          const drawer = document.getElementById(targetId);
+          const arrow = btn.querySelector('.arrow-indicator') as HTMLElement;
+          if (drawer) {
+            const isVisible = drawer.style.display === 'block';
+            drawer.style.display = isVisible ? 'none' : 'block';
+            if (arrow) {
+              arrow.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
+          }
+        });
+      });
+    });
+  </script>
 
     </div>
   </div>
