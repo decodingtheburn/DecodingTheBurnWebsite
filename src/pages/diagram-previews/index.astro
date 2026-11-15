@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;850&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anatomical Pain Diagram - 5 Layout Variations</title>
@@ -19,7 +22,7 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text-main);
       padding: 2rem 1rem 5rem;
@@ -692,9 +695,9 @@
         <!-- TOP LEFT: DENTAL ISSUES -->
         <div class="p-card" id="card-dental" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative; overflow: hidden; padding: 0;">
           <!-- Header with light background (#f8fafc), 2x thinner pale purple icon -->
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.18rem 1.15rem; background: #faf5ff; border-bottom: none; position: relative;">
+          <div style="display: flex; justify-content: space-between; align-items: center; height: 44px; padding: 0 1rem; background: #fdf4ff; border-bottom: none; position: relative;">
             <div class="p-card-title" style="font-size: 1.12rem; font-weight: 850; color: #0f172a; line-height: 1.2;">Top 3 Dental issues</div>
-            <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85; transform: translateY(12px); position: relative; z-index: 10;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85; transform: translateY(8px); position: relative; z-index: 10;">
               <path d="M12 2C7.5 2 4 4.5 4 8c0 3 1.5 5.5 2 8 .6 3 1.5 6 3 6s2.5-3 3-5c.5 2 1.5 5 3 5s2.4-3 3-6c.5-2.5 2-5 2-8 0-3.5-3.5-6-8-6z"/>
             </svg>
           </div>
@@ -715,14 +718,13 @@
             </div>
             
             <!-- See Top 20 Trigger (Same font & boldness as label, disappears on click) -->
-            <div id="trigger-wrapper-dental" style="margin-top: 0.15rem;">
-              <button type="button" class="expand-toggle-btn" data-trigger="trigger-wrapper-dental" data-target="expand-dental" style="display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: none; padding: 0.2rem 0; cursor: pointer; text-align: left;">
-                <span style="font-family: inherit; font-size: 0.88rem; font-weight: 500; line-height: 1.4; color: #334155;">See More (Top 20)</span> <span style="font-size: 0.7rem; color: #64748b; margin-left: 0.25rem;">&#9660;</span>
-              </button>
-            </div>
+            <div id="trigger-wrapper-dental" class="expand-toggle-btn" data-trigger="trigger-wrapper-dental" data-target="expand-dental" style="display: flex; align-items: center; gap: 0.45rem; cursor: pointer; user-select: none;">
+                <span class="p-row-label">See More</span>
+                <span style="font-size: 0.72rem; color: #64748b;">&#9660;</span>
+              </div>
 
             <!-- Seamless Expandable Drawer (Same formatting & green 0% badges) -->
-            <div id="expand-dental" class="expandable-drawer" style="display: none; flex-direction: column; gap: 0.45rem; margin-top: 0.15rem; border-top: 1px dashed #e2e8f0; padding-top: 0.65rem;">
+            <div id="expand-dental" class="expandable-drawer" style="display: none; flex-direction: column; gap: 0.45rem; margin-top: 0.15rem; border-top: 1px dashed #e9d5ff; padding-top: 0.65rem;">
               <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Subgingival biofilm fermentation</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
               <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Galvanic metal micro-currents</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
               <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Cervical enamel abfraction</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
@@ -752,9 +754,9 @@
         <!-- BOTTOM LEFT: NERVOUS SYSTEM -->
         <div class="p-card" id="card-nervous" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative; overflow: hidden; padding: 0;">
           <!-- Header with light background (#f8fafc), 2x thinner pale purple icon -->
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.18rem 1.15rem; background: #faf5ff; border-bottom: none; position: relative;">
+          <div style="display: flex; justify-content: space-between; align-items: center; height: 44px; padding: 0 1rem; background: #fdf4ff; border-bottom: none; position: relative;">
             <div class="p-card-title" style="font-size: 1.12rem; font-weight: 850; color: #0f172a; line-height: 1.2;">Top 3 Nervous System</div>
-            <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85; transform: translateY(12px); position: relative; z-index: 10;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85; transform: translateY(8px); position: relative; z-index: 10;">
               <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04Z"/>
               <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04Z"/>
             </svg>
@@ -776,19 +778,18 @@
             </div>
 
             <!-- See Top 20 Trigger (Same font & boldness as label, disappears on click) -->
-            <div id="trigger-wrapper-nervous" style="margin-top: 0.15rem;">
-              <button type="button" class="expand-toggle-btn" data-trigger="trigger-wrapper-nervous" data-target="expand-nervous" style="display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: none; padding: 0.2rem 0; cursor: pointer; text-align: left;">
-                <span style="font-family: inherit; font-size: 0.88rem; font-weight: 500; line-height: 1.4; color: #334155;">See More (Top 20)</span> <span style="font-size: 0.7rem; color: #64748b; margin-left: 0.25rem;">&#9660;</span>
-              </button>
-            </div>
+            <div id="trigger-wrapper-nervous" class="expand-toggle-btn" data-trigger="trigger-wrapper-nervous" data-target="expand-nervous" style="display: flex; align-items: center; gap: 0.45rem; cursor: pointer; user-select: none;">
+                <span class="p-row-label">See More</span>
+                <span style="font-size: 0.72rem; color: #64748b;">&#9660;</span>
+              </div>
 
             <!-- Seamless Expandable Drawer (Same formatting & green 0% badges) -->
                         <!-- Seamless Expandable Drawer (Categorized Groups & green 0% badges) -->
-            <div id="expand-nervous" class="expandable-drawer" style="display: none; flex-direction: column; gap: 0.65rem; margin-top: 0.35rem; border-top: 1px dashed #e2e8f0; padding-top: 0.65rem;">
+            <div id="expand-nervous" class="expandable-drawer" style="display: none; flex-direction: column; gap: 0.65rem; margin-top: 0.35rem; border-top: 1px dashed #e9d5ff; padding-top: 0.65rem;">
               
               <!-- Subcategory 1: Central Wind-Up & Gating -->
               <div>
-                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 0.3rem;">Central Amplification &amp; Wind-Up</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9333ea; margin-bottom: 0.3rem; font-weight: 800;">Central Amplification &amp; Wind-Up</div>
                 <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Brainstem caudalis wind-up</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Loss of GABAergic inhibition</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
@@ -801,7 +802,7 @@
 
               <!-- Subcategory 2: Ion Channels & Peripheral Neuropathy -->
               <div>
-                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 0.3rem;">Sensory Channels &amp; Autonomic</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9333ea; margin-bottom: 0.3rem; font-weight: 800;">Sensory Channels &amp; Autonomic</div>
                 <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Sustained ASIC3 channel firing</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Tactile-to-burning allodynia</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
@@ -814,7 +815,7 @@
 
               <!-- Subcategory 3: Cranial & Cervical Compression -->
               <div>
-                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 0.3rem;">Cranial Nerves &amp; Spine Entrapment</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9333ea; margin-bottom: 0.3rem; font-weight: 800;">Cranial Nerves &amp; Spine Entrapment</div>
                 <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">C1–C3 cervical spine entrapment</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Occipital nerve compression</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
@@ -912,9 +913,9 @@
         <!-- TOP RIGHT: DIETARY TRIGGERS -->
         <div class="p-card" id="card-dietary" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative; overflow: hidden; padding: 0;">
           <!-- Header with light background (#f8fafc), 2x thinner pale purple icon -->
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.18rem 1.15rem; background: #faf5ff; border-bottom: none; position: relative;">
+          <div style="display: flex; justify-content: space-between; align-items: center; height: 44px; padding: 0 1rem; background: #fdf4ff; border-bottom: none; position: relative;">
             <div class="p-card-title" style="font-size: 1.12rem; font-weight: 850; color: #0f172a; line-height: 1.2;">Top 3 Dietary triggers</div>
-            <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85; transform: translateY(12px); position: relative; z-index: 10;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85; transform: translateY(8px); position: relative; z-index: 10;">
               <path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/>
             </svg>
           </div>
@@ -935,19 +936,18 @@
             </div>
 
             <!-- See Top 20 Trigger (Same font & boldness as label, disappears on click) -->
-            <div id="trigger-wrapper-dietary" style="margin-top: 0.15rem;">
-              <button type="button" class="expand-toggle-btn" data-trigger="trigger-wrapper-dietary" data-target="expand-dietary" style="display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: none; padding: 0.2rem 0; cursor: pointer; text-align: left;">
-                <span style="font-family: inherit; font-size: 0.88rem; font-weight: 500; line-height: 1.4; color: #334155;">See More (Top 20)</span> <span style="font-size: 0.7rem; color: #64748b; margin-left: 0.25rem;">&#9660;</span>
-              </button>
-            </div>
+            <div id="trigger-wrapper-dietary" class="expand-toggle-btn" data-trigger="trigger-wrapper-dietary" data-target="expand-dietary" style="display: flex; align-items: center; gap: 0.45rem; cursor: pointer; user-select: none;">
+                <span class="p-row-label">See More</span>
+                <span style="font-size: 0.72rem; color: #64748b;">&#9660;</span>
+              </div>
 
             <!-- Seamless Expandable Drawer (Same formatting & green 0% badges) -->
                         <!-- Seamless Expandable Drawer (Categorized Groups & green 0% badges) -->
-            <div id="expand-dietary" class="expandable-drawer" style="display: none; flex-direction: column; gap: 0.65rem; margin-top: 0.35rem; border-top: 1px dashed #e2e8f0; padding-top: 0.65rem;">
+            <div id="expand-dietary" class="expandable-drawer" style="display: none; flex-direction: column; gap: 0.65rem; margin-top: 0.35rem; border-top: 1px dashed #e9d5ff; padding-top: 0.65rem;">
               
               <!-- Subcategory 1: Acids & Chemical Irritants -->
               <div>
-                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 0.3rem;">Acids &amp; Chemical Irritants</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9333ea; margin-bottom: 0.3rem; font-weight: 800;">Acids &amp; Chemical Irritants</div>
                 <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Carbonated acidic sodas</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Concentrated vinegar &amp; dressings</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
@@ -961,7 +961,7 @@
 
               <!-- Subcategory 2: Oral Drying Agents & Barrier Loss -->
               <div>
-                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 0.3rem;">Oral Drying &amp; Surfactants</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9333ea; margin-bottom: 0.3rem; font-weight: 800;">Oral Drying &amp; Surfactants</div>
                 <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Sodium lauryl sulfate (SLS) toothpaste</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Alcohol-based mouthwashes</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
@@ -974,7 +974,7 @@
 
               <!-- Subcategory 3: Food Preservatives & Additives -->
               <div>
-                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 0.3rem;">Preservatives &amp; Additives</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9333ea; margin-bottom: 0.3rem; font-weight: 800;">Preservatives &amp; Additives</div>
                 <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Benzoic acid food preservatives</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Sulphite preservatives in wine</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
@@ -991,9 +991,9 @@
 <!-- BOTTOM RIGHT: SYSTEMIC FACTORS -->
         <div class="p-card" id="card-systemic" style="border: 1.5px solid #e2e8f0; border-radius: 12px; display: flex; flex-direction: column; position: relative; overflow: hidden; padding: 0;">
           <!-- Header with light background (#f8fafc), 2x thinner pale purple icon -->
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.18rem 1.15rem; background: #faf5ff; border-bottom: none; position: relative;">
+          <div style="display: flex; justify-content: space-between; align-items: center; height: 44px; padding: 0 1rem; background: #fdf4ff; border-bottom: none; position: relative;">
             <div class="p-card-title" style="font-size: 1.12rem; font-weight: 850; color: #0f172a; line-height: 1.2;">Top 3 Systemic factors</div>
-            <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85; transform: translateY(12px); position: relative; z-index: 10;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.85; transform: translateY(8px); position: relative; z-index: 10;">
               <path d="M10 2v7.31L4.14 20.3A2 2 0 0 0 5.86 23h12.28a2 2 0 0 0 1.72-2.7L14 9.31V2"/><path d="M8.5 2h7"/>
             </svg>
           </div>
@@ -1014,19 +1014,18 @@
             </div>
 
             <!-- See Top 20 Trigger (Same font & boldness as label, disappears on click) -->
-            <div id="trigger-wrapper-systemic" style="margin-top: 0.15rem;">
-              <button type="button" class="expand-toggle-btn" data-trigger="trigger-wrapper-systemic" data-target="expand-systemic" style="display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: none; padding: 0.2rem 0; cursor: pointer; text-align: left;">
-                <span style="font-family: inherit; font-size: 0.88rem; font-weight: 500; line-height: 1.4; color: #334155;">See More (Top 20)</span> <span style="font-size: 0.7rem; color: #64748b; margin-left: 0.25rem;">&#9660;</span>
-              </button>
-            </div>
+            <div id="trigger-wrapper-systemic" class="expand-toggle-btn" data-trigger="trigger-wrapper-systemic" data-target="expand-systemic" style="display: flex; align-items: center; gap: 0.45rem; cursor: pointer; user-select: none;">
+                <span class="p-row-label">See More</span>
+                <span style="font-size: 0.72rem; color: #64748b;">&#9660;</span>
+              </div>
 
             <!-- Seamless Expandable Drawer (Same formatting & green 0% badges) -->
                         <!-- Seamless Expandable Drawer (Categorized Groups & green 0% badges) -->
-            <div id="expand-systemic" class="expandable-drawer" style="display: none; flex-direction: column; gap: 0.65rem; margin-top: 0.35rem; border-top: 1px dashed #e2e8f0; padding-top: 0.65rem;">
+            <div id="expand-systemic" class="expandable-drawer" style="display: none; flex-direction: column; gap: 0.65rem; margin-top: 0.35rem; border-top: 1px dashed #e9d5ff; padding-top: 0.65rem;">
               
               <!-- Subcategory 1: Vitamins & Micronutrients -->
               <div>
-                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 0.3rem;">Vitamins &amp; Micronutrients</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9333ea; margin-bottom: 0.3rem; font-weight: 800;">Vitamins &amp; Micronutrients</div>
                 <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Serum Vitamin B12 (Cobalamin)</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Serum Ferritin &amp; Iron stores</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
@@ -1043,7 +1042,7 @@
 
               <!-- Subcategory 2: Endocrine & Metabolic Panels -->
               <div>
-                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 0.3rem;">Endocrine &amp; Blood Sugar</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9333ea; margin-bottom: 0.3rem; font-weight: 800;">Endocrine &amp; Blood Sugar</div>
                 <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Thyroid screen (TSH, Free T3/T4)</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Fasting blood glucose &amp; HbA1c</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
@@ -1054,7 +1053,7 @@
 
               <!-- Subcategory 3: Autoimmune & Absorption -->
               <div>
-                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 0.3rem;">Autoimmune &amp; Absorption</div>
+                <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9333ea; margin-bottom: 0.3rem; font-weight: 800;">Autoimmune &amp; Absorption</div>
                 <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Celiac antibodies (tTG-IgA)</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
                   <div style="display: flex; align-items: center; gap: 0.45rem;"><span class="p-row-label">Parietal cell &amp; intrinsic factor</span><span style="background: #22c55e; color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.35rem; border-radius: 4px;">0%</span></div>
