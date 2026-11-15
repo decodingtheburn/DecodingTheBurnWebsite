@@ -819,44 +819,71 @@
       <!-- CENTER: TRANSPARENT MEDICAL HUMAN WITH LIGHT GREY MULTI-TARGET ARROWS -->
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0; position: relative;">
         <!-- Height matches the cards layout, viewBox width = 140. Left edge = 0, Right edge = 140 -->
-        <svg viewBox="0 0 140 450" style="width: 100%; height: auto; display: block;" aria-label="Transparent anatomical manikin with light grey arrows">
+        <svg viewBox="0 0 140 450" style="width: 100%; height: auto; display: block;" aria-label="Anatomical female figure with subtle dotted arrows">
           <defs>
-            <!-- Clean Light Grey Marker Arrowheads (#94a3b8) -->
-            <marker id="arrow-grey-left" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 10 1 L 0 5 L 10 9 z" fill="#94a3b8" />
+            <!-- Very Light Subtle Grey Dotted Arrowheads (#cbd5e1) -->
+            <marker id="arrow-grey-left" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse">
+              <path d="M 10 1.5 L 0 5 L 10 8.5 z" fill="#cbd5e1" />
             </marker>
-            <marker id="arrow-grey-right" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-              <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8" />
+            <marker id="arrow-grey-right" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto">
+              <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#cbd5e1" />
             </marker>
           </defs>
 
-          <!-- Clean Minimalist Human Silhouette (Centered at X=70, NO vertical line, NO box bg) -->
-          <path d="M 70 18 C 58 18 50 29 50 45 C 50 58 56 67 63 72 L 63 80 C 52 85 42 94 38 108 L 34 165 C 32 176 40 179 43 170 L 48 138 L 48 245 L 56 375 C 57 388 65 388 66 375 L 69 270 L 71 270 L 74 375 C 75 388 83 388 84 375 L 92 245 L 92 138 L 97 170 C 100 179 108 176 106 165 L 102 108 C 98 94 88 85 77 80 L 77 72 C 84 67 90 58 90 45 C 90 29 82 18 70 18 Z" 
-                fill="#ffffff" stroke="#94a3b8" stroke-width="1.75"/>
+          <!-- Anatomical Female Figure (3x thicker stroke, graceful realistic contours) -->
+          <path d="M 70 16 
+                   C 60 16 52 26 52 42 
+                   C 52 54 57 63 64 68 
+                   L 64 77 
+                   C 54 81 44 88 40 98 
+                   C 36 108 34 140 32 170 
+                   C 31 178 37 180 39 173 
+                   L 44 145 
+                   C 45 130 47 115 50 115 
+                   C 52 118 53 126 51 138 
+                   C 48 152 49 162 53 175 
+                   C 51 185 47 202 46 220 
+                   C 44 242 49 265 52 285 
+                   L 55 385 
+                   C 56 395 64 395 65 385 
+                   L 68 285 
+                   C 69 270 70 270 70 270 
+                   C 70 270 71 270 72 285 
+                   L 75 385 
+                   C 76 395 84 395 85 385 
+                   L 88 285 
+                   C 91 265 96 242 94 220 
+                   C 93 202 89 185 87 175 
+                   C 91 162 92 152 89 138 
+                   C 87 126 88 118 90 115 
+                   C 93 115 95 130 96 145 
+                   L 101 173 
+                   C 103 180 109 178 108 170 
+                   C 106 140 104 108 100 98 
+                   C 96 88 86 81 76 77 
+                   L 76 68 
+                   C 83 63 88 54 88 42 
+                   C 88 26 80 16 70 16 Z" 
+                fill="#ffffff" stroke="#475569" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
 
-          <!-- 1. BRAIN FOCAL POINT (Y ~ 42) -->
-          <circle cx="70" cy="42" r="4.5" fill="#0f172a"/>
-          <!-- Light Grey Arrow from Brain pointing to top of Nervous System Card (Bottom Left: X=0, Y=240) -->
-          <polyline points="70,42 25,240 0,240" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-grey-left)" stroke-linecap="round"/>
+          <!-- Light Dotted Connections from Anatomical Zones (#cbd5e1) -->
+          <!-- 1. Brain/Cranium Zone (Y ~ 42) to Nervous System Card (Bottom Left: X=0, Y=240) -->
+          <circle cx="70" cy="42" r="3" fill="#94a3b8"/>
+          <polyline points="70,42 25,240 0,240" fill="none" stroke="#cbd5e1" stroke-width="1.15" stroke-dasharray="3,3" marker-end="url(#arrow-grey-left)" stroke-linecap="round"/>
 
-          <!-- 2. MOUTH FOCAL POINT (Y ~ 68) -->
-          <circle cx="70" cy="68" r="4.5" fill="#dc2626"/>
-          <!-- Light Grey Arrow from Mouth pointing to top of Dental Issues Card (Top Left: X=0, Y=26) -->
-          <polyline points="70,68 25,26 0,26" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-grey-left)" stroke-linecap="round"/>
-          <!-- Light Grey Arrow from Mouth branching to Dietary Triggers Card (Top Right: X=140, Y=26) -->
-          <polyline points="70,68 115,26 140,26" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
+          <!-- 2. Mouth Zone (Y ~ 66) to Dental Issues (Top Left: X=0, Y=26) & Dietary Triggers (Top Right: X=140, Y=26) -->
+          <circle cx="70" cy="66" r="3" fill="#94a3b8"/>
+          <polyline points="70,66 25,26 0,26" fill="none" stroke="#cbd5e1" stroke-width="1.15" stroke-dasharray="3,3" marker-end="url(#arrow-grey-left)" stroke-linecap="round"/>
+          <polyline points="70,66 115,26 140,26" fill="none" stroke="#cbd5e1" stroke-width="1.15" stroke-dasharray="3,3" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
 
-          <!-- 3. STOMACH FOCAL POINT (Y ~ 155) -->
-          <circle cx="70" cy="155" r="4.5" fill="#ea580c"/>
-          <!-- Light Grey Arrow from Stomach pointing to Dietary Triggers Card (Top Right: X=140, Y=26) -->
-          <polyline points="70,155 118,55 140,26" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
-          <!-- Light Grey Arrow from Stomach pointing down to Systemic Factors Card (Bottom Right: X=140, Y=240) -->
-          <polyline points="70,155 110,240 140,240" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
+          <!-- 3. Stomach Zone (Y ~ 150) to Dietary Triggers (Top Right: X=140, Y=26) & Systemic Factors (Bottom Right: X=140, Y=240) -->
+          <circle cx="70" cy="150" r="3" fill="#94a3b8"/>
+          <polyline points="70,150 118,55 140,26" fill="none" stroke="#cbd5e1" stroke-width="1.15" stroke-dasharray="3,3" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
+          <polyline points="70,150 110,240 140,240" fill="none" stroke="#cbd5e1" stroke-width="1.15" stroke-dasharray="3,3" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
 
-          <!-- 4. INTESTINE / GUT FOCAL POINT (Y ~ 225) -->
-          <circle cx="70" cy="225" r="4.5" fill="#334155"/>
-          <!-- Light Grey Arrow from Intestine pointing to Systemic Factors Card (Bottom Right: X=140, Y=240) -->
-          <polyline points="70,225 115,240 140,240" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
+          <!-- 4. Intestine/Systemic Zone (Y ~ 215) to Systemic Factors Card (Bottom Right: X=140, Y=240) -->
+          <circle cx="70" cy="215" r="3" fill="#94a3b8"/>
+          <polyline points="70,215 115,240 140,240" fill="none" stroke="#cbd5e1" stroke-width="1.15" stroke-dasharray="3,3" marker-end="url(#arrow-grey-right)" stroke-linecap="round"/>
         </svg>
       </div>
 
