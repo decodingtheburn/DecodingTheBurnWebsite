@@ -687,10 +687,35 @@
     <!-- 3-Column Grid: Left Card | Manikin Center | Right Card. Gap is 0 so arrows seamlessly touch the cards! -->
     <div style="display: grid; grid-template-columns: 1fr 140px 1fr; gap: 0; align-items: start;">
       
-      <!-- LEFT COLUMN: 2 CARDS -->
+      <!-- LEFT COLUMN: DENTAL ISSUES (TOP) & NERVOUS SYSTEM (BOTTOM) -->
       <div style="display: flex; flex-direction: column; gap: 2rem;">
         
-        <!-- CARD 1: NERVOUS SYSTEM (Brain & Nerves) -->
+        <!-- TOP LEFT: DENTAL ISSUES (Oral Cavity) -->
+        <div class="p-card" style="border-radius: 12px 0 12px 12px; border-right: 2px solid #dc2626; display: flex; flex-direction: column;">
+          <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
+            <div>
+              <div class="p-card-title" style="font-size: 1.25rem;">Dental Issues</div>
+              <div class="p-card-sub">Oral Cavity</div>
+            </div>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C7.5 2 4 4.5 4 8c0 3 1.5 5.5 2 8 .6 3 1.5 6 3 6s2.5-3 3-5c.5 2 1.5 5 3 5s2.4-3 3-6c.5-2.5 2-5 2-8 0-3.5-3.5-6-8-6z"/>
+            </svg>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+            <div class="p-row"><span class="p-row-label">Leaky crown</span><span class="p-badge-red">30%</span></div>
+            <div class="p-row"><span class="p-row-label">Exposed tubules</span><span class="p-badge-amber">20%</span></div>
+            <div class="p-row"><span class="p-row-label">Canine occlusion</span><span class="p-badge-red">20%</span></div>
+          </div>
+
+          <!-- Stretched Full-Width Others Category Button -->
+          <div style="margin-top: 0.85rem; padding: 0.55rem 0.75rem; background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s ease;">
+            <span style="font-size: 0.88rem; font-weight: 700; color: #991b1b; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
+            <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626; background: #fee2e2; padding: 0.15rem 0.5rem; border-radius: 4px;">0%</span>
+          </div>
+        </div>
+
+        <!-- BOTTOM LEFT: NERVOUS SYSTEM (Brain & Nerves) -->
         <div class="p-card" style="border-radius: 12px 0 12px 12px; border-right: 2px solid #0f172a; display: flex; flex-direction: column;">
           <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
             <div>
@@ -716,31 +741,6 @@
           </div>
         </div>
 
-        <!-- CARD 4: SYSTEMIC FACTORS (Hormones & Absorption) -->
-        <div class="p-card" style="border-radius: 12px 0 12px 12px; border-right: 2px solid #334155; display: flex; flex-direction: column;">
-          <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
-            <div>
-              <div class="p-card-title" style="font-size: 1.25rem;">Systemic Factors</div>
-              <div class="p-card-sub">Hormones &amp; Absorption</div>
-            </div>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10 2v7.31L4.14 20.3A2 2 0 0 0 5.86 23h12.28a2 2 0 0 0 1.72-2.7L14 9.31V2"/><path d="M8.5 2h7"/>
-            </svg>
-          </div>
-
-          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
-            <div class="p-row"><span class="p-row-label">Hormones (TSH/Estrogen)</span><span class="p-val-neutral">0%</span></div>
-            <div class="p-row"><span class="p-row-label">Deficiencies (B12/Iron)</span><span class="p-val-neutral">0%</span></div>
-            <div class="p-row"><span class="p-row-label">Excesses &amp; toxicity</span><span class="p-val-neutral">0%</span></div>
-          </div>
-
-          <!-- Stretched Full-Width Others Category Button -->
-          <div style="margin-top: 0.85rem; padding: 0.55rem 0.75rem; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s ease;">
-            <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
-            <span style="font-size: 0.75rem; font-weight: 700; color: #475569; background: #e2e8f0; padding: 0.15rem 0.5rem; border-radius: 4px;">0% Ruled Out</span>
-          </div>
-        </div>
-
       </div>
 
       <!-- CENTER: TRANSPARENT MEDICAL HUMAN (NO BG BOX, NO VERTICAL SPINE LINE, ARROWS TOUCH CARDS DIRECTLY) -->
@@ -749,17 +749,17 @@
         <svg viewBox="0 0 140 450" style="width: 100%; height: auto; display: block;" aria-label="Transparent anatomical manikin">
           <defs>
             <!-- Marker Arrows -->
+            <marker id="arrow-left-red" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 10 1 L 0 5 L 10 9 z" fill="#dc2626" />
+            </marker>
             <marker id="arrow-left-black" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
               <path d="M 10 1 L 0 5 L 10 9 z" fill="#0f172a" />
             </marker>
-            <marker id="arrow-left-slate" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 10 1 L 0 5 L 10 9 z" fill="#334155" />
-            </marker>
-            <marker id="arrow-right-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-              <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626" />
-            </marker>
             <marker id="arrow-right-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
               <path d="M 0 1 L 10 5 L 0 9 z" fill="#ea580c" />
+            </marker>
+            <marker id="arrow-right-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155" />
             </marker>
           </defs>
 
@@ -767,57 +767,28 @@
           <path d="M 70 18 C 58 18 50 29 50 45 C 50 58 56 67 63 72 L 63 80 C 52 85 42 94 38 108 L 34 165 C 32 176 40 179 43 170 L 48 138 L 48 245 L 56 375 C 57 388 65 388 66 375 L 69 270 L 71 270 L 74 375 C 75 388 83 388 84 375 L 92 245 L 92 138 L 97 170 C 100 179 108 176 106 165 L 102 108 C 98 94 88 85 77 80 L 77 72 C 84 67 90 58 90 45 C 90 29 82 18 70 18 Z" 
                 fill="#ffffff" stroke="#94a3b8" stroke-width="1.75"/>
 
-          <!-- 1. BRAIN FOCAL POINT & ARROW TO CARD 1 (Touches top-right of Card 1 at X=0, Y=26) -->
-          <circle cx="70" cy="42" r="4.5" fill="#0f172a"/>
-          <!-- Polyline connects brain (70, 42) -> angled up to top of box (X=0, Y=26) and touches box edge with arrow -->
-          <polyline points="70,42 25,26 0,26" fill="none" stroke="#0f172a" stroke-width="1.75" marker-end="url(#arrow-left-black)" stroke-linecap="round"/>
-
-          <!-- 2. MOUTH / DENTAL FOCAL POINT & ARROW TO CARD 2 (Touches top-left of Card 2 at X=140, Y=26) -->
+          <!-- 1. MOUTH / DENTAL FOCAL POINT & ARROW TO TOP-LEFT CARD (Dental Issues) -->
           <circle cx="70" cy="68" r="4.5" fill="#dc2626"/>
-          <!-- Polyline connects mouth (70, 68) -> angled up to top of box (X=140, Y=26) and touches box edge with arrow -->
-          <polyline points="70,68 115,26 140,26" fill="none" stroke="#dc2626" stroke-width="1.75" marker-end="url(#arrow-right-red)" stroke-linecap="round"/>
+          <polyline points="70,68 25,26 0,26" fill="none" stroke="#dc2626" stroke-width="1.75" marker-end="url(#arrow-left-red)" stroke-linecap="round"/>
 
-          <!-- 3. STOMACH / DIETARY FOCAL POINT & ARROW TO CARD 3 (Touches top-left of Card 3 at X=140, Y=240) -->
+          <!-- 2. STOMACH / DIETARY FOCAL POINT & ARROW TO TOP-RIGHT CARD (Dietary Triggers) -->
           <circle cx="70" cy="155" r="4.5" fill="#ea580c"/>
-          <!-- Polyline connects stomach (70, 155) -> goes to top of lower box (X=140, Y=240) and touches box edge with arrow -->
-          <polyline points="70,155 110,240 140,240" fill="none" stroke="#ea580c" stroke-width="1.75" marker-end="url(#arrow-right-orange)" stroke-linecap="round"/>
+          <polyline points="70,155 115,26 140,26" fill="none" stroke="#ea580c" stroke-width="1.75" marker-end="url(#arrow-right-orange)" stroke-linecap="round"/>
 
-          <!-- 4. GUT / SYSTEMIC FOCAL POINT & ARROW TO CARD 4 (Touches top-right of Card 4 at X=0, Y=240) -->
+          <!-- 3. BRAIN & NERVE FOCAL POINT & ARROW TO BOTTOM-LEFT CARD (Nervous System) -->
+          <circle cx="70" cy="42" r="4.5" fill="#0f172a"/>
+          <polyline points="70,42 25,240 0,240" fill="none" stroke="#0f172a" stroke-width="1.75" marker-end="url(#arrow-left-black)" stroke-linecap="round"/>
+
+          <!-- 4. GUT / SYSTEMIC FOCAL POINT & ARROW TO BOTTOM-RIGHT CARD (Systemic Factors) -->
           <circle cx="70" cy="225" r="4.5" fill="#334155"/>
-          <!-- Polyline connects gut (70, 225) -> goes to top of lower box (X=0, Y=240) and touches box edge with arrow -->
-          <polyline points="70,225 30,240 0,240" fill="none" stroke="#334155" stroke-width="1.75" marker-end="url(#arrow-left-slate)" stroke-linecap="round"/>
+          <polyline points="70,225 115,240 140,240" fill="none" stroke="#334155" stroke-width="1.75" marker-end="url(#arrow-right-slate)" stroke-linecap="round"/>
         </svg>
       </div>
 
-      <!-- RIGHT COLUMN: 2 CARDS -->
+      <!-- RIGHT COLUMN: DIETARY TRIGGERS (TOP) & SYSTEMIC FACTORS (BOTTOM) -->
       <div style="display: flex; flex-direction: column; gap: 2rem;">
         
-        <!-- CARD 2: DENTAL ISSUES (Oral Cavity) -->
-        <div class="p-card" style="border-radius: 0 12px 12px 12px; border-left: 2px solid #dc2626; display: flex; flex-direction: column;">
-          <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
-            <div>
-              <div class="p-card-title" style="font-size: 1.25rem;">Dental Issues</div>
-              <div class="p-card-sub">Oral Cavity</div>
-            </div>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2C7.5 2 4 4.5 4 8c0 3 1.5 5.5 2 8 .6 3 1.5 6 3 6s2.5-3 3-5c.5 2 1.5 5 3 5s2.4-3 3-6c.5-2.5 2-5 2-8 0-3.5-3.5-6-8-6z"/>
-            </svg>
-          </div>
-
-          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
-            <div class="p-row"><span class="p-row-label">Leaky crown</span><span class="p-badge-red">30%</span></div>
-            <div class="p-row"><span class="p-row-label">Exposed tubules</span><span class="p-badge-amber">20%</span></div>
-            <div class="p-row"><span class="p-row-label">Canine occlusion</span><span class="p-badge-red">20%</span></div>
-          </div>
-
-          <!-- Stretched Full-Width Others Category Button -->
-          <div style="margin-top: 0.85rem; padding: 0.55rem 0.75rem; background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s ease;">
-            <span style="font-size: 0.88rem; font-weight: 700; color: #991b1b; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
-            <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626; background: #fee2e2; padding: 0.15rem 0.5rem; border-radius: 4px;">0%</span>
-          </div>
-        </div>
-
-        <!-- CARD 3: DIETARY TRIGGERS (Stomach & Saliva) -->
+        <!-- TOP RIGHT: DIETARY TRIGGERS (Stomach & Saliva) -->
         <div class="p-card" style="border-radius: 0 12px 12px 12px; border-left: 2px solid #ea580c; display: flex; flex-direction: column;">
           <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
             <div>
@@ -839,6 +810,31 @@
           <div style="margin-top: 0.85rem; padding: 0.55rem 0.75rem; background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s ease;">
             <span style="font-size: 0.88rem; font-weight: 700; color: #9a3412; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
             <span style="font-size: 0.75rem; font-weight: 700; color: #ea580c; background: #ffedd5; padding: 0.15rem 0.5rem; border-radius: 4px;">0%</span>
+          </div>
+        </div>
+
+        <!-- BOTTOM RIGHT: SYSTEMIC FACTORS (Hormones & Absorption) -->
+        <div class="p-card" style="border-radius: 0 12px 12px 12px; border-left: 2px solid #334155; display: flex; flex-direction: column;">
+          <div class="p-card-header" style="margin-bottom: 0.6rem; padding-bottom: 0.45rem;">
+            <div>
+              <div class="p-card-title" style="font-size: 1.25rem;">Systemic Factors</div>
+              <div class="p-card-sub">Hormones &amp; Absorption</div>
+            </div>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2v7.31L4.14 20.3A2 2 0 0 0 5.86 23h12.28a2 2 0 0 0 1.72-2.7L14 9.31V2"/><path d="M8.5 2h7"/>
+            </svg>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+            <div class="p-row"><span class="p-row-label">Hormones (TSH/Estrogen)</span><span class="p-val-neutral">0%</span></div>
+            <div class="p-row"><span class="p-row-label">Deficiencies (B12/Iron)</span><span class="p-val-neutral">0%</span></div>
+            <div class="p-row"><span class="p-row-label">Excesses &amp; toxicity</span><span class="p-val-neutral">0%</span></div>
+          </div>
+
+          <!-- Stretched Full-Width Others Category Button -->
+          <div style="margin-top: 0.85rem; padding: 0.55rem 0.75rem; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s ease;">
+            <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a; text-decoration: underline; text-underline-offset: 3px;">Others (20) &rsaquo;</span>
+            <span style="font-size: 0.75rem; font-weight: 700; color: #475569; background: #e2e8f0; padding: 0.15rem 0.5rem; border-radius: 4px;">0% Ruled Out</span>
           </div>
         </div>
 
