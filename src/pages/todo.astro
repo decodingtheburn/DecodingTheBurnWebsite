@@ -69,7 +69,7 @@
     }
     .app-content {
       width: 100%;
-      max-width: 920px;
+      max-width: 1080px;
       display: none;
     }
     
@@ -77,10 +77,10 @@
     .hero-big-thing {
       background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
       border: 2px solid #ef4444;
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
+      border-radius: 24px;
+      padding: 3.5rem 3rem;
       box-shadow: 0 20px 60px rgba(239, 68, 68, 0.15), 0 0 0 1px rgba(239, 68, 68, 0.2);
-      margin-bottom: 2.5rem;
+      margin-bottom: 3.5rem;
       position: relative;
       overflow: hidden;
     }
@@ -93,56 +93,56 @@
     .badge-hero {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      padding: 0.35rem 0.85rem;
+      gap: 0.55rem;
+      padding: 0.5rem 1.15rem;
       border-radius: 999px;
       background: rgba(239, 68, 68, 0.18);
       color: #fca5a5;
       border: 1px solid rgba(239, 68, 68, 0.4);
-      font-size: 0.82rem;
+      font-size: 0.95rem;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
     .hero-title {
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
       font-weight: 850;
-      line-height: 1.08;
+      line-height: 1.12;
       letter-spacing: -0.025em;
       color: #ffffff;
-      margin-bottom: 0.85rem;
+      margin-bottom: 1.25rem;
     }
     .hero-desc {
-      font-size: 1.15rem;
-      line-height: 1.55;
+      font-size: 1.35rem;
+      line-height: 1.65;
       color: #cbd5e1;
-      max-width: 760px;
+      max-width: 880px;
     }
     .hero-footer-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 1.75rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.5rem;
     }
     .hero-stat-pill {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.85rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.95rem;
+      font-size: 1.15rem;
       color: #38bdf8;
     }
     .pulse-dot {
-      width: 10px;
-      height: 10px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background: #ef4444;
-      box-shadow: 0 0 12px #ef4444;
+      box-shadow: 0 0 16px #ef4444;
       animation: pulse 1.8s infinite;
     }
     @keyframes pulse {
@@ -155,38 +155,43 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 1.15rem;
-      padding: 0 0.25rem;
+      margin-bottom: 2rem;
+      padding: 0 0.5rem;
     }
     .subtasks-header h2 {
-      font-size: 1.35rem;
-      font-weight: 800;
+      font-size: 1.85rem;
+      font-weight: 850;
       color: #f8fafc;
+      letter-spacing: -0.02em;
     }
     .subtasks-count {
-      font-size: 0.88rem;
+      font-size: 1.15rem;
       color: #94a3b8;
       font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
     }
 
+    /* 1 HOUR BLOCK = 1/3 PAGE (min-height ~32vh) WITH LARGE FONTS */
     .subtask-card {
       background: #131c2e;
-      border: 1px solid #1f2d47;
-      border-radius: 14px;
-      padding: 1.2rem 1.35rem;
-      margin-bottom: 1rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto auto;
-      gap: 1.25rem;
-      align-items: center;
+      border: 1.5px solid #1f2d47;
+      border-radius: 20px;
+      padding: 2.5rem 2.25rem;
+      margin-bottom: 2.25rem;
+      min-height: 32vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       transition: all 0.2s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
     .subtask-card:hover {
       border-color: #3b82f6;
       background: #17233a;
+      transform: translateY(-2px);
     }
     .subtask-card.is-completed {
-      opacity: 0.55;
+      opacity: 0.45;
       background: #0f172a;
       border-color: #1e293b;
     }
@@ -196,25 +201,36 @@
     }
     .subtask-card.is-running {
       border-color: #a855f7;
-      box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+      box-shadow: 0 0 35px rgba(168, 85, 247, 0.3);
       background: #1a1b38;
+    }
+
+    .subtask-top-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      width: 100%;
     }
 
     /* CUSTOM BIG CHECKBOX */
     .task-checkbox-btn {
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
-      border: 2px solid #475569;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
+      border-radius: 10px;
+      border: 2.5px solid #475569;
       background: #090d16;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: all 0.15s ease;
+      margin-top: 0.35rem;
     }
     .task-checkbox-btn:hover {
       border-color: #9333ea;
+      transform: scale(1.05);
     }
     .task-checkbox-btn.checked {
       background: #22c55e;
@@ -222,61 +238,92 @@
       color: #ffffff;
     }
 
-    /* TASK DETAILS */
+    /* TASK DETAILS (LARGE TYPOGRAPHY) */
     .task-main-col {
+      flex: 1;
       min-width: 0;
     }
     .task-meta-tag {
-      font-size: 0.72rem;
+      font-size: 0.95rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: #38bdf8;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
       font-family: 'JetBrains Mono', monospace;
     }
     .task-title-text {
-      font-size: 1.08rem;
-      font-weight: 700;
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+      font-weight: 850;
       color: #ffffff;
-      line-height: 1.35;
+      line-height: 1.22;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.15rem;
     }
-    .task-desc-text {
-      font-size: 0.88rem;
-      line-height: 1.45;
-      color: #94a3b8;
-      margin-top: 0.25rem;
+    .task-bullet-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.85rem 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .task-bullet-list li {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+    .task-bullet-list li::before {
+      content: "•";
+      color: #a855f7;
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
     }
 
-    /* INTERACTIVE TIMER WIDGET */
+    /* CARD BOTTOM BAR (TIMER) */
+    .subtask-bottom-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    /* INTERACTIVE TIMER WIDGET (EXPANDED) */
     .timer-widget {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 1rem;
       background: #090d16;
-      padding: 0.45rem 0.85rem;
-      border-radius: 10px;
-      border: 1px solid #1f2d47;
+      padding: 0.75rem 1.25rem;
+      border-radius: 14px;
+      border: 1.5px solid #1f2d47;
     }
     .timer-display {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.95rem;
-      font-weight: 700;
+      font-size: 1.45rem;
+      font-weight: 800;
       color: #f1f5f9;
-      min-width: 60px;
+      min-width: 85px;
       text-align: center;
     }
     .timer-btn {
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
+      padding: 0.6rem 1.25rem;
+      border-radius: 10px;
       border: none;
-      font-size: 0.78rem;
-      font-weight: 700;
+      font-size: 1.05rem;
+      font-weight: 800;
       cursor: pointer;
       transition: all 0.15s ease;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.5rem;
     }
     .btn-timer-start {
       background: #9333ea;
@@ -284,6 +331,7 @@
     }
     .btn-timer-start:hover {
       background: #7e22ce;
+      transform: scale(1.02);
     }
     .btn-timer-stop {
       background: #ef4444;
@@ -292,7 +340,8 @@
     .btn-timer-reset {
       background: #334155;
       color: #cbd5e1;
-      padding: 0.35rem 0.5rem;
+      padding: 0.6rem 0.85rem;
+      font-size: 1.1rem;
     }
     .btn-timer-reset:hover {
       background: #475569;
@@ -397,122 +446,178 @@
       <div class="subtasks-count" id="progress-summary">0 of 7 Completed</div>
     </div>
 
-    <!-- PRIORITY TASK 0: 9:00 AM CALL TO DENTIST -->
-    <div class="subtask-card" id="card-t0" style="border: 2px solid #ef4444; background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(19, 28, 46, 0.95)); box-shadow: 0 0 25px rgba(239, 68, 68, 0.25);">
-      <div class="task-checkbox-btn" data-tid="t0" role="checkbox" aria-checked="false" style="border-color: #ef4444;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <!-- PRIORITY TASK 0: CALL DENTIST -->
+    <div class="subtask-card" id="card-t0" style="border: 2.5px solid #ef4444; background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(19, 28, 46, 0.98)); box-shadow: 0 0 35px rgba(239, 68, 68, 0.25);">
+      <div class="subtask-top-row">
+        <div class="task-checkbox-btn" data-tid="t0" role="checkbox" aria-checked="false" style="border-color: #ef4444;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="task-main-col">
+          <div class="task-meta-tag" style="color: #f87171; font-weight: 850;">CRITICAL PRIORITY &bull; FIRST MORNING ACTION</div>
+          <div class="task-title-text" style="color: #ffffff;">Request iTero Occlusion Scan</div>
+          <ul class="task-bullet-list">
+            <li>Call or email dentist office to request official digital scan export</li>
+            <li>Ask specifically for the bite contact map and clearance heatmap from iTero Element 5D</li>
+            <li>Crucial physical documentation for Chapter 13 and the interactive 3D Viewer audit</li>
+          </ul>
+        </div>
       </div>
-      <div class="task-main-col">
-        <div class="task-meta-tag" style="color: #f87171; font-weight: 800; letter-spacing: 0.06em;">CRITICAL PRIORITY &bull; 09:00 AM TOMORROW</div>
-        <div class="task-title-text" style="color: #ffffff; font-size: 1.18rem; font-weight: 800;">Request Occlusion View of iTero 3D Scan from Dentist</div>
-        <div class="task-desc-text" style="color: #cbd5e1;">Call or email dentist office right at 9:00 AM sharp: request the official bite/occlusion contact map view and color clearance heatmap from the iTero Element 5D digital scan. Essential for Chapter 13 &amp; the 3D Viewer audit.</div>
-      </div>
-      <div class="timer-widget">
-        <span class="timer-display" id="time-t0" style="color: #f87171;">15:00</span>
-        <button class="timer-btn btn-timer-start" data-tid="t0" data-default="900" style="border-color: #ef4444; color: #ef4444;">Start</button>
-        <button class="timer-btn btn-timer-reset" data-tid="t0" data-default="900" title="Reset">&#8635;</button>
+      <div class="subtask-bottom-row">
+        <div class="timer-widget">
+          <span class="timer-display" id="time-t0" style="color: #f87171;">15:00</span>
+          <button class="timer-btn btn-timer-start" data-tid="t0" data-default="900" style="background: #ef4444; color: #fff;">Start Sprint</button>
+          <button class="timer-btn btn-timer-reset" data-tid="t0" data-default="900" title="Reset">&#8635;</button>
+        </div>
       </div>
     </div>
 
     <!-- TASK 1 -->
     <div class="subtask-card" id="card-t1">
-      <div class="task-checkbox-btn" data-tid="t1" role="checkbox" aria-checked="false">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <div class="subtask-top-row">
+        <div class="task-checkbox-btn" data-tid="t1" role="checkbox" aria-checked="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="task-main-col">
+          <div class="task-meta-tag">Hour 1 &bull; 09:00 – 10:00</div>
+          <div class="task-title-text">Table of Contents Alignment</div>
+          <ul class="task-bullet-list">
+            <li>Re-sequence Chapters 1 to 24 continuously across Parts I through VI</li>
+            <li>Resolve duplicate numbering conflict between Part II and Part III</li>
+            <li>Harmonize chapter anchors, clean subsections, and verify page numbers match the interior</li>
+          </ul>
+        </div>
       </div>
-      <div class="task-main-col">
-        <div class="task-meta-tag">Hour 1 &bull; 09:00 – 10:00</div>
-        <div class="task-title-text">Table of Contents &amp; Chapter Numbering Alignment</div>
-        <div class="task-desc-text">Sequence Chapters 1 to 24 sequentially without duplicate numbers between Part II and Part III. Ensure all page anchors match.</div>
-      </div>
-      <div class="timer-widget">
-        <span class="timer-display" id="time-t1">60:00</span>
-        <button class="timer-btn btn-timer-start" data-tid="t1" data-default="3600">Start</button>
-        <button class="timer-btn btn-timer-reset" data-tid="t1" data-default="3600" title="Reset">&#8635;</button>
+      <div class="subtask-bottom-row">
+        <div class="timer-widget">
+          <span class="timer-display" id="time-t1">60:00</span>
+          <button class="timer-btn btn-timer-start" data-tid="t1" data-default="3600">Start Sprint</button>
+          <button class="timer-btn btn-timer-reset" data-tid="t1" data-default="3600" title="Reset">&#8635;</button>
+        </div>
       </div>
     </div>
 
     <!-- TASK 2 -->
     <div class="subtask-card" id="card-t2">
-      <div class="task-checkbox-btn" data-tid="t2" role="checkbox" aria-checked="false">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <div class="subtask-top-row">
+        <div class="task-checkbox-btn" data-tid="t2" role="checkbox" aria-checked="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="task-main-col">
+          <div class="task-meta-tag">Hour 2 &bull; 10:00 – 11:00</div>
+          <div class="task-title-text">Cover Wrap Spine Calibration</div>
+          <ul class="task-bullet-list">
+            <li>Confirm front cover artwork and lock flush width margins across all 4 title lines</li>
+            <li>Verify rainbow RELIEF spans the exact physical outer boundary of MOUTH</li>
+            <li>Calibrate 0.669" spine width for 297 pages and verify Amazon KDP barcode safe zones</li>
+          </ul>
+        </div>
       </div>
-      <div class="task-main-col">
-        <div class="task-meta-tag">Hour 2 &bull; 10:00 – 11:00</div>
-        <div class="task-title-text">Cover Wrap &amp; Spine Calibration (Acid-Triggered Relief)</div>
-        <div class="task-desc-text">Confirm front cover artwork, ensure rainbow RELIEF spans exact physical width of MOUTH, set 0.669" spine width for 297 pages, and check barcode safe zone.</div>
-      </div>
-      <div class="timer-widget">
-        <span class="timer-display" id="time-t2">60:00</span>
-        <button class="timer-btn btn-timer-start" data-tid="t2" data-default="3600">Start</button>
-        <button class="timer-btn btn-timer-reset" data-tid="t2" data-default="3600" title="Reset">&#8635;</button>
+      <div class="subtask-bottom-row">
+        <div class="timer-widget">
+          <span class="timer-display" id="time-t2">60:00</span>
+          <button class="timer-btn btn-timer-start" data-tid="t2" data-default="3600">Start Sprint</button>
+          <button class="timer-btn btn-timer-reset" data-tid="t2" data-default="3600" title="Reset">&#8635;</button>
+        </div>
       </div>
     </div>
 
     <!-- TASK 3 -->
     <div class="subtask-card" id="card-t3">
-      <div class="task-checkbox-btn" data-tid="t3" role="checkbox" aria-checked="false">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <div class="subtask-top-row">
+        <div class="task-checkbox-btn" data-tid="t3" role="checkbox" aria-checked="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="task-main-col">
+          <div class="task-meta-tag">Hour 3 &bull; 11:00 – 12:00</div>
+          <div class="task-title-text">Interior Margins Running Heads</div>
+          <ul class="task-bullet-list">
+            <li>Audit /draft layout for strict 0.65" inside gutter margins for 6" x 9" format</li>
+            <li>Verify 3-line rubber draft stamp date is synchronized across all 297 pages</li>
+            <li>Inspect running head titles and confirm alternating odd-even page numbers</li>
+          </ul>
+        </div>
       </div>
-      <div class="task-main-col">
-        <div class="task-meta-tag">Hour 3 &bull; 11:00 – 12:00</div>
-        <div class="task-title-text">Interior Margins, Running Heads &amp; Rubber Draft Stamp Check</div>
-        <div class="task-desc-text">Audit /draft for 0.65" inside gutter margins, check 3-line rubber stamp date, verify running head titles (Burning Mouth Relief), and page numbers.</div>
-      </div>
-      <div class="timer-widget">
-        <span class="timer-display" id="time-t3">60:00</span>
-        <button class="timer-btn btn-timer-start" data-tid="t3" data-default="3600">Start</button>
-        <button class="timer-btn btn-timer-reset" data-tid="t3" data-default="3600" title="Reset">&#8635;</button>
+      <div class="subtask-bottom-row">
+        <div class="timer-widget">
+          <span class="timer-display" id="time-t3">60:00</span>
+          <button class="timer-btn btn-timer-start" data-tid="t3" data-default="3600">Start Sprint</button>
+          <button class="timer-btn btn-timer-reset" data-tid="t3" data-default="3600" title="Reset">&#8635;</button>
+        </div>
       </div>
     </div>
 
     <!-- TASK 4 -->
     <div class="subtask-card" id="card-t4">
-      <div class="task-checkbox-btn" data-tid="t4" role="checkbox" aria-checked="false">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <div class="subtask-top-row">
+        <div class="task-checkbox-btn" data-tid="t4" role="checkbox" aria-checked="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="task-main-col">
+          <div class="task-meta-tag">Hour 4 &bull; 12:00 – 13:00</div>
+          <div class="task-title-text">Scientific Figures Page Audit</div>
+          <ul class="task-bullet-list">
+            <li>Verify MultiSourcePainDiagram Option 6 with 62px enlarged icons and clean orthogonal lines</li>
+            <li>Audit Page 30e (The Overflowing Bucket Science) with all 5 medical pioneer models</li>
+            <li>Ensure high-contrast vector clarity and zero clipping on 300 DPI print output</li>
+          </ul>
+        </div>
       </div>
-      <div class="task-main-col">
-        <div class="task-meta-tag">Hour 4 &bull; 12:00 – 13:00</div>
-        <div class="task-title-text">Scientific Figures &amp; Page 30e Review</div>
-        <div class="task-desc-text">Confirm Option 6 in MultiSourcePainDiagram.astro has 62px enlarged icons and orthogonal lines. Verify Page 30e (The Overflowing Bucket Science) renders all 5 pioneer models.</div>
-      </div>
-      <div class="timer-widget">
-        <span class="timer-display" id="time-t4">60:00</span>
-        <button class="timer-btn btn-timer-start" data-tid="t4" data-default="3600">Start</button>
-        <button class="timer-btn btn-timer-reset" data-tid="t4" data-default="3600" title="Reset">&#8635;</button>
+      <div class="subtask-bottom-row">
+        <div class="timer-widget">
+          <span class="timer-display" id="time-t4">60:00</span>
+          <button class="timer-btn btn-timer-start" data-tid="t4" data-default="3600">Start Sprint</button>
+          <button class="timer-btn btn-timer-reset" data-tid="t4" data-default="3600" title="Reset">&#8635;</button>
+        </div>
       </div>
     </div>
 
     <!-- TASK 5 -->
     <div class="subtask-card" id="card-t5">
-      <div class="task-checkbox-btn" data-tid="t5" role="checkbox" aria-checked="false">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <div class="subtask-top-row">
+        <div class="task-checkbox-btn" data-tid="t5" role="checkbox" aria-checked="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="task-main-col">
+          <div class="task-meta-tag">Hour 5 &bull; 13:00 – 14:00</div>
+          <div class="task-title-text">Questionnaire Formatting Typography Audit</div>
+          <ul class="task-bullet-list">
+            <li>Inspect Pages 7 through 10 diagnostic questionnaire for balanced two-column alignment</li>
+            <li>Execute rigorous Anti-Widow audit: bind all heading and subhead endings with non-breaking spaces</li>
+            <li>Guarantee zero em-dashes, zero unescaped ampersands, and clean line-height across all cards</li>
+          </ul>
+        </div>
       </div>
-      <div class="task-main-col">
-        <div class="task-meta-tag">Hour 5 &bull; 13:00 – 14:00</div>
-        <div class="task-title-text">Questionnaire Formatting &amp; Anti-Widow Typography Audit</div>
-        <div class="task-desc-text">Inspect Pages 7–10 questionnaire radio buttons for clean 2-column alignment. Verify zero orphan widow words across all chapter headings.</div>
-      </div>
-      <div class="timer-widget">
-        <span class="timer-display" id="time-t5">60:00</span>
-        <button class="timer-btn btn-timer-start" data-tid="t5" data-default="3600">Start</button>
-        <button class="timer-btn btn-timer-reset" data-tid="t5" data-default="3600" title="Reset">&#8635;</button>
+      <div class="subtask-bottom-row">
+        <div class="timer-widget">
+          <span class="timer-display" id="time-t5">60:00</span>
+          <button class="timer-btn btn-timer-start" data-tid="t5" data-default="3600">Start Sprint</button>
+          <button class="timer-btn btn-timer-reset" data-tid="t5" data-default="3600" title="Reset">&#8635;</button>
+        </div>
       </div>
     </div>
 
     <!-- TASK 6 -->
     <div class="subtask-card" id="card-t6">
-      <div class="task-checkbox-btn" data-tid="t6" role="checkbox" aria-checked="false">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <div class="subtask-top-row">
+        <div class="task-checkbox-btn" data-tid="t6" role="checkbox" aria-checked="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="task-main-col">
+          <div class="task-meta-tag" style="color: #ef4444; font-weight: 850;">Hour 6 &bull; 14:00 – 15:00 &bull; FINAL MILESTONE</div>
+          <div class="task-title-text">Order Physical KDP Proof</div>
+          <ul class="task-bullet-list">
+            <li>Export final print-ready 6" x 9" interior PDF with embedded vector graphics</li>
+            <li>Upload interior PDF and calibrated cover wrap into the Amazon KDP Portal</li>
+            <li>Run Amazon Print Previewer: verify zero bleed errors, zero gutter trim collisions, and place the physical proof order</li>
+          </ul>
+        </div>
       </div>
-      <div class="task-main-col">
-        <div class="task-meta-tag" style="color: #ef4444;">Hour 6 &bull; 14:00 – 15:00 (Final Milestone)</div>
-        <div class="task-title-text">PDF Interior Export, Amazon KDP Previewer &amp; Order Proof Copy</div>
-        <div class="task-desc-text">Export 6" x 9" interior PDF, upload interior and cover wrap to Amazon KDP, pass Print Previewer checks with zero bleed errors, and submit order for physical draft copies.</div>
-      </div>
-      <div class="timer-widget">
-        <span class="timer-display" id="time-t6">60:00</span>
-        <button class="timer-btn btn-timer-start" data-tid="t6" data-default="3600">Start</button>
-        <button class="timer-btn btn-timer-reset" data-tid="t6" data-default="3600" title="Reset">&#8635;</button>
+      <div class="subtask-bottom-row">
+        <div class="timer-widget">
+          <span class="timer-display" id="time-t6">60:00</span>
+          <button class="timer-btn btn-timer-start" data-tid="t6" data-default="3600">Start Sprint</button>
+          <button class="timer-btn btn-timer-reset" data-tid="t6" data-default="3600" title="Reset">&#8635;</button>
+        </div>
       </div>
     </div>
 
