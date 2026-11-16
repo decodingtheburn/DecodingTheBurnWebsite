@@ -8,58 +8,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Master Schedule & Target Tracker • Acid-Triggered Burning Mouth</title>
+  <title>Master Focus Target • Acid-Triggered Burning Mouth Relief</title>
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;850&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;850&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0f172a;
+      background: #090d16;
       color: #f1f5f9;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1rem 4rem;
     }
     .auth-gate {
       width: 100%;
       max-width: 440px;
-      margin: 4rem auto;
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 14px;
-      padding: 2rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      margin: 5rem auto;
+      background: #111827;
+      border: 1px solid #1f293d;
+      border-radius: 16px;
+      padding: 2.25rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
       text-align: center;
     }
     .auth-gate input {
       width: 100%;
-      padding: 0.85rem 1rem;
-      border-radius: 8px;
-      border: 1.5px solid #475569;
-      background: #0f172a;
+      padding: 0.95rem 1.15rem;
+      border-radius: 10px;
+      border: 1.5px solid #334155;
+      background: #090d16;
       color: #fff;
-      font-size: 1rem;
+      font-size: 1.05rem;
       margin: 1.25rem 0 0.85rem;
       outline: none;
+      transition: border 0.2s;
     }
     .auth-gate input:focus {
       border-color: #a855f7;
     }
     .auth-gate button {
       width: 100%;
-      padding: 0.85rem;
-      border-radius: 8px;
+      padding: 0.95rem;
+      border-radius: 10px;
       border: none;
       background: #9333ea;
       color: #fff;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.05rem;
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -68,74 +69,285 @@
     }
     .app-content {
       width: 100%;
-      max-width: 980px;
+      max-width: 920px;
       display: none;
     }
-    .badge {
-      display: inline-block;
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    
+    /* THE 1 BIG THING HERO */
+    .hero-big-thing {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 2px solid #ef4444;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 60px rgba(239, 68, 68, 0.15), 0 0 0 1px rgba(239, 68, 68, 0.2);
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
     }
-    .badge-urgent { background: #ef4444; color: #fff; }
-    .badge-purple { background: #581c87; color: #f3e8ff; border: 1px solid #9333ea; }
-    .badge-green { background: #14532d; color: #86efac; border: 1px solid #22c55e; }
-    .card {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.75rem;
+    .hero-big-thing::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 6px;
+      background: linear-gradient(90deg, #ef4444, #f97316, #eab308, #22c55e, #06b6d4, #a855f7);
     }
-    .card-title {
-      font-size: 1.25rem;
+    .badge-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(239, 68, 68, 0.18);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      font-size: 0.82rem;
       font-weight: 800;
-      color: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 850;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      margin-bottom: 0.85rem;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+      max-width: 760px;
+    }
+    .hero-footer-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.15rem;
-      border-bottom: 1px solid #334155;
-      padding-bottom: 0.75rem;
-    }
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 140px 1fr auto;
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
       gap: 1rem;
-      align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #283548;
     }
-    .timeline-item:last-child { border-bottom: none; }
-    .time-col {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #38bdf8;
-    }
-    .task-title {
-      font-weight: 600;
-      color: #f8fafc;
-      font-size: 0.95rem;
-    }
-    .task-desc {
-      font-size: 0.82rem;
-      color: #94a3b8;
-      margin-top: 0.2rem;
-    }
-    .checkbox-wrap {
+    .hero-stat-pill {
       display: flex;
       align-items: center;
-      cursor: pointer;
+      gap: 0.65rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      color: #38bdf8;
     }
-    .checkbox-wrap input {
-      width: 20px;
-      height: 20px;
-      accent-color: #9333ea;
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 12px #ef4444;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* SUB-TASKS LIST */
+    .subtasks-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.15rem;
+      padding: 0 0.25rem;
+    }
+    .subtasks-header h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #f8fafc;
+    }
+    .subtasks-count {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .subtask-card {
+      background: #131c2e;
+      border: 1px solid #1f2d47;
+      border-radius: 14px;
+      padding: 1.2rem 1.35rem;
+      margin-bottom: 1rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      gap: 1.25rem;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    .subtask-card:hover {
+      border-color: #3b82f6;
+      background: #17233a;
+    }
+    .subtask-card.is-completed {
+      opacity: 0.55;
+      background: #0f172a;
+      border-color: #1e293b;
+    }
+    .subtask-card.is-completed .task-title-text {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+    .subtask-card.is-running {
+      border-color: #a855f7;
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+      background: #1a1b38;
+    }
+
+    /* CUSTOM BIG CHECKBOX */
+    .task-checkbox-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      border: 2px solid #475569;
+      background: #090d16;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .task-checkbox-btn:hover {
+      border-color: #9333ea;
+    }
+    .task-checkbox-btn.checked {
+      background: #22c55e;
+      border-color: #22c55e;
+      color: #ffffff;
+    }
+
+    /* TASK DETAILS */
+    .task-main-col {
+      min-width: 0;
+    }
+    .task-meta-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #38bdf8;
+      margin-bottom: 0.25rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .task-title-text {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+    }
+    .task-desc-text {
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #94a3b8;
+      margin-top: 0.25rem;
+    }
+
+    /* INTERACTIVE TIMER WIDGET */
+    .timer-widget {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: #090d16;
+      padding: 0.45rem 0.85rem;
+      border-radius: 10px;
+      border: 1px solid #1f2d47;
+    }
+    .timer-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      min-width: 60px;
+      text-align: center;
+    }
+    .timer-btn {
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .btn-timer-start {
+      background: #9333ea;
+      color: #fff;
+    }
+    .btn-timer-start:hover {
+      background: #7e22ce;
+    }
+    .btn-timer-stop {
+      background: #ef4444;
+      color: #fff;
+    }
+    .btn-timer-reset {
+      background: #334155;
+      color: #cbd5e1;
+      padding: 0.35rem 0.5rem;
+    }
+    .btn-timer-reset:hover {
+      background: #475569;
+    }
+
+    /* PARTNERSHIP CARD */
+    .partner-banner {
+      margin-top: 3rem;
+      background: #111e2e;
+      border: 1px solid #10b981;
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+    }
+    .partner-badge {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: rgba(16, 185, 129, 0.2);
+      color: #86efac;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      margin-bottom: 0.85rem;
+    }
+    .partner-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+    .partner-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+    .partner-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #38bdf8;
+      font-weight: 700;
+      text-decoration: underline;
+      margin-top: 0.65rem;
+    }
+
+    @media (max-width: 768px) {
+      .subtask-card {
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+      }
+      .timer-widget {
+        grid-column: 1 / -1;
+        justify-content: space-between;
+      }
     }
   </style>
 </head>
@@ -143,224 +355,163 @@
 
   <!-- PASSWORD GATE -->
   <div id="auth-panel" class="auth-gate">
-    <div style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: #a855f7; letter-spacing: 0.08em; margin-bottom: 0.4rem;">Restricted Access</div>
-    <h2 style="font-size: 1.45rem; font-weight: 850; color: #fff;">Internal Operations &amp; Schedule</h2>
-    <p style="font-size: 0.88rem; color: #94a3b8; margin-top: 0.4rem;">Enter the operational passcode to view client acquisition targets and book launch milestones.</p>
+    <div style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; color: #a855f7; letter-spacing: 0.08em; margin-bottom: 0.4rem;">Restricted Focus</div>
+    <h2 style="font-size: 1.5rem; font-weight: 850; color: #fff;">Operational Dashboard</h2>
+    <p style="font-size: 0.88rem; color: #94a3b8; margin-top: 0.4rem;">Enter the passcode to view the 1 Big Thing target and hourly pre-flight checklist.</p>
     
     <input type="password" id="passcode-input" placeholder="Enter passcode..." autocomplete="off">
     <div id="error-msg" style="color: #ef4444; font-size: 0.82rem; display: none; margin-bottom: 0.65rem;">Incorrect passcode. Please try again.</div>
-    <button type="button" id="submit-btn">Unlock Schedule</button>
+    <button type="button" id="submit-btn">Unlock Focus Tracker</button>
   </div>
 
   <!-- AUTHORIZED OPERATIONAL DASHBOARD -->
   <div id="dashboard-panel" class="app-content">
-    
-    <!-- TOP HEADER -->
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-      <div>
-        <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.35rem;">
-          <span class="badge badge-urgent">Hard Deadline Today</span>
-          <span style="font-size: 0.85rem; color: #94a3b8;">Amazon KDP Print Proof Submission</span>
-        </div>
-        <h1 style="font-size: 2rem; font-weight: 850; letter-spacing: -0.02em;">Executive Schedule &amp; Target Roadmap</h1>
+
+    <!-- THE 1 BIG THING -->
+    <div class="hero-big-thing">
+      <div class="badge-hero">
+        <span class="pulse-dot"></span>
+        <span>The 1 Big Thing Today</span>
       </div>
-      <div style="text-align: right;">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 700; color: #38bdf8;" id="live-clock">09:00 AM</div>
-        <div style="font-size: 0.82rem; color: #94a3b8;">Target Order: Today by 3:00 PM (Start 09:00 AM)</div>
+      <h1 class="hero-title">Order the Physical KDP Draft Proof</h1>
+      <p class="hero-desc">
+        Complete all 6 production pre-flight checks, generate the 6" &times; 9" interior PDF with 300 DPI figures, upload the calibrated <em>Acid-Triggered Burning Mouth Relief</em> cover wrap, and submit the physical draft proof copy order on Amazon KDP.
+      </p>
+
+      <div class="hero-footer-bar">
+        <div class="hero-stat-pill">
+          <span>Target Deadline:</span>
+          <strong style="color: #ffffff;">Today by 3:00 PM</strong>
+          <span style="color: #64748b;">(Started 09:00 AM)</span>
+        </div>
+        <div class="hero-stat-pill">
+          <span>Sprint Clock:</span>
+          <span id="live-clock" style="color: #38bdf8;">--:--</span>
+        </div>
       </div>
     </div>
 
-    <!-- SECTION 1: HOUR-BY-HOUR SPRINT TO AMAZON DRAFT PRINT PROOF (STARTING AT 09:00 AM) -->
-    <div class="card" style="border-left: 4px solid #ef4444;">
-      <div class="card-title">
-        <span>Hour-by-Hour Master Sprint • Target Order: 3:00 PM (Start 09:00 AM)</span>
-        <span class="badge badge-urgent">Priority 1 • Order Today</span>
-      </div>
+    <!-- SUB-TASKS LIST WITH INTERACTIVE TIMERS -->
+    <div class="subtasks-header">
+      <h2>Production Milestones (Checklist &amp; Timers)</h2>
+      <div class="subtasks-count" id="progress-summary">0 of 6 Completed</div>
+    </div>
 
-      <div class="timeline-item">
-        <div class="time-col">09:00 – 10:00<br><span style="font-size: 0.75rem; color: #38bdf8;">Hour 1</span></div>
-        <div>
-          <div class="task-title">1. Table of Contents &amp; Chapter Numbering Alignment</div>
-          <div class="task-desc">Sequence Chapters 1 to 24 sequentially without duplicate chapter numbers. Verify all Part headers and frontmatter page references match.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="h1" class="persist-check"></div>
+    <!-- TASK 1 -->
+    <div class="subtask-card" id="card-t1">
+      <div class="task-checkbox-btn" data-tid="t1" role="checkbox" aria-checked="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
       </div>
-
-      <div class="timeline-item">
-        <div class="time-col">10:00 – 11:00<br><span style="font-size: 0.75rem; color: #38bdf8;">Hour 2</span></div>
-        <div>
-          <div class="task-title">2. Cover Wrap &amp; Spine Calibration (Acid-Triggered Relief)</div>
-          <div class="task-desc">Verify the front cover artwork, ensure RELIEF spans exact MOUTH width, set 0.669" spine width for 297 pages, and check back-cover barcode clearance.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="h2" class="persist-check"></div>
+      <div class="task-main-col">
+        <div class="task-meta-tag">Hour 1 &bull; 09:00 – 10:00</div>
+        <div class="task-title-text">Table of Contents &amp; Chapter Numbering Alignment</div>
+        <div class="task-desc-text">Sequence Chapters 1 to 24 sequentially without duplicate numbers between Part II and Part III. Ensure all page anchors match.</div>
       </div>
-
-      <div class="timeline-item">
-        <div class="time-col">11:00 – 12:00<br><span style="font-size: 0.75rem; color: #38bdf8;">Hour 3</span></div>
-        <div>
-          <div class="task-title">3. Interior Margins, Running Heads &amp; Rubber Draft Stamp Check</div>
-          <div class="task-desc">Audit /draft for 0.65" inside gutter margins, check 3-line rubber stamp date, verify running head titles (Burning Mouth Relief), and page numbers.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="h3" class="persist-check"></div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="time-col">12:00 – 13:00<br><span style="font-size: 0.75rem; color: #38bdf8;">Hour 4</span></div>
-        <div>
-          <div class="task-title">4. Scientific Figures &amp; Multi-Source Pain Diagram Review</div>
-          <div class="task-desc">Confirm Option 6 diagram on Page 28 has 62px enlarged icons, orthogonal connector arrows, and verify Page 30e (The Overflowing Bucket Science).</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="h4" class="persist-check"></div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="time-col">13:00 – 14:00<br><span style="font-size: 0.75rem; color: #38bdf8;">Hour 5</span></div>
-        <div>
-          <div class="task-title">5. Questionnaire Formatting &amp; Anti-Widow Typography Audit</div>
-          <div class="task-desc">Inspect Pages 7–10 questionnaire radio buttons and check boxes for 2-column alignment. Verify zero orphan widow words across all headlines.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="h5" class="persist-check"></div>
-      </div>
-
-      <div class="timeline-item" style="background: rgba(239, 68, 68, 0.08); border-radius: 8px; padding: 0.85rem;">
-        <div class="time-col" style="color: #ef4444;">14:00 – 15:00<br><span style="font-size: 0.75rem;">Hour 6 (Final)</span></div>
-        <div>
-          <div class="task-title" style="color: #fca5a5;">6. PDF Interior Export, Amazon KDP Previewer &amp; Order Proof Copy</div>
-          <div class="task-desc" style="color: #fecaca;">Export 6" x 9" interior PDF, upload interior and cover wrap to Amazon KDP, pass Print Previewer checks, and submit order for physical draft copies.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="h6" class="persist-check"></div>
+      <div class="timer-widget">
+        <span class="timer-display" id="time-t1">60:00</span>
+        <button class="timer-btn btn-timer-start" data-tid="t1" data-default="3600">Start</button>
+        <button class="timer-btn btn-timer-reset" data-tid="t1" data-default="3600" title="Reset">&#8635;</button>
       </div>
     </div>
 
-    <!-- SECTION 2: CLIENT ACQUISITION & OUTREACH ENGINE -->
-    <div class="card" style="border-left: 4px solid #9333ea;">
-      <div class="card-title">
-        <span>Client Acquisition Engine &amp; Consulting Funnel</span>
-        <span class="badge badge-purple">Revenue Stream</span>
+    <!-- TASK 2 -->
+    <div class="subtask-card" id="card-t2">
+      <div class="task-checkbox-btn" data-tid="t2" role="checkbox" aria-checked="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
       </div>
-
-      <div class="timeline-item">
-        <div class="time-col">Stage 1<br><span style="font-size: 0.75rem; color: #c084fc;">Intake Asset</span></div>
-        <div>
-          <div class="task-title">Publish Interactive BMS Intake Assessment &amp; PDF Questionnaire</div>
-          <div class="task-desc">Convert the Chapter 13 questionnaire into a high-converting diagnostic lead magnet at /questionnaire.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="c1" class="persist-check"></div>
+      <div class="task-main-col">
+        <div class="task-meta-tag">Hour 2 &bull; 10:00 – 11:00</div>
+        <div class="task-title-text">Cover Wrap &amp; Spine Calibration (Acid-Triggered Relief)</div>
+        <div class="task-desc-text">Confirm front cover artwork, ensure rainbow RELIEF spans exact physical width of MOUTH, set 0.669" spine width for 297 pages, and check barcode safe zone.</div>
       </div>
-
-      <div class="timeline-item">
-        <div class="time-col">Stage 2<br><span style="font-size: 0.75rem; color: #c084fc;">Clinician Scripts</span></div>
-        <div>
-          <div class="task-title">Dentist &amp; Doctor Outreach Package (The Hardware Model)</div>
-          <div class="task-desc">Deploy the 1-page clinical hardware audit for biological dentists and oral medicine specialists.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="c2" class="persist-check"></div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="time-col">Stage 3<br><span style="font-size: 0.75rem; color: #c084fc;">Direct Coaching</span></div>
-        <div>
-          <div class="task-title">Private 1-on-1 Root-Cause Elimination Consulting</div>
-          <div class="task-desc">Offer structured 4-week protocol guidance (Hardware audit + 14-day acid reset + sensory nerve tracking).</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="c3" class="persist-check"></div>
+      <div class="timer-widget">
+        <span class="timer-display" id="time-t2">60:00</span>
+        <button class="timer-btn btn-timer-start" data-tid="t2" data-default="3600">Start</button>
+        <button class="timer-btn btn-timer-reset" data-tid="t2" data-default="3600" title="Reset">&#8635;</button>
       </div>
     </div>
 
-
-    <!-- SECTION 3: BOOK COMPLETION & PRE-FLIGHT CHECKLIST -->
-    <div class="card" style="border-left: 4px solid #38bdf8;">
-      <div class="card-title">
-        <span>Checklist to Finish the Book (Production Pre-Flight)</span>
-        <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">Ready for Print</span>
+    <!-- TASK 3 -->
+    <div class="subtask-card" id="card-t3">
+      <div class="task-checkbox-btn" data-tid="t3" role="checkbox" aria-checked="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
       </div>
-
-      <div class="timeline-item">
-        <div class="time-col">Step 1<br><span style="font-size: 0.75rem; color: #38bdf8;">Structure</span></div>
-        <div>
-          <div class="task-title">Chapter Numbering Re-Sequence (Resolve Part II vs Part III duplicates)</div>
-          <div class="task-desc">Sequence Chapters 1 through 24 continuously so there are no duplicate Chapter 7-9 numbers between Part II and Part III.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="b1" class="persist-check"></div>
+      <div class="task-main-col">
+        <div class="task-meta-tag">Hour 3 &bull; 11:00 – 12:00</div>
+        <div class="task-title-text">Interior Margins, Running Heads &amp; Rubber Draft Stamp Check</div>
+        <div class="task-desc-text">Audit /draft for 0.65" inside gutter margins, check 3-line rubber stamp date, verify running head titles (Burning Mouth Relief), and page numbers.</div>
       </div>
-
-      <div class="timeline-item">
-        <div class="time-col">Step 2<br><span style="font-size: 0.75rem; color: #38bdf8;">Science</span></div>
-        <div>
-          <div class="task-title">Verify Page 30e Integration (The Overflowing Bucket Science)</div>
-          <div class="task-desc">Confirm all 4 pioneer domains (Moseley/Butler, Okeson, McEwen, Bland/Hyman, Brabban/Turkington) render cleanly on /draft#page-30e.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="b2" class="persist-check"></div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="time-col">Step 3<br><span style="font-size: 0.75rem; color: #38bdf8;">Visuals</span></div>
-        <div>
-          <div class="task-title">Diagram Previews &amp; Multi-Source Pain Figure Check</div>
-          <div class="task-desc">Confirm Option 6 in MultiSourcePainDiagram.astro has 62px enlarged icons, orthogonal connector lines, and See More trigger.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="b3" class="persist-check"></div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="time-col">Step 4<br><span style="font-size: 0.75rem; color: #38bdf8;">Cover</span></div>
-        <div>
-          <div class="task-title">Cover Wrap &amp; Spine Calibration for 297 Pages</div>
-          <div class="task-desc">Verify spine thickness formula: 297 pages * 0.002252 in = 0.669 in spine width with safe margin text and barcode clearance.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="b4" class="persist-check"></div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="time-col">Step 5<br><span style="font-size: 0.75rem; color: #38bdf8;">PDF Export</span></div>
-        <div>
-          <div class="task-title">Export 6" x 9" Interior PDF with Embedded Fonts</div>
-          <div class="task-desc">Print to PDF via browser or headless Puppeteer, verify all KaTeX formulas and SVG graphics rasterize cleanly at 300 DPI.</div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="b5" class="persist-check"></div>
+      <div class="timer-widget">
+        <span class="timer-display" id="time-t3">60:00</span>
+        <button class="timer-btn btn-timer-start" data-tid="t3" data-default="3600">Start</button>
+        <button class="timer-btn btn-timer-reset" data-tid="t3" data-default="3600" title="Reset">&#8635;</button>
       </div>
     </div>
 
-    <!-- SECTION 4: STRATEGIC CLINICAL & COMMUNITY PARTNERSHIPS -->
-    <div class="card" style="border-left: 4px solid #10b981;">
-      <div class="card-title">
-        <span>Strategic Clinical &amp; Community Partnerships</span>
-        <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4);">Ecosystem Growth</span>
+    <!-- TASK 4 -->
+    <div class="subtask-card" id="card-t4">
+      <div class="task-checkbox-btn" data-tid="t4" role="checkbox" aria-checked="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
       </div>
+      <div class="task-main-col">
+        <div class="task-meta-tag">Hour 4 &bull; 12:00 – 13:00</div>
+        <div class="task-title-text">Scientific Figures &amp; Page 30e Review</div>
+        <div class="task-desc-text">Confirm Option 6 in MultiSourcePainDiagram.astro has 62px enlarged icons and orthogonal lines. Verify Page 30e (The Overflowing Bucket Science) renders all 5 pioneer models.</div>
+      </div>
+      <div class="timer-widget">
+        <span class="timer-display" id="time-t4">60:00</span>
+        <button class="timer-btn btn-timer-start" data-tid="t4" data-default="3600">Start</button>
+        <button class="timer-btn btn-timer-reset" data-tid="t4" data-default="3600" title="Reset">&#8635;</button>
+      </div>
+    </div>
 
-      <div class="timeline-item">
-        <div class="time-col">Partner 1<br><span style="font-size: 0.75rem; color: #10b981;">Dr. Shane Cope</span></div>
-        <div>
-          <div class="task-title">Dr. Shane Cope, DDS, MSD &bull; The Relief Room (Skool Community)</div>
-          <div class="task-desc">
-            Partner with Dr. Shane Cope (oral medicine, orofacial pain &amp; periodontics specialist) who runs <strong>The Relief Room</strong> on Skool (<a href="https://www.skool.com/the-relief-room-6243/about?utm_source=skooldotcom&utm_medium=website&utm_campaign=user_profile_page&utm_content=b47ee493c34a49839795e36059329157" target="_blank" style="color: #38bdf8; text-decoration: underline;">view community</a>).<br>
-            <strong>Synergy:</strong> Provide the <em>Acid-Triggered Burning Mouth Relief</em> book and self-assessment checklist as an official structural textbook &amp; diagnostic curriculum inside The Relief Room to help members rule out micro-leakage and chemical triggers.
-          </div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="p1" class="persist-check"></div>
+    <!-- TASK 5 -->
+    <div class="subtask-card" id="card-t5">
+      <div class="task-checkbox-btn" data-tid="t5" role="checkbox" aria-checked="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
       </div>
+      <div class="task-main-col">
+        <div class="task-meta-tag">Hour 5 &bull; 13:00 – 14:00</div>
+        <div class="task-title-text">Questionnaire Formatting &amp; Anti-Widow Typography Audit</div>
+        <div class="task-desc-text">Inspect Pages 7–10 questionnaire radio buttons for clean 2-column alignment. Verify zero orphan widow words across all chapter headings.</div>
+      </div>
+      <div class="timer-widget">
+        <span class="timer-display" id="time-t5">60:00</span>
+        <button class="timer-btn btn-timer-start" data-tid="t5" data-default="3600">Start</button>
+        <button class="timer-btn btn-timer-reset" data-tid="t5" data-default="3600" title="Reset">&#8635;</button>
+      </div>
+    </div>
 
-      <div class="timeline-item">
-        <div class="time-col">Partner 2<br><span style="font-size: 0.75rem; color: #10b981;">Dr. Susan Sklar</span></div>
-        <div>
-          <div class="task-title">Dr. Susan Sklar, MD &bull; Functional Medicine &amp; Hormonal BMS Network</div>
-          <div class="task-desc">
-            Bridge the Sklar hormonal/neurotransmitter functional coaching model with our dental hardware and acid elimination protocol.
-          </div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="p2" class="persist-check"></div>
+    <!-- TASK 6 -->
+    <div class="subtask-card" id="card-t6">
+      <div class="task-checkbox-btn" data-tid="t6" role="checkbox" aria-checked="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
       </div>
+      <div class="task-main-col">
+        <div class="task-meta-tag" style="color: #ef4444;">Hour 6 &bull; 14:00 – 15:00 (Final Milestone)</div>
+        <div class="task-title-text">PDF Interior Export, Amazon KDP Previewer &amp; Order Proof Copy</div>
+        <div class="task-desc-text">Export 6" x 9" interior PDF, upload interior and cover wrap to Amazon KDP, pass Print Previewer checks with zero bleed errors, and submit order for physical draft copies.</div>
+      </div>
+      <div class="timer-widget">
+        <span class="timer-display" id="time-t6">60:00</span>
+        <button class="timer-btn btn-timer-start" data-tid="t6" data-default="3600">Start</button>
+        <button class="timer-btn btn-timer-reset" data-tid="t6" data-default="3600" title="Reset">&#8635;</button>
+      </div>
+    </div>
 
-      <div class="timeline-item">
-        <div class="time-col">Partner 3<br><span style="font-size: 0.75rem; color: #10b981;">Biological Dentists</span></div>
-        <div>
-          <div class="task-title">IOMT &amp; Holistic Dental Directory Outreach</div>
-          <div class="task-desc">
-            Supply the 1-page cold test and cervical tubule sealing protocol to holistic and biological dental practices treating refractory facial pain.
-          </div>
-        </div>
-        <div class="checkbox-wrap"><input type="checkbox" id="p3" class="persist-check"></div>
-      </div>
+    <!-- STRATEGIC PARTNERSHIP -->
+    <div class="partner-banner">
+      <div class="partner-badge">Strategic Clinical Partnership</div>
+      <h3 class="partner-title">Dr. Shane Cope, DDS, MSD &bull; The Relief Room (Skool)</h3>
+      <p class="partner-desc">
+        Partner with Dr. Shane Cope (specialist in Oral Medicine, Orofacial Pain &amp; Periodontics) who runs <strong>The Relief Room</strong> on Skool.
+        <br><br>
+        <strong>Core Synergy:</strong> Provide <em>Acid-Triggered Burning Mouth Relief</em> as an official structural textbook &amp; diagnostic curriculum inside The Relief Room to help members rule out micro-leakage, exposed dentinal tubules, and chemical acid triggers.
+      </p>
+      <a href="https://www.skool.com/the-relief-room-6243/about?utm_source=skooldotcom&utm_medium=website&utm_campaign=user_profile_page&utm_content=b47ee493c34a49839795e36059329157" target="_blank" rel="noopener noreferrer" class="partner-link">
+        <span>Visit The Relief Room on Skool</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
     </div>
 
   </div>
@@ -374,13 +525,13 @@
     const errorMsg = document.getElementById('error-msg');
 
     function checkAuth() {
-      const val = passInput.value.trim();
-      if (val === EXPECTED_PASS || localStorage.getItem('todo_auth') === 'granted') {
+      if (passInput.value.trim() === EXPECTED_PASS) {
         localStorage.setItem('todo_auth', 'granted');
         authPanel.style.display = 'none';
         dashPanel.style.display = 'block';
       } else {
         errorMsg.style.display = 'block';
+        passInput.focus();
       }
     }
 
@@ -394,21 +545,125 @@
       dashPanel.style.display = 'block';
     }
 
-    // Persist checkboxes
-    document.querySelectorAll('.persist-check').forEach(cb => {
-      const saved = localStorage.getItem('todo_' + cb.id);
-      if (saved === 'true') cb.checked = true;
-      cb.addEventListener('change', () => {
-        localStorage.setItem('todo_' + cb.id, cb.checked);
+    // CHECKBOXES & LOCAL STORAGE PERSISTENCE
+    const checkBtns = document.querySelectorAll('.task-checkbox-btn');
+    const progressEl = document.getElementById('progress-summary');
+
+    function updateProgress() {
+      let completed = 0;
+      checkBtns.forEach(btn => {
+        const tid = btn.dataset.tid;
+        const card = document.getElementById('card-' + tid);
+        const icon = btn.querySelector('svg');
+        const isChecked = localStorage.getItem('subtask_' + tid) === 'true';
+
+        if (isChecked) {
+          btn.classList.add('checked');
+          btn.setAttribute('aria-checked', 'true');
+          icon.style.display = 'block';
+          card.classList.add('is-completed');
+          completed++;
+        } else {
+          btn.classList.remove('checked');
+          btn.setAttribute('aria-checked', 'false');
+          icon.style.display = 'none';
+          card.classList.remove('is-completed');
+        }
+      });
+      progressEl.textContent = `${completed} of ${checkBtns.length} Completed`;
+    }
+
+    checkBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tid = btn.dataset.tid;
+        const currentState = localStorage.getItem('subtask_' + tid) === 'true';
+        localStorage.setItem('subtask_' + tid, (!currentState).toString());
+        updateProgress();
       });
     });
 
-    // Live clock update
+    updateProgress();
+
+    // INTERACTIVE TIMERS PER SUBTASK
+    const activeIntervals = {};
+    const remainingSeconds = {};
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60).toString().padStart(2, '0');
+      const s = (sec % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    document.querySelectorAll('.timer-btn.btn-timer-start').forEach(btn => {
+      const tid = btn.dataset.tid;
+      const defaultSec = parseInt(btn.dataset.default, 10);
+      const savedTime = localStorage.getItem('timer_val_' + tid);
+      remainingSeconds[tid] = savedTime ? parseInt(savedTime, 10) : defaultSec;
+
+      const display = document.getElementById('time-' + tid);
+      display.textContent = formatTime(remainingSeconds[tid]);
+
+      btn.addEventListener('click', () => {
+        const card = document.getElementById('card-' + tid);
+        if (activeIntervals[tid]) {
+          // Pause timer
+          clearInterval(activeIntervals[tid]);
+          activeIntervals[tid] = null;
+          btn.textContent = 'Resume';
+          btn.classList.remove('btn-timer-stop');
+          btn.classList.add('btn-timer-start');
+          card.classList.remove('is-running');
+        } else {
+          // Start timer
+          card.classList.add('is-running');
+          btn.textContent = 'Pause';
+          btn.classList.remove('btn-timer-start');
+          btn.classList.add('btn-timer-stop');
+
+          activeIntervals[tid] = setInterval(() => {
+            if (remainingSeconds[tid] > 0) {
+              remainingSeconds[tid]--;
+              display.textContent = formatTime(remainingSeconds[tid]);
+              localStorage.setItem('timer_val_' + tid, remainingSeconds[tid]);
+            } else {
+              clearInterval(activeIntervals[tid]);
+              activeIntervals[tid] = null;
+              btn.textContent = 'Done!';
+              btn.classList.remove('btn-timer-stop');
+              card.classList.remove('is-running');
+              alert(`Hour milestone ${tid.toUpperCase()} completed!`);
+            }
+          }, 1000);
+        }
+      });
+    });
+
+    document.querySelectorAll('.timer-btn.btn-timer-reset').forEach(btn => {
+      const tid = btn.dataset.tid;
+      const defaultSec = parseInt(btn.dataset.default, 10);
+      btn.addEventListener('click', () => {
+        const card = document.getElementById('card-' + tid);
+        const startBtn = document.querySelector(`.btn-timer-start[data-tid="${tid}"], .btn-timer-stop[data-tid="${tid}"]`);
+        if (activeIntervals[tid]) {
+          clearInterval(activeIntervals[tid]);
+          activeIntervals[tid] = null;
+        }
+        remainingSeconds[tid] = defaultSec;
+        localStorage.setItem('timer_val_' + tid, defaultSec);
+        document.getElementById('time-' + tid).textContent = formatTime(defaultSec);
+        startBtn.textContent = 'Start';
+        startBtn.classList.remove('btn-timer-stop');
+        startBtn.classList.add('btn-timer-start');
+        card.classList.remove('is-running');
+      });
+    });
+
+    // Live Sprint Clock
     function updateClock() {
       const now = new Date();
       const el = document.getElementById('live-clock');
       if (el) {
-        el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
       }
     }
     setInterval(updateClock, 1000);
