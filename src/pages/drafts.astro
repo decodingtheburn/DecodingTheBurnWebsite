@@ -57,7 +57,7 @@ const allPosts = sortPostsDescending(rawPosts);
 							return (
 							<article class="card" style={isReadyDraft ? "border: 2px solid #0284c7;" : isDraft ? "border: 2px dashed #f59e0b;" : ""}>
 								<a href={`/blog/${post.id}/`}>
-									<div class="card-img" style={`background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src})`}>
+									<div class="card-img" style={post.data.heroImage ? `background-image: url(${typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src || ''})` : 'background-color: #f1f5f9;'}>
 										{isReadyDraft ? (
 											<span style="position: absolute; top: 12px; right: 12px; background: #0284c7; color: #ffffff; font-weight: 800; font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);">
 												Almost Ready
