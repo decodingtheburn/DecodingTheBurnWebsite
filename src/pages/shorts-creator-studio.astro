@@ -6,6 +6,30 @@ import { SITE_TITLE } from '../consts';
 import discoveries from '../data/bms_discoveries.json';
 
 const totalCount = discoveries.length;
+
+// 20 Universal Video Outros (Ending Prompts reminding about the book)
+const universalTwentyEndings = [
+	"If you want to see the exact protocol I used to eliminate this trigger, check out my book at decodingtheburn.com/book.",
+	"I documented the complete step-by-step diagnostic roadmap in my book at decodingtheburn.com/book.",
+	"If you are tired of guessing what triggers your flares, I mapped it all out in my book at decodingtheburn.com/book.",
+	"You can download the clinical tracking logs and doctor discussion guides from my book at decodingtheburn.com/book.",
+	"I spent three years testing this science so you don't have to start from scratch. Read the full investigation in my book at decodingtheburn.com/book.",
+	"If you want to show your dentist the microscopic research on this, grab the clinician chapter in my book at decodingtheburn.com/book.",
+	"Everything I learned about how acid triggers these nerve channels is detailed in my book at decodingtheburn.com/book.",
+	"If you want to test whether this is driving your burning, follow the elimination steps in my book at decodingtheburn.com/book.",
+	"The complete story of how I went from severe pain down to zero is in my book at decodingtheburn.com/book.",
+	"Before you let anyone tell you this is all in your head, read the anatomical proof in my book at decodingtheburn.com/book.",
+	"If you want to understand the exact biochemical tripwires firing in your mouth, find the breakdown in my book at decodingtheburn.com/book.",
+	"You don't have to navigate this alone. The complete patient-led research manual is in my book at decodingtheburn.com/book.",
+	"For the exact testing schedule and threshold calculations, check out the master strategy in my book at decodingtheburn.com/book.",
+	"I wrote down every single test, margin check, and diet discovery in my book at decodingtheburn.com/book.",
+	"If you want to see the 3D nerve diagrams and receptor catalogs, they are all published in my book at decodingtheburn.com/book.",
+	"To learn how to protect exposed root tubules and stop fluid shifts, read Chapter 8 in my book at decodingtheburn.com/book.",
+	"If you want the complete list of hidden acid sources beyond what doctors check, it's all in my book at decodingtheburn.com/book.",
+	"Don't spend years in the diagnostic maze. Start with the self-assessment in my book at decodingtheburn.com/book.",
+	"If this discovery makes sense to you, you will love the full scientific breakdown in my book at decodingtheburn.com/book.",
+	"Get the complete roadmap to 0/10 oral pain in my book at decodingtheburn.com/book."
+];
 ---
 
 <!doctype html>
@@ -31,38 +55,24 @@ const totalCount = discoveries.length;
 			}
 
 			.studio-wrapper {
-				max-width: 900px;
+				max-width: 960px;
 				margin: 3rem auto 7rem;
 				padding: 0 1.5rem;
 			}
 
-			/* Sticky Teleprompter & Script Guide */
+			/* Sticky Teleprompter & Universal 20 Endings Guide */
 			.script-prompt-banner {
 				background: linear-gradient(135deg, #090514 0%, #1e0b38 50%, #2a0845 100%);
 				color: #ffffff;
-				padding: 2.25rem 2.5rem;
+				padding: 2.5rem;
 				border-radius: 20px;
 				margin-bottom: 2.5rem;
 				box-shadow: 0 12px 30px rgba(0,0,0,0.25);
 				border: 1px solid rgba(255, 255, 255, 0.12);
 			}
 
-			.script-badge {
-				display: inline-block;
-				background: rgba(147, 51, 234, 0.3);
-				color: #e9d5ff;
-				border: 1px solid rgba(147, 51, 234, 0.5);
-				padding: 0.3rem 0.85rem;
-				border-radius: 9999px;
-				font-size: 0.8rem;
-				font-weight: 700;
-				letter-spacing: 0.05em;
-				text-transform: uppercase;
-				margin-bottom: 1rem;
-			}
-
 			.script-title {
-				font-size: 1.75rem;
+				font-size: 2rem;
 				font-weight: 800;
 				margin: 0 0 1rem;
 				line-height: 1.25;
@@ -70,35 +80,70 @@ const totalCount = discoveries.length;
 				letter-spacing: -0.015em;
 			}
 
-			.script-flow-box {
+			.script-rule-box {
 				background: rgba(255, 255, 255, 0.08);
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				border-radius: 12px;
-				padding: 1.25rem 1.5rem;
-				font-size: 1.15rem;
-				line-height: 1.6;
-				color: #ffffff !important;
+				border-left: 4px solid #a855f7;
+				border-radius: 0 12px 12px 0;
+				padding: 1rem 1.4rem;
+				margin-bottom: 1.5rem;
+				font-size: 1.2rem;
+				line-height: 1.5;
+				color: #ffffff;
 			}
 
-			.script-flow-box p,
-			.script-flow-box em,
-			.script-flow-box span {
-				color: #f3e8ff !important;
-			}
-
-			.script-flow-box strong {
-				color: #ffffff !important;
-				font-weight: 800;
-			}
-
-			.script-callout {
-				margin-top: 1rem;
+			.endings-toggle-btn {
+				background: #7c3aed;
+				color: #ffffff;
+				border: none;
+				padding: 0.65rem 1.25rem;
+				border-radius: 8px;
+				font-weight: 700;
 				font-size: 0.95rem;
-				color: #c084fc;
-				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.2s;
 			}
 
-			/* Navigation & Controls */
+			.endings-toggle-btn:hover {
+				background: #6d28d9;
+			}
+
+			.endings-drawer {
+				margin-top: 1.5rem;
+				background: rgba(0, 0, 0, 0.3);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				border-radius: 12px;
+				padding: 1.5rem;
+				display: none;
+			}
+
+			.endings-drawer.open {
+				display: block;
+			}
+
+			.endings-drawer-title {
+				font-size: 1.15rem;
+				font-weight: 800;
+				color: #f3e8ff;
+				margin: 0 0 1rem;
+			}
+
+			.endings-grid-list {
+				margin: 0;
+				padding-left: 1.4rem;
+				line-height: 1.7;
+				color: #e9d5ff;
+				font-size: 1.05rem;
+			}
+
+			.endings-grid-list li {
+				margin-bottom: 0.65rem;
+			}
+
+			.endings-grid-list li strong {
+				color: #ffffff;
+			}
+
+			/* Navigation Controls */
 			.nav-controls {
 				display: flex;
 				justify-content: space-between;
@@ -112,10 +157,10 @@ const totalCount = discoveries.length;
 				background: #ffffff;
 				color: #0f172a;
 				border: 1.5px solid #cbd5e1;
-				padding: 0.75rem 1.4rem;
-				border-radius: 10px;
-				font-weight: 700;
-				font-size: 1.05rem;
+				padding: 0.85rem 1.5rem;
+				border-radius: 12px;
+				font-weight: 800;
+				font-size: 1.1rem;
 				cursor: pointer;
 				transition: all 0.15s ease;
 				box-shadow: 0 2px 4px rgba(0,0,0,0.04);
@@ -132,64 +177,51 @@ const totalCount = discoveries.length;
 			}
 
 			.counter-display {
-				font-size: 1.25rem;
-				font-weight: 800;
+				font-size: 1.35rem;
+				font-weight: 850;
 				color: #581c87;
 			}
 
 			.quick-jump-input {
-				width: 90px;
+				width: 95px;
 				padding: 0.65rem 0.85rem;
-				border: 1.5px solid #cbd5e1;
+				border: 2px solid #cbd5e1;
 				border-radius: 8px;
-				font-weight: 700;
-				font-size: 1.05rem;
+				font-weight: 800;
+				font-size: 1.1rem;
 				text-align: center;
 				background: #ffffff;
 				color: #0f172a;
 			}
 
-			/* The Single Discovery Card */
+			/* Single Discovery Card */
 			.discovery-card-container {
 				background: #ffffff;
 				border: 2px solid #e2e8f0;
 				border-radius: 24px;
-				padding: 3rem 3rem;
+				padding: 3rem;
 				box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-				min-height: 480px;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
 			}
 
 			.card-header-row {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				margin-bottom: 1.75rem;
+				margin-bottom: 1.5rem;
 				border-bottom: 1.5px solid #f1f5f9;
 				padding-bottom: 1rem;
 			}
 
 			.discovery-number {
-				font-size: 1.15rem;
-				font-weight: 800;
+				font-size: 1.25rem;
+				font-weight: 850;
 				color: #7c3aed;
-				letter-spacing: 0.05em;
+				letter-spacing: 0.04em;
 				text-transform: uppercase;
 			}
 
-			.discovery-topic-pill {
-				background: #f3e8ff;
-				color: #581c87;
-				font-size: 0.95rem;
-				font-weight: 700;
-				padding: 0.35rem 0.85rem;
-				border-radius: 999px;
-			}
-
 			.discovery-title {
-				font-size: 2.2rem;
+				font-size: 2.3rem;
 				font-weight: 900;
 				line-height: 1.25;
 				color: #0f172a;
@@ -197,62 +229,132 @@ const totalCount = discoveries.length;
 				letter-spacing: -0.02em;
 			}
 
-			.section-label {
-				font-size: 0.92rem;
-				font-weight: 800;
+			.section-heading-label {
+				font-size: 1.05rem;
+				font-weight: 850;
 				text-transform: uppercase;
-				letter-spacing: 0.06em;
-				color: #64748b;
-				margin-bottom: 0.5rem;
+				letter-spacing: 0.05em;
+				color: #581c87;
+				margin-bottom: 0.85rem;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
 			}
 
-			.script-start-box {
+			/* 5 Openings Section */
+			.openings-box {
 				background: #faf5ff;
-				border-left: 4px solid #7c3aed;
-				border-radius: 0 12px 12px 0;
-				padding: 1.25rem 1.5rem;
-				margin-bottom: 2rem;
-			}
-
-			.script-start-text {
-				font-size: 1.3rem;
-				font-weight: 700;
-				color: #4c1d95;
-				line-height: 1.5;
-				margin: 0;
-			}
-
-			.discovery-body-box {
+				border: 1.5px solid #e9d5ff;
+				border-radius: 16px;
+				padding: 1.75rem 2rem;
 				margin-bottom: 2.25rem;
 			}
 
-			.discovery-body-text {
+			.openings-list {
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			.openings-list li {
+				position: relative;
+				padding-left: 2rem;
+				margin-bottom: 1rem;
+				font-size: 1.35rem;
+				line-height: 1.55;
+				color: #1e293b;
+				font-weight: 600;
+			}
+
+			.openings-list li::before {
+				content: "•";
+				position: absolute;
+				left: 0.5rem;
+				color: #7c3aed;
+				font-size: 1.8rem;
+				line-height: 1;
+				top: 0;
+			}
+
+			.openings-list li:last-child {
+				margin-bottom: 0;
+			}
+
+			/* Discovery Section */
+			.discovery-box {
+				background: #ffffff;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 1.75rem 2rem;
+				margin-bottom: 2.25rem;
+			}
+
+			.discovery-bullets-list {
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			.discovery-bullets-list li {
+				position: relative;
+				padding-left: 2rem;
+				margin-bottom: 1.15rem;
 				font-size: 1.45rem;
 				line-height: 1.6;
+				color: #0f172a;
+				font-weight: 500;
+			}
+
+			.discovery-bullets-list li::before {
+				content: "•";
+				position: absolute;
+				left: 0.5rem;
+				color: #581c87;
+				font-size: 2rem;
+				line-height: 1;
+				top: -0.1rem;
+			}
+
+			.discovery-bullets-list li:last-child {
+				margin-bottom: 0;
+			}
+
+			/* 10 Endings Section */
+			.endings-box {
+				background: #f8fafc;
+				border: 1.5px solid #cbd5e1;
+				border-radius: 16px;
+				padding: 1.75rem 2rem;
+			}
+
+			.endings-list {
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			.endings-list li {
+				position: relative;
+				padding-left: 2rem;
+				margin-bottom: 1rem;
+				font-size: 1.25rem;
+				line-height: 1.55;
 				color: #1e293b;
 				font-weight: 500;
-				margin: 0;
 			}
 
-			.script-end-box {
-				background: #f8fafc;
-				border: 1.5px dashed #cbd5e1;
-				border-radius: 12px;
-				padding: 1.15rem 1.4rem;
-				display: flex;
-				align-items: center;
-				gap: 0.85rem;
+			.endings-list li::before {
+				content: "•";
+				position: absolute;
+				left: 0.5rem;
+				color: #7c3aed;
+				font-size: 1.8rem;
+				line-height: 1;
+				top: -0.1rem;
 			}
 
-			.script-end-icon {
-				font-size: 1.4rem;
-			}
-
-			.script-end-text {
-				font-size: 1.15rem;
-				font-weight: 700;
-				color: #0f172a;
-				margin: 0;
+			.endings-list li:last-child {
+				margin-bottom: 0;
 			}
 
 			.book-link {
@@ -263,16 +365,19 @@ const totalCount = discoveries.length;
 
 			@media (max-width: 768px) {
 				.discovery-card-container {
-					padding: 2rem 1.5rem;
+					padding: 1.75rem 1.25rem;
 				}
 				.discovery-title {
-					font-size: 1.65rem;
+					font-size: 1.75rem;
 				}
-				.discovery-body-text {
-					font-size: 1.2rem;
-				}
-				.script-start-text {
+				.openings-list li {
 					font-size: 1.15rem;
+				}
+				.discovery-bullets-list li {
+					font-size: 1.25rem;
+				}
+				.endings-list li {
+					font-size: 1.1rem;
 				}
 			}
 		</style>
@@ -281,20 +386,25 @@ const totalCount = discoveries.length;
 		<Header />
 
 		<main class="studio-wrapper">
-			<!-- Teleprompter / Universal Video Opening Guide -->
+			<!-- Teleprompter / Universal Video Guide -->
 			<div class="script-prompt-banner">
-				<div class="script-badge">Recording Teleprompter Standard</div>
 				<h1 class="script-title">1,000 BMS Book Discoveries Studio</h1>
-				<div class="script-flow-box">
-					<p style="margin: 0 0 0.5rem;">
-						<strong>Universal Opener:</strong> Start every video speaking directly to the camera: <em>"Burning Mouth Syndrome..."</em> or <em>"Burning mouth..."</em>
-					</p>
-					<p style="margin: 0;">
-						<strong>Universal Outro:</strong> End every video with: <em>"If you are interested in looking at my book, you can go to <span style="text-decoration: underline; color: #ffffff;">decodingtheburn.com/book</span>"</em>
-					</p>
+				
+				<div class="script-rule-box">
+					<strong>Rule for Every Video:</strong> Always start directly with <em>"Burning Mouth."</em> or <em>"Burning Mouth Syndrome."</em> followed by an easy sentence. Always end reminding viewers of the book at <em>decodingtheburn.com/book</em>.
 				</div>
-				<div class="script-callout">
-					Use the buttons or keyboard left/right arrows to review each discovery cleanly one at a time.
+
+				<button type="button" class="endings-toggle-btn" id="toggleEndingsDrawer">
+					View 20 Ways to End the Video &darr;
+				</button>
+
+				<div class="endings-drawer" id="endingsDrawer">
+					<div class="endings-drawer-title">20 Universal Outros (Reminding Viewers of the Book):</div>
+					<ol class="endings-grid-list">
+						{universalTwentyEndings.map((outro) => (
+							<li>{outro}</li>
+						))}
+					</ol>
 				</div>
 			</div>
 
@@ -307,7 +417,7 @@ const totalCount = discoveries.length;
 				</div>
 
 				<div style="display: flex; align-items: center; gap: 0.5rem;">
-					<label for="jumpInput" style="font-size: 0.95rem; font-weight: 700; color: #475569;">Jump to #:</label>
+					<label for="jumpInput" style="font-size: 1.05rem; font-weight: 800; color: #475569;">Jump to #:</label>
 					<input type="number" id="jumpInput" class="quick-jump-input" min="1" max={totalCount} value="1" />
 				</div>
 
@@ -316,30 +426,46 @@ const totalCount = discoveries.length;
 
 			<!-- Single Item Display Card -->
 			<div class="discovery-card-container">
-				<div>
-					<div class="card-header-row">
-						<span class="discovery-number" id="cardNum">Discovery #1</span>
-						<span class="discovery-topic-pill" id="cardTopic">{discoveries[0].topic}</span>
-					</div>
-
-					<h2 class="discovery-title" id="cardTitle">{discoveries[0].title}</h2>
-
-					<div class="script-start-box">
-						<div class="section-label">Opening Line (Start Here)</div>
-						<p class="script-start-text" id="cardOpener">{discoveries[0].hook_start}</p>
-					</div>
-
-					<div class="discovery-body-box">
-						<div class="section-label">The Core Discovery (What Sufferers Don't Know)</div>
-						<p class="discovery-body-text" id="cardBody">{discoveries[0].discovery}</p>
-					</div>
+				<div class="card-header-row">
+					<span class="discovery-number" id="cardNum">Discovery #1</span>
 				</div>
 
-				<div class="script-end-box">
-					<span class="script-end-icon">📖</span>
-					<p class="script-end-text">
-						If you are interested in looking at my book, you can go to <a href="/book" target="_blank" class="book-link">decodingtheburn.com/book</a>
-					</p>
+				<h2 class="discovery-title" id="cardTitle">{discoveries[0].title}</h2>
+
+				<!-- 5 Openings (Bullet Points) -->
+				<div class="openings-box">
+					<div class="section-heading-label">
+						<span>🎙️</span> Five Video Openings (Pick One)
+					</div>
+					<ul class="openings-list" id="openingsList">
+						{discoveries[0].openings.map((op) => (
+							<li>{op}</li>
+						))}
+					</ul>
+				</div>
+
+				<!-- Discovery in Bullet Points -->
+				<div class="discovery-box">
+					<div class="section-heading-label">
+						<span>🔬</span> The Discovery
+					</div>
+					<ul class="discovery-bullets-list" id="discoveryBullets">
+						{discoveries[0].discovery_bullets.map((bullet) => (
+							<li>{bullet}</li>
+						))}
+					</ul>
+				</div>
+
+				<!-- 10 Potential Endings (Bullet Points) -->
+				<div class="endings-box">
+					<div class="section-heading-label">
+						<span>📖</span> Potential Endings (Related to Discovery &amp; Book)
+					</div>
+					<ul class="endings-list" id="endingsList">
+						{discoveries[0].endings.map((ending) => (
+							<li>{ending}</li>
+						))}
+					</ul>
 				</div>
 			</div>
 		</main>
@@ -355,10 +481,20 @@ const totalCount = discoveries.length;
 			const nextBtn = document.getElementById('nextBtn');
 
 			const cardNumEl = document.getElementById('cardNum');
-			const cardTopicEl = document.getElementById('cardTopic');
 			const cardTitleEl = document.getElementById('cardTitle');
-			const cardOpenerEl = document.getElementById('cardOpener');
-			const cardBodyEl = document.getElementById('cardBody');
+			const openingsListEl = document.getElementById('openingsList');
+			const discoveryBulletsEl = document.getElementById('discoveryBullets');
+			const endingsListEl = document.getElementById('endingsList');
+
+			const toggleEndingsDrawerBtn = document.getElementById('toggleEndingsDrawer');
+			const endingsDrawer = document.getElementById('endingsDrawer');
+
+			toggleEndingsDrawerBtn.addEventListener('click', () => {
+				const isOpen = endingsDrawer.classList.toggle('open');
+				toggleEndingsDrawerBtn.innerHTML = isOpen 
+					? 'Hide 20 Ways to End the Video &uarr;' 
+					: 'View 20 Ways to End the Video &darr;';
+			});
 
 			function renderDiscovery(index) {
 				if (index < 0) index = 0;
@@ -370,10 +506,23 @@ const totalCount = discoveries.length;
 				currentNumEl.textContent = item.number;
 				jumpInput.value = item.number;
 				cardNumEl.textContent = 'Discovery #' + item.number;
-				cardTopicEl.textContent = item.topic;
 				cardTitleEl.textContent = item.title;
-				cardOpenerEl.textContent = item.hook_start;
-				cardBodyEl.textContent = item.discovery;
+
+				// Render 5 openings
+				openingsListEl.innerHTML = item.openings.map(op => `<li>${op}</li>`).join('');
+
+				// Render discovery bullets
+				discoveryBulletsEl.innerHTML = item.discovery_bullets.map(b => `<li>${b}</li>`).join('');
+
+				// Render 10 endings
+				endingsListEl.innerHTML = item.endings.map(e => {
+					// highlight book link if present
+					const withLink = e.replace(
+						'decodingtheburn.com/book', 
+						'<a href="/book" target="_blank" class="book-link">decodingtheburn.com/book</a>'
+					);
+					return `<li>${withLink}</li>`;
+				}).join('');
 
 				prevBtn.disabled = (currentIndex === 0);
 				nextBtn.disabled = (currentIndex === totalCount - 1);
@@ -396,7 +545,6 @@ const totalCount = discoveries.length;
 				}
 			});
 
-			// Arrow keys navigation
 			window.addEventListener('keydown', (e) => {
 				if (e.target.tagName === 'INPUT') return;
 				if (e.key === 'ArrowLeft') {
