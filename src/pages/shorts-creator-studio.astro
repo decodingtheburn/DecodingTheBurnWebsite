@@ -7,8 +7,32 @@ import discoveries from '../data/bms_discoveries.json';
 
 const totalCount = discoveries.length;
 
+// 20 Universal Video Openers
+const universalOpeners = [
+	"Burning Mouth. It is rarely a mystery when you track local hardware.",
+	"Burning Mouth Syndrome. Most doctors tell you there is nothing to see, but that is not true.",
+	"Burning Mouth. Your pain spikes every afternoon for a very specific biochemical reason.",
+	"Burning Mouth Syndrome. If hot sauce or lemon juice sets your tongue on fire, listen to this.",
+	"Burning Mouth. You do not have severed nerves in your tongue.",
+	"Burning Mouth Syndrome. Acid activates receptors called ASIC3 and TRPV1 in seconds.",
+	"Burning Mouth. What feels like a scalded tongue is often coming from microscopic tooth margins.",
+	"Burning Mouth Syndrome. Standard blood panels always come back clean, leaving patients stranded.",
+	"Burning Mouth. Over seventy-five percent of sufferers report that acidic food directly worsens pain.",
+	"Burning Mouth Syndrome. When dentists say your gums look healthy, they are missing the tubules.",
+	"Burning Mouth. That severe 2 PM burning spike is triggered by circadian saliva drops.",
+	"Burning Mouth Syndrome. It is not psychosomatic or all in your head.",
+	"Burning Mouth. Unbalanced bite forces on canines can inflame the entire trigeminal nerve.",
+	"Burning Mouth Syndrome. Chewing gum gives temporary relief because bicarbonate washes the acid away.",
+	"Burning Mouth. Toothpaste detergents strip your protective oral mucin layer daily.",
+	"Burning Mouth Syndrome. Even low acidity drinks quietly dissolve cementum around tooth necks.",
+	"Burning Mouth. Why does cold water feel so good while room temperature water burns?",
+	"Burning Mouth Syndrome. When you get a head cold, your burning often vanishes completely.",
+	"Burning Mouth. Eliminating dietary acid gave me back a pain-free life.",
+	"Burning Mouth Syndrome. Here is the physical mechanism nobody explained to you."
+];
+
 // 20 Universal Video Outros (Ending Prompts reminding about the book)
-const universalTwentyEndings = [
+const universalEndings = [
 	"If you want to see the exact protocol I used to eliminate this trigger, check out my book at decodingtheburn.com/book.",
 	"I documented the complete step-by-step diagnostic roadmap in my book at decodingtheburn.com/book.",
 	"If you are tired of guessing what triggers your flares, I mapped it all out in my book at decodingtheburn.com/book.",
@@ -60,87 +84,111 @@ const universalTwentyEndings = [
 				padding: 0 1.5rem;
 			}
 
-			/* Sticky Teleprompter & Universal 20 Endings Guide */
+			/* White background, black text high-contrast teleprompter banner */
 			.script-prompt-banner {
-				background: linear-gradient(135deg, #090514 0%, #1e0b38 50%, #2a0845 100%);
-				color: #ffffff;
-				padding: 2.5rem;
-				border-radius: 20px;
+				background: #ffffff;
+				color: #000000;
+				padding: 2.25rem;
+				border-radius: 16px;
 				margin-bottom: 2.5rem;
-				box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-				border: 1px solid rgba(255, 255, 255, 0.12);
+				box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+				border: 2px solid #000000;
 			}
 
 			.script-title {
-				font-size: 2rem;
-				font-weight: 800;
-				margin: 0 0 1rem;
-				line-height: 1.25;
-				color: #ffffff;
-				letter-spacing: -0.015em;
+				font-size: 2.2rem;
+				font-weight: 900;
+				margin: 0 0 1.75rem;
+				line-height: 1.2;
+				color: #000000;
+				letter-spacing: -0.02em;
 			}
 
-			.script-rule-box {
-				background: rgba(255, 255, 255, 0.08);
-				border-left: 4px solid #a855f7;
-				border-radius: 0 12px 12px 0;
-				padding: 1rem 1.4rem;
-				margin-bottom: 1.5rem;
-				font-size: 1.2rem;
-				line-height: 1.5;
-				color: #ffffff;
+			.prompt-section-block {
+				margin-bottom: 1.75rem;
+				padding-bottom: 1.5rem;
+				border-bottom: 1.5px solid #e2e8f0;
 			}
 
-			.endings-toggle-btn {
-				background: #7c3aed;
-				color: #ffffff;
-				border: none;
-				padding: 0.65rem 1.25rem;
-				border-radius: 8px;
-				font-weight: 700;
-				font-size: 0.95rem;
-				cursor: pointer;
-				transition: all 0.2s;
+			.prompt-section-block:last-child {
+				margin-bottom: 0;
+				padding-bottom: 0;
+				border-bottom: none;
 			}
 
-			.endings-toggle-btn:hover {
-				background: #6d28d9;
+			.prompt-section-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 1rem;
+				flex-wrap: wrap;
+				gap: 0.75rem;
 			}
 
-			.endings-drawer {
-				margin-top: 1.5rem;
-				background: rgba(0, 0, 0, 0.3);
-				border: 1px solid rgba(255, 255, 255, 0.15);
-				border-radius: 12px;
-				padding: 1.5rem;
-				display: none;
-			}
-
-			.endings-drawer.open {
-				display: block;
-			}
-
-			.endings-drawer-title {
-				font-size: 1.15rem;
-				font-weight: 800;
-				color: #f3e8ff;
-				margin: 0 0 1rem;
-			}
-
-			.endings-grid-list {
+			.prompt-section-title {
+				font-size: 1.4rem;
+				font-weight: 900;
+				color: #000000;
 				margin: 0;
-				padding-left: 1.4rem;
-				line-height: 1.7;
-				color: #e9d5ff;
-				font-size: 1.05rem;
+				letter-spacing: -0.01em;
 			}
 
-			.endings-grid-list li {
-				margin-bottom: 0.65rem;
+			.toggle-expand-btn {
+				background: #ffffff;
+				color: #000000;
+				border: 2px solid #000000;
+				padding: 0.45rem 1rem;
+				border-radius: 8px;
+				font-weight: 800;
+				font-size: 0.9rem;
+				cursor: pointer;
+				transition: all 0.15s ease;
 			}
 
-			.endings-grid-list li strong {
+			.toggle-expand-btn:hover {
+				background: #000000;
 				color: #ffffff;
+			}
+
+			.script-list {
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			.script-list li {
+				position: relative;
+				padding-left: 2rem;
+				margin-bottom: 0.75rem;
+				font-size: 1.15rem;
+				line-height: 1.6;
+				color: #0f172a;
+				font-weight: 500;
+			}
+
+			.script-list li::before {
+				content: "•";
+				position: absolute;
+				left: 0.5rem;
+				color: #000000;
+				font-size: 1.6rem;
+				line-height: 1;
+				top: -0.05rem;
+			}
+
+			.script-list li:last-child {
+				margin-bottom: 0;
+			}
+
+			.drawer-list {
+				display: none;
+				margin-top: 0.85rem;
+				padding-top: 0.85rem;
+				border-top: 1.5px dashed #cbd5e1;
+			}
+
+			.drawer-list.open {
+				display: block;
 			}
 
 			/* Navigation Controls */
@@ -148,58 +196,60 @@ const universalTwentyEndings = [
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				margin-bottom: 2rem;
+				margin-bottom: 2.25rem;
 				gap: 1rem;
 				flex-wrap: wrap;
 			}
 
 			.nav-btn {
 				background: #ffffff;
-				color: #0f172a;
-				border: 1.5px solid #cbd5e1;
-				padding: 0.85rem 1.5rem;
+				color: #000000;
+				border: 2px solid #000000;
+				padding: 0.85rem 1.6rem;
 				border-radius: 12px;
 				font-weight: 800;
-				font-size: 1.1rem;
+				font-size: 1.15rem;
 				cursor: pointer;
 				transition: all 0.15s ease;
-				box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+				box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 			}
 
 			.nav-btn:hover:not(:disabled) {
-				background: #f1f5f9;
-				border-color: #94a3b8;
+				background: #000000;
+				color: #ffffff;
 			}
 
 			.nav-btn:disabled {
-				opacity: 0.4;
+				opacity: 0.3;
 				cursor: not-allowed;
+				border-color: #cbd5e1;
+				color: #94a3b8;
 			}
 
 			.counter-display {
-				font-size: 1.35rem;
-				font-weight: 850;
-				color: #581c87;
+				font-size: 1.5rem;
+				font-weight: 900;
+				color: #000000;
 			}
 
 			.quick-jump-input {
-				width: 95px;
+				width: 100px;
 				padding: 0.65rem 0.85rem;
-				border: 2px solid #cbd5e1;
+				border: 2px solid #000000;
 				border-radius: 8px;
 				font-weight: 800;
-				font-size: 1.1rem;
+				font-size: 1.15rem;
 				text-align: center;
 				background: #ffffff;
-				color: #0f172a;
+				color: #000000;
 			}
 
 			/* Single Discovery Card */
 			.discovery-card-container {
 				background: #ffffff;
-				border: 2px solid #e2e8f0;
-				border-radius: 24px;
-				padding: 3rem;
+				border: 2px solid #000000;
+				border-radius: 20px;
+				padding: 3.5rem;
 				box-shadow: 0 10px 40px rgba(0,0,0,0.06);
 			}
 
@@ -208,46 +258,46 @@ const universalTwentyEndings = [
 				justify-content: space-between;
 				align-items: center;
 				margin-bottom: 1.5rem;
-				border-bottom: 1.5px solid #f1f5f9;
+				border-bottom: 2px solid #f1f5f9;
 				padding-bottom: 1rem;
 			}
 
 			.discovery-number {
 				font-size: 1.25rem;
-				font-weight: 850;
-				color: #7c3aed;
-				letter-spacing: 0.04em;
+				font-weight: 900;
+				color: #000000;
+				letter-spacing: 0.05em;
 				text-transform: uppercase;
 			}
 
 			.discovery-title {
-				font-size: 2.3rem;
-				font-weight: 900;
-				line-height: 1.25;
-				color: #0f172a;
-				margin: 0 0 2rem;
-				letter-spacing: -0.02em;
+				font-size: 2.85rem;
+				font-weight: 950;
+				line-height: 1.18;
+				color: #000000;
+				margin: 0 0 2.5rem;
+				letter-spacing: -0.03em;
 			}
 
 			.section-heading-label {
-				font-size: 1.05rem;
-				font-weight: 850;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				color: #581c87;
-				margin-bottom: 0.85rem;
+				font-size: 1.45rem;
+				font-weight: 900;
+				color: #000000;
+				margin-bottom: 1.25rem;
 				display: flex;
 				align-items: center;
-				gap: 0.5rem;
+				gap: 0.65rem;
+				letter-spacing: -0.01em;
 			}
 
 			/* 5 Openings Section */
 			.openings-box {
-				background: #faf5ff;
-				border: 1.5px solid #e9d5ff;
-				border-radius: 16px;
-				padding: 1.75rem 2rem;
-				margin-bottom: 2.25rem;
+				background: #ffffff;
+				border: 1.5px solid #e2e8f0;
+				border-left: 6px solid #000000;
+				border-radius: 12px;
+				padding: 2rem 2.25rem;
+				margin-bottom: 2.5rem;
 			}
 
 			.openings-list {
@@ -258,19 +308,19 @@ const universalTwentyEndings = [
 
 			.openings-list li {
 				position: relative;
-				padding-left: 2rem;
-				margin-bottom: 1rem;
-				font-size: 1.35rem;
-				line-height: 1.55;
+				padding-left: 2.25rem;
+				margin-bottom: 1.15rem;
+				font-size: 1.3rem;
+				line-height: 1.6;
 				color: #1e293b;
-				font-weight: 600;
+				font-weight: 500;
 			}
 
 			.openings-list li::before {
 				content: "•";
 				position: absolute;
-				left: 0.5rem;
-				color: #7c3aed;
+				left: 0.65rem;
+				color: #000000;
 				font-size: 1.8rem;
 				line-height: 1;
 				top: 0;
@@ -284,9 +334,10 @@ const universalTwentyEndings = [
 			.discovery-box {
 				background: #ffffff;
 				border: 1.5px solid #e2e8f0;
-				border-radius: 16px;
-				padding: 1.75rem 2rem;
-				margin-bottom: 2.25rem;
+				border-left: 6px solid #000000;
+				border-radius: 12px;
+				padding: 2.25rem 2.5rem;
+				margin-bottom: 2.5rem;
 			}
 
 			.discovery-bullets-list {
@@ -297,10 +348,10 @@ const universalTwentyEndings = [
 
 			.discovery-bullets-list li {
 				position: relative;
-				padding-left: 2rem;
-				margin-bottom: 1.15rem;
-				font-size: 1.45rem;
-				line-height: 1.6;
+				padding-left: 2.25rem;
+				margin-bottom: 1.25rem;
+				font-size: 1.35rem;
+				line-height: 1.65;
 				color: #0f172a;
 				font-weight: 500;
 			}
@@ -308,8 +359,8 @@ const universalTwentyEndings = [
 			.discovery-bullets-list li::before {
 				content: "•";
 				position: absolute;
-				left: 0.5rem;
-				color: #581c87;
+				left: 0.65rem;
+				color: #000000;
 				font-size: 2rem;
 				line-height: 1;
 				top: -0.1rem;
@@ -321,10 +372,11 @@ const universalTwentyEndings = [
 
 			/* 10 Endings Section */
 			.endings-box {
-				background: #f8fafc;
-				border: 1.5px solid #cbd5e1;
-				border-radius: 16px;
-				padding: 1.75rem 2rem;
+				background: #ffffff;
+				border: 1.5px solid #e2e8f0;
+				border-left: 6px solid #000000;
+				border-radius: 12px;
+				padding: 2rem 2.25rem;
 			}
 
 			.endings-list {
@@ -335,10 +387,10 @@ const universalTwentyEndings = [
 
 			.endings-list li {
 				position: relative;
-				padding-left: 2rem;
-				margin-bottom: 1rem;
+				padding-left: 2.25rem;
+				margin-bottom: 1.15rem;
 				font-size: 1.25rem;
-				line-height: 1.55;
+				line-height: 1.6;
 				color: #1e293b;
 				font-weight: 500;
 			}
@@ -346,8 +398,8 @@ const universalTwentyEndings = [
 			.endings-list li::before {
 				content: "•";
 				position: absolute;
-				left: 0.5rem;
-				color: #7c3aed;
+				left: 0.65rem;
+				color: #000000;
 				font-size: 1.8rem;
 				line-height: 1;
 				top: -0.1rem;
@@ -358,9 +410,9 @@ const universalTwentyEndings = [
 			}
 
 			.book-link {
-				color: #7c3aed;
+				color: #000000;
 				text-decoration: underline;
-				font-weight: 800;
+				font-weight: 850;
 			}
 
 			@media (max-width: 768px) {
@@ -368,13 +420,16 @@ const universalTwentyEndings = [
 					padding: 1.75rem 1.25rem;
 				}
 				.discovery-title {
-					font-size: 1.75rem;
+					font-size: 2rem;
+				}
+				.section-heading-label {
+					font-size: 1.25rem;
 				}
 				.openings-list li {
 					font-size: 1.15rem;
 				}
 				.discovery-bullets-list li {
-					font-size: 1.25rem;
+					font-size: 1.2rem;
 				}
 				.endings-list li {
 					font-size: 1.1rem;
@@ -390,21 +445,56 @@ const universalTwentyEndings = [
 			<div class="script-prompt-banner">
 				<h1 class="script-title">1,000 BMS Book Discoveries Studio</h1>
 				
-				<div class="script-rule-box">
-					<strong>Rule for Every Video:</strong> Always start directly with <em>"Burning Mouth."</em> or <em>"Burning Mouth Syndrome."</em> followed by an easy sentence. Always end reminding viewers of the book at <em>decodingtheburn.com/book</em>.
+				<!-- Universal Openers Section -->
+				<div class="prompt-section-block">
+					<div class="prompt-section-header">
+						<h3 class="prompt-section-title">Universal Openers (Start Here)</h3>
+						<button type="button" class="toggle-expand-btn" id="toggleOpenersBtn">
+							Show All 20 Openers &darr;
+						</button>
+					</div>
+					
+					<!-- Top 3 Openers always visible -->
+					<ul class="script-list">
+						{universalOpeners.slice(0, 3).map((opener) => (
+							<li>{opener}</li>
+						))}
+					</ul>
+
+					<!-- Remaining 17 Openers expandable -->
+					<div class="drawer-list" id="openersDrawer">
+						<ul class="script-list">
+							{universalOpeners.slice(3).map((opener) => (
+								<li>{opener}</li>
+							))}
+						</ul>
+					</div>
 				</div>
 
-				<button type="button" class="endings-toggle-btn" id="toggleEndingsDrawer">
-					View 20 Ways to End the Video &darr;
-				</button>
+				<!-- Universal Outros Section -->
+				<div class="prompt-section-block">
+					<div class="prompt-section-header">
+						<h3 class="prompt-section-title">Universal Outros (Book CTA)</h3>
+						<button type="button" class="toggle-expand-btn" id="toggleOutrosBtn">
+							Show All 20 Outros &darr;
+						</button>
+					</div>
 
-				<div class="endings-drawer" id="endingsDrawer">
-					<div class="endings-drawer-title">20 Universal Outros (Reminding Viewers of the Book):</div>
-					<ol class="endings-grid-list">
-						{universalTwentyEndings.map((outro) => (
+					<!-- Top 3 Outros always visible -->
+					<ul class="script-list">
+						{universalEndings.slice(0, 3).map((outro) => (
 							<li>{outro}</li>
 						))}
-					</ol>
+					</ul>
+
+					<!-- Remaining 17 Outros expandable -->
+					<div class="drawer-list" id="outrosDrawer">
+						<ul class="script-list">
+							{universalEndings.slice(3).map((outro) => (
+								<li>{outro}</li>
+							))}
+						</ul>
+					</div>
 				</div>
 			</div>
 
@@ -486,14 +576,23 @@ const universalTwentyEndings = [
 			const discoveryBulletsEl = document.getElementById('discoveryBullets');
 			const endingsListEl = document.getElementById('endingsList');
 
-			const toggleEndingsDrawerBtn = document.getElementById('toggleEndingsDrawer');
-			const endingsDrawer = document.getElementById('endingsDrawer');
+			const toggleOpenersBtn = document.getElementById('toggleOpenersBtn');
+			const openersDrawer = document.getElementById('openersDrawer');
+			const toggleOutrosBtn = document.getElementById('toggleOutrosBtn');
+			const outrosDrawer = document.getElementById('outrosDrawer');
 
-			toggleEndingsDrawerBtn.addEventListener('click', () => {
-				const isOpen = endingsDrawer.classList.toggle('open');
-				toggleEndingsDrawerBtn.innerHTML = isOpen 
-					? 'Hide 20 Ways to End the Video &uarr;' 
-					: 'View 20 Ways to End the Video &darr;';
+			toggleOpenersBtn.addEventListener('click', () => {
+				const isOpen = openersDrawer.classList.toggle('open');
+				toggleOpenersBtn.innerHTML = isOpen 
+					? 'Hide Extra Openers &uarr;' 
+					: 'Show All 20 Openers &darr;';
+			});
+
+			toggleOutrosBtn.addEventListener('click', () => {
+				const isOpen = outrosDrawer.classList.toggle('open');
+				toggleOutrosBtn.innerHTML = isOpen 
+					? 'Hide Extra Outros &uarr;' 
+					: 'Show All 20 Outros &darr;';
 			});
 
 			function renderDiscovery(index) {
