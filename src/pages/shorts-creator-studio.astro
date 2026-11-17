@@ -270,6 +270,15 @@ const universalEndings = [
 				text-transform: uppercase;
 			}
 
+			.discovery-topic-label {
+				font-size: 1.15rem;
+				font-weight: 800;
+				color: #000000;
+				border-bottom: 2px solid #000000;
+				padding-bottom: 2px;
+				letter-spacing: -0.01em;
+			}
+
 			.discovery-title {
 				font-size: 2.85rem;
 				font-weight: 950;
@@ -518,6 +527,7 @@ const universalEndings = [
 			<div class="discovery-card-container">
 				<div class="card-header-row">
 					<span class="discovery-number" id="cardNum">Discovery #1</span>
+					<span class="discovery-topic-label" id="cardTopic">{discoveries[0].topic}</span>
 				</div>
 
 				<h2 class="discovery-title" id="cardTitle">{discoveries[0].title}</h2>
@@ -571,6 +581,7 @@ const universalEndings = [
 			const nextBtn = document.getElementById('nextBtn');
 
 			const cardNumEl = document.getElementById('cardNum');
+			const cardTopicEl = document.getElementById('cardTopic');
 			const cardTitleEl = document.getElementById('cardTitle');
 			const openingsListEl = document.getElementById('openingsList');
 			const discoveryBulletsEl = document.getElementById('discoveryBullets');
@@ -605,6 +616,7 @@ const universalEndings = [
 				currentNumEl.textContent = item.number;
 				jumpInput.value = item.number;
 				cardNumEl.textContent = 'Discovery #' + item.number;
+				cardTopicEl.textContent = item.topic;
 				cardTitleEl.textContent = item.title;
 
 				// Render 5 openings
