@@ -8,184 +8,714 @@ import Footer from '../components/Footer.astro';
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="Core Master Logo Studio | Decoding The Burn" 
-			description="Master lockups featuring the royal purple and ruby red tongue mark with calibrated breathing space across light, deep purple, and pure black canvases." 
+			title="Fade Or Flare Logo Exploration | 20 Master Concepts" 
+			description="Logo design studio exploring 20 distinct variations for Fade Or Flare. Featuring emerald calm green for Fade and fiery red for Flare in side-by-side, stacked, badge, and monogram lockups." 
 		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Figtree:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Syne:wght@700;800;900&family=Urbanist:wght@700;800;900&display=swap" rel="stylesheet">
+		<style>
+			:root {
+				--green-fade: #10b981;
+				--green-fade-light: #34d399;
+				--green-fade-dark: #059669;
+				--red-flare: #ef4444;
+				--red-flare-light: #f87171;
+				--red-flare-dark: #dc2626;
+				--amber-or: #f59e0b;
+				--slate-900: #090d16;
+				--slate-800: #111827;
+				--slate-700: #1e293b;
+			}
+
+			.logo-studio-body {
+				background-color: #05070e;
+				color: #f1f5f9;
+				margin: 0;
+				font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+			}
+
+			.studio-header {
+				text-align: center;
+				padding: 3.5rem 1.5rem 2rem;
+				max-width: 900px;
+				margin: 0 auto;
+			}
+
+			.studio-title {
+				font-size: clamp(2.2rem, 4vw, 3.2rem);
+				font-weight: 900;
+				letter-spacing: -0.03em;
+				margin-bottom: 0.8rem;
+				text-wrap: balance;
+				background: linear-gradient(135deg, #34d399 0%, #ffffff 50%, #f87171 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			.studio-subtitle {
+				font-size: 1.1rem;
+				color: #94a3b8;
+				line-height: 1.6;
+				margin: 0 auto 1.5rem;
+				max-width: 720px;
+				text-wrap: balance;
+			}
+
+			.category-nav {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.75rem;
+				margin-bottom: 3rem;
+			}
+
+			.category-link {
+				color: #cbd5e1;
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				padding: 0.5rem 1rem;
+				border-radius: 9999px;
+				text-decoration: none;
+				font-size: 0.88rem;
+				font-weight: 600;
+				transition: all 0.2s ease;
+			}
+
+			.category-link:hover {
+				background: rgba(255, 255, 255, 0.12);
+				color: #ffffff;
+				border-color: #38bdf8;
+			}
+
+			.studio-content {
+				max-width: 1280px;
+				margin: 0 auto;
+				padding: 0 1.5rem 6rem;
+			}
+
+			.group-title-block {
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				padding-top: 2.5rem;
+				margin-top: 3.5rem;
+				margin-bottom: 1.5rem;
+			}
+
+			.group-heading {
+				font-size: 1.6rem;
+				font-weight: 800;
+				color: #ffffff;
+				margin-bottom: 0.35rem;
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+			}
+
+			.group-subtext {
+				color: #94a3b8;
+				font-size: 0.95rem;
+				margin: 0;
+			}
+
+			.grid-variations {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+				gap: 1.75rem;
+				margin-top: 1.25rem;
+			}
+
+			.concept-card {
+				border-radius: 18px;
+				overflow: hidden;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+				display: flex;
+				flex-direction: column;
+				transition: transform 0.2s ease, border-color 0.2s ease;
+			}
+
+			.concept-card:hover {
+				transform: translateY(-3px);
+				border-color: rgba(255, 255, 255, 0.2);
+			}
+
+			.card-meta {
+				padding: 0.75rem 1.25rem;
+				background: rgba(0, 0, 0, 0.4);
+				border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.concept-id {
+				font-size: 0.8rem;
+				font-weight: 800;
+				letter-spacing: 0.06em;
+				color: #38bdf8;
+			}
+
+			.concept-style {
+				font-size: 0.78rem;
+				color: #94a3b8;
+				font-weight: 600;
+			}
+
+			.card-stage {
+				padding: 2.75rem 1.75rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 170px;
+			}
+
+			/* Canvas Background Variants */
+			.canvas-dark {
+				background: #090d16;
+			}
+
+			.canvas-pitch {
+				background: #020205;
+			}
+
+			.canvas-slate {
+				background: #111827;
+			}
+
+			.canvas-light {
+				background: #f8fafc;
+			}
+
+			.card-footer {
+				padding: 0.75rem 1.25rem;
+				background: rgba(0, 0, 0, 0.3);
+				border-top: 1px solid rgba(255, 255, 255, 0.05);
+				font-size: 0.82rem;
+				color: #64748b;
+				line-height: 1.4;
+			}
+
+			/* Text Classes */
+			.t-fade-green {
+				color: #10b981;
+			}
+
+			.t-fade-light {
+				color: #34d399;
+			}
+
+			.t-flare-red {
+				color: #ef4444;
+			}
+
+			.t-flare-light {
+				color: #f87171;
+			}
+
+			.t-or-amber {
+				color: #f59e0b;
+			}
+
+			.t-or-subtle {
+				color: #64748b;
+			}
+
+			.t-or-white {
+				color: #e2e8f0;
+			}
+		</style>
 	</head>
-	<body class="logo-lab-body">
+	<body class="logo-studio-body">
 		<Header />
 
-		<main class="logo-lab-container">
-			<!-- Header / Hero Section -->
-			<section class="lab-hero">
-				<h1 class="lab-title">Core Master Logo Studio</h1>
-				<p class="lab-subtitle">
-					Refined master lockups: calibrated ~2mm vertical breathing space between "DECODING" and "THE BURN", ruby red accent, and balanced proportions across Light, Deep Purple, and Pure Black&nbsp;backgrounds.
-				</p>
-			</section>
+		<div class="studio-header">
+			<h1 class="studio-title">Fade Or Flare Logo Studio</h1>
+			<p class="studio-subtitle">
+				Twenty distinct visual concepts featuring emerald calm green for Fade and fiery red for Flare across side-by-side horizontal lockups, stacked two-line lockups, visual icons, and badges.
+			</p>
+			<nav class="category-nav">
+				<a href="#side-by-side" class="category-link">Side-by-Side (1 to 5)</a>
+				<a href="#stacked" class="category-link">Stacked Lockups (6 to 10)</a>
+				<a href="#icon-lockups" class="category-link">Dual Icons (11 to 15)</a>
+				<a href="#badges-monograms" class="category-link">Badges &amp; Monograms (16 to 20)</a>
+			</nav>
+		</div>
 
-			<!-- SECTION 1: MASTER HORIZONTAL LOCKUPS (H-03 SUITE ACROSS THEMES) -->
-			<section class="section-divider">
-				<h2 class="section-heading">Master Horizontal Lockups (Calibrated Spacing)</h2>
-				<p class="section-desc">Mark on the left, "DECODING" and "THE BURN" balanced with ~2mm vertical separation across Light, Deep Purple, and Pure Black canvases.</p>
-			</section>
+		<main class="studio-content">
 
-			<section class="variations-stack">
+			<!-- GROUP 1: SIDE BY SIDE HORIZONTAL -->
+			<div class="group-title-block" id="side-by-side">
+				<h2 class="group-heading">Side-by-Side Horizontal Lockups</h2>
+				<p class="group-subtext">Clean linear presentations suitable for navigation bars, site headers, and horizontal banners.</p>
+			</div>
 
-				<!-- H-03 Light -->
-				<article class="variation-card bg-light-card highlight-master">
-					<span class="var-num-light">H-03 • Light Canvas</span>
-					<div class="lockup-horizontal tight-gap">
-						<div class="mark-box">
-							<svg viewBox="12 24 76 66" width="92" height="80">
-								<defs>
-									<linearGradient id="hl-purple" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#3b0764"/></linearGradient>
-									<linearGradient id="hl-tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fb7185"/><stop offset="60%" stop-color="#e11d48"/><stop offset="100%" stop-color="#9f1239"/></linearGradient>
-								</defs>
-								<path d="M 16,42 C 24,28 76,28 84,42 C 84,62 68,68 50,68 C 32,68 16,62 16,42 Z" fill="#090514"/>
-								<path d="M 28,38 C 38,34 62,34 72,38 L 70,44 C 60,41 40,41 30,44 Z" fill="#ffffff"/>
-								<path d="M 28,46 C 28,74 34,88 50,88 C 66,88 72,74 72,46 Z" fill="url(#hl-tongue)"/>
-								<line x1="50" y1="50" x2="50" y2="76" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-								<path d="M 14,42 C 26,28 40,26 50,30 C 60,26 74,28 86,42 C 76,48 64,48 50,48 C 36,48 24,48 14,42 Z" fill="url(#hl-purple)"/>
-							</svg>
+			<div class="grid-variations">
+
+				<!-- Concept 1 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 01</span>
+						<span class="concept-style">Modern Bold Sans • High Contrast</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; display: flex; align-items: center; gap: 0.45rem;">
+							<span class="t-fade-light">Fade</span>
+							<span style="font-size: 1.1rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 0 0.2rem;">or</span>
+							<span class="t-flare-red">Flare</span>
 						</div>
-						<div class="text-block text-balanced-box" style="height: 80px;">
-							<div class="txt-sub-darker">DECODING</div>
-							<div class="txt-main-ruby">THE BURN</div>
-						</div>
+					</div>
+					<div class="card-footer">
+						Primary balanced sans serif with subtle muted connector. Direct and legible at small sizes.
 					</div>
 				</article>
 
-				<!-- H-03 Deep Purple -->
-				<article class="variation-card bg-purple-card">
-					<span class="var-num-purple">H-03 • Deep Purple Canvas (#0B0518)</span>
-					<div class="lockup-horizontal tight-gap">
-						<div class="mark-box">
-							<svg viewBox="12 24 76 66" width="92" height="80">
-								<defs>
-									<linearGradient id="hp-purple" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#3b0764"/></linearGradient>
-									<linearGradient id="hp-tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fb7185"/><stop offset="60%" stop-color="#e11d48"/><stop offset="100%" stop-color="#9f1239"/></linearGradient>
-								</defs>
-								<path d="M 16,42 C 24,28 76,28 84,42 C 84,62 68,68 50,68 C 32,68 16,62 16,42 Z" fill="#090514"/>
-								<path d="M 28,38 C 38,34 62,34 72,38 L 70,44 C 60,41 40,41 30,44 Z" fill="#ffffff"/>
-								<path d="M 28,46 C 28,74 34,88 50,88 C 66,88 72,74 72,46 Z" fill="url(#hp-tongue)"/>
-								<line x1="50" y1="50" x2="50" y2="76" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-								<path d="M 14,42 C 26,28 40,26 50,30 C 60,26 74,28 86,42 C 76,48 64,48 50,48 C 36,48 24,48 14,42 Z" fill="url(#hp-purple)"/>
-							</svg>
+				<!-- Concept 2 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 02</span>
+						<span class="concept-style">Slash Separator • Editorial Tech</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="font-family: 'Outfit', sans-serif; font-size: 2.3rem; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem;">
+							<span style="color: #34d399;">FADE</span>
+							<span style="color: #475569; font-weight: 300; font-size: 2.1rem;">/</span>
+							<span style="color: #f87171;">FLARE</span>
 						</div>
-						<div class="text-block text-balanced-box" style="height: 80px;">
-							<div class="txt-sub-purple">DECODING</div>
-							<div class="txt-main-ruby">THE BURN</div>
-						</div>
+					</div>
+					<div class="card-footer">
+						Technical slash divider in place of "or". Gives a diagnostic, binary test impression.
 					</div>
 				</article>
 
-				<!-- H-03 Pure Black -->
-				<article class="variation-card bg-black-card">
-					<span class="var-num-dark">H-03 • Pure Black Canvas (#000000)</span>
-					<div class="lockup-horizontal tight-gap">
-						<div class="mark-box">
-							<svg viewBox="12 24 76 66" width="92" height="80">
-								<defs>
-									<linearGradient id="hb-purple" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#3b0764"/></linearGradient>
-									<linearGradient id="hb-tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fb7185"/><stop offset="60%" stop-color="#e11d48"/><stop offset="100%" stop-color="#9f1239"/></linearGradient>
-								</defs>
-								<path d="M 16,42 C 24,28 76,28 84,42 C 84,62 68,68 50,68 C 32,68 16,62 16,42 Z" fill="#090514"/>
-								<path d="M 28,38 C 38,34 62,34 72,38 L 70,44 C 60,41 40,41 30,44 Z" fill="#ffffff"/>
-								<path d="M 28,46 C 28,74 34,88 50,88 C 66,88 72,74 72,46 Z" fill="url(#hb-tongue)"/>
-								<line x1="50" y1="50" x2="50" y2="76" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-								<path d="M 14,42 C 26,28 40,26 50,30 C 60,26 74,28 86,42 C 76,48 64,48 50,48 C 36,48 24,48 14,42 Z" fill="url(#hb-purple)"/>
-							</svg>
+				<!-- Concept 3 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 03</span>
+						<span class="concept-style">Pill Switch • Toggle Metaphor</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="display: flex; align-items: center; gap: 0.75rem; background: #020205; padding: 0.6rem 1.2rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.12);">
+							<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.6rem; color: #10b981;">Fade</span>
+							<div style="width: 28px; height: 16px; background: #1e293b; border-radius: 9999px; position: relative; border: 1px solid #334155;">
+								<div style="width: 10px; height: 10px; background: #f59e0b; border-radius: 50%; position: absolute; top: 2px; left: 9px;"></div>
+							</div>
+							<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.6rem; color: #ef4444;">Flare</span>
 						</div>
-						<div class="text-block text-balanced-box" style="height: 80px;">
-							<div class="txt-sub-white">DECODING</div>
-							<div class="txt-main-ruby">THE BURN</div>
-						</div>
+					</div>
+					<div class="card-footer">
+						Integrated center slider dot, framing remission versus flare-up as an active threshold switch.
 					</div>
 				</article>
 
-			</section>
-
-			<!-- SECTION 2: VERTICAL LOCKUPS (CENTERED STACK) -->
-			<section class="section-divider">
-				<h2 class="section-heading">Master Vertical Lockups (Stacked on Top)</h2>
-				<p class="section-desc">Mark positioned directly above centered typography, tested side-by-side across Light, Deep Purple, and Pure Black backgrounds.</p>
-			</section>
-
-			<div class="vertical-grid">
-
-				<!-- V-01: Light Background -->
-				<article class="vertical-card bg-light-card">
-					<span class="var-num-light">Vertical • Light Theme</span>
-					<div class="lockup-vertical">
-						<div class="mark-box">
-							<svg viewBox="12 24 76 66" width="105" height="91">
-								<defs>
-									<linearGradient id="vl-purple" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#3b0764"/></linearGradient>
-									<linearGradient id="vl-tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fb7185"/><stop offset="60%" stop-color="#e11d48"/><stop offset="100%" stop-color="#9f1239"/></linearGradient>
-								</defs>
-								<path d="M 16,42 C 24,28 76,28 84,42 C 84,62 68,68 50,68 C 32,68 16,62 16,42 Z" fill="#090514"/>
-								<path d="M 28,38 C 38,34 62,34 72,38 L 70,44 C 60,41 40,41 30,44 Z" fill="#ffffff"/>
-								<path d="M 28,46 C 28,74 34,88 50,88 C 66,88 72,74 72,46 Z" fill="url(#vl-tongue)"/>
-								<line x1="50" y1="50" x2="50" y2="76" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-								<path d="M 14,42 C 26,28 40,26 50,30 C 60,26 74,28 86,42 C 76,48 64,48 50,48 C 36,48 24,48 14,42 Z" fill="url(#vl-purple)"/>
-							</svg>
+				<!-- Concept 4 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 04</span>
+						<span class="concept-style">Light Mode Inversion</span>
+					</div>
+					<div class="card-stage canvas-light">
+						<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.1rem; font-weight: 900; letter-spacing: -0.03em; display: flex; align-items: center; gap: 0.45rem;">
+							<span style="color: #059669;">Fade</span>
+							<span style="font-size: 1rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">or</span>
+							<span style="color: #dc2626;">Flare</span>
 						</div>
-						<div class="text-block-center text-balanced-vert">
-							<div class="txt-sub-vert text-darker">DECODING</div>
-							<div class="txt-main-vert text-ruby">THE BURN</div>
-						</div>
+					</div>
+					<div class="card-footer">
+						High-contrast light background rendering with deeper emerald and crimson tones for maximum legibility.
 					</div>
 				</article>
 
-				<!-- V-02: Deep Purple Background (#0B0518) -->
-				<article class="vertical-card bg-purple-card">
-					<span class="var-num-purple">Vertical • Deep Purple (#0B0518)</span>
-					<div class="lockup-vertical">
-						<div class="mark-box">
-							<svg viewBox="12 24 76 66" width="105" height="91">
-								<defs>
-									<linearGradient id="vp-purple" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#3b0764"/></linearGradient>
-									<linearGradient id="vp-tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fb7185"/><stop offset="60%" stop-color="#e11d48"/><stop offset="100%" stop-color="#9f1239"/></linearGradient>
-								</defs>
-								<path d="M 16,42 C 24,28 76,28 84,42 C 84,62 68,68 50,68 C 32,68 16,62 16,42 Z" fill="#090514"/>
-								<path d="M 28,38 C 38,34 62,34 72,38 L 70,44 C 60,41 40,41 30,44 Z" fill="#ffffff"/>
-								<path d="M 28,46 C 28,74 34,88 50,88 C 66,88 72,74 72,46 Z" fill="url(#vp-tongue)"/>
-								<line x1="50" y1="50" x2="50" y2="76" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-								<path d="M 14,42 C 26,28 40,26 50,30 C 60,26 74,28 86,42 C 76,48 64,48 50,48 C 36,48 24,48 14,42 Z" fill="url(#vp-purple)"/>
-							</svg>
+				<!-- Concept 5 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 05</span>
+						<span class="concept-style">Geometric Urbanist • Wide Stance</span>
+					</div>
+					<div class="card-stage canvas-pitch">
+						<div style="font-family: 'Urbanist', sans-serif; font-size: 2.4rem; font-weight: 900; letter-spacing: 0.04em; display: flex; align-items: center; gap: 0.6rem;">
+							<span style="color: #34d399;">FADE</span>
+							<span style="color: #f59e0b; font-size: 1.1rem; font-weight: 800; font-style: italic;">OR</span>
+							<span style="color: #ef4444;">FLARE</span>
 						</div>
-						<div class="text-block-center text-balanced-vert">
-							<div class="txt-sub-vert text-purple-light">DECODING</div>
-							<div class="txt-main-vert text-ruby">THE BURN</div>
-						</div>
+					</div>
+					<div class="card-footer">
+						Wide geometric caps with a warm amber italic "OR" serving as the balance fulcrum.
 					</div>
 				</article>
 
-				<!-- V-03: Pure Black Background (#000000) -->
-				<article class="vertical-card bg-black-card">
-					<span class="var-num-dark">Vertical • Pure Black (#000000)</span>
-					<div class="lockup-vertical">
-						<div class="mark-box">
-							<svg viewBox="12 24 76 66" width="105" height="91">
-								<defs>
-									<linearGradient id="vb-purple" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#3b0764"/></linearGradient>
-									<linearGradient id="vb-tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fb7185"/><stop offset="60%" stop-color="#e11d48"/><stop offset="100%" stop-color="#9f1239"/></linearGradient>
-								</defs>
-								<path d="M 16,42 C 24,28 76,28 84,42 C 84,62 68,68 50,68 C 32,68 16,62 16,42 Z" fill="#090514"/>
-								<path d="M 28,38 C 38,34 62,34 72,38 L 70,44 C 60,41 40,41 30,44 Z" fill="#ffffff"/>
-								<path d="M 28,46 C 28,74 34,88 50,88 C 66,88 72,74 72,46 Z" fill="url(#vb-tongue)"/>
-								<line x1="50" y1="50" x2="50" y2="76" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-								<path d="M 14,42 C 26,28 40,26 50,30 C 60,26 74,28 86,42 C 76,48 64,48 50,48 C 36,48 24,48 14,42 Z" fill="url(#vb-purple)"/>
+			</div>
+
+
+			<!-- GROUP 2: STACKED LOCKUPS -->
+			<div class="group-title-block" id="stacked">
+				<h2 class="group-heading">Stacked Two-Line Lockups</h2>
+				<p class="group-subtext">Vertical configurations optimized for social profile pictures, app icons, square graphics, and book covers.</p>
+			</div>
+
+			<div class="grid-variations">
+
+				<!-- Concept 6 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 06</span>
+						<span class="concept-style">Stacked Left-Aligned • Minimal</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="font-family: 'Plus Jakarta Sans', sans-serif; line-height: 0.95; display: flex; flex-direction: column;">
+							<span style="font-size: 2.4rem; font-weight: 900; color: #34d399; letter-spacing: -0.03em;">FADE</span>
+							<span style="font-size: 0.75rem; font-weight: 800; color: #94a3b8; letter-spacing: 0.25em; text-transform: uppercase; margin: 0.25rem 0;">OR</span>
+							<span style="font-size: 2.4rem; font-weight: 900; color: #ef4444; letter-spacing: -0.03em;">FLARE</span>
+						</div>
+					</div>
+					<div class="card-footer">
+						Stacked two-tier structure with subtle spaced connector. Perfect for compact vertical layouts.
+					</div>
+				</article>
+
+				<!-- Concept 7 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 07</span>
+						<span class="concept-style">Centered Heavy Caps • Classic Weight</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="font-family: 'Outfit', sans-serif; text-align: center; line-height: 1;">
+							<div style="font-size: 2.5rem; font-weight: 900; color: #10b981; letter-spacing: 0.02em;">FADE</div>
+							<div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0.2rem 0;">
+								<span style="height: 1px; width: 32px; background: rgba(255,255,255,0.2);"></span>
+								<span style="font-size: 0.8rem; font-weight: 700; color: #f59e0b; text-transform: uppercase;">OR</span>
+								<span style="height: 1px; width: 32px; background: rgba(255,255,255,0.2);"></span>
+							</div>
+							<div style="font-size: 2.5rem; font-weight: 900; color: #ef4444; letter-spacing: 0.02em;">FLARE</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Balanced centerpiece design with horizontal rule dividers flanking the central word.
+					</div>
+				</article>
+
+				<!-- Concept 8 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 08</span>
+						<span class="concept-style">Cinzel Serif • Authority Clinical</span>
+					</div>
+					<div class="card-stage canvas-pitch">
+						<div style="font-family: 'Cinzel', serif; text-align: center; line-height: 1.1;">
+							<div style="font-size: 2.2rem; font-weight: 800; color: #34d399; letter-spacing: 0.08em;">FADE</div>
+							<div style="font-size: 0.85rem; font-weight: 600; color: #94a3b8; letter-spacing: 0.2em; margin: 0.1rem 0;">&mdash; OR &mdash;</div>
+							<div style="font-size: 2.2rem; font-weight: 800; color: #f87171; letter-spacing: 0.08em;">FLARE</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Classical Roman proportions for academic, textbook, or clinical publication prestige.
+					</div>
+				</article>
+
+				<!-- Concept 9 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 09</span>
+						<span class="concept-style">Negative Space Block • Split Badge</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="display: flex; flex-direction: column; width: 220px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+							<div style="background: #064e3b; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+								<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 1.4rem; color: #34d399; letter-spacing: 0.02em;">FADE</span>
+								<span style="font-size: 0.7rem; font-weight: 700; color: #a7f3d0; text-transform: uppercase;">0/10</span>
+							</div>
+							<div style="background: #7f1d1d; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+								<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 1.4rem; color: #fca5a5; letter-spacing: 0.02em;">FLARE</span>
+								<span style="font-size: 0.7rem; font-weight: 700; color: #fecaca; text-transform: uppercase;">10/10</span>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Two-tone block card showing the clinical spectrum between 0/10 remission and 10/10 flare.
+					</div>
+				</article>
+
+				<!-- Concept 10 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 10</span>
+						<span class="concept-style">Light Mode Stacked • Clean Editorial</span>
+					</div>
+					<div class="card-stage canvas-light">
+						<div style="font-family: 'Figtree', sans-serif; text-align: left; line-height: 0.95;">
+							<div style="font-size: 2.3rem; font-weight: 900; color: #059669; letter-spacing: -0.02em;">Fade</div>
+							<div style="font-size: 0.85rem; font-weight: 700; color: #64748b; margin: 0.2rem 0; letter-spacing: 0.1em; text-transform: uppercase;">or</div>
+							<div style="font-size: 2.3rem; font-weight: 900; color: #dc2626; letter-spacing: -0.02em;">Flare</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Editorial sentence case stacked lockup rendered crisply on a bright paper white background.
+					</div>
+				</article>
+
+			</div>
+
+
+			<!-- GROUP 3: ICONS & GRAPHIC LOCKUPS -->
+			<div class="group-title-block" id="icon-lockups">
+				<h2 class="group-heading">Dual Icons &amp; Metaphor Lockups</h2>
+				<p class="group-subtext">Featuring visual symbols: calming waves, descending slopes, flame peaks, dials, and bio-signals.</p>
+			</div>
+
+			<div class="grid-variations">
+
+				<!-- Concept 11 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 11</span>
+						<span class="concept-style">Wave &amp; Flame Mark</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="display: flex; align-items: center; gap: 1rem;">
+							<svg viewBox="0 0 64 64" width="60" height="60">
+								<!-- Fade Water Wave (Green) -->
+								<path d="M 6,36 C 14,24 24,44 32,32 C 40,20 50,40 58,28" fill="none" stroke="#10b981" stroke-width="4.5" stroke-linecap="round"/>
+								<!-- Flare Flame Spike (Red) -->
+								<path d="M 32,10 C 38,22 48,26 44,42 C 40,54 24,54 20,42 C 18,34 26,24 32,10 Z" fill="none" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; display: flex; flex-direction: column; line-height: 1;">
+								<span style="font-size: 1.8rem; font-weight: 900; color: #10b981;">Fade</span>
+								<span style="font-size: 1.8rem; font-weight: 900; color: #ef4444;">Flare</span>
+							</div>
 						</div>
-						<div class="text-block-center text-balanced-vert">
-							<div class="txt-sub-vert text-white">DECODING</div>
-							<div class="txt-main-vert text-ruby">THE BURN</div>
+					</div>
+					<div class="card-footer">
+						Wave symbol representing neurological calm combined with the rising flame of nerve activation.
+					</div>
+				</article>
+
+				<!-- Concept 12 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 12</span>
+						<span class="concept-style">ECG Bio-Signal • Rhythm Tracker</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="display: flex; flex-direction: column; align-items: center; gap: 0.6rem;">
+							<svg viewBox="0 0 160 36" width="180" height="36">
+								<!-- Smooth Fade Flatline / Gentle curve in Green -->
+								<path d="M 6,18 L 40,18 Q 50,14 60,18" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
+								<!-- Transition dot -->
+								<circle cx="70" cy="18" r="3" fill="#f59e0b"/>
+								<!-- Acute Pain Spike in Red -->
+								<path d="M 80,18 L 92,18 L 100,4 L 110,32 L 118,12 L 126,22 L 154,18" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.6rem; font-weight: 900; display: flex; gap: 0.4rem;">
+								<span style="color: #34d399;">Fade</span>
+								<span style="color: #64748b; font-size: 0.95rem; font-weight: 600; align-self: center;">or</span>
+								<span style="color: #ef4444;">Flare</span>
+							</div>
 						</div>
+					</div>
+					<div class="card-footer">
+						Direct medical pulse graph displaying calm baseline sensory rhythm followed by a neuro-inflammatory spike.
+					</div>
+				</article>
+
+				<!-- Concept 13 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 13</span>
+						<span class="concept-style">Circular Yin-Yang Dial</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="display: flex; align-items: center; gap: 1.1rem;">
+							<svg viewBox="0 0 54 54" width="56" height="56">
+								<circle cx="27" cy="27" r="24" fill="#020205" stroke="#1e293b" stroke-width="2"/>
+								<!-- Left Green Arc -->
+								<path d="M 27,5 A 22 22 0 0 0 27,49 Z" fill="#10b981" opacity="0.9"/>
+								<!-- Right Red Arc -->
+								<path d="M 27,5 A 22 22 0 0 1 27,49 Z" fill="#ef4444" opacity="0.9"/>
+								<line x1="27" y1="5" x2="27" y2="49" stroke="#090d16" stroke-width="2.5"/>
+							</svg>
+							<div style="font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; line-height: 1;">
+								<span style="font-size: 1.7rem; font-weight: 800; color: #10b981;">FADE</span>
+								<span style="font-size: 1.7rem; font-weight: 800; color: #ef4444;">FLARE</span>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Dual-chamber circle mark showing two complementary neurological states: remission and flare.
+					</div>
+				</article>
+
+				<!-- Concept 14 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 14</span>
+						<span class="concept-style">Compass / Trend Vectors</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="display: flex; align-items: center; gap: 0.9rem;">
+							<div style="display: flex; flex-direction: column; gap: 0.25rem;">
+								<!-- Green down-arrow (fade) -->
+								<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#10b981" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+									<line x1="7" y1="7" x2="17" y2="17"></line>
+									<polyline points="7 17 17 17 17 7"></polyline>
+								</svg>
+								<!-- Red up-arrow (flare) -->
+								<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+									<line x1="7" y1="17" x2="17" y2="7"></line>
+									<polyline points="7 7 17 7 17 17"></polyline>
+								</svg>
+							</div>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.9rem; font-weight: 900; letter-spacing: -0.02em; display: flex; flex-direction: column; line-height: 0.95;">
+								<span style="color: #10b981;">Fade</span>
+								<span style="color: #ef4444;">Flare</span>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Directional arrows indicating pain de-escalation (slope down) versus acute symptom spike (slope up).
+					</div>
+				</article>
+
+				<!-- Concept 15 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 15</span>
+						<span class="concept-style">Shield of Protection</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="display: flex; align-items: center; gap: 1rem;">
+							<svg viewBox="0 0 48 54" width="48" height="54">
+								<path d="M 24,3 L 42,10 C 42,32 24,49 24,49 C 24,49 6,32 6,10 Z" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+								<!-- Half green shield -->
+								<path d="M 24,4 L 24,48 C 24,48 7,31 7,11 L 24,4 Z" fill="#10b981" opacity="0.85"/>
+								<!-- Half red shield -->
+								<path d="M 24,4 L 41,11 C 41,31 24,48 24,48 L 24,4 Z" fill="#ef4444" opacity="0.85"/>
+							</svg>
+							<div style="font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 800; line-height: 1.05;">
+								<div style="color: #34d399;">FADE</div>
+								<div style="color: #f87171;">FLARE</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Heraldic shield emblem demonstrating biological defense and resistance against sensory triggers.
+					</div>
+				</article>
+
+			</div>
+
+
+			<!-- GROUP 4: BADGES, MONOGRAMS & TYPOGRAPHIC EMBLEMS -->
+			<div class="group-title-block" id="badges-monograms">
+				<h2 class="group-heading">Monograms &amp; Emblems</h2>
+				<p class="group-subtext">Compact "FF" monograms, enclosed app badges, and seal formats for favicon, social avatars, and merchandise.</p>
+			</div>
+
+			<div class="grid-variations">
+
+				<!-- Concept 16 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 16</span>
+						<span class="concept-style">Interlocking "FF" Monogram</span>
+					</div>
+					<div class="card-stage canvas-pitch">
+						<div style="display: flex; align-items: center; gap: 1.25rem;">
+							<div style="position: relative; width: 62px; height: 62px; background: #0b0f19; border-radius: 14px; border: 1px solid #1e293b; display: flex; align-items: center; justify-content: center;">
+								<span style="font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 900; color: #10b981; position: absolute; left: 13px; top: 8px;">F</span>
+								<span style="font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 900; color: #ef4444; position: absolute; right: 13px; top: 14px; opacity: 0.9;">F</span>
+							</div>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif;">
+								<div style="font-size: 1.6rem; font-weight: 900; color: #ffffff; letter-spacing: -0.02em;">Fade <span style="font-weight: 400; color: #64748b;">or</span> Flare</div>
+								<div style="font-size: 0.72rem; font-weight: 700; color: #38bdf8; letter-spacing: 0.15em; text-transform: uppercase;">Oral Pain Research</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Overlapping double-F monogram badge. Excellent scalability for browser favicons and mobile app icons.
+					</div>
+				</article>
+
+				<!-- Concept 17 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 17</span>
+						<span class="concept-style">Hexagonal Science Seal</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="display: flex; align-items: center; gap: 1.25rem;">
+							<svg viewBox="0 0 60 60" width="56" height="56">
+								<polygon points="30,3 54,16 54,44 30,57 6,44 6,16" fill="#090d16" stroke="#334155" stroke-width="2.5"/>
+								<line x1="30" y1="3" x2="30" y2="57" stroke="#1e293b" stroke-width="2"/>
+								<text x="18" y="37" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="20" fill="#10b981">F</text>
+								<text x="33" y="37" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="20" fill="#ef4444">F</text>
+							</svg>
+							<div style="font-family: 'Outfit', sans-serif; line-height: 1.05;">
+								<div style="font-size: 1.7rem; font-weight: 900; color: #34d399; letter-spacing: 0.02em;">FADE</div>
+								<div style="font-size: 1.7rem; font-weight: 900; color: #f87171; letter-spacing: 0.02em;">FLARE</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Hexagonal molecular cell geometry reflecting oral microbiology and biochemistry research.
+					</div>
+				</article>
+
+				<!-- Concept 18 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 18</span>
+						<span class="concept-style">Glassmorphism Card Lockup</span>
+					</div>
+					<div class="card-stage canvas-pitch">
+						<div style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1.2rem 2rem; display: flex; align-items: center; gap: 0.85rem; box-shadow: 0 15px 35px rgba(0,0,0,0.6);">
+							<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.9rem; font-weight: 900; color: #34d399; text-shadow: 0 0 20px rgba(52, 211, 153, 0.4);">Fade</span>
+							<span style="font-size: 0.9rem; font-weight: 700; color: #e2e8f0; background: rgba(255,255,255,0.08); padding: 0.2rem 0.6rem; border-radius: 6px;">OR</span>
+							<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.9rem; font-weight: 900; color: #f87171; text-shadow: 0 0 20px rgba(248, 113, 113, 0.4);">Flare</span>
+						</div>
+					</div>
+					<div class="card-footer">
+						Modern UI translucent glass container with soft neon glow accents behind both keywords.
+					</div>
+				</article>
+
+				<!-- Concept 19 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 19</span>
+						<span class="concept-style">Continuous Gradient Transition</span>
+					</div>
+					<div class="card-stage canvas-dark">
+						<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.3rem; font-weight: 900; letter-spacing: -0.03em;">
+							<span style="background: linear-gradient(90deg, #10b981 0%, #34d399 35%, #fbbf24 60%, #ef4444 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+								Fade or Flare
+							</span>
+						</div>
+					</div>
+					<div class="card-footer">
+						Fluid horizontal gradient flowing organically from emerald green through threshold amber to crimson flare.
+					</div>
+				</article>
+
+				<!-- Concept 20 -->
+				<article class="concept-card">
+					<div class="card-meta">
+						<span class="concept-id">CONCEPT 20</span>
+						<span class="concept-style">Master Clinical Lockup + Subtitle</span>
+					</div>
+					<div class="card-stage canvas-pitch">
+						<div style="text-align: center;">
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.2rem; font-weight: 900; letter-spacing: -0.025em; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+								<span style="color: #34d399;">Fade</span>
+								<span style="font-size: 1rem; color: #94a3b8; font-weight: 600; text-transform: uppercase;">or</span>
+								<span style="color: #ef4444;">Flare</span>
+							</div>
+							<div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; font-weight: 700; color: #cbd5e1; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 0.35rem; opacity: 0.9;">
+								Forensic Oral Pain Science
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						Complete brand presentation lockup with balanced category tag line, ready for site headers and branding kits.
 					</div>
 				</article>
 
@@ -194,299 +724,5 @@ import Footer from '../components/Footer.astro';
 		</main>
 
 		<Footer />
-
-		<style>
-			:root {
-				--font-heading: 'Figtree', system-ui, -apple-system, sans-serif;
-				--font-body: 'Figtree', system-ui, -apple-system, sans-serif;
-			}
-
-			.logo-lab-body {
-				background-color: #f8fafc;
-				color: #0f172a;
-				font-family: var(--font-body);
-				min-height: 100vh;
-			}
-
-			.logo-lab-container {
-				max-width: 1060px;
-				margin: 0 auto;
-				padding: 3rem 1.5rem 6rem;
-			}
-
-			/* Hero Header */
-			.lab-hero {
-				text-align: center;
-				margin-bottom: 3.5rem;
-				padding-top: 1.5rem;
-			}
-
-			.lab-title {
-				font-size: 2.75rem;
-				font-weight: 900;
-				letter-spacing: -0.04em;
-				color: #0f172a;
-				margin-bottom: 0.75rem;
-				text-wrap: balance;
-			}
-
-			.lab-subtitle {
-				font-size: 1.15rem;
-				color: #475569;
-				max-width: 720px;
-				margin: 0 auto;
-				line-height: 1.6;
-				text-wrap: balance;
-			}
-
-			/* Section Dividers */
-			.section-divider {
-				margin: 3.5rem 0 1.75rem;
-				border-bottom: 1.5px solid #e2e8f0;
-				padding-bottom: 1rem;
-			}
-
-			.section-heading {
-				font-size: 1.5rem;
-				font-weight: 900;
-				color: #0f172a;
-				letter-spacing: -0.03em;
-				margin-bottom: 0.25rem;
-			}
-
-			.section-desc {
-				font-size: 0.95rem;
-				color: #64748b;
-				margin: 0;
-			}
-
-			/* Variations Stack */
-			.variations-stack {
-				display: flex;
-				flex-direction: column;
-				gap: 2rem;
-			}
-
-			.variation-card {
-				border-radius: 20px;
-				padding: 3.25rem 2.5rem;
-				position: relative;
-				box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
-				transition: all 0.2s ease;
-				display: flex;
-				align-items: center;
-				justify-content: flex-start;
-			}
-
-			.highlight-master {
-				border: 2px solid #7c3aed;
-				background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
-				box-shadow: 0 8px 30px rgba(124, 58, 237, 0.12);
-			}
-
-			/* Badges */
-			.var-num-light {
-				position: absolute;
-				top: 1.25rem;
-				right: 1.25rem;
-				font-size: 0.8rem;
-				font-weight: 800;
-				color: #475569;
-				background: #f1f5f9;
-				border: 1px solid #e2e8f0;
-				padding: 0.2rem 0.65rem;
-				border-radius: 6px;
-			}
-
-			.var-num-purple {
-				position: absolute;
-				top: 1.25rem;
-				right: 1.25rem;
-				font-size: 0.8rem;
-				font-weight: 800;
-				color: #e9d5ff;
-				background: #190933;
-				border: 1px solid #4c1d95;
-				padding: 0.2rem 0.65rem;
-				border-radius: 6px;
-			}
-
-			.var-num-dark {
-				position: absolute;
-				top: 1.25rem;
-				right: 1.25rem;
-				font-size: 0.8rem;
-				font-weight: 800;
-				color: #cbd5e1;
-				background: #0f172a;
-				border: 1px solid #334155;
-				padding: 0.2rem 0.65rem;
-				border-radius: 6px;
-			}
-
-			/* Lockup Layouts */
-			.lockup-horizontal {
-				display: flex;
-				align-items: center;
-				width: 100%;
-			}
-
-			.tight-gap {
-				gap: 0.85rem;
-			}
-
-			.mark-box {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-shrink: 0;
-			}
-
-			/* BALANCED TEXT BLOCK WITH 2MM BREATHING SPACE */
-			.text-balanced-box {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: flex-start;
-				text-align: left;
-				line-height: 1;
-			}
-
-			.txt-sub-darker,
-			.txt-sub-purple,
-			.txt-sub-white,
-			.txt-main-ruby,
-			.txt-sub-vert,
-			.txt-main-vert {
-				display: block;
-				font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
-			}
-
-			/* Typography Specs */
-			.txt-sub-darker {
-				font-size: 1.4rem;
-				font-weight: 850;
-				letter-spacing: 0.12em;
-				color: #0f172a;
-				line-height: 1;
-				margin-bottom: 0.35rem; /* ~2mm optical separation */
-			}
-
-			.txt-sub-purple {
-				font-size: 1.4rem;
-				font-weight: 850;
-				letter-spacing: 0.12em;
-				color: #c084fc;
-				line-height: 1;
-				margin-bottom: 0.35rem; /* ~2mm optical separation */
-			}
-
-			.txt-sub-white {
-				font-size: 1.4rem;
-				font-weight: 850;
-				letter-spacing: 0.12em;
-				color: #ffffff;
-				line-height: 1;
-				margin-bottom: 0.35rem; /* ~2mm optical separation */
-			}
-
-			.txt-main-ruby {
-				font-size: 3.05rem;
-				font-weight: 900;
-				letter-spacing: -0.045em;
-				color: #e11d48;
-				line-height: 0.95;
-			}
-
-			/* Vertical Grid */
-			.vertical-grid {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 1.5rem;
-			}
-
-			.vertical-card {
-				border-radius: 20px;
-				padding: 3.5rem 1.5rem 2.5rem;
-				position: relative;
-				box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				text-align: center;
-			}
-
-			.bg-light-card {
-				background: #ffffff;
-				border: 1.5px solid #e2e8f0;
-			}
-
-			.bg-purple-card {
-				background: #0b0518;
-				border: 1.5px solid #3b0764;
-			}
-
-			.bg-black-card {
-				background: #000000;
-				border: 1.5px solid #1e293b;
-			}
-
-			.lockup-vertical {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 1.25rem;
-			}
-
-			.text-balanced-vert {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				text-align: center;
-				line-height: 1;
-			}
-
-			.txt-sub-vert {
-				font-size: 1.18rem;
-				font-weight: 850;
-				letter-spacing: 0.14em;
-				line-height: 1;
-				margin-bottom: 0.4rem; /* ~2mm optical separation */
-			}
-
-			.txt-main-vert {
-				font-size: 2.5rem;
-				font-weight: 900;
-				letter-spacing: -0.04em;
-				line-height: 0.95;
-			}
-
-			/* Palette Colors */
-			.text-darker { color: #0f172a; }
-			.text-ruby { color: #e11d48; }
-			.text-purple-light { color: #c084fc; }
-			.text-white { color: #ffffff; }
-
-			@media (max-width: 900px) {
-				.vertical-grid {
-					grid-template-columns: 1fr;
-				}
-			}
-
-			@media (max-width: 768px) {
-				.lockup-horizontal {
-					flex-direction: column;
-					align-items: flex-start;
-					gap: 1rem;
-				}
-				.variation-card {
-					padding: 2.5rem 1.5rem;
-				}
-				.lab-title {
-					font-size: 2.2rem;
-				}
-			}
-		</style>
 	</body>
 </html>
