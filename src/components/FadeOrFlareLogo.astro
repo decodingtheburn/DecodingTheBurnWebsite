@@ -1,0 +1,126 @@
+---
+---
+<div class="fade-or-flare-logo">
+  <!-- Fade with tight green arrow below -->
+  <div class="word-group fade-group">
+    <span class="brand-word fade-word">Fade</span>
+    <svg viewBox="0 0 36 9" width="34" height="9" class="arrow-svg down-arrow">
+      <polygon points="18,8 35,1 1,1" fill="#34d399"/>
+    </svg>
+  </div>
+
+  <!-- 'or' with optical 3px drop in tight lockup -->
+  <span class="brand-or">or</span>
+
+  <!-- Flare with red arrow tucked flush on 'r' stem -->
+  <div class="word-group flare-group">
+    <span class="brand-prefix">Fla</span>
+    <span class="stem-r-wrapper">
+      <svg viewBox="0 0 36 9" width="34" height="9" class="arrow-svg up-arrow">
+        <polygon points="18,1 35,8 1,8" fill="#ef4444"/>
+      </svg>
+      <span class="brand-r">r</span>
+    </span>
+    <span class="brand-suffix">e</span>
+  </div>
+</div>
+
+<style>
+  .fade-or-flare-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.22rem;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .word-group {
+    display: inline-flex;
+    align-items: baseline;
+    line-height: 1;
+  }
+
+  .fade-group {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brand-word, .brand-prefix, .brand-r, .brand-suffix {
+    font-size: 1.85rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .fade-word {
+    color: #10b981;
+  }
+
+  .brand-or {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    color: #0f172a;
+    font-weight: 800;
+    opacity: 0.95;
+    line-height: 1;
+    padding: 0 0.04rem;
+    transform: translateY(2.5px);
+  }
+
+  :global(.dark) .brand-or,
+  :global([data-theme="dark"]) .brand-or {
+    color: #f1f5f9;
+  }
+
+  .flare-group {
+    color: #ef4444;
+  }
+
+  .stem-r-wrapper {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .arrow-svg {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .down-arrow {
+    top: 100%;
+    margin-top: 2px;
+  }
+
+  .up-arrow {
+    bottom: 100%;
+    margin-bottom: -7.5px;
+  }
+
+  @media (max-width: 640px) {
+    .brand-word, .brand-prefix, .brand-r, .brand-suffix {
+      font-size: 1.55rem;
+    }
+    .brand-or {
+      font-size: 0.65rem;
+      transform: translateY(2px);
+    }
+    .arrow-svg {
+      width: 28px;
+      height: 7.5px;
+    }
+    .down-arrow {
+      margin-top: 1.5px;
+    }
+    .up-arrow {
+      margin-bottom: -6px;
+    }
+  }
+</style>
