@@ -24,7 +24,7 @@ const staticRoutes = [
 ];
 
 export async function GET(context) {
-	const siteUrl = context.site ? context.site.href.replace(/\/$/, '') : 'https://www.decodingtheburn.com';
+	const siteUrl = context.site ? context.site.href.replace(/\/$/, '') : 'https://www.fadeorflare.com';
 	const publishedPosts = await getCollection('blog', ({ data }) => !data.draft);
 
 	const staticUrls = staticRoutes.map((route) => `  <url>
