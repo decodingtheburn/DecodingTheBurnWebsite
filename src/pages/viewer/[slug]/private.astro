@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseHead from '../../../components/BaseHead.astro';
-import TongueLogo from '../../../components/TongueLogo.astro';
+import AcidTriggeredLogo from '../../../components/AcidTriggeredLogo.astro';
 import { generateSlidesFromPost } from '../../../utils/slideEngine';
 
 export async function getStaticPaths() {
@@ -23,7 +23,7 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 <html lang="en">
 	<head>
 		<BaseHead 
-			title={`Presenter Cockpit: ${cleanTitle} | Decoding The Burn`}
+			title={`Presenter Cockpit: ${cleanTitle} | Acid Triggered`}
 			description={`Denis's private presenter dashboard for ${cleanTitle} with live teleprompter notes and timer.`}
 			noindex={true}
 		/>
@@ -776,7 +776,7 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 			<div class="top-left">
 				<a href="/viewer" class="cockpit-logo-link" title="Return to Hub">
 					<div class="logo-mini">
-						<TongueLogo />
+						<AcidTriggeredLogo />
 					</div>
 					<span class="logo-title">Presenter Cockpit</span>
 				</a>

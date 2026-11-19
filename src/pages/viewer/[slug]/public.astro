@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseHead from '../../../components/BaseHead.astro';
-import TongueLogo from '../../../components/TongueLogo.astro';
+import AcidTriggeredLogo from '../../../components/AcidTriggeredLogo.astro';
 import { generateSlidesFromPost } from '../../../utils/slideEngine';
 
 export async function getStaticPaths() {
@@ -23,7 +23,7 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 <html lang="en">
 	<head>
 		<BaseHead 
-			title={`Public Slides: ${cleanTitle} | Decoding The Burn`}
+			title={`Public Slides: ${cleanTitle} | Acid Triggered`}
 			description={`Clean 16:9 borderless presentation for ${cleanTitle} - OBS Ready.`}
 			noindex={true}
 		/>
@@ -579,9 +579,9 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 				<header class="stage-header">
 					<div class="header-brand">
 						<div class="brand-logo-box">
-							<TongueLogo />
+							<AcidTriggeredLogo />
 						</div>
-						<span class="brand-title">Decoding The Burn</span>
+						<span class="brand-title">Acid Triggered</span>
 					</div>
 
 					<div class="stage-header-actions">
@@ -650,7 +650,7 @@ const cleanTitle = post.data.title.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' 
 				</div>
 
 				<div class="disclaimer-footer-hint">
-					<span>Decoding The Burn • Patient-Led Translational Science</span>
+					<span>Acid Triggered • Patient-Led Translational Science</span>
 					<div class="disclaimer-shortcut-badge">
 						<span>Press</span>
 						<kbd style="background: rgba(255,255,255,0.2); padding: 0.1rem 0.4rem; border-radius: 4px; font-family: monospace;">1</kbd>
