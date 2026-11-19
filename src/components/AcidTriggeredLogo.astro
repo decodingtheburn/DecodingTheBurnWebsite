@@ -13,7 +13,7 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     <span style="color: #dc2626;">A</span><span style="color: #ea580c;">C</span><span style="color: #f97316;">I</span><span style="color: #d97706;">D</span><span style="color: #ca8a04;">-</span><span style="color: #a16207;">T</span><span style="color: #65a30d;">R</span><span style="color: #16a34a;">I</span><span style="color: #059669;">G</span><span style="color: #0891b2;">G</span><span style="color: #0284c7;">E</span><span style="color: #2563eb;">R</span><span style="color: #4f46e5;">E</span><span style="color: #7c3aed;">D</span>
   </div>
 
-  <!-- Subtitle: MOUTH PAIN RELIEF Centered in High-Contrast Deep Slate / Black -->
+  <!-- Subtitle: MOUTH PAIN RELIEF Centered in Crisp Pure Black -->
   <div class="subtitle-row">
     MOUTH PAIN RELIEF
   </div>
@@ -38,8 +38,7 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     text-transform: uppercase;
     letter-spacing: -0.04em;
     line-height: 1;
-    /* Clean subtle drop shadow for crisp definition on white */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    text-shadow: none !important;
   }
 
   .subtitle-row {
@@ -49,22 +48,9 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     text-transform: uppercase;
     line-height: 1;
     text-align: center;
-    color: #0f172a;
+    color: #000000 !important;
+    text-shadow: none !important;
     transition: color 0.2s ease;
-  }
-
-  /* Dark mode support */
-  :global(.dark) .subtitle-row,
-  :global([data-theme="dark"]) .subtitle-row,
-  :global(.navbar-dark) .subtitle-row {
-    color: #ffffff;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-  }
-
-  :global(.dark) .title-row,
-  :global([data-theme="dark"]) .title-row,
-  :global(.navbar-dark) .title-row {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }
 
   /* Sizes */
