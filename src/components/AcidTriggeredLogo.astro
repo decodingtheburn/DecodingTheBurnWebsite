@@ -1,0 +1,108 @@
+---
+interface Props {
+  variant?: 'inline' | 'stacked';
+  size?: 'normal' | 'large' | 'compact';
+}
+
+const { variant = 'inline', size = 'normal' } = Astro.props;
+---
+
+<div class={`acid-triggered-logo ${variant} ${size}`}>
+  <!-- ACID in Rainbow pH Spectrum matching Book Cover -->
+  <span class="word-acid">
+    <span style="color: #ef4444;">A</span><span style="color: #f97316;">C</span><span style="color: #eab308;">I</span><span style="color: #84cc16;">D</span>
+  </span>
+
+  <span class="logo-divider"></span>
+
+  <!-- TRIGGERED in High-Contrast White / Deep Slate -->
+  <span class="word-triggered">TRIGGERED</span>
+</div>
+
+<style>
+  .acid-triggered-logo {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    user-select: none;
+    text-decoration: none;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    gap: 0.35rem;
+  }
+
+  .word-acid {
+    display: inline-flex;
+    letter-spacing: 0.02em;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(239, 68, 68, 0.25);
+  }
+
+  .logo-divider {
+    display: none;
+  }
+
+  .word-triggered {
+    color: #0f172a;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  :global(.dark) .word-triggered,
+  :global([data-theme="dark"]) .word-triggered,
+  :global(.navbar-dark) .word-triggered {
+    color: #ffffff;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Sizes */
+  .acid-triggered-logo.normal .word-acid,
+  .acid-triggered-logo.normal .word-triggered {
+    font-size: 1.55rem;
+  }
+
+  .acid-triggered-logo.compact .word-acid,
+  .acid-triggered-logo.compact .word-triggered {
+    font-size: 1.35rem;
+  }
+
+  .acid-triggered-logo.large .word-acid,
+  .acid-triggered-logo.large .word-triggered {
+    font-size: 2.2rem;
+  }
+
+  /* Stacked Variant */
+  .acid-triggered-logo.stacked {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+    line-height: 0.88;
+  }
+
+  .acid-triggered-logo.stacked .word-acid {
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .acid-triggered-logo.stacked .word-triggered {
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 640px) {
+    .acid-triggered-logo.normal .word-acid,
+    .acid-triggered-logo.normal .word-triggered {
+      font-size: 1.35rem;
+    }
+  }
+</style>
