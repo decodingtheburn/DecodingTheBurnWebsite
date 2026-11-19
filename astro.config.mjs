@@ -23,7 +23,7 @@ const draftSlugs = getDraftSlugs();
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://www.fadeorflare.com',
+	site: 'https://www.acidtriggered.com',
 	devToolbar: {
 		enabled: false,
 	},
