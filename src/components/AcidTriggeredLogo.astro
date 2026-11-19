@@ -8,12 +8,12 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
 ---
 
 <div class={`acid-triggered-logo ${variant} ${size}`}>
-  <!-- ACID-TRIGGERED in 14-Letter Rainbow Spectrum with Tight Kerning -->
+  <!-- ACID-TRIGGERED in 14-Letter Rainbow Spectrum with Inter 900 -->
   <div class="title-row">
     <span style="color: #ef4444;">A</span><span style="color: #f45b36;">C</span><span style="color: #f97316;">I</span><span style="color: #fb923c;">D</span><span style="color: #f59e0b;">-</span><span style="color: #eab308;">T</span><span style="color: #84cc16;">R</span><span style="color: #22c55e;">I</span><span style="color: #10b981;">G</span><span style="color: #06b6d4;">G</span><span style="color: #0ea5e9;">E</span><span style="color: #3b82f6;">R</span><span style="color: #6366f1;">E</span><span style="color: #a855f7;">D</span>
   </div>
 
-  <!-- Subtitle: MOUTH PAIN RELIEF Left-Aligned in Crisp Solid White -->
+  <!-- Subtitle: MOUTH PAIN RELIEF Centered in Crisp Solid White -->
   <div class="subtitle-row">
     MOUTH PAIN RELIEF
   </div>
@@ -23,8 +23,8 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
   .acid-triggered-logo {
     display: inline-flex;
     flex-direction: column;
-    align-items: flex-start;
-    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    align-items: center;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     user-select: none;
     text-decoration: none;
     line-height: 1;
@@ -36,17 +36,18 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     align-items: baseline;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     line-height: 1;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
   }
 
   .subtitle-row {
+    width: 100%;
     font-weight: 900;
     letter-spacing: -0.015em;
     text-transform: uppercase;
     line-height: 1;
-    text-align: left;
+    text-align: center;
     color: #0f172a;
     transition: color 0.2s ease;
   }
