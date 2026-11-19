@@ -35,7 +35,13 @@ function startStaticServer(rootDir, port = 4399) {
 				if (reqPath.endsWith('/')) reqPath += 'index.html';
 				let fullPath = path.join(rootDir, reqPath);
 
-				if (!fs.existsSync(fullPath)) {
+				let stat = fs.existsSync(fullPath) ? fs.statSync(fullPath) : null;
+				if (stat && stat.isDirectory()) {
+					fullPath = path.join(fullPath, 'index.html');
+					stat = fs.existsSync(fullPath) ? fs.statSync(fullPath) : null;
+				}
+
+				if (!stat) {
 					if (fs.existsSync(fullPath + '.html')) {
 						fullPath += '.html';
 					} else if (fs.existsSync(path.join(fullPath, 'index.html'))) {
@@ -49,7 +55,12 @@ function startStaticServer(rootDir, port = 4399) {
 
 				const ext = path.extname(fullPath).toLowerCase();
 				res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
-				fs.createReadStream(fullPath).pipe(res);
+				const stream = fs.createReadStream(fullPath);
+				stream.on('error', (streamErr) => {
+					res.statusCode = 500;
+					res.end(streamErr.message);
+				});
+				stream.pipe(res);
 			} catch (err) {
 				res.statusCode = 500;
 				res.end(err.message);
@@ -1212,7 +1223,57 @@ const READER_EDITION_CSS = `
 		box-sizing: border-box !important;
 	}
 
-	.cover-gold-border {
+	
+				/* Front Cover Architectural Title Lockup */
+				.cover-title-stack {
+					width: 100% !important;
+					max-width: 5.6in !important;
+					margin: 0 auto 0.75rem !important;
+					display: flex !important;
+					flex-direction: column !important;
+					align-items: stretch !important;
+					text-shadow: 0 8px 35px rgba(0,0,0,0.95) !important;
+				}
+				.cover-line-acid {
+					display: flex !important;
+					justify-content: space-between !important;
+					align-items: center !important;
+					width: 100% !important;
+					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+					font-size: 2.35rem !important;
+					font-weight: 900 !important;
+					line-height: 1.0 !important;
+					text-transform: uppercase !important;
+					margin-bottom: 0.35rem !important;
+					letter-spacing: -0.04em !important;
+				}
+				.cover-line-mouth {
+					display: flex !important;
+					justify-content: space-between !important;
+					align-items: center !important;
+					width: 100% !important;
+					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+					font-size: 6.2rem !important;
+					font-weight: 900 !important;
+					line-height: 0.88 !important;
+					text-transform: uppercase !important;
+					color: #ffffff !important;
+					margin-bottom: 0.25rem !important;
+				}
+				.cover-line-pain {
+					display: flex !important;
+					justify-content: space-between !important;
+					align-items: center !important;
+					width: 100% !important;
+					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+					font-size: 7.8rem !important;
+					font-weight: 900 !important;
+					line-height: 0.82 !important;
+					text-transform: uppercase !important;
+					color: #ffffff !important;
+					text-shadow: 0 4px 20px rgba(0,0,0,0.85) !important;
+				}
+				.cover-gold-border {
 		border: none !important;
 		min-height: 8.6in !important;
 		height: 100% !important;
@@ -1851,7 +1912,7 @@ async function main() {
 							<span class="kdp-spine-author">DENIS ETHIER</span>
 						</div>
 						<div class="kdp-spine-center">
-							<span class="kdp-spine-title">ACID-TRIGGERED BURNING MOUTH</span>
+							<span class="kdp-spine-title">ACID-TRIGGERED MOUTH PAIN</span>
 						</div>
 						<div class="kdp-spine-bottom">
 							<span class="kdp-spine-edition">VERSION 1.0 &bull; NOVEMBER 2026 EDITION</span>
