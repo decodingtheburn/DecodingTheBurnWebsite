@@ -6,17 +6,17 @@ interface Props {
 
 const { variant = 'inline', size = 'normal' } = Astro.props;
 
-// "ACID-TRIGGERED" in Rainbow Spectrum (Red to Purple)
-// "MOUTH PAIN" in Solid Pure Black
+// "Acid-Triggered" in Rainbow Spectrum (Red to Purple) - Title Case (First letter capitalized)
+// "Mouth Pain" in Solid Pure Black - Title Case (First letter capitalized)
 ---
 
 <div class={`acid-triggered-logo ${variant} ${size}`}>
   <div class="title-row">
     <span class="word-acid-triggered">
-      <span style="color: #dc2626;">A</span><span style="color: #ea580c;">C</span><span style="color: #f97316;">I</span><span style="color: #d97706;">D</span><span style="color: #ca8a04;">-</span><span style="color: #a16207;">T</span><span style="color: #65a30d;">R</span><span style="color: #16a34a;">I</span><span style="color: #059669;">G</span><span style="color: #0891b2;">G</span><span style="color: #0284c7;">E</span><span style="color: #2563eb;">R</span><span style="color: #4f46e5;">E</span><span style="color: #7c3aed;">D</span>
+      <span style="color: #dc2626;">A</span><span style="color: #ea580c;">c</span><span style="color: #f97316;">i</span><span style="color: #d97706;">d</span><span style="color: #ca8a04;">-</span><span style="color: #a16207;">T</span><span style="color: #65a30d;">r</span><span style="color: #16a34a;">i</span><span style="color: #059669;">g</span><span style="color: #0891b2;">g</span><span style="color: #0284c7;">e</span><span style="color: #2563eb;">r</span><span style="color: #4f46e5;">e</span><span style="color: #7c3aed;">d</span>
     </span>
     <span class="word-spacer">&nbsp;</span>
-    <span class="word-mouth-pain">MOUTH&nbsp;PAIN</span>
+    <span class="word-mouth-pain">Mouth&nbsp;Pain</span>
   </div>
 </div>
 
@@ -34,8 +34,7 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     display: inline-flex;
     align-items: baseline;
     font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.025em;
     line-height: 1;
     text-shadow: none !important;
   }
@@ -56,20 +55,20 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
 
   /* Sizes */
   .acid-triggered-logo.normal .title-row {
-    font-size: 1.45rem;
+    font-size: 1.55rem;
   }
 
   .acid-triggered-logo.compact .title-row {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 
   .acid-triggered-logo.large .title-row {
-    font-size: 2.25rem;
+    font-size: 2.35rem;
   }
 
   @media (max-width: 640px) {
     .acid-triggered-logo.normal .title-row {
-      font-size: 1.15rem;
+      font-size: 1.22rem;
     }
   }
 </style>
