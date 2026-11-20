@@ -12,7 +12,7 @@ const description = "The personal chronological discovery story of Denis Ethier:
 const timelineEvents = [
 	{
 		date: "Approx. 4 Years Ago (2022)",
-		tag: "Initial Discovery",
+		emoji: "🍷",
 		zone: "red",
 		title: "Sudden Severe Burning & Alcohol Elimination",
 		summary: "Woke up with an excruciating boiling burning sensation across tongue and palate (10/10 pain). Every conventional test (bloodwork, ENT, biopsy) returned negative.",
@@ -22,7 +22,7 @@ const timelineEvents = [
 	},
 	{
 		date: "Approx. 3.5 Years Ago (2023)",
-		tag: "Beverage Investigation",
+		emoji: "☕",
 		zone: "yellow",
 		title: "Coffee & High-Tannin Acid Elimination",
 		summary: "Pain returned after months of apparent remission. Morning coffee (regular and decaf, pH 4.8 to 5.2) caused stinging pain across the tongue and gingiva.",
@@ -32,7 +32,7 @@ const timelineEvents = [
 	},
 	{
 		date: "Approx. 3 Years Ago (2023)",
-		tag: "Dental Variable",
+		emoji: "🪥",
 		zone: "yellow",
 		title: "Routine Dental Cleaning & Scaling Flare",
 		summary: "A routine ultrasonic dental scaling stripped protective mineral smear layers off receded root margins.",
@@ -42,7 +42,7 @@ const timelineEvents = [
 	},
 	{
 		date: "Approx. 2.5 Years Ago (2024)",
-		tag: "Dietary Investigation",
+		emoji: "🍋",
 		zone: "yellow",
 		title: "Fruit Acid & Nightshade Elimination",
 		summary: "Healthy dietary fruits (citrus, berries, pineapples) and tomatoes were repeatedly triggering burning flares.",
@@ -52,7 +52,7 @@ const timelineEvents = [
 	},
 	{
 		date: "Approx. 2 Years Ago (2024)",
-		tag: "Hardware Discovery",
+		emoji: "🛡️",
 		zone: "green",
 		title: "Gumline Bonding Patches (Class V)",
 		summary: "Dentist placed Class V resin bonding patches over five exposed cervical recession sites (teeth #11, #16, #24, #26, #44).",
@@ -62,7 +62,7 @@ const timelineEvents = [
 	},
 	{
 		date: "18 Months Ago (Early 2025)",
-		tag: "Major Turning Point",
+		emoji: "🥩",
 		zone: "green",
 		title: "Initial Carnivore Trial & Discovery of Plant Sugars",
 		summary: "Switched to a zero-carb, zero-plant carnivore protocol (beef, lamb, eggs, animal fats) to eliminate all fermentable plant carbohydrates.",
@@ -72,7 +72,7 @@ const timelineEvents = [
 	},
 	{
 		date: "6 Months Ago (Mid 2025)",
-		tag: "Hardware Breakthrough",
+		emoji: "🦷",
 		zone: "green",
 		title: "Failing Crown Removal & Decontamination",
 		summary: "Discovered tooth #36 (lower left first molar) had a failing distal crown margin with three hidden recurrent decay pockets underneath.",
@@ -82,7 +82,7 @@ const timelineEvents = [
 	},
 	{
 		date: "Last 6 Continuous Months (2026)",
-		tag: "Current Status",
+		emoji: "✨",
 		zone: "green",
 		title: "Unbroken 0/10 Pain Baseline (Complete Remission)",
 		summary: "Combining airtight dental restorations with a strict zero-acid nutritional shield has maintained zero burning pain for six months straight.",
@@ -187,27 +187,24 @@ const timelineEvents = [
 				color: #7c3aed;
 			}
 
-			.profile-meta-strip {
+			.profile-meta-stack {
 				display: flex;
-				justify-content: center;
+				flex-direction: column;
 				align-items: center;
-				gap: 1.5rem;
-				flex-wrap: wrap;
-				margin-bottom: 1.75rem;
+				gap: 0.45rem;
+				margin: 1.5rem auto 2rem;
 			}
 
-			.meta-pill {
-				background: #f8fafc;
-				border: 1.5px solid #e2e8f0;
-				border-radius: 9999px;
-				padding: 0.45rem 1.15rem;
-				font-size: 0.92rem;
+			.meta-line {
+				font-size: 1.05rem;
+				line-height: 1.5;
 				color: #334155;
-				font-weight: 700;
 			}
 
-			.meta-pill strong {
+			.meta-line strong {
 				color: #0f172a;
+				font-weight: 800;
+				margin-right: 0.35rem;
 			}
 
 			.profile-bio {
@@ -298,7 +295,7 @@ const timelineEvents = [
 			.event-header {
 				display: flex;
 				justify-content: space-between;
-				align-items: baseline;
+				align-items: center;
 				gap: 1rem;
 				margin-bottom: 0.75rem;
 				flex-wrap: wrap;
@@ -311,18 +308,18 @@ const timelineEvents = [
 				letter-spacing: -0.01em;
 			}
 
-			.event-tag {
-				font-size: 0.8rem;
-				font-weight: 800;
-				text-transform: uppercase;
-				letter-spacing: 0.06em;
-				padding: 0.25rem 0.75rem;
-				border-radius: 9999px;
+			.event-emoji {
+				font-size: 2.25rem;
+				line-height: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 3.25rem;
+				height: 3.25rem;
+				border-radius: 12px;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
 			}
-
-			.tag-red { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
-			.tag-yellow { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
-			.tag-green { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
 
 			.event-title {
 				font-size: 1.45rem;
@@ -491,11 +488,11 @@ const timelineEvents = [
 					Denis Ethier: <span>My Trigger Story</span>
 				</h1>
 
-				<div class="profile-meta-strip">
-					<div class="meta-pill"><strong>Patient:</strong> Denis Ethier</div>
-					<div class="meta-pill"><strong>Timeline:</strong> 4 Years of Data</div>
-					<div class="meta-pill"><strong>Outcome:</strong> 10/10 &rarr; 0/10 Pain</div>
-					<div class="meta-pill"><strong>Status:</strong> 6 Months Remission</div>
+				<div class="profile-meta-stack">
+					<div class="meta-line"><strong>Patient:</strong> Denis Ethier</div>
+					<div class="meta-line"><strong>Timeline:</strong> 4 Years of Data</div>
+					<div class="meta-line"><strong>Outcome:</strong> 10/10 &rarr; 0/10 Pain</div>
+					<div class="meta-line"><strong>Status:</strong> 6 Months Remission</div>
 				</div>
 
 				<p class="profile-bio">
@@ -519,7 +516,7 @@ const timelineEvents = [
 						
 						<div class="event-header">
 							<span class="event-date">{event.date}</span>
-							<span class={`event-tag tag-${event.zone}`}>{event.tag}</span>
+							<span class="event-emoji">{event.emoji}</span>
 						</div>
 
 						<h2 class="event-title">{event.title}</h2>
