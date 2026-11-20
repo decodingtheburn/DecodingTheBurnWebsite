@@ -1231,25 +1231,25 @@ const READER_EDITION_CSS = `
 					margin: 0 auto 0.75rem !important;
 					display: flex !important;
 					flex-direction: column !important;
-					align-items: stretch !important;
+					align-items: center !important;
 					text-shadow: 0 8px 35px rgba(0,0,0,0.95) !important;
 				}
 				.cover-line-acid {
 					display: flex !important;
-					justify-content: space-between !important;
+					justify-content: center !important;
 					align-items: center !important;
 					width: 100% !important;
 					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-					font-size: 2.35rem !important;
+					font-size: 2.85rem !important;
 					font-weight: 900 !important;
 					line-height: 1.0 !important;
 					text-transform: uppercase !important;
 					margin-bottom: 0.35rem !important;
-					letter-spacing: -0.04em !important;
+					letter-spacing: -0.035em !important;
 				}
 				.cover-line-mouth {
 					display: flex !important;
-					justify-content: space-between !important;
+					justify-content: center !important;
 					align-items: center !important;
 					width: 100% !important;
 					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
@@ -1258,19 +1258,22 @@ const READER_EDITION_CSS = `
 					line-height: 0.88 !important;
 					text-transform: uppercase !important;
 					color: #ffffff !important;
+					letter-spacing: -0.03em !important;
 					margin-bottom: 0.25rem !important;
 				}
 				.cover-line-pain {
 					display: flex !important;
-					justify-content: space-between !important;
+					justify-content: center !important;
 					align-items: center !important;
 					width: 100% !important;
 					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-					font-size: 7.8rem !important;
+					font-size: 7.2rem !important;
 					font-weight: 900 !important;
-					line-height: 0.82 !important;
+					line-height: 0.84 !important;
 					text-transform: uppercase !important;
 					color: #ffffff !important;
+					letter-spacing: -0.035em !important;
+					-webkit-text-stroke: 2.5px #ffffff !important;
 					text-shadow: 0 4px 20px rgba(0,0,0,0.85) !important;
 				}
 				.cover-gold-border {
