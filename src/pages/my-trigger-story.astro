@@ -11,7 +11,7 @@ const description = "The personal chronological discovery story of Denis Ethier:
 // CHRONOLOGICAL TIMELINE MILESTONES (FROM POST #1 AND CLINICAL AUDITS)
 const timelineEvents = [
 	{
-		date: "Approx. 4 Years Ago (2022)",
+		year: "2022",
 		emoji: "🍷",
 		zone: "red",
 		title: "Sudden Severe Burning & Alcohol Elimination",
@@ -21,7 +21,7 @@ const timelineEvents = [
 		dotType: "red"
 	},
 	{
-		date: "Approx. 3.5 Years Ago (2023)",
+		year: "2023",
 		emoji: "☕",
 		zone: "yellow",
 		title: "Coffee & High-Tannin Acid Elimination",
@@ -31,7 +31,7 @@ const timelineEvents = [
 		dotType: "yellow"
 	},
 	{
-		date: "Approx. 3 Years Ago (2023)",
+		year: "2023",
 		emoji: "🪥",
 		zone: "yellow",
 		title: "Routine Dental Cleaning & Scaling Flare",
@@ -41,7 +41,7 @@ const timelineEvents = [
 		dotType: "yellow"
 	},
 	{
-		date: "Approx. 2.5 Years Ago (2024)",
+		year: "2024",
 		emoji: "🍋",
 		zone: "yellow",
 		title: "Fruit Acid & Nightshade Elimination",
@@ -51,7 +51,7 @@ const timelineEvents = [
 		dotType: "yellow"
 	},
 	{
-		date: "Approx. 2 Years Ago (2024)",
+		year: "2024",
 		emoji: "🛡️",
 		zone: "green",
 		title: "Gumline Bonding Patches (Class V)",
@@ -61,7 +61,7 @@ const timelineEvents = [
 		dotType: "green"
 	},
 	{
-		date: "18 Months Ago (Early 2025)",
+		year: "2025",
 		emoji: "🥩",
 		zone: "green",
 		title: "Initial Carnivore Trial & Discovery of Plant Sugars",
@@ -71,7 +71,7 @@ const timelineEvents = [
 		dotType: "green"
 	},
 	{
-		date: "6 Months Ago (Mid 2025)",
+		year: "2025",
 		emoji: "🦷",
 		zone: "green",
 		title: "Failing Crown Removal & Decontamination",
@@ -81,7 +81,7 @@ const timelineEvents = [
 		dotType: "green"
 	},
 	{
-		date: "Last 6 Continuous Months (2026)",
+		year: "2026",
 		emoji: "✨",
 		zone: "green",
 		title: "Unbroken 0/10 Pain Baseline (Complete Remission)",
@@ -121,7 +121,7 @@ const timelineEvents = [
 
 			/* PROFILE HERO CARD */
 			.profile-hero {
-				padding: 4.5rem 1.5rem 2rem;
+				padding: 2.25rem 1.5rem 1rem;
 				text-align: center;
 				max-width: 880px;
 				margin: 0 auto;
@@ -129,9 +129,9 @@ const timelineEvents = [
 
 			.profile-avatar-wrap {
 				position: relative;
-				width: 300px;
-				max-width: 88vw;
-				margin: 0 auto 2.5rem;
+				width: 250px;
+				max-width: 82vw;
+				margin: 0 auto 1.5rem;
 			}
 
 			.profile-avatar-img {
@@ -248,14 +248,14 @@ const timelineEvents = [
 				position: absolute;
 				top: 0;
 				bottom: 0;
-				left: 28px;
+				left: 80px;
 				width: 3px;
 				background: #e2e8f0;
 			}
 
 			.timeline-event-card {
 				position: relative;
-				margin-left: 70px;
+				margin-left: 125px;
 				margin-bottom: 2.5rem;
 				background: #ffffff;
 				border: 1.5px solid #e2e8f0;
@@ -270,16 +270,34 @@ const timelineEvents = [
 				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 			}
 
-			.event-marker {
+			.timeline-left-anchor {
 				position: absolute;
-				left: -57px;
+				left: -125px;
 				top: 24px;
-				width: 26px;
-				height: 26px;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				width: 105px;
+				gap: 12px;
+			}
+
+			.event-year-left {
+				font-size: 1.25rem;
+				font-weight: 900;
+				color: #7c3aed;
+				letter-spacing: -0.02em;
+				line-height: 1;
+				white-space: nowrap;
+			}
+
+			.event-marker {
+				width: 24px;
+				height: 24px;
 				border-radius: 50%;
 				background: #ffffff;
 				border: 4px solid #7c3aed;
-				box-shadow: 0 0 0 4px #ffffff, 0 2px 8px rgba(0,0,0,0.15);
+				box-shadow: 0 0 0 4px #ffffff, 0 2px 8px rgba(0,0,0,0.12);
+				flex-shrink: 0;
 				z-index: 2;
 			}
 
@@ -288,32 +306,15 @@ const timelineEvents = [
 			.event-marker.green { border-color: #10b981; }
 
 			.event-header {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				gap: 1rem;
-				margin-bottom: 0.75rem;
-				flex-wrap: wrap;
+				display: grid;
+				grid-template-columns: 1fr auto;
+				align-items: start;
+				gap: 1.5rem;
+				margin-bottom: 1.25rem;
 			}
 
-			.event-date {
-				font-size: 1.05rem;
-				font-weight: 800;
-				color: #7c3aed;
-				letter-spacing: -0.01em;
-			}
-
-			.event-emoji {
-				font-size: 2.25rem;
-				line-height: 1;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				width: 3.25rem;
-				height: 3.25rem;
-				border-radius: 12px;
-				background: #f8fafc;
-				border: 1px solid #e2e8f0;
+			.event-header-text {
+				max-width: 75%;
 			}
 
 			.event-title {
@@ -321,49 +322,68 @@ const timelineEvents = [
 				font-weight: 900;
 				color: #0f172a;
 				line-height: 1.35;
-				margin: 0 0 1rem;
+				margin: 0 0 0.85rem;
 			}
 
 			.event-body {
-				font-size: 1rem;
-				line-height: 1.7;
+				font-size: 1.25rem;
+				line-height: 1.75;
 				color: #334155;
-				margin-bottom: 1.25rem;
+				margin: 0;
+			}
+
+			.event-emoji {
+				font-size: 5.5rem;
+				line-height: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: transparent;
+				border: none;
+				padding: 0;
+				margin: 0;
+				user-select: none;
 			}
 
 			.event-callouts {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
 				gap: 1.25rem;
-				margin-top: 1.25rem;
-				padding-top: 1.25rem;
+				margin-top: 1.5rem;
+				padding-top: 1.5rem;
 				border-top: 1px solid #f1f5f9;
 			}
 
 			.callout-box {
 				background: #f8fafc;
 				border: 1px solid #e2e8f0;
-				border-radius: 12px;
-				padding: 1rem 1.25rem;
+				border-radius: 14px;
+				padding: 1.25rem 1.4rem;
 			}
 
 			.callout-title {
-				font-size: 0.82rem;
+				font-size: 1.25rem;
 				font-weight: 800;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				margin-bottom: 0.35rem;
+				margin-bottom: 0.5rem;
 				display: flex;
 				align-items: center;
 				gap: 0.4rem;
+				letter-spacing: normal;
 			}
 
 			.callout-title.action { color: #2563eb; }
 			.callout-title.result { color: #059669; }
 
 			.callout-desc {
-				font-size: 0.92rem;
-				line-height: 1.6;
+				font-size: 1.25rem;
+				line-height: 1.65;
+				color: #1e293b;
+				margin: 0;
+			}
+
+			.callout-result-text {
+				font-size: 1.25rem;
+				line-height: 1.65;
 				color: #1e293b;
 				margin: 0;
 			}
@@ -485,10 +505,10 @@ const timelineEvents = [
 
 				<div class="profile-meta-stack">
 					<div class="meta-line"><strong>Patient:</strong> Denis Ethier</div>
-					<div class="meta-line"><strong>Age:</strong> 52</div>
+					<div class="meta-line"><strong>Age:</strong> 50</div>
 					<div class="meta-line"><strong>Timeline:</strong> 4 Years of Continuous Data</div>
 					<div class="meta-line"><strong>Pain Shift:</strong> 10/10 Agony &rarr; 0/10 Baseline</div>
-					<div class="meta-line"><strong>Current Status:</strong> 6 Consecutive Months Remission</div>
+					<div class="meta-line"><strong>Current Status:</strong> Last 7 Months Pain-Free, Except for Flare of 1/10</div>
 				</div>
 			</section>
 
@@ -510,29 +530,32 @@ const timelineEvents = [
 			<div class="timeline-wrap">
 				{timelineEvents.map((event) => (
 					<div class="timeline-event-card">
-						<div class={`event-marker ${event.dotType}`}></div>
+						<div class="timeline-left-anchor">
+							<span class="event-year-left">{event.year}</span>
+							<div class={`event-marker ${event.dotType}`}></div>
+						</div>
 						
 						<div class="event-header">
-							<span class="event-date">{event.date}</span>
-							<span class="event-emoji">{event.emoji}</span>
+							<div class="event-header-text">
+								<h2 class="event-title">{event.title}</h2>
+								<p class="event-body">{event.summary}</p>
+							</div>
+							<div class="event-emoji">{event.emoji}</div>
 						</div>
-
-						<h2 class="event-title">{event.title}</h2>
-						<p class="event-body">{event.summary}</p>
 
 						<div class="event-callouts">
 							<div class="callout-box">
 								<div class="callout-title action">
-									<span>🔍</span> My Action
+									<span>🔍</span> My action
 								</div>
 								<p class="callout-desc">{event.action}</p>
 							</div>
 
 							<div class="callout-box">
 								<div class="callout-title result">
-									<span>📊</span> Measured Result
+									<span>📊</span> Result
 								</div>
-								<p class="callout-desc">{event.result}</p>
+								<p class="callout-result-text">{event.result}</p>
 							</div>
 						</div>
 					</div>
