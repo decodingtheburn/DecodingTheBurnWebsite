@@ -1,0 +1,567 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AcidFoodScale from '../components/AcidFoodScale.astro';
+import VegetableSugarScale from '../components/VegetableSugarScale.astro';
+
+const title = "BMS Triggers & Protectors: The Full Scale";
+const description = "Comprehensive rating of Burning Mouth Syndrome triggers and protectors. From direct chemical acids and fermentable sugars to non-acid diets and dental tubule shields.";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			.triggers-page {
+				background-color: #0b0714;
+				color: #e2e8f0;
+				min-height: 100vh;
+				padding-bottom: 5rem;
+			}
+
+			.hero-section {
+				padding: 4rem 1.5rem 3rem;
+				text-align: center;
+				max-width: 960px;
+				margin: 0 auto;
+			}
+
+			.hero-title {
+				font-size: clamp(2.25rem, 5vw, 3.75rem);
+				font-weight: 900;
+				line-height: 1.15;
+				letter-spacing: -0.03em;
+				color: #ffffff;
+				margin-bottom: 1.25rem;
+				text-wrap: balance;
+			}
+
+			.hero-title span {
+				background: linear-gradient(135deg, #f87171 0%, #fbbf24 50%, #34d399 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			.hero-desc {
+				font-size: 1.15rem;
+				line-height: 1.75;
+				color: #cbd5e1;
+				max-width: 760px;
+				margin: 0 auto 2.5rem;
+				text-wrap: pretty;
+			}
+
+			.score-overview-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 1.5rem;
+				max-width: 1100px;
+				margin: 0 auto 3.5rem;
+				padding: 0 1.5rem;
+			}
+
+			.overview-card {
+				border-radius: 16px;
+				padding: 1.75rem;
+				position: relative;
+				overflow: hidden;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				background: rgba(18, 12, 33, 0.7);
+				backdrop-filter: blur(12px);
+			}
+
+			.card-red {
+				border-top: 4px solid #ef4444;
+			}
+
+			.card-yellow {
+				border-top: 4px solid #f59e0b;
+			}
+
+			.card-green {
+				border-top: 4px solid #10b981;
+			}
+
+			.overview-card h3 {
+				font-size: 1.35rem;
+				font-weight: 800;
+				margin-bottom: 0.5rem;
+				display: flex;
+				align-items: center;
+				gap: 0.65rem;
+			}
+
+			.card-red h3 { color: #f87171; }
+			.card-yellow h3 { color: #fbbf24; }
+			.card-green h3 { color: #34d399; }
+
+			.overview-card p {
+				font-size: 0.95rem;
+				line-height: 1.65;
+				color: #94a3b8;
+				margin-bottom: 1rem;
+			}
+
+			.score-tag {
+				display: inline-block;
+				font-size: 0.82rem;
+				font-weight: 800;
+				padding: 0.25rem 0.75rem;
+				border-radius: 9999px;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+			}
+
+			.score-tag.red { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+			.score-tag.yellow { background: rgba(245, 158, 11, 0.2); color: #fde68a; }
+			.score-tag.green { background: rgba(16, 185, 129, 0.2); color: #a7f3d0; }
+
+			.content-container {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+
+			.section-header {
+				margin: 4rem 0 2rem;
+				padding-bottom: 1rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			}
+
+			.section-title {
+				font-size: 1.85rem;
+				font-weight: 800;
+				color: #ffffff;
+				margin-bottom: 0.5rem;
+			}
+
+			.section-subtitle {
+				font-size: 1rem;
+				color: #94a3b8;
+				line-height: 1.6;
+			}
+
+			.interactive-table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 2.5rem;
+				background: rgba(18, 12, 33, 0.6);
+				border-radius: 12px;
+				overflow: hidden;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+			}
+
+			.interactive-table th {
+				background: rgba(30, 20, 50, 0.9);
+				padding: 1rem 1.25rem;
+				text-align: left;
+				font-size: 0.88rem;
+				font-weight: 800;
+				color: #cbd5e1;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+			}
+
+			.interactive-table td {
+				padding: 1rem 1.25rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+				font-size: 0.95rem;
+				color: #e2e8f0;
+				vertical-align: middle;
+			}
+
+			.interactive-table tr:hover {
+				background: rgba(255, 255, 255, 0.03);
+			}
+
+			.badge-cell {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-weight: 700;
+				font-size: 0.88rem;
+			}
+
+			.badge-red { color: #f87171; }
+			.badge-yellow { color: #fbbf24; }
+			.badge-green { color: #34d399; }
+
+			.impact-pill {
+				font-weight: 800;
+				font-size: 0.85rem;
+				padding: 0.2rem 0.55rem;
+				border-radius: 6px;
+				white-space: nowrap;
+			}
+
+			.impact-flare {
+				background: rgba(239, 68, 68, 0.2);
+				color: #f87171;
+			}
+
+			.impact-moderate {
+				background: rgba(245, 158, 11, 0.2);
+				color: #fbbf24;
+			}
+
+			.impact-protect {
+				background: rgba(16, 185, 129, 0.2);
+				color: #34d399;
+			}
+
+			.dental-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 1.5rem;
+				margin-bottom: 3rem;
+			}
+
+			.dental-card {
+				background: rgba(24, 16, 43, 0.7);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 14px;
+				padding: 1.5rem;
+			}
+
+			.dental-card h4 {
+				font-size: 1.15rem;
+				font-weight: 800;
+				color: #f1f5f9;
+				margin-bottom: 0.5rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.dental-card p {
+				font-size: 0.9rem;
+				line-height: 1.6;
+				color: #94a3b8;
+				margin-bottom: 0.85rem;
+			}
+
+			.action-check {
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: #a78bfa;
+				display: flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+
+			.cta-banner {
+				margin-top: 4rem;
+				background: linear-gradient(135deg, rgba(88, 28, 135, 0.6) 0%, rgba(30, 20, 50, 0.9) 100%);
+				border: 1px solid rgba(168, 85, 247, 0.4);
+				border-radius: 20px;
+				padding: 3rem 2rem;
+				text-align: center;
+			}
+
+			.cta-banner h2 {
+				font-size: 2rem;
+				font-weight: 900;
+				color: #ffffff;
+				margin-bottom: 1rem;
+			}
+
+			.cta-banner p {
+				font-size: 1.1rem;
+				color: #cbd5e1;
+				max-width: 700px;
+				margin: 0 auto 2rem;
+				line-height: 1.7;
+			}
+
+			.cta-btn-group {
+				display: flex;
+				justify-content: center;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+
+			.btn-cta {
+				display: inline-block;
+				font-weight: 700;
+				font-size: 1rem;
+				padding: 0.85rem 1.75rem;
+				border-radius: 9999px;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			.btn-cta-primary {
+				background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+				color: #ffffff;
+				box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.5);
+			}
+
+			.btn-cta-primary:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 15px 30px -5px rgba(124, 58, 237, 0.7);
+			}
+
+			.btn-cta-secondary {
+				background: rgba(255, 255, 255, 0.1);
+				color: #ffffff;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.btn-cta-secondary:hover {
+				background: rgba(255, 255, 255, 0.15);
+			}
+		</style>
+	</head>
+	<body class="triggers-page">
+		<Header />
+
+		<main>
+			<section class="hero-section">
+				<h1 class="hero-title">
+					BMS Triggers <span>&amp; Protectors</span>
+				</h1>
+				<p class="hero-desc">
+					Stop guessing why your mouth is on fire. Every food, habit, and dental variable either fuels the burning nerve response or actively shields your oral tissues. Here is the complete rating scale based on 4 years of rigorous self-experimentation and dental diagnostics.
+				</p>
+			</section>
+
+			<!-- 3 High Level Categories Overview -->
+			<div class="score-overview-grid">
+				<div class="overview-card card-red">
+					<h3>🔥 Direct Chemical Triggers</h3>
+					<p>Foods, drinks, and acids with pH below 5.5 that immediately strip protective mineral plugs and ignite open Acid-Sensing Ion Channels (ASIC3).</p>
+					<span class="score-tag red">Pain Impact: +7 to +10/10</span>
+				</div>
+
+				<div class="overview-card card-yellow">
+					<h3>🌾 Microbial Acid Triggers</h3>
+					<p>Sugars, starches, and fermentables that feed oral bacteria (Streptococcus mutans, Lactobacilli), producing continuous lactic acid in gum pockets and dental margins.</p>
+					<span class="score-tag yellow">Pain Impact: +3 to +6/10</span>
+				</div>
+
+				<div class="overview-card card-green">
+					<h3>🛡️ Protectors &amp; Shields</h3>
+					<p>Zero-acid foods, salivary buffers, composite dental barriers, and neuro-protective nutrients that prevent acid contact and allow sensitized nerves to recover.</p>
+					<span class="score-tag green">Pain Reduction: -5 to -10/10</span>
+				</div>
+			</div>
+
+			<div class="content-container">
+				<!-- SECTION 1: FOOD & DRINK TRIGGERS & PROTECTORS TABLE -->
+				<div class="section-header">
+					<h2 class="section-title">1. Food &amp; Beverage Matrix</h2>
+					<p class="section-subtitle">Rated by chemical acidity (pH), fermentable sugar content, and observed pain differential.</p>
+				</div>
+
+				<div style="overflow-x: auto;">
+					<table class="interactive-table">
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Category</th>
+								<th>pH / Sugar Level</th>
+								<th>Biological Mechanism</th>
+								<th>Pain Differential</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- RED TRIGGERS -->
+							<tr>
+								<td><strong>Lemon &amp; Lime Juice</strong></td>
+								<td><span class="badge-cell badge-red">🔴 High Acid</span></td>
+								<td>pH 2.2</td>
+								<td>Directly dissolves dentin smear layer, flooding ASIC3 channels.</td>
+								<td><span class="impact-pill impact-flare">+10 Spike</span></td>
+							</tr>
+							<tr>
+								<td><strong>Beer (Lagers, Ales, Sours)</strong></td>
+								<td><span class="badge-cell badge-red">🔴 High Acid</span></td>
+								<td>pH 4.0 to 5.0 + Carbs</td>
+								<td>Ethanol increases mucosal permeability while acid washes over margins.</td>
+								<td><span class="impact-pill impact-flare">+8 to +10 Spike</span></td>
+							</tr>
+							<tr>
+								<td><strong>Coffee (Regular &amp; Decaf)</strong></td>
+								<td><span class="badge-cell badge-red">🔴 High Acid</span></td>
+								<td>pH 4.8 to 5.2</td>
+								<td>Chlorogenic and quinic acids irritate exposed cervical dentin.</td>
+								<td><span class="impact-pill impact-flare">+7 to +9 Spike</span></td>
+							</tr>
+							<tr>
+								<td><strong>Wine (Red &amp; White)</strong></td>
+								<td><span class="badge-cell badge-red">🔴 High Acid</span></td>
+								<td>pH 3.0 to 3.8</td>
+								<td>High tartaric acid combined with alcohol triggers intense nerve flare.</td>
+								<td><span class="impact-pill impact-flare">+9 to +10 Spike</span></td>
+							</tr>
+							<tr>
+								<td><strong>Sodas &amp; Carbonated Drinks</strong></td>
+								<td><span class="badge-cell badge-red">🔴 High Acid</span></td>
+								<td>pH 2.5 to 3.5</td>
+								<td>Phosphoric and carbonic acid strip tooth mineral buffers in seconds.</td>
+								<td><span class="impact-pill impact-flare">+8 to +10 Spike</span></td>
+							</tr>
+							<tr>
+								<td><strong>Vinegar &amp; Salad Dressings</strong></td>
+								<td><span class="badge-cell badge-red">🔴 High Acid</span></td>
+								<td>pH 2.4 to 3.2</td>
+								<td>Acetic acid directly stimulates mucosal VR1 and ASIC sensors.</td>
+								<td><span class="impact-pill impact-flare">+8 Spike</span></td>
+							</tr>
+							<tr>
+								<td><strong>Tomatoes &amp; Tomato Paste</strong></td>
+								<td><span class="badge-cell badge-red">🔴 High Acid</span></td>
+								<td>pH 4.1 to 4.6</td>
+								<td>High citric and malic acids linger on hard palate and tongue.</td>
+								<td><span class="impact-pill impact-flare">+7 Spike</span></td>
+							</tr>
+
+							<!-- YELLOW TRIGGERS -->
+							<tr>
+								<td><strong>Savory Vegetables (Carrots, Beets, Onions)</strong></td>
+								<td><span class="badge-cell badge-yellow">🟡 Fermentable</span></td>
+								<td>6g to 9g Sugar / 100g</td>
+								<td>Oral bacteria ferment sugars into localized lactic acid within 20 minutes.</td>
+								<td><span class="impact-pill impact-moderate">+4 to +6 Delayed</span></td>
+							</tr>
+							<tr>
+								<td><strong>Bread, Grains &amp; Crackers</strong></td>
+								<td><span class="badge-cell badge-yellow">🟡 Fermentable</span></td>
+								<td>Starch &rarr; Maltose</td>
+								<td>Salivary amylase breaks starch down into simple sugars, feeding biofilms.</td>
+								<td><span class="impact-pill impact-moderate">+5 Delayed</span></td>
+							</tr>
+							<tr>
+								<td><strong>Dairy (Yogurt, Milk)</strong></td>
+								<td><span class="badge-cell badge-yellow">🟡 Mixed</span></td>
+								<td>pH 4.4 to 6.6 + Lactose</td>
+								<td>Lactose fuels bacteria; lactic acid cultures worsen sensitive mucosa.</td>
+								<td><span class="impact-pill impact-moderate">+3 to +5 Delayed</span></td>
+							</tr>
+
+							<!-- GREEN PROTECTORS -->
+							<tr>
+								<td><strong>Beef, Lamb &amp; Poultry</strong></td>
+								<td><span class="badge-cell badge-green">🟢 Zero-Acid Shield</span></td>
+								<td>pH 6.5 to 7.0 (0% Sugar)</td>
+								<td>Zero chemical acid, zero fermentable carbs. Starves bacterial acid production completely.</td>
+								<td><span class="impact-pill impact-protect">-8 to -10 Relief</span></td>
+							</tr>
+							<tr>
+								<td><strong>Eggs &amp; Animal Fats (Butter, Tallow)</strong></td>
+								<td><span class="badge-cell badge-green">🟢 Protective Shield</span></td>
+								<td>pH 6.8 to 7.2</td>
+								<td>Coats mucosa and margins with non-acidic lipid layer, preventing friction.</td>
+								<td><span class="impact-pill impact-protect">-7 to -9 Relief</span></td>
+							</tr>
+							<tr>
+								<td><strong>Alkaline / Neutral Filtered Water</strong></td>
+								<td><span class="badge-cell badge-green">🟢 Salivary Buffer</span></td>
+								<td>pH 7.2 to 8.0</td>
+								<td>Dilutes localized acid concentrations and restores neutral oral moisture.</td>
+								<td><span class="impact-pill impact-protect">-3 to -5 Buffer</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- SECTION 2: PHYSICAL & DENTAL TRIGGERS VS DENTAL PROTECTORS -->
+				<div class="section-header">
+					<h2 class="section-title">2. Physical &amp; Dental Matrix</h2>
+					<p class="section-subtitle">BMS pain is rarely just in the food. The physical hardware in your mouth determines whether acids reach your nerve endings.</p>
+				</div>
+
+				<div class="dental-grid">
+					<!-- Physical Trigger 1 -->
+					<div class="dental-card" style="border-left: 4px solid #ef4444;">
+						<h4>Failing Crown Margins <span class="badge-red">🔴 Trigger</span></h4>
+						<p>Microscopic cement washout leaves gaps between artificial crown and natural tooth. Fermenting bacteria brew lactic acid inside the gap, conducting pain directly into pulpal nerves.</p>
+						<div class="action-check">🔍 Diagnostic: High-magnification margin exam &amp; explorer test</div>
+					</div>
+
+					<!-- Physical Trigger 2 -->
+					<div class="dental-card" style="border-left: 4px solid #ef4444;">
+						<h4>Cervical Root Recession <span class="badge-red">🔴 Trigger</span></h4>
+						<p>Receded gums expose porous root dentin. With 20,000+ tubules per square millimeter, dietary acids wash straight down fluid-filled canals into trigeminal nerve endings.</p>
+						<div class="action-check">🔍 Diagnostic: Cold air blast test &amp; tactile probe on root margin</div>
+					</div>
+
+					<!-- Physical Trigger 3 -->
+					<div class="dental-card" style="border-left: 4px solid #ef4444;">
+						<h4>Periodontal Pockets (&gt; 3mm) <span class="badge-red">🔴 Trigger</span></h4>
+						<p>Deep gum pockets shelter anaerobic bacteria. These colonies continuously release acidic metabolic byproducts and inflammatory cytokines next to periodontal nerve fibers.</p>
+						<div class="action-check">🔍 Diagnostic: 6-point periodontal depth probing with hygienist</div>
+					</div>
+
+					<!-- Physical Trigger 4 -->
+					<div class="dental-card" style="border-left: 4px solid #ef4444;">
+						<h4>Canine Bite Guidance Trauma <span class="badge-red">🔴 Trigger</span></h4>
+						<p>Occlusal prematurity places excessive lateral chewing pressure on specific teeth, inflaming periodontal ligaments and lowering the neural firing threshold across cranial branches.</p>
+						<div class="action-check">🔍 Diagnostic: Articulating paper bite check &amp; canine guidance review</div>
+					</div>
+
+					<!-- Dental Protector 1 -->
+					<div class="dental-card" style="border-left: 4px solid #10b981;">
+						<h4>Class V Composite Shield <span class="badge-green">🟢 Protector</span></h4>
+						<p>Carefully bonding resin over exposed cervical root dentin physically blocks fluid flow and prevents acid protons from touching open tubules.</p>
+						<div class="action-check">🛡️ Solution: Composite resin sealant / cervical bonding patch</div>
+					</div>
+
+					<!-- Dental Protector 2 -->
+					<div class="dental-card" style="border-left: 4px solid #10b981;">
+						<h4>Crown Replacement &amp; Recementation <span class="badge-green">🟢 Protector</span></h4>
+						<p>Removing compromised hardware, decontaminating decay pockets, and placing a fresh crown with airtight margins completely stops internal acid percolation.</p>
+						<div class="action-check">🛡️ Solution: Precision margin restoration</div>
+					</div>
+
+					<!-- Systemic Protector 3 -->
+					<div class="dental-card" style="border-left: 4px solid #10b981;">
+						<h4>B12 &amp; Neuro-Myelin Buffers <span class="badge-green">🟢 Protector</span></h4>
+						<p>Methylcobalamin (B12), active folate, and iron maintain the protective myelin sheath surrounding sensory nerves, raising the firing threshold so nerves resist minor irritants.</p>
+						<div class="action-check">🛡️ Solution: Serum B12 &gt; 600 pg/mL + ferritin evaluation</div>
+					</div>
+
+					<!-- Hygiene Protector 4 -->
+					<div class="dental-card" style="border-left: 4px solid #10b981;">
+						<h4>Deep Subgingival Debridement <span class="badge-green">🟢 Protector</span></h4>
+						<p>Ultrasonic scaling removes subgingival calculus and bacterial colonies below the gumline, stopping lactic acid production at the root surface.</p>
+						<div class="action-check">🛡️ Solution: Professional periodontal scaling &amp; root planing</div>
+					</div>
+				</div>
+
+				<!-- SECTION 3: VISUAL COMPARISON SCALES -->
+				<div class="section-header">
+					<h2 class="section-title">3. Visual pH &amp; Vegetable Sugar Scales</h2>
+					<p class="section-subtitle">Reference scales illustrating exact pH thresholds and vegetable sugar fermentation potentials.</p>
+				</div>
+
+				<div style="background: rgba(18, 12, 33, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 2.5rem;">
+					<h3 style="font-size: 1.35rem; font-weight: 800; color: #f1f5f9; margin-bottom: 1.25rem;">The Acidity Spectrum of Common Drinks &amp; Foods</h3>
+					<AcidFoodScale />
+				</div>
+
+				<div style="background: rgba(18, 12, 33, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08);">
+					<h3 style="font-size: 1.35rem; font-weight: 800; color: #f1f5f9; margin-bottom: 1.25rem;">Vegetable Sugar Content (Lactic Acid Fuel)</h3>
+					<VegetableSugarScale />
+				</div>
+
+				<!-- CTA FOOTER -->
+				<div class="cta-banner">
+					<h2>Test Your Own Acidity Threshold</h2>
+					<p>
+						Ready to see if your burning mouth is acid-triggered? Read the complete 18-month self-investigation or explore the book for clinical checklists you can take to your next dental appointment.
+					</p>
+					<div class="cta-btn-group">
+						<a href="/blog/1-my-bms-18-months-carnivore-experiment/" class="btn-cta btn-cta-primary">Read the 18-Month Case Study</a>
+						<a href="/books" class="btn-cta btn-cta-secondary">View the Book</a>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<Footer />
+	</body>
+</html>
