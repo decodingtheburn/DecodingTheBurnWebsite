@@ -7,10 +7,11 @@ import { SITE_TITLE } from '../../consts';
 const slidesOutline = [
   {
     slideNumber: 1,
-    title: "My Discovery: BMS and the Relationship with Acidity",
+    title: "My Discovery on BMS",
     concept: "A personal presentation by Denis Ethier on uncovering the chemical drivers of burning mouth pain.",
+    emoji: "🎯",
     bullets: [
-      "My Discovery: BMS and the Relationship with Acidity",
+      "My Discovery on BMS",
       "Denis Ethier",
       "Decoding The Burn"
     ]
@@ -19,6 +20,7 @@ const slidesOutline = [
     slideNumber: 2,
     title: "Disclaimer",
     concept: "Important legal and medical context before sharing personal experiences and observations.",
+    emoji: "⚠️",
     bullets: [
       "I am not a doctor; this presentation is not medical advice.",
       "Always consult your doctor or dentist regarding your health.",
@@ -30,6 +32,7 @@ const slidesOutline = [
     slideNumber: 3,
     title: "What Didn't Work",
     concept: "Documenting the exhaustive search across medical consultations and conventional remedies.",
+    emoji: "❌",
     bullets: [
       "Consulted 5 dentists and 5 doctors who all said everything was completely normal.",
       "Tested over 50 vitamins, mineral supplements, and specialized oral rinses.",
@@ -41,6 +44,7 @@ const slidesOutline = [
     slideNumber: 4,
     title: "My Discovery on Acid",
     concept: "The foundational realization after years of negative exams that oral pain is driven by physical chemical inputs.",
+    emoji: "🍋",
     bullets: [
       "Giving up these staples was one of the hardest things I have ever done.",
       "Category 1: Alcohol",
@@ -51,7 +55,7 @@ const slidesOutline = [
   },
   {
     slideNumber: 5,
-    title: "Finding the Root Cause",
+    title: "Finding the Root Cause Part 1",
     concept: "Looking back at personal history to trace how physical triggers were identified.",
     emoji: "🥩",
     bullets: [
@@ -65,17 +69,19 @@ const slidesOutline = [
     slideNumber: 6,
     title: "Why Acid Burns",
     concept: "How underlying dental hardware and vulnerable entry points allow acid to provoke nerve pain.",
+    emoji: "🦷",
     bullets: [
+      "It is very often a multi-cause.",
       "Cavities and hidden decay under restorations create open pathways for acid.",
       "Gum recessions expose sensitive dentin tubules directly to liquids and food.",
-      "Misaligned bite points create excessive focal pressure and micro-strain.",
-      "These vulnerabilities allow everyday oral acidity to trigger intense nerve burning."
+      "Misaligned bite points create excessive focal pressure and micro-strain."
     ]
   },
   {
     slideNumber: 7,
-    title: "How the Pain Diminished",
+    title: "Finding the Root Cause Part 2",
     concept: "How targeted dental procedures lowered flare intensity and shifted pain locations.",
+    emoji: "🔍",
     bullets: [
       "Targeted dental procedures significantly lowered the intensity of flares.",
       "The lower arch pain completely went away after removing tooth 36 decay.",
@@ -87,6 +93,7 @@ const slidesOutline = [
     slideNumber: 8,
     title: "Other Triggers: Cumulative Pain",
     concept: "Understanding how secondary factors like stress and mechanical habits stack.",
+    emoji: "⚡",
     bullets: [
       "Referred pain and cumulative nerve stacking across the trigeminal network.",
       "Psychological and physical stress amplify baseline sensitivity.",
@@ -98,6 +105,7 @@ const slidesOutline = [
     slideNumber: 9,
     title: "The Realization: Why Cutting Some Acid Isn't Enough",
     concept: "Understanding why partial elimination fails to deliver lasting zero pain.",
+    emoji: "💡",
     bullets: [
       "Eliminating beer or coffee gave temporary 6-month windows of partial relief.",
       "Remaining dietary acids (fruits, vinegar, sauces) kept baseline inflammation simmering below the surface.",
@@ -107,19 +115,20 @@ const slidesOutline = [
   },
   {
     slideNumber: 10,
-    title: "How to Test Your Personal Acid Baseline (N=1 Protocol)",
+    title: "Step 1: Remove Acids as Much as Possible",
     concept: "The actionable step-by-step testing roadmap for sufferers to prove cause and effect.",
+    emoji: "🧪",
     bullets: [
-      "Step 1: The Zero-Acid Reset - strip out all 4 acid categories to establish an absolute baseline.",
-      "Step 2: Neutralize oral pH immediately after every meal with clean water rinses.",
-      "Step 3: Remove mucosal irritants - switch to SLS-free, non-foaming toothpaste to let tissue heal.",
-      "Step 4: Single-variable reintroduction - test one item at a time while logging daily pain on a 0-10 scale."
+      "Step 1: Remove acids as much as possible.",
+      "Step 2: Notice after a few days or a few weeks if you see a difference.",
+      "Step 3: Notice what happens to the pain if you cheat on your diet."
     ]
   },
   {
     slideNumber: 11,
-    title: "From Vigilance to Lasting Peace: Living at 0/10 Baseline",
+    title: "From Worrying to Peace",
     concept: "The transition from fearful anxiety to calm, permanent remission.",
+    emoji: "🕊️",
     bullets: [
       "Last 7 months completely pain-free, with only one minor 1/10 flare recorded.",
       "No more fear, no more panic about flares: complete understanding of physical cause and effect.",
@@ -129,8 +138,9 @@ const slidesOutline = [
   },
   {
     slideNumber: 12,
-    title: "The Ultimate Realization",
+    title: "Acceptance",
     concept: "Reframing pain not as a curse, but as the body's protective alarm system.",
+    emoji: "🛡️",
     bullets: [
       "I wish I could still eat and drink whatever I enjoyed before without consequence.",
       "Acid is inherently destructive to teeth and enamel over time.",
@@ -142,6 +152,7 @@ const slidesOutline = [
     slideNumber: 13,
     title: "Connect and Share Your Story",
     concept: "An open invitation to connect directly, share personal experiences, and explore the research.",
+    emoji: "🤝",
     bullets: [
       "Share your story in comments when you see my posts or send me a direct message.",
       "Visit decodingtheburn.com to explore tracking sheets and resources.",
@@ -241,8 +252,14 @@ const slidesOutline = [
 			.card-top-row {
 				display: flex;
 				align-items: center;
-				gap: 0.75rem;
+				justify-content: space-between;
 				margin-bottom: 0.75rem;
+			}
+
+			.slide-card-emoji {
+				font-size: 2.1rem;
+				line-height: 1;
+				user-select: none;
 			}
 
 			.slide-badge-num {
@@ -337,6 +354,7 @@ const slidesOutline = [
 					<section class="slide-outline-card">
 						<div class="card-top-row">
 							<span class="slide-badge-num">Slide {slide.slideNumber}</span>
+							{slide.emoji && <span class="slide-card-emoji">{slide.emoji}</span>}
 						</div>
 						<h2 class="slide-card-title">{slide.title}</h2>
 						<p class="slide-concept">{slide.concept}</p>
