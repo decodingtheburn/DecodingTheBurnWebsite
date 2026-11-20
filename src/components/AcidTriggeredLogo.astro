@@ -5,30 +5,42 @@ interface Props {
 }
 
 const { variant = 'inline', size = 'normal' } = Astro.props;
+
+// "BMS TRIGGERS" in 11 letters across the rainbow spectrum
+// B: #dc2626 (red)
+// M: #ea580c (orange-red)
+// S: #f97316 (orange)
+// [space]
+// T: #d97706 (amber)
+// R: #ca8a04 (yellow-amber)
+// I: #65a30d (lime)
+// G: #16a34a (green)
+// G: #059669 (emerald)
+// E: #0891b2 (cyan)
+// R: #2563eb (blue)
+// S: #7c3aed (purple)
 ---
 
-<div class={`acid-triggered-logo ${variant} ${size}`}>
-  <!-- ACID-TRIGGERED in 14-Letter Rainbow Spectrum with Inter 900 -->
+<div class={`bms-triggers-logo ${variant} ${size}`}>
   <div class="title-row">
-    <span style="color: #dc2626;">A</span><span style="color: #ea580c;">C</span><span style="color: #f97316;">I</span><span style="color: #d97706;">D</span><span style="color: #ca8a04;">-</span><span style="color: #a16207;">T</span><span style="color: #65a30d;">R</span><span style="color: #16a34a;">I</span><span style="color: #059669;">G</span><span style="color: #0891b2;">G</span><span style="color: #0284c7;">E</span><span style="color: #2563eb;">R</span><span style="color: #4f46e5;">E</span><span style="color: #7c3aed;">D</span>
-  </div>
-
-  <!-- Subtitle: MOUTH PAIN RELIEF Centered in Crisp Pure Black -->
-  <div class="subtitle-row">
-    MOUTH PAIN RELIEF
+    <span class="word-bms">
+      <span style="color: #dc2626;">B</span><span style="color: #ea580c;">M</span><span style="color: #f97316;">S</span>
+    </span>
+    <span class="word-spacer">&nbsp;</span>
+    <span class="word-triggers">
+      <span style="color: #d97706;">T</span><span style="color: #ca8a04;">R</span><span style="color: #65a30d;">I</span><span style="color: #16a34a;">G</span><span style="color: #059669;">G</span><span style="color: #0891b2;">E</span><span style="color: #2563eb;">R</span><span style="color: #7c3aed;">S</span>
+    </span>
   </div>
 </div>
 
 <style>
-  .acid-triggered-logo {
+  .bms-triggers-logo {
     display: inline-flex;
-    flex-direction: column;
     align-items: center;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     user-select: none;
     text-decoration: none;
     line-height: 1;
-    gap: 0.22rem;
   }
 
   .title-row {
@@ -36,51 +48,32 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     align-items: baseline;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     line-height: 1;
     text-shadow: none !important;
   }
 
-  .subtitle-row {
-    width: 100%;
-    font-weight: 900;
-    letter-spacing: -0.015em;
-    text-transform: uppercase;
-    line-height: 1;
-    text-align: center;
-    color: #000000 !important;
-    text-shadow: none !important;
-    transition: color 0.2s ease;
+  .word-bms, .word-triggers {
+    display: inline-flex;
+    align-items: baseline;
   }
 
   /* Sizes */
-  .acid-triggered-logo.normal .title-row {
-    font-size: 1.55rem;
-  }
-  .acid-triggered-logo.normal .subtitle-row {
-    font-size: 0.78rem;
+  .bms-triggers-logo.normal .title-row {
+    font-size: 1.65rem;
   }
 
-  .acid-triggered-logo.compact .title-row {
-    font-size: 1.25rem;
-  }
-  .acid-triggered-logo.compact .subtitle-row {
-    font-size: 0.65rem;
+  .bms-triggers-logo.compact .title-row {
+    font-size: 1.35rem;
   }
 
-  .acid-triggered-logo.large .title-row {
-    font-size: 2.35rem;
-  }
-  .acid-triggered-logo.large .subtitle-row {
-    font-size: 1.15rem;
+  .bms-triggers-logo.large .title-row {
+    font-size: 2.5rem;
   }
 
   @media (max-width: 640px) {
-    .acid-triggered-logo.normal .title-row {
-      font-size: 1.3rem;
-    }
-    .acid-triggered-logo.normal .subtitle-row {
-      font-size: 0.68rem;
+    .bms-triggers-logo.normal .title-row {
+      font-size: 1.35rem;
     }
   }
 </style>
