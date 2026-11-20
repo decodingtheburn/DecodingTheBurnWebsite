@@ -1,0 +1,558 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import authorPhoto from '../assets/denis-ethier.png';
+
+const title = "My Trigger Story: 4-Year BMS Timeline & Discoveries | Denis Ethier";
+const description = "The personal chronological discovery story of Denis Ethier: how cutting alcohol, identifying hidden crown decay, eliminating plant acids, and sealing open dentin brought BMS burning pain from 10/10 to 0/10.";
+
+// CHRONOLOGICAL TIMELINE MILESTONES (FROM POST #1 AND CLINICAL AUDITS)
+const timelineEvents = [
+	{
+		date: "Approx. 4 Years Ago (2022)",
+		tag: "Initial Discovery",
+		zone: "red",
+		title: "Sudden Severe Burning & Alcohol Elimination",
+		summary: "Woke up with an excruciating boiling burning sensation across tongue and palate (10/10 pain). Every conventional test (bloodwork, ENT, biopsy) returned negative.",
+		action: "Cut beer and wine completely after noticing immediate explosive pain flares within minutes of drinking.",
+		result: "Dropping beer and wine provided the first 6-month window of partial pain-free relief, confirming alcohol and volatile acids were direct triggers.",
+		dotType: "red"
+	},
+	{
+		date: "Approx. 3.5 Years Ago (2023)",
+		tag: "Beverage Investigation",
+		zone: "yellow",
+		title: "Coffee & High-Tannin Acid Elimination",
+		summary: "Pain returned after months of apparent remission. Morning coffee (regular and decaf, pH 4.8 to 5.2) caused stinging pain across the tongue and gingiva.",
+		action: "Completely eliminated coffee, dark teas, and carbonated beverages.",
+		result: "Secured a second 6-month pain-free window, confirming that hot, acidic, high-tannin liquids irritate sensitized nerve endings.",
+		dotType: "yellow"
+	},
+	{
+		date: "Approx. 3 Years Ago (2023)",
+		tag: "Dental Variable",
+		zone: "yellow",
+		title: "Routine Dental Cleaning & Scaling Flare",
+		summary: "A routine ultrasonic dental scaling stripped protective mineral smear layers off receded root margins.",
+		action: "Tracked post-cleaning oral pain escalation and recognized the mechanical and hygiene link.",
+		result: "Identified that unprotected cervical root surfaces flare intensely when mechanical instruments disrupt the root surface.",
+		dotType: "yellow"
+	},
+	{
+		date: "Approx. 2.5 Years Ago (2024)",
+		tag: "Dietary Investigation",
+		zone: "yellow",
+		title: "Fruit Acid & Nightshade Elimination",
+		summary: "Healthy dietary fruits (citrus, berries, pineapples) and tomatoes were repeatedly triggering burning flares.",
+		action: "Cut all high-acid fruits, vinegars, and tomato sauces from the daily diet.",
+		result: "Another 6-month pain-free window followed, isolating concentrated citric and malic acids as direct chemical provocateurs.",
+		dotType: "yellow"
+	},
+	{
+		date: "Approx. 2 Years Ago (2024)",
+		tag: "Hardware Discovery",
+		zone: "green",
+		title: "Gumline Bonding Patches (Class V)",
+		summary: "Dentist placed Class V resin bonding patches over five exposed cervical recession sites (teeth #11, #16, #24, #26, #44).",
+		action: "Physically sealed exposed dentinal micro-tubules against dietary acid and saliva wash.",
+		result: "Immediately blocked sharp localized hydrodynamic pain in premolar zones, proving open tubules conduct fuel into dental nerves.",
+		dotType: "green"
+	},
+	{
+		date: "18 Months Ago (Early 2025)",
+		tag: "Major Turning Point",
+		zone: "green",
+		title: "Initial Carnivore Trial & Discovery of Plant Sugars",
+		summary: "Switched to a zero-carb, zero-plant carnivore protocol (beef, lamb, eggs, animal fats) to eliminate all fermentable plant carbohydrates.",
+		action: "Cut out all vegetables, starches, and processed foods. Meat contains 0% sugar, depriving oral bacteria of lactic acid fuel.",
+		result: "Burning pain dropped from 10/10 to 2/10 within 14 days, followed by a 1-year yo-yo phase showing pain returned whenever cheating occurred.",
+		dotType: "green"
+	},
+	{
+		date: "6 Months Ago (Mid 2025)",
+		tag: "Hardware Breakthrough",
+		zone: "green",
+		title: "Failing Crown Removal & Decontamination",
+		summary: "Discovered tooth #36 (lower left first molar) had a failing distal crown margin with three hidden recurrent decay pockets underneath.",
+		action: "Dentist removed the compromised crown, excavated all hidden bacterial decay, and sealed the tooth with an airtight restoration.",
+		result: "Chronic lower jaw and unilateral tongue burning vanished completely, eliminating the primary continuous bacterial acid incubator.",
+		dotType: "green"
+	},
+	{
+		date: "Last 6 Continuous Months (2026)",
+		tag: "Current Status",
+		zone: "green",
+		title: "Unbroken 0/10 Pain Baseline (Complete Remission)",
+		summary: "Combining airtight dental restorations with a strict zero-acid nutritional shield has maintained zero burning pain for six months straight.",
+		action: "Continued strict maintenance: zero plant acids, zero fermentable sugars, and non-acidic salivary hygiene.",
+		result: "Stable, documented 0/10 pain score with complete return of normal speech, comfort, and physical endurance.",
+		dotType: "green"
+	}
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style is:global>
+			body {
+				background-color: #ffffff !important;
+				color: #0f172a !important;
+				font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+				margin: 0;
+				padding: 0;
+				line-height: 1.6;
+			}
+
+			.story-page {
+				background-color: #ffffff;
+				min-height: 100vh;
+				padding-bottom: 6rem;
+			}
+
+			.content-container {
+				max-width: 980px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+
+			/* PROFILE HERO CARD */
+			.profile-hero {
+				padding: 4.5rem 1.5rem 2.5rem;
+				text-align: center;
+				max-width: 920px;
+				margin: 0 auto;
+			}
+
+			.profile-avatar-wrap {
+				position: relative;
+				width: 130px;
+				height: 130px;
+				margin: 0 auto 1.5rem;
+			}
+
+			.profile-avatar-img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 50%;
+				border: 4px solid #ffffff;
+				box-shadow: 0 12px 30px rgba(124, 58, 237, 0.25), 0 4px 12px rgba(0, 0, 0, 0.08);
+			}
+
+			.profile-verified-badge {
+				position: absolute;
+				bottom: 4px;
+				right: 4px;
+				background: #7c3aed;
+				color: #ffffff;
+				font-size: 0.85rem;
+				width: 28px;
+				height: 28px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: 2px solid #ffffff;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+			}
+
+			.profile-kicker {
+				font-size: 0.88rem;
+				font-weight: 800;
+				color: #7c3aed;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				margin-bottom: 0.5rem;
+			}
+
+			.profile-title {
+				font-size: clamp(2.35rem, 5vw, 3.5rem);
+				font-weight: 900;
+				line-height: 1.25;
+				letter-spacing: -0.03em;
+				color: #0f172a;
+				margin: 0 0 1rem;
+				text-wrap: balance;
+			}
+
+			.profile-title span {
+				color: #7c3aed;
+			}
+
+			.profile-meta-strip {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 1.5rem;
+				flex-wrap: wrap;
+				margin-bottom: 1.75rem;
+			}
+
+			.meta-pill {
+				background: #f8fafc;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 9999px;
+				padding: 0.45rem 1.15rem;
+				font-size: 0.92rem;
+				color: #334155;
+				font-weight: 700;
+			}
+
+			.meta-pill strong {
+				color: #0f172a;
+			}
+
+			.profile-bio {
+				font-size: 1.15rem;
+				line-height: 1.8;
+				color: #334155;
+				max-width: 820px;
+				margin: 0 auto 2.5rem;
+				text-wrap: pretty;
+			}
+
+			/* DISCLAIMER & PERSONAL BOUNDARY BOX */
+			.personal-notice-card {
+				background: #faf5ff;
+				border: 1.5px solid #e9d5ff;
+				border-left: 6px solid #7c3aed;
+				border-radius: 16px;
+				padding: 1.65rem 2rem;
+				margin-bottom: 3.5rem;
+				box-shadow: 0 4px 20px rgba(124, 58, 237, 0.05);
+			}
+
+			.personal-notice-card h3 {
+				color: #581c87;
+				font-size: 1.25rem;
+				font-weight: 800;
+				margin: 0 0 0.5rem;
+				line-height: 1.35;
+			}
+
+			.personal-notice-card p {
+				color: #4c1d95;
+				font-size: 0.98rem;
+				line-height: 1.7;
+				margin: 0;
+			}
+
+			/* TIMELINE SECTION */
+			.timeline-wrap {
+				position: relative;
+				padding: 1rem 0 3rem;
+			}
+
+			.timeline-wrap::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 28px;
+				width: 3px;
+				background: #e2e8f0;
+			}
+
+			.timeline-event-card {
+				position: relative;
+				margin-left: 70px;
+				margin-bottom: 2.5rem;
+				background: #ffffff;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 20px;
+				padding: 2rem 2.25rem;
+				box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.timeline-event-card:hover {
+				transform: translateX(4px);
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+			}
+
+			.event-marker {
+				position: absolute;
+				left: -57px;
+				top: 24px;
+				width: 26px;
+				height: 26px;
+				border-radius: 50%;
+				background: #ffffff;
+				border: 4px solid #7c3aed;
+				box-shadow: 0 0 0 4px #ffffff, 0 2px 8px rgba(0,0,0,0.15);
+				z-index: 2;
+			}
+
+			.event-marker.red { border-color: #ef4444; }
+			.event-marker.yellow { border-color: #f59e0b; }
+			.event-marker.green { border-color: #10b981; }
+
+			.event-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 1rem;
+				margin-bottom: 0.75rem;
+				flex-wrap: wrap;
+			}
+
+			.event-date {
+				font-size: 1.05rem;
+				font-weight: 800;
+				color: #7c3aed;
+				letter-spacing: -0.01em;
+			}
+
+			.event-tag {
+				font-size: 0.8rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				padding: 0.25rem 0.75rem;
+				border-radius: 9999px;
+			}
+
+			.tag-red { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+			.tag-yellow { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+			.tag-green { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+
+			.event-title {
+				font-size: 1.45rem;
+				font-weight: 900;
+				color: #0f172a;
+				line-height: 1.35;
+				margin: 0 0 1rem;
+			}
+
+			.event-body {
+				font-size: 1rem;
+				line-height: 1.7;
+				color: #334155;
+				margin-bottom: 1.25rem;
+			}
+
+			.event-callouts {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1.25rem;
+				margin-top: 1.25rem;
+				padding-top: 1.25rem;
+				border-top: 1px solid #f1f5f9;
+			}
+
+			.callout-box {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 12px;
+				padding: 1rem 1.25rem;
+			}
+
+			.callout-title {
+				font-size: 0.82rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				margin-bottom: 0.35rem;
+				display: flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+
+			.callout-title.action { color: #2563eb; }
+			.callout-title.result { color: #059669; }
+
+			.callout-desc {
+				font-size: 0.92rem;
+				line-height: 1.6;
+				color: #1e293b;
+				margin: 0;
+			}
+
+			/* BOTTOM CTA BLOCK */
+			.story-cta {
+				margin-top: 4rem;
+				background: #ffffff;
+				border: 2px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 3.5rem 2.5rem;
+				text-align: center;
+				box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+			}
+
+			.story-cta h2 {
+				font-size: 2.25rem;
+				font-weight: 900;
+				color: #0f172a;
+				margin-bottom: 1rem;
+				line-height: 1.3;
+			}
+
+			.story-cta p {
+				font-size: 1.15rem;
+				color: #334155;
+				max-width: 720px;
+				margin: 0 auto 2.25rem;
+				line-height: 1.75;
+				text-wrap: pretty;
+			}
+
+			.cta-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 1.25rem;
+				flex-wrap: wrap;
+			}
+
+			.btn-primary {
+				background: #7c3aed;
+				color: #ffffff !important;
+				font-weight: 700;
+				font-size: 1.05rem;
+				padding: 0.95rem 2.25rem;
+				border-radius: 9999px;
+				text-decoration: none;
+				box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+				transition: all 0.2s ease;
+			}
+
+			.btn-primary:hover {
+				background: #6d28d9;
+				transform: translateY(-2px);
+				box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+			}
+
+			.btn-secondary {
+				background: #ffffff;
+				color: #0f172a !important;
+				border: 1.5px solid #cbd5e1;
+				font-weight: 700;
+				font-size: 1.05rem;
+				padding: 0.95rem 2rem;
+				border-radius: 9999px;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			.btn-secondary:hover {
+				background: #f8fafc;
+			}
+
+			@media (max-width: 768px) {
+				.timeline-wrap::before {
+					left: 18px;
+				}
+
+				.timeline-event-card {
+					margin-left: 45px;
+					padding: 1.5rem 1.25rem;
+				}
+
+				.event-marker {
+					left: -37px;
+					width: 22px;
+					height: 22px;
+					top: 20px;
+				}
+
+				.event-callouts {
+					grid-template-columns: 1fr;
+					gap: 0.85rem;
+				}
+			}
+		</style>
+	</head>
+	<body class="story-page">
+		<Header />
+
+		<main class="content-container">
+			<section class="profile-hero">
+				<div class="profile-avatar-wrap">
+					<Image 
+						src={authorPhoto} 
+						alt="Denis Ethier - BMS Patient Investigator" 
+						class="profile-avatar-img"
+						width={260}
+						height={260}
+						loading="eager"
+					/>
+					<div class="profile-verified-badge" title="Verified Patient Timeline">✓</div>
+				</div>
+
+				<div class="profile-kicker">Patient Case Study &bull; Single-Case Experimental Design</div>
+				<h1 class="profile-title">
+					Denis Ethier: <span>My Trigger Story</span>
+				</h1>
+
+				<div class="profile-meta-strip">
+					<div class="meta-pill"><strong>Patient:</strong> Denis Ethier</div>
+					<div class="meta-pill"><strong>Timeline:</strong> 4 Years of Data</div>
+					<div class="meta-pill"><strong>Outcome:</strong> 10/10 &rarr; 0/10 Pain</div>
+					<div class="meta-pill"><strong>Status:</strong> 6 Months Remission</div>
+				</div>
+
+				<p class="profile-bio">
+					This is not a generic medical catalog. This is my personal chronological case history. I created this map so people can see the exact dates, dietary experiments, and dental hardware findings that took my burning mouth from unlivable agony to stable remission.
+				</p>
+			</section>
+
+			<!-- PERSONAL TRANSPARENCY NOTICE -->
+			<div class="personal-notice-card">
+				<h3>Why I Am Sharing My Exact Profile</h3>
+				<p>
+					Every human mouth has unique anatomy, nerve pathways, and dental histories. What worked for me may not be the exact blueprint for everyone, but by documenting my exact timeline from cutting alcohol in 2022 to fixing a leaking molar crown in 2025, you can see how an unexplained symptom can be investigated systematically on your own.
+				</p>
+			</div>
+
+			<!-- CHRONOLOGICAL MILESTONE TIMELINE -->
+			<div class="timeline-wrap">
+				{timelineEvents.map((event) => (
+					<div class="timeline-event-card">
+						<div class={`event-marker ${event.dotType}`}></div>
+						
+						<div class="event-header">
+							<span class="event-date">{event.date}</span>
+							<span class={`event-tag tag-${event.zone}`}>{event.tag}</span>
+						</div>
+
+						<h2 class="event-title">{event.title}</h2>
+						<p class="event-body">{event.summary}</p>
+
+						<div class="event-callouts">
+							<div class="callout-box">
+								<div class="callout-title action">
+									<span>🔍</span> My Action
+								</div>
+								<p class="callout-desc">{event.action}</p>
+							</div>
+
+							<div class="callout-box">
+								<div class="callout-title result">
+									<span>📊</span> Measured Result
+								</div>
+								<p class="callout-desc">{event.result}</p>
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+
+			<!-- INVITATION & DIRECT HELP CTA -->
+			<div class="story-cta">
+				<h2>Map Your Own Triggers</h2>
+				<p>
+					You can investigate your own triggers using this framework, or reach out to me directly if you want personal guidance on mapping your dental hardware, dietary variables, and pain logs.
+				</p>
+				<div class="cta-buttons">
+					<a href="/triggers" class="btn-primary">Explore the Triggers Catalog</a>
+					<a href="/contact" class="btn-secondary">Reach Out to Denis Directly</a>
+				</div>
+			</div>
+		</main>
+
+		<Footer />
+	</body>
+</html>
