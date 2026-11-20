@@ -1247,13 +1247,13 @@ const READER_EDITION_CSS = `
 					margin-bottom: 0.35rem !important;
 					letter-spacing: -0.035em !important;
 				}
-				.cover-line-mouth {
+				.cover-line-burning {
 					display: flex !important;
 					justify-content: center !important;
 					align-items: center !important;
 					width: 100% !important;
 					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-					font-size: 6.2rem !important;
+					font-size: 5.5rem !important;
 					font-weight: 900 !important;
 					line-height: 0.88 !important;
 					text-transform: uppercase !important;
@@ -1261,19 +1261,18 @@ const READER_EDITION_CSS = `
 					letter-spacing: -0.03em !important;
 					margin-bottom: 0.25rem !important;
 				}
-				.cover-line-pain {
+				.cover-line-mouth {
 					display: flex !important;
 					justify-content: center !important;
 					align-items: center !important;
 					width: 100% !important;
 					font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-					font-size: 7.2rem !important;
+					font-size: 6.8rem !important;
 					font-weight: 900 !important;
-					line-height: 0.84 !important;
+					line-height: 0.86 !important;
 					text-transform: uppercase !important;
 					color: #ffffff !important;
-					letter-spacing: -0.035em !important;
-					-webkit-text-stroke: 2.5px #ffffff !important;
+					letter-spacing: -0.03em !important;
 					text-shadow: 0 4px 20px rgba(0,0,0,0.85) !important;
 				}
 				.cover-gold-border {
@@ -1915,7 +1914,7 @@ async function main() {
 							<span class="kdp-spine-author">DENIS ETHIER</span>
 						</div>
 						<div class="kdp-spine-center">
-							<span class="kdp-spine-title">ACID-TRIGGERED MOUTH PAIN</span>
+							<span class="kdp-spine-title">ACID-TRIGGERED BURNING MOUTH</span>
 						</div>
 						<div class="kdp-spine-bottom">
 							<span class="kdp-spine-edition">VERSION 1.0 &bull; NOVEMBER 2026 EDITION</span>
