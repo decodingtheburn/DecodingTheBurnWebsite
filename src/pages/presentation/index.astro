@@ -1,0 +1,61 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import SlideDeck from '../../components/SlideDeck.astro';
+import { bmsSlides } from '../../data/slidesData';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Presentation: My BMS Trigger Story | DecodingTheBurn" 
+			description="Interactive presentation slide deck covering Denis Ethier's four-year journey decoding Burning Mouth Syndrome triggers." 
+			noindex={true}
+		/>
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+				width: 100vw;
+				height: 100vh;
+				background-color: #07090e;
+				overflow: hidden;
+				font-family: var(--font-body, system-ui, sans-serif);
+			}
+
+			.back-link {
+				position: fixed;
+				top: 14px;
+				left: 14px;
+				z-index: 100;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: #94a3b8;
+				background: rgba(15, 23, 42, 0.85);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				padding: 0.4rem 0.85rem;
+				border-radius: 8px;
+				text-decoration: none;
+				backdrop-filter: blur(8px);
+				transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+			}
+
+			.back-link:hover {
+				background: rgba(15, 23, 42, 0.95);
+				color: #ffffff;
+				border-color: rgba(255, 255, 255, 0.25);
+			}
+		</style>
+	</head>
+	<body>
+		<a href="/my-trigger-story" class="back-link" title="Return to My Trigger Story">
+			<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+			<span>Back to Story</span>
+		</a>
+
+		<SlideDeck slides={bmsSlides} isStandalone={true} />
+	</body>
+</html>
