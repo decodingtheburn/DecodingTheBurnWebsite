@@ -28,6 +28,7 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     user-select: none;
     text-decoration: none;
     line-height: 1;
+    text-transform: none !important;
   }
 
   .title-row {
@@ -37,11 +38,17 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     letter-spacing: -0.025em;
     line-height: 1;
     text-shadow: none !important;
+    text-transform: none !important;
   }
 
   .word-acid-triggered {
     display: inline-flex;
     align-items: baseline;
+    text-transform: none !important;
+  }
+
+  .word-acid-triggered span {
+    text-transform: none !important;
   }
 
   .word-spacer {
@@ -51,24 +58,28 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
 
   .word-mouth-pain {
     color: #000000 !important;
+    text-transform: none !important;
   }
 
   /* Sizes */
   .acid-triggered-logo.normal .title-row {
-    font-size: 1.55rem;
+    font-size: 0.95rem;
+    font-weight: 800;
   }
 
   .acid-triggered-logo.compact .title-row {
-    font-size: 1.25rem;
+    font-size: 0.88rem;
+    font-weight: 800;
   }
 
   .acid-triggered-logo.large .title-row {
-    font-size: 2.35rem;
+    font-size: 1.45rem;
+    font-weight: 800;
   }
 
   @media (max-width: 640px) {
     .acid-triggered-logo.normal .title-row {
-      font-size: 1.22rem;
+      font-size: 0.88rem;
     }
   }
 </style>
