@@ -6,30 +6,22 @@ interface Props {
 
 const { variant = 'inline', size = 'normal' } = Astro.props;
 
+// "ACID-TRIGGERED" in Rainbow Spectrum (Red to Purple)
 // "BMS" in Solid Pure Black
-// "TRIGGERS" in 8-letter Rainbow Spectrum (Red to Purple):
-// T: #dc2626 (red)
-// R: #ea580c (orange-red)
-// I: #d97706 (amber)
-// G: #65a30d (lime)
-// G: #16a34a (green)
-// E: #0891b2 (cyan)
-// R: #2563eb (blue)
-// S: #7c3aed (purple)
 ---
 
-<div class={`bms-triggers-logo ${variant} ${size}`}>
+<div class={`acid-triggered-logo ${variant} ${size}`}>
   <div class="title-row">
-    <span class="word-bms">BMS</span>
-    <span class="word-spacer">&nbsp;</span>
-    <span class="word-triggers">
-      <span style="color: #dc2626;">T</span><span style="color: #ea580c;">R</span><span style="color: #d97706;">I</span><span style="color: #65a30d;">G</span><span style="color: #16a34a;">G</span><span style="color: #0891b2;">E</span><span style="color: #2563eb;">R</span><span style="color: #7c3aed;">S</span>
+    <span class="word-acid-triggered">
+      <span style="color: #dc2626;">A</span><span style="color: #ea580c;">C</span><span style="color: #f97316;">I</span><span style="color: #d97706;">D</span><span style="color: #ca8a04;">-</span><span style="color: #a16207;">T</span><span style="color: #65a30d;">R</span><span style="color: #16a34a;">I</span><span style="color: #059669;">G</span><span style="color: #0891b2;">G</span><span style="color: #0284c7;">E</span><span style="color: #2563eb;">R</span><span style="color: #4f46e5;">E</span><span style="color: #7c3aed;">D</span>
     </span>
+    <span class="word-spacer">&nbsp;</span>
+    <span class="word-bms">BMS</span>
   </div>
 </div>
 
 <style>
-  .bms-triggers-logo {
+  .acid-triggered-logo {
     display: inline-flex;
     align-items: center;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -48,31 +40,36 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     text-shadow: none !important;
   }
 
-  .word-bms {
-    color: #000000 !important;
-  }
-
-  .word-triggers {
+  .word-acid-triggered {
     display: inline-flex;
     align-items: baseline;
   }
 
+  .word-spacer {
+    display: inline-block;
+    width: 0.28em;
+  }
+
+  .word-bms {
+    color: #000000 !important;
+  }
+
   /* Sizes */
-  .bms-triggers-logo.normal .title-row {
-    font-size: 1.65rem;
+  .acid-triggered-logo.normal .title-row {
+    font-size: 1.55rem;
   }
 
-  .bms-triggers-logo.compact .title-row {
-    font-size: 1.35rem;
+  .acid-triggered-logo.compact .title-row {
+    font-size: 1.25rem;
   }
 
-  .bms-triggers-logo.large .title-row {
-    font-size: 2.5rem;
+  .acid-triggered-logo.large .title-row {
+    font-size: 2.35rem;
   }
 
   @media (max-width: 640px) {
-    .bms-triggers-logo.normal .title-row {
-      font-size: 1.35rem;
+    .acid-triggered-logo.normal .title-row {
+      font-size: 1.25rem;
     }
   }
 </style>
