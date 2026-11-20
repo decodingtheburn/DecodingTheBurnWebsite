@@ -1,61 +1,305 @@
 ---
 import BaseHead from '../../components/BaseHead.astro';
-import SlideDeck from '../../components/SlideDeck.astro';
-import { bmsSlides } from '../../data/slidesData';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+
+const slidesOutline = [
+  {
+    slideNumber: 1,
+    title: "My Discovery: Acid as the Direct Trigger of Mouth Pain",
+    concept: "The foundational realization after years of negative exams that oral pain is driven by physical chemical inputs.",
+    bullets: [
+      "Woke up with agonizing boiling pain across tongue and palate; all medical exams, biopsies, and blood tests returned negative.",
+      "The 4 categories of everyday foods and drinks systematically eliminated over 4 years to discover the trigger.",
+      "Category 1: Alcohol (Beer, wine, and volatile organic acids that provoked immediate flares).",
+      "Category 2: Coffee & Teas (High-tannin chlorogenic acids at pH 4.8 to 5.2 that irritated sensitized gingiva).",
+      "Category 3: Fruits (Citric and malic acids like blueberries and lemons with pH drops below 3.0).",
+      "Category 4: Vegetables & Condiments (Vinegar dressings, tomatoes, and fermentable plant acids).",
+      "The core takeaway: eliminating these 4 categories progressively halted peripheral nerve firing."
+    ]
+  },
+  {
+    slideNumber: 2,
+    title: "Exhausting Every Other Medical Path",
+    concept: "Documenting the diagnostic maze before discovering the acid connection.",
+    bullets: [
+      "Consulted 5 dentists and 5 medical doctors across 4 years with no physical findings.",
+      "Routine blood panels, allergy testing, autoimmune screenings, and sensory biopsies all clear.",
+      "Prescribed heavy neuropathic meds (gabapentin, clonazepam) that only dulled cognition without stopping the burn.",
+      "Treated the mouth like an engineering system: if all systemic causes are ruled out, look at what enters the mouth."
+    ]
+  },
+  {
+    slideNumber: 3,
+    title: "The Sensation Pattern: How Acid Pain Behaves",
+    concept: "Describing the physical daily rhythm that distinguishes acid-driven pain from other neuropathies.",
+    bullets: [
+      "How it feels: scalded tongue, raw palate, or battery acid burning on unshielded tissue.",
+      "The diurnal ramp: mornings wake up quiet (0/10 or 1/10 warmth); pain peaks at 7/10 or 8/10 by late evening.",
+      "Cumulative stacking: every conversation, sip of acidic beverage, and meal deposits protons onto nerve endings.",
+      "Predictable timeline: flares occur within minutes of direct acid, or 24-48 hours later with fermentable sugars."
+    ]
+  },
+  {
+    slideNumber: 4,
+    title: "Why Nerves Fire: The Biology of Proton Sensors",
+    concept: "The biophysical science explaining how acid keys unlock oral pain receptors.",
+    bullets: [
+      "ASIC3 (Acid-Sensing Ion Channels) and TRPV1 receptors sit directly on trigeminal peripheral nerve terminals.",
+      "Protons (H+ ions) in liquids below pH 5.5 physically open these ion channels, triggering rapid electrical pain signals.",
+      "Receding gums and micro-gaps expose dentin tubules, creating direct liquid pipelines straight to nerve pulp.",
+      "The pain is not a phantom hallucination: it is a real electrophysiological fire alarm sounding continuous danger."
+    ]
+  },
+  {
+    slideNumber: 5,
+    title: "Hidden Dental Traps: When Hardware Magnifies the Acid",
+    concept: "How restorations and compromised margins hold acid against sensitive nerves.",
+    bullets: [
+      "Tooth 36 discovery: recurrent decay hidden under an old crown where 2D X-rays could not penetrate metal.",
+      "Excavating three rotting cavities under the crown instantly resolved deep lower jaw trigeminal pain.",
+      "Microleakage around old crowns and cervical composite margins traps bacteria that ferment acid 24/7.",
+      "Galvanic micro-currents and exposed roots amplify the chemical sting of everyday meals."
+    ]
+  },
+  {
+    slideNumber: 6,
+    title: "The Realization: Why Cutting Some Acid Isn't Enough",
+    concept: "Understanding why partial elimination fails to deliver lasting zero pain.",
+    bullets: [
+      "Eliminating beer or coffee gave temporary 6-month windows of partial relief.",
+      "Remaining dietary acids (fruits, vinegar, sauces) kept baseline inflammation simmering below the surface.",
+      "The bucket analogy: as long as acid inputs exceed nerve-firing threshold, the brainstem remains sensitized.",
+      "Realization: to achieve lasting remission, oral acid must be driven completely below the nerve activation threshold."
+    ]
+  },
+  {
+    slideNumber: 7,
+    title: "How to Test Your Personal Acid Baseline (N=1 Protocol)",
+    concept: "The actionable step-by-step testing roadmap for sufferers to prove cause and effect.",
+    bullets: [
+      "Step 1: The Zero-Acid Reset - strip out all 4 acid categories to establish an absolute baseline.",
+      "Step 2: Neutralize oral pH immediately after every meal with clean water rinses.",
+      "Step 3: Remove mucosal irritants - switch to SLS-free, non-foaming toothpaste to let tissue heal.",
+      "Step 4: Single-variable reintroduction - test one item at a time while logging daily pain on a 0-10 scale."
+    ]
+  },
+  {
+    slideNumber: 8,
+    title: "From Vigilance to Lasting Peace: Living at 0/10 Baseline",
+    concept: "The transition from fearful anxiety to calm, permanent remission.",
+    bullets: [
+      "Last 7 months completely pain-free, with only one minor 1/10 flare recorded.",
+      "No more fear, no more panic about flares: complete understanding of physical cause and effect.",
+      "Moving from helpless patient to empowered lead investigator of your own health.",
+      "Proof that systematic recovery and peace of mind are completely achievable."
+    ]
+  }
+];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead 
-			title="Presentation: My BMS Trigger Story | DecodingTheBurn" 
-			description="Interactive presentation slide deck covering Denis Ethier's four-year journey decoding Burning Mouth Syndrome triggers." 
+			title={`Presentation Slides Outline | ${SITE_TITLE}`} 
+			description="Complete bullet-point outline of Denis Ethier's BMS acid trigger recovery presentation slides." 
 			noindex={true}
 		/>
 		<style>
-			html, body {
+			:root {
+				--bg-page: #f8fafc;
+				--card-bg: #ffffff;
+				--text-main: #0f172a;
+				--text-muted: #334155;
+				--brand-purple: #7c3aed;
+			}
+
+			body.outline-body {
+				background-color: var(--bg-page);
+				color: var(--text-main);
+				font-family: 'Inter', system-ui, -apple-system, sans-serif;
 				margin: 0;
 				padding: 0;
-				width: 100vw;
-				height: 100vh;
-				background-color: #07090e;
-				overflow: hidden;
-				font-family: var(--font-body, system-ui, sans-serif);
 			}
 
-			.back-link {
-				position: fixed;
-				top: 14px;
-				left: 14px;
-				z-index: 100;
-				display: inline-flex;
+			.outline-container {
+				max-width: 960px;
+				margin: 2.5rem auto 5rem;
+				padding: 0 1.5rem;
+			}
+
+			.outline-header {
+				text-align: center;
+				margin-bottom: 3.5rem;
+				padding-bottom: 2rem;
+				border-bottom: 2px solid #e2e8f0;
+			}
+
+			.outline-kicker {
+				font-size: 0.88rem;
+				font-weight: 800;
+				color: var(--brand-purple);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				margin-bottom: 0.5rem;
+			}
+
+			.outline-title {
+				font-size: clamp(2rem, 4vw, 3rem);
+				font-weight: 900;
+				color: var(--text-main);
+				line-height: 1.2;
+				letter-spacing: -0.025em;
+				margin: 0 0 1rem;
+				text-wrap: balance;
+			}
+
+			.outline-lead {
+				font-size: 1.15rem;
+				color: var(--text-muted);
+				max-width: 720px;
+				margin: 0 auto;
+				line-height: 1.65;
+				text-wrap: pretty;
+			}
+
+			.slides-list {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+			}
+
+			.slide-outline-card {
+				background: var(--card-bg);
+				border: 1.5px solid #e2e8f0;
+				border-radius: 16px;
+				padding: 2rem 2.25rem;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.slide-outline-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+			}
+
+			.card-top-row {
+				display: flex;
 				align-items: center;
-				gap: 0.4rem;
-				font-size: 0.85rem;
-				font-weight: 600;
-				color: #94a3b8;
-				background: rgba(15, 23, 42, 0.85);
-				border: 1px solid rgba(255, 255, 255, 0.12);
-				padding: 0.4rem 0.85rem;
-				border-radius: 8px;
-				text-decoration: none;
-				backdrop-filter: blur(8px);
-				transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+				gap: 0.75rem;
+				margin-bottom: 0.75rem;
 			}
 
-			.back-link:hover {
-				background: rgba(15, 23, 42, 0.95);
+			.slide-badge-num {
+				background: #7c3aed;
 				color: #ffffff;
-				border-color: rgba(255, 255, 255, 0.25);
+				font-size: 0.85rem;
+				font-weight: 800;
+				padding: 0.35rem 0.85rem;
+				border-radius: 9999px;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			.slide-card-title {
+				font-size: 1.45rem;
+				font-weight: 900;
+				color: #0f172a;
+				line-height: 1.3;
+				margin: 0;
+			}
+
+			.slide-concept {
+				font-size: 1.05rem;
+				color: #475569;
+				font-style: italic;
+				margin: 0.5rem 0 1.25rem;
+				line-height: 1.5;
+			}
+
+			.slide-bullets-ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+				border-top: 1px solid #f1f5f9;
+				padding-top: 1.25rem;
+			}
+
+			.slide-bullet-li {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.75rem;
+				font-size: 1.08rem;
+				line-height: 1.6;
+				color: #1e293b;
+			}
+
+			.bullet-check-dot {
+				flex-shrink: 0;
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: #7c3aed;
+				margin-top: 0.65rem;
+			}
+
+			.slide-bullet-text {
+				flex: 1;
+			}
+
+			@media (max-width: 768px) {
+				.slide-outline-card {
+					padding: 1.5rem 1.25rem;
+				}
+				.slide-card-title {
+					font-size: 1.25rem;
+				}
+				.slide-bullet-li {
+					font-size: 1rem;
+				}
 			}
 		</style>
 	</head>
-	<body>
-		<a href="/my-trigger-story" class="back-link" title="Return to My Trigger Story">
-			<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
-			<span>Back to Story</span>
-		</a>
+	<body class="outline-body">
+		<Header />
 
-		<SlideDeck slides={bmsSlides} isStandalone={true} />
+		<main class="outline-container">
+			<header class="outline-header">
+				<div class="outline-kicker">Presentation Draft • 8 Slides</div>
+				<h1 class="outline-title">
+					Is Acidity a Trigger for Your Burning Mouth?
+				</h1>
+				<p class="outline-lead">
+					Review all slides and speaking points below. You can refine or reorganize any bullet before we render the interactive PowerPoint deck.
+				</p>
+			</header>
+
+			<div class="slides-list">
+				{slidesOutline.map((slide) => (
+					<section class="slide-outline-card">
+						<div class="card-top-row">
+							<span class="slide-badge-num">Slide {slide.slideNumber}</span>
+						</div>
+						<h2 class="slide-card-title">{slide.title}</h2>
+						<p class="slide-concept">{slide.concept}</p>
+						<ul class="slide-bullets-ul">
+							{slide.bullets.map((point) => (
+								<li class="slide-bullet-li">
+									<span class="bullet-check-dot"></span>
+									<span class="slide-bullet-text">{point}</span>
+								</li>
+							))}
+						</ul>
+					</section>
+				))}
+			</div>
+		</main>
+
+		<Footer />
 	</body>
 </html>
