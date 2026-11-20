@@ -6,16 +6,13 @@ interface Props {
 
 const { variant = 'inline', size = 'normal' } = Astro.props;
 
-// "BMS TRIGGERS" in 11 letters across the rainbow spectrum
-// B: #dc2626 (red)
-// M: #ea580c (orange-red)
-// S: #f97316 (orange)
-// [space]
-// T: #d97706 (amber)
-// R: #ca8a04 (yellow-amber)
-// I: #65a30d (lime)
+// "BMS" in Solid Pure Black
+// "TRIGGERS" in 8-letter Rainbow Spectrum (Red to Purple):
+// T: #dc2626 (red)
+// R: #ea580c (orange-red)
+// I: #d97706 (amber)
+// G: #65a30d (lime)
 // G: #16a34a (green)
-// G: #059669 (emerald)
 // E: #0891b2 (cyan)
 // R: #2563eb (blue)
 // S: #7c3aed (purple)
@@ -23,12 +20,10 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
 
 <div class={`bms-triggers-logo ${variant} ${size}`}>
   <div class="title-row">
-    <span class="word-bms">
-      <span style="color: #dc2626;">B</span><span style="color: #ea580c;">M</span><span style="color: #f97316;">S</span>
-    </span>
+    <span class="word-bms">BMS</span>
     <span class="word-spacer">&nbsp;</span>
     <span class="word-triggers">
-      <span style="color: #d97706;">T</span><span style="color: #ca8a04;">R</span><span style="color: #65a30d;">I</span><span style="color: #16a34a;">G</span><span style="color: #059669;">G</span><span style="color: #0891b2;">E</span><span style="color: #2563eb;">R</span><span style="color: #7c3aed;">S</span>
+      <span style="color: #dc2626;">T</span><span style="color: #ea580c;">R</span><span style="color: #d97706;">I</span><span style="color: #65a30d;">G</span><span style="color: #16a34a;">G</span><span style="color: #0891b2;">E</span><span style="color: #2563eb;">R</span><span style="color: #7c3aed;">S</span>
     </span>
   </div>
 </div>
@@ -53,7 +48,11 @@ const { variant = 'inline', size = 'normal' } = Astro.props;
     text-shadow: none !important;
   }
 
-  .word-bms, .word-triggers {
+  .word-bms {
+    color: #000000 !important;
+  }
+
+  .word-triggers {
     display: inline-flex;
     align-items: baseline;
   }
