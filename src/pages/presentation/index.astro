@@ -732,12 +732,15 @@ const slidesOutline = slidesData.slides;
 						<h2 class="slide-card-title">{slide.title}</h2>
 						<p class="slide-concept">{slide.concept}</p>
 						<ul class="slide-bullets-ul">
-							{slide.bullets.map((point) => (
-								<li class="slide-bullet-li">
-									<span class="bullet-check-dot"></span>
-									<span class="slide-bullet-text">{point}</span>
-								</li>
-							))}
+							{slide.bullets.map((point) => {
+								const pointText = typeof point === 'string' ? point : point.text;
+								return (
+									<li class="slide-bullet-li">
+										<span class="bullet-check-dot"></span>
+										<span class="slide-bullet-text">{pointText}</span>
+									</li>
+								);
+							})}
 						</ul>
 					</section>
 				))}
@@ -760,63 +763,44 @@ const slidesOutline = slidesData.slides;
 				</div>
 			</div>
 
-			<!-- Single Topic-Related Rendered Transparent Hero Object (Right Side) -->
+			<!-- Dynamic Per-Slide & Per-Bullet Visual Stage (Right Side) -->
 			<div class="deck-render-zone" aria-hidden="true">
-				<!-- Slide 1: Book Cover 3D Transparent Glowing Pain Head -->
-				<div class="deck-render-item is-current" data-render-index="0">
-					<img src="/bms-head-transparent-pain-map.png" alt="" class="render-transparent render-glow-red" />
+				<!-- Double-buffered smooth crossfading image slots -->
+				<div class="deck-render-item" id="render-slot-a">
+					<img id="render-img-a" src="" alt="" />
+				</div>
+				<div class="deck-render-item" id="render-slot-b">
+					<img id="render-img-b" src="" alt="" />
 				</div>
 
-				<!-- Slide 2: Transparent Portrait of Denis -->
-				<div class="deck-render-item" data-render-index="1">
-					<img src="/denis-transparent.png" alt="" class="render-portrait" />
-				</div>
+				<!-- SVG Library: 3D Translucent Glass / Glow Renders -->
 
-				<!-- Slide 3: 3D Translucent Glass Supplement Bottle & Capsule Render -->
-				<div class="deck-render-item" data-render-index="2">
+				<!-- acid-drop -->
+				<div class="deck-render-item" data-svg-id="acid-drop">
 					<svg viewBox="0 0 380 380" fill="none">
 						<defs>
-							<radialGradient id="halo-s3" cx="50%" cy="50%" r="50%">
-								<stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.34" />
-								<stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+							<radialGradient id="halo-acid" cx="50%" cy="52%" r="50%">
+								<stop offset="0%" stop-color="#f97316" stop-opacity="0.38" />
+								<stop offset="60%" stop-color="#ef4444" stop-opacity="0.14" />
+								<stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
 							</radialGradient>
-							<linearGradient id="glass-body-s3" x1="0%" y1="0%" x2="100%" y2="100%">
-								<stop offset="0%" stop-color="#c4b5fd" stop-opacity="0.42" />
-								<stop offset="48%" stop-color="#60a5fa" stop-opacity="0.16" />
-								<stop offset="100%" stop-color="#1e1b4b" stop-opacity="0.52" />
-							</linearGradient>
-							<linearGradient id="cap-s3" x1="0%" y1="0%" x2="100%" y2="0%">
-								<stop offset="0%" stop-color="#e9d5ff" stop-opacity="0.85" />
-								<stop offset="50%" stop-color="#a855f7" stop-opacity="0.7" />
-								<stop offset="100%" stop-color="#4c1d95" stop-opacity="0.85" />
-							</linearGradient>
-							<linearGradient id="pill-red" x1="0%" y1="0%" x2="100%" y2="100%">
-								<stop offset="0%" stop-color="#fb7185" />
-								<stop offset="100%" stop-color="#be123c" />
-							</linearGradient>
-							<linearGradient id="pill-glass" x1="0%" y1="0%" x2="100%" y2="100%">
-								<stop offset="0%" stop-color="#f8fafc" stop-opacity="0.92" />
-								<stop offset="100%" stop-color="#94a3b8" stop-opacity="0.78" />
-							</linearGradient>
+							<radialGradient id="drop-main" cx="35%" cy="32%" r="68%">
+								<stop offset="0%" stop-color="#fef08a" />
+								<stop offset="38%" stop-color="#f97316" />
+								<stop offset="78%" stop-color="#dc2626" />
+								<stop offset="100%" stop-color="#7f1d1d" />
+							</radialGradient>
 						</defs>
-						<circle cx="190" cy="195" r="150" fill="url(#halo-s3)" />
-						<!-- Translucent 3D Bottle -->
-						<rect x="136" y="76" width="84" height="28" rx="8" fill="url(#cap-s3)" stroke="#f3e8ff" stroke-opacity="0.5" stroke-width="1.5" />
-						<path d="M148 104h60v16c0 10 24 18 24 38v126c0 16-12 28-28 28h-52c-16 0-28-12-28-28V158c0-20 24-28 24-38v-16z" fill="url(#glass-body-s3)" stroke="#ddd6fe" stroke-opacity="0.55" stroke-width="2" />
-						<!-- Specular glass highlight -->
-						<path d="M140 162v116" stroke="#ffffff" stroke-opacity="0.45" stroke-width="5" stroke-linecap="round" />
-						<rect x="144" y="182" width="68" height="62" rx="10" fill="#ffffff" fill-opacity="0.1" stroke="#e9d5ff" stroke-opacity="0.32" />
-						<!-- Floating 3D Capsule -->
-						<g transform="translate(245, 250) rotate(-32)">
-							<rect x="-46" y="-18" width="92" height="36" rx="18" fill="url(#pill-glass)" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.5" />
-							<path d="M0 -18h28a18 18 0 0 1 0 36H0V-18z" fill="url(#pill-red)" />
-							<path d="M-32 -8h60" stroke="#ffffff" stroke-opacity="0.55" stroke-width="4" stroke-linecap="round" />
-						</g>
+						<circle cx="190" cy="195" r="158" fill="url(#halo-acid)" />
+						<circle cx="190" cy="210" r="118" stroke="#fb923c" stroke-opacity="0.22" stroke-width="1.5" />
+						<path d="M190 64c0 0 88 106 88 164 0 49-39 88-88 88s-88-39-88-88c0-58 88-164 88-164z" fill="url(#drop-main)" stroke="#fef08a" stroke-opacity="0.72" stroke-width="2" />
+						<path d="M142 224c0 28 16 52 40 58" stroke="#ffffff" stroke-opacity="0.68" stroke-width="6" stroke-linecap="round" />
+						<circle cx="164" cy="168" r="10" fill="#ffffff" fill-opacity="0.68" />
 					</svg>
 				</div>
 
-				<!-- Slide 4: 3D Luminous Translucent Citrus & Glowing Acid Droplet -->
-				<div class="deck-render-item" data-render-index="3">
+				<!-- fruits-condiments: 3D Citrus Slice + Berries + Acid Drop -->
+				<div class="deck-render-item" data-svg-id="fruits-condiments">
 					<svg viewBox="0 0 380 380" fill="none">
 						<defs>
 							<radialGradient id="halo-s4" cx="50%" cy="50%" r="50%">
@@ -839,26 +823,66 @@ const slidesOutline = slidesData.slides;
 								<stop offset="55%" stop-color="#f97316" />
 								<stop offset="100%" stop-color="#dc2626" />
 							</radialGradient>
+							<radialGradient id="berry-g" cx="35%" cy="30%" r="70%">
+								<stop offset="0%" stop-color="#c084fc" />
+								<stop offset="60%" stop-color="#6d28d9" />
+								<stop offset="100%" stop-color="#2e1065" />
+							</radialGradient>
 						</defs>
 						<circle cx="185" cy="185" r="155" fill="url(#halo-s4)" />
-						<circle cx="176" cy="176" r="108" fill="url(#citrus-outer)" stroke="#fef08a" stroke-opacity="0.65" stroke-width="2" />
-						<circle cx="176" cy="176" r="93" fill="url(#citrus-inner)" stroke="#fffbeb" stroke-opacity="0.85" stroke-width="4" />
-						<!-- Clean glowing citrus segments -->
+						<circle cx="168" cy="168" r="104" fill="url(#citrus-outer)" stroke="#fef08a" stroke-opacity="0.65" stroke-width="2" />
+						<circle cx="168" cy="168" r="89" fill="url(#citrus-inner)" stroke="#fffbeb" stroke-opacity="0.85" stroke-width="4" />
 						<g stroke="#fffbeb" stroke-opacity="0.85" stroke-width="3.5" stroke-linecap="round">
-							<line x1="176" y1="86" x2="176" y2="266" />
-							<line x1="86" y1="176" x2="266" y2="176" />
-							<line x1="112" y1="112" x2="240" y2="240" />
-							<line x1="240" y1="112" x2="112" y2="240" />
+							<line x1="168" y1="82" x2="168" y2="254" />
+							<line x1="82" y1="168" x2="254" y2="168" />
+							<line x1="107" y1="107" x2="229" y2="229" />
+							<line x1="229" y1="107" x2="107" y2="229" />
 						</g>
-						<circle cx="176" cy="176" r="14" fill="#fffbeb" />
-						<!-- Glossy floating acid droplet -->
-						<path d="M294 252c0 24-18 42-38 42s-38-18-38-42c0-22 38-68 38-68s38 46 38 68z" fill="url(#drop-acid)" stroke="#fef08a" stroke-opacity="0.75" stroke-width="2" />
-						<path d="M241 258c0 12 7 20 15 22" stroke="#ffffff" stroke-opacity="0.7" stroke-width="4" stroke-linecap="round" />
+						<circle cx="168" cy="168" r="13" fill="#fffbeb" />
+						<!-- Glossy berry & vinegar/condiment droplet -->
+						<circle cx="110" cy="272" r="28" fill="url(#berry-g)" stroke="#e9d5ff" stroke-opacity="0.55" stroke-width="1.5" />
+						<circle cx="101" cy="262" r="6" fill="#ffffff" fill-opacity="0.65" />
+						<path d="M298 254c0 24-18 42-38 42s-38-18-38-42c0-22 38-68 38-68s38 46 38 68z" fill="url(#drop-acid)" stroke="#fef08a" stroke-opacity="0.75" stroke-width="2" />
+						<path d="M245 260c0 12 7 20 15 22" stroke="#ffffff" stroke-opacity="0.7" stroke-width="4" stroke-linecap="round" />
 					</svg>
 				</div>
 
-				<!-- Slide 5: 3D Glowing Thermal Flame Cooling into Serene Ice-Blue Sphere -->
-				<div class="deck-render-item" data-render-index="4">
+				<!-- vegetables: 3D Glossy Tomato & Botanical Leaf -->
+				<div class="deck-render-item" data-svg-id="vegetables">
+					<svg viewBox="0 0 380 380" fill="none">
+						<defs>
+							<radialGradient id="halo-veg" cx="50%" cy="52%" r="50%">
+								<stop offset="0%" stop-color="#22c55e" stop-opacity="0.28" />
+								<stop offset="60%" stop-color="#ef4444" stop-opacity="0.16" />
+								<stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+							</radialGradient>
+							<radialGradient id="tomato-grad" cx="35%" cy="32%" r="68%">
+								<stop offset="0%" stop-color="#fca5a5" />
+								<stop offset="35%" stop-color="#ef4444" />
+								<stop offset="78%" stop-color="#b91c1c" />
+								<stop offset="100%" stop-color="#450a0a" />
+							</radialGradient>
+							<linearGradient id="leaf-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+								<stop offset="0%" stop-color="#86efac" />
+								<stop offset="55%" stop-color="#16a34a" />
+								<stop offset="100%" stop-color="#14532d" />
+							</linearGradient>
+						</defs>
+						<circle cx="190" cy="195" r="158" fill="url(#halo-veg)" />
+						<!-- Glossy translucent botanical leaf behind -->
+						<path d="M206 102c58-22 104 4 106 58-2 58-46 92-104 82-22-46-24-100-2-140z" fill="url(#leaf-grad)" stroke="#bbf7d0" stroke-opacity="0.65" stroke-width="2" />
+						<path d="M214 232c22-34 52-64 84-86" stroke="#dcfce7" stroke-opacity="0.6" stroke-width="2.5" stroke-linecap="round" />
+						<!-- Glossy 3D acidic tomato foreground -->
+						<ellipse cx="164" cy="214" rx="92" ry="82" fill="url(#tomato-grad)" stroke="#fecaca" stroke-opacity="0.58" stroke-width="2" />
+						<!-- Stem calyx -->
+						<path d="M164 134c-14-14-36-10-46 2 18 4 32 10 46 18 14-8 28-14 46-18-10-12-32-16-46-2z" fill="url(#leaf-grad)" stroke="#bbf7d0" stroke-opacity="0.7" stroke-width="1.5" />
+						<path d="M164 134v-24" stroke="#4ade80" stroke-width="5" stroke-linecap="round" />
+						<path d="M108 194c6-20 20-34 40-38" stroke="#ffffff" stroke-opacity="0.62" stroke-width="6" stroke-linecap="round" />
+					</svg>
+				</div>
+
+				<!-- cooling-reset -->
+				<div class="deck-render-item" data-svg-id="cooling-reset">
 					<svg viewBox="0 0 380 380" fill="none">
 						<defs>
 							<radialGradient id="halo-s5" cx="50%" cy="55%" r="50%">
@@ -880,30 +904,44 @@ const slidesOutline = slidesData.slides;
 						<circle cx="190" cy="195" r="155" fill="url(#halo-s5)" />
 						<circle cx="190" cy="195" r="118" stroke="#7dd3fc" stroke-opacity="0.22" stroke-width="1.5" />
 						<circle cx="190" cy="195" r="88" stroke="#bae6fd" stroke-opacity="0.3" stroke-width="1.5" />
-						<!-- Smooth translucent cooling flame silhouette -->
 						<path d="M190 74c36 52 84 96 84 150 0 48-38 84-84 84s-84-36-84-84c0-54 48-98 84-150z" fill="url(#cool-flame)" stroke="#e0f2fe" stroke-opacity="0.7" stroke-width="2" />
 						<path d="M190 144c22 30 46 58 46 86 0 26-20 46-46 46s-46-20-46-46c0-28 24-56 46-86z" fill="url(#inner-core-s5)" />
 						<path d="M148 214c0 24 14 44 32 50" stroke="#ffffff" stroke-opacity="0.6" stroke-width="4" stroke-linecap="round" />
 					</svg>
 				</div>
 
-				<!-- Slide 6: Real 3D Transparent Anatomical Tooth Cross-Section -->
-				<div class="deck-render-item" data-render-index="5">
-					<img src="/tooth-transparent.png" alt="" class="render-transparent render-glow-violet" />
+				<!-- stacking-stones -->
+				<div class="deck-render-item" data-svg-id="stacking-stones">
+					<svg viewBox="0 0 380 380" fill="none">
+						<defs>
+							<radialGradient id="halo-stack" cx="50%" cy="55%" r="50%">
+								<stop offset="0%" stop-color="#a855f7" stop-opacity="0.34" />
+								<stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
+							</radialGradient>
+							<linearGradient id="stone-1" x1="0%" y1="0%" x2="100%" y2="100%">
+								<stop offset="0%" stop-color="#818cf8" stop-opacity="0.88" />
+								<stop offset="100%" stop-color="#312e81" stop-opacity="0.92" />
+							</linearGradient>
+							<linearGradient id="stone-2" x1="0%" y1="0%" x2="100%" y2="100%">
+								<stop offset="0%" stop-color="#c084fc" stop-opacity="0.88" />
+								<stop offset="100%" stop-color="#581c87" stop-opacity="0.92" />
+							</linearGradient>
+							<linearGradient id="stone-3" x1="0%" y1="0%" x2="100%" y2="100%">
+								<stop offset="0%" stop-color="#fb7185" />
+								<stop offset="100%" stop-color="#be123c" />
+							</linearGradient>
+						</defs>
+						<circle cx="190" cy="198" r="156" fill="url(#halo-stack)" />
+						<line x1="60" y1="108" x2="320" y2="108" stroke="#fb7185" stroke-width="2.5" stroke-dasharray="8 8" stroke-linecap="round" />
+						<ellipse cx="190" cy="276" rx="102" ry="30" fill="url(#stone-1)" stroke="#c7d2fe" stroke-opacity="0.55" stroke-width="2" />
+						<ellipse cx="190" cy="222" rx="76" ry="25" fill="url(#stone-2)" stroke="#e9d5ff" stroke-opacity="0.6" stroke-width="2" />
+						<ellipse cx="190" cy="172" rx="54" ry="20" fill="url(#stone-2)" stroke="#f3e8ff" stroke-opacity="0.7" stroke-width="2" />
+						<ellipse cx="190" cy="130" rx="34" ry="16" fill="url(#stone-3)" stroke="#fecdd3" stroke-opacity="0.8" stroke-width="2" />
+					</svg>
 				</div>
 
-				<!-- Slide 7: Real 3D Transparent Premolar Anatomical Render -->
-				<div class="deck-render-item" data-render-index="6">
-					<img src="/tooth-transparent-premolar-backup.png" alt="" class="render-transparent render-glow-blue" />
-				</div>
-
-				<!-- Slide 8: Real 3D Glowing Trigeminal V2/V3 Nerve Network -->
-				<div class="deck-render-item" data-render-index="7">
-					<img src="/trigeminal-nerves-glowing-red.png" alt="" class="render-feathered render-glow-red" />
-				</div>
-
-				<!-- Slide 9: 3D Translucent Glass Bucket & Glowing Threshold Ring -->
-				<div class="deck-render-item" data-render-index="8">
+				<!-- bucket (below threshold) -->
+				<div class="deck-render-item" data-svg-id="bucket">
 					<svg viewBox="0 0 380 380" fill="none">
 						<defs>
 							<radialGradient id="halo-s9" cx="50%" cy="55%" r="50%">
@@ -921,21 +959,40 @@ const slidesOutline = slidesData.slides;
 							</linearGradient>
 						</defs>
 						<circle cx="190" cy="195" r="155" fill="url(#halo-s9)" />
-						<!-- Threshold glowing red-coral horizon ring -->
 						<line x1="68" y1="158" x2="312" y2="158" stroke="#fb7185" stroke-width="2.5" stroke-dasharray="8 8" stroke-linecap="round" />
-						<!-- 3D Glass Vessel -->
 						<path d="M106 102l22 184c2 14 28 24 62 24s60-10 62-24l22-184" fill="url(#glass-bucket)" stroke="#e9d5ff" stroke-opacity="0.58" stroke-width="2" />
 						<ellipse cx="190" cy="102" rx="84" ry="18" fill="#f3e8ff" fill-opacity="0.14" stroke="#e9d5ff" stroke-opacity="0.65" stroke-width="2" />
-						<!-- Calm blue fluid sitting safely below threshold -->
 						<path d="M122 222l6 64c2 12 28 22 62 22s60-10 62-22l6-64" fill="url(#bucket-fluid)" />
 						<ellipse cx="190" cy="222" rx="68" ry="14" fill="#bae6fd" fill-opacity="0.72" stroke="#ffffff" stroke-opacity="0.7" stroke-width="1.5" />
-						<!-- Vertical glass shine -->
 						<path d="M126 126l14 146" stroke="#ffffff" stroke-opacity="0.38" stroke-width="5" stroke-linecap="round" />
 					</svg>
 				</div>
 
-				<!-- Slide 10: 3D Crystal-Clear Pure Water Droplet & Calm Ripples -->
-				<div class="deck-render-item" data-render-index="9">
+				<!-- bucket-overflow (above threshold) -->
+				<div class="deck-render-item" data-svg-id="bucket-overflow">
+					<svg viewBox="0 0 380 380" fill="none">
+						<defs>
+							<radialGradient id="halo-over" cx="50%" cy="50%" r="50%">
+								<stop offset="0%" stop-color="#ef4444" stop-opacity="0.38" />
+								<stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+							</radialGradient>
+							<linearGradient id="hot-fluid" x1="50%" y1="0%" x2="50%" y2="100%">
+								<stop offset="0%" stop-color="#fb7185" stop-opacity="0.92" />
+								<stop offset="100%" stop-color="#b91c1c" stop-opacity="0.95" />
+							</linearGradient>
+						</defs>
+						<circle cx="190" cy="195" r="158" fill="url(#halo-over)" />
+						<line x1="68" y1="158" x2="312" y2="158" stroke="#fda4af" stroke-width="2.5" stroke-dasharray="8 8" stroke-linecap="round" />
+						<path d="M106 102l22 184c2 14 28 24 62 24s60-10 62-24l22-184" fill="url(#glass-bucket)" stroke="#fecdd3" stroke-opacity="0.65" stroke-width="2" />
+						<path d="M111 138l17 148c2 12 28 22 62 22s60-10 62-22l17-148" fill="url(#hot-fluid)" />
+						<ellipse cx="190" cy="138" rx="79" ry="16" fill="#fecdd3" fill-opacity="0.72" stroke="#ffffff" stroke-opacity="0.75" stroke-width="1.5" />
+						<ellipse cx="190" cy="102" rx="84" ry="18" fill="none" stroke="#fecdd3" stroke-opacity="0.7" stroke-width="2" />
+						<path d="M126 126l14 146" stroke="#ffffff" stroke-opacity="0.4" stroke-width="5" stroke-linecap="round" />
+					</svg>
+				</div>
+
+				<!-- water-reset -->
+				<div class="deck-render-item" data-svg-id="water-reset">
 					<svg viewBox="0 0 380 380" fill="none">
 						<defs>
 							<radialGradient id="halo-s10" cx="50%" cy="52%" r="50%">
@@ -958,8 +1015,31 @@ const slidesOutline = slidesData.slides;
 					</svg>
 				</div>
 
-				<!-- Slide 11: 3D Luminous Serene Peace Orb & Flat 0/10 Horizon Wave -->
-				<div class="deck-render-item" data-render-index="10">
+				<!-- cheat-spike -->
+				<div class="deck-render-item" data-svg-id="cheat-spike">
+					<svg viewBox="0 0 380 380" fill="none">
+						<defs>
+							<radialGradient id="halo-spike" cx="55%" cy="42%" r="48%">
+								<stop offset="0%" stop-color="#f43f5e" stop-opacity="0.38" />
+								<stop offset="100%" stop-color="#f43f5e" stop-opacity="0" />
+							</radialGradient>
+							<linearGradient id="spike-line" x1="0%" y1="0%" x2="100%" y2="0%">
+								<stop offset="0%" stop-color="#38bdf8" />
+								<stop offset="48%" stop-color="#fb7185" />
+								<stop offset="68%" stop-color="#f43f5e" />
+								<stop offset="100%" stop-color="#38bdf8" />
+							</linearGradient>
+						</defs>
+						<circle cx="204" cy="156" r="142" fill="url(#halo-spike)" />
+						<line x1="46" y1="248" x2="334" y2="248" stroke="#94a3b8" stroke-opacity="0.28" stroke-width="1.5" />
+						<path d="M46 248h98c16 0 24-136 48-136s32 136 48 136h94" stroke="url(#spike-line)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+						<circle cx="192" cy="112" r="10" fill="#fb7185" />
+						<circle cx="192" cy="112" r="24" fill="#fb7185" fill-opacity="0.22" />
+					</svg>
+				</div>
+
+				<!-- peace-wave -->
+				<div class="deck-render-item" data-svg-id="peace-wave">
 					<svg viewBox="0 0 380 380" fill="none">
 						<defs>
 							<radialGradient id="peace-orb" cx="42%" cy="38%" r="60%">
@@ -976,15 +1056,31 @@ const slidesOutline = slidesData.slides;
 						</defs>
 						<circle cx="215" cy="176" r="134" fill="url(#peace-orb)" />
 						<circle cx="215" cy="176" r="88" stroke="#e9d5ff" stroke-opacity="0.32" stroke-width="1.5" />
-						<!-- Jagged pain wave calming smoothly into flat 0/10 line -->
 						<path d="M44 196c16-54 32 54 48 0s30 32 48 0 30 12 48 0c28 0 92 0 148 0" stroke="url(#calm-wave)" stroke-width="4.5" stroke-linecap="round" />
 						<circle cx="334" cy="196" r="9" fill="#67e8f9" />
 						<circle cx="334" cy="196" r="20" fill="#67e8f9" fill-opacity="0.22" />
 					</svg>
 				</div>
 
-				<!-- Slide 12: 3D Translucent Luminous Crystalline Heart (Book-Cover Glow) -->
-				<div class="deck-render-item" data-render-index="11">
+				<!-- calm-orb -->
+				<div class="deck-render-item" data-svg-id="calm-orb">
+					<svg viewBox="0 0 380 380" fill="none">
+						<defs>
+							<radialGradient id="orb-glow" cx="38%" cy="34%" r="64%">
+								<stop offset="0%" stop-color="#ffffff" />
+								<stop offset="32%" stop-color="#e9d5ff" />
+								<stop offset="68%" stop-color="#8b5cf6" />
+								<stop offset="100%" stop-color="#2e1065" />
+							</radialGradient>
+						</defs>
+						<circle cx="190" cy="190" r="144" stroke="#c4b5fd" stroke-opacity="0.22" stroke-width="1.5" />
+						<circle cx="190" cy="190" r="118" stroke="#ddd6fe" stroke-opacity="0.32" stroke-width="1.5" />
+						<circle cx="190" cy="190" r="92" fill="url(#orb-glow)" stroke="#ffffff" stroke-opacity="0.55" stroke-width="2" />
+					</svg>
+				</div>
+
+				<!-- glass-heart -->
+				<div class="deck-render-item" data-svg-id="glass-heart">
 					<svg viewBox="0 0 380 380" fill="none">
 						<defs>
 							<radialGradient id="halo-s12" cx="50%" cy="50%" r="50%">
@@ -1005,9 +1101,40 @@ const slidesOutline = slidesData.slides;
 					</svg>
 				</div>
 
-				<!-- Slide 13: Real 3-Page Tracking Sheet Mockup on Brand Dark Purple -->
-				<div class="deck-render-item" data-render-index="12">
-					<img src="/bms-tracking-sheet-mockup-3pages.png" alt="" class="render-mockup" />
+				<!-- community-nodes -->
+				<div class="deck-render-item" data-svg-id="community-nodes">
+					<svg viewBox="0 0 380 380" fill="none">
+						<defs>
+							<radialGradient id="halo-comm" cx="50%" cy="50%" r="50%">
+								<stop offset="0%" stop-color="#a855f7" stop-opacity="0.36" />
+								<stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
+							</radialGradient>
+							<radialGradient id="node-main" cx="35%" cy="32%" r="68%">
+								<stop offset="0%" stop-color="#f3e8ff" />
+								<stop offset="48%" stop-color="#a855f7" />
+								<stop offset="100%" stop-color="#3b0764" />
+							</radialGradient>
+							<radialGradient id="node-cyan" cx="35%" cy="32%" r="68%">
+								<stop offset="0%" stop-color="#e0f2fe" />
+								<stop offset="48%" stop-color="#38bdf8" />
+								<stop offset="100%" stop-color="#1e3a8a" />
+							</radialGradient>
+						</defs>
+						<circle cx="190" cy="190" r="158" fill="url(#halo-comm)" />
+						<g stroke="#e9d5ff" stroke-opacity="0.45" stroke-width="2">
+							<line x1="190" y1="190" x2="104" y2="122" />
+							<line x1="190" y1="190" x2="278" y2="126" />
+							<line x1="190" y1="190" x2="112" y2="266" />
+							<line x1="190" y1="190" x2="274" y2="262" />
+							<line x1="104" y1="122" x2="278" y2="126" stroke-opacity="0.22" />
+							<line x1="112" y1="266" x2="274" y2="262" stroke-opacity="0.22" />
+						</g>
+						<circle cx="190" cy="190" r="44" fill="url(#node-main)" stroke="#f3e8ff" stroke-opacity="0.7" stroke-width="2" />
+						<circle cx="104" cy="122" r="24" fill="url(#node-cyan)" stroke="#e0f2fe" stroke-opacity="0.65" stroke-width="1.5" />
+						<circle cx="278" cy="126" r="26" fill="url(#node-cyan)" stroke="#e0f2fe" stroke-opacity="0.65" stroke-width="1.5" />
+						<circle cx="112" cy="266" r="22" fill="url(#node-main)" stroke="#f3e8ff" stroke-opacity="0.65" stroke-width="1.5" />
+						<circle cx="274" cy="262" r="24" fill="url(#node-main)" stroke="#f3e8ff" stroke-opacity="0.65" stroke-width="1.5" />
+					</svg>
 				</div>
 			</div>
 
@@ -1113,7 +1240,112 @@ const slidesOutline = slidesData.slides;
 			const bulletsListEl = document.getElementById('deck-bullets-list');
 			const railDotsEl = document.getElementById('rail-step-dots');
 			const progressFillEl = document.getElementById('deck-progress-fill');
-			const renderLayers = Array.from(document.querySelectorAll('.deck-render-item'));
+			const renderSlotA = document.getElementById('render-slot-a');
+			const renderSlotB = document.getElementById('render-slot-b');
+			const renderImgA = document.getElementById('render-img-a');
+			const renderImgB = document.getElementById('render-img-b');
+			const svgLayers = new Map(
+				Array.from(document.querySelectorAll('[data-svg-id]')).map((el) => [el.getAttribute('data-svg-id'), el])
+			);
+
+			let activeImgSlot = 'a';
+			let activeVisualKey = '';
+			let didPreloadImages = false;
+
+			function getStyleClasses(styleName) {
+				switch (styleName) {
+					case 'transparent':
+						return 'render-transparent render-glow-violet';
+					case 'transparent-red':
+						return 'render-transparent render-glow-red';
+					case 'transparent-blue':
+						return 'render-transparent render-glow-blue';
+					case 'portrait':
+						return 'render-portrait';
+					case 'feathered':
+						return 'render-feathered render-glow-red';
+					case 'card':
+					default:
+						return 'render-mockup';
+				}
+			}
+
+			function preloadAllSlideImages() {
+				if (didPreloadImages) return;
+				didPreloadImages = true;
+				const urls = new Set();
+				slides.forEach((slide) => {
+					if (slide.defaultVisual?.src) urls.add(slide.defaultVisual.src);
+					slide.bullets.forEach((b) => {
+						if (typeof b !== 'string' && b.visual?.src) urls.add(b.visual.src);
+					});
+				});
+				urls.forEach((url) => {
+					const img = new Image();
+					img.src = url;
+				});
+			}
+
+			function resolveActiveVisual(slide) {
+				if (revealedBullets > 0) {
+					for (let i = revealedBullets - 1; i >= 0; i--) {
+						const bullet = slide.bullets[i];
+						if (bullet && typeof bullet !== 'string' && bullet.visual) {
+							return bullet.visual;
+						}
+					}
+				}
+				return slide.defaultVisual || null;
+			}
+
+			function syncActiveVisual(slide) {
+				const visual = resolveActiveVisual(slide);
+				if (!visual) return;
+
+				const nextKey = visual.svg
+					? `svg:${visual.svg}`
+					: `img:${visual.src}:${visual.style || 'card'}`;
+
+				if (nextKey === activeVisualKey) return;
+				activeVisualKey = nextKey;
+
+				if (visual.svg) {
+					renderSlotA?.classList.remove('is-current');
+					renderSlotB?.classList.remove('is-current');
+					svgLayers.forEach((el, id) => {
+						el.classList.toggle('is-current', id === visual.svg);
+					});
+					return;
+				}
+
+				if (visual.src) {
+					svgLayers.forEach((el) => el.classList.remove('is-current'));
+
+					const nextSlotName = activeImgSlot === 'a' ? 'b' : 'a';
+					const nextSlot = nextSlotName === 'a' ? renderSlotA : renderSlotB;
+					const prevSlot = nextSlotName === 'a' ? renderSlotB : renderSlotA;
+					const nextImg = nextSlotName === 'a' ? renderImgA : renderImgB;
+
+					if (nextImg && nextSlot) {
+						nextImg.className = getStyleClasses(visual.style);
+						nextImg.src = visual.src;
+						activeImgSlot = nextSlotName;
+
+						const reveal = () => {
+							prevSlot?.classList.remove('is-current');
+							nextSlot.classList.add('is-current');
+						};
+
+						if (nextImg.complete && nextImg.naturalWidth > 0) {
+							reveal();
+						} else {
+							nextImg.onload = reveal;
+							// Fallback reveal in case of cached instant load
+							window.requestAnimationFrame(reveal);
+						}
+					}
+				}
+			}
 
 			function updateUrlState() {
 				const url = new URL(window.location.href);
@@ -1153,9 +1385,7 @@ const slidesOutline = slidesData.slides;
 				const slide = slides[currentSlideIndex];
 				if (!slide) return;
 
-				renderLayers.forEach((layer, idx) => {
-					layer.classList.toggle('is-current', idx === currentSlideIndex);
-				});
+				preloadAllSlideImages();
 
 				if (animateSlide && slideInner) {
 					slideInner.style.animation = 'none';
@@ -1169,7 +1399,8 @@ const slidesOutline = slidesData.slides;
 
 				if (bulletsListEl) {
 					bulletsListEl.innerHTML = '';
-					slide.bullets.forEach((text, i) => {
+					slide.bullets.forEach((item, i) => {
+						const text = typeof item === 'string' ? item : item.text;
 						const li = document.createElement('li');
 						li.className = 'deck-bullet-item';
 						li.dataset.bulletIndex = String(i);
@@ -1202,6 +1433,8 @@ const slidesOutline = slidesData.slides;
 					item.classList.toggle('is-revealed', isShown);
 					item.classList.toggle('is-latest', isLatest);
 				});
+
+				syncActiveVisual(slide);
 
 				if (railDotsEl) {
 					railDotsEl.innerHTML = '';

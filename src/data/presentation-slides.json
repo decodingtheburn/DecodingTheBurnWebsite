@@ -1,10 +1,10 @@
 {
   "_instructions": [
     "FAST EDIT GUIDE (FOR HUMANS & AI AGENTS):",
-    "1. All presentation slide text (presentationTitle, slide titles, concepts, emojis, bullets) lives ONLY in this file: src/data/presentation-slides.json.",
-    "2. To update any slide title, emoji, or bullet text, edit ONLY this JSON file. Do NOT edit src/pages/presentation/index.astro unless changing layout, styling, or 3D renders.",
-    "3. Keep bullets short and single-line where possible, with zero em-dashes.",
-    "4. Astro dev server hot-reloads this JSON file automatically in <1 second; skip full builds and git commits during rapid text-editing sessions unless asked."
+    "1. All presentation text AND per-slide / per-bullet visuals live ONLY in this file: src/data/presentation-slides.json.",
+    "2. Each slide has 'defaultVisual' (shown before bullet 1) and 'bullets' (each bullet can be a plain string or { text, visual }).",
+    "3. A visual object uses either { src: '/image.jpg', style: 'card' | 'transparent' | 'transparent-red' | 'transparent-blue' | 'portrait' | 'feathered' } OR { svg: 'acid-drop' | 'fruits-condiments' | 'vegetables' | 'cooling-reset' | 'stacking-stones' | 'bucket' | 'bucket-overflow' | 'water-reset' | 'cheat-spike' | 'peace-wave' | 'calm-orb' | 'glass-heart' | 'community-nodes' }.",
+    "4. Astro hot-reloads this JSON file automatically in <1 second. Keep bullets short and single-line with zero em-dashes."
   ],
   "presentationTitle": "BMS and Acidity Research",
   "slides": [
@@ -13,10 +13,20 @@
       "title": "BMS and Acidity Research",
       "concept": "A personal presentation by Denis Ethier on uncovering the chemical drivers of burning mouth pain.",
       "emoji": "🎯",
+      "defaultVisual": { "src": "/tooth-transparent.png", "style": "transparent" },
       "bullets": [
-        "This research involved a lot of trial and error.",
-        "It did involve removing lots of foods from my diet.",
-        "I've been pain-free for 8 months."
+        {
+          "text": "This research involved a lot of trial and error.",
+          "visual": { "src": "/bms-pain-fluctuation-graph.jpg", "style": "card" }
+        },
+        {
+          "text": "It did involve removing lots of foods from my diet.",
+          "visual": { "src": "/incident-acid-elimination.jpg", "style": "card" }
+        },
+        {
+          "text": "I've been pain-free from burning for 8 months.",
+          "visual": { "svg": "peace-wave" }
+        }
       ]
     },
     {
@@ -24,12 +34,28 @@
       "title": "Disclaimer",
       "concept": "Important legal and medical context before sharing personal experiences and observations.",
       "emoji": "⚠️",
+      "defaultVisual": { "src": "/denis-transparent.png", "style": "portrait" },
       "bullets": [
-        "I am not a doctor; this presentation is not medical advice.",
-        "I am a patient and I experimented on myself.",
-        "Always consult your doctor or dentist regarding your health.",
-        "Every mouth is unique, and this approach might not work for everyone.",
-        "This is work in progress; this research is not finished and comes solely from my personal experience."
+        {
+          "text": "I am a patient and experimented a lot.",
+          "visual": { "src": "/denis-transparent.png", "style": "portrait" }
+        },
+        {
+          "text": "I am not a doctor, and this is not medical advice.",
+          "visual": { "src": "/jewish-general-hospital-montreal.jpg", "style": "card" }
+        },
+        {
+          "text": "Always consult your doctor or dentist regarding your health.",
+          "visual": { "src": "/incident-oral-medicine-consult.jpg", "style": "card" }
+        },
+        {
+          "text": "Every mouth is unique, and this approach might not work for everyone.",
+          "visual": { "src": "/itero-frontal-bite.png", "style": "card" }
+        },
+        {
+          "text": "This is a work in progress. This research is ongoing and comes solely from my personal experience.",
+          "visual": { "src": "/book-front-cover.jpg", "style": "card" }
+        }
       ]
     },
     {
@@ -37,11 +63,24 @@
       "title": "What I Tried Before Realizing Acid Was an Issue",
       "concept": "Documenting the exhaustive search across medical consultations and conventional remedies.",
       "emoji": "❌",
+      "defaultVisual": { "src": "/2026-09-23_11-36-56.png", "style": "card" },
       "bullets": [
-        "Consulted 5 dentists and 5 doctors who all said everything was completely normal.",
-        "Tested over 50 vitamins, mineral supplements, and specialized oral rinses.",
-        "Prescription nerve medications that only dulled cognition.",
-        "None of these stopped the burning pain."
+        {
+          "text": "Consulted 5 dentists and 5 doctors who all said everything was completely normal.",
+          "visual": { "src": "/bms-dentist-pic-1.jpg", "style": "card" }
+        },
+        {
+          "text": "Tested over 50 vitamins, mineral supplements, and specialized oral rinses.",
+          "visual": { "src": "/2026-09-23_11-36-56.png", "style": "card" }
+        },
+        {
+          "text": "Prescription nerve medications that only dulled cognition.",
+          "visual": { "src": "/incident-peridex-prevident.jpg", "style": "card" }
+        },
+        {
+          "text": "None of these stopped the burning pain.",
+          "visual": { "src": "/bms-head-transparent-pain-map.png", "style": "transparent-red" }
+        }
       ]
     },
     {
@@ -49,24 +88,53 @@
       "title": "My Discovery on Acid",
       "concept": "The foundational realization after years of negative exams that oral pain is driven by physical chemical inputs.",
       "emoji": "🍋",
+      "defaultVisual": { "svg": "acid-drop" },
       "bullets": [
-        "Giving up these foods and drinks was one of the hardest things I have ever done.",
-        "Category 1: Alcohol",
-        "Category 2: Coffee",
-        "Category 3: Fruits",
-        "Category 4: Vegetables and Condiments"
+        {
+          "text": "Giving up these foods and drinks was one of the hardest things I have ever done.",
+          "visual": { "src": "/incident-acid-elimination.jpg", "style": "card" }
+        },
+        {
+          "text": "Category 1: Alcohol",
+          "visual": { "src": "/trigger-beer-wine.jpg", "style": "card" }
+        },
+        {
+          "text": "Category 2: Coffee",
+          "visual": { "src": "/trigger-coffee.jpg", "style": "card" }
+        },
+        {
+          "text": "Category 3: Fruits and Condiments",
+          "visual": { "svg": "fruits-condiments" }
+        },
+        {
+          "text": "Category 4: Vegetables",
+          "visual": { "svg": "vegetables" }
+        }
       ]
     },
     {
       "slideNumber": 5,
-      "title": "Finding the Root Cause Part 1",
+      "title": "My 14-Day Carnivore Test",
       "concept": "Looking back at personal history to trace how physical triggers were identified.",
       "emoji": "🥩",
+      "defaultVisual": { "src": "/incident-carnivore-steak.jpg", "style": "card" },
       "bullets": [
-        "I found some videos about the carnivore diet.",
-        "I had never heard of it before and it sounded crazy, but I was willing to try anything.",
-        "Learned that many doctors actually discuss and recommend it for inflammatory issues.",
-        "Within weeks of trying it, the burning pain completely went away."
+        {
+          "text": "I found some videos about the carnivore diet.",
+          "visual": { "src": "/proper-human-diet-spectrum.png", "style": "card" }
+        },
+        {
+          "text": "I had never heard of it before and it sounded crazy, but I was willing to try anything.",
+          "visual": { "src": "/incident-carnivore-steak.jpg", "style": "card" }
+        },
+        {
+          "text": "Learned that many doctors actually discuss and recommend it for inflammatory issues.",
+          "visual": { "src": "/the-dental-diet-dr-steven-lin.jpg", "style": "card" }
+        },
+        {
+          "text": "Within weeks of trying it, the burning pain completely went away.",
+          "visual": { "svg": "cooling-reset" }
+        }
       ]
     },
     {
@@ -74,23 +142,49 @@
       "title": "Why Acid Burns",
       "concept": "How underlying dental hardware and vulnerable entry points allow acid to provoke nerve pain.",
       "emoji": "🦷",
+      "defaultVisual": { "src": "/tooth-transparent.png", "style": "transparent" },
       "bullets": [
-        "It is very often a multi-cause.",
-        "Cavities and hidden decay under restorations create open pathways for acid.",
-        "Gum recessions expose sensitive dentin tubules directly to liquids and food.",
-        "Misaligned bite points create excessive focal pressure and micro-strain."
+        {
+          "text": "It is very often a multi-cause.",
+          "visual": { "src": "/three-burn-zones-tooth-diagram.png", "style": "card" }
+        },
+        {
+          "text": "Cavities and hidden decay under restorations create open pathways for acid.",
+          "visual": { "src": "/crown_hidden_cavities_render.jpg", "style": "card" }
+        },
+        {
+          "text": "Gum recessions expose sensitive dentin tubules directly to liquids and food.",
+          "visual": { "src": "/tooth_erosion_50yr_breach.jpg", "style": "card" }
+        },
+        {
+          "text": "Misaligned bite points create excessive focal pressure and micro-strain.",
+          "visual": { "src": "/itero-frontal-bite.png", "style": "card" }
+        }
       ]
     },
     {
       "slideNumber": 7,
-      "title": "Finding the Root Cause Part 2: Going Back to the Dentist",
+      "title": "Finding the Root Cause with Dentists",
       "concept": "How targeted dental procedures lowered flare intensity and shifted pain locations.",
       "emoji": "🩺",
+      "defaultVisual": { "src": "/tooth-transparent-premolar-backup.png", "style": "transparent-blue" },
       "bullets": [
-        "Targeted dental procedures significantly lowered the intensity of flares.",
-        "The lower arch pain completely went away after removing tooth 36 decay.",
-        "In the upper arch, the burning pain left the back teeth and tongue completely.",
-        "The remaining sensation is now localized specifically around the canines."
+        {
+          "text": "Targeted dental procedures significantly lowered the intensity of flares.",
+          "visual": { "src": "/incident-composite-patches.jpg", "style": "card" }
+        },
+        {
+          "text": "The lower arch pain completely went away after removing tooth 36 decay.",
+          "visual": { "src": "/tooth_36_3d.jpg", "style": "card" }
+        },
+        {
+          "text": "In the upper arch, the burning pain left the back teeth and tongue completely.",
+          "visual": { "src": "/itero-upper-occlusal.png", "style": "card" }
+        },
+        {
+          "text": "The remaining sensation is now localized specifically around the canines.",
+          "visual": { "src": "/worst_4_teeth_3d.jpg", "style": "card" }
+        }
       ]
     },
     {
@@ -98,11 +192,24 @@
       "title": "Other Triggers: Cumulative Pain",
       "concept": "Understanding how secondary factors like stress and mechanical habits stack.",
       "emoji": "⚡",
+      "defaultVisual": { "src": "/trigeminal-nerves-glowing-red.png", "style": "feathered" },
       "bullets": [
-        "Referred pain and cumulative nerve stacking across the trigeminal network.",
-        "Psychological and physical stress amplify baseline sensitivity.",
-        "Subtle clenching, tongue friction, and bite pressure add continuous strain.",
-        "Multiple sub-threshold inputs stack until they trigger noticeable burning."
+        {
+          "text": "Referred pain and cumulative nerve stacking across the trigeminal network.",
+          "visual": { "src": "/trigeminal-radiating-pain-convergence.jpg", "style": "card" }
+        },
+        {
+          "text": "Psychological and physical stress amplify baseline sensitivity.",
+          "visual": { "src": "/trigeminal-radiating-pain-10-10.jpg", "style": "card" }
+        },
+        {
+          "text": "Subtle clenching, tongue friction, and bite pressure add continuous strain.",
+          "visual": { "src": "/recession_composite_patches_3d.jpg", "style": "card" }
+        },
+        {
+          "text": "Multiple sub-threshold inputs stack until they trigger noticeable burning.",
+          "visual": { "svg": "stacking-stones" }
+        }
       ]
     },
     {
@@ -110,11 +217,24 @@
       "title": "The Realization: Why Cutting Some Acid Isn't Enough",
       "concept": "Understanding why partial elimination fails to deliver lasting zero pain.",
       "emoji": "💡",
+      "defaultVisual": { "svg": "bucket" },
       "bullets": [
-        "Eliminating beer or coffee gave temporary 6-month windows of partial relief.",
-        "Remaining dietary acids (fruits, vinegar, sauces) kept baseline inflammation simmering below the surface.",
-        "The bucket analogy: as long as acid inputs exceed nerve-firing threshold, the brainstem remains sensitized.",
-        "Realization: to achieve lasting remission, oral acid must be driven completely below the nerve activation threshold."
+        {
+          "text": "Eliminating beer or coffee gave temporary 6-month windows of partial relief.",
+          "visual": { "src": "/trigger-beer-wine.jpg", "style": "card" }
+        },
+        {
+          "text": "Remaining dietary acids (fruits, vinegar, sauces) kept baseline inflammation simmering below the surface.",
+          "visual": { "svg": "fruits-condiments" }
+        },
+        {
+          "text": "The bucket analogy: as long as acid inputs exceed nerve-firing threshold, the brainstem remains sensitized.",
+          "visual": { "svg": "bucket-overflow" }
+        },
+        {
+          "text": "Realization: to achieve lasting remission, oral acid must be driven completely below the nerve activation threshold.",
+          "visual": { "svg": "bucket" }
+        }
       ]
     },
     {
@@ -122,10 +242,20 @@
       "title": "Step 1: Remove Acids as Much as Possible",
       "concept": "The actionable step-by-step testing roadmap for sufferers to prove cause and effect.",
       "emoji": "🧪",
+      "defaultVisual": { "svg": "water-reset" },
       "bullets": [
-        "Step 1: Remove acids as much as possible.",
-        "Step 2: Notice after a few days or a few weeks if you see a difference.",
-        "Step 3: Notice what happens to the pain if you cheat on your diet."
+        {
+          "text": "Step 1: Remove acids as much as possible.",
+          "visual": { "svg": "water-reset" }
+        },
+        {
+          "text": "Step 2: Notice after a few days or a few weeks if you see a difference.",
+          "visual": { "src": "/bms-tracking-sheet-mockup-3pages.png", "style": "card" }
+        },
+        {
+          "text": "Step 3: Notice what happens to the pain if you cheat on your diet.",
+          "visual": { "svg": "cheat-spike" }
+        }
       ]
     },
     {
@@ -133,11 +263,24 @@
       "title": "From Worrying to Peace",
       "concept": "The transition from fearful anxiety to calm, permanent remission.",
       "emoji": "🕊️",
+      "defaultVisual": { "svg": "peace-wave" },
       "bullets": [
-        "Last 7 months completely pain-free, with only one minor 1/10 flare recorded.",
-        "No more fear, no more panic about flares: complete understanding of physical cause and effect.",
-        "Moving from helpless patient to empowered lead investigator of your own health.",
-        "Proof that systematic recovery and peace of mind are completely achievable."
+        {
+          "text": "Last 7 months completely pain-free, with only one minor 1/10 flare recorded.",
+          "visual": { "src": "/trigeminal-radiating-pain-2-10.jpg", "style": "card" }
+        },
+        {
+          "text": "No more fear, no more panic about flares: complete understanding of physical cause and effect.",
+          "visual": { "svg": "peace-wave" }
+        },
+        {
+          "text": "Moving from helpless patient to empowered lead investigator of your own health.",
+          "visual": { "src": "/denis-transparent.png", "style": "portrait" }
+        },
+        {
+          "text": "Proof that systematic recovery and peace of mind are completely achievable.",
+          "visual": { "svg": "calm-orb" }
+        }
       ]
     },
     {
@@ -145,11 +288,24 @@
       "title": "Acceptance",
       "concept": "Reframing pain not as a curse, but as the body's protective alarm system.",
       "emoji": "❤️",
+      "defaultVisual": { "svg": "glass-heart" },
       "bullets": [
-        "I wish I could still eat and drink whatever I enjoyed before without consequence.",
-        "Acid is inherently destructive to teeth and enamel over time.",
-        "Our mouths have dedicated pain receptors specifically to detect acid.",
-        "The pain was a clear biological alarm that what I was consuming was destroying my teeth."
+        {
+          "text": "I wish I could still eat and drink whatever I enjoyed before without consequence.",
+          "visual": { "src": "/trigger-coffee.jpg", "style": "card" }
+        },
+        {
+          "text": "Acid is inherently destructive to teeth and enamel over time.",
+          "visual": { "src": "/exposed-dentinal-tubules-cross-section-v2.jpg", "style": "card" }
+        },
+        {
+          "text": "Our mouths have dedicated pain receptors specifically to detect acid.",
+          "visual": { "src": "/oral-cavity-asic-receptor-density-map.jpg", "style": "card" }
+        },
+        {
+          "text": "The pain was a clear biological alarm that what I was consuming was destroying my teeth.",
+          "visual": { "svg": "glass-heart" }
+        }
       ]
     },
     {
@@ -157,11 +313,24 @@
       "title": "Contribute to the Research",
       "concept": "An open invitation to connect directly, share personal experiences, and explore the research.",
       "emoji": "🤝",
+      "defaultVisual": { "src": "/bms-tracking-sheet-mockup-3pages.png", "style": "card" },
       "bullets": [
-        "Share your story in comments when you see my posts or send me a direct message.",
-        "Visit decodingtheburn.com to explore tracking sheets and resources.",
-        "I am actively compiling a comprehensive master list of what triggers or relieves pain for others (dietary acids, B12, alpha-lipoic acid, zinc, etc.).",
-        "Let's combine our observations to map every trigger and help more people find relief."
+        {
+          "text": "Share your story in comments when you see my posts or send me a direct message.",
+          "visual": { "src": "/weekly-group-host-denis.jpg", "style": "card" }
+        },
+        {
+          "text": "Visit decodingtheburn.com to explore tracking sheets and resources.",
+          "visual": { "src": "/bms-tracking-sheet-mockup-3pages.png", "style": "card" }
+        },
+        {
+          "text": "I am actively compiling a comprehensive master list of what triggers or relieves pain for others (dietary acids, B12, alpha-lipoic acid, zinc, etc.).",
+          "visual": { "src": "/facebook-poll-acidity-trigger.png", "style": "card" }
+        },
+        {
+          "text": "Let's combine our observations to map every trigger and help more people find relief.",
+          "visual": { "svg": "community-nodes" }
+        }
       ]
     }
   ]
