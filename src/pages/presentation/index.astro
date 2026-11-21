@@ -610,7 +610,7 @@ const slidesOutline = [
 				gap: 1.25rem;
 			}
 
-			.deck-bullet-item {
+			.deck-bullets-list :global(.deck-bullet-item) {
 				display: flex;
 				align-items: flex-start;
 				gap: 1.05rem;
@@ -626,13 +626,13 @@ const slidesOutline = [
 				pointer-events: none;
 			}
 
-			.deck-bullet-item.is-revealed {
+			.deck-bullets-list :global(.deck-bullet-item.is-revealed) {
 				opacity: 1;
 				transform: translateY(0);
 				pointer-events: auto;
 			}
 
-			.deck-bullet-dot {
+			.deck-bullets-list :global(.deck-bullet-dot) {
 				flex-shrink: 0;
 				width: 11px;
 				height: 11px;
@@ -642,17 +642,17 @@ const slidesOutline = [
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
 			}
 
-			.deck-bullet-item.is-latest .deck-bullet-dot {
+			.deck-bullets-list :global(.deck-bullet-item.is-latest .deck-bullet-dot) {
 				transform: scale(1.25);
 				box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.2);
 			}
 
-			.deck-bullet-item.is-latest .deck-bullet-copy {
+			.deck-bullets-list :global(.deck-bullet-item.is-latest .deck-bullet-copy) {
 				font-weight: 600;
 				color: #0f172a;
 			}
 
-			.deck-bullet-copy {
+			.deck-bullets-list :global(.deck-bullet-copy) {
 				flex: 1;
 			}
 
@@ -707,7 +707,7 @@ const slidesOutline = [
 				padding: 0 0.45rem;
 			}
 
-			.hud-bullet-pip {
+			.hud-bullet-dots :global(.hud-bullet-pip) {
 				width: 8px;
 				height: 8px;
 				border-radius: 50%;
@@ -715,7 +715,7 @@ const slidesOutline = [
 				transition: background-color 0.25s ease, transform 0.25s ease;
 			}
 
-			.hud-bullet-pip.is-filled {
+			.hud-bullet-dots :global(.hud-bullet-pip.is-filled) {
 				background: #c4b5fd;
 				transform: scale(1.15);
 			}
