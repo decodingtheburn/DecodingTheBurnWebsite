@@ -10,6 +10,7 @@ const slidesOutline = [
     title: "My Discovery on BMS",
     concept: "A personal presentation by Denis Ethier on uncovering the chemical drivers of burning mouth pain.",
     emoji: "🎯",
+    bgImage: "/images/presentation/slide-01.jpg",
     bullets: [
       "My Research and Discoveries on BMS",
       "I wish I would have found something else much easier, but I've been pain-free for 8 months (0/10, or 1/10 when it flares).",
@@ -21,6 +22,7 @@ const slidesOutline = [
     title: "Disclaimer",
     concept: "Important legal and medical context before sharing personal experiences and observations.",
     emoji: "⚠️",
+    bgImage: "/images/presentation/slide-02.jpg",
     bullets: [
       "I am not a doctor; this presentation is not medical advice.",
       "I am a patient and I experimented on myself.",
@@ -34,6 +36,7 @@ const slidesOutline = [
     title: "What I Tried Before Realizing Acid Was an Issue",
     concept: "Documenting the exhaustive search across medical consultations and conventional remedies.",
     emoji: "❌",
+    bgImage: "/images/presentation/slide-03.jpg",
     bullets: [
       "Consulted 5 dentists and 5 doctors who all said everything was completely normal.",
       "Tested over 50 vitamins, mineral supplements, and specialized oral rinses.",
@@ -46,6 +49,7 @@ const slidesOutline = [
     title: "My Discovery on Acid",
     concept: "The foundational realization after years of negative exams that oral pain is driven by physical chemical inputs.",
     emoji: "🍋",
+    bgImage: "/images/presentation/slide-04.jpg",
     bullets: [
       "Giving up these foods and drinks was one of the hardest things I have ever done.",
       "Category 1: Alcohol",
@@ -59,6 +63,7 @@ const slidesOutline = [
     title: "Finding the Root Cause Part 1",
     concept: "Looking back at personal history to trace how physical triggers were identified.",
     emoji: "🥩",
+    bgImage: "/images/presentation/slide-05.jpg",
     bullets: [
       "I found some videos about the carnivore diet.",
       "I had never heard of it before and it sounded crazy, but I was willing to try anything.",
@@ -71,6 +76,7 @@ const slidesOutline = [
     title: "Why Acid Burns",
     concept: "How underlying dental hardware and vulnerable entry points allow acid to provoke nerve pain.",
     emoji: "🦷",
+    bgImage: "/images/presentation/slide-06.jpg",
     bullets: [
       "It is very often a multi-cause.",
       "Cavities and hidden decay under restorations create open pathways for acid.",
@@ -83,6 +89,7 @@ const slidesOutline = [
     title: "Finding the Root Cause Part 2: Going Back to the Dentist",
     concept: "How targeted dental procedures lowered flare intensity and shifted pain locations.",
     emoji: "🩺",
+    bgImage: "/images/presentation/slide-07.jpg",
     bullets: [
       "Targeted dental procedures significantly lowered the intensity of flares.",
       "The lower arch pain completely went away after removing tooth 36 decay.",
@@ -95,6 +102,7 @@ const slidesOutline = [
     title: "Other Triggers: Cumulative Pain",
     concept: "Understanding how secondary factors like stress and mechanical habits stack.",
     emoji: "⚡",
+    bgImage: "/images/presentation/slide-08.jpg",
     bullets: [
       "Referred pain and cumulative nerve stacking across the trigeminal network.",
       "Psychological and physical stress amplify baseline sensitivity.",
@@ -107,6 +115,7 @@ const slidesOutline = [
     title: "The Realization: Why Cutting Some Acid Isn't Enough",
     concept: "Understanding why partial elimination fails to deliver lasting zero pain.",
     emoji: "💡",
+    bgImage: "/images/presentation/slide-09.jpg",
     bullets: [
       "Eliminating beer or coffee gave temporary 6-month windows of partial relief.",
       "Remaining dietary acids (fruits, vinegar, sauces) kept baseline inflammation simmering below the surface.",
@@ -119,6 +128,7 @@ const slidesOutline = [
     title: "Step 1: Remove Acids as Much as Possible",
     concept: "The actionable step-by-step testing roadmap for sufferers to prove cause and effect.",
     emoji: "🧪",
+    bgImage: "/images/presentation/slide-10.jpg",
     bullets: [
       "Step 1: Remove acids as much as possible.",
       "Step 2: Notice after a few days or a few weeks if you see a difference.",
@@ -130,6 +140,7 @@ const slidesOutline = [
     title: "From Worrying to Peace",
     concept: "The transition from fearful anxiety to calm, permanent remission.",
     emoji: "🕊️",
+    bgImage: "/images/presentation/slide-11.jpg",
     bullets: [
       "Last 7 months completely pain-free, with only one minor 1/10 flare recorded.",
       "No more fear, no more panic about flares: complete understanding of physical cause and effect.",
@@ -142,6 +153,7 @@ const slidesOutline = [
     title: "Acceptance",
     concept: "Reframing pain not as a curse, but as the body's protective alarm system.",
     emoji: "❤️",
+    bgImage: "/images/presentation/slide-12.jpg",
     bullets: [
       "I wish I could still eat and drink whatever I enjoyed before without consequence.",
       "Acid is inherently destructive to teeth and enamel over time.",
@@ -154,6 +166,7 @@ const slidesOutline = [
     title: "Contribute to the Research",
     concept: "An open invitation to connect directly, share personal experiences, and explore the research.",
     emoji: "🤝",
+    bgImage: "/images/presentation/slide-13.jpg",
     bullets: [
       "Share your story in comments when you see my posts or send me a direct message.",
       "Visit decodingtheburn.com to explore tracking sheets and resources.",
@@ -167,9 +180,9 @@ const slidesOutline = [
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead 
-			title={`Presentation Slides Outline | ${SITE_TITLE}`} 
-			description="Complete bullet-point outline of Denis Ethier's BMS acid trigger recovery presentation slides." 
+		<BaseHead
+			title={`Presentation Slides | ${SITE_TITLE}`}
+			description="Complete bullet-point outline and full-screen presentation mode of Denis Ethier's BMS acid trigger recovery presentation."
 			noindex={true}
 		/>
 		<style>
@@ -179,6 +192,7 @@ const slidesOutline = [
 				--text-main: #0f172a;
 				--text-muted: #334155;
 				--brand-purple: #7c3aed;
+				--brand-purple-dark: #5b21b6;
 			}
 
 			body.outline-body {
@@ -189,6 +203,13 @@ const slidesOutline = [
 				padding: 0;
 			}
 
+			body.presentation-active {
+				overflow: hidden;
+			}
+
+			/* =========================================
+			   OUTLINE VIEW STYLES
+			   ========================================= */
 			.outline-container {
 				max-width: 960px;
 				margin: 2.5rem auto 5rem;
@@ -197,17 +218,15 @@ const slidesOutline = [
 
 			.outline-header {
 				text-align: center;
-				margin-bottom: 3.5rem;
+				margin-bottom: 3rem;
 				padding-bottom: 2rem;
 				border-bottom: 2px solid #e2e8f0;
 			}
 
-			.outline-kicker {
-				font-size: 0.88rem;
-				font-weight: 800;
+			.outline-meta {
+				font-size: 0.95rem;
+				font-weight: 700;
 				color: var(--brand-purple);
-				text-transform: uppercase;
-				letter-spacing: 0.1em;
 				margin-bottom: 0.5rem;
 			}
 
@@ -222,12 +241,50 @@ const slidesOutline = [
 			}
 
 			.outline-lead {
-				font-size: 1.15rem;
+				font-size: 1.12rem;
 				color: var(--text-muted);
-				max-width: 720px;
-				margin: 0 auto;
+				max-width: 760px;
+				margin: 0 auto 1.75rem;
 				line-height: 1.65;
-				text-wrap: pretty;
+				text-wrap: balance;
+			}
+
+			/* View Mode Switcher */
+			.view-switcher {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				background: #eef2f6;
+				padding: 0.35rem;
+				border-radius: 14px;
+				border: 1px solid #cbd5e1;
+			}
+
+			.view-switch-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				border: none;
+				background: transparent;
+				color: #1e293b;
+				font-family: inherit;
+				font-size: 0.98rem;
+				font-weight: 700;
+				padding: 0.65rem 1.25rem;
+				border-radius: 10px;
+				cursor: pointer;
+				transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.view-switch-btn:hover {
+				color: #0f172a;
+				background: rgba(255, 255, 255, 0.7);
+			}
+
+			.view-switch-btn.is-active {
+				background: var(--brand-purple);
+				color: #ffffff;
+				box-shadow: 0 4px 12px rgba(124, 58, 237, 0.28);
 			}
 
 			.slides-list {
@@ -255,6 +312,42 @@ const slidesOutline = [
 				align-items: center;
 				justify-content: space-between;
 				margin-bottom: 0.75rem;
+				gap: 1rem;
+			}
+
+			.card-top-left {
+				display: flex;
+				align-items: center;
+				gap: 0.9rem;
+				flex-wrap: wrap;
+			}
+
+			.slide-number-label {
+				font-size: 0.95rem;
+				font-weight: 800;
+				color: var(--brand-purple);
+			}
+
+			.present-from-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				background: #f5f3ff;
+				color: var(--brand-purple-dark);
+				border: 1px solid #ddd6fe;
+				border-radius: 8px;
+				padding: 0.35rem 0.75rem;
+				font-family: inherit;
+				font-size: 0.85rem;
+				font-weight: 700;
+				cursor: pointer;
+				transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+			}
+
+			.present-from-btn:hover {
+				background: var(--brand-purple);
+				color: #ffffff;
+				border-color: var(--brand-purple);
 			}
 
 			.slide-card-emoji {
@@ -264,31 +357,22 @@ const slidesOutline = [
 				filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
 			}
 
-			.slide-badge-num {
-				background: #7c3aed;
-				color: #ffffff;
-				font-size: 0.85rem;
-				font-weight: 800;
-				padding: 0.35rem 0.85rem;
-				border-radius: 9999px;
-				letter-spacing: 0.04em;
-				text-transform: uppercase;
-			}
-
 			.slide-card-title {
 				font-size: 1.45rem;
 				font-weight: 900;
 				color: #0f172a;
-				line-height: 1.3;
+				line-height: 1.35;
 				margin: 0;
+				text-wrap: balance;
 			}
 
 			.slide-concept {
 				font-size: 1.05rem;
-				color: #475569;
+				color: #334155;
 				font-style: italic;
 				margin: 0.5rem 0 1.25rem;
 				line-height: 1.5;
+				text-wrap: pretty;
 			}
 
 			.slide-bullets-ul {
@@ -309,6 +393,7 @@ const slidesOutline = [
 				font-size: 1.08rem;
 				line-height: 1.6;
 				color: #1e293b;
+				text-wrap: pretty;
 			}
 
 			.bullet-check-dot {
@@ -324,6 +409,334 @@ const slidesOutline = [
 				flex: 1;
 			}
 
+			/* =========================================
+			   PRESENTATION SLIDESHOW VIEW STYLES
+			   ========================================= */
+			.presentation-stage {
+				position: fixed;
+				inset: 0;
+				z-index: 9999;
+				display: none;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background-color: #0f172a;
+				overflow: hidden;
+				user-select: none;
+			}
+
+			.presentation-stage.is-open {
+				display: flex;
+			}
+
+			/* Full-bleed calming background image layers */
+			.deck-backgrounds {
+				position: absolute;
+				inset: 0;
+				z-index: 0;
+				overflow: hidden;
+			}
+
+			.deck-bg-layer {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				opacity: 0;
+				transform: scale(1.03);
+				transition: opacity 0.85s ease-in-out, transform 14s ease-out;
+				pointer-events: none;
+			}
+
+			.deck-bg-layer.is-current {
+				opacity: 1;
+				transform: scale(1);
+			}
+
+			.deck-bg-scrim {
+				position: absolute;
+				inset: 0;
+				z-index: 1;
+				background: radial-gradient(
+					circle at center,
+					rgba(15, 23, 42, 0.08) 0%,
+					rgba(15, 23, 42, 0.28) 100%
+				);
+				pointer-events: none;
+			}
+
+			/* Top floating navigation bar */
+			.deck-top-hud {
+				position: fixed;
+				top: 1.25rem;
+				left: 1.5rem;
+				right: 1.5rem;
+				z-index: 20;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				pointer-events: none;
+				transition: opacity 0.35s ease;
+			}
+
+			.presentation-stage.hud-idle .deck-top-hud,
+			.presentation-stage.hud-idle .deck-bottom-hud {
+				opacity: 0.18;
+			}
+
+			.deck-top-hud:hover,
+			.deck-bottom-hud:hover {
+				opacity: 1 !important;
+			}
+
+			.hud-group {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+				pointer-events: auto;
+			}
+
+			.hud-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				background: rgba(15, 23, 42, 0.72);
+				color: #ffffff;
+				border: 1px solid rgba(255, 255, 255, 0.24);
+				backdrop-filter: blur(12px);
+				border-radius: 10px;
+				padding: 0.55rem 1rem;
+				font-family: inherit;
+				font-size: 0.92rem;
+				font-weight: 700;
+				cursor: pointer;
+				transition: background-color 0.2s ease, transform 0.15s ease;
+			}
+
+			.hud-btn:hover {
+				background: rgba(15, 23, 42, 0.92);
+			}
+
+			.hud-btn:active {
+				transform: scale(0.98);
+			}
+
+			.hud-btn:disabled {
+				opacity: 0.4;
+				cursor: not-allowed;
+			}
+
+			/* Main Luminous Frosted Slide Card */
+			.deck-slide-wrapper {
+				position: relative;
+				z-index: 10;
+				width: min(1080px, calc(100vw - 4rem));
+				max-height: calc(100vh - 9rem);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+			}
+
+			.deck-slide-card {
+				width: 100%;
+				background: rgba(255, 255, 255, 0.87);
+				backdrop-filter: blur(20px) saturate(135%);
+				-webkit-backdrop-filter: blur(20px) saturate(135%);
+				border: 1.5px solid rgba(255, 255, 255, 0.78);
+				border-radius: 28px;
+				padding: clamp(2rem, 4.5vw, 3.75rem) clamp(2rem, 5vw, 4.25rem);
+				box-shadow: 0 28px 80px rgba(15, 23, 42, 0.22);
+				overflow-y: auto;
+				max-height: calc(100vh - 9.5rem);
+				animation: slideCardFadeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+			}
+
+			@keyframes slideCardFadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(12px) scale(0.99);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0) scale(1);
+				}
+			}
+
+			.deck-slide-header {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 1.5rem;
+				margin-bottom: 1.5rem;
+			}
+
+			.deck-slide-header-text {
+				flex: 1;
+			}
+
+			.deck-slide-step-label {
+				font-size: 1rem;
+				font-weight: 700;
+				color: var(--brand-purple-dark);
+				margin-bottom: 0.55rem;
+			}
+
+			.deck-slide-title {
+				font-size: clamp(1.9rem, 3.5vw, 3rem);
+				font-weight: 900;
+				color: #0f172a;
+				line-height: 1.24;
+				letter-spacing: -0.025em;
+				margin: 0;
+				text-wrap: balance;
+			}
+
+			.deck-slide-emoji {
+				font-size: clamp(3.5rem, 6vw, 5.25rem);
+				line-height: 1;
+				flex-shrink: 0;
+				filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.12));
+			}
+
+			.deck-bullets-list {
+				list-style: none;
+				padding: 1.75rem 0 0;
+				margin: 0;
+				border-top: 1.5px solid rgba(15, 23, 42, 0.1);
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+			}
+
+			.deck-bullet-item {
+				display: flex;
+				align-items: flex-start;
+				gap: 1.05rem;
+				font-size: clamp(1.2rem, 1.85vw, 1.55rem);
+				line-height: 1.5;
+				color: #0f172a;
+				font-weight: 500;
+				text-wrap: pretty;
+				opacity: 0;
+				transform: translateY(16px);
+				transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+					transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+				pointer-events: none;
+			}
+
+			.deck-bullet-item.is-revealed {
+				opacity: 1;
+				transform: translateY(0);
+				pointer-events: auto;
+			}
+
+			.deck-bullet-dot {
+				flex-shrink: 0;
+				width: 11px;
+				height: 11px;
+				border-radius: 50%;
+				background: var(--brand-purple);
+				margin-top: 0.62rem;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.deck-bullet-item.is-latest .deck-bullet-dot {
+				transform: scale(1.25);
+				box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.2);
+			}
+
+			.deck-bullet-item.is-latest .deck-bullet-copy {
+				font-weight: 600;
+				color: #0f172a;
+			}
+
+			.deck-bullet-copy {
+				flex: 1;
+			}
+
+			.deck-prompt-hint {
+				margin-top: 1.5rem;
+				font-size: 0.98rem;
+				font-weight: 600;
+				color: #334155;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				opacity: 0.85;
+				transition: opacity 0.3s ease;
+			}
+
+			.deck-prompt-hint.is-hidden {
+				opacity: 0;
+				pointer-events: none;
+			}
+
+			/* Bottom Floating Controls HUD */
+			.deck-bottom-hud {
+				position: fixed;
+				bottom: 1.35rem;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 20;
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				background: rgba(15, 23, 42, 0.76);
+				backdrop-filter: blur(14px);
+				border: 1px solid rgba(255, 255, 255, 0.22);
+				border-radius: 14px;
+				padding: 0.45rem 0.75rem;
+				color: #ffffff;
+				transition: opacity 0.35s ease;
+			}
+
+			.hud-step-status {
+				font-size: 0.9rem;
+				font-weight: 700;
+				color: #f8fafc;
+				padding: 0 0.5rem;
+				white-space: nowrap;
+			}
+
+			.hud-bullet-dots {
+				display: flex;
+				align-items: center;
+				gap: 0.38rem;
+				padding: 0 0.45rem;
+			}
+
+			.hud-bullet-pip {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.28);
+				transition: background-color 0.25s ease, transform 0.25s ease;
+			}
+
+			.hud-bullet-pip.is-filled {
+				background: #c4b5fd;
+				transform: scale(1.15);
+			}
+
+			.deck-progress-track {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: rgba(255, 255, 255, 0.2);
+				z-index: 25;
+			}
+
+			.deck-progress-fill {
+				height: 100%;
+				width: 0%;
+				background: linear-gradient(90deg, #8b5cf6, #c4b5fd);
+				transition: width 0.35s ease;
+			}
+
 			@media (max-width: 768px) {
 				.slide-outline-card {
 					padding: 1.5rem 1.25rem;
@@ -334,28 +747,90 @@ const slidesOutline = [
 				.slide-bullet-li {
 					font-size: 1rem;
 				}
+				.deck-slide-wrapper {
+					width: calc(100vw - 1.5rem);
+				}
+				.deck-slide-card {
+					padding: 1.5rem 1.35rem;
+					border-radius: 20px;
+				}
+				.deck-bottom-hud {
+					width: calc(100vw - 2rem);
+					justify-content: space-between;
+				}
+				.hud-bullet-dots {
+					display: none;
+				}
 			}
 		</style>
 	</head>
 	<body class="outline-body">
 		<Header />
 
-		<main class="outline-container">
+		<!-- OUTLINE VIEW -->
+		<main class="outline-container" id="outline-view">
 			<header class="outline-header">
-				<div class="outline-kicker">Presentation Draft • 13 Slides</div>
+				<div class="outline-meta">Presentation Deck (13 Slides)</div>
 				<h1 class="outline-title">
-					Is Acidity a Trigger for Your Burning Mouth?
+					Is Acidity a Trigger for Your Burning&nbsp;Mouth?
 				</h1>
 				<p class="outline-lead">
-					Review all slides and speaking points below. You can refine or reorganize any bullet before we render the interactive PowerPoint deck.
+					Switch between the stacked outline below and full-screen presentation mode with calming slide backgrounds and one-by-one bullet&nbsp;reveal.
 				</p>
+
+				<div class="view-switcher" role="tablist" aria-label="Presentation view mode">
+					<button
+						type="button"
+						class="view-switch-btn is-active"
+						id="btn-outline-view"
+						role="tab"
+						aria-selected="true"
+					>
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<line x1="8" y1="6" x2="21" y2="6"></line>
+							<line x1="8" y1="12" x2="21" y2="12"></line>
+							<line x1="8" y1="18" x2="21" y2="18"></line>
+							<line x1="3" y1="6" x2="3.01" y2="6"></line>
+							<line x1="3" y1="12" x2="3.01" y2="12"></line>
+							<line x1="3" y1="18" x2="3.01" y2="18"></line>
+						</svg>
+						<span>Outline View</span>
+					</button>
+					<button
+						type="button"
+						class="view-switch-btn"
+						id="btn-present-view"
+						role="tab"
+						aria-selected="false"
+					>
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+							<line x1="8" y1="21" x2="16" y2="21"></line>
+							<line x1="12" y1="17" x2="12" y2="21"></line>
+						</svg>
+						<span>Presentation View</span>
+					</button>
+				</div>
 			</header>
 
 			<div class="slides-list">
-				{slidesOutline.map((slide) => (
+				{slidesOutline.map((slide, index) => (
 					<section class="slide-outline-card">
 						<div class="card-top-row">
-							<span class="slide-badge-num">Slide {slide.slideNumber}</span>
+							<div class="card-top-left">
+								<span class="slide-number-label">Slide {slide.slideNumber}</span>
+								<button
+									type="button"
+									class="present-from-btn"
+									data-start-slide={index}
+									aria-label={`Present starting from Slide ${slide.slideNumber}`}
+								>
+									<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+										<polygon points="5 3 19 12 5 21 5 3"></polygon>
+									</svg>
+									<span>Present from here</span>
+								</button>
+							</div>
 							{slide.emoji && <span class="slide-card-emoji">{slide.emoji}</span>}
 						</div>
 						<h2 class="slide-card-title">{slide.title}</h2>
@@ -373,6 +848,431 @@ const slidesOutline = [
 			</div>
 		</main>
 
+		<!-- PRESENTATION VIEW -->
+		<div
+			class="presentation-stage"
+			id="presentation-stage"
+			role="region"
+			aria-label="Full-screen slide presentation"
+			aria-hidden="true"
+		>
+			<div class="deck-backgrounds" id="deck-backgrounds">
+				{slidesOutline.map((slide, idx) => (
+					<img
+						src={slide.bgImage}
+						alt=""
+						class={`deck-bg-layer ${idx === 0 ? 'is-current' : ''}`}
+						data-bg-index={idx}
+						loading={idx < 3 ? 'eager' : 'lazy'}
+					/>
+				))}
+				<div class="deck-bg-scrim"></div>
+			</div>
+
+			<div class="deck-top-hud">
+				<div class="hud-group">
+					<button type="button" class="hud-btn" id="btn-exit-present">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<polyline points="15 18 9 12 15 6"></polyline>
+						</svg>
+						<span>Outline View</span>
+					</button>
+				</div>
+				<div class="hud-group">
+					<button type="button" class="hud-btn" id="btn-toggle-fullscreen" title="Toggle Fullscreen (F)">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<polyline points="15 3 21 3 21 9"></polyline>
+							<polyline points="9 21 3 21 3 15"></polyline>
+							<line x1="21" y1="3" x2="14" y2="10"></line>
+							<line x1="3" y1="21" x2="10" y2="14"></line>
+						</svg>
+						<span id="fullscreen-label">Fullscreen</span>
+					</button>
+				</div>
+			</div>
+
+			<div class="deck-slide-wrapper" id="deck-slide-wrapper" title="Click or press Spacebar to advance">
+				<article class="deck-slide-card" id="deck-slide-card">
+					<div class="deck-slide-header">
+						<div class="deck-slide-header-text">
+							<div class="deck-slide-step-label" id="deck-slide-label">Slide 1 of 13</div>
+							<h2 class="deck-slide-title" id="deck-slide-title"></h2>
+						</div>
+						<div class="deck-slide-emoji" id="deck-slide-emoji" aria-hidden="true"></div>
+					</div>
+					<ul class="deck-bullets-list" id="deck-bullets-list"></ul>
+					<div class="deck-prompt-hint" id="deck-prompt-hint">
+						<span>Press Spacebar or click to show the next&nbsp;bullet</span>
+					</div>
+				</article>
+			</div>
+
+			<div class="deck-bottom-hud" id="deck-bottom-hud">
+				<button type="button" class="hud-btn" id="btn-prev-slide" title="Previous Slide (Shift + Left)">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<polyline points="11 17 6 12 11 7"></polyline>
+						<polyline points="18 17 13 12 18 7"></polyline>
+					</svg>
+				</button>
+				<button type="button" class="hud-btn" id="btn-prev-step" title="Previous Step (Left Arrow)">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<polyline points="15 18 9 12 15 6"></polyline>
+					</svg>
+					<span>Back</span>
+				</button>
+
+				<div class="hud-step-status" id="hud-step-status">Slide 1 / 13</div>
+				<div class="hud-bullet-dots" id="hud-bullet-dots" aria-hidden="true"></div>
+
+				<button type="button" class="hud-btn" id="btn-next-step" title="Next Bullet or Slide (Space / Right Arrow)">
+					<span>Next</span>
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<polyline points="9 18 15 12 9 6"></polyline>
+					</svg>
+				</button>
+				<button type="button" class="hud-btn" id="btn-next-slide" title="Next Slide (Shift + Right)">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<polyline points="13 17 18 12 13 7"></polyline>
+						<polyline points="6 17 11 12 6 7"></polyline>
+					</svg>
+				</button>
+			</div>
+
+			<div class="deck-progress-track">
+				<div class="deck-progress-fill" id="deck-progress-fill"></div>
+			</div>
+		</div>
+
 		<Footer />
+
+		<script define:vars={{ slidesOutline }}>
+			const slides = slidesOutline;
+			let isPresentationMode = false;
+			let currentSlideIndex = 0;
+			let revealedBullets = 0;
+			let hudIdleTimer = null;
+
+			const stageEl = document.getElementById('presentation-stage');
+			const btnOutlineView = document.getElementById('btn-outline-view');
+			const btnPresentView = document.getElementById('btn-present-view');
+			const btnExitPresent = document.getElementById('btn-exit-present');
+			const btnToggleFullscreen = document.getElementById('btn-toggle-fullscreen');
+			const fullscreenLabel = document.getElementById('fullscreen-label');
+			const btnPrevSlide = document.getElementById('btn-prev-slide');
+			const btnNextSlide = document.getElementById('btn-next-slide');
+			const btnPrevStep = document.getElementById('btn-prev-step');
+			const btnNextStep = document.getElementById('btn-next-step');
+			const slideWrapper = document.getElementById('deck-slide-wrapper');
+			const slideCard = document.getElementById('deck-slide-card');
+			const slideLabelEl = document.getElementById('deck-slide-label');
+			const slideTitleEl = document.getElementById('deck-slide-title');
+			const slideEmojiEl = document.getElementById('deck-slide-emoji');
+			const bulletsListEl = document.getElementById('deck-bullets-list');
+			const promptHintEl = document.getElementById('deck-prompt-hint');
+			const hudStatusEl = document.getElementById('hud-step-status');
+			const hudDotsEl = document.getElementById('hud-bullet-dots');
+			const progressFillEl = document.getElementById('deck-progress-fill');
+			const bgLayers = Array.from(document.querySelectorAll('.deck-bg-layer'));
+
+			function updateUrlState() {
+				const url = new URL(window.location.href);
+				if (isPresentationMode) {
+					url.searchParams.set('view', 'present');
+					url.searchParams.set('slide', String(currentSlideIndex + 1));
+				} else {
+					url.searchParams.delete('view');
+					url.searchParams.delete('slide');
+				}
+				window.history.replaceState({}, '', url.toString());
+			}
+
+			function resetHudIdle() {
+				if (!stageEl) return;
+				stageEl.classList.remove('hud-idle');
+				if (hudIdleTimer) window.clearTimeout(hudIdleTimer);
+				hudIdleTimer = window.setTimeout(() => {
+					if (isPresentationMode) {
+						stageEl.classList.add('hud-idle');
+					}
+				}, 3200);
+			}
+
+			function renderSlideContent(animateCard = true) {
+				const slide = slides[currentSlideIndex];
+				if (!slide) return;
+
+				// Update crossfading calming background
+				bgLayers.forEach((img, idx) => {
+					img.classList.toggle('is-current', idx === currentSlideIndex);
+				});
+
+				// Trigger fresh slide fade-in when switching slides
+				if (animateCard && slideCard) {
+					slideCard.style.animation = 'none';
+					void slideCard.offsetWidth;
+					slideCard.style.animation = '';
+				}
+
+				if (slideLabelEl) {
+					slideLabelEl.textContent = `Slide ${slide.slideNumber} of ${slides.length}`;
+				}
+				if (slideTitleEl) {
+					slideTitleEl.textContent = slide.title;
+				}
+				if (slideEmojiEl) {
+					slideEmojiEl.textContent = slide.emoji || '';
+				}
+
+				if (bulletsListEl) {
+					bulletsListEl.innerHTML = '';
+					slide.bullets.forEach((text, i) => {
+						const li = document.createElement('li');
+						li.className = 'deck-bullet-item';
+						li.dataset.bulletIndex = String(i);
+
+						const dot = document.createElement('span');
+						dot.className = 'deck-bullet-dot';
+
+						const copy = document.createElement('span');
+						copy.className = 'deck-bullet-copy';
+						copy.textContent = text;
+
+						li.appendChild(dot);
+						li.appendChild(copy);
+						bulletsListEl.appendChild(li);
+					});
+				}
+
+				syncBulletVisibility();
+				updateUrlState();
+			}
+
+			function syncBulletVisibility() {
+				const slide = slides[currentSlideIndex];
+				if (!slide) return;
+
+				const items = bulletsListEl ? Array.from(bulletsListEl.querySelectorAll('.deck-bullet-item')) : [];
+				items.forEach((item, idx) => {
+					const isShown = idx < revealedBullets;
+					const isLatest = idx === revealedBullets - 1;
+					item.classList.toggle('is-revealed', isShown);
+					item.classList.toggle('is-latest', isLatest);
+				});
+
+				if (promptHintEl) {
+					const showHint = revealedBullets === 0;
+					promptHintEl.classList.toggle('is-hidden', !showHint);
+				}
+
+				if (hudStatusEl) {
+					hudStatusEl.textContent = `Slide ${slide.slideNumber} / ${slides.length}`;
+				}
+
+				if (hudDotsEl) {
+					hudDotsEl.innerHTML = '';
+					slide.bullets.forEach((_, idx) => {
+						const pip = document.createElement('span');
+						pip.className = `hud-bullet-pip ${idx < revealedBullets ? 'is-filled' : ''}`;
+						hudDotsEl.appendChild(pip);
+					});
+				}
+
+				if (progressFillEl) {
+					const totalBullets = slide.bullets.length || 1;
+					const slideFraction = revealedBullets / totalBullets;
+					const pct = ((currentSlideIndex + slideFraction) / slides.length) * 100;
+					progressFillEl.style.width = `${Math.min(100, Math.max(2, pct))}%`;
+				}
+
+				const isAtStart = currentSlideIndex === 0 && revealedBullets === 0;
+				const isAtEnd = currentSlideIndex === slides.length - 1 && revealedBullets >= slide.bullets.length;
+
+				if (btnPrevStep) btnPrevStep.disabled = isAtStart;
+				if (btnNextStep) btnNextStep.disabled = isAtEnd;
+				if (btnPrevSlide) btnPrevSlide.disabled = currentSlideIndex === 0;
+				if (btnNextSlide) btnNextSlide.disabled = currentSlideIndex === slides.length - 1;
+			}
+
+			function nextStep() {
+				const slide = slides[currentSlideIndex];
+				if (!slide) return;
+				if (revealedBullets < slide.bullets.length) {
+					revealedBullets += 1;
+					syncBulletVisibility();
+				} else if (currentSlideIndex < slides.length - 1) {
+					currentSlideIndex += 1;
+					revealedBullets = 0;
+					renderSlideContent(true);
+				}
+			}
+
+			function prevStep() {
+				if (revealedBullets > 0) {
+					revealedBullets -= 1;
+					syncBulletVisibility();
+				} else if (currentSlideIndex > 0) {
+					currentSlideIndex -= 1;
+					revealedBullets = slides[currentSlideIndex].bullets.length;
+					renderSlideContent(true);
+				}
+			}
+
+			function goToSlide(index, initialBullets = 0) {
+				if (index < 0 || index >= slides.length) return;
+				currentSlideIndex = index;
+				revealedBullets = initialBullets;
+				renderSlideContent(true);
+			}
+
+			function openPresentation(startIndex = 0) {
+				isPresentationMode = true;
+				currentSlideIndex = Math.max(0, Math.min(slides.length - 1, startIndex));
+				revealedBullets = 0;
+				document.body.classList.add('presentation-active');
+				if (stageEl) {
+					stageEl.classList.add('is-open');
+					stageEl.setAttribute('aria-hidden', 'false');
+				}
+				if (btnOutlineView) {
+					btnOutlineView.classList.remove('is-active');
+					btnOutlineView.setAttribute('aria-selected', 'false');
+				}
+				if (btnPresentView) {
+					btnPresentView.classList.add('is-active');
+					btnPresentView.setAttribute('aria-selected', 'true');
+				}
+				// Blur any focused button so Spacebar always advances slides
+				if (document.activeElement instanceof HTMLElement) {
+					document.activeElement.blur();
+				}
+				renderSlideContent(true);
+				resetHudIdle();
+			}
+
+			function closePresentation() {
+				isPresentationMode = false;
+				document.body.classList.remove('presentation-active');
+				if (stageEl) {
+					stageEl.classList.remove('is-open');
+					stageEl.setAttribute('aria-hidden', 'true');
+				}
+				if (btnOutlineView) {
+					btnOutlineView.classList.add('is-active');
+					btnOutlineView.setAttribute('aria-selected', 'true');
+				}
+				if (btnPresentView) {
+					btnPresentView.classList.remove('is-active');
+					btnPresentView.setAttribute('aria-selected', 'false');
+				}
+				if (document.fullscreenElement) {
+					document.exitFullscreen().catch(() => {});
+				}
+				updateUrlState();
+			}
+
+			function toggleFullscreen() {
+				if (!document.fullscreenElement) {
+					document.documentElement.requestFullscreen().catch(() => {});
+				} else {
+					document.exitFullscreen().catch(() => {});
+				}
+			}
+
+			document.addEventListener('fullscreenchange', () => {
+				if (fullscreenLabel) {
+					fullscreenLabel.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Fullscreen';
+				}
+			});
+
+			// Switcher & Button Events
+			btnPresentView?.addEventListener('click', () => openPresentation(0));
+			btnOutlineView?.addEventListener('click', () => closePresentation());
+			btnExitPresent?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				closePresentation();
+			});
+			btnToggleFullscreen?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				toggleFullscreen();
+			});
+
+			btnNextStep?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				nextStep();
+			});
+			btnPrevStep?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				prevStep();
+			});
+			btnNextSlide?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				goToSlide(currentSlideIndex + 1, 0);
+			});
+			btnPrevSlide?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				goToSlide(currentSlideIndex - 1, 0);
+			});
+
+			slideWrapper?.addEventListener('click', () => {
+				nextStep();
+			});
+
+			document.querySelectorAll('[data-start-slide]').forEach((btn) => {
+				btn.addEventListener('click', () => {
+					const idx = Number(btn.getAttribute('data-start-slide') || 0);
+					openPresentation(idx);
+				});
+			});
+
+			stageEl?.addEventListener('mousemove', resetHudIdle);
+
+			// Keyboard controls for Presentation Mode
+			document.addEventListener('keydown', (e) => {
+				if (!isPresentationMode) return;
+
+				if (e.code === 'Space' || e.key === ' ') {
+					e.preventDefault();
+					nextStep();
+					return;
+				}
+				if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === 'Enter') {
+					e.preventDefault();
+					if (e.shiftKey && e.key === 'ArrowRight') {
+						goToSlide(currentSlideIndex + 1, 0);
+					} else {
+						nextStep();
+					}
+					return;
+				}
+				if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+					e.preventDefault();
+					if (e.shiftKey && e.key === 'ArrowLeft') {
+						goToSlide(currentSlideIndex - 1, 0);
+					} else {
+						prevStep();
+					}
+					return;
+				}
+				if (e.key === 'Escape') {
+					if (!document.fullscreenElement) {
+						closePresentation();
+					}
+					return;
+				}
+				if (e.key === 'f' || e.key === 'F') {
+					e.preventDefault();
+					toggleFullscreen();
+					return;
+				}
+			});
+
+			// Honor initial URL params (?view=present&slide=3)
+			const initialParams = new URLSearchParams(window.location.search);
+			if (initialParams.get('view') === 'present') {
+				const slideNum = parseInt(initialParams.get('slide') || '1', 10);
+				const idx = Number.isNaN(slideNum) ? 0 : Math.max(0, Math.min(slides.length - 1, slideNum - 1));
+				openPresentation(idx);
+			}
+		</script>
 	</body>
 </html>
