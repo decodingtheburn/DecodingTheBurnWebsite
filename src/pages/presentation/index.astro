@@ -238,6 +238,18 @@ const slidesOutline = slidesData.slides;
 				text-wrap: pretty;
 			}
 
+			.slide-bullet-li.is-sub {
+				padding-left: 1.85rem;
+			}
+
+			.slide-bullet-li.is-sub .bullet-check-dot {
+				width: 6px;
+				height: 6px;
+				background: transparent;
+				border: 2px solid #7c3aed;
+				margin-top: 0.68rem;
+			}
+
 			.bullet-check-dot {
 				flex-shrink: 0;
 				width: 8px;
@@ -385,6 +397,19 @@ const slidesOutline = slidesData.slides;
 				pointer-events: auto;
 			}
 
+			.deck-bullets-list :global(.deck-bullet-item.is-sub) {
+				padding-left: clamp(2rem, 3.2vw, 3rem);
+				font-size: clamp(1.26rem, min(2.05vw, 3vh), 1.9rem);
+			}
+
+			.deck-bullets-list :global(.deck-bullet-item.is-sub .deck-bullet-dot) {
+				width: 9px;
+				height: 9px;
+				background: transparent;
+				border: 2px solid var(--stage-accent);
+				margin-top: 0.56em;
+			}
+
 			.deck-bullets-list :global(.deck-bullet-dot) {
 				flex-shrink: 0;
 				width: 12px;
@@ -445,6 +470,62 @@ const slidesOutline = slidesData.slides;
 				height: auto;
 				object-fit: contain;
 				display: block;
+				pointer-events: none;
+				transition: transform 0.25s ease;
+			}
+
+			.deck-render-item.is-current img {
+				pointer-events: auto;
+				cursor: zoom-in;
+			}
+
+			.deck-render-item.is-current img:hover {
+				transform: scale(1.025);
+			}
+
+			/* Full-screen click-to-zoom lightbox */
+			.image-zoom-overlay {
+				position: fixed;
+				inset: 0;
+				z-index: 60;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 2rem;
+				box-sizing: border-box;
+				background: rgba(10, 3, 20, 0.88);
+				backdrop-filter: blur(16px);
+				-webkit-backdrop-filter: blur(16px);
+				opacity: 0;
+				pointer-events: none;
+				cursor: zoom-out;
+				transition: opacity 0.28s ease;
+			}
+
+			.presentation-stage.theme-white .image-zoom-overlay {
+				background: rgba(255, 255, 255, 0.92);
+			}
+
+			.image-zoom-overlay.is-open {
+				opacity: 1;
+				pointer-events: auto;
+			}
+
+			.image-zoom-overlay img {
+				max-width: 92vw;
+				max-height: 90vh;
+				width: auto;
+				height: auto;
+				object-fit: contain;
+				border-radius: 16px;
+				box-shadow: 0 32px 90px rgba(0, 0, 0, 0.65);
+				transform: scale(0.92);
+				transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+				cursor: zoom-out;
+			}
+
+			.image-zoom-overlay.is-open img {
+				transform: scale(1);
 			}
 
 			.deck-render-item svg {
@@ -734,8 +815,9 @@ const slidesOutline = slidesData.slides;
 						<ul class="slide-bullets-ul">
 							{slide.bullets.map((point) => {
 								const pointText = typeof point === 'string' ? point : point.text;
+								const isSub = typeof point !== 'string' && Boolean(point.indent);
 								return (
-									<li class="slide-bullet-li">
+									<li class={`slide-bullet-li ${isSub ? 'is-sub' : ''}`}>
 										<span class="bullet-check-dot"></span>
 										<span class="slide-bullet-text">{pointText}</span>
 									</li>
@@ -1168,7 +1250,7 @@ const slidesOutline = slidesData.slides;
 					</svg>
 				</button>
 
-				<button type="button" class="rail-icon-btn" id="btn-toggle-fullscreen" title="Fullscreen (F)" aria-label="Toggle Fullscreen">
+				<button type="button" class="rail-icon-btn" id="btn-toggle-fullscreen" title="Fullscreen (G)" aria-label="Toggle Fullscreen">
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<polyline points="15 3 21 3 21 9"></polyline>
 						<polyline points="9 21 3 21 3 15"></polyline>
@@ -1179,14 +1261,14 @@ const slidesOutline = slidesData.slides;
 
 				<div class="rail-divider" aria-hidden="true"></div>
 
-				<button type="button" class="rail-icon-btn" id="btn-prev-slide" title="Previous Slide (Shift + Left)" aria-label="Previous Slide">
+				<button type="button" class="rail-icon-btn" id="btn-prev-slide" title="Previous Slide (Shift + S / Left)" aria-label="Previous Slide">
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<polyline points="17 11 12 6 7 11"></polyline>
 						<polyline points="17 18 12 13 7 18"></polyline>
 					</svg>
 				</button>
 
-				<button type="button" class="rail-icon-btn" id="btn-prev-step" title="Previous Bullet (Left Arrow)" aria-label="Previous Step">
+				<button type="button" class="rail-icon-btn" id="btn-prev-step" title="Previous Bullet (S / Left Arrow)" aria-label="Previous Step">
 					<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<polyline points="18 15 12 9 6 15"></polyline>
 					</svg>
@@ -1194,19 +1276,23 @@ const slidesOutline = slidesData.slides;
 
 				<div class="rail-step-dots" id="rail-step-dots" aria-hidden="true"></div>
 
-				<button type="button" class="rail-icon-btn" id="btn-next-step" title="Next Bullet (Space)" aria-label="Next Step">
+				<button type="button" class="rail-icon-btn" id="btn-next-step" title="Next Bullet (F / Space)" aria-label="Next Step">
 					<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<polyline points="6 9 12 15 18 9"></polyline>
 					</svg>
 				</button>
 
-				<button type="button" class="rail-icon-btn" id="btn-next-slide" title="Next Slide (Shift + Right)" aria-label="Next Slide">
+				<button type="button" class="rail-icon-btn" id="btn-next-slide" title="Next Slide (Shift + F / Right)" aria-label="Next Slide">
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<polyline points="7 13 12 18 17 13"></polyline>
 						<polyline points="7 6 12 11 17 6"></polyline>
 					</svg>
 				</button>
 			</nav>
+
+			<div class="image-zoom-overlay" id="image-zoom-overlay" aria-hidden="true">
+				<img id="image-zoom-target" src="" alt="" />
+			</div>
 
 			<div class="deck-progress-track">
 				<div class="deck-progress-fill" id="deck-progress-fill"></div>
@@ -1244,6 +1330,24 @@ const slidesOutline = slidesData.slides;
 			const renderSlotB = document.getElementById('render-slot-b');
 			const renderImgA = document.getElementById('render-img-a');
 			const renderImgB = document.getElementById('render-img-b');
+			const zoomOverlay = document.getElementById('image-zoom-overlay');
+			const zoomTarget = document.getElementById('image-zoom-target');
+			let isImageZoomed = false;
+
+			function openImageZoom(imgEl) {
+				if (!zoomOverlay || !zoomTarget || !imgEl || !imgEl.getAttribute('src')) return;
+				zoomTarget.src = imgEl.src;
+				isImageZoomed = true;
+				zoomOverlay.classList.add('is-open');
+				zoomOverlay.setAttribute('aria-hidden', 'false');
+			}
+
+			function closeImageZoom() {
+				if (!zoomOverlay) return;
+				isImageZoomed = false;
+				zoomOverlay.classList.remove('is-open');
+				zoomOverlay.setAttribute('aria-hidden', 'true');
+			}
 			const svgLayers = new Map(
 				Array.from(document.querySelectorAll('[data-svg-id]')).map((el) => [el.getAttribute('data-svg-id'), el])
 			);
@@ -1401,8 +1505,9 @@ const slidesOutline = slidesData.slides;
 					bulletsListEl.innerHTML = '';
 					slide.bullets.forEach((item, i) => {
 						const text = typeof item === 'string' ? item : item.text;
+						const isSub = typeof item !== 'string' && Boolean(item.indent);
 						const li = document.createElement('li');
-						li.className = 'deck-bullet-item';
+						li.className = isSub ? 'deck-bullet-item is-sub' : 'deck-bullet-item';
 						li.dataset.bulletIndex = String(i);
 
 						const dot = document.createElement('span');
@@ -1577,8 +1682,25 @@ const slidesOutline = slidesData.slides;
 				goToSlide(currentSlideIndex - 1, 0);
 			});
 
+			renderImgA?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				openImageZoom(renderImgA);
+			});
+			renderImgB?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				openImageZoom(renderImgB);
+			});
+			zoomOverlay?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				closeImageZoom();
+			});
+
 			stageEl?.addEventListener('click', (e) => {
-				if (e.target instanceof Element && e.target.closest('.deck-floating-rail')) {
+				if (isImageZoomed) {
+					closeImageZoom();
+					return;
+				}
+				if (e.target instanceof Element && e.target.closest('.deck-floating-rail, .image-zoom-overlay, .deck-render-item.is-current img')) {
 					return;
 				}
 				nextStep();
@@ -1595,10 +1717,43 @@ const slidesOutline = slidesData.slides;
 
 			document.addEventListener('keydown', (e) => {
 				if (!isPresentationMode) return;
+				if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+				if (e.key === 'Escape' && isImageZoomed) {
+					e.preventDefault();
+					closeImageZoom();
+					return;
+				}
+				if (isImageZoomed && (e.code === 'Space' || e.key === ' ' || e.key === 'f' || e.key === 'F' || e.key === 's' || e.key === 'S' || e.key === 'ArrowRight' || e.key === 'ArrowLeft')) {
+					closeImageZoom();
+				}
 
 				if (e.code === 'Space' || e.key === ' ') {
 					e.preventDefault();
 					nextStep();
+					return;
+				}
+				if (e.key === 'f' || e.key === 'F') {
+					e.preventDefault();
+					if (e.shiftKey) {
+						goToSlide(currentSlideIndex + 1, 0);
+					} else {
+						nextStep();
+					}
+					return;
+				}
+				if (e.key === 's' || e.key === 'S') {
+					e.preventDefault();
+					if (e.shiftKey) {
+						goToSlide(currentSlideIndex - 1, 0);
+					} else {
+						prevStep();
+					}
+					return;
+				}
+				if (e.key === 'q' || e.key === 'Q' || e.key === 'Home') {
+					e.preventDefault();
+					goToSlide(0, 0);
 					return;
 				}
 				if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === 'Enter') {
@@ -1625,7 +1780,7 @@ const slidesOutline = slidesData.slides;
 					}
 					return;
 				}
-				if (e.key === 'f' || e.key === 'F') {
+				if (e.key === 'g' || e.key === 'G') {
 					e.preventDefault();
 					toggleFullscreen();
 					return;
