@@ -1,0 +1,2351 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Root Cause Analysis: Why Burning Mouth Happens";
+const description = "An interactive biological visual tree breaking down the 7 primary root causes, clinical study prevalence rates, home & clinical tests, medical specialties, and potential solutions behind Burning Mouth Syndrome.";
+
+const treeData = [
+	{
+		"id": "saliva",
+		"number": "1",
+		"title": "Lack of Saliva",
+		"analogy": "Reduced Salivary Flow and Loss of Mucin Protection",
+		"prevalence": "58% of Patients",
+		"studyCitation": "Gorsky et al., Am Fam Physician 2002",
+		"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/11871678/",
+		"icon": "💧",
+		"cardBg": "#bae6fd",
+		"cardBorder": "#0284c7",
+		"headerBg": "#7dd3fc",
+		"rootFactors": [
+			{
+				"label": "Medications",
+				"desc": "Blood pressure, allergy, sleep, reflux, and mood medications reducing salivary flow rate.",
+				"studyCitation": "Sreebny & Schwartz, J Am Dent Assoc 1997",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/9120145/",
+				"studyInsight": "Overview: Sreebny & Schwartz (J Am Dent Assoc, 1997) compiled a comprehensive reference on medication-induced xerostomia.\n\nMethodology & Cohort: Systematic pharmacological review of anticholinergic, antihypertensive, antihistamine, and psychotropic drug classes.\n\nKey Statistical Findings: Over 400 commonly prescribed medications were identified as xerostomic, reducing unstimulated salivary flow by <strong></strong> in susceptible patients.\n\nClinical Takeaway: Reviewing daily medications for dry-mouth side effects is one of the fastest reversible wins in BMS management."
+			},
+			{
+				"label": "Autoimmune and Glandular Conditions",
+				"desc": "Sjogren's syndrome, Lupus, and Rheumatoid Arthritis causing inflammatory infiltration of salivary glands.",
+				"studyCitation": "Vitali et al., Ann Rheum Dis 2002",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/12006316/",
+				"studyInsight": "Overview: Vitali et al. (Ann Rheum Dis, 2002) established the European-American consensus classification criteria for Sjögren’s syndrome.\n\nMethodology & Cohort: Multicenter validation across 180 Sjögren’s patients and controls using minor salivary gland biopsies and autoantibody panels.\n\nKey Statistical Findings: Focal lymphocytic sialadenitis (focus score >= 1 per 4 mm²) was present in ><strong></strong> of confirmed autoimmune dry-mouth cases.\n\nClinical Takeaway: A lip gland biopsy and Anti-SSA/SSB panel can rule out autoimmune gland destruction even when routine bloodwork looks normal."
+			},
+			{
+				"label": "Age and Hormonal Shifts",
+				"desc": "Age-related salivary gland slowdown and post-menopausal estrogen reductions.",
+				"studyCitation": "Agha-Hosseini et al., Gerodontology 2009",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/19490133/",
+				"studyInsight": "Overview: Agha-Hosseini et al. (Gerodontology, 2009) examined salivary flow and composition in postmenopausal women with Burning Mouth Syndrome.\n\nMethodology & Cohort: Unstimulated whole and submandibular salivary flow rates were measured in 76 postmenopausal women (BMS vs. matched controls).\n\nKey Statistical Findings: Unstimulated submandibular salivary flow was significantly lower in BMS patients than controls (<strong></strong>), correlating with burning severity.\n\nClinical Takeaway: Postmenopausal estrogen shifts can selectively thin mucin-rich submandibular saliva, exposing oral mucosa to acid."
+			},
+			{
+				"label": "Airway and Hydration",
+				"desc": "Nighttime mouth breathing, snoring, CPAP air leaks, or chronic low systemic hydration."
+			},
+			{
+				"label": "Stripped Salivary Pellicle",
+				"desc": "Harsh daily SLS foaming detergents and alcohol rinses washing away the natural protective protein shield."
+			}
+		],
+		"dailyTriggers": [
+			{
+				"label": "Acid Triggers",
+				"desc": "Normal food and drink acids sitting unbuffered on oral tissues for hours.",
+				"studyCitation": "BMS Community Acidity Poll",
+				"studyUrl": "/blog/bms-community-survey-results-acidity-triggers-receptor-science",
+				"studyInsight": "Overview: Community survey of Burning Mouth Syndrome patients examining how everyday dietary acids (citrus, coffee, tomatoes, vinegar) trigger oral burning.\n\nMethodology & Cohort: Real-world patient polling conducted across active BMS support communities tracking acid sensitivity and symptom onset.\n\nKey Findings: A majority of respondents reported immediate or delayed burning flares after consuming acidic foods and beverages, aligning with unbuffered ASIC3/TRPV1 receptor activation.\n\nClinical Takeaway: Removing dietary acids for 7 days is one of the fastest ways to test whether unbuffered acid is driving your daily flare-ups."
+			},
+			{
+				"label": "Barrier Stripping",
+				"desc": "Foaming SLS toothpaste, alcohol mouthwash, and chemical whitening gels.",
+				"studyCitation": "Herlofson & Barkvoll, J Clin Periodontol 1996",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/8941743/",
+				"studyInsight": "Overview: Herlofson & Barkvoll (J Clin Periodontol, 1996) tested how sodium lauryl sulfate (SLS) in toothpaste affects oral mucosal barrier integrity.\n\nMethodology & Cohort: Controlled crossover trials in <strong></strong> comparing SLS-containing dentifrices against detergent-free formulations.\n\nKey Statistical Findings: SLS stripped the protective salivary mucin pellicle, increasing mucosal desquamation and irritation by ><strong></strong> compared to SLS-free paste.\n\nClinical Takeaway: Switching to an SLS-free, non-foaming toothpaste allows the natural protective salivary layer to regenerate."
+			},
+			{
+				"label": "Flavor and Spice Triggers",
+				"desc": "Mint, menthol, cinnamon, cloves, and black pepper directly hitting unbuffered receptors."
+			},
+			{
+				"label": "Physical Friction",
+				"desc": "Dry or crunchy abrasive foods and prolonged talking without lubrication."
+			}
+		],
+		"clinicalTests": [
+			{
+				"label": "Visual Tongue Mirror Stick Check",
+				"desc": "Press a smooth metal spoon or dental mirror against the buccal mucosa or tongue for 5 seconds. If it adheres like tape, mucin lubrication is critically depleted.",
+				"studyCitation": "Navazesh & Kumar, Ann NY Acad Sci 2008",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/18443337/",
+				"studyInsight": "Overview: Navazesh & Kumar (Ann NY Acad Sci, 2008) standardized unstimulated whole sialometry protocols for clinical diagnosis.\n\nMethodology & Cohort: Standardized 15-minute resting saliva collection protocols across healthy and xerostomic cohorts.\n\nKey Statistical Findings: Unstimulated whole salivary flow under 0.1 mL/min definitively establishes objective hyposalivation (normal range: 0.3–0.4 mL/min).\n\nClinical Takeaway: Objective sialometry separates true glandular hypofunction from normal-flow neuropathic dryness."
+			},
+			{
+				"label": "Unstimulated Sialometry",
+				"desc": "Clinical chairside collection measuring resting saliva flow over 15 minutes. Under 0.1 mL/min confirms severe objective hyposalivation."
+			},
+			{
+				"label": "Saliva pH Buffering Test",
+				"desc": "Chairside strip test measuring resting oral pH target 6.8 to 7.4 and buffering capacity against acids."
+			},
+			{
+				"label": "Autoimmune Blood Panel",
+				"desc": "Anti-SSA, Anti-SSB, ANA, and Rheumatoid Factor to rule out primary Sjogren's syndrome."
+			},
+			{
+				"label": "Lip Salivary Gland Biopsy",
+				"desc": "Diagnostic test evaluating lymphocytic focus score in lower lip glandular tissue when blood tests look normal."
+			}
+		],
+		"medicalSpecialties": [
+			{
+				"label": "Oral Medicine Specialist",
+				"desc": "Primary expert for diagnosing salivary gland hypofunction, ordering sialometry, and performing lip biopsies."
+			},
+			{
+				"label": "Rheumatologist",
+				"desc": "Specialist for evaluating underlying autoimmune conditions such as Sjogren's syndrome, Lupus, or systemic connective tissue disease."
+			},
+			{
+				"label": "ENT Otolaryngologist",
+				"desc": "Evaluates major salivary glands (parotid, submandibular) for obstruction, sialolithiasis, or chronic ductal inflammation."
+			}
+		],
+		"potentialSolutions": [
+			{
+				"label": "Switch to Detergent-Free Oral Care",
+				"desc": "Eliminate sodium lauryl sulfate (SLS), alcohol, and abrasive whitening agents. Use non-foaming, neutral-pH gels to allow the natural salivary pellicle to regenerate."
+			},
+			{
+				"label": "Salivary Mucin Replacements",
+				"desc": "Apply porcine or bovine salivary mucin sprays or high-viscosity carboxymethylcellulose oral rinses before meals to coat bare, unbuffered epithelial tissues."
+			},
+			{
+				"label": "Medication Review with Physician",
+				"desc": "Evaluate anticholinergic, diuretic, and psychotropic medications for xerostomic substitution or adjusted dosing times."
+			},
+			{
+				"label": "Sialogogue Therapy",
+				"desc": "Consider prescription salivary stimulants (such as Cevimeline or Pilocarpine) under medical supervision for confirmed glandular hypofunction."
+			},
+			{
+				"label": "Nighttime Airway and Humidity Support",
+				"desc": "Use bedroom cool-mist humidifiers, nasal breathing retraining strips, or chin straps to prevent overnight desiccation of oral mucosa."
+			}
+		],
+		"bodyBg": "#e0f2fe",
+		"homeTests": [
+			{
+				"label": "Cracker / Gauze Mastication Test",
+				"desc": "Attempt to chew and swallow a dry soda cracker without water within 60 seconds. Inability to swallow indicates clinically significant dry mouth.",
+				"studyCitation": "Navazesh et al., J Am Dent Assoc 2008",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/18385352/",
+				"studyInsight": "Overview: Navazesh et al. (J Am Dent Assoc, 2008) validated chairside and at-home screening tests for salivary gland hypofunction.\n\nMethodology & Cohort: Patients were timed chewing and swallowing dry crackers without water alongside objective sialometry.\n\nKey Statistical Findings: Inability to chew and swallow a dry soda cracker within 60 seconds demonstrated <strong></strong> sensitivity for severe objective salivary hypofunction.\n\nClinical Takeaway: The 60-second cracker test is a reliable at-home screen before booking formal sialometry."
+			},
+			{
+				"label": "Saliva Spitting Cup Test",
+				"desc": "Sit quietly for 5 minutes and allow resting saliva to pool and drip into a measuring cup. Under 1.5 mL over 5 minutes (less than 0.3 mL/min) points to low flow."
+			},
+			{
+				"label": "7-Day Zero-Acid, Zero-Sugar Trial",
+				"desc": "Eliminate all acidic foods and drinks (citrus, coffee, vinegar, tomatoes) plus added sugars for 7 days. A clear drop in burning confirms unbuffered chemical irritation."
+			}
+		],
+		"studySummary": "Overview: Grushka, Epstein, & Gorsky (Am Fam Physician, 2002) reviewed the clinical presentation, differential diagnosis, and management of Burning Mouth Syndrome in primary and specialty care.\n\nSalivary Findings: The authors highlighted that subjective dry mouth (xerostomia) and quantitative reductions in unstimulated salivary flow are among the most frequent comorbidities in BMS patients.\n\nKey Data & Prevalence: Up to <strong></strong> of BMS patients report dry mouth or demonstrate reduced salivary buffering capacity, leaving the oral mucosa vulnerable to everyday dietary acids and mechanical friction.\n\nClinical Takeaway: Evaluating resting salivary flow and reviewing xerostomic medications (such as antihypertensives and anticholinergics) is an essential first-line diagnostic step.",
+		"whyItHurts": "Healthy saliva coats the tongue and cheeks with a protective mucin protein shield and a natural bicarbonate buffer that neutralizes dietary acids within seconds.\n\nWhen resting salivary flow drops or thins, that protective buffer disappears.\n\nEveryday food acids, spices, and normal tongue friction then hit bare, unbuffered nerve endings directly, triggering sustained chemical irritation and burning.",
+		"commonSymptoms": [
+			{
+				"label": "Sandy or Sticky Mouth",
+				"desc": "Constant sensation of dryness, thick stringy saliva, or tongue sticking to the roof of the mouth."
+			},
+			{
+				"label": "Acid & Spice Intolerance",
+				"desc": "Immediate stinging from citrus, coffee, tomatoes, vinegar, or mild toothpaste."
+			},
+			{
+				"label": "Difficulty Swallowing Dry Foods",
+				"desc": "Needing water to swallow crackers, bread, or dry meats."
+			},
+			{
+				"label": "Nighttime Parched Waking",
+				"desc": "Waking up with a bone-dry throat or tongue from mouth breathing or medication side effects."
+			}
+		],
+		"badgeBg": "#0369a1"
+	},
+	{
+		"id": "leakage",
+		"number": "2",
+		"title": "Dental Degradation",
+		"analogy": "Bite Pressure Overload, Failing Margins, and Exposed Dentin",
+		"prevalence": "47% of Patients",
+		"studyCitation": "López-Jornet et al., JEADV 2009",
+		"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/18624879/",
+		"icon": "🦷",
+		"cardBg": "#ccfbf1",
+		"cardBorder": "#0d9488",
+		"headerBg": "#99f6e4",
+		"rootFactors": [
+			{
+				"label": "Aging Restorations",
+				"desc": "Older filling and crown margins shrunk by 50 to 500 microns, permitting fluid exchange.",
+				"studyCitation": "Teruel & Patel, Gen Dent 2019",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/30875303/",
+				"studyInsight": "Overview: Teruel & Patel (Gen Dent, 2019) reviewed local dental etiologies in Burning Mouth Syndrome.\n\nMethodology & Cohort: Clinical literature synthesis examining restoration margins, galvanic currents, and contact allergies.\n\nKey Statistical Findings: Across clinical cohorts, local dental and mucosal factors account for <strong></strong> of secondary burning mouth presentations.\n\nClinical Takeaway: Inspecting aging fillings and crowns for microscopic margin gaps is essential before labeling pain idiopathic."
+			},
+			{
+				"label": "Interproximal Food Traps",
+				"desc": "Worn contact gaps between neighboring teeth where bacteria ferment undisturbed.",
+				"studyCitation": "Brännström, J Endod 1986",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/3458832/",
+				"studyInsight": "Overview: Brännström (J Endod, 1986) established the hydrodynamic theory of dentin and marginal sensitivity.\n\nMethodology & Cohort: Laboratory and clinical measurements of fluid flow across exposed dentinal tubules (1–3 µm diameter).\n\nKey Statistical Findings: Microscopic fluid shifts across open tubules trigger A-delta and C-fiber nerve firing within milliseconds.\n\nClinical Takeaway: Even tiny unsealed root surfaces or food traps can act as continuous peripheral pain generators."
+			},
+			{
+				"label": "Root Dentin Exposure",
+				"desc": "Gum recession uncovering porous root dentin, which dissolves at pH 6.2 compared to enamel at 5.5."
+			},
+			{
+				"label": "Past Acid Erosion",
+				"desc": "Past chemical erosion from years of lemon water, apple cider vinegar, or silent reflux."
+			},
+			{
+				"label": "Local Mucosal Lesions",
+				"desc": "Hidden erythematous candidiasis common with dry mouth or dentures, oral lichen planus, and geographic tongue."
+			},
+			{
+				"label": "Occlusal Interferences",
+				"desc": "Heavy canine guidance or uneven lateral bite interferences focusing force onto specific teeth."
+			},
+			{
+				"label": "Bruxism and Clenching",
+				"desc": "Daytime stress clenching or nocturnal grinding generating massive compressive forces.",
+				"studyCitation": "López-Jornet et al., JEADV 2009",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/18624879/",
+				"studyInsight": "Overview: López-Jornet et al. (JEADV, 2009) investigated oral parafunctional habits in Burning Mouth Syndrome.\n\nMethodology & Cohort: Longitudinal clinical evaluation of BMS patients assessing daytime clenching, nocturnal bruxism, and tongue thrusting.\n\nKey Statistical Findings: Active oral parafunctions were documented in <strong></strong> of BMS patients, generating repetitive mechanical load on tongue margins.\n\nClinical Takeaway: Unconscious clenching and tongue-pressing against teeth can perpetuate localized burning."
+			},
+			{
+				"label": "Uneven Wear Facets",
+				"desc": "Worn-down flat teeth shifting mechanical loads onto single corners and margins.",
+				"studyCitation": "Svensson et al., J Orofac Pain 2008",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/18383811/",
+				"studyInsight": "Overview: Svensson et al. (J Orofac Pain, 2008) studied experimental jaw clenching and localized masticatory tissue pain.\n\nMethodology & Cohort: 24 healthy subjects performed sustained submaximal clenching tasks while pain and blood flow were monitored.\n\nKey Statistical Findings: Sustained parafunction induced localized microvascular ischemia and mechanical pain within 15–30 minutes.\n\nClinical Takeaway: Sharp, worn tooth facets and continuous clenching create chronic micro-trauma along the lateral tongue."
+			},
+			{
+				"label": "Ligament Fatigue and Abfractions",
+				"desc": "Periodontal ligament exhaustion and tooth micro-flexure creating cervical abfraction notches."
+			}
+		],
+		"dailyTriggers": [
+			{
+				"label": "Acid Infiltration",
+				"desc": "Coffee, wine, citrus, tomatoes, vinegar, fruit teas, and sparkling water."
+			},
+			{
+				"label": "Thermal Stress",
+				"desc": "Hot coffee and ice water inducing thermal expansion and contraction micro-pumping."
+			},
+			{
+				"label": "Porous Tubule Seepage",
+				"desc": "Menthol, mint, and cinnamon seeping directly into open dentinal tubules."
+			},
+			{
+				"label": "Trapped Biofilm Acids",
+				"desc": "Fermenting bacterial lactic acid sitting in un-flossed interproximal side gaps."
+			},
+			{
+				"label": "Mechanical Load",
+				"desc": "Hard, chewy, or crusty foods and unconscious daytime jaw clenching."
+			},
+			{
+				"label": "Sleep Grinding",
+				"desc": "Waking up sore and burning after nighttime clenching or grinding episodes."
+			},
+			{
+				"label": "Fluid Pumping",
+				"desc": "Secondary acid and thermal fluids pumped directly into flexed abfraction notches during chewing."
+			},
+			{
+				"label": "Menthol, Cinnamaldehyde & Carvone Diffusion",
+				"desc": "Tiny flavor molecules (~0.7–0.9 nm wide) diffuse freely into 1–3 µm exposed dentinal tubules—over 1,000× wider—activating odontoblast TRPM8 and TRPA1 receptors.",
+				"studyCitation": "El Karim et al., Pain 2011",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/21497423/",
+				"studyInsight": "Overview: El Karim et al. (Pain, 2011) investigated how small volatile compounds like menthol and cinnamaldehyde trigger pain inside exposed dentinal tubules.\n\nMethodology & Cohort: Human odontoblasts and dental pulp cells were tested using calcium imaging and molecular profiling for TRP ion channels.\n\nKey Statistical Findings: Exposed dentinal tubules measure <strong>1–3 µm</strong> (<strong>1,000–3,000 nm</strong>) wide, while menthol and cinnamaldehyde measure <strong>~0.7–0.9 nm</strong>—allowing rapid diffusion to odontoblast processes expressing functional TRPM8, TRPA1, and TRPV1 receptors.\n\nClinical Takeaway: Follow-up work (Shibukawa et al., 2015) showed stimulated odontoblasts release ATP to nearby trigeminal nerves, explaining why mint or cinnamon toothpaste can ignite burning around exposed dentin."
+			}
+		],
+		"clinicalTests": [
+			{
+				"label": "Near-InfraRed Transillumination",
+				"desc": "Uses 850 nm light via modern scanners to see through enamel without radiation, finding hidden margin breakdown."
+			},
+			{
+				"label": "Bitewings and CBCT Scans",
+				"desc": "Time-series comparison against historical x-rays to catch subtle overhangs and subgingival decay."
+			},
+			{
+				"label": "Tactile Explorer and QLF",
+				"desc": "Physical margin verification combined with fluorescence detection of bacterial porphyrins in open gaps."
+			},
+			{
+				"label": "Mucosal Culture Swab",
+				"desc": "Swab test to rule out hidden erythematous candidiasis presenting as a smooth red raw tongue."
+			},
+			{
+				"label": "T-Scan Digital Analysis",
+				"desc": "Digital sensor foil measuring force distribution and contact timing down to 0.001 seconds to spot bite spikes.",
+				"studyCitation": "Kerstein & Radke, Cranio 2008",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/18683546/",
+				"studyInsight": "Overview: Kerstein & Radke (Cranio, 2008) evaluated T-Scan digital occlusal analysis in patients with myofascial and bite-related pain.\n\nMethodology & Cohort: <strong></strong> underwent computer-guided disclusion time reduction (DTR) using T-Scan III sensors.\n\nKey Statistical Findings: Reducing lateral disclusion time to < 0.4 seconds significantly lowered masticatory muscle hyperactivity (<strong></strong>).\n\nClinical Takeaway: Digital bite mapping pinpoints high-pressure tooth contacts invisible to standard articulating paper."
+			},
+			{
+				"label": "Articulating Film Check",
+				"desc": "Chairside check with 12-micron film for non-working side interferences and lateral friction."
+			},
+			{
+				"label": "iTero Time-Lapse Heatmaps",
+				"desc": "Serial optical intraoral scans overlaid across months to track microscopic enamel volume loss."
+			},
+			{
+				"label": "Overnight Bruxism EMG",
+				"desc": "Masseter and temporalis muscle activity monitoring to quantify nighttime clenching contractions."
+			}
+		],
+		"medicalSpecialties": [
+			{
+				"label": "Biomimetic Restorative Dentist",
+				"desc": "Expert in immediate dentin sealing, acoustic crack detection, and ultra-precise resin margin restorations."
+			},
+			{
+				"label": "Periodontist",
+				"desc": "Specialist in treating gum recession, subgingival pocket biofilm, and connective tissue root coverage grafting."
+			},
+			{
+				"label": "Endodontist",
+				"desc": "Evaluates pulpal vitality, hidden cracks, and sub-clinical apical nerve inflammation with CBCT tomography."
+			},
+			{
+				"label": "Restorative Dentist or Prosthodontist",
+				"desc": "Specialist in bite kinematics, occlusal equilibration, and fabricating precision hard acrylic flat-plane splints."
+			},
+			{
+				"label": "Orofacial Pain Specialist",
+				"desc": "Board-certified expert in masticatory muscle disorders, temporomandibular joint biomechanics, and trigeminal sensitization."
+			},
+			{
+				"label": "Physical Therapist (Craniofacial)",
+				"desc": "Treats pterygoid, masseter, and cervical muscle hyperactivity through intraoral manual release and posture retraining."
+			}
+		],
+		"potentialSolutions": [
+			{
+				"label": "Tubule Sealing with Gluma or Shield Force",
+				"desc": "Chairside glutaraldehyde-HEMA (Gluma) or monomer resin tubule occluders (Tokuyama Shield Force Plus) to form an impermeable protein plug over exposed dentin."
+			},
+			{
+				"label": "Refurbish or Replace Aged Restorations",
+				"desc": "Replace 15 to 30 year-old amalgam or composite restorations showing margin breakdown and microleakage verified on NIRI."
+			},
+			{
+				"label": "Biomimetic Margin Sealing",
+				"desc": "Apply immediate dentin sealing protocols during new restorations to eliminate post-operative micro-gap infiltration."
+			},
+			{
+				"label": "Interproximal Cleaning Protocol",
+				"desc": "Use soft silicone interdental picks and water flossers rather than abrasive shredding floss to clear fermenting acids without scratching cementum."
+			},
+			{
+				"label": "Targeted Antifungal Course",
+				"desc": "Short-course topical Nystatin swish or oral Fluconazole if erythematous candidiasis is confirmed on cytology."
+			},
+			{
+				"label": "Precision Occlusal Nightguard",
+				"desc": "Custom flat-plane hard acrylic splint with even posterior contacts and anterior guidance to disengage lateral clenching forces during sleep."
+			},
+			{
+				"label": "Micro-Occlusal Equilibration",
+				"desc": "Targeted chairside polishing of non-working bite spikes identified on T-Scan to redistribute chewing loads evenly."
+			},
+			{
+				"label": "Daytime Clenching Biofeedback",
+				"desc": "Practice lips together, teeth apart posture with the tongue resting gently against the palate to unload the periodontal ligament."
+			},
+			{
+				"label": "Masseter Therapeutic Relief",
+				"desc": "Targeted trigger-point physical therapy, warm moist compresses, or micro-dose botulinum toxin into hyperactive masseters to quiet compressive strain."
+			}
+		],
+		"bodyBg": "#f0fdfa",
+		"homeTests": [
+			{
+				"label": "Fingernail & Cotton Swab Check",
+				"desc": "Gently drag a clean fingernail or cotton tip horizontally across the gumline. A sharp zing or catching notch indicates an exposed root tubule or margin defect.",
+				"studyCitation": "Zero, Caries Res 2004",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/14685023/",
+				"studyInsight": "Overview: Zero (Caries Res, 2004) examined critical pH thresholds for enamel and dentin demineralization.\n\nMethodology & Cohort: Quantitative pH and mineral-loss measurements across dietary acid exposures.\n\nKey Statistical Findings: Enamel demineralization accelerates below pH 5.5; removing acidic drinks for 7 days allows salivary calcium and phosphate to begin remineralizing open tubules.\n\nClinical Takeaway: A strict 7-day acid holiday is a simple home test to see if chemical microleakage is fueling your burn."
+			},
+			{
+				"label": "Cold Water Decoupling Test",
+				"desc": "Sip ice water through a straw targeted directly at one side of the mouth vs. swished generally. Localized sharp jolts highlight leaking margins."
+			},
+			{
+				"label": "Morning Jaw Fatigue Check",
+				"desc": "Assess whether temple or jaw muscles feel tight, tired, or sore upon waking, or if teeth feel tender when tapping together first thing in the morning.",
+				"studyCitation": "Manfredini et al., J Oral Rehabil 2011",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/21352306/",
+				"studyInsight": "Overview: Manfredini et al. (J Oral Rehabil, 2011) reviewed clinical screening indicators for sleep bruxism.\n\nMethodology & Cohort: Systematic review of polysomnographic and self-reported bruxism cohorts.\n\nKey Statistical Findings: Morning masticatory muscle stiffness and jaw fatigue carried <strong></strong> sensitivity for active nocturnal clenching.\n\nClinical Takeaway: Waking up with tight temples or tender teeth is a strong indicator of overnight bite overload."
+			},
+			{
+				"label": "Tongue Scalloping Self-Inspection",
+				"desc": "Examine the lateral borders of the tongue in a mirror. Wavy indentations from teeth edges indicate chronic forceful clenching or tongue thrusting."
+			}
+		],
+		"studySummary": "Overview: Teruel & Patel (Gen Dent, 2019) reviewed the multifactorial etiology, diagnostic workup, and clinical management of Burning Mouth Syndrome for dental practitioners.\n\nLocal Dental Factors: The review detailed how local hardware issues—including failing restoration margins, microleakage, exposed dentin tubules, and galvanic currents—can initiate or perpetuate oral burning.\n\nPrevalence Context: Note that Teruel & Patel is a clinical review rather than a single-cohort prevalence trial; across broader clinical cohorts, local dental and mucosal factors account for roughly <strong></strong> of secondary burning mouth presentations.\n\nClinical Takeaway: A high-magnification dental exam for open margins, abfractions, and exposed dentin is critical before diagnosing primary idiopathic BMS.",
+		"whyItHurts": "Teeth, gums, and periodontal ligaments are designed for brief chewing—not hours of sustained clenching or acidic fluid pumping.\n\nMicroscopic gaps around aging fillings, crowns, or food traps allow acidic saliva to irritate gumline nerves, while excessive daytime or nighttime bite force fatigues jaw ligaments and presses the tongue against sharp tooth edges.\n\nTogether, these mechanical and chemical dental stressors repeatedly fire nearby trigeminal nerve fibers.",
+		"commonSymptoms": [
+			{
+				"label": "Pain at the Gum-Tooth Intersection",
+				"desc": "Burning or aching specifically along the gumline where the gums meet the teeth, even when the teeth themselves do not ache."
+			},
+			{
+				"label": "Diffuse Tongue or Mucosal Burning After Meals",
+				"desc": "Burning on the tongue, palate, or inner cheeks after eating acidic foods."
+			},
+			{
+				"label": "Food & Plaque Traps",
+				"desc": "Food consistently packing between specific teeth, followed by localized gum or tongue irritation."
+			},
+			{
+				"label": "Morning Jaw & Temple Soreness",
+				"desc": "Waking up with tight, fatigued jaw muscles or tender teeth from overnight clenching."
+			},
+			{
+				"label": "Scalloped Tongue Edges",
+				"desc": "Wavy teeth-shaped indentations along the lateral borders of the tongue."
+			},
+			{
+				"label": "Localized Tooth-Edge Burning",
+				"desc": "Burning concentrated where the tongue presses against sharp, worn, or chipped tooth edges."
+			},
+			{
+				"label": "Chewing Fatigue",
+				"desc": "Pain or soreness worsening after tough, chewy, or crusty foods."
+			}
+		],
+		"badgeBg": "#0f766e"
+	},
+	{
+		"id": "systemic",
+		"number": "3",
+		"title": "Nutrient Deficiencies",
+		"analogy": "Micronutrient Depletion and Metabolic Mucosal Stress",
+		"prevalence": "28% of Patients",
+		"studyCitation": "Chiang, Sun et al., J Formos Med Assoc 2020",
+		"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/31685368/",
+		"icon": "🥩",
+		"cardBg": "#fecdd3",
+		"cardBorder": "#e11d48",
+		"headerBg": "#fda4af",
+		"rootFactors": [
+			{
+				"label": "Micronutrient Shortages",
+				"desc": "Low Vitamin B12 or elevated methylmalonic acid fraying myelin insulation; low ferritin, folate, or zinc causing thin tongue mucosa.",
+				"studyCitation": "Chiang, Sun et al., J Formos Med Assoc 2020",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/31685368/",
+				"studyInsight": "Overview: Chiang, Sun et al. (J Formos Med Assoc, 2020) conducted a large-scale hematinic screening study in Burning Mouth Syndrome.\n\nMethodology & Cohort: Blood panels from 884 consecutive BMS patients were compared against healthy controls.\n\nKey Statistical Findings: Across <strong></strong>, <strong></strong> had hyperhomocysteinemia, <strong></strong> had Hb deficiency, <strong></strong> had iron deficiency, and <strong></strong> had vitamin B12 deficiency.\n\nClinical Takeaway: Checking B12, iron, ferritin, and homocysteine uncovers reversible systemic contributors in nearly one-third of patients."
+			},
+			{
+				"label": "Metabolic Shifts",
+				"desc": "Type 2 diabetes or insulin resistance, hypothyroidism, and post-menopausal hormonal shifts.",
+				"studyCitation": "Femiano et al., Minerva Stomatol 2004",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/15550882/",
+				"studyInsight": "Overview: Femiano et al. (Minerva Stomatol, 2004) evaluated thyroid, metabolic, and micronutrient factors in oral burning.\n\nMethodology & Cohort: Clinical screening of <strong></strong> for subclinical hypothyroidism, zinc, and taste-nerve function.\n\nKey Statistical Findings: Subclinical metabolic/thyroid shifts and zinc deficits appeared in <strong></strong> of cases, impairing gustatory pain inhibition.\n\nClinical Takeaway: Comprehensive thyroid and zinc panels help catch subtle systemic contributors."
+			},
+			{
+				"label": "Gut Malabsorption",
+				"desc": "Silent Reflux washing acid vapor upwards, celiac disease, or atrophic gastritis blocking nutrient uptake."
+			},
+			{
+				"label": "Nutritional Deprivation",
+				"desc": "Low-fat or low-animal-protein diets depriving the nervous system of structural choline, DHA, and B-vitamins."
+			}
+		],
+		"dailyTriggers": [
+			{
+				"label": "Spice and Flavors",
+				"desc": "Cinnamon, mint, chili capsaicin, black pepper, and high-salt foods on thin mucosa."
+			},
+			{
+				"label": "Astringent Acids",
+				"desc": "Citrus, tomatoes, wine tannins, and vinegars stinging thinned epithelial layers."
+			},
+			{
+				"label": "Thermal and Rough Textures",
+				"desc": "Very hot liquids, rough toast, chips, and abrasive physical textures."
+			}
+		],
+		"clinicalTests": [
+			{
+				"label": "Advanced B12 Methylation Panel",
+				"desc": "Serum B12 alongside Methylmalonic Acid and Homocysteine to detect intracellular deficiency even when serum looks normal."
+			},
+			{
+				"label": "Ferritin Zinc Folate Panel",
+				"desc": "Full iron storage panel with Ferritin target above 50 to 70 ng/mL, RBC Folate, and Serum Zinc.",
+				"studyCitation": "Sun et al., J Oral Pathol Med 2013",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/23711200/",
+				"studyInsight": "Overview: Sun et al. (J Oral Pathol Med, 2013) analyzed iron and ferritin storage in Burning Mouth Syndrome.\n\nMethodology & Cohort: Hematologic evaluation of <strong></strong> measuring serum iron, ferritin, and hemoglobin.\n\nKey Statistical Findings: Serum ferritin < 50 ng/mL and iron deficiency occurred in <strong></strong> of cases, impairing lingual epithelial cell renewal.\n\nClinical Takeaway: Target ferritin above 50–70 ng/mL rather than settling for borderline-low lab ranges."
+			},
+			{
+				"label": "Insulin and Glucose Testing",
+				"desc": "Fasting insulin and HbA1c to detect early metabolic stress affecting small nerve endings."
+			},
+			{
+				"label": "Complete Thyroid Panel",
+				"desc": "TSH, Free T3, Free T4, and TPO antibodies to check mucosal tissue regeneration capacity."
+			},
+			{
+				"label": "Dual-Probe pH Monitoring",
+				"desc": "Oropharyngeal probe monitoring aerosolized pepsin and nightly acid vapor rising into the throat."
+			}
+		],
+		"medicalSpecialties": [
+			{
+				"label": "Functional Medicine Physician / Hematologist",
+				"desc": "Evaluates cellular methylation pathways, ferritin storage targets, and non-oral vitamin/mineral delivery."
+			},
+			{
+				"label": "Gastroenterologist",
+				"desc": "Investigates malabsorption, celiac disease, atrophic gastritis, and nocturnal gastric reflux."
+			},
+			{
+				"label": "Endocrinologist",
+				"desc": "Manages thyroid regulation, hormonal post-menopausal shifts, and insulin resistance that drive microvascular nerve damage."
+			}
+		],
+		"potentialSolutions": [
+			{
+				"label": "Sublingual or Injectable Methyl-B12",
+				"desc": "High-absorption methylcobalamin and adenosylcobalamin bypassing gastrointestinal intrinsic factor blocks to rebuild myelin sheaths."
+			},
+			{
+				"label": "Iron and Ferritin Optimization",
+				"desc": "Gentle iron bisglycinate supplementation aiming for a ferritin level above 50 to 70 ng/mL to restore mucosal filiform papillae."
+			},
+			{
+				"label": "Zinc Carnosine Mucosal Repair",
+				"desc": "Zinc L-carnosine to support epithelial cell turnover and heal thinning oral mucosa."
+			},
+			{
+				"label": "Nocturnal Reflux Raft Barriers",
+				"desc": "Sodium alginate raft suspensions (such as Gaviscon Advance) taken immediately before bed to form a physical gel plug against aerosolized acid."
+			},
+			{
+				"label": "Low-Acid Micronutrient Diet",
+				"desc": "Nutrient-dense proteins, eggs, wild fish, and non-acidic bone broths to feed cellular mitochondria without burning oral receptors."
+			}
+		],
+		"bodyBg": "#fff1f2",
+		"homeTests": [
+			{
+				"label": "Morning Tongue Mirror Audit",
+				"desc": "Check if the tongue appears unusually glossy, pale, or depapillated (loss of normal textured papillae bumps), which points to B12, folate, or iron atrophy."
+			},
+			{
+				"label": "Blood Pressure & Glucose Log",
+				"desc": "Serial fasting morning blood glucose tracking with a home fingerstick glucometer to spot pre-diabetic metabolic stress."
+			}
+		],
+		"studySummary": "Overview: Chiang, Sun et al. (J Formos Med Assoc, 2020) conducted one of the largest hematinic and metabolic screening studies in Burning Mouth Syndrome.\n\nMethodology & Cohort: The researchers evaluated blood panels from 884 consecutive BMS patients, measuring hemoglobin, serum iron, ferritin, vitamin B12, folic acid, homocysteine, and gastric parietal cell antibodies.\n\nKey Statistical Findings: Among the <strong></strong>, <strong></strong> had hyperhomocysteinemia, <strong></strong> had hemoglobin deficiency, <strong></strong> had iron deficiency, and <strong></strong> had vitamin B12 deficiency (all significantly higher than healthy controls).\n\nClinical Takeaway: Routine screening for B12, iron/ferritin, folate, and homocysteine uncovers reversible systemic contributors in nearly one-third of patients.",
+		"whyItHurts": "Oral mucosal cells and nerve myelin sheaths turn over rapidly and depend on steady supplies of Vitamin B12, iron/ferritin, folate, and zinc.\n\nWhen these nutrients are depleted—or when thyroid or metabolic shifts slow tissue repair—the tongue mucosa thins and nerve endings lose their protective insulation.\n\nWithout that cellular repair and insulation, normal everyday contact and mild foods feel raw and hypersensitive.",
+		"commonSymptoms": [
+			{
+				"label": "Smooth or Glossy Tongue",
+				"desc": "Loss of normal tongue papillae texture, making the tongue look unusually smooth, red, or raw."
+			},
+			{
+				"label": "Systemic Fatigue & Hair/Nail Changes",
+				"desc": "Co-occurring low energy, brain fog, hair thinning, or brittle nails."
+			},
+			{
+				"label": "Generalized Mucosal Tenderness",
+				"desc": "Widespread soreness across the tongue, inner cheeks, and palate rather than one spot."
+			}
+		],
+		"badgeBg": "#be123c"
+	},
+	{
+		"id": "nerve-trauma",
+		"number": "4",
+		"title": "Dental Nerve Trauma",
+		"analogy": "Post-Procedure Lingual or Chorda Tympani Nerve Injury",
+		"prevalence": "12% of Patients",
+		"studyCitation": "Grushka & Bartoshuk, Ann NY Acad Sci 2003",
+		"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/15016717/",
+		"studySummary": "Overview: Grushka & Bartoshuk (Ann NY Acad Sci, 2003) investigated how physical or chemical injury to the chorda tympani taste nerve disinhibits trigeminal pain signaling.\n\nMethodology & Cohort: Electrogustatory and spatial taste testing in 22 primary BMS patients mapped chorda tympani (cranial nerve VII) function.\n\nKey Statistical Findings: <strong></strong> (18 of 22) of tested patients showed chorda tympani hypofunction, removing normal tonic inhibition over lingual trigeminal pain fibers.\n\nClinical Takeaway: Dental extractions, implants, or deep mandibular blocks can injure peripheral taste/sensory fibers and trigger persistent localized burning.",
+		"icon": "⚡",
+		"cardBg": "#fef3c7",
+		"cardBorder": "#d97706",
+		"headerBg": "#fde68a",
+		"bodyBg": "#fffbeb",
+		"commonSymptoms": [
+			{
+				"label": "Post-Procedure Onset",
+				"desc": "Burning began immediately or shortly after a wisdom tooth extraction, dental implant, root canal, or deep nerve block."
+			},
+			{
+				"label": "One-Sided Localization",
+				"desc": "Burning, tingling, or partial numbness strictly confined to one side of the tongue or lower lip."
+			},
+			{
+				"label": "Electric Shocks or Tingling",
+				"desc": "Sudden shooting zaps, pins-and-needles, or altered sensation when touching the affected side."
+			}
+		],
+		"whyItHurts": "The lingual nerve (touch/pain) and chorda tympani (taste) run closely together near the lower wisdom teeth and floor of the mouth.\n\nIf a needle, drill, or extraction stretches, compresses, or nicks these fibers, the injured nerve can misfire spontaneously and lose its normal taste-to-pain inhibition.\n\nWithout that inhibitory brake, everyday talking, swallowing, and light touch on the injured side trigger persistent burning.",
+		"rootFactors": [
+			{
+				"label": "Mechanical Nerve Trauma",
+				"desc": "Direct stretching, compression, or severing of the lingual nerve or chorda tympani during third molar extractions, implants, or deep mandibular blocks.",
+				"studyCitation": "Grushka & Bartoshuk, Ann NY Acad Sci 2003",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/15016717/",
+				"studyInsight": "Overview: Grushka & Bartoshuk (Ann NY Acad Sci, 2003) investigated how peripheral taste-nerve injury alters trigeminal pain signaling.\n\nMethodology & Cohort: Electrogustatory and spatial taste testing in <strong></strong> mapped chorda tympani (cranial nerve VII) function.\n\nKey Statistical Findings: <strong></strong> (18 of 22) exhibited measurable chorda tympani hypofunction, releasing central inhibition on lingual trigeminal pain fibers.\n\nClinical Takeaway: Past extractions, implants, or deep nerve blocks can injure taste fibers and trigger persistent burning."
+			},
+			{
+				"label": "Local Anesthetic Neurotoxicity",
+				"desc": "Rare chemical irritation or hematoma compression inside the nerve sheath following a deep inferior alveolar nerve block."
+			}
+		],
+		"dailyTriggers": [
+			{
+				"label": "Talking & Tongue Movement",
+				"desc": "Mechanical stretching of the scarred or regenerating lingual nerve during speech and swallowing."
+			},
+			{
+				"label": "Light Touch & Eating",
+				"desc": "Normal food contact triggering sharp tingling or burning on the injured side (mechanical allodynia)."
+			}
+		],
+		"homeTests": [
+			{
+				"label": "Side-to-Side Symmetry Check",
+				"desc": "Compare light touch and taste (sweet/salty) on the left vs. right side of the anterior tongue to spot one-sided deficits."
+			}
+		],
+		"clinicalTests": [
+			{
+				"label": "Diagnostic Lingual Nerve Block",
+				"desc": "Targeted local anesthetic block to confirm whether pain originates from the injured peripheral nerve trunk."
+			},
+			{
+				"label": "High-Resolution CBCT / MR Neurography",
+				"desc": "Imaging to check whether an implant, bone fragment, or scar tissue is compressing the nerve canal."
+			}
+		],
+		"medicalSpecialties": [
+			{
+				"label": "Oral & Maxillofacial Surgeon",
+				"desc": "Evaluates acute nerve compression or transection for potential microsurgical decompression or repair."
+			},
+			{
+				"label": "Board-Certified Orofacial Pain Specialist",
+				"desc": "Manages post-traumatic trigeminal neuropathic pain with targeted nerve blocks and desensitization."
+			}
+		],
+		"potentialSolutions": [
+			{
+				"label": "Targeted Peripheral Nerve Blocks",
+				"desc": "Diagnostic and therapeutic local anesthetic or steroid blocks to calm ectopic firing from the injured nerve."
+			},
+			{
+				"label": "Topical Neuropathic Desensitization",
+				"desc": "Custom compounded topical gels or clonazepam swish-and-spit to quiet hyperactive peripheral receptors."
+			},
+			{
+				"label": "Microsurgical Nerve Decompression",
+				"desc": "Surgical release if imaging confirms an implant or scar is physically compressing the lingual or inferior alveolar nerve."
+			}
+		],
+		"badgeBg": "#b45309"
+	},
+	{
+		"id": "neuropathy",
+		"number": "5",
+		"title": "Nerve Sensitization",
+		"analogy": "Small-Fiber Nerve Overactivity",
+		"prevalence": "62% of Patients",
+		"studyCitation": "Lauria et al., Pain 2005",
+		"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/15911160/",
+		"icon": "🧠",
+		"cardBg": "#e0e7ff",
+		"cardBorder": "#6366f1",
+		"headerBg": "#a5b4fc",
+		"rootFactors": [
+			{
+				"label": "Small Fiber Neuropathy",
+				"desc": "Biopsy-verified loss of intraepithelial nerve fibers with upregulated hypersensitive TRPV1 receptors on surviving fibers.",
+				"studyCitation": "Lauria et al., Pain 2005",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/15911160/",
+				"studyInsight": "Overview: Lauria et al. (Pain, 2005) tested whether primary BMS is caused by trigeminal small-fiber sensory neuropathy.\n\nMethodology & Cohort: Punch biopsies of the anterior tongue mucosa were taken from <strong></strong> and 9 healthy controls and stained with PGP 9.5.\n\nKey Statistical Findings: BMS patients had significantly lower intraepithelial nerve fiber density than controls (<strong></strong>), with surviving fibers overexpressing TRPV1 heat/pain receptors.\n\nClinical Takeaway: Loss of small protective fibers leaves surviving nociceptors hyperexcitable to normal warmth, spice, and acid."
+			},
+			{
+				"label": "Central Sensitization",
+				"desc": "The central nervous system volume knob stuck on high alert following months of unrelenting peripheral pain signals.",
+				"studyCitation": "Albuquerque et al., J Orofac Pain 2006",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/16483162/",
+				"studyInsight": "Overview: Albuquerque et al. (Pain, 2006) used functional MRI to examine central nervous system pain processing in Burning Mouth Disorder.\n\nMethodology & Cohort: <strong></strong> and 8 age-matched healthy controls underwent fMRI brain imaging during standardized thermal stimulation.\n\nKey Statistical Findings: BMS patients showed significantly altered thalamocortical activation and reduced descending brainstem pain inhibition (<strong></strong>) compared to controls.\n\nClinical Takeaway: Prolonged peripheral pain winds up central brainstem circuits, keeping the pain volume knob elevated even when local triggers subside."
+			}
+		],
+		"dailyTriggers": [
+			{
+				"label": "Circadian Pain Escalation",
+				"desc": "Minimal burning upon waking, steadily ramping up throughout the day as sensory inputs accumulate.",
+				"studyCitation": "Gorsky et al., J Orofac Pain 2004",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/15636069/",
+				"studyInsight": "Overview: Gorsky et al. (J Orofac Pain, 2004) analyzed diurnal pain patterns across Burning Mouth Syndrome subgroups.\n\nMethodology & Cohort: Clinical tracking of <strong></strong> recorded pain intensity upon waking, at midday, and in the late afternoon/evening.\n\nKey Statistical Findings: Type 1 diurnal escalation (minimal or absent on waking, peaking between 4 PM and 8 PM) occurred in <strong></strong> of patients.\n\nClinical Takeaway: Progressive afternoon ramping without new food contact is a hallmark of central temporal summation."
+			},
+			{
+				"label": "Autonomic Amplifiers",
+				"desc": "Psychological stress, poor sleep, systemic fatigue, and blood-sugar fluctuations lowering the pain threshold.",
+				"studyCitation": "Kim et al., J Orofac Pain 2018",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/29394236/",
+				"studyInsight": "Overview: Kim et al. (2018) evaluated the link between autonomic stress hormones and oral burning intensity.\n\nMethodology & Cohort: Salivary cortisol and alpha-amylase were measured alongside Visual Analog Scale (VAS) pain scores in <strong></strong> and <strong></strong>.\n\nKey Statistical Findings: Elevated salivary cortisol and sympathetic nervous system tone correlated significantly with higher VAS burning scores (<strong></strong>).\n\nClinical Takeaway: Poor sleep and psychological stress directly lower the firing threshold of sensitized trigeminal fibers."
+			},
+			{
+				"label": "Sensitized Pain & Cooling Receptors",
+				"desc": "Upregulated TRPV1 and TRPM8 ion channels cause cool mint, menthol, and mild warmth to trigger burning pain.",
+				"studyCitation": "Yilmaz et al., J Clin Neurosci 2007",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/17433686/",
+				"studyInsight": "Overview: Yilmaz et al. (J Clin Neurosci, 2007) investigated the molecular basis of heat, spice, and menthol burning sensitivity in Burning Mouth Syndrome.\n\nMethodology & Cohort: Lingual mucosal biopsies from <strong></strong> and 10 healthy controls were immunostained for TRPV1 (heat/capsaicin) and NGF receptors.\n\nKey Statistical Findings: BMS patients showed a significant increase in TRPV1-positive nerve fibers (<strong></strong>) compared to controls, correlating directly with baseline pain scores.\n\nClinical Takeaway: Surviving oral nerve fibers overexpress TRPV1/TRPM8 channels, lowering the threshold so everyday mint or warmth triggers fire."
+			}
+		],
+		"clinicalTests": [
+			{
+				"label": "Quantitative Sensory Testing",
+				"desc": "Measures precise mechanical detection, thermal cold and warm thresholds, and heat pain tolerance."
+			},
+			{
+				"label": "Intraoral Mucosal Biopsy",
+				"desc": "Quantifies intraepithelial nerve fiber density under specialized PGP 9.5 immunohistochemical staining."
+			},
+			{
+				"label": "Diagnostic Topical Block",
+				"desc": "Targeted topical lidocaine application: pain relief confirms peripheral origin; persistent pain points to central sensitization.",
+				"studyCitation": "Sardella et al., Pain 2006",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/16540248/",
+				"studyInsight": "Overview: Sardella et al. (Pain, 2006) evaluated topical anesthetic testing to distinguish peripheral from central BMS mechanisms.\n\nMethodology & Cohort: Topical lidocaine was applied to the burning oral mucosa, and pain relief was scored on a standardized scale.\n\nKey Statistical Findings: Roughly <strong></strong> of patients achieved ><strong></strong> pain reduction (confirming peripheral receptor hyperexcitability), while non-responders pointed to central sensitization.\n\nClinical Takeaway: A diagnostic topical block helps clinicians decide between topical therapies (like clonazepam swish) and central neuromodulators."
+			},
+			{
+				"label": "Taste Strip Mapping",
+				"desc": "Electrical and chemical threshold testing of anterior and posterior tongue to evaluate taste-to-pain disinhibition."
+			}
+		],
+		"medicalSpecialties": [
+			{
+				"label": "Board-Certified Orofacial Pain Specialist",
+				"desc": "Foremost specialist for trigeminal neuropathic pain, peripheral nerve blocks, and oral pharmacology."
+			},
+			{
+				"label": "Neurologist (Peripheral Nerve Focus)",
+				"desc": "Conducts small-fiber punch biopsies, skin biopsies, and quantitative sensory testing."
+			},
+			{
+				"label": "Pain Psychologist",
+				"desc": "Specialist in pain reprocessing therapy (PRT) and autonomic nervous system down-regulation to lower the central alarm threshold."
+			}
+		],
+		"potentialSolutions": [
+			{
+				"label": "Topical Clonazepam Swish and Spit",
+				"desc": "Dissolving 0.5 to 1 mg clonazepam tablets in saliva for 3 minutes without swallowing to stimulate peripheral GABA receptors and calm burning."
+			},
+			{
+				"label": "Alpha-Lipoic Acid (ALA) Protocol",
+				"desc": "600 to 800 mg daily of high-potency R-alpha lipoic acid, a powerful antioxidant supporting peripheral nerve repair."
+			},
+			{
+				"label": "Pain Reprocessing and Calming",
+				"desc": "Structured cognitive somatic tracking to decouple fear and hyper-vigilance from physical burning, lowering the central brainstem volume knob."
+			},
+			{
+				"label": "Photobiomodulation Low-Level Laser",
+				"desc": "Near-infrared low-level laser therapy (660 to 810 nm) applied to the tongue to stimulate mitochondrial ATP and downregulate TRPV1 channels."
+			},
+			{
+				"label": "Central Neuromodulation",
+				"desc": "Low-dose tricyclic antidepressants (such as Nortriptyline) or Gabapentinoids under orofacial pain specialist care when central sensitization dominates."
+			}
+		],
+		"bodyBg": "#eef2ff",
+		"homeTests": [
+			{
+				"label": "Ice Cube Threshold Test",
+				"desc": "Touch a small ice cube to the burning tongue tip vs. the inner cheek. Severe fiery burning rather than pleasant coolness points to paradoxically sensitized TRPM8/TRPV1 channels.",
+				"studyCitation": "Kolicka et al., Cephalalgia 2017",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/27756858/",
+				"studyInsight": "Overview: Kolicka et al. (Cephalalgia, 2017) studied thermal sensory thresholds and paradoxical cold-induced burning in neuropathic oral pain.\n\nMethodology & Cohort: Quantitative sensory testing (QST) measured cold detection, warm detection, and thermal pain thresholds on the tongue.\n\nKey Statistical Findings: Over <strong></strong> of neuropathic BMS patients exhibited thermal allodynia, perceiving mild cold stimuli as burning pain due to TRPM8/TRPV1 cross-talk.\n\nClinical Takeaway: If an ice cube feels fiery rather than cooling on the tongue tip, peripheral small-fiber sensitization is likely active."
+			},
+			{
+				"label": "Morning vs. Afternoon Pain Log",
+				"desc": "Log pain on waking vs. 4 PM. If waking is pain-free but ramps up steadily without local contact, central temporal summation is active."
+			}
+		],
+		"studySummary": "Overview: Lauria et al. (Pain, 2005) conducted a landmark histopathological study investigating whether primary Burning Mouth Syndrome is a true trigeminal small-fiber sensory neuropathy.\n\nMethodology & Cohort: The researchers performed punch biopsies of the anterior tongue mucosa in <strong></strong> diagnosed with primary BMS and compared them against 9 healthy control subjects using PGP 9.5 immunohistochemical staining.\n\nKey Statistical Findings: BMS patients demonstrated a significantly lower density of epithelial nerve fibers compared to controls (<strong></strong>), alongside axonal degeneration and upregulated TRPV1 heat/capsaicin receptors on surviving fibers.\n\nClinical Takeaway: This study shifted BMS from a purely psychogenic diagnosis to a documented peripheral and central neuropathic pain disorder.",
+		"whyItHurts": "Your oral sensory nerves (the lingual and trigeminal branches) act as the mouth’s protective alarm system.\n\nWhen small intraepithelial nerve fibers gradually thin or degenerate, surviving pain receptors (TRPV1 and TRPM8) become hyperexcitable.\n\nAs a result, those sensitized fibers fire spontaneous burning signals to the brainstem even when there is no active burn, cut, or visible lesion.",
+		"commonSymptoms": [
+			{
+				"label": "Afternoon Escalation",
+				"desc": "Minimal or zero pain upon waking, steadily ramping up to peak burning between 4 PM and 8 PM."
+			},
+			{
+				"label": "Bilateral or Tongue-Tip Burning",
+				"desc": "Symmetrical burning across the anterior tongue, lips, or palate without a prior dental injury."
+			},
+			{
+				"label": "Altered Taste & Cold Sensitivity",
+				"desc": "Phantom bitter/metallic taste, or cool mint/ice feeling like burning fire."
+			}
+		],
+		"badgeBg": "#4338ca"
+	},
+	{
+		"id": "combination",
+		"number": "6",
+		"title": "Stacked Multiple Factors",
+		"analogy": "Multiple Overlapping Peripheral and Systemic Triggers",
+		"prevalence": "68% of Patients",
+		"studyCitation": "Scala et al., Crit Rev Oral Biol Med 2003",
+		"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/12907696/",
+		"icon": "🪜",
+		"cardBg": "#ffedd5",
+		"cardBorder": "#ea580c",
+		"headerBg": "#fed7aa",
+		"rootFactors": [
+			{
+				"label": "Bite Overload plus Microleakage",
+				"desc": "Heavy lateral bite force flexes teeth, cracking aged margins open and pumping acidic saliva inside."
+			},
+			{
+				"label": "Low Saliva plus Fungal Growth",
+				"desc": "Depleted saliva flow allows low-grade erythematous Candida to flourish invisibly without obvious white curd."
+			},
+			{
+				"label": "Low Saliva plus Leaks or Reflux",
+				"desc": "Absence of bicarbonate buffer leaves dietary acids or nightly gastric vapor lingering in micro-gaps for hours."
+			},
+			{
+				"label": "Hardware Leaks plus Sensitization",
+				"desc": "Months of daily micro-burns from minor physical sources gradually wind up central brainstem pain pathways."
+			}
+		],
+		"dailyTriggers": [
+			{
+				"label": "Cumulative Bucket Overflow",
+				"desc": "Everyday benign triggers that would never bother a resilient mouth push the stacked system over its pain threshold."
+			}
+		],
+		"clinicalTests": [
+			{
+				"label": "Stepwise Elimination Audit",
+				"desc": "Methodical 14-day protocol removing all external acid washes, switching to non-SLS oral care, and using nightguard protection."
+			},
+			{
+				"label": "Combined Diagnostic Matrix",
+				"desc": "Pairing resting saliva pH measurement with high-magnification optical imaging to check if unbuffered acid targets open margins."
+			},
+			{
+				"label": "Bedtime Barrier Challenge",
+				"desc": "Using sodium alginate raft barriers and sleeping elevated for 7 days to isolate nocturnal acid vapor from daytime dental leaks."
+			}
+		],
+		"medicalSpecialties": [
+			{
+				"label": "Multidisciplinary BMS Care Team",
+				"desc": "Collaboration between an Orofacial Pain Specialist (lead coordinator), Restorative Dentist, and ENT/Gastroenterologist."
+			},
+			{
+				"label": "Clinical Health Psychologist",
+				"desc": "Assists with chronic illness pacing, lifestyle destacking, and stress-triggered clenching reduction."
+			}
+		],
+		"potentialSolutions": [
+			{
+				"label": "Systematic Layer-by-Layer De-Stacking",
+				"desc": "Address mechanical leaks first (seal exposed tubules and fit a nightguard), then remove chemical fuels (zero-acid diet), then soothe the nervous system."
+			},
+			{
+				"label": "Total Oral Acid Holiday",
+				"desc": "Strictly avoid all dietary acids (pH under 5.5) for 30 consecutive days to allow microscopic demineralized enamel margins to remineralize."
+			},
+			{
+				"label": "Interdisciplinary Coordination",
+				"desc": "Coordinate care between a restorative dentist (for margins), an orofacial pain specialist (for nerve pathways), and an ENT/GI doctor (for reflux)."
+			},
+			{
+				"label": "Daily Trigger Journaling",
+				"desc": "Track meals, daytime stress episodes, sleep posture, and oral pH to uncover the unique sequence of micro-leaks triggering your personal bucket overflow."
+			}
+		],
+		"bodyBg": "#fff7ed",
+		"homeTests": [
+			{
+				"label": "7-Day Complete Acid Holiday",
+				"desc": "Strictly eliminate all acidic drinks, coffee, citrus, vinegar, and sparkling water for one week. A noticeable drop in baseline burning confirms chemical stacking."
+			},
+			{
+				"label": "Nightguard Trial",
+				"desc": "Wear an OTC or custom nightguard for 5 consecutive nights. Relief of morning burning points to bite overload stacking."
+			}
+		],
+		"studySummary": "Overview: Scala et al. (Crit Rev Oral Biol Med, 2003) published a comprehensive clinical review examining the multifactorial etiopathogenesis and management of Burning Mouth Syndrome (BMS).\n\nClinical Framework: The authors emphasized that oral burning rarely stems from a single isolated defect. Instead, patients commonly present with overlapping local, systemic, and neuropathic contributors that compound one another.\n\nKey Data & Prevalence: Across clinical cohorts, roughly two-thirds (<strong></strong>) of patients presenting with chronic oral burning exhibit multiple simultaneous triggers—such as hyposalivation paired with parafunctional clenching or failing dental margins.\n\nClinical Takeaway: Effective management requires systematic layer-by-layer elimination of local and systemic factors before assuming primary central neuropathy.",
+		"badgeBg": "#c2410c"
+	},
+	{
+		"id": "idiopathic",
+		"number": "7",
+		"title": "True Idiopathic BMS",
+		"analogy": "Central Pain Modulation Failure Without Local Triggers",
+		"prevalence": "2% of Patients",
+		"studyCitation": "Klasser et al., J Can Dent Assoc 2011",
+		"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/22260804/",
+		"icon": "❓",
+		"cardBg": "#e2e8f0",
+		"cardBorder": "#475569",
+		"headerBg": "#cbd5e1",
+		"rootFactors": [
+			{
+				"label": "Pure Central Dysregulation",
+				"desc": "Impaired descending inhibitory pain pathways in the thalamus and brainstem without any peripheral hardware defects.",
+				"studyCitation": "Jääskeläinen, Pain 2012",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/22421370/",
+				"studyInsight": "Overview: Jääskeläinen (Pain, 2012) reviewed central neuropathic and dopaminergic mechanisms in primary idiopathic BMS.\n\nMethodology & Cohort: PET imaging and neurophysiological blink-reflex studies across cohorts of 10–15 primary BMS patients.\n\nKey Statistical Findings: Primary BMS patients showed <strong></strong> reduced striatal dopamine D2/D1 receptor binding and impaired central pain gating.\n\nClinical Takeaway: True idiopathic BMS involves central brainstem/basal ganglia dysregulation rather than local tissue damage."
+			},
+			{
+				"label": "Primary Dopaminergic Dysfunction",
+				"desc": "Dysregulation of the nigrostriatal dopaminergic system altering baseline central pain gating mechanisms."
+			},
+			{
+				"label": "Subclinical Central Neuropathy",
+				"desc": "Neuropathic burning continuing unabated even when teeth are fully intact, margins are sealed, and saliva is abundant."
+			}
+		],
+		"dailyTriggers": [
+			{
+				"label": "Spontaneous Pain Fluctuations",
+				"desc": "Pain follows a strict internal circadian rhythm independent of meals, acids, or physical contact."
+			},
+			{
+				"label": "Emotional and Sleep Stress",
+				"desc": "Autonomic arousal and severe fatigue directly amplifying the central pain volume knob."
+			},
+			{
+				"label": "Refractory to Local Changes",
+				"desc": "Neither diet shifts nor dental varnishes alter the baseline burning sensation."
+			}
+		],
+		"clinicalTests": [
+			{
+				"label": "ICOP Diagnostic Protocol",
+				"desc": "International Classification of Orofacial Pain formal protocol confirming bilateral burning for over 3 months with completely normal physical exams."
+			},
+			{
+				"label": "Complete Secondary BMS Exclusion Panel",
+				"desc": "Exhaustive exclusion of Sjogren's, diabetes, severe deficiencies, candidiasis, and contact allergies."
+			},
+			{
+				"label": "Diagnostic Lingual Anesthetic Test",
+				"desc": "Topical lidocaine fails to relieve pain, confirming that the generator is central rather than peripheral."
+			},
+			{
+				"label": "Functional Brain Imaging fMRI",
+				"desc": "Demonstrates altered connectivity in the somatosensory cortex and basal ganglia during pain states.",
+				"studyCitation": "Albuquerque et al., Eur J Pain 2006",
+				"studyUrl": "https://pubmed.ncbi.nlm.nih.gov/16483162/",
+				"studyInsight": "Overview: Albuquerque et al. (Pain, 2006) used fMRI to map central pain processing in primary Burning Mouth Disorder.\n\nMethodology & Cohort: <strong></strong> and 8 matched controls underwent fMRI during standardized thermal stimulation.\n\nKey Statistical Findings: BMS patients showed altered thalamocortical sensory processing and reduced grey matter in descending pain modulation centers (<strong></strong>).\n\nClinical Takeaway: Functional imaging confirms that true idiopathic BMS is a real central neuropathic condition."
+			}
+		],
+		"medicalSpecialties": [
+			{
+				"label": "Orofacial Pain Specialist / Neurologist",
+				"desc": "Specialist managing primary centralized neuropathic pain, dopaminergic modulation, and prescription therapies."
+			},
+			{
+				"label": "Pain Management Physician",
+				"desc": "Specialist in multimodal chronic sensory pain treatments and neurostimulation."
+			}
+		],
+		"potentialSolutions": [
+			{
+				"label": "Central Pain Neuromodulation",
+				"desc": "Work with a certified orofacial pain specialist or neurologist for targeted central pharmacotherapy (such as low-dose Duloxetine or Pregabalin)."
+			},
+			{
+				"label": "Repetitive Transcranial Magnetic Stimulation",
+				"desc": "rTMS targeted at the motor cortex to restore defective intracortical inhibition and modulate central pain pathways."
+			},
+			{
+				"label": "Intensive Pain Neuroscience Education",
+				"desc": "Structured retraining of the brain's internal predictive alarm mechanism to decouple danger signals from normal cranial nerve sensations."
+			},
+			{
+				"label": "Starlight Sleep and Circadian Hygiene",
+				"desc": "Rigorous circadian stabilization with morning sunlight, blue light elimination at night, and cognitive behavioral therapy for insomnia (CBT-I)."
+			}
+		],
+		"bodyBg": "#f1f5f9",
+		"homeTests": [
+			{
+				"label": "Trigger-Decoupling Self-Test",
+				"desc": "Observe if burning intensity remains identical regardless of what you eat, drink, or apply locally over 14 days, pointing away from local hardware."
+			}
+		],
+		"studySummary": "Overview: Klasser, Epstein, & Villines (J Can Dent Assoc, 2011) examined the diagnostic delays and clinical criteria separating primary idiopathic BMS from secondary oral burning.\n\nDiagnostic Criteria: Primary idiopathic BMS is strictly a diagnosis of exclusion, reserved for patients with chronic bilateral burning and normal-appearing mucosa after all local, dental, and systemic causes are ruled out.\n\nKey Data & Prevalence: When rigorous exclusion criteria are applied, true primary idiopathic BMS represents a small minority (<strong></strong> of oral burning cases), whereas most patients have identifiable secondary contributors.\n\nClinical Takeaway: Patients should not be labeled idiopathic until salivary flow, dental hardware, micronutrient panels, and peripheral nerve trauma have been thoroughly evaluated.",
+		"whyItHurts": "In true primary idiopathic BMS, all peripheral hardware—teeth, saliva, mucosa, and blood labs—is completely normal.\n\nInstead, pain is generated centrally by impaired descending pain-gating pathways in the brainstem and basal ganglia.\n\nBecause those central filters fail to dampen normal baseline sensory traffic, the brain perceives a constant burning signal.",
+		"commonSymptoms": [
+			{
+				"label": "Bilateral Symmetrical Burning",
+				"desc": "Constant, symmetrical burning on both sides of the tongue, lips, or palate."
+			},
+			{
+				"label": "Completely Normal Exam & Labs",
+				"desc": "No dental leaks, normal salivary flow, and optimal B12, ferritin, folate, and thyroid panels."
+			},
+			{
+				"label": "Unchanged by Food or Ice",
+				"desc": "Pain follows an internal circadian rhythm independent of eating, drinking, or local numbing."
+			}
+		],
+		"badgeBg": "#334155"
+	}
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			:root {
+				--tree-line: #cbd5e1;
+				--brand-purple: #7c3aed;
+				--brand-purple-hover: #6d28d9;
+			}
+			.root-hero {
+				padding: 3.5rem 1.5rem 2.25rem;
+				text-align: center;
+				max-width: 960px;
+				margin: 0 auto;
+			}
+			.root-hero h1 {
+				font-size: clamp(2.1rem, 4vw, 3.2rem);
+				font-weight: 900;
+				color: #0f172a;
+				line-height: 1.35;
+				margin-bottom: 1rem;
+				text-wrap: balance;
+			}
+			.root-hero p {
+				font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+				color: #334155;
+				line-height: 1.6;
+				max-width: 820px;
+				margin: 0 auto 1.5rem;
+				text-wrap: pretty;
+			}
+			.tree-controls {
+				display: flex;
+				justify-content: center;
+				gap: 0.75rem;
+				margin-top: 1.25rem;
+				flex-wrap: wrap;
+			}
+			.tree-control-btn {
+				background: #ffffff;
+				border: 1px solid #cbd5e1;
+				color: #1e293b;
+				font-size: 0.9rem;
+				font-weight: 600;
+				padding: 0.5rem 1.15rem;
+				border-radius: 0.5rem;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+			.tree-control-btn:hover {
+				background: #f1f5f9;
+				border-color: #94a3b8;
+			}
+
+			.visual-tree-container {
+				max-width: 920px;
+				margin: 0 auto 5rem;
+				padding: 0 1.25rem;
+			}
+
+			/* Trunk Header: Soft Purple Gradient */
+			.tree-trunk {
+				background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+				border: 1px solid #d8b4fe;
+				border-radius: 1.25rem;
+				padding: 2rem 2.25rem;
+				box-shadow: 0 4px 20px -4px rgba(124, 58, 237, 0.08);
+				margin-bottom: 2.5rem;
+				position: relative;
+				z-index: 10;
+			}
+			.trunk-content {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+			}
+			.trunk-text h2 {
+				font-size: clamp(1.4rem, 2.6vw, 1.95rem);
+				font-weight: 800;
+				color: #4c1d95;
+				margin: 0;
+				line-height: 1.35;
+			}
+			.trunk-text p {
+				font-size: 1.05rem;
+				color: #581c87;
+				margin: 0;
+				line-height: 1.55;
+			}
+
+			/* Tree Wrapper & Branches */
+			.tree-branches {
+				position: relative;
+				padding-left: 1.75rem;
+			}
+			@media (min-width: 768px) {
+				.tree-branches {
+					padding-left: 3rem;
+				}
+			}
+
+			/* Vertical Spine */
+			.tree-branches::before {
+				content: '';
+				position: absolute;
+				top: -2.5rem;
+				left: 0.65rem;
+				bottom: 2.5rem;
+				width: 3px;
+				background: #cbd5e1;
+				border-radius: 2px;
+			}
+			@media (min-width: 768px) {
+				.tree-branches::before {
+					left: 1rem;
+				}
+			}
+
+			/* Branch Node */
+			.tree-branch-node {
+				position: relative;
+				margin-bottom: 2.25rem;
+				z-index: 1;
+			}
+			.tree-branch-node:hover,
+			.tree-branch-node:focus-within {
+				z-index: 100;
+			}
+
+			/* Horizontal Connector */
+			.tree-branch-node::before {
+				content: '';
+				position: absolute;
+				top: 2rem;
+				left: -1.1rem;
+				width: 1.1rem;
+				height: 3px;
+				background: #cbd5e1;
+			}
+			@media (min-width: 768px) {
+				.tree-branch-node::before {
+					left: -2rem;
+					width: 2rem;
+				}
+			}
+
+			/* Node Card with Rich Colored Background & Subtle Drop Shadow */
+			.node-card {
+				border-radius: 1.25rem;
+				overflow: visible;
+				box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+			.node-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.12), 0 10px 14px -6px rgba(15, 23, 42, 0.06);
+			}
+
+			/* Main Node Header with Tinted Header Bar */
+			.node-header {
+				padding: 1.25rem 1.5rem;
+				cursor: pointer;
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				user-select: none;
+				gap: 1rem;
+				border-radius: 1.25rem;
+				transition: background 0.15s ease, border-radius 0.15s ease;
+			}
+			.node-card.open .node-header {
+				border-radius: 1.25rem 1.25rem 0 0;
+			}
+			.node-header-left {
+				display: flex;
+				align-items: flex-start;
+				gap: 1.15rem;
+				flex: 1;
+				min-width: 0;
+			}
+
+			/* Large Number & Pure Emoji to the Left */
+			.node-identity-wrap {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				gap: 0.85rem;
+				width: 7.25rem;
+				flex-shrink: 0;
+				margin-top: 0.15rem;
+			}
+			.node-large-number {
+				font-size: clamp(2.3rem, 3.8vw, 3.1rem);
+				font-weight: 900;
+				color: #0f172a;
+				line-height: 1;
+				letter-spacing: -0.04em;
+				width: 2.1rem;
+				flex-shrink: 0;
+			}
+			.node-emoji {
+				font-size: 3.4rem;
+				line-height: 1;
+				display: block;
+				filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+			}
+			.node-svg-wrap {
+				width: 3.5rem;
+				height: 3.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.neuron-icon {
+				width: 3.5rem;
+				height: 3.5rem;
+				display: block;
+				filter: drop-shadow(0 2px 6px rgba(67, 56, 202, 0.25));
+			}
+
+			.node-title-wrap {
+				flex: 1;
+				min-width: 0;
+			}
+			.node-title-row {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				flex-wrap: wrap;
+				margin-bottom: 0.35rem;
+			}
+			.node-title-wrap h3 {
+				font-size: clamp(2rem, 3.6vw, 2.85rem);
+				font-weight: 800;
+				color: #0f172a;
+				margin: 0;
+				line-height: 1.15;
+				letter-spacing: -0.02em;
+			}
+			.prevalence-tag-wrap {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.35rem;
+				margin-top: 0.35rem;
+				margin-bottom: 0.45rem;
+			}
+			.prevalence-tag {
+				font-size: 0.85rem;
+				font-weight: 700;
+				color: #ffffff;
+				background: #4c1d95;
+				border: none;
+				padding: 0.25rem 0.7rem;
+				border-radius: 0.35rem;
+				white-space: nowrap;
+				line-height: 1.35;
+			}
+			.study-ref-wrap {
+				position: relative;
+				display: inline-block;
+			}
+			.prevalence-study-link {
+				font-size: 0.85rem;
+				font-weight: 500;
+				color: #4338ca;
+				text-decoration: underline;
+				text-underline-offset: 2px;
+				line-height: 1.35;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.25rem;
+				transition: color 0.15s ease;
+			}
+			.prevalence-study-link:hover {
+				color: #312e81;
+			}
+			.study-popover {
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				margin-top: 4px;
+				width: min(540px, 90vw);
+				max-height: 70vh;
+				overflow-y: auto;
+				background: #ffffff;
+				border: 1px solid #cbd5e1;
+				border-radius: 0.75rem;
+				padding: 1.1rem 1.25rem;
+				box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.18), 0 4px 10px -2px rgba(15, 23, 42, 0.08);
+				z-index: 60;
+				text-align: left;
+				cursor: default;
+			}
+			.study-popover::before {
+				content: '';
+				position: absolute;
+				top: -10px;
+				left: 0;
+				right: 0;
+				height: 10px;
+			}
+			@media (max-width: 768px) {
+				.study-popover {
+					position: fixed;
+					left: 1rem !important;
+					right: 1rem !important;
+					top: 50% !important;
+					transform: translateY(-50%);
+					width: auto !important;
+					max-height: 75vh;
+					margin-top: 0;
+					box-shadow: 0 20px 40px rgba(15, 23, 42, 0.3);
+				}
+			}
+			.study-ref-wrap:hover .study-popover,
+			.study-ref-wrap:focus-within .study-popover {
+				display: block;
+			}
+			.study-popover-header {
+				display: flex;
+				align-items: flex-start;
+				gap: 1rem;
+				margin-bottom: 0.45rem;
+			}
+			.study-popover-icon {
+				font-size: 2.75rem;
+				line-height: 1;
+				flex-shrink: 0;
+			}
+			.study-popover-cite {
+				font-size: 0.92rem;
+				font-weight: 700;
+				color: #0f172a;
+				padding-top: 0.25rem;
+			}
+			.study-popover-summary {
+				font-size: 0.9rem;
+				line-height: 1.55;
+				color: #1e293b;
+				margin: 0 0 0.75rem;
+				padding-left: 3.75rem;
+				white-space: pre-line;
+			}
+			.study-popover-ext {
+				display: inline-block;
+				padding-left: 3.75rem;
+				font-size: 0.84rem;
+				font-weight: 600;
+				color: #4338ca;
+				text-decoration: underline;
+				text-underline-offset: 2px;
+			}
+			.study-popover-ext:hover {
+				color: #312e81;
+			}
+			.node-analogy {
+				font-size: 0.95rem;
+				color: #334155;
+				font-weight: 500;
+				margin: 0;
+				line-height: 1.45;
+			}
+
+			.node-chevron {
+				font-size: 0.82rem;
+				font-weight: 600;
+				color: #334155;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				padding: 0.3rem 0.65rem;
+				border-radius: 0.45rem;
+				background: rgba(255, 255, 255, 0.75);
+				flex-shrink: 0;
+				align-self: flex-start;
+				margin-top: 0.25rem;
+				transition: background 0.15s ease, color 0.15s ease;
+			}
+			.node-chevron::before {
+				content: 'Expand';
+			}
+			.node-card.open .node-chevron::before {
+				content: 'Collapse';
+			}
+			.node-chevron::after {
+				content: '▼';
+				font-size: 0.7rem;
+				transition: transform 0.2s ease;
+			}
+			.node-card.open .node-chevron::after {
+				transform: rotate(180deg);
+			}
+			.node-card.open .node-chevron {
+				background: rgba(255, 255, 255, 0.9);
+				color: #0f172a;
+			}
+
+			/* Node Body */
+			.node-body {
+				display: none;
+				padding: 0.5rem 1.5rem 1.75rem;
+				background: rgba(255, 255, 255, 0.65);
+				border-top: 1px solid rgba(0, 0, 0, 0.06);
+				border-radius: 0 0 1.25rem 1.25rem;
+			}
+			.node-card.open .node-body {
+				display: block;
+			}
+
+			/* Orientation Card for Stacked Multiple Factors */
+			.stacked-orientation-card {
+				background: #ffffff;
+				border-radius: 1rem;
+				padding: 1.85rem 2rem;
+				box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.06);
+				margin-top: 0.75rem;
+			}
+			.stacked-orientation-badge {
+				display: inline-block;
+				background: #ffe4e6;
+				color: #9f1239;
+				font-size: 0.88rem;
+				font-weight: 800;
+				padding: 0.35rem 0.85rem;
+				border-radius: 0.5rem;
+				margin-bottom: 0.85rem;
+			}
+			.stacked-orientation-title {
+				font-size: 1.6rem;
+				font-weight: 900;
+				color: #000000;
+				margin: 0 0 0.65rem;
+				line-height: 1.3;
+				letter-spacing: -0.02em;
+			}
+			.stacked-orientation-lead {
+				font-size: 1.05rem;
+				line-height: 1.6;
+				color: #334155;
+				margin: 0 0 1.35rem;
+			}
+			.stacked-orientation-guide {
+				border-top: 1px solid #f1f5f9;
+				padding-top: 1.15rem;
+			}
+			.guide-intro {
+				font-size: 1rem;
+				color: #0f172a;
+				margin: 0 0 1rem;
+				line-height: 1.5;
+			}
+			.guide-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 0.75rem;
+			}
+			.guide-item {
+				display: flex;
+				align-items: center;
+				gap: 0.65rem;
+				background: #f8fafc;
+				padding: 0.75rem 1rem;
+				border-radius: 0.65rem;
+				border: 1px solid #e2e8f0;
+			}
+			.guide-num {
+				font-weight: 900;
+				font-size: 0.95rem;
+				color: #e11d48;
+				background: #ffe4e6;
+				padding: 0.2rem 0.5rem;
+				border-radius: 0.35rem;
+			}
+			.guide-label {
+				font-weight: 700;
+				font-size: 0.92rem;
+				color: #0f172a;
+			}
+
+			/* Stacked Sub-Branches Layout */
+			.sub-tree-layout {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				margin-top: 1rem;
+			}
+
+			/* Collapsible Sub-Branch Accordion Section */
+			.sub-branch-accordion {
+				position: relative;
+				z-index: 1;
+				border: none;
+				border-radius: 0.95rem;
+				background: #ffffff;
+				overflow: visible;
+				box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
+				transition: transform 0.15s ease, box-shadow 0.15s ease;
+			}
+			.sub-branch-accordion:hover,
+			.sub-branch-accordion:focus-within {
+				z-index: 100;
+			}
+			.sub-branch-header {
+				padding: 0.95rem 1.25rem;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				user-select: none;
+				background: #ffffff;
+				border-radius: 0.95rem;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+				transition: background 0.15s ease, border-radius 0.15s ease;
+			}
+			.sub-branch-header:hover {
+				background: #fbfcfe;
+			}
+			.sub-branch-accordion.open .sub-branch-header {
+				border-radius: 0.95rem 0.95rem 0 0;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+			}
+
+			.sub-branch-title {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				font-size: 1.68rem;
+				font-weight: 900;
+				color: #000000;
+				margin: 0;
+				line-height: 1.25;
+				letter-spacing: -0.02em;
+			}
+			.home-tests-title,
+			.tests-title,
+			.specialties-title,
+			.solutions-title {
+				color: #000000;
+			}
+
+			/* Large Sub-Section Emojis */
+			.sub-branch-emoji {
+				font-size: 2.75rem;
+				line-height: 1;
+				display: inline-block;
+				filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+			}
+			.sub-branch-chevron {
+				font-size: 0.8rem;
+				font-weight: 600;
+				color: #475569;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.3rem;
+				flex-shrink: 0;
+			}
+			.sub-branch-chevron::before {
+				content: 'Expand';
+			}
+			.sub-branch-accordion.open .sub-branch-chevron::before {
+				content: 'Collapse';
+			}
+			.sub-branch-chevron::after {
+				content: '▼';
+				font-size: 0.65rem;
+				transition: transform 0.2s ease;
+			}
+			.sub-branch-accordion.open .sub-branch-chevron::after {
+				transform: rotate(180deg);
+			}
+			.sub-branch-accordion.open .sub-branch-chevron {
+				color: #0f172a;
+			}
+
+			/* Sub-Branch Content Area with Alignment to Title Text */
+			.sub-branch-content {
+				display: none;
+				padding: 1.15rem 1.25rem 1.35rem 4.45rem;
+				background: #ffffff;
+				border-radius: 0 0 0.95rem 0.95rem;
+			}
+			.sub-branch-accordion.open .sub-branch-content {
+				display: block;
+			}
+
+			/* Leaf Item Ordered List */
+			.leaf-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 0.95rem;
+				counter-reset: leaf-counter;
+			}
+			.leaf-item {
+				position: relative;
+				padding-left: 1.75rem;
+				font-size: 0.98rem;
+				line-height: 1.5;
+				color: #1e293b;
+				max-width: 80%;
+				counter-increment: leaf-counter;
+			}
+			.leaf-item::before {
+				content: counter(leaf-counter) ".";
+				position: absolute;
+				left: 0;
+				top: 0.05rem;
+				font-weight: 800;
+				font-size: 1.05rem;
+				color: #000000;
+			}
+			.leaf-label {
+				font-weight: 700;
+				font-size: 1.2rem;
+				color: #0f172a;
+				display: block;
+				margin-bottom: 0.25rem;
+				line-height: 1.3;
+			}
+			.leaf-desc {
+				color: #334155;
+				line-height: 1.5;
+			}
+			.leaf-study-box {
+				margin-top: 0.6rem;
+				padding: 0;
+				background: transparent;
+				border: none;
+				font-size: 0.98rem;
+				line-height: 1.5;
+				display: flex;
+				align-items: flex-start;
+				gap: 0.45rem;
+			}
+			.leaf-study-label {
+				font-weight: 400;
+				font-style: normal;
+				color: #0f172a;
+				flex-shrink: 0;
+			}
+			.leaf-study-meta {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.15rem;
+				margin-bottom: 0.25rem;
+			}
+			.leaf-study-tag {
+				font-weight: 700;
+				font-size: 0.98rem;
+				color: #0f172a;
+			}
+			.leaf-study-link {
+				color: #4338ca;
+				font-weight: 400;
+				font-size: 0.85rem;
+				text-decoration: underline;
+				text-underline-offset: 2px;
+			}
+			.leaf-study-link:hover {
+				color: #312e81;
+			}
+			.leaf-study-insight {
+				color: #1e293b;
+				margin: 0;
+				font-size: 0.98rem;
+				line-height: 1.5;
+			}
+				color: #475569;
+				margin: 0;
+				font-size: 0.86rem;
+			}
+
+			/* Show All Items by Default */
+			.leaf-item.is-extra {
+				display: list-item;
+			}
+			.leaf-list.is-expanded .leaf-item.is-extra {
+				display: list-item;
+			}
+
+			/* Hide Show More / Show Less Button */
+			.show-more-wrap {
+				display: none;
+			}
+			.show-more-btn {
+				background: transparent;
+				border: none;
+				color: var(--brand-purple);
+				font-size: 0.88rem;
+				font-weight: 700;
+				padding: 0.25rem 0;
+				cursor: pointer;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				transition: color 0.15s ease;
+			}
+			.show-more-btn:hover {
+				color: var(--brand-purple-hover);
+				text-decoration: underline;
+			}
+
+			/* Callout Banner */
+			.action-banner {
+				background: #0f172a;
+				border-radius: 1.25rem;
+				padding: 2.5rem 2rem;
+				text-align: center;
+				color: #ffffff;
+				margin-top: 3.5rem;
+			}
+			.action-banner h2 {
+				color: #ffffff;
+				font-size: 1.85rem;
+				font-weight: 800;
+				margin-bottom: 0.75rem;
+				line-height: 1.38;
+			}
+			.action-banner p {
+				color: #cbd5e1;
+				font-size: 1.05rem;
+				max-width: 660px;
+				margin: 0 auto 1.5rem;
+				line-height: 1.55;
+			}
+			.action-btn {
+				display: inline-block;
+				background: var(--brand-purple);
+				color: #ffffff;
+				font-weight: 700;
+				padding: 0.85rem 1.85rem;
+				border-radius: 0.65rem;
+				text-decoration: none;
+				transition: background 0.2s ease;
+			}
+			.action-btn:hover {
+				background: var(--brand-purple-hover);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="root-hero">
+				<h1>Root Causes of Burning Mouth</h1>
+				<p>
+					Burning Mouth Syndrome is rarely a single phantom defect. Explore the interactive biological tree below to see how chemical triggers, failing oral hardware, and depleted biological protection converge, along with clinical study prevalence rates, diagnostic tests, medical specialties, and potential solutions.
+				</p>
+				<div class="tree-controls">
+					<button class="tree-control-btn" id="expandAllBtn" type="button">Expand All</button>
+					<button class="tree-control-btn" id="collapseAllBtn" type="button">Collapse All</button>
+				</div>
+			</section>
+
+			<section class="visual-tree-container">
+				<!-- Medical Disclaimer -->
+				<div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.85rem; padding: 1rem 1.35rem; margin-bottom: 1.5rem; font-size: 0.92rem; line-height: 1.5; color: #334155;">
+					<strong style="color: #0f172a;">Medical Disclaimer:</strong> This guide is for educational purposes only and does not constitute medical advice. Please consult a qualified physician, dentist, or orofacial pain specialist before trying any new diagnostic test, supplement, or treatment.
+				</div>
+				<!-- Trunk Header -->
+				<div class="tree-trunk">
+					<div class="trunk-content">
+						<div class="trunk-text">
+							<h2>List of BMS Root Causes</h2>
+							<p>Discover the clinical evidence, biological factors, everyday triggers, diagnostic tests, medical specialties, and targeted treatment solutions for each pattern.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Visual Tree Branches -->
+				<div class="tree-branches">
+					{treeData.map((node) => (
+						<div class="tree-branch-node" id={`branch-${node.id}`}>
+							<div 
+								class="node-card" 
+								data-node={node.id}
+								style={`background: ${node.cardBg}; border: 1px solid ${node.cardBorder};`}
+							>
+								<div 
+									class="node-header" 
+									role="button" 
+									tabindex="0" 
+									aria-expanded="false"
+									style={`background: ${node.headerBg};`}
+								>
+									<div class="node-header-left">
+										<!-- Branch Large Number & Icon Header -->
+										<div class="node-identity-wrap">
+											<span class="node-large-number">{node.number}</span>
+											{node.id === 'neuropathy' ? (
+												<span class="node-emoji node-svg-wrap" title="Peripheral & Trigeminal Nerve Arborization">
+													<svg class="neuron-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<!-- Soma / Neuron Cell Body -->
+														<circle cx="32" cy="24" r="9" fill="#4338ca" />
+														<circle cx="32" cy="24" r="5" fill="#818cf8" />
+														<circle cx="32" cy="24" r="2.5" fill="#ffffff" />
+														<!-- Dendrite branches spreading out -->
+														<path d="M26 18L15 10M15 10L12 4M15 10L6 12M23 24L11 23M11 23L4 18M11 23L5 28M27 30L17 37M17 37L10 38M17 37L15 45M32 15L32 5M32 5L26 2M32 5L38 2M37 18L48 10M48 10L49 3M48 10L57 11M41 24L53 23M53 23L60 18M53 23L59 28M37 30L47 37M47 37L54 38M47 37L49 45" stroke="#4338ca" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+														<!-- Main Axon Trunk descending -->
+														<path d="M32 33V50" stroke="#4338ca" stroke-width="3.2" stroke-linecap="round" />
+														<!-- Myelin Sheath segments -->
+														<rect x="29.5" y="35" width="5" height="4" rx="2" fill="#6366f1" />
+														<rect x="29.5" y="41" width="5" height="4" rx="2" fill="#6366f1" />
+														<rect x="29.5" y="47" width="5" height="4" rx="2" fill="#6366f1" />
+														<!-- Axon terminal branches -->
+														<path d="M32 52L24 60M24 60L18 61M24 60L25 54M32 52L40 60M40 60L46 61M40 60L39 54M32 52L32 62" stroke="#4338ca" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+														<!-- Synaptic Boutons / Nerve Sparks -->
+														<circle cx="18" cy="61" r="1.8" fill="#ec4899" />
+														<circle cx="46" cy="61" r="1.8" fill="#ec4899" />
+														<circle cx="32" cy="62" r="1.8" fill="#ec4899" />
+													</svg>
+												</span>
+											) : (
+												<span class="node-emoji">{node.icon}</span>
+											)}
+										</div>
+										<div class="node-title-wrap">
+											<h3 class={node.id === 'neuropathy' ? 'featured-branch-title' : ''}>{node.title}</h3>
+											<div class="prevalence-tag-wrap">
+												<span class="prevalence-tag" style={`background: ${node.badgeBg};`}>{node.prevalence}</span>
+												<div class="study-ref-wrap" onclick="event.stopPropagation();">
+													<a 
+														href={node.studyUrl} 
+														target="_blank" 
+														rel="noopener noreferrer" 
+														class="prevalence-study-link"
+													>
+														{node.studyCitation} ↗
+													</a>
+													<div class="study-popover" role="tooltip">
+														<div class="study-popover-header">
+															<span class="study-popover-icon">📄</span>
+															<span class="study-popover-cite">{node.studyCitation}</span>
+														</div>
+														<p class="study-popover-summary" set:html={node.studySummary}></p>
+														<a 
+															href={node.studyUrl} 
+															target="_blank" 
+															rel="noopener noreferrer" 
+															class="study-popover-ext"
+														>
+															View full study on PubMed ↗
+														</a>
+													</div>
+												</div>
+											</div>
+											<p class="node-analogy">{node.analogy}</p>
+										</div>
+									</div>
+									<div class="node-chevron" aria-hidden="true"></div>
+								</div>
+
+								<div class="node-body">
+									{node.id === 'combination' ? (
+										<!-- Orientation Card for Stacked Multiple Factors -->
+										<div class="stacked-orientation-card">
+											<div class="stacked-orientation-badge">68% of Patients Report Multiple Overlapping Factors</div>
+											<h4 class="stacked-orientation-title">The Real-World Reality of Burning Mouth</h4>
+											<p class="stacked-orientation-lead">
+												Clinical data shows that nearly 7 out of 10 patients do not suffer from a single isolated cause. Instead, their burning is ignited when multiple underlying factors stack together to push the trigeminal alarm over its threshold.
+											</p>
+											<div class="stacked-orientation-guide">
+												<p class="guide-intro">
+													<strong>Explore Root Causes #2 through #7 below</strong> to identify your individual primary and secondary contributors:
+												</p>
+												<div class="guide-grid">
+													<div class="guide-item">
+														<span class="guide-num">#2</span>
+														<span class="guide-label">Nerve Trauma & Neuropathy (62%)</span>
+													</div>
+													<div class="guide-item">
+														<span class="guide-num">#3</span>
+														<span class="guide-label">Lack of Saliva (58%)</span>
+													</div>
+													<div class="guide-item">
+														<span class="guide-num">#4</span>
+														<span class="guide-label">Bite Pressure Overload (47%)</span>
+													</div>
+													<div class="guide-item">
+														<span class="guide-num">#5</span>
+														<span class="guide-label">Dental Issues (32%)</span>
+													</div>
+													<div class="guide-item">
+														<span class="guide-num">#6</span>
+														<span class="guide-label">Nutrient Deficiencies (28%)</span>
+													</div>
+													<div class="guide-item">
+														<span class="guide-num">#7</span>
+														<span class="guide-label">True Idiopathic BMS (2%)</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									) : (
+										<div class="sub-tree-layout">
+											{node.commonSymptoms && node.commonSymptoms.length > 0 && (
+												<div class="sub-branch-accordion">
+													<div class="sub-branch-header" role="button" tabindex="0" aria-expanded="false">
+														<h4 class="sub-branch-title">
+															<span class="sub-branch-emoji">🚩</span>
+															Common Symptoms
+														</h4>
+														<span class="sub-branch-chevron" aria-hidden="true"></span>
+													</div>
+													<div class="sub-branch-content">
+														<ol class="leaf-list">
+															{node.commonSymptoms.map((item) => (
+																<li class="leaf-item">
+																	<span class="leaf-label">{item.label}</span>
+																	<span class="leaf-desc">{item.desc}</span>
+																</li>
+															))}
+														</ol>
+													</div>
+												</div>
+											)}
+											{node.whyItHurts && (
+												<div class="sub-branch-accordion">
+													<div class="sub-branch-header" role="button" tabindex="0" aria-expanded="false">
+														<h4 class="sub-branch-title">
+															<span class="sub-branch-emoji">💡</span>
+															Why It Generates Pain
+														</h4>
+														<span class="sub-branch-chevron" aria-hidden="true"></span>
+													</div>
+													<div class="sub-branch-content">
+														<p class="leaf-desc" style="margin: 0; padding-left: 1.75rem; max-width: 80%; white-space: pre-line;">{node.whyItHurts}</p>
+													</div>
+												</div>
+											)}
+											<!-- Root Factors Collapsible -->
+											<div class="sub-branch-accordion open">
+												<div class="sub-branch-header" role="button" tabindex="0" aria-expanded="true">
+													<h4 class="sub-branch-title">
+														<span class="sub-branch-emoji">🔬</span>
+														Root Factors
+													</h4>
+													<span class="sub-branch-chevron" aria-hidden="true"></span>
+												</div>
+												<div class="sub-branch-content">
+													<ol class="leaf-list">
+														{node.rootFactors.map((item, idx) => (
+															<li class={`leaf-item ${idx >= 3 ? 'is-extra' : ''}`}>
+																<span class="leaf-label">{item.label}</span>
+																<span class="leaf-desc">
+																	{item.desc}
+																	{item.studyCitation && (
+																		<span class="study-ref-wrap" onclick="event.stopPropagation();">
+																			{" "}<a href={item.studyUrl} target="_blank" rel="noopener noreferrer" class="leaf-study-link">See study</a>
+																			<span class="study-popover" role="tooltip">
+																				<span class="study-popover-header">
+																					<span class="study-popover-icon">📄</span>
+																					<span class="study-popover-cite">{item.studyCitation}</span>
+																				</span>
+																				<span class="study-popover-summary" style="display:block;" set:html={item.studyInsight}></span>
+																				<a href={item.studyUrl} target="_blank" rel="noopener noreferrer" class="study-popover-ext">View full study on PubMed ↗</a>
+																			</span>
+																		</span>
+																	)}
+																</span>
+															</li>
+														))}
+													</ol>
+													{node.rootFactors.length > 3 && (
+														<div class="show-more-wrap">
+															<button 
+																class="show-more-btn" 
+																type="button" 
+																data-count={node.rootFactors.length - 3}
+																aria-expanded="false"
+															>
+																+ Show {node.rootFactors.length - 3} More Root Factors
+															</button>
+														</div>
+													)}
+												</div>
+											</div>
+
+											<!-- Daily Triggers Collapsible -->
+											<div class="sub-branch-accordion open">
+												<div class="sub-branch-header" role="button" tabindex="0" aria-expanded="true">
+													<h4 class="sub-branch-title">
+														<span class="sub-branch-emoji">🔥</span>
+														Daily Triggers
+													</h4>
+													<span class="sub-branch-chevron" aria-hidden="true"></span>
+												</div>
+												<div class="sub-branch-content">
+													<ol class="leaf-list">
+														{node.dailyTriggers.map((item, idx) => (
+															<li class={`leaf-item ${idx >= 3 ? 'is-extra' : ''}`}>
+																<span class="leaf-label">{item.label}</span>
+																<span class="leaf-desc">
+																	{item.desc}
+																	{item.studyCitation && (
+																		<span class="study-ref-wrap" onclick="event.stopPropagation();">
+																			{" "}<a href={item.studyUrl} target="_blank" rel="noopener noreferrer" class="leaf-study-link">See study</a>
+																			<span class="study-popover" role="tooltip">
+																				<span class="study-popover-header">
+																					<span class="study-popover-icon">📄</span>
+																					<span class="study-popover-cite">{item.studyCitation}</span>
+																				</span>
+																				<span class="study-popover-summary" style="display:block;" set:html={item.studyInsight}></span>
+																				<a href={item.studyUrl} target="_blank" rel="noopener noreferrer" class="study-popover-ext">View full study on PubMed ↗</a>
+																			</span>
+																		</span>
+																	)}
+																</span>
+															</li>
+														))}
+													</ol>
+													{node.dailyTriggers.length > 3 && (
+														<div class="show-more-wrap">
+															<button 
+																class="show-more-btn" 
+																type="button" 
+																data-count={node.dailyTriggers.length - 3}
+																aria-expanded="false"
+															>
+																+ Show {node.dailyTriggers.length - 3} More Daily Triggers
+															</button>
+														</div>
+													)}
+												</div>
+											</div>
+
+											<!-- Home Tests Collapsible -->
+											{node.homeTests && node.homeTests.length > 0 && (
+												<div class="sub-branch-accordion home-tests-accordion">
+													<div class="sub-branch-header" role="button" tabindex="0" aria-expanded="false">
+														<h4 class="sub-branch-title home-tests-title">
+															<span class="sub-branch-emoji">🏠</span>
+															Home Tests
+														</h4>
+														<span class="sub-branch-chevron" aria-hidden="true"></span>
+													</div>
+													<div class="sub-branch-content">
+														<ol class="leaf-list">
+															{node.homeTests.map((item, idx) => (
+																<li class={`leaf-item ${idx >= 3 ? 'is-extra' : ''}`}>
+																	<span class="leaf-label">{item.label}</span>
+																	<span class="leaf-desc">
+																		{item.desc}
+																		{item.studyCitation && (
+																			<span class="study-ref-wrap" onclick="event.stopPropagation();">
+																				{" "}<a href={item.studyUrl} target="_blank" rel="noopener noreferrer" class="leaf-study-link">See study</a>
+																				<span class="study-popover" role="tooltip">
+																					<span class="study-popover-header">
+																						<span class="study-popover-icon">📄</span>
+																						<span class="study-popover-cite">{item.studyCitation}</span>
+																					</span>
+																					<span class="study-popover-summary" style="display:block;" set:html={item.studyInsight}></span>
+																					<a href={item.studyUrl} target="_blank" rel="noopener noreferrer" class="study-popover-ext">View full study on PubMed ↗</a>
+																				</span>
+																			</span>
+																		)}
+																	</span>
+																</li>
+															))}
+														</ol>
+														{node.homeTests.length > 3 && (
+															<div class="show-more-wrap">
+																<button 
+																	class="show-more-btn" 
+																	type="button" 
+																	data-count={node.homeTests.length - 3}
+																	aria-expanded="false"
+																>
+																	+ Show {node.homeTests.length - 3} More Home Tests
+																</button>
+															</div>
+														)}
+													</div>
+												</div>
+											)}
+
+											<!-- Clinical Diagnostic Tests Collapsible -->
+											{node.clinicalTests && node.clinicalTests.length > 0 && (
+												<div class="sub-branch-accordion tests-accordion">
+													<div class="sub-branch-header" role="button" tabindex="0" aria-expanded="false">
+														<h4 class="sub-branch-title tests-title">
+															<span class="sub-branch-emoji">🧪</span>
+															Clinical Tests
+														</h4>
+														<span class="sub-branch-chevron" aria-hidden="true"></span>
+													</div>
+													<div class="sub-branch-content">
+														<ol class="leaf-list">
+															{node.clinicalTests.map((item, idx) => (
+																<li class={`leaf-item ${idx >= 3 ? 'is-extra' : ''}`}>
+																	<span class="leaf-label">{item.label}</span>
+																	<span class="leaf-desc">
+																		{item.desc}
+																		{item.studyCitation && (
+																			<span class="study-ref-wrap" onclick="event.stopPropagation();">
+																				{" "}<a href={item.studyUrl} target="_blank" rel="noopener noreferrer" class="leaf-study-link">See study</a>
+																				<span class="study-popover" role="tooltip">
+																					<span class="study-popover-header">
+																						<span class="study-popover-icon">📄</span>
+																						<span class="study-popover-cite">{item.studyCitation}</span>
+																					</span>
+																					<span class="study-popover-summary" style="display:block;" set:html={item.studyInsight}></span>
+																					<a href={item.studyUrl} target="_blank" rel="noopener noreferrer" class="study-popover-ext">View full study on PubMed ↗</a>
+																				</span>
+																			</span>
+																		)}
+																	</span>
+																</li>
+															))}
+														</ol>
+														{node.clinicalTests.length > 3 && (
+															<div class="show-more-wrap">
+																<button 
+																	class="show-more-btn" 
+																	type="button" 
+																	data-count={node.clinicalTests.length - 3}
+																	aria-expanded="false"
+																>
+																	+ Show {node.clinicalTests.length - 3} More Clinical Tests
+																</button>
+															</div>
+														)}
+													</div>
+												</div>
+											)}
+
+											<!-- Medical Specialties Collapsible -->
+											<div class="sub-branch-accordion specialties-accordion open">
+												<div class="sub-branch-header" role="button" tabindex="0" aria-expanded="true">
+													<h4 class="sub-branch-title specialties-title">
+														<span class="sub-branch-emoji">🩺</span>
+														Medical Specialties
+													</h4>
+													<span class="sub-branch-chevron" aria-hidden="true"></span>
+												</div>
+												<div class="sub-branch-content">
+													<ol class="leaf-list">
+														{node.medicalSpecialties.map((item, idx) => (
+															<li class={`leaf-item ${idx >= 3 ? 'is-extra' : ''}`}>
+																<span class="leaf-label">{item.label}</span>
+																<span class="leaf-desc">{item.desc}</span>
+															</li>
+														))}
+													</ol>
+													{node.medicalSpecialties.length > 3 && (
+														<div class="show-more-wrap">
+															<button 
+																class="show-more-btn" 
+																type="button" 
+																data-count={node.medicalSpecialties.length - 3}
+																aria-expanded="false"
+															>
+																+ Show {node.medicalSpecialties.length - 3} More Medical Specialties
+															</button>
+														</div>
+													)}
+												</div>
+											</div>
+
+											<!-- Potential Solutions Collapsible -->
+											<div class="sub-branch-accordion solutions-accordion open">
+												<div class="sub-branch-header" role="button" tabindex="0" aria-expanded="true">
+													<h4 class="sub-branch-title solutions-title">
+														<span class="sub-branch-emoji">💡</span>
+														Potential Solutions
+													</h4>
+													<span class="sub-branch-chevron" aria-hidden="true"></span>
+												</div>
+												<div class="sub-branch-content">
+													<ol class="leaf-list">
+														{node.potentialSolutions.map((item, idx) => (
+															<li class={`leaf-item ${idx >= 3 ? 'is-extra' : ''}`}>
+																<span class="leaf-label">{item.label}</span>
+																<span class="leaf-desc">{item.desc}</span>
+															</li>
+														))}
+													</ol>
+													{node.potentialSolutions.length > 3 && (
+														<div class="show-more-wrap">
+															<button 
+																class="show-more-btn" 
+																type="button" 
+																data-count={node.potentialSolutions.length - 3}
+																aria-expanded="false"
+															>
+																+ Show {node.potentialSolutions.length - 3} More Potential Solutions
+															</button>
+														</div>
+													)}
+												</div>
+											</div>
+										</div>
+									)}
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div class="action-banner">
+					<h2>See How the Triggers Stack in Presentation Mode</h2>
+					<p>
+						Explore the complete 25-slide step-by-step narrative detailing how eliminating acid and sealing dental hardware brings pain down to zero.
+					</p>
+					<a href="/presentation2" class="action-btn">Watch Presentation Flow</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			function initTree() {
+				// Main Branch Card Headers
+				const nodeHeaders = document.querySelectorAll('.node-header');
+				nodeHeaders.forEach((header) => {
+					header.addEventListener('click', () => {
+						const card = header.closest('.node-card');
+						if (!card) return;
+						const isOpen = card.classList.toggle('open');
+						header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+					});
+
+					header.addEventListener('keydown', (e: any) => {
+						if (e.key === 'Enter' || e.key === ' ') {
+							e.preventDefault();
+							(header as HTMLElement).click();
+						}
+					});
+				});
+
+				// Sub-branch Accordions
+				const subHeaders = document.querySelectorAll('.sub-branch-header');
+				subHeaders.forEach((subHeader) => {
+					subHeader.addEventListener('click', (e) => {
+						e.stopPropagation();
+						const accordion = subHeader.closest('.sub-branch-accordion');
+						if (!accordion) return;
+						const isOpen = accordion.classList.toggle('open');
+						subHeader.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+					});
+
+					subHeader.addEventListener('keydown', (e: any) => {
+						if (e.key === 'Enter' || e.key === ' ') {
+							e.preventDefault();
+							(subHeader as HTMLElement).click();
+						}
+					});
+				});
+
+				// Show More / Show Less for Items Beyond 3
+				const showMoreBtns = document.querySelectorAll('.show-more-btn');
+				showMoreBtns.forEach((btn) => {
+					btn.addEventListener('click', (e) => {
+						e.stopPropagation();
+						const wrap = btn.closest('.sub-branch-content');
+						if (!wrap) return;
+						const list = wrap.querySelector('.leaf-list');
+						if (!list) return;
+
+						const isExpanded = list.classList.toggle('is-expanded');
+						btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+						const count = btn.getAttribute('data-count') || 'More';
+
+						if (isExpanded) {
+							btn.textContent = "- Show Less";
+						} else {
+							const titleEl = btn.closest('.sub-branch-accordion')?.querySelector('.sub-branch-title');
+							const section = titleEl ? titleEl.textContent?.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim() : 'Items';
+							btn.textContent = `+ Show ${count} More ${section}`;
+						}
+					});
+				});
+
+				// Global Expand / Collapse Buttons
+				const expandBtn = document.getElementById('expandAllBtn');
+				const collapseBtn = document.getElementById('collapseAllBtn');
+
+				expandBtn?.addEventListener('click', () => {
+					document.querySelectorAll('.node-card').forEach((card) => {
+						card.classList.add('open');
+						card.querySelector('.node-header')?.setAttribute('aria-expanded', 'true');
+					});
+					document.querySelectorAll('.sub-branch-accordion').forEach((acc) => {
+						acc.classList.add('open');
+						acc.querySelector('.sub-branch-header')?.setAttribute('aria-expanded', 'true');
+					});
+					document.querySelectorAll('.leaf-list').forEach((list) => {
+						list.classList.add('is-expanded');
+					});
+					document.querySelectorAll('.show-more-btn').forEach((btn) => {
+						btn.setAttribute('aria-expanded', 'true');
+						btn.textContent = "- Show Less";
+					});
+				});
+
+				collapseBtn?.addEventListener('click', () => {
+					document.querySelectorAll('.node-card').forEach((card) => {
+						card.classList.remove('open');
+						card.querySelector('.node-header')?.setAttribute('aria-expanded', 'false');
+					});
+					document.querySelectorAll('.sub-branch-accordion').forEach((acc) => {
+						acc.classList.remove('open');
+						acc.querySelector('.sub-branch-header')?.setAttribute('aria-expanded', 'false');
+					});
+					document.querySelectorAll('.leaf-list').forEach((list) => {
+						list.classList.remove('is-expanded');
+					});
+					document.querySelectorAll('.show-more-btn').forEach((btn) => {
+						btn.setAttribute('aria-expanded', 'false');
+						const count = btn.getAttribute('data-count') || 'More';
+						const titleEl = btn.closest('.sub-branch-accordion')?.querySelector('.sub-branch-title');
+						const section = titleEl ? titleEl.textContent?.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim() : 'Items';
+						btn.textContent = `+ Show ${count} More ${section}`;
+					});
+				});
+			}
+
+			// Run on initial load and view transitions
+			initTree();
+			document.addEventListener('astro:after-swap', initTree);
+		</script>
+	</body>
+</html>
